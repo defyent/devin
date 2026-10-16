@@ -10,7 +10,7 @@
 
 | ID | Severity | Title |
 |---|---|---|
-| FS-01 | Medium | A single click on an empty week slot with Live Edit OFF opens "New Flight Details" |
+| FS-01 | Medium | **Confirmed by Jon.** A single click on an empty week slot with Live Edit OFF opens "New Flight Details" |
 | FS-02 | Medium | Cancel on a new (unsaved) Flight Details does nothing |
 | FS-03 | Medium | Flights missing category/type render without #ID / crew / type; short flights are hairline bars |
 | FS-04 | Medium | Same person allowed as PIC and Crew on one flight (#42894), plus overlapping aircraft double-bookings |
@@ -30,6 +30,7 @@ SH-xx items were seen while testing the schedule but belong to the shell or Flig
 ---
 
 ### FS-01: A single click on an empty slot opens New Flight Details while Live Edit is OFF (Medium)
+**Status:** Confirmed bug (Jon, 2026-10-16). Required behaviour: clicks and drags on empty schedule space must not create or open a new flight unless Live Edit is enabled.
 **Steps:** Flight Schedule → week view → Live Edit **disabled** → single-click an empty slot (Fri 16 Oct, ~07:15).
 **Expected (guide §8.2):** Flights are created by **click-dragging empty space while Live Edit is on**. With Live Edit off, a click should do nothing or show a hint.
 **Actual:** Navigates to `index.pl?action=flightdetails&starttime=2026-10-16+07:15:00&endtime=2026-10-16+07:20:00` ("New Flight Details", no aircraft).
