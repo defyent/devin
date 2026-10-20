@@ -1,0 +1,38 @@
+# Settings – Time Zone (date/time matrix)
+
+- **Checklist ID prefix:** `STZ`
+- **Guide section:** §12.3
+- **Where:** Settings and Tools > Configuration > Time Zone
+- **Permission:** settings_timezone = A
+- **Tester:**  
+- **Date / DataHangar version:**  
+- **Account / level used:**  
+
+Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must have a Bug ID (see `../DEBUGGING_GUIDE.md`).
+
+## Standard checks
+
+| ID | Check | Expected | Result | Bug ID | Notes |
+|---|---|---|---|---|---|
+| STZ-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | TODO | | |
+| STZ-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | TODO | | |
+| STZ-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
+| STZ-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
+| STZ-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
+| STZ-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
+
+## Module checks
+
+| ID | Check | Expected | Result | Bug ID | Notes |
+|---|---|---|---|---|---|
+| STZ-001 | Searchable timezone | Search works; clocks update | TODO | | |
+| STZ-002 | Cycle all 10 date formats | Example preview correct; then spot-check every module's dates (see 42-dates-timezones) | TODO | | |
+| STZ-003 | Cycle all 5 time formats | Preview + header clocks | TODO | | |
+| STZ-004 | Cycle picker types: Scroll Wheel / Type-In / Native | Every date field across modules uses selected type | TODO | | |
+| STZ-005 | Restore original settings | Back to baseline recorded in SET | TODO | | |
+
+## Test data created
+
+| Record | Where | Cleanup done? |
+|---|---|---|
+| | | |

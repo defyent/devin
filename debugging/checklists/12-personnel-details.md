@@ -1,0 +1,63 @@
+# Personnel Details / My Account
+
+- **Checklist ID prefix:** `PD`
+- **Guide section:** §9.2
+- **Where:** Click a person / My Account
+- **Permission:** Personnel Details A/RA/WG/RG/WO/RO
+- **Tester:**  
+- **Date / DataHangar version:**  
+- **Account / level used:**  
+
+Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must have a Bug ID (see `../DEBUGGING_GUIDE.md`).
+
+## Standard checks
+
+| ID | Check | Expected | Result | Bug ID | Notes |
+|---|---|---|---|---|---|
+| PD-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | TODO | | |
+| PD-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | TODO | | |
+| PD-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
+| PD-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
+| PD-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
+| PD-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
+
+## Module checks
+
+| ID | Check | Expected | Result | Bug ID | Notes |
+|---|---|---|---|---|---|
+| PD-001 | Header: History, PDF (sections), Help, Save Changes | Work | TODO | | |
+| PD-002 | Tabs shown | Personal Details, Flights, Exams, Recency, Forms, Files, Security always; Timesheets only Staff; Lesson Plans only Student; Customize only own/admin | TODO | | |
+| PD-003 | Forms/Files count badges | Correct counts | TODO | | |
+| PD-004 | Personal Details: edit every field, Save | Saved; dirty-state buttons; leave prompt | TODO | | |
+| PD-005 | Weight KG/Lbs toggle | Converts; used on manifests | TODO | | |
+| PD-006 | Photo upload / delete | Appears in top bar and Access Manager | TODO | | |
+| PD-007 | Digital Signature: draw, refresh, password, Save | Saved; wrong password rejected | TODO | | |
+| PD-008 | Flights tab: search, click | Opens Flight Details | TODO | | |
+| PD-009 | Timesheets tab: < > Today | Days with Roster, Duty, Total, Flight Time, F&D, Status | TODO | | |
+| PD-010 | Timesheet day: add/remove sessions, claims, files | 'Session added' / 'Session removed' | TODO | | |
+| PD-011 | Sign day (password) / Bulk Sign | Status Pending | TODO | | |
+| PD-012 | Reopen approved/rejected | Works | TODO | | |
+| PD-013 | External Flight Time (decimal hours + note) | Saved and counted | TODO | | |
+| PD-014 | Legacy Duty Browser | Opens | TODO | | |
+| PD-015 | Request Leave (type, dates, comments) > view/edit/withdraw | Works | TODO | | |
+| PD-016 | F&D / Roster Violation Analysis popups | Explain breaches | TODO | | |
+| PD-017 | Exams tab: open instance > Previous/Next/Submit; leave and resume | Progress saved; Exam History | TODO | | |
+| PD-018 | Lesson Plans tab: Assign (plan, start, end) | Assigned; lessons + progress; Lesson Details flights | TODO | | |
+| PD-019 | Recency tab: table/card, Group by, Order by | Work | TODO | | |
+| PD-020 | Add Item > Renewal / Recency | Search and add | TODO | | |
+| PD-021 | Recency count > Recency Flights; Add Manual Entry (Date*, Value*, Notes) | Works | TODO | | |
+| PD-022 | Renewal: Calculate, Today, Schedule with Flight, Complete Renewal (archive/keep attachments) | Dates correct in org format | TODO | | |
+| PD-023 | Status legend colours | OK green, Caution yellow, Expired red, Empty grey | TODO | | |
+| PD-024 | Forms tab: add, save, archive, unarchive, delete | Each confirms | TODO | | |
+| PD-025 | Files tab | Upload, preview, download, delete | TODO | | |
+| PD-026 | Security: change password (wrong current, < 8, mismatch) | Validation; success | TODO | | |
+| PD-027 | Security: Enable 2FA (QR, backup codes download, verify) | Enabled | TODO | | |
+| PD-028 | Customize: Login Landing Page | Saved; used on next login | TODO | | |
+| PD-029 | Access as RO / WO / WG | Edit rights match level; WG can always edit self | TODO | | |
+| PD-030 | No Personnel Details permission > My Account | Access Denied | TODO | | |
+
+## Test data created
+
+| Record | Where | Cleanup done? |
+|---|---|---|
+| | | |
