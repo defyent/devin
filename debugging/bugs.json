@@ -2518,5 +2518,41 @@
    "sefi_main"
   ],
   "cause": "No help modal, and no keydown handler on the modals."
+ },
+ {
+  "id": "BUG-SFT-001",
+  "title": "Flight Types Settings: no Help (?), and Escape does not close popups",
+  "row": "SFT-S02",
+  "cl": "37-settings-flighttypes",
+  "module": "Settings: Flight Types",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Configuration > Flight Types.",
+   "Look for a Help (?)."
+  ],
+  "expected": "A Help (?) that explains Categories and Activities and where they are used.",
+  "actual": "There is no Help button on the page, and Escape leaves Add Flight Category open.",
+  "shots": [
+   "sft_main"
+  ],
+  "cause": "The template has no help button or help modal."
+ },
+ {
+  "id": "BUG-SFT-002",
+  "title": "Flight Types: a duplicate Flight Category name (\"PIC\") is accepted",
+  "row": "SFT-001",
+  "cl": "37-settings-flighttypes",
+  "module": "Settings: Flight Types",
+  "sev": "Medium",
+  "steps": [
+   "Settings and Tools > Configuration > Flight Types > Flight Categories.",
+   "Add Flight Category, name \"PIC\" (already exists as ID 3), then Save."
+  ],
+  "expected": "Refused with a \"name already exists\" message.",
+  "actual": "\"Flight category added successfully\". The list now has two \"PIC\" rows (ID 3 and ID 15), so the Flight Details, FRMS and Reports dropdowns would show two PIC options.",
+  "shots": [
+   "sft_dup"
+  ],
+  "cause": "No unique check on the name, either client-side or server-side."
  }
 ]

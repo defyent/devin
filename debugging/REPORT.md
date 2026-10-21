@@ -7,8 +7,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 6 |
-| Medium | 48 |
-| Low | 78 |
+| Medium | 49 |
+| Low | 79 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -59,6 +59,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RB-005](bugs/BUG-RB-005.md) | Medium | Roster Builder | Roster Builder: every validation error throws a JS error instead of showing a message (e.g. Apply Shift Pattern with no shifts) |
 | [BUG-RPT-003](bugs/BUG-RPT-003.md) | Medium | Reports | Reports tables overlap on a phone: column text is drawn on top of other columns |
 | [BUG-RV-002](bugs/BUG-RV-002.md) | Medium | Roster Viewer | Roster Viewer: clicking a shift does not open Shift Details |
+| [BUG-SFT-002](bugs/BUG-SFT-002.md) | Medium | Settings: Flight Types | Flight Types: a duplicate Flight Category name ("PIC") is accepted |
 | [BUG-SMS-001](bugs/BUG-SMS-001.md) | Medium | Safety Reports | New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed |
 | [BUG-SMS-002](bugs/BUG-SMS-002.md) | Medium | Safety Reports | New Safety Report: Event Date/Time defaults to the UTC date and time, not local |
 | [BUG-STZ-001](bugs/BUG-STZ-001.md) | Medium | Settings: Time Zone | Time Zone settings: the Example preview shows UTC, not the selected time zone |
@@ -127,6 +128,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SDFR-001](bugs/BUG-SDFR-001.md) | Low | Settings: Daily Flight Record | Daily Flight Record Settings loads a colorpicker.js that does not exist (404 in the console) |
 | [BUG-SEFI-001](bugs/BUG-SEFI-001.md) | Low | Settings: Extra Flight Info | Extra Flight Info Settings: no Help (?), and Escape does not close Add Field |
 | [BUG-SFS-001](bugs/BUG-SFS-001.md) | Low | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted |
+| [BUG-SFT-001](bugs/BUG-SFT-001.md) | Low | Settings: Flight Types | Flight Types Settings: no Help (?), and Escape does not close popups |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
 | [BUG-SMS-004](bugs/BUG-SMS-004.md) | Low | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register |
 | [BUG-SRES-001](bugs/BUG-SRES-001.md) | Low | Settings: Resources (Aircraft) | Resources: the meter "Last:" dates show as YYYY-MM-DD instead of the Time Zone date format |
@@ -959,6 +961,22 @@ Suspected cause: Only the note-corner element has a click handler; .assigned-shi
 
 ![BUG-RV-002-1](bugs/screenshots/BUG-RV-002-1.png)
 ![BUG-RV-002-2](bugs/screenshots/BUG-RV-002-2.png)
+
+### BUG-SFT-002: Flight Types: a duplicate Flight Category name ("PIC") is accepted
+
+Severity: Medium | Module: Settings: Flight Types | Check: SFT-001 ([37-settings-flighttypes](checklists/37-settings-flighttypes.md))
+
+Steps:
+1. Settings and Tools > Configuration > Flight Types > Flight Categories.
+2. Add Flight Category, name "PIC" (already exists as ID 3), then Save.
+
+Expected: Refused with a "name already exists" message.
+
+Actual: "Flight category added successfully". The list now has two "PIC" rows (ID 3 and ID 15), so the Flight Details, FRMS and Reports dropdowns would show two PIC options.
+
+Suspected cause: No unique check on the name, either client-side or server-side.
+
+![BUG-SFT-002-1](bugs/screenshots/BUG-SFT-002-1.png)
 
 ### BUG-SMS-001: New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed
 
@@ -2066,6 +2084,22 @@ Actual: + keeps going (135 after 26 clicks from 5) and 200 typed in stays 200. â
 Suspected cause: handleNumberInput() caps the decrement with Math.max(5, ...) but has no Math.min(120, ...) on increment; handleUpdate() does parseInt only.
 
 ![BUG-SFS-001-1](bugs/screenshots/BUG-SFS-001-1.png)
+
+### BUG-SFT-001: Flight Types Settings: no Help (?), and Escape does not close popups
+
+Severity: Low | Module: Settings: Flight Types | Check: SFT-S02 ([37-settings-flighttypes](checklists/37-settings-flighttypes.md))
+
+Steps:
+1. Settings and Tools > Configuration > Flight Types.
+2. Look for a Help (?).
+
+Expected: A Help (?) that explains Categories and Activities and where they are used.
+
+Actual: There is no Help button on the page, and Escape leaves Add Flight Category open.
+
+Suspected cause: The template has no help button or help modal.
+
+![BUG-SFT-001-1](bugs/screenshots/BUG-SFT-001-1.png)
 
 ### BUG-SMS-003: Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice
 

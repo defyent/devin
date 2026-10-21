@@ -134,6 +134,8 @@
 | [BUG-SWAB-003](BUG-SWAB-003.md) | `SWAB-S01` | Settings: Weight and Balance | Weight & Balance Configs shows a debug "Performance" timing panel to users | Low | New | |
 | [BUG-SWAB-004](BUG-SWAB-004.md) | `SWAB-S05` | Settings: Weight and Balance | Weight & Balance Configs: on a phone the page is wider than the screen | Low | New | |
 | [BUG-SEFI-001](BUG-SEFI-001.md) | `SEFI-S02` | Settings: Extra Flight Info | Extra Flight Info Settings: no Help (?), and Escape does not close Add Field | Low | New | |
+| [BUG-SFT-001](BUG-SFT-001.md) | `SFT-S02` | Settings: Flight Types | Flight Types Settings: no Help (?), and Escape does not close popups | Low | New | |
+| [BUG-SFT-002](BUG-SFT-002.md) | `SFT-001` | Settings: Flight Types | Flight Types: a duplicate Flight Category name ("PIC") is accepted | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
