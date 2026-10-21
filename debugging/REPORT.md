@@ -7,8 +7,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 6 |
-| Medium | 52 |
-| Low | 86 |
+| Medium | 54 |
+| Low | 87 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -62,6 +62,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SFT-002](bugs/BUG-SFT-002.md) | Medium | Settings: Flight Types | Flight Types: a duplicate Flight Category name ("PIC") is accepted |
 | [BUG-SMS-001](bugs/BUG-SMS-001.md) | Medium | Safety Reports | New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed |
 | [BUG-SMS-002](bugs/BUG-SMS-002.md) | Medium | Safety Reports | New Safety Report: Event Date/Time defaults to the UTC date and time, not local |
+| [BUG-SREN-002](bugs/BUG-SREN-002.md) | Medium | Settings: Recency and Renewals | Add Recency accepts negative Days, and a Caution value higher than Warning |
+| [BUG-SREN-003](bugs/BUG-SREN-003.md) | Medium | Settings: Recency and Renewals | Add Renewal Type accepts negative Days to Notify and a Frequency of 0 days |
 | [BUG-SST-004](bugs/BUG-SST-004.md) | Medium | Settings: Shift Types | Roster Shifts on a phone: the table scrolls the page sideways and the group tabs are hidden |
 | [BUG-STZ-001](bugs/BUG-STZ-001.md) | Medium | Settings: Time Zone | Time Zone settings: the Example preview shows UTC, not the selected time zone |
 | [BUG-STZ-003](bugs/BUG-STZ-003.md) | Medium | Settings: Time Zone | Time Zone settings: the Example preview shows MM/DD/YYYY for every date format except DD/MM/YYYY |
@@ -136,6 +138,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SFT-001](bugs/BUG-SFT-001.md) | Low | Settings: Flight Types | Flight Types Settings: no Help (?), and Escape does not close popups |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
 | [BUG-SMS-004](bugs/BUG-SMS-004.md) | Low | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register |
+| [BUG-SREN-001](bugs/BUG-SREN-001.md) | Low | Settings: Recency and Renewals | Recency & Renewals Settings: no Help (?), and Escape does not close popups |
 | [BUG-SRES-001](bugs/BUG-SRES-001.md) | Low | Settings: Resources (Aircraft) | Resources: the meter "Last:" dates show as YYYY-MM-DD instead of the Time Zone date format |
 | [BUG-SST-001](bugs/BUG-SST-001.md) | Low | Settings: Shift Types | Roster Shifts (Shift Type Editor): no Help (?), and Escape does not close popups |
 | [BUG-SST-002](bugs/BUG-SST-002.md) | Low | Settings: Shift Types | New Shift Type: Duty Start/End Time default to the current UTC time |
@@ -1020,6 +1023,38 @@ Expected: Defaults to the local date and time (22/10/2026 00:37), as set in Sett
 Actual: Defaults to 21/10/2026 11:37, the UTC date and time. A report saved without changing it is dated 13 hours early. Same issue as BUG-FS-001 and BUG-FAD-005.
 
 ![BUG-SMS-002-1](bugs/screenshots/BUG-SMS-002-1.png)
+
+### BUG-SREN-002: Add Recency accepts negative Days, and a Caution value higher than Warning
+
+Severity: Medium | Module: Settings: Recency and Renewals | Check: SREN-001 ([41-settings-renewals](checklists/41-settings-renewals.md))
+
+Steps:
+1. Settings and Tools > Recency and Renewals > Recencies > Add Recency.
+2. Name "BETA TEST ONLY Rec", Days -5, Warning Value 10, Caution Value 20, then Save.
+
+Expected: Days must be a positive number. Caution should not be above Warning, since the existing items use Warning 30 / Caution 15 and Warning 50 / Caution 25.
+
+Actual: "Recency added successfully". The row shows Days -5, Warning 10, Caution 20. A negative period would make every recency check meaningless, and the warning levels are inverted.
+
+Suspected cause: input_days and the value inputs have no min attribute, and the save doesn't check the values on either side.
+
+![BUG-SREN-002-1](bugs/screenshots/BUG-SREN-002-1.png)
+
+### BUG-SREN-003: Add Renewal Type accepts negative Days to Notify and a Frequency of 0 days
+
+Severity: Medium | Module: Settings: Recency and Renewals | Check: SREN-002 ([41-settings-renewals](checklists/41-settings-renewals.md))
+
+Steps:
+1. Settings and Tools > Recency and Renewals > Renewals > Add Renewal.
+2. Name "BETA TEST ONLY Ren", Days to Notify -10, Frequency (Days) 0, then Save.
+
+Expected: Both must be positive numbers (Frequency at least 1 day). The save should be refused with a message.
+
+Actual: "Renewal type added successfully". The row shows Days to Notify -10 and Frequency 0. A 0-day renewal would be due again straight away, and a negative notify window means no notice ever comes before expiry.
+
+Suspected cause: The number inputs have no min attribute, and the server doesn't check the range.
+
+![BUG-SREN-003-1](bugs/screenshots/BUG-SREN-003-1.png)
 
 ### BUG-SST-004: Roster Shifts on a phone: the table scrolls the page sideways and the group tabs are hidden
 
@@ -2227,6 +2262,24 @@ Suspected cause: templates2/hazardregister/index.js maps goal code 'M' to 'Minim
 
 ![BUG-SMS-004-1](bugs/screenshots/BUG-SMS-004-1.png)
 ![BUG-SMS-004-2](bugs/screenshots/BUG-SMS-004-2.png)
+
+### BUG-SREN-001: Recency & Renewals Settings: no Help (?), and Escape does not close popups
+
+Severity: Low | Module: Settings: Recency and Renewals | Check: SREN-S02 ([41-settings-renewals](checklists/41-settings-renewals.md))
+
+Steps:
+1. Settings and Tools > Recency and Renewals.
+2. Look for a Help (?) button.
+3. Click Add Recency, then press Escape.
+
+Expected: There is a page Help (?), and Escape closes the popup.
+
+Actual: There is no page Help (?), and Escape leaves Add Recency open.
+
+Suspected cause: The page has no help modal, and there is no Escape key handler on its modals.
+
+![BUG-SREN-001-1](bugs/screenshots/BUG-SREN-001-1.png)
+![BUG-SREN-001-2](bugs/screenshots/BUG-SREN-001-2.png)
 
 ### BUG-SRES-001: Resources: the meter "Last:" dates show as YYYY-MM-DD instead of the Time Zone date format
 

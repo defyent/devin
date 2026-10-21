@@ -49,7 +49,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [38-settings-waypoints](checklists/38-settings-waypoints.md) | `SWP` | Settings – Waypoint Locations | 12 | 8 | 3 | 0 | 0 | DONE |
 | [39-settings-shifttypes](checklists/39-settings-shifttypes.md) | `SST` | Settings – Roster Shifts | 10 | 7 | 3 | 0 | 0 | DONE |
 | [40-settings-frms](checklists/40-settings-frms.md) | `SFRMS` | Settings – Fatigue Risk Management | 11 | 7 | 2 | 1 | 0 | DONE |
-| [41-settings-renewals](checklists/41-settings-renewals.md) | `SREN` | Settings – Recency and Renewals | 10 | 0 | 0 | 0 | 0 | TODO |
+| [41-settings-renewals](checklists/41-settings-renewals.md) | `SREN` | Settings – Recency and Renewals | 10 | 5 | 3 | 0 | 0 | IN PROGRESS |
 | [42-settings-lessonplans](checklists/42-settings-lessonplans.md) | `SLP` | Settings – Lesson Plans | 9 | 0 | 0 | 0 | 0 | TODO |
 | [43-settings-riskmatrix](checklists/43-settings-riskmatrix.md) | `SRM` | Settings – Risk Matrix | 9 | 0 | 0 | 0 | 0 | TODO |
 | [44-settings-smsreports](checklists/44-settings-smsreports.md) | `SSMS` | Settings – Safety Reports | 9 | 0 | 0 | 0 | 0 | TODO |
