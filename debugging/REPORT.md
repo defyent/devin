@@ -6,7 +6,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 
 | Severity | Count |
 |---|---|
-| Medium | 17 |
+| Medium | 18 |
 | Low | 15 |
 
 | Bug | Severity | Module | Title |
@@ -16,6 +16,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-FD-001](bugs/BUG-FD-001.md) | Medium | Flight Details | Flight Details Save Changes does not return to the Flight Schedule and gives no success message |
 | [BUG-FD-002](bugs/BUG-FD-002.md) | Medium | Flight Details | Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM > Unassigned' on schedule moves |
 | [BUG-FD-004](bugs/BUG-FD-004.md) | Medium | Flight Details | Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC) |
+| [BUG-FD-005](bugs/BUG-FD-005.md) | Medium | Flight Details | Leg with two unknown waypoints: only the first is offered for adding, the second is silently dropped on save |
 | [BUG-FS-001](bugs/BUG-FS-001.md) | Medium | Flight Schedule > Flight Details (new) | New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h) |
 | [BUG-FS-002](bugs/BUG-FS-002.md) | Medium | Flight Schedule | Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight |
 | [BUG-FS-003](bugs/BUG-FS-003.md) | Medium | Flight Schedule | Flight Schedule header overlaps when Live Edit is on - title covered, location pill cut off and its 'Show All' button cannot be clicked |
@@ -131,6 +132,25 @@ Actual: Leg PIC and Secondary Flight Crew list 'BETA TEST ONLY Lowperm' and 'BET
 Suspected cause: Leg crew dropdowns are filled from the whole manifest (crew + passengers) instead of crew only.
 
 ![BUG-FD-004-1](bugs/screenshots/BUG-FD-004-1.png)
+
+### BUG-FD-005: Leg with two unknown waypoints: only the first is offered for adding, the second is silently dropped on save
+
+Severity: Medium | Module: Flight Details | Check: FD-022 ([07-flight-details](checklists/07-flight-details.md))
+
+Steps:
+1. Open flight #42903 > Times and Weights > Add Leg
+2. Departure 'ZZZQ', Destination 'NZWN' (neither in Settings > Waypoints)
+3. Save Changes > 'Add New Waypoint' for ZZZQ > Add Waypoint
+4. Back, reopen the flight > Times and Weights
+
+Expected: You are asked about each unknown waypoint (ZZZQ, then NZWN) before the flight is saved; nothing you typed is lost.
+
+Actual: Only ZZZQ is prompted ('Waypoint "ZZZQ" added successfully'), then the flight saves straight away and the leg Destination is stored empty - NZWN is lost without a warning. Typing NZWN again and saving does prompt for it.
+
+Suspected cause: After 'Add Waypoint' the save continues without re-validating the remaining unknown waypoints, and unknown codes are blanked instead of blocking the save.
+
+![BUG-FD-005-1](bugs/screenshots/BUG-FD-005-1.png)
+![BUG-FD-005-2](bugs/screenshots/BUG-FD-005-2.png)
 
 ### BUG-FS-001: New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h)
 

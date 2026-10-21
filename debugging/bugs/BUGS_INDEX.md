@@ -34,6 +34,7 @@
 | [BUG-FD-002](BUG-FD-002.md) | `FD-037` | Flight Details | Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM > Unassigned' on schedule moves | Medium | New | |
 | [BUG-FD-003](BUG-FD-003.md) | `FD-019` | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings | Low | New | |
 | [BUG-FD-004](BUG-FD-004.md) | `FD-005` | Flight Details | Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC) | Medium | New | |
+| [BUG-FD-005](BUG-FD-005.md) | `FD-022` | Flight Details | Leg with two unknown waypoints: only the first is offered for adding, the second is silently dropped on save | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
