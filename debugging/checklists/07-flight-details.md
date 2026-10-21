@@ -46,7 +46,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FD-019 | Times and Meters | Totals with source hint; previous reading + link to previous flight | FAIL | BUG-FD-003 | Times: Total Engine Time 'Calculated from engine start/stop times', Total Flight Time 'Calculated from takeoff/landing times' (source hints OK). Meters Cycles / Engine Hours / Flight Hours show 'Previous: 2450.3 (+0.0)' but there is no link to the previous flight |
 | FD-020 | Cumulative meter lower than previous | 'Meter "X" value (…) is less than previous reading (…)' | PASS |  | Times and Weights > Engine Hours odometer: thousands digit down (2450.3 > 1450.3) > inline 'Value (1450.3) is less than previous reading (2450.3)', 'Previous: 2450.3 (-1000.0)' (shot fd_meter_low). Message does not name the meter but sits under it |
 | FD-021 | Legs: Add Leg top/bottom; delete leg | Works; delete confirms | PASS |  | Add Leg buttons at the top and bottom of Legs; new leg 1 with Departure/Destination, PIC, Secondary crew, Leg Category, engine/flight times, crew and passengers on board, notes. Delete (bin) > 'Delete Leg - Are you sure you want to delete this leg? This action cannot be undone.' Cancel / Delete; Delete removes it (shot fd_leg_delete) |
-| FD-022 | Leg waypoints unknown | Prompt to pick or add; 'Waypoint X added successfully' | TODO | | |
+| FD-022 | Leg waypoints unknown | Prompt to pick or add; 'Waypoint X added successfully' | PASS |  | Leg Departure 'ZZZQ' (unknown) > Save Changes > 'Add New Waypoint - "ZZZQ" is not in the waypoint list. Would you like to add it?' (Stay on Page / Add Waypoint) > Add Waypoint > toast 'Waypoint "ZZZQ" added successfully'. Prompt appears on save, not when leaving the field; cancel button is labelled 'Stay on Page' |
 | FD-023 | Leg time fields | Match resource Time Inputs settings | TODO | | |
 | FD-024 | Crew Recency tab | Items per crew member from direct + group template assignments | PASS |  | Crew Recency tab: 'BETA TEST ONLY Lowperm (BETA TEST ONLY Group, Crew) / PIC - No currencies assigned to this crew member.' (no direct/group templates assigned). Populated case to retest with a crew member who has currencies |
 | FD-025 | Lesson tab | Only when PIC/crew is Student; lessons from assigned plan; exercises, assessment sliders 0–5, debrief | TODO |  | PIC is Crew, not Student: no Lesson tab shown (correct). Student case still to test |
@@ -83,4 +83,8 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| | | |
+| Custom passenger 'BETA TEST ONLY Pax' (80 kg, NOK 'BETA TEST ONLY NOK 000') | Flight #42903 > Passenger List | No |
+| Comment 'BETA TEST ONLY comment' | Flight #42903 > Comments | No |
+| Leg 1 (Departure ZZZQ) | Flight #42903 > Times and Weights | No |
+| Waypoint 'ZZZQ' (added from the leg prompt) | Settings > Waypoints | No |
+| Pre-existing, not created in this run: customer 'DEVIN TEST Customer Ltd' | Customers | No (check with Jon) |
