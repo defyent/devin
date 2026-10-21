@@ -51,8 +51,8 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AM-024 | Change credentials: < 10 chars, mismatch, reserved, duplicate | Rejected with messages | PASS |  | <10: 'Password must be at least 10 characters'; mismatch: 'Passwords do not match'; admin: 'That username is not allowed'; afisher13: 'Username is already taken' |
 | AM-025 | Generate Secure Password | 10-char mixed-case alphanumeric, fills both fields, copy button works | PASS |  | 10 chars, upper+lower+digit, fills both fields, copy button appears |
 | AM-026 | Groups tab: New Group with all 5 switches | Saved; card shows member count and Yes/No for each switch | PASS |  | Created 'BETA TEST ONLY Group' with all 5 switches: toast 'Group ... created successfully'; card shows Members 0 and Yes for Sidebar/Dropdown/Roster/Flight-Duty/Recency |
-| AM-027 | Group switches take effect | Show in Sidebar > sidebar; Show in Dropdown > Schedule Group By; Roster > Roster Builder/Viewer; F&D; Recency | TODO | | |
-| AM-028 | Delete a group in use | Refused with list e.g. 'Cannot delete group: 3 user memberships, 1 notice link' | TODO | | |
+| AM-027 | Group switches take effect | Show in Sidebar > sidebar; Show in Dropdown > Schedule Group By; Roster > Roster Builder/Viewer; F&D; Recency | IN PROGRESS |  | Show in Sidebar: after reload 'BETA TEST ONLY Group' appears in the sidebar group list. Dropdown/Roster/F&D/Recency switches checked in 06/13/14/16/18 (group kept until then) |
+| AM-028 | Delete a group in use | Refused with list e.g. 'Cannot delete group: 3 user memberships, 1 notice link' | PASS |  | Delete confirm shows 'Members: 1 user'; Delete Group > 'Cannot Delete Group - This group cannot be deleted because it is currently in use: Dependencies: 1 user membership' |
 | AM-029 | Delete an unused BETA TEST group | Confirm then deleted | TODO | | |
 | AM-030 | Permission Templates: New Template with no permissions | Rejected (at least one required) | TODO | | |
 | AM-031 | Template card: 'N permissions' click | Expands list with level badges; edit/delete icons work | TODO | | |
@@ -62,4 +62,5 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| | | |
+| User BETA TEST ONLY Lowperm (betatest_low, betatest.low@example.com); 1 permission, role Crew, groups Crew + BETA TEST ONLY Group, 2FA on | Access Manager > User Permissions | No |
+| Group BETA TEST ONLY Group (all 5 switches on) | Access Manager > Groups | No |

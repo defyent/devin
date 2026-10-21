@@ -6,6 +6,20 @@
 | [BUG-PD-001](BUG-PD-001.md) | `PD-S01` | Personnel Details / My Account | personneldetails/index.js is truncated: ReferenceError getPickerMod on every load | Medium | New | |
 | [BUG-LOG-001](BUG-LOG-001.md) | `LOG-013` | Shell (main) | Login Message popup reappears on every browser reload | Low | New | |
 | [BUG-LOG-002](BUG-LOG-002.md) | `LOG-016` | Shell (main) | Logout throws JS error removeChild; Esc doesn't close the Log Out confirm | Low | New | |
+| [BUG-AM-001](BUG-AM-001.md) | `AM-010` | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) | Medium | New | |
+| [BUG-AM-002](BUG-AM-002.md) | `AM-007` | Access Manager | Last Activity hover date ignores Settings > Time Zone format | Low | New | |
+| [BUG-AM-003](BUG-AM-003.md) | `AM-005` | Access Manager | Last Activity column sort does not change order | Low | New | |
+| [BUG-POP-001](BUG-POP-001.md) | `AM-S03` | Access Manager (shared errorModal) | Error modal ('Failed to Create User') does not close with Esc | Low | New | |
+| [BUG-PERM-001](BUG-PERM-001.md) | `PERM-007` | Shell (main) sidebar | Sidebar lists modules the user has no permission for (all lead to Access Denied) | Low | New | |
+| [BUG-PERM-002](BUG-PERM-002.md) | `PERM-007` | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) | Medium | New | |
+| [BUG-AM-004](BUG-AM-004.md) | `AM-020` | Access Manager > Manage User Permissions | Permission level dropdown shows bare codes 'WA' and 'G' next to full labels | Low | New | |
+| [BUG-POP-002](BUG-POP-002.md) | `AM-023` | Access Manager > Manage User Permissions | Manage User Permissions uses a native browser confirm() for unsaved changes | Low | New | |
+| [BUG-PERF-001](BUG-PERF-001.md) | `PERF-001` | All modules (debug panel) | 'Performance' debug timing panel shown on every page, including to non-admin users | Low | New | |
+| [BUG-PD-002](BUG-PD-002.md) | `PD-027` | Personnel Details > Security | Personnel Details modals (Enable 2FA, Setup Error alert): title right-aligned, away from its icon | Low | New | |
+| [BUG-PD-003](BUG-PD-003.md) | `PD-027` | Personnel Details > Security | 2FA setup: one wrong verification code closes the setup dialog and issues a new secret | Medium | New | |
+| [BUG-PD-004](BUG-PD-004.md) | `PD-S04` | Personnel Details > Security | Security tab 'Enabled on' date ignores Settings > Time Zone format | Low | New | |
+| [BUG-LOG-003](BUG-LOG-003.md) | `LOG-010` | Login / 2FA (main) | 'Trust this device for 30 days' is lost on Logout (logout deletes the trusted-device cookie) | Medium | New | |
+| [BUG-POP-003](BUG-POP-003.md) | `AM-019` | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
