@@ -30,8 +30,8 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AF-003 | Table / card view; sort by SAR / Start Time | Works; mobile shows cards only | PASS |  | Table / card view toggle (table_rows / grid_view) works; Sort by SAR Time / Start Time re-orders the list. Mobile check in AF-S05 |
 | AF-004 | SAR countdown / overdue timer | Counts correctly; status colours from Settings > Flight Schedule | FAIL | BUG-AF-001 | Overdue rows show 'OVERDUE by 2784h 23m' etc. 1,365 rows with SAR watch disabled show SAR Time '01/01/1970 00:00' above 'SAR Watch Disabled' (BUG-AF-001). Status colours not compared to settings yet |
 | AF-005 | Click row/card | Opens Flight Details | TODO | | |
-| AF-006 | Click PIC | Contact details popup | TODO | | |
-| AF-007 | Notes | Readable | TODO | | |
+| AF-006 | Click PIC | Contact details popup | PASS |  | Click PIC 'Graham Clarke' > popup 'Graham Clarke - Contact Details' with Mobile 021-555-0096, Email graham.clarke96@datahangar.net, Close (shot af_pic) |
+| AF-007 | Notes | Readable | PASS |  | Notes column readable (e.g. 'Maintenance test flight post 100hr', 'No notes' when empty) |
 | AF-008 | Adjust SAR (A/WG) | Picker + Disable/Enable SAR Watch + Save; hidden for RA/RG | TODO | | |
 | AF-009 | Add Note (A/WG) | Appended to flight | TODO | | |
 | AF-010 | Auto-refresh | Refreshes; pauses while editing | TODO | | |
