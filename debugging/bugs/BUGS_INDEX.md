@@ -82,6 +82,8 @@
 | [BUG-NOT-003](BUG-NOT-003.md) | `NOT-010` | Notices | Settings and Tools hub: 'Notices' card has no links | Low | New | |
 | [BUG-REC-001](BUG-REC-001.md) | `REC-S02` | Recency and Renewals | Recency and Renewals overview has no page Help (?) | Low | New | |
 | [BUG-REC-002](BUG-REC-002.md) | `REC-S05` | Recency and Renewals | Recency and Renewals at phone width: the table is cut off, so Total Items and Actions are hidden | Low | New | |
+| [BUG-SMS-001](BUG-SMS-001.md) | `SMS-004` | Safety Reports | New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed | Medium | New | |
+| [BUG-SMS-002](BUG-SMS-002.md) | `SMS-S04` | Safety Reports | New Safety Report: Event Date/Time defaults to the UTC date and time, not local | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

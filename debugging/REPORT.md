@@ -7,7 +7,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 4 |
-| Medium | 33 |
+| Medium | 35 |
 | Low | 43 |
 
 | Bug | Severity | Module | Title |
@@ -47,6 +47,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RB-003](bugs/BUG-RB-003.md) | Medium | Roster Builder | Roster Builder: copy/paste still works with violation checking ON |
 | [BUG-RB-005](bugs/BUG-RB-005.md) | Medium | Roster Builder | Roster Builder: every validation error throws a JS error instead of showing a message (e.g. Apply Shift Pattern with no shifts) |
 | [BUG-RV-002](bugs/BUG-RV-002.md) | Medium | Roster Viewer | Roster Viewer: clicking a shift does not open Shift Details |
+| [BUG-SMS-001](bugs/BUG-SMS-001.md) | Medium | Safety Reports | New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed |
+| [BUG-SMS-002](bugs/BUG-SMS-002.md) | Medium | Safety Reports | New Safety Report: Event Date/Time defaults to the UTC date and time, not local |
 | [BUG-TS-002](bugs/BUG-TS-002.md) | Medium | Timesheets | Timesheet Approval: status filter 'Unsigned' shows 'No personnel found' although everyone has unsigned days |
 | [BUG-TS-003](bugs/BUG-TS-003.md) | Medium | Timesheets | Timesheet Approval list totals don't match Timesheet Details (Rostered Days and Duty Hours) |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
@@ -708,6 +710,39 @@ Suspected cause: Only the note-corner element has a click handler; .assigned-shi
 
 ![BUG-RV-002-1](bugs/screenshots/BUG-RV-002-1.png)
 ![BUG-RV-002-2](bugs/screenshots/BUG-RV-002-2.png)
+
+### BUG-SMS-001: New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed
+
+Severity: Medium | Module: Safety Reports | Check: SMS-004 ([19-safety-reports](checklists/19-safety-reports.md))
+
+Steps:
+1. Flight Safety > Safety Reports > New Report
+2. Type a Subject
+3. Click the (?) next to Confidential
+4. Press Escape
+
+Expected: Escape closes only the help popup; the report form stays open with the Subject kept.
+
+Actual: The Create New Safety Report form closes and the help popup stays open. Reopening New Report shows an empty Subject.
+
+Suspected cause: The global Escape handler in smsreports/index.js closes document.querySelector('.modal-overlay.active'), which is the first (outer) popup, not the top one.
+
+![BUG-SMS-001-1](bugs/screenshots/BUG-SMS-001-1.png)
+
+### BUG-SMS-002: New Safety Report: Event Date/Time defaults to the UTC date and time, not local
+
+Severity: Medium | Module: Safety Reports | Check: SMS-S04 ([19-safety-reports](checklists/19-safety-reports.md))
+
+Steps:
+1. At a time when UTC and local dates differ (e.g. local 00:37 22/10/2026, UTC 11:37 21/10/2026)
+2. Flight Safety > Safety Reports > New Report
+3. Look at Event Date/Time
+
+Expected: Defaults to the local date and time (22/10/2026 00:37), as set in Settings > Time Zone.
+
+Actual: Defaults to 21/10/2026 11:37, the UTC date and time. A report saved without changing it is dated 13 hours early. Same issue as BUG-FS-001 and BUG-FAD-005.
+
+![BUG-SMS-002-1](bugs/screenshots/BUG-SMS-002-1.png)
 
 ### BUG-TS-002: Timesheet Approval: status filter 'Unsigned' shows 'No personnel found' although everyone has unsigned days
 
