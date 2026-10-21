@@ -18,7 +18,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | RV-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-RV-001 | No Help (?) button on Roster Viewer |
 | RV-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Drag-out (mousedown inside, release outside) keeps Group Visibility and Full Shift Legend open |
 | RV-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | FAIL | BUG-RV-003 | Header month and day numbers fine; shift note popup shows 'October 5, 2026' instead of 05/10/2026. Legend times 24-hour |
-| RV-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
+| RV-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | 390 px: page itself doesn't scroll sideways; the grid scrolls inside its box with the Employee column fixed; month arrows, search, font and group buttons fit. 'This Month' link is hidden at this width |
 | RV-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
 
 ## Module checks
