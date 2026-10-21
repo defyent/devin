@@ -14,7 +14,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| DFR-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | TODO | | |
+| DFR-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Sidebar > Flight Operations > Daily Flight Record loads (action=dailyflightrecord), no console errors (shot dfr_open) |
 | DFR-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | TODO | | |
 | DFR-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
 | DFR-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
@@ -25,7 +25,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| DFR-001 | Default list | Completed flights only | TODO | | |
+| DFR-001 | Default list | Completed flights only | PASS |  | Default list shows only Completed flights (newest first: #42903, #8795, #7435...) |
 | DFR-002 | Manage Columns | Every column listed incl. active Extra Flight Info; choice persists | TODO | | |
 | DFR-003 | Long text cell | Full Text popup | TODO | | |
 | DFR-004 | Click row | Opens Flight Details | TODO | | |
