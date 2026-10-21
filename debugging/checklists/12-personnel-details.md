@@ -38,7 +38,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PD-011 | Sign day (password) / Bulk Sign | Status Pending | TODO | | |
 | PD-012 | Reopen approved/rejected | Works | TODO | | |
 | PD-013 | External Flight Time (decimal hours + note) | Saved and counted | TODO | | |
-| PD-014 | Legacy Duty Browser | Opens | TODO | | |
+| PD-014 | Legacy Duty Browser | Opens | PASS |  | Timesheets > Legacy Duty Browser link opens the 'Legacy Duty Browser' popup with < October 2026 > / Today and columns Date, Duty Start/End, Duty Hours, Legacy/System Flight Time, Note ('No legacy duty or flight time recorded for this month.') and Close (shot pd_legacy) |
 | PD-015 | Request Leave (type, dates, comments) > view/edit/withdraw | Works | TODO | | |
 | PD-016 | F&D / Roster Violation Analysis popups | Explain breaches | TODO | | |
 | PD-017 | Exams tab: open instance > Previous/Next/Submit; leave and resume | Progress saved; Exam History | TODO | | |
