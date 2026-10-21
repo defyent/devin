@@ -14,20 +14,20 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| LP-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | TODO | | |
-| LP-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | TODO | | |
-| LP-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
-| LP-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
-| LP-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
-| LP-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
+| LP-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | BLOCKED |  | No menu path (LP-001) |
+| LP-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | BLOCKED |  | No menu path (LP-001) |
+| LP-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | BLOCKED |  | No menu path (LP-001) |
+| LP-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | BLOCKED |  | No menu path (LP-001) |
+| LP-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | BLOCKED |  | No menu path (LP-001) |
+| LP-S06 | Low-permission account | Access Denied or read-only as per permission | BLOCKED |  | No menu path (LP-001) |
 
 ## Module checks
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| LP-001 | Find a UI path to the stand-alone planner | If none, mark BLOCKED (do not use ?action=) | TODO | | |
-| LP-002 | Rows by groups / people / aircraft; Day/Week/Month | Render correctly | TODO | | |
-| LP-003 | Filter by Location, Add Location, New Booking, Booking Details > Delete | Same behaviour as embedded planner | TODO | | |
+| LP-001 | Find a UI path to the stand-alone planner | If none, mark BLOCKED (do not use ?action=) | BLOCKED |  | No UI path: sidebar has no Location Planner item (Flight Operations: Dashboard, Flight Schedule, Active Flights, Daily Flight Record) and Settings and Tools has only 'Waypoint Locations' (shot lp_hub). Embedded planner tested in 06 |
+| LP-002 | Rows by groups / people / aircraft; Day/Week/Month | Render correctly | BLOCKED |  | No menu path (LP-001); embedded planner views passed in 06 |
+| LP-003 | Filter by Location, Add Location, New Booking, Booking Details > Delete | Same behaviour as embedded planner | BLOCKED |  | No menu path (LP-001); embedded planner filter/booking tested in 06 (BUG-FS-004) |
 
 ## Test data created
 

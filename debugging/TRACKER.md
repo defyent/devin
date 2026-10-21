@@ -18,7 +18,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 24 | 5 | 2 | 8 | IN PROGRESS |
 | [08-active-flights](checklists/08-active-flights.md) | `AF` | Active Flights and Live Tracking | 19 | 14 | 4 | 1 | 3 | DONE |
 | [09-daily-flight-record](checklists/09-daily-flight-record.md) | `DFR` | Daily Flight Record | 16 | 12 | 2 | 2 | 1 | DONE |
-| [10-location-planner](checklists/10-location-planner.md) | `LP` | Location Planner (stand-alone) | 9 | 0 | 0 | 0 | 0 | TODO |
+| [10-location-planner](checklists/10-location-planner.md) | `LP` | Location Planner (stand-alone) | 9 | 0 | 0 | 9 | 0 | DONE |
 | [11-personnel-list](checklists/11-personnel-list.md) | `PL` | All Personnel (Personnel List) | 11 | 0 | 0 | 0 | 2 | TODO |
 | [12-personnel-details](checklists/12-personnel-details.md) | `PD` | Personnel Details / My Account | 36 | 0 | 1 | 0 | 3 | IN PROGRESS |
 | [13-roster-viewer](checklists/13-roster-viewer.md) | `RV` | Roster Viewer | 12 | 0 | 0 | 0 | 1 | TODO |
