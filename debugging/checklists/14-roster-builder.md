@@ -27,7 +27,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 |---|---|---|---|---|---|
 | RB-001 | « ‹ › » navigation, This Month, Search | Double arrows move half a month | PASS |  | » moves forward 2 weeks (Oct 18 - Nov 14), again to Nov 1-30; « back to Oct 18 - Nov 14; < / > whole months; This Month back to Oct 1-31. Search 'Aisha' highlights the 2 matching rows |
 | RB-002 | Select Roster View: Live / Draft | Switches | PASS |  | Select Roster View lists Live Roster and the drafts; picking a draft switches the grid, the badge shows the draft name and an orange 'Draft Edit Mode - Changes are saved to this draft only' banner appears |
-| RB-003 | Bulk: New Draft (BETA TEST ONLY), Rename, Copy Live to Draft (Merge / Clear then Copy), Delete Draft | Each works with confirmation | TODO | | |
+| RB-003 | Bulk: New Draft (BETA TEST ONLY), Rename, Copy Live to Draft (Merge / Clear then Copy), Delete Draft | Each works with confirmation | FAIL | BUG-RB-002 | New Draft creates 'New Draft 1/2' straight away (no name prompt or message). Rename: empty name silently ignored; 'BETA TEST ONLY Draft' saves ('Draft renamed to ...'). Copy Live to Draft offers Clear then Copy / Copy Only (Merge); Clear then Copy works ('Live roster copied ... successfully', rows match live) but takes about 6 min for 1690 shifts. Delete Draft: see end of checklist |
 | RB-004 | Drag shift from palette to cell | Shift placed | TODO | | |
 | RB-005 | Drag shift to delete zone | Removed | TODO | | |
 | RB-006 | Copy/paste with violations ON | Not allowed (documented) | TODO | | |

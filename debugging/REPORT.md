@@ -7,7 +7,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 3 |
-| Medium | 27 |
+| Medium | 28 |
 | Low | 28 |
 
 | Bug | Severity | Module | Title |
@@ -41,6 +41,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PD-016](bugs/BUG-PD-016.md) | Medium | Personnel Details | Personnel Details > Timesheets: Add Claim button does nothing |
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) |
 | [BUG-POP-003](bugs/BUG-POP-003.md) | Medium | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved |
+| [BUG-RB-002](bugs/BUG-RB-002.md) | Medium | Roster Builder | Roster Builder: Copy Live to Draft copies one shift at a time and takes about 6 minutes for one month |
 | [BUG-RV-002](bugs/BUG-RV-002.md) | Medium | Roster Viewer | Roster Viewer: clicking a shift does not open Shift Details |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
 | [BUG-AF-003](bugs/BUG-AF-003.md) | Low | Active Flights | Active Flights has no page Help (?), and its popups (About Live Tracking, Adjust SAR, Add Note) don't close with Escape |
@@ -579,6 +580,24 @@ Actual: Popup closes silently, nothing is saved, and on reopen 'Crew' is still t
 Suspected cause: Groups modal has no dirty check on Esc/close and doesn't reset its checkbox state from the server data when reopened.
 
 ![BUG-POP-003-1](bugs/screenshots/BUG-POP-003-1.png)
+
+### BUG-RB-002: Roster Builder: Copy Live to Draft copies one shift at a time and takes about 6 minutes for one month
+
+Severity: Medium | Module: Roster Builder | Check: RB-003 ([14-roster-builder](checklists/14-roster-builder.md))
+
+Steps:
+1. Settings and Tools > Roster Builder
+2. Select Roster View: BETA TEST ONLY Draft
+3. Bulk actions > Copy Live to Draft > Clear then Copy
+
+Expected: Copy finishes in a few seconds (one server call for the month).
+
+Actual: An 'In Progress... Copying shift N of 1690 for <name>' dialog runs for about 6 minutes (10:41 to about 10:47 UTC on stresstest) and blocks the page. Closing the tab partway would leave a half-copied draft.
+
+Suspected cause: Client loops over every live shift and saves each with its own request instead of a bulk copy endpoint.
+
+![BUG-RB-002-1](bugs/screenshots/BUG-RB-002-1.png)
+![BUG-RB-002-2](bugs/screenshots/BUG-RB-002-2.png)
 
 ### BUG-RV-002: Roster Viewer: clicking a shift does not open Shift Details
 
