@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 3 |
 | Medium | 25 |
-| Low | 23 |
+| Low | 24 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -56,6 +56,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PD-005](bugs/BUG-PD-005.md) | Low | Personnel Details | Personnel Details: History, PDF Options and Legacy Duty Browser popups don't close with Escape, and PDF Options has no x |
 | [BUG-PD-010](bugs/BUG-PD-010.md) | Low | Personnel Details | Personnel Details: the 'Performance' timing panel is shown to users and covers buttons |
 | [BUG-PD-013](bugs/BUG-PD-013.md) | Low | Personnel Details | Personnel Details: an empty Birth Date shows today's date |
+| [BUG-PD-014](bugs/BUG-PD-014.md) | Low | Personnel Details | Digital Signature: wrong password closes the popup and throws away the drawing; empty Save gives no message |
 | [BUG-PERF-001](bugs/BUG-PERF-001.md) | Low | All modules (debug panel) | 'Performance' debug timing panel shown on every page, including to non-admin users |
 | [BUG-PERM-001](bugs/BUG-PERM-001.md) | Low | Shell (main) sidebar | Sidebar lists modules the user has no permission for (all lead to Access Denied) |
 | [BUG-PL-001](bugs/BUG-PL-001.md) | Low | All Personnel | All Personnel has no page Help (?) |
@@ -816,6 +817,24 @@ Suspected cause: The date picker fills in today for empty values; may be linked 
 
 ![BUG-PD-013-1](bugs/screenshots/BUG-PD-013-1.png)
 
+### BUG-PD-014: Digital Signature: wrong password closes the popup and throws away the drawing; empty Save gives no message
+
+Severity: Low | Module: Personnel Details | Check: PD-007 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. All Personnel > BETA TEST ONLY Lowperm > Personal Details > Create Signature
+2. Click Save Signature with nothing drawn and no password
+3. Draw a signature, enter a wrong password, click Save Signature
+
+Expected: Empty drawing or password shows a message such as 'Please draw your signature' / 'Enter your password'. A wrong password shows the error and keeps the popup open with the drawing, so the user can retype the password.
+
+Actual: Save with nothing drawn or no password does nothing at all, with no message. A wrong password shows 'Save Failed - Incorrect password' and closes the Create Signature popup, so the drawing is lost and must be redrawn. The correct password saves ('Digital signature saved successfully').
+
+Suspected cause: Save handler returns silently on empty input, and the error path closes the modal before showing the alert.
+
+![BUG-PD-014-1](bugs/screenshots/BUG-PD-014-1.png)
+![BUG-PD-014-2](bugs/screenshots/BUG-PD-014-2.png)
+
 ### BUG-PERF-001: 'Performance' debug timing panel shown on every page, including to non-admin users
 
 Severity: Low | Module: All modules (debug panel) | Check: PERF-001 ([95-performance](checklists/95-performance.md))
@@ -962,3 +981,4 @@ Suspected cause: #flight-details-modal has no keydown Escape handler (same patte
 | 12-personnel-details | File BETA_TEST_ONLY_pd.txt uploaded to BETA TEST ONLY Lowperm in PD-025 | Personnel Details #276 Files | Yes - deleted |
 | 12-personnel-details | BETA TEST ONLY Lowperm login landing page set to Flight Schedule in PD-028 | Personnel Details #276 Customize | Yes - restored to Dashboard |
 | 12-personnel-details | Photo BETA_TEST_ONLY_photo.png uploaded to BETA TEST ONLY Lowperm in PD-006 | Personnel Details #276 Photo | Yes - removed |
+| 12-personnel-details | Digital signature drawn and saved for BETA TEST ONLY Lowperm in PD-007 | Personnel Details #276 Signature | No - no delete option (only Update Signature); remove in the database or leave |
