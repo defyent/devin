@@ -7,8 +7,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 3 |
-| Medium | 26 |
-| Low | 25 |
+| Medium | 27 |
+| Low | 27 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -41,6 +41,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PD-016](bugs/BUG-PD-016.md) | Medium | Personnel Details | Personnel Details > Timesheets: Add Claim button does nothing |
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) |
 | [BUG-POP-003](bugs/BUG-POP-003.md) | Medium | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved |
+| [BUG-RV-002](bugs/BUG-RV-002.md) | Medium | Roster Viewer | Roster Viewer: clicking a shift does not open Shift Details |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
 | [BUG-AF-003](bugs/BUG-AF-003.md) | Low | Active Flights | Active Flights has no page Help (?), and its popups (About Live Tracking, Adjust SAR, Add Note) don't close with Escape |
 | [BUG-AM-002](bugs/BUG-AM-002.md) | Low | Access Manager | Last Activity hover date ignores Settings > Time Zone format |
@@ -66,6 +67,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-POP-001](bugs/BUG-POP-001.md) | Low | Access Manager (shared errorModal) | Error modal ('Failed to Create User') does not close with Esc |
 | [BUG-POP-002](bugs/BUG-POP-002.md) | Low | Access Manager > Manage User Permissions | Manage User Permissions uses a native browser confirm() for unsaved changes |
 | [BUG-POP-004](bugs/BUG-POP-004.md) | Low | Flight Schedule | Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc |
+| [BUG-RV-001](bugs/BUG-RV-001.md) | Low | Roster Viewer | Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape |
+| [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
 
 ## Bugs
 
@@ -576,6 +579,24 @@ Suspected cause: Groups modal has no dirty check on Esc/close and doesn't reset 
 
 ![BUG-POP-003-1](bugs/screenshots/BUG-POP-003-1.png)
 
+### BUG-RV-002: Roster Viewer: clicking a shift does not open Shift Details
+
+Severity: Medium | Module: Roster Viewer | Check: RV-004 ([13-roster-viewer](checklists/13-roster-viewer.md))
+
+Steps:
+1. Personnel > Roster Viewer (October 2026)
+2. Click the PM shift for Aisha Johnston on 5 Oct (centre of the badge)
+3. Then click the small blue corner on the same badge
+
+Expected: Clicking a shift opens Shift Details (shift name, times, notes).
+
+Actual: Clicking the badge does nothing (no popup, no console error). Only the tiny blue corner opens a 'Note for Aisha Johnston' popup with the date and note text.
+
+Suspected cause: Only the note-corner element has a click handler; .assigned-shift has none.
+
+![BUG-RV-002-1](bugs/screenshots/BUG-RV-002-1.png)
+![BUG-RV-002-2](bugs/screenshots/BUG-RV-002-2.png)
+
 ### BUG-AF-001: Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled
 
 Severity: Low | Module: Active Flights | Check: AF-004 ([08-active-flights](checklists/08-active-flights.md))
@@ -988,6 +1009,40 @@ Actual: Popup stays open on Esc; only OK, x or a click outside closes it. Same f
 Suspected cause: #flight-details-modal has no keydown Escape handler (same pattern as BUG-POP-001).
 
 ![BUG-POP-004-1](bugs/screenshots/BUG-POP-004-1.png)
+
+### BUG-RV-001: Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape
+
+Severity: Low | Module: Roster Viewer | Check: RV-S02 ([13-roster-viewer](checklists/13-roster-viewer.md))
+
+Steps:
+1. Personnel > Roster Viewer
+2. Look for the Help (?) button in the page header
+3. Click the Group Visibility (people) icon, press Escape
+
+Expected: A Help (?) button like other modules; Escape closes the Group Visibility popup.
+
+Actual: No Help button on the page. Group Visibility stays open on Escape; only × or a click outside closes it.
+
+Suspected cause: Roster Viewer header has no help-button include and the modal has no keydown Escape handler.
+
+![BUG-RV-001-1](bugs/screenshots/BUG-RV-001-1.png)
+![BUG-RV-001-2](bugs/screenshots/BUG-RV-001-2.png)
+
+### BUG-RV-003: Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY
+
+Severity: Low | Module: Roster Viewer | Check: RV-S04 ([13-roster-viewer](checklists/13-roster-viewer.md))
+
+Steps:
+1. Settings > Time Zone is DD/MM/YYYY
+2. Personnel > Roster Viewer, click the blue corner of Aisha Johnston's 5 Oct shift
+
+Expected: Date: 05/10/2026
+
+Actual: Date: October 5, 2026
+
+Suspected cause: Popup uses toLocaleDateString with a hard-coded long format instead of the shared date formatter.
+
+![BUG-RV-003-1](bugs/screenshots/BUG-RV-003-1.png)
 
 ## Test data to clean up
 
