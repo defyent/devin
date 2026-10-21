@@ -4,9 +4,9 @@
 - **Guide section:** §11.8
 - **Where:** Header chat icon
 - **Permission:** Chat = A
-- **Tester:**  
-- **Date / DataHangar version:**  
-- **Account / level used:**  
+- **Tester:** Devin
+- **Date / DataHangar version:** 2026-10-21 / v2.0.111
+- **Account / level used:** Service Account (datahangar); betatest_low for S06/004/005
 
 Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must have a Bug ID (see `../DEBUGGING_GUIDE.md`).
 
@@ -14,22 +14,22 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| CHAT-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | TODO | | |
-| CHAT-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | TODO | | |
-| CHAT-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
-| CHAT-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
-| CHAT-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
-| CHAT-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
+| CHAT-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Header chat icon opens Comms (index.pl?action=chat): 'No channels yet. Create one!', no console errors |
+| CHAT-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-CHAT-001 | No Help (?) on Comms. Create Channel: Escape does nothing, outside click closes; empty name does nothing (CHAT-05 still open) |
+| CHAT-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Create Channel popup stays open after mousedown in the name box and release outside |
+| CHAT-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | FAIL | BUG-CHAT-002 | Message time shows '01:32 AM' (12-hour) instead of HH:mm (CHAT-01 still open) |
+| CHAT-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | At 390px the channel opens full-width with the channel list behind the menu button; message box and send usable, no horizontal scroll |
+| CHAT-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low sees the header chat icon but gets 'Error Access Denied: You do not have permission to access the Chat feature' (header icon visibility tracked in BUG-PERM-001) |
 
 ## Module checks
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| CHAT-001 | + channel (BETA TEST ONLY) | Created | TODO | | |
-| CHAT-002 | Enter sends, Shift+Enter newline | Works | TODO | | |
-| CHAT-003 | Image attach < 10 MB with preview; > 10 MB | Sent / rejected cleanly | TODO | | |
-| CHAT-004 | Admin delete message / channel | Confirms; non-admins cannot | TODO | | |
-| CHAT-005 | Badge + banner in another session | Updates within ~20 s | TODO | | |
+| CHAT-001 | + channel (BETA TEST ONLY) | Created | PASS |  | + > 'BETA TEST ONLY Channel' > Create: toast 'Channel #BETA TEST ONLY Channel created', listed as #beta-test-only-channel |
+| CHAT-002 | Enter sends, Shift+Enter newline | Works | PASS |  | Shift+Enter adds a new line in the box; Enter sends; message shows both lines and the box clears. Web address not turned into a link (CHAT-07 still open) |
+| CHAT-003 | Image attach < 10 MB with preview; > 10 MB | Sent / rejected cleanly | PASS |  | File picker accepts image/*. 104 B PNG shows a preview and sends (serve_image link shown in the channel). 11 MB PNG is rejected with 'Images must be less than 10MB.' |
+| CHAT-004 | Admin delete message / channel | Confirms; non-admins cannot | PASS |  | As admin: message delete asks 'Are you sure you want to permanently delete this message?' and removes it; channel delete (hover-only button) asks 'permanently delete #beta-test-only-channel? All messages and uploaded files will be deleted' and removes it. Escape doesn't close either confirm (BUG-CHAT-001). Non-admin hiding is in code (isAdmin) but not tried with a non-admin Chat user - retest in 90 |
+| CHAT-005 | Badge + banner in another session | Updates within ~20 s | BLOCKED |  | Needs a second user with Chat access to post while another session watches the badge/banner (betatest_low has no Chat access). Retest in 90 |
 
 ## Known issues from external audits
 
@@ -51,4 +51,4 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| | | |
+| Channel 'BETA TEST ONLY Channel' with test messages/images | Chat (header icon) | Yes - channel deleted |

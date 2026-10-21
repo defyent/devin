@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 4 |
 | Medium | 44 |
-| Low | 62 |
+| Low | 64 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -65,6 +65,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-AM-002](bugs/BUG-AM-002.md) | Low | Access Manager | Last Activity hover date ignores Settings > Time Zone format |
 | [BUG-AM-003](bugs/BUG-AM-003.md) | Low | Access Manager | Last Activity column sort does not change order |
 | [BUG-AM-004](bugs/BUG-AM-004.md) | Low | Access Manager > Manage User Permissions | Permission level dropdown shows bare codes 'WA' and 'G' next to full labels |
+| [BUG-CHAT-001](bugs/BUG-CHAT-001.md) | Low | Chat | Chat has no page Help (?); Escape doesn't close Create Channel; empty name does nothing with no message |
+| [BUG-CHAT-002](bugs/BUG-CHAT-002.md) | Low | Chat | Chat times show 12-hour '01:32 AM' and date separators 'Thursday, October 22, 2026' instead of the org format |
 | [BUG-DFR-001](bugs/BUG-DFR-001.md) | Low | Daily Flight Record | Daily Flight Record has no page Help (?), and its popups (Manage Columns, Notes full text) don't close with Escape |
 | [BUG-DSH-001](bugs/BUG-DSH-001.md) | Low | Dashboard | Dashboard side tabs are icon-only with no tooltip or label |
 | [BUG-FAD-001](bugs/BUG-FAD-001.md) | Low | Flight and Duty | Flight and Duty has no page Help (?) |
@@ -1043,6 +1045,39 @@ Suspected cause: Label map in accessmanager JS is missing WA and G (falls back t
 
 ![BUG-AM-004-1](bugs/screenshots/BUG-AM-004-1.png)
 
+### BUG-CHAT-001: Chat has no page Help (?); Escape doesn't close Create Channel; empty name does nothing with no message
+
+Severity: Low | Module: Chat | Check: CHAT-S02 ([28-chat](checklists/28-chat.md))
+
+Steps:
+1. Click the header chat icon
+2. Look for a Help (?) button
+3. Click + (Create channel), click Create with no name
+4. Press Escape
+
+Expected: Help (?) exists; empty name shows a message; Escape closes the popup.
+
+Actual: No Help button. Create with an empty name does nothing and shows nothing (external CHAT-05). Escape leaves the popup open (external CHAT-06); outside click now closes it.
+
+![BUG-CHAT-001-1](bugs/screenshots/BUG-CHAT-001-1.png)
+![BUG-CHAT-001-2](bugs/screenshots/BUG-CHAT-001-2.png)
+
+### BUG-CHAT-002: Chat times show 12-hour '01:32 AM' and date separators 'Thursday, October 22, 2026' instead of the org format
+
+Severity: Low | Module: Chat | Check: CHAT-S04 ([28-chat](checklists/28-chat.md))
+
+Steps:
+1. Settings > Time Zone has 24-hour HH:mm
+2. Header chat icon > #beta-test-only-channel
+3. Send a message and read its time
+
+Expected: 01:32 (HH:mm) and 22/10/2026 (DD/MM/YYYY), local time.
+
+Actual: Message time '01:32 AM' (12-hour, external CHAT-01 still present) and day separator 'Thursday, October 22, 2026'.
+
+![BUG-CHAT-002-1](bugs/screenshots/BUG-CHAT-002-1.png)
+![BUG-CHAT-002-2](bugs/screenshots/BUG-CHAT-002-2.png)
+
 ### BUG-DFR-001: Daily Flight Record has no page Help (?), and its popups (Manage Columns, Notes full text) don't close with Escape
 
 Severity: Low | Module: Daily Flight Record | Check: DFR-S02 ([09-daily-flight-record](checklists/09-daily-flight-record.md))
@@ -2009,3 +2044,4 @@ Actual: The feature card is indented about 90px and runs off the right edge; the
 | 25-task-tracker | Project 'BETA TEST ONLY Project' (component, 2 features, 4 tasks, comment) | Administration > Task Tracker | Yes - project deleted ('Project deleted successfully!') |
 | 26-reports | Report template 'BETA TEST ONLY Report', its copy and its result | Administration > Reports | Yes - all deleted |
 | 27-support | Ticket #8 'BETA TEST ONLY ticket' with BETA_TEST_ONLY_sup.txt, reply | Administration > Support | Yes - deleted |
+| 28-chat | Channel 'BETA TEST ONLY Channel' with test messages/images | Chat (header icon) | Yes - channel deleted |

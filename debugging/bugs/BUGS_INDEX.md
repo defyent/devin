@@ -112,6 +112,8 @@
 | [BUG-SUP-001](BUG-SUP-001.md) | `SUP-S02` | Support | Support has no page Help (?); Escape doesn't close New Ticket, but a click outside closes it and wipes everything typed | Medium | New | |
 | [BUG-SUP-002](BUG-SUP-002.md) | `SUP-003` | Support | Support New Ticket: Ctrl+V doesn't paste a screenshot, though the error message tells you to use Ctrl+V | Low | New | |
 | [BUG-SUP-003](BUG-SUP-003.md) | `SUP-005` | Support | Support ticket: clicking a .txt attachment shows an 'Error' popup containing the file's text | Low | New | |
+| [BUG-CHAT-001](BUG-CHAT-001.md) | `CHAT-S02` | Chat | Chat has no page Help (?); Escape doesn't close Create Channel; empty name does nothing with no message | Low | New | |
+| [BUG-CHAT-002](BUG-CHAT-002.md) | `CHAT-S04` | Chat | Chat times show 12-hour '01:32 AM' and date separators 'Thursday, October 22, 2026' instead of the org format | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
