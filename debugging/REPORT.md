@@ -6,11 +6,12 @@ Generated from the checklist results and bug files on this branch. Testing is st
 
 | Severity | Count |
 |---|---|
-| Medium | 18 |
-| Low | 15 |
+| Medium | 19 |
+| Low | 16 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
+| [BUG-AF-002](bugs/BUG-AF-002.md) | Medium | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them |
 | [BUG-AM-001](bugs/BUG-AM-001.md) | Medium | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) |
 | [BUG-DSH-003](bugs/BUG-DSH-003.md) | Medium | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) |
 | [BUG-FD-001](bugs/BUG-FD-001.md) | Medium | Flight Details | Flight Details Save Changes does not return to the Flight Schedule and gives no success message |
@@ -29,6 +30,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PD-003](bugs/BUG-PD-003.md) | Medium | Personnel Details > Security | 2FA setup: one wrong verification code closes the setup dialog and issues a new secret |
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) |
 | [BUG-POP-003](bugs/BUG-POP-003.md) | Medium | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved |
+| [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
 | [BUG-AM-002](bugs/BUG-AM-002.md) | Low | Access Manager | Last Activity hover date ignores Settings > Time Zone format |
 | [BUG-AM-003](bugs/BUG-AM-003.md) | Low | Access Manager | Last Activity column sort does not change order |
 | [BUG-AM-004](bugs/BUG-AM-004.md) | Low | Access Manager > Manage User Permissions | Permission level dropdown shows bare codes 'WA' and 'G' next to full labels |
@@ -46,6 +48,23 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-POP-004](bugs/BUG-POP-004.md) | Low | Flight Schedule | Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc |
 
 ## Bugs
+
+### BUG-AF-002: Active Flights lists future flights that have no SAR time, and the stats cards don't count them
+
+Severity: Medium | Module: Active Flights | Check: AF-001 ([08-active-flights](checklists/08-active-flights.md))
+
+Steps:
+1. Sidebar > Flight Operations > Active Flights
+2. Look at the status column and the stats cards
+
+Expected: Only open flights whose start or SAR time has passed are listed, and Total = Active + Past + Overdue.
+
+Actual: 6 FUTURE flights (#8853, #8854, #8855, #8857, #8858, #8860) are listed with Active Time 00h 00m and SAR Time '01/01/1970 00:00 NO SAR TIME SET'. Cards show Total 1377, Active 0, Past 1364, Overdue 7, so the 6 future flights are in Total but in no other card.
+
+Suspected cause: An empty SAR time is stored/treated as 0 (1970), which counts as 'passed', so future flights pass the list filter.
+
+![BUG-AF-002-1](bugs/screenshots/BUG-AF-002-1.png)
+![BUG-AF-002-2](bugs/screenshots/BUG-AF-002-2.png)
 
 ### BUG-AM-001: New User accepts a 6-character password (placeholder and Change Credentials require 10)
 
@@ -359,6 +378,22 @@ Actual: Popup closes silently, nothing is saved, and on reopen 'Crew' is still t
 Suspected cause: Groups modal has no dirty check on Esc/close and doesn't reset its checkbox state from the server data when reopened.
 
 ![BUG-POP-003-1](bugs/screenshots/BUG-POP-003-1.png)
+
+### BUG-AF-001: Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled
+
+Severity: Low | Module: Active Flights | Check: AF-004 ([08-active-flights](checklists/08-active-flights.md))
+
+Steps:
+1. Sidebar > Flight Operations > Active Flights
+2. Look at the SAR Time column for PAST flights (e.g. #8861, #8844)
+
+Expected: Flights without SAR watch show a dash or just 'SAR Watch Disabled' in the SAR Time column.
+
+Actual: SAR Time shows '01/01/1970 00:00' above 'SAR Watch Disabled' (Unix epoch shown for an empty SAR time).
+
+Suspected cause: Empty/0 SAR timestamp formatted as a date instead of being treated as no value.
+
+![BUG-AF-001-1](bugs/screenshots/BUG-AF-001-1.png)
 
 ### BUG-AM-002: Last Activity hover date ignores Settings > Time Zone format
 

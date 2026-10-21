@@ -14,7 +14,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| AF-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | TODO | | |
+| AF-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Sidebar > Flight Operations > Active Flights loads (action=activeflights), no console errors (shot af_open) |
 | AF-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | TODO | | |
 | AF-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
 | AF-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
@@ -25,10 +25,10 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| AF-001 | List content | Only open flights whose start or SAR time has passed | TODO | | |
-| AF-002 | Stats cards: Total, Active, Past, Overdue | Match list | TODO | | |
-| AF-003 | Table / card view; sort by SAR / Start Time | Works; mobile shows cards only | TODO | | |
-| AF-004 | SAR countdown / overdue timer | Counts correctly; status colours from Settings > Flight Schedule | TODO | | |
+| AF-001 | List content | Only open flights whose start or SAR time has passed | FAIL | BUG-AF-002 | 1,377 rows: 1,364 PAST, 7 OVERDUE and 6 FUTURE. The FUTURE flights (#8853-#8860) have not started and have no SAR time ('01/01/1970 00:00 NO SAR TIME SET') but are still listed (BUG-AF-002) (shot af_future) |
+| AF-002 | Stats cards: Total, Active, Past, Overdue | Match list | FAIL | BUG-AF-002 | Cards: Total 1377, Active 0, Past 1364, Overdue 7. Past and Overdue match the list, but the 6 FUTURE rows are counted in Total and in no other card (BUG-AF-002) |
+| AF-003 | Table / card view; sort by SAR / Start Time | Works; mobile shows cards only | PASS |  | Table / card view toggle (table_rows / grid_view) works; Sort by SAR Time / Start Time re-orders the list. Mobile check in AF-S05 |
+| AF-004 | SAR countdown / overdue timer | Counts correctly; status colours from Settings > Flight Schedule | FAIL | BUG-AF-001 | Overdue rows show 'OVERDUE by 2784h 23m' etc. 1,365 rows with SAR watch disabled show SAR Time '01/01/1970 00:00' above 'SAR Watch Disabled' (BUG-AF-001). Status colours not compared to settings yet |
 | AF-005 | Click row/card | Opens Flight Details | TODO | | |
 | AF-006 | Click PIC | Contact details popup | TODO | | |
 | AF-007 | Notes | Readable | TODO | | |

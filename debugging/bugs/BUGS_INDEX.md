@@ -35,6 +35,8 @@
 | [BUG-FD-003](BUG-FD-003.md) | `FD-019` | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings | Low | New | |
 | [BUG-FD-004](BUG-FD-004.md) | `FD-005` | Flight Details | Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC) | Medium | New | |
 | [BUG-FD-005](BUG-FD-005.md) | `FD-022` | Flight Details | Leg with two unknown waypoints: only the first is offered for adding, the second is silently dropped on save | Medium | New | |
+| [BUG-AF-001](BUG-AF-001.md) | `AF-004` | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled | Low | New | |
+| [BUG-AF-002](BUG-AF-002.md) | `AF-001` | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
