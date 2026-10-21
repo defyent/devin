@@ -346,14 +346,16 @@ Steps:
 1. Settings and Tools > Access Manager > User Permissions.
 2. Click the Permissions badge on BETA TEST ONLY Lowperm.
 3. Scroll through the permission cards.
+4. Give the user the first "Notices" card at WO and Save, then log in as that user and open Notices.
 
 Expected: Each permission type shows once, or the cards are named or grouped clearly enough to tell them apart.
 
-Actual: 16 names are shown more than once, with no heading or hint to tell them apart: Flight Schedule (ids 2, 209), Dashboard (3, 208), Personnel List (4, 215), Daily Flight Record (5, 213), Personnel Details (6, 216), Roster Viewer (7, 217), Roster Builder (8, 223), File Browser (9, 225), Flight and Duty (10, 31, 218), Notices (11, 219), Safety Reports (13, 30, 221), Hazard Register (14, 222), System Settings (15, 211), Form Builder (16, 224), Exam Builder (18, 232), Access Manager (34, 210). The copies offer different levels: Flight Schedule id 2 offers RA/WA/G, id 209 offers A/RA/WG/RG. An admin can easily give the wrong one.
+Actual: 16 names are shown more than once, with no heading or hint to tell them apart: Flight Schedule (ids 2, 209), Dashboard (3, 208), Personnel List (4, 215), Daily Flight Record (5, 213), Personnel Details (6, 216), Roster Viewer (7, 217), Roster Builder (8, 223), File Browser (9, 225), Flight and Duty (10, 31, 218), Notices (11, 219), Safety Reports (13, 30, 221), Hazard Register (14, 222), System Settings (15, 211), Form Builder (16, 224), Exam Builder (18, 232), Access Manager (34, 210). The copies offer different levels: Flight Schedule id 2 offers RA/WA/G, id 209 offers A/RA/WG/RG. An admin can easily give the wrong one. This has a real effect: giving Lowperm the first "Notices" card (id 11) at WO still gives "Access Denied: You do not have permission to access Notices", so the module checks the other Notices card. The first "Flight Schedule" card (id 2) is the one that works for the schedule, so you cannot tell from the name which copy each page uses.
 
 Suspected cause: The permission types table has more than one row with the same display name (probably a second set added for a newer module version). The editor lists every row by name only, with no grouping or description.
 
 ![BUG-AM-005-1](bugs/screenshots/BUG-AM-005-1.png)
+![BUG-AM-005-2](bugs/screenshots/BUG-AM-005-2.png)
 
 ### BUG-DFR-002: Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied
 

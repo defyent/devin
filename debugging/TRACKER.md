@@ -15,7 +15,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [04-access-manager](checklists/04-access-manager.md) | `AM` | Access Manager (users, roles, groups, permissions, templates) | 38 | 21 | 7 | 0 | 0 | IN PROGRESS |
 | [05-dashboard](checklists/05-dashboard.md) | `DSH` | Dashboard | 19 | 10 | 4 | 5 | 0 | DONE |
 | [06-flight-schedule](checklists/06-flight-schedule.md) | `FS` | Flight Schedule (incl. embedded Location Planner) | 40 | 30 | 7 | 1 | 1 | IN PROGRESS |
-| [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 24 | 5 | 2 | 8 | IN PROGRESS |
+| [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 25 | 5 | 2 | 8 | IN PROGRESS |
 | [08-active-flights](checklists/08-active-flights.md) | `AF` | Active Flights and Live Tracking | 19 | 14 | 4 | 1 | 3 | DONE |
 | [09-daily-flight-record](checklists/09-daily-flight-record.md) | `DFR` | Daily Flight Record | 16 | 12 | 2 | 2 | 1 | DONE |
 | [10-location-planner](checklists/10-location-planner.md) | `LP` | Location Planner (stand-alone) | 9 | 0 | 0 | 9 | 0 | DONE |
@@ -56,7 +56,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [45-settings-inspections](checklists/45-settings-inspections.md) | `SINS` | Settings – Inspection Notifications | 9 | 5 | 3 | 0 | 0 | IN PROGRESS |
 | [46-settings-integrations](checklists/46-settings-integrations.md) | `SINT` | Settings – Google Calendar, WhatsApp | 10 | 6 | 2 | 2 | 0 | DONE |
 | [47-settings-activitylog](checklists/47-settings-activitylog.md) | `SLOG` | Settings – Activity Log | 9 | 6 | 2 | 0 | 1 | DONE |
-| [90-xc-permissions](checklists/90-xc-permissions.md) | `PERM` | Cross-cutting: permission levels | 10 | 2 | 0 | 0 | 0 | IN PROGRESS |
+| [90-xc-permissions](checklists/90-xc-permissions.md) | `PERM` | Cross-cutting: permission levels | 10 | 9 | 0 | 1 | 0 | DONE |
 | [91-xc-popups](checklists/91-xc-popups.md) | `POP` | Cross-cutting: popups/modals | 8 | 0 | 0 | 0 | 7 | TODO |
 | [92-xc-dates-timezones](checklists/92-xc-dates-timezones.md) | `DATE` | Cross-cutting: date/time formats and pickers | 7 | 0 | 0 | 0 | 5 | TODO |
 | [93-xc-mobile](checklists/93-xc-mobile.md) | `MOB` | Cross-cutting: mobile / narrow layout | 4 | 0 | 0 | 0 | 0 | TODO |
