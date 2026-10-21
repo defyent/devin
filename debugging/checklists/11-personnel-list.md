@@ -18,7 +18,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PL-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-PL-001 | No Help (?) on the page |
 | PL-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | All Personnel itself opens no popups (clicking a row opens Personnel Details). Popups in Personnel Details are covered in checklist 12 |
 | PL-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | PASS |  | The list shows no dates or times; nothing to check |
-| PL-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
+| PL-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | 390 px: rows become cards (avatar, name, email, phone), search + group/role filters stay visible, page fits (385 <= 390) (shot pl_mobile). The role dropdown touches the right edge |
 | PL-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low (no Personnel List right): link shown, 'Access Denied: You do not have permission to access the Personnel List.' (shot pl_low) |
 
 ## Module checks
