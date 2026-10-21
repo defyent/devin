@@ -17,8 +17,8 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FS-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Opened via sidebar, week view 19-25 October 2026; no console errors (iframe sandbox warning only) |
 | FS-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | VIS-06 | No Help (?) button on the Flight Schedule page header (only the settings page has one) - external VIS-06 |
 | FS-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Flight details popup: mousedown inside, release outside > stays open. Outside click closes it |
-| FS-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
-| FS-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
+| FS-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | FAIL | BUG-FS-001 | Header shows UTC + Local (Pacific/Auckland); schedule/planner dates dd/mm/yyyy and event times local. But Add Flight defaults Start/End/SAR to the UTC time (BUG-FS-001) |
+| FS-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | See FS-026: 390 px switches to list view, no horizontal scroll, tap opens Flight Details |
 | FS-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
 
 ## Module checks
