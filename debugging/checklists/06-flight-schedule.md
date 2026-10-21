@@ -14,8 +14,8 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| FS-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | TODO | | |
-| FS-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | TODO | | |
+| FS-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Opened via sidebar, week view 19-25 October 2026; no console errors (iframe sandbox warning only) |
+| FS-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | VIS-06 | No Help (?) button on the Flight Schedule page header (only the settings page has one) - external VIS-06 |
 | FS-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
 | FS-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
 | FS-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
@@ -25,8 +25,8 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| FS-001 | Day / Week / Month / List views; ‹ › Today | Each renders; view and date remembered on reload | TODO | | |
-| FS-002 | Past/future date banners | 'You are viewing a past/future date' with Today button | TODO | | |
+| FS-001 | Day / Week / Month / List views; ‹ › Today | Each renders; view and date remembered on reload | PASS |  | month 'October 2026', week '19 - 25 October 2026', day, list all render; < > move by view; after reload + reopen, month view and date kept |
+| FS-002 | Past/future date banners | 'You are viewing a past/future date' with Today button | PASS |  | Past: 'You are viewing a past date.'; future: 'You are viewing a future date.'; today button in toolbar returns |
 | FS-003 | Group By dropdown | Only groups with Show in Dropdown; WG/RG users see only their own | TODO | | |
 | FS-004 | Toggle Roster | Roster row shows only Show-on-Schedule shifts and On Roster members | TODO | | |
 | FS-005 | Toggle Notes | Notes show/hide | TODO | | |
