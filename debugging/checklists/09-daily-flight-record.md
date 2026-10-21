@@ -26,8 +26,8 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
 | DFR-001 | Default list | Completed flights only | PASS |  | Default list shows only Completed flights (newest first: #42903, #8795, #7435...) |
-| DFR-002 | Manage Columns | Every column listed incl. active Extra Flight Info; choice persists | TODO | | |
-| DFR-003 | Long text cell | Full Text popup | TODO | | |
+| DFR-002 | Manage Columns | Every column listed incl. active Extra Flight Info; choice persists | PASS |  | Manage Columns lists ID, Status, Start/End Time, Rego, PIC, Secondary Flight Crew, Customer, Flight Time, Engine Time, Flight Activity, Flight Category, Notes, Route, Debrief and Flight Meters (Cycles, Engine Hours, Flight Hours). Ticking Notes persisted after leaving to Dashboard and coming back; restored afterwards. No Extra Flight Info fields are set up on stresstest, so none listed |
+| DFR-003 | Long text cell | Full Text popup | PASS |  | Clicking a Notes cell opens a 'Notes' Full Text popup with the whole text (shot dfr_fulltext) |
 | DFR-004 | Click row | Opens Flight Details | TODO | | |
 | DFR-005 | Simple search multi-word | Each word must match across ID, rego, PIC, crew, customer, route, notes, activity, category | PASS |  | 'ZK-RVN Fisher' -> 1 row (#8795), so words are ANDed across rego and PIC; 'BETA zzznomatch' -> 0 rows. 'Aaron Charter' and 'Charter Aaron' give the same rows (word order ignored) |
 | DFR-006 | Enable Advanced Filtering in Settings > DFR | Filter panel appears | TODO | | |
