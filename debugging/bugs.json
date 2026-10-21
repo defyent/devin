@@ -2426,5 +2426,78 @@
    "sres_main"
   ],
   "cause": "The raw database date is shown without going through the shared date formatter."
+ },
+ {
+  "id": "BUG-SWAB-001",
+  "title": "Weight & Balance Configs: no Help (?), and Escape does not close popups",
+  "row": "SWAB-S02",
+  "cl": "35-settings-wab",
+  "module": "Settings: Weight and Balance",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Configuration > Weight and Balance Configs.",
+   "Look for the Help (?) in the header."
+  ],
+  "expected": "A Help (?) that explains the Draft > Approve > Master workflow.",
+  "actual": "There is no Help button on the page. Also, Escape does not close the \"New Draft Revision\" confirmation; only Cancel closes it.",
+  "shots": [
+   "swab_main"
+  ],
+  "cause": "The template has no help button or help modal."
+ },
+ {
+  "id": "BUG-SWAB-002",
+  "title": "Weight & Balance Configs: dates show as \"14 Oct 2026\" / \"29 Sept 2026\" instead of DD/MM/YYYY",
+  "row": "SWAB-S04",
+  "cl": "35-settings-wab",
+  "module": "Settings: Weight and Balance",
+  "sev": "Low",
+  "steps": [
+   "Settings > Time Zone date format is DD/MM/YYYY.",
+   "Open Weight and Balance Configs.",
+   "Look at the Active Master card and the Date / Approved columns in Revision History."
+  ],
+  "expected": "14/10/2026, 29/09/2026",
+  "actual": "\"Approved 14 Oct 2026\", \"29 Sept 2026\" (a browser-locale format).",
+  "shots": [
+   "swab_main"
+  ],
+  "cause": "Uses toLocaleDateString instead of the shared date formatter."
+ },
+ {
+  "id": "BUG-SWAB-003",
+  "title": "Weight & Balance Configs shows a debug \"Performance\" timing panel to users",
+  "row": "SWAB-S01",
+  "cl": "35-settings-wab",
+  "module": "Settings: Weight and Balance",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Configuration > Weight and Balance Configs.",
+   "Look at the page."
+  ],
+  "expected": "No developer timing panel.",
+  "actual": "A visible 176x394 px \"Performance\" panel shows \"settings_wabconfigs_json Permission Check 0.8ms ... Server Wait 177.0ms ... response kb 1\", with a \u00d7 to close it.",
+  "shots": [
+   "swab_main"
+  ],
+  "cause": "A debug/perf overlay is left switched on in the production template."
+ },
+ {
+  "id": "BUG-SWAB-004",
+  "title": "Weight & Balance Configs: on a phone the page is wider than the screen",
+  "row": "SWAB-S05",
+  "cl": "35-settings-wab",
+  "module": "Settings: Weight and Balance",
+  "sev": "Low",
+  "steps": [
+   "Open Weight and Balance Configs at 390 px wide.",
+   "Scroll sideways."
+  ],
+  "expected": "The page fits the screen; the revision table scrolls in its own box or becomes cards.",
+  "actual": "The document is 651 px wide on a 390 px screen. The 615 px revision table is not in a scroll box (overflow-x: visible), so the whole page scrolls sideways.",
+  "shots": [
+   "swab_mobile"
+  ],
+  "cause": "The table wrapper has no overflow-x:auto and there is no responsive rule."
  }
 ]

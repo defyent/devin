@@ -129,6 +129,10 @@
 | [BUG-STZ-002](BUG-STZ-002.md) | `STZ-S02` | Settings: Time Zone | Time Zone settings page has no Help (?) | Low | New | |
 | [BUG-STZ-003](BUG-STZ-003.md) | `STZ-002` | Settings: Time Zone | Time Zone settings: the Example preview shows MM/DD/YYYY for every date format except DD/MM/YYYY | Medium | New | |
 | [BUG-SRES-001](BUG-SRES-001.md) | `SRES-S04` | Settings: Resources (Aircraft) | Resources: the meter "Last:" dates show as YYYY-MM-DD instead of the Time Zone date format | Low | New | |
+| [BUG-SWAB-001](BUG-SWAB-001.md) | `SWAB-S02` | Settings: Weight and Balance | Weight & Balance Configs: no Help (?), and Escape does not close popups | Low | New | |
+| [BUG-SWAB-002](BUG-SWAB-002.md) | `SWAB-S04` | Settings: Weight and Balance | Weight & Balance Configs: dates show as "14 Oct 2026" / "29 Sept 2026" instead of DD/MM/YYYY | Low | New | |
+| [BUG-SWAB-003](BUG-SWAB-003.md) | `SWAB-S01` | Settings: Weight and Balance | Weight & Balance Configs shows a debug "Performance" timing panel to users | Low | New | |
+| [BUG-SWAB-004](BUG-SWAB-004.md) | `SWAB-S05` | Settings: Weight and Balance | Weight & Balance Configs: on a phone the page is wider than the screen | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 6 |
 | Medium | 48 |
-| Low | 73 |
+| Low | 77 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -132,6 +132,10 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-STZ-002](bugs/BUG-STZ-002.md) | Low | Settings: Time Zone | Time Zone settings page has no Help (?) |
 | [BUG-SUP-002](bugs/BUG-SUP-002.md) | Low | Support | Support New Ticket: Ctrl+V doesn't paste a screenshot, though the error message tells you to use Ctrl+V |
 | [BUG-SUP-003](bugs/BUG-SUP-003.md) | Low | Support | Support ticket: clicking a .txt attachment shows an 'Error' popup containing the file's text |
+| [BUG-SWAB-001](bugs/BUG-SWAB-001.md) | Low | Settings: Weight and Balance | Weight & Balance Configs: no Help (?), and Escape does not close popups |
+| [BUG-SWAB-002](bugs/BUG-SWAB-002.md) | Low | Settings: Weight and Balance | Weight & Balance Configs: dates show as "14 Oct 2026" / "29 Sept 2026" instead of DD/MM/YYYY |
+| [BUG-SWAB-003](bugs/BUG-SWAB-003.md) | Low | Settings: Weight and Balance | Weight & Balance Configs shows a debug "Performance" timing panel to users |
+| [BUG-SWAB-004](bugs/BUG-SWAB-004.md) | Low | Settings: Weight and Balance | Weight & Balance Configs: on a phone the page is wider than the screen |
 | [BUG-TS-001](bugs/BUG-TS-001.md) | Low | Timesheets | Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing |
 | [BUG-TS-004](bugs/BUG-TS-004.md) | Low | Timesheets | Timesheet Details shows dates as 'Oct 5' and times with seconds (14:00:00) |
 | [BUG-TS-005](bugs/BUG-TS-005.md) | Low | Timesheets | Timesheet Details: F&D and Roster Violation popups ignore Escape and show ISO dates in the title |
@@ -2146,6 +2150,71 @@ Actual: An 'Error' popup opens whose message is the file content ('BETA TEST ONL
 Suspected cause: Text preview response is passed to showErrorModal.
 
 ![BUG-SUP-003-1](bugs/screenshots/BUG-SUP-003-1.png)
+
+### BUG-SWAB-001: Weight & Balance Configs: no Help (?), and Escape does not close popups
+
+Severity: Low | Module: Settings: Weight and Balance | Check: SWAB-S02 ([35-settings-wab](checklists/35-settings-wab.md))
+
+Steps:
+1. Settings and Tools > Configuration > Weight and Balance Configs.
+2. Look for the Help (?) in the header.
+
+Expected: A Help (?) that explains the Draft > Approve > Master workflow.
+
+Actual: There is no Help button on the page. Also, Escape does not close the "New Draft Revision" confirmation; only Cancel closes it.
+
+Suspected cause: The template has no help button or help modal.
+
+![BUG-SWAB-001-1](bugs/screenshots/BUG-SWAB-001-1.png)
+
+### BUG-SWAB-002: Weight & Balance Configs: dates show as "14 Oct 2026" / "29 Sept 2026" instead of DD/MM/YYYY
+
+Severity: Low | Module: Settings: Weight and Balance | Check: SWAB-S04 ([35-settings-wab](checklists/35-settings-wab.md))
+
+Steps:
+1. Settings > Time Zone date format is DD/MM/YYYY.
+2. Open Weight and Balance Configs.
+3. Look at the Active Master card and the Date / Approved columns in Revision History.
+
+Expected: 14/10/2026, 29/09/2026
+
+Actual: "Approved 14 Oct 2026", "29 Sept 2026" (a browser-locale format).
+
+Suspected cause: Uses toLocaleDateString instead of the shared date formatter.
+
+![BUG-SWAB-002-1](bugs/screenshots/BUG-SWAB-002-1.png)
+
+### BUG-SWAB-003: Weight & Balance Configs shows a debug "Performance" timing panel to users
+
+Severity: Low | Module: Settings: Weight and Balance | Check: SWAB-S01 ([35-settings-wab](checklists/35-settings-wab.md))
+
+Steps:
+1. Settings and Tools > Configuration > Weight and Balance Configs.
+2. Look at the page.
+
+Expected: No developer timing panel.
+
+Actual: A visible 176x394 px "Performance" panel shows "settings_wabconfigs_json Permission Check 0.8ms ... Server Wait 177.0ms ... response kb 1", with a × to close it.
+
+Suspected cause: A debug/perf overlay is left switched on in the production template.
+
+![BUG-SWAB-003-1](bugs/screenshots/BUG-SWAB-003-1.png)
+
+### BUG-SWAB-004: Weight & Balance Configs: on a phone the page is wider than the screen
+
+Severity: Low | Module: Settings: Weight and Balance | Check: SWAB-S05 ([35-settings-wab](checklists/35-settings-wab.md))
+
+Steps:
+1. Open Weight and Balance Configs at 390 px wide.
+2. Scroll sideways.
+
+Expected: The page fits the screen; the revision table scrolls in its own box or becomes cards.
+
+Actual: The document is 651 px wide on a 390 px screen. The 615 px revision table is not in a scroll box (overflow-x: visible), so the whole page scrolls sideways.
+
+Suspected cause: The table wrapper has no overflow-x:auto and there is no responsive rule.
+
+![BUG-SWAB-004-1](bugs/screenshots/BUG-SWAB-004-1.png)
 
 ### BUG-TS-001: Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing
 
