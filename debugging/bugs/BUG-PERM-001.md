@@ -27,7 +27,7 @@ Only modules the user can open are listed (Roster Builder, Timesheets etc. are a
 - Console / network errors: none
 
 ## Suspected cause (optional)
-Sidebar build in main/index.pl does not check the permission types used by each module's own access check.
+Sidebar build in main/index.pl does not check the permission types used by each module's own access check. Note: checklist NAV-019 (from the user guide) expects the link to stay visible and show Access Denied, so this may be by design - needs a product decision.
 
 ## Test data involved
 none

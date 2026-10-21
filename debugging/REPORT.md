@@ -6,7 +6,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 
 | Severity | Count |
 |---|---|
-| Medium | 13 |
+| Medium | 14 |
 | Low | 14 |
 
 | Bug | Severity | Module | Title |
@@ -18,6 +18,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-FS-003](bugs/BUG-FS-003.md) | Medium | Flight Schedule | Flight Schedule header overlaps when Live Edit is on - title covered, location pill cut off and its 'Show All' button cannot be clicked |
 | [BUG-FS-004](bugs/BUG-FS-004.md) | Medium | Flight Schedule > Location Planner | Planner Add Location replaces the New Booking popup - typed booking and location input is lost |
 | [BUG-FS-006](bugs/BUG-FS-006.md) | Medium | Flight Schedule | Flight Schedule month view is slow: flightschedule_json takes ~1.6 s and rendering 2,500 events ~4.5 s |
+| [BUG-FS-007](bugs/BUG-FS-007.md) | Medium | Flight Schedule | Edit-mode idle timeout switches Live Edit off silently and throws 'calendarEl is not defined' |
 | [BUG-LOG-003](bugs/BUG-LOG-003.md) | Medium | Login / 2FA (main) | 'Trust this device for 30 days' is lost on Logout (logout deletes the trusted-device cookie) |
 | [BUG-NAV-001](bugs/BUG-NAV-001.md) | Medium | Shell (main) / Personnel Details | Leaving a page with unsaved changes gives no warning; edits are lost |
 | [BUG-PD-001](bugs/BUG-PD-001.md) | Medium | Personnel Details / My Account | personneldetails/index.js is truncated: ReferenceError getPickerMod on every load |
@@ -162,6 +163,22 @@ Actual: Request 1,590 ms (first byte 844 ms); 2,493 events take 4.5 s from click
 Suspected cause: Whole 6-week range returned with full event details in one JSON call and every event rendered; consider a summary per day for month view, indexes on flight start/end, or lazy loading of 'more' events.
 
 ![BUG-FS-006-1](bugs/screenshots/BUG-FS-006-1.png)
+
+### BUG-FS-007: Edit-mode idle timeout switches Live Edit off silently and throws 'calendarEl is not defined'
+
+Severity: Medium | Module: Flight Schedule | Check: FS-025 ([06-flight-schedule](checklists/06-flight-schedule.md))
+
+Steps:
+1. Flight Schedule > Planner Only (or any view) > Enable Live Edit
+2. Do not touch the page for 20 minutes
+
+Expected: Edit mode turns off with the message 'Edit mode has been disabled due to inactivity.'
+
+Actual: At 20 min the button silently returns to 'Enable Live Edit'; no popup or toast, and the console shows uncaught ReferenceError 'calendarEl is not defined', so the rest of the timeout handler (probably the message and the calendar refresh) does not run. A user who comes back can think they are still editing.
+
+Suspected cause: Inactivity handler references a variable calendarEl that is not in scope (renamed or local to another function).
+
+![BUG-FS-007-1](bugs/screenshots/BUG-FS-007-1.png)
 
 ### BUG-LOG-003: 'Trust this device for 30 days' is lost on Logout (logout deletes the trusted-device cookie)
 
@@ -438,7 +455,7 @@ Expected: Only modules the user can open are listed (Roster Builder, Timesheets 
 
 Actual: 17 items listed (Dashboard, Flight Schedule, Active Flights, DFR, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support); every one shows 'Access Denied'. The landing page (Dashboard) is also Access Denied.
 
-Suspected cause: Sidebar build in main/index.pl does not check the permission types used by each module's own access check.
+Suspected cause: Sidebar build in main/index.pl does not check the permission types used by each module's own access check. Note: checklist NAV-019 (from the user guide) expects the link to stay visible and show Access Denied, so this may be by design - needs a product decision.
 
 ![BUG-PERM-001-1](bugs/screenshots/BUG-PERM-001-1.png)
 ![BUG-PERM-001-2](bugs/screenshots/BUG-PERM-001-2.png)
