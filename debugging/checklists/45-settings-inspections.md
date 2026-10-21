@@ -27,7 +27,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 |---|---|---|---|---|---|
 | SINS-001 | Search; Group by None/Name/Resource/Status | Works | PASS |  | 251 records, all COMPLETED. Search "R44-04" gives 14 rows, all R44-04. Group by Inspection Name gives 9 groups with counts (e.g. "100 Hour Inspection #2 (60)"), Resource gives 20 groups, Status gives "Completed (251)", and None gives the flat list again. Note: 108 COMPLETED rows still show text like "2100.0 / 447.0 (1653.0 overdue)". That is odd wording for a completed inspection, but it may just be how history rows are shown. |
 | SINS-002 | Add Inspection: Date trigger vs meter trigger | Field switches; overdue logic correct | FAIL | BUG-SINS-002 | Trigger dropdown is filled after you choose a Resource (Date + that resource's meters). Date shows a DD/MM/YYYY date box, Flight Hours shows #inspectionMeter, and the fields switch correctly. Date trigger 01/10/2026 gives OVERDUE (correct). Meter trigger -5 is accepted and shows "(5.0 overdue)" but PENDING, because a current reading of 0 is treated as missing. Edit opens with the saved values (date 01/10/2026). Changing it to 31/12/2026 saved ("2026-12-31 (70 days)", PENDING). |
-| SINS-003 | Schedule flight popup 'Aircraft Inspections' | Shows due/overdue | TODO | | |
+| SINS-003 | Schedule flight popup 'Aircraft Inspections' | Shows due/overdue | BLOCKED |  | Needs a flight on the test aircraft ZK-BTO, which has none. I tried moving BETA flight #42903 to ZK-BTO, but Flight Details warns "Overwrite Meter Readings ... the saved readings will be overwritten", so I cancelled to keep ZK-SIM meter history. The two BETA inspections stay on ZK-BTO for a retest. |
 
 ## Test data created
 
