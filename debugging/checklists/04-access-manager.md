@@ -17,7 +17,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AM-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Settings and Tools > Access Manager; no console errors |
 | AM-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | PASS |  | Opens; × / Got It / Esc close. Outside click on the overlay does NOT close (probably deliberate since POP-01 fix; confirm with Jon) |
 | AM-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | FAIL | BUG-POP-001 | Drag-out: New User, Help, Change Credentials stay open (OK). Error modal ignores Esc |
-| AM-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
+| AM-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | FAIL | BUG-AM-002 | Access Manager shows a UTC time (BUG-AM-002). |
 | AM-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
 | AM-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low (0 permissions): Settings and Tools shows 'Access Denied: You do not have permission to access the System Settings feature' |
 
@@ -54,8 +54,8 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AM-027 | Group switches take effect | Show in Sidebar > sidebar; Show in Dropdown > Schedule Group By; Roster > Roster Builder/Viewer; F&D; Recency | IN PROGRESS |  | Show in Sidebar: 'BETA TEST ONLY Group' in People submenu + mobile drawer after reload. Show in Dropdown: listed in Flight Schedule Group By. Roster/F&D/Recency switches checked in 13/14/16/18 (group kept until then) |
 | AM-028 | Delete a group in use | Refused with list e.g. 'Cannot delete group: 3 user memberships, 1 notice link' | PASS |  | Delete confirm shows 'Members: 1 user'; Delete Group > 'Cannot Delete Group - This group cannot be deleted because it is currently in use: Dependencies: 1 user membership' |
 | AM-029 | Delete an unused BETA TEST group | Confirm then deleted | TODO | | |
-| AM-030 | Permission Templates: New Template with no permissions | Rejected (at least one required) | TODO | | |
-| AM-031 | Template card: 'N permissions' click | Expands list with level badges; edit/delete icons work | TODO | | |
+| AM-030 | Permission Templates: New Template with no permissions | Rejected (at least one required) | PASS |  | New Template named "BETA TEST ONLY Tpl" with no permissions > Save Template shows "Please select at least one permission" and nothing is created (shot am_tpl_empty). |
+| AM-031 | Template card: 'N permissions' click | Expands list with level badges; edit/delete icons work | PASS |  | Template card "BETA TEST ONLY Tpl" > click "1 permission" expands the card to list "Access Manager - Read Only All" (expand_more changes to expand_less, shot am_tpl_count). |
 | AM-032 | Mobile width | Users table becomes cards | TODO | | |
 
 ## Test data created

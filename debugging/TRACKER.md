@@ -9,13 +9,13 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | Checklist | Prefix | Area | Checks | Pass | Fail | Blocked | Ext. open | Status |
 |---|---|---|---|---|---|---|---|---|
 | [00-setup-and-accounts](checklists/00-setup-and-accounts.md) | `SET` | Session setup, accounts and baseline | 9 | 8 | 0 | 1 | 0 | DONE |
-| [01-login-auth](checklists/01-login-auth.md) | `LOG` | Login, 2FA, sessions, landing page | 25 | 14 | 3 | 0 | 0 | IN PROGRESS |
+| [01-login-auth](checklists/01-login-auth.md) | `LOG` | Login, 2FA, sessions, landing page | 25 | 16 | 3 | 1 | 0 | DONE |
 | [02-shell-navigation](checklists/02-shell-navigation.md) | `NAV` | Application shell, sidebar, header, mobile | 27 | 22 | 2 | 2 | 1 | DONE |
-| [03-common-conventions](checklists/03-common-conventions.md) | `CON` | Common screen conventions (apply on every page) | 22 | 4 | 1 | 0 | 0 | IN PROGRESS |
-| [04-access-manager](checklists/04-access-manager.md) | `AM` | Access Manager (users, roles, groups, permissions, templates) | 38 | 21 | 7 | 0 | 0 | IN PROGRESS |
+| [03-common-conventions](checklists/03-common-conventions.md) | `CON` | Common screen conventions (apply on every page) | 22 | 17 | 5 | 0 | 0 | DONE |
+| [04-access-manager](checklists/04-access-manager.md) | `AM` | Access Manager (users, roles, groups, permissions, templates) | 38 | 23 | 8 | 0 | 0 | IN PROGRESS |
 | [05-dashboard](checklists/05-dashboard.md) | `DSH` | Dashboard | 19 | 10 | 4 | 5 | 0 | DONE |
-| [06-flight-schedule](checklists/06-flight-schedule.md) | `FS` | Flight Schedule (incl. embedded Location Planner) | 40 | 30 | 7 | 1 | 1 | IN PROGRESS |
-| [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 25 | 5 | 2 | 8 | IN PROGRESS |
+| [06-flight-schedule](checklists/06-flight-schedule.md) | `FS` | Flight Schedule (incl. embedded Location Planner) | 40 | 30 | 7 | 2 | 1 | DONE |
+| [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 26 | 5 | 2 | 8 | IN PROGRESS |
 | [08-active-flights](checklists/08-active-flights.md) | `AF` | Active Flights and Live Tracking | 19 | 14 | 4 | 1 | 3 | DONE |
 | [09-daily-flight-record](checklists/09-daily-flight-record.md) | `DFR` | Daily Flight Record | 16 | 12 | 2 | 2 | 1 | DONE |
 | [10-location-planner](checklists/10-location-planner.md) | `LP` | Location Planner (stand-alone) | 9 | 0 | 0 | 9 | 0 | DONE |

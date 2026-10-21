@@ -14,12 +14,12 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| LOG-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | TODO | | |
-| LOG-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | TODO | | |
-| LOG-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
-| LOG-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
-| LOG-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
-| LOG-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
+| LOG-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | N/A |  | The login page is the site start page, there is no menu before login. |
+| LOG-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | N/A |  | The login page has no Help (?). It only has Username, Password, Forgot Password? and Log In. |
+| LOG-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | N/A |  | No popups on the login or Forgot Password pages. |
+| LOG-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | N/A |  | No dates or times on the login pages. |
+| LOG-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | At 390 px the login page fits with no sideways scroll (scrollWidth 390, shot login_mobile). |
+| LOG-S06 | Low-permission account | Access Denied or read-only as per permission | N/A |  | Logged-out page, so permissions do not apply. |
 
 ## Module checks
 
@@ -30,7 +30,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | LOG-003 | Unknown username | Same generic message | PASS |  | Same generic message |
 | LOG-004 | Log in as an Inactive user (create one in Access Manager) | Same generic message; no login | PASS |  | Inactive betatest_low: 'Invalid Username or Password', no 2FA prompt, no login |
 | LOG-005 | Forgot Password? > enter any username > Send Reset Link | Always: 'If that username exists, a reset email has been sent.' | PASS |  | 'If that username exists, a reset email has been sent.' |
-| LOG-006 | Reset Password page: mismatched passwords, < 8 chars | Validation messages; Back to Login works | TODO | | |
+| LOG-006 | Reset Password page: mismatched passwords, < 8 chars | Validation messages; Back to Login works | BLOCKED |  | Forgot Password? asks for a username and sends a reset link by email. The Reset Password page needs that link, and stresstest has no test mailbox. |
 | LOG-007 | Enable 2FA on a test account (My Account > Security), log out and in | 2FA page appears: 'Enter the 6-digit code from your authenticator app' | PASS |  | betatest_low with 2FA: page 'Enter the 6-digit code from your authenticator app', backup-code hint, Trust this device checkbox |
 | LOG-008 | 2FA wrong code | 'Invalid verification code. Please try again.' | PASS |  | 'Invalid verification code. Please try again.' |
 | LOG-009 | 2FA backup code XXXX-XXXX | Accepted once; cannot be reused | PASS |  | Backup code accepted once; reuse gives 'Invalid verification code. Please try again.' |
@@ -39,7 +39,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | LOG-012 | 2FA '← Back to login' | Returns to login page | PASS |  | '← Back to login' returns to login card |
 | LOG-013 | Login message popup after login | Login Message popup; closes with OK and with Esc | FAIL | BUG-LOG-001 | OK and Esc close it, but it also reappears on every browser reload, not just after login |
 | LOG-014 | Reload browser while on a non-default page | Same page reopens | PASS |  | DFR reopened after reload |
-| LOG-015 | Set Login Landing Page (My Account > Customize), log out and in | Lands on the chosen page; test every option (Dashboard, Active Flights, Flight Schedule, DFR, Roster Viewer, W&B Config, My Personnel Details, Support) | TODO | | |
+| LOG-015 | Set Login Landing Page (My Account > Customize), log out and in | Lands on the chosen page; test every option (Dashboard, Active Flights, Flight Schedule, DFR, Roster Viewer, W&B Config, My Personnel Details, Support) | PASS |  | Done in PD-028: Lowperm landing page set to Flight Schedule opened Flight Schedule on the next login. It was set back to Dashboard afterwards. |
 | LOG-016 | Logout confirmation | 'Are you sure you want to log out?' Cancel keeps you in; Log Out logs out and clears remembered page | FAIL | BUG-LOG-002 | Cancel/Log Out work and remembered page cleared, but Esc doesn't close the confirm (POP-02) and logout throws a JS error |
 | LOG-017 | Deactivate a logged-in test user from another browser/session | That user's session ends immediately; module shows Session Expired card with Login button | PASS |  | Deactivated from Service Account while betatest_low was logged in: next navigation shows 'Session Expired - Your session has expired. Please click the button below to login again.' Open page is not cleared until the user clicks something |
 | LOG-018 | Session Expired card Login button | Reloads whole page to login | PASS |  | Card 'Login' link reloads the whole page (single frame) to the login card |
