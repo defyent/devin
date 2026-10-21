@@ -49,6 +49,8 @@
 | [BUG-PD-007](BUG-PD-007.md) | `PD-021` | Personnel Details | Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date | Medium | New | |
 | [BUG-PD-008](BUG-PD-008.md) | `PD-021` | Personnel Details | Personnel Details > Recency: the recency summary popup has no Add Manual Entry, no x, and doesn't close with Escape | Medium | New | |
 | [BUG-PD-009](BUG-PD-009.md) | `PD-022` | Personnel Details | Personnel Details > Renewal edit: the Today and Calculate links can't be clicked because the date fields cover them | Medium | New | |
+| [BUG-PD-010](BUG-PD-010.md) | `PD-024` | Personnel Details | Personnel Details: the 'Performance' timing panel is shown to users and covers buttons | Low | New | |
+| [BUG-PD-011](BUG-PD-011.md) | `PD-026` | Personnel Details | Personnel Details > Security: Change Password always fails with 'Invalid Action: change_password' | High | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

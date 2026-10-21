@@ -6,14 +6,15 @@ Generated from the checklist results and bug files on this branch. Testing is st
 
 | Severity | Count |
 |---|---|
-| High | 2 |
+| High | 3 |
 | Medium | 24 |
-| Low | 21 |
+| Low | 22 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
 | [BUG-AF-004](bugs/BUG-AF-004.md) | High | Active Flights | Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC 'now' |
 | [BUG-PD-006](bugs/BUG-PD-006.md) | High | Personnel Details | Personnel Details > Recency and Renewals: action buttons are hidden (Add Item, Table/Card view, renewal Save / Complete Renewal / Cancel) and Group by / Order by are disabled |
+| [BUG-PD-011](bugs/BUG-PD-011.md) | High | Personnel Details | Personnel Details > Security: Change Password always fails with 'Invalid Action: change_password' |
 | [BUG-AF-002](bugs/BUG-AF-002.md) | Medium | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them |
 | [BUG-AM-001](bugs/BUG-AM-001.md) | Medium | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) |
 | [BUG-DFR-002](bugs/BUG-DFR-002.md) | Medium | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied |
@@ -52,6 +53,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PD-002](bugs/BUG-PD-002.md) | Low | Personnel Details > Security | Personnel Details modals (Enable 2FA, Setup Error alert): title right-aligned, away from its icon |
 | [BUG-PD-004](bugs/BUG-PD-004.md) | Low | Personnel Details > Security | Security tab 'Enabled on' date ignores Settings > Time Zone format |
 | [BUG-PD-005](bugs/BUG-PD-005.md) | Low | Personnel Details | Personnel Details: History, PDF Options and Legacy Duty Browser popups don't close with Escape, and PDF Options has no x |
+| [BUG-PD-010](bugs/BUG-PD-010.md) | Low | Personnel Details | Personnel Details: the 'Performance' timing panel is shown to users and covers buttons |
 | [BUG-PERF-001](bugs/BUG-PERF-001.md) | Low | All modules (debug panel) | 'Performance' debug timing panel shown on every page, including to non-admin users |
 | [BUG-PERM-001](bugs/BUG-PERM-001.md) | Low | Shell (main) sidebar | Sidebar lists modules the user has no permission for (all lead to Access Denied) |
 | [BUG-PL-001](bugs/BUG-PL-001.md) | Low | All Personnel | All Personnel has no page Help (?) |
@@ -98,6 +100,24 @@ Suspected cause: Possibly the page script stops at the 'getPickerMod is not defi
 
 ![BUG-PD-006-1](bugs/screenshots/BUG-PD-006-1.png)
 ![BUG-PD-006-2](bugs/screenshots/BUG-PD-006-2.png)
+
+### BUG-PD-011: Personnel Details > Security: Change Password always fails with 'Invalid Action: change_password'
+
+Severity: High | Module: Personnel Details | Check: PD-026 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. As Service Account: All Personnel > BETA TEST ONLY Lowperm > Security tab
+2. Enter the correct current password, a new 14-character password twice
+3. Click Change Password
+
+Expected: 'Password changed' and the new password works; a wrong current password gives a clear 'Current password is incorrect' message.
+
+Actual: Both with the correct and with a wrong current password: 'Password Change Failed - Invalid Action: change_password'. The password is not changed. The client-side checks work: empty fields 'Please fill in all password fields', short 'New password must be at least 8 characters long', mismatch 'New passwords do not match'.
+
+Suspected cause: The page posts action=change_password, which the server doesn't recognise (missing or renamed handler).
+
+![BUG-PD-011-1](bugs/screenshots/BUG-PD-011-1.png)
+![BUG-PD-011-2](bugs/screenshots/BUG-PD-011-2.png)
 
 ### BUG-AF-002: Active Flights lists future flights that have no SAR time, and the stats cards don't count them
 
@@ -742,6 +762,22 @@ Actual: Help closes with Escape, x and outside click. Personnel History closes w
 ![BUG-PD-005-2](bugs/screenshots/BUG-PD-005-2.png)
 ![BUG-PD-005-3](bugs/screenshots/BUG-PD-005-3.png)
 
+### BUG-PD-010: Personnel Details: the 'Performance' timing panel is shown to users and covers buttons
+
+Severity: Low | Module: Personnel Details | Check: PD-024 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. Open any person in Personnel Details
+2. Look at the bottom right corner
+3. Forms tab > archive a form > open Archived Forms and click Unarchive
+
+Expected: Debug timing info is hidden from normal users, or at least doesn't cover page controls.
+
+Actual: A 'Performance' panel (Permission Check, Load Person & Groups ... Total Time) is shown at the bottom right on every load. It sits on top of the Archived Forms Unarchive button, so the click goes to the panel until you close it with its x.
+
+![BUG-PD-010-1](bugs/screenshots/BUG-PD-010-1.png)
+![BUG-PD-010-2](bugs/screenshots/BUG-PD-010-2.png)
+
 ### BUG-PERF-001: 'Performance' debug timing panel shown on every page, including to non-admin users
 
 Severity: Low | Module: All modules (debug panel) | Check: PERF-001 ([95-performance](checklists/95-performance.md))
@@ -884,3 +920,4 @@ Suspected cause: #flight-details-modal has no keydown Escape handler (same patte
 | 08-active-flights | Note 'BETA TEST ONLY AF note' | Flight #42903 notes | No |
 | 11-personnel-list | Pre-existing, not created in this run: person #274 with no name (Customer), found in PL-001 (BUG-PL-002) | All Personnel | No (check with Jon) |
 | 12-personnel-details | BETA TEST ONLY Lowperm: Middle Name 'BETA', City 'BETA TEST ONLY City', Weight 80 saved in PD-004 | Personnel Details #276 | Yes - cleared again |
+| 12-personnel-details | Form 'QA Equipment Issue' added to BETA TEST ONLY Lowperm in PD-024, archived, unarchived, deleted | Personnel Details #276 Forms | Yes - deleted |

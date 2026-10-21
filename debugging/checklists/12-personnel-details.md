@@ -48,9 +48,9 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PD-021 | Recency count > Recency Flights; Add Manual Entry (Date*, Value*, Notes) | Works | FAIL | BUG-PD-008 | Clicking the Day Landings count opens 'Recency summary for Day Landings' with 4 manual entries, but there is no Add Manual Entry, no x, and Escape doesn't close it (outside click does) (BUG-PD-008) (shot pd_recency_flights) |
 | PD-022 | Renewal: Calculate, Today, Schedule with Flight, Complete Renewal (archive/keep attachments) | Dates correct in org format | FAIL | BUG-PD-006, BUG-PD-009 | Renewal edit page opens (Status, Renewal with Frequency/Last Conducted/Scheduled/Expires, Attached Forms/Files). Calculate gives the right date in org format (20/10/2028 = 21/10/2026 + 730) but Today/Calculate links can't be clicked normally (BUG-PD-009). Schedule with Flight opens a list of this person's crewed flights and closes with Escape. No Save / Complete Renewal / Cancel buttons are shown (BUG-PD-006); Go Back discards without asking (shots pd_renewal_calc, pd_renewal_sched) |
 | PD-023 | Status legend colours | OK green, Caution yellow, Expired red, Empty grey | PASS |  | Status dots: OK green, Caution orange/yellow, Expired red (no Empty item on Ethan Abbott to check grey). Recency days/status values look wrong, see BUG-PD-007 |
-| PD-024 | Forms tab: add, save, archive, unarchive, delete | Each confirms | TODO | | |
+| PD-024 | Forms tab: add, save, archive, unarchive, delete | Each confirms | PASS |  | On BETA TEST ONLY Lowperm: Add Form > QA Equipment Issue -> 'Form added successfully!' and badge 1; Archive asks 'Are you sure...' then moves it to Archived Forms; Unarchive asks and restores it ('Form unarchived successfully!'); Delete asks ('cannot be undone') and removes it. Save Changes stays disabled until a field changes (shots pd_form_archived, pd_form_deleted) |
 | PD-025 | Files tab | Upload, preview, download, delete | TODO | | |
-| PD-026 | Security: change password (wrong current, < 8, mismatch) | Validation; success | TODO | | |
+| PD-026 | Security: change password (wrong current, < 8, mismatch) | Validation; success | FAIL | BUG-PD-011 | Validation messages work (empty, under 8 chars, mismatch), but a real change - correct or wrong current password - fails with 'Invalid Action: change_password' (BUG-PD-011). Tested by Service Account on BETA TEST ONLY Lowperm; password unchanged |
 | PD-027 | Security: Enable 2FA (QR, backup codes download, verify) | Enabled | FAIL | BUG-PD-003 | Password prompt (wrong pw: 'Setup Error - Invalid password'), QR + manual key + 10 backup codes + Download, valid code -> '2FA enabled successfully!'. Wrong code closes the dialog and forces a new key |
 | PD-028 | Customize: Login Landing Page | Saved; used on next login | TODO | | |
 | PD-029 | Access as RO / WO / WG | Edit rights match level; WG can always edit self | TODO | | |
@@ -71,3 +71,4 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 | Record | Where | Cleanup done? |
 |---|---|---|
 | BETA TEST ONLY Lowperm: Middle Name 'BETA', City 'BETA TEST ONLY City', Weight 80 saved in PD-004 | Personnel Details #276 | Yes - cleared again |
+| Form 'QA Equipment Issue' added to BETA TEST ONLY Lowperm in PD-024, archived, unarchived, deleted | Personnel Details #276 Forms | Yes - deleted |
