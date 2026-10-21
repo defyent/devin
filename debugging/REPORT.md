@@ -7,7 +7,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | Medium | 19 |
-| Low | 16 |
+| Low | 17 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -31,6 +31,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) |
 | [BUG-POP-003](bugs/BUG-POP-003.md) | Medium | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
+| [BUG-AF-003](bugs/BUG-AF-003.md) | Low | Active Flights | Active Flights has no page Help (?) and the 'About Live Tracking' popup has no close (x) button and ignores Escape |
 | [BUG-AM-002](bugs/BUG-AM-002.md) | Low | Access Manager | Last Activity hover date ignores Settings > Time Zone format |
 | [BUG-AM-003](bugs/BUG-AM-003.md) | Low | Access Manager | Last Activity column sort does not change order |
 | [BUG-AM-004](bugs/BUG-AM-004.md) | Low | Access Manager > Manage User Permissions | Permission level dropdown shows bare codes 'WA' and 'G' next to full labels |
@@ -394,6 +395,22 @@ Actual: SAR Time shows '01/01/1970 00:00' above 'SAR Watch Disabled' (Unix epoch
 Suspected cause: Empty/0 SAR timestamp formatted as a date instead of being treated as no value.
 
 ![BUG-AF-001-1](bugs/screenshots/BUG-AF-001-1.png)
+
+### BUG-AF-003: Active Flights has no page Help (?) and the 'About Live Tracking' popup has no close (x) button and ignores Escape
+
+Severity: Low | Module: Active Flights | Check: AF-S02 ([08-active-flights](checklists/08-active-flights.md))
+
+Steps:
+1. Sidebar > Flight Operations > Active Flights
+2. Look for the Help (?) button in the page header
+3. Click the help icon in the Live Tracking box ('About Live Tracking')
+4. Press Escape; look for an x button
+
+Expected: Like other modules, a page Help (?) button that opens help; every help popup closes with Got it, x, clicking outside and Escape.
+
+Actual: No page-level Help (?) button exists (the only help is 'About Live Tracking'). That popup has only 'Got it'; there is no x, and Escape does not close it. Got it and clicking outside do close it.
+
+![BUG-AF-003-1](bugs/screenshots/BUG-AF-003-1.png)
 
 ### BUG-AM-002: Last Activity hover date ignores Settings > Time Zone format
 

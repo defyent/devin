@@ -37,6 +37,7 @@
 | [BUG-FD-005](BUG-FD-005.md) | `FD-022` | Flight Details | Leg with two unknown waypoints: only the first is offered for adding, the second is silently dropped on save | Medium | New | |
 | [BUG-AF-001](BUG-AF-001.md) | `AF-004` | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled | Low | New | |
 | [BUG-AF-002](BUG-AF-002.md) | `AF-001` | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them | Medium | New | |
+| [BUG-AF-003](BUG-AF-003.md) | `AF-S02` | Active Flights | Active Flights has no page Help (?) and the 'About Live Tracking' popup has no close (x) button and ignores Escape | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
