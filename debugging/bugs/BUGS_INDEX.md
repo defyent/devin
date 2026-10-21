@@ -51,6 +51,7 @@
 | [BUG-PD-009](BUG-PD-009.md) | `PD-022` | Personnel Details | Personnel Details > Renewal edit: the Today and Calculate links can't be clicked because the date fields cover them | Medium | New | |
 | [BUG-PD-010](BUG-PD-010.md) | `PD-024` | Personnel Details | Personnel Details: the 'Performance' timing panel is shown to users and covers buttons | Low | New | |
 | [BUG-PD-011](BUG-PD-011.md) | `PD-026` | Personnel Details | Personnel Details > Security: Change Password always fails with 'Invalid Action: change_password' | High | New | |
+| [BUG-PD-012](BUG-PD-012.md) | `PD-025` | Personnel Details | Personnel Details > Files: opening a file shows 'File Access Error' with the file's contents as the message | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

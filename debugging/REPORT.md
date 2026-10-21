@@ -7,7 +7,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 3 |
-| Medium | 24 |
+| Medium | 25 |
 | Low | 22 |
 
 | Bug | Severity | Module | Title |
@@ -37,6 +37,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PD-007](bugs/BUG-PD-007.md) | Medium | Personnel Details | Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date |
 | [BUG-PD-008](bugs/BUG-PD-008.md) | Medium | Personnel Details | Personnel Details > Recency: the recency summary popup has no Add Manual Entry, no x, and doesn't close with Escape |
 | [BUG-PD-009](bugs/BUG-PD-009.md) | Medium | Personnel Details | Personnel Details > Renewal edit: the Today and Calculate links can't be clicked because the date fields cover them |
+| [BUG-PD-012](bugs/BUG-PD-012.md) | Medium | Personnel Details | Personnel Details > Files: opening a file shows 'File Access Error' with the file's contents as the message |
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) |
 | [BUG-POP-003](bugs/BUG-POP-003.md) | Medium | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
@@ -500,6 +501,24 @@ Actual: The date boxes are squeezed and overlap the links. A real click on 'Calc
 Suspected cause: Layout of .input-with-button-container: the date inputs are too narrow and the link sits under the next field.
 
 ![BUG-PD-009-1](bugs/screenshots/BUG-PD-009-1.png)
+
+### BUG-PD-012: Personnel Details > Files: opening a file shows 'File Access Error' with the file's contents as the message
+
+Severity: Medium | Module: Personnel Details | Check: PD-025 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. All Personnel > BETA TEST ONLY Lowperm > Files tab
+2. Browse > BETA_TEST_ONLY_pd.txt (30 B) > Upload
+3. Click the file name in the list
+
+Expected: The file opens in a preview (or a new tab).
+
+Actual: An error popup 'File Access Error' appears whose message is the text inside the file ('BETA TEST ONLY personnel file'). No preview opens. After pressing OK on that error, the Delete file button does nothing: the confirm popup is set active but stays hidden (display:none), so nothing appears until the page is reloaded. The page also has two buttons with id confirm-modal-ok-btn (#alert-modal and #confirm-modal).
+
+Suspected cause: The preview call probably expects JSON and treats the raw file response as an error message.
+
+![BUG-PD-012-1](bugs/screenshots/BUG-PD-012-1.png)
+![BUG-PD-012-2](bugs/screenshots/BUG-PD-012-2.png)
 
 ### BUG-PERM-002: User with no permissions cannot open their own My Account (no self-service password / 2FA)
 

@@ -20,7 +20,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [09-daily-flight-record](checklists/09-daily-flight-record.md) | `DFR` | Daily Flight Record | 16 | 12 | 2 | 2 | 1 | DONE |
 | [10-location-planner](checklists/10-location-planner.md) | `LP` | Location Planner (stand-alone) | 9 | 0 | 0 | 9 | 0 | DONE |
 | [11-personnel-list](checklists/11-personnel-list.md) | `PL` | All Personnel (Personnel List) | 11 | 9 | 1 | 1 | 2 | DONE |
-| [12-personnel-details](checklists/12-personnel-details.md) | `PD` | Personnel Details / My Account | 36 | 10 | 9 | 2 | 3 | IN PROGRESS |
+| [12-personnel-details](checklists/12-personnel-details.md) | `PD` | Personnel Details / My Account | 36 | 10 | 10 | 2 | 3 | IN PROGRESS |
 | [13-roster-viewer](checklists/13-roster-viewer.md) | `RV` | Roster Viewer | 12 | 0 | 0 | 0 | 1 | TODO |
 | [14-roster-builder](checklists/14-roster-builder.md) | `RB` | Roster Builder | 21 | 0 | 0 | 0 | 1 | TODO |
 | [15-timesheets-leave](checklists/15-timesheets-leave.md) | `TS` | Timesheets, Timesheet Details, Leave Requests | 17 | 0 | 0 | 0 | 0 | TODO |
