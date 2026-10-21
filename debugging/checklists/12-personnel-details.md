@@ -33,7 +33,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PD-006 | Photo upload / delete | Appears in top bar and Access Manager | TODO | | |
 | PD-007 | Digital Signature: draw, refresh, password, Save | Saved; wrong password rejected | TODO | | |
 | PD-008 | Flights tab: search, click | Opens Flight Details | PASS |  | Flights tab lists the person's flights (ID, date, aircraft, PIC, SFC, flight/engine time, route). Search 'Charter' filters the list; clicking #7089 opens Flight Details for 7089 (shots pd_flights, pd_flight_open) |
-| PD-009 | Timesheets tab: < > Today | Days with Roster, Duty, Total, Flight Time, F&D, Status | TODO | | |
+| PD-009 | Timesheets tab: < > Today | Days with Roster, Duty, Total, Flight Time, F&D, Status | PASS |  | Ethan Abbott Timesheets: October 2026 with summary (Rostered Days, Duty Hours, Predicted, Claims, Flight Time) and day rows with Date, Roster, Duty, Total Duty, Flight Time, F&D, Status, Actions. < goes to Sep then Aug, > back to Sep, Today back to Oct (shot pd_timesheets) |
 | PD-010 | Timesheet day: add/remove sessions, claims, files | 'Session added' / 'Session removed' | TODO | | |
 | PD-011 | Sign day (password) / Bulk Sign | Status Pending | TODO | | |
 | PD-012 | Reopen approved/rejected | Works | TODO | | |
