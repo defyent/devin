@@ -26,7 +26,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
 | RV-001 | Month grid, < > This Month | Published (live) roster shown | PASS |  | Grid shows 'Staff Roster LIVE' for October 2026; < goes to September, > to November, This Month back to October; today (21) highlighted |
-| RV-002 | Groups shown | Only Show Group in Roster; people only On Roster | TODO | | |
+| RV-002 | Groups shown | Only Show Group in Roster; people only On Roster | PASS |  | Group Visibility offers only groups with Roster = Yes in Access Manager (Pilots, Crew, Engineers, BETA TEST ONLY Group); Administration (Roster = No) is not offered. With all ticked: Pilots 41 of 83 members, Crew 41, Engineers 20, BETA TEST ONLY Group 1, so non-roster members are left out. Restored to Pilots only |
 | RV-003 | Search staff… | Filters | PASS |  | Typing 'Aisha' in Search staff highlights the matching rows (Aisha Johnston, Aisha Pearce) in yellow; other rows stay visible (highlight, not hide). × clears it |
 | RV-004 | Click shift | Shift Details | FAIL | BUG-RV-002 | Clicking a shift badge does nothing. Only the small blue corner opens 'Note for <name>' (date + note). Note, legend closes with Esc and ×; Full Shift Legend lists codes, times and 'Counts as Duty Time' |
 | RV-005 | Group Visibility > Apply | Hides/shows groups | PASS |  | Group Visibility lists BETA TEST ONLY Group, Crew, Engineers, Pilots (Your Group). Ticking Engineers > Apply adds the Engineers block; unticking > Apply removes it; choice kept after reload. Restored to Pilots only |
