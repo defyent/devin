@@ -140,6 +140,10 @@
 | [BUG-SWP-002](BUG-SWP-002.md) | `SWP-006` | Settings: Waypoints | Waypoints: moving a waypoint about 250 nm saves with no "Significant Location Change" warning | Medium | New | |
 | [BUG-SWP-003](BUG-SWP-003.md) | `SWP-005` | Settings: Waypoints | Waypoints: the list is not refreshed after you save or delete on the detail page | Low | New | |
 | [BUG-SWP-004](BUG-SWP-004.md) | `SWP-S05` | Settings: Waypoints | Waypoints on a phone: table columns overlap and Add Waypoint is off-screen | Medium | New | |
+| [BUG-SST-001](BUG-SST-001.md) | `SST-S02` | Settings: Shift Types | Roster Shifts (Shift Type Editor): no Help (?), and Escape does not close popups | Low | New | |
+| [BUG-SST-002](BUG-SST-002.md) | `SST-002` | Settings: Shift Types | New Shift Type: Duty Start/End Time default to the current UTC time | Low | New | |
+| [BUG-SST-003](BUG-SST-003.md) | `SST-001` | Settings: Shift Types | Roster Shifts: after Edit Group the selected group jumps back to Duty, so the next New Shift Type goes into the wrong group | Low | New | |
+| [BUG-SST-004](BUG-SST-004.md) | `SST-S05` | Settings: Shift Types | Roster Shifts on a phone: the table scrolls the page sideways and the group tabs are hidden | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

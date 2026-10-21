@@ -2627,5 +2627,78 @@
    "swp_mobile"
   ],
   "cause": "There is no responsive rule for the table cells (no wrap or min-width) or for the header button row (no flex-wrap)."
+ },
+ {
+  "id": "BUG-SST-001",
+  "title": "Roster Shifts (Shift Type Editor): no Help (?), and Escape does not close popups",
+  "row": "SST-S02",
+  "cl": "39-settings-shifttypes",
+  "module": "Settings: Shift Types",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Roster Shifts.",
+   "Look for a Help (?)."
+  ],
+  "expected": "A Help (?) that explains groups, duty times, Show on Schedule and Deleted Items.",
+  "actual": "There is no Help button on the page, and Escape leaves Create New Group open.",
+  "shots": [
+   "sst_main",
+   "sst_newgroup"
+  ],
+  "cause": "The template has no help button or help modal."
+ },
+ {
+  "id": "BUG-SST-002",
+  "title": "New Shift Type: Duty Start/End Time default to the current UTC time",
+  "row": "SST-002",
+  "cl": "39-settings-shifttypes",
+  "module": "Settings: Shift Types",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Roster Shifts > pick a group > New Shift Type.",
+   "Look at Duty Start Time and Duty End Time."
+  ],
+  "expected": "Empty duty times (most shifts here have none), or the local time if a default is wanted.",
+  "actual": "Both show 14:02, which is the UTC time. Local time was 03:02 (Pacific/Auckland). If you save without changing them you get a 0-hour duty at a UTC time.",
+  "shots": [
+   "sst_newshift"
+  ],
+  "cause": "The DateTimePicker is given new Date() in UTC (same pattern as BUG-FS-001, SMS-002 and FBLD-002), and the duty times are not left empty when unset."
+ },
+ {
+  "id": "BUG-SST-003",
+  "title": "Roster Shifts: after Edit Group the selected group jumps back to Duty, so the next New Shift Type goes into the wrong group",
+  "row": "SST-001",
+  "cl": "39-settings-shifttypes",
+  "module": "Settings: Shift Types",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Roster Shifts, then click the \"BETA TEST ONLY Grp2\" tab.",
+   "Edit Group, rename it, then Update Group (\"Group updated successfully\").",
+   "Look at the selected tab, then click New Shift Type and save."
+  ],
+  "expected": "The renamed group stays selected, and the new shift type goes into it.",
+  "actual": "The selected tab and the section header go back to \"Duty\". \"BETA TEST ONLY Shift\" was created in Duty and not in the group I had been working on, with nothing to tell me.",
+  "shots": [
+   "sst_afterrename"
+  ],
+  "cause": "The group list is reloaded after the update and the first group is selected again. The current group ID is not kept."
+ },
+ {
+  "id": "BUG-SST-004",
+  "title": "Roster Shifts on a phone: the table scrolls the page sideways and the group tabs are hidden",
+  "row": "SST-S05",
+  "cl": "39-settings-shifttypes",
+  "module": "Settings: Shift Types",
+  "sev": "Medium",
+  "steps": [
+   "Open Settings and Tools > Roster Shifts at a 390 px width."
+  ],
+  "expected": "Group tabs (or a dropdown) to switch groups, and rows that fit or scroll inside their own box.",
+  "actual": "The table is 513 px wide, so the whole page scrolls sideways and \"On Schedule\" and Actions (edit/delete) are off-screen. The Duty/Leave/Training/... group tabs are not shown, so you can't switch groups.",
+  "shots": [
+   "sst_mobile"
+  ],
+  "cause": "The table has no overflow-x wrapper or card layout, and the pill nav is hidden at narrow widths with no dropdown shown instead."
  }
 ]

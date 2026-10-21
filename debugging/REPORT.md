@@ -7,8 +7,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 6 |
-| Medium | 51 |
-| Low | 81 |
+| Medium | 52 |
+| Low | 84 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -62,6 +62,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SFT-002](bugs/BUG-SFT-002.md) | Medium | Settings: Flight Types | Flight Types: a duplicate Flight Category name ("PIC") is accepted |
 | [BUG-SMS-001](bugs/BUG-SMS-001.md) | Medium | Safety Reports | New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed |
 | [BUG-SMS-002](bugs/BUG-SMS-002.md) | Medium | Safety Reports | New Safety Report: Event Date/Time defaults to the UTC date and time, not local |
+| [BUG-SST-004](bugs/BUG-SST-004.md) | Medium | Settings: Shift Types | Roster Shifts on a phone: the table scrolls the page sideways and the group tabs are hidden |
 | [BUG-STZ-001](bugs/BUG-STZ-001.md) | Medium | Settings: Time Zone | Time Zone settings: the Example preview shows UTC, not the selected time zone |
 | [BUG-STZ-003](bugs/BUG-STZ-003.md) | Medium | Settings: Time Zone | Time Zone settings: the Example preview shows MM/DD/YYYY for every date format except DD/MM/YYYY |
 | [BUG-SUP-001](bugs/BUG-SUP-001.md) | Medium | Support | Support has no page Help (?); Escape doesn't close New Ticket, but a click outside closes it and wipes everything typed |
@@ -134,6 +135,9 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
 | [BUG-SMS-004](bugs/BUG-SMS-004.md) | Low | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register |
 | [BUG-SRES-001](bugs/BUG-SRES-001.md) | Low | Settings: Resources (Aircraft) | Resources: the meter "Last:" dates show as YYYY-MM-DD instead of the Time Zone date format |
+| [BUG-SST-001](bugs/BUG-SST-001.md) | Low | Settings: Shift Types | Roster Shifts (Shift Type Editor): no Help (?), and Escape does not close popups |
+| [BUG-SST-002](bugs/BUG-SST-002.md) | Low | Settings: Shift Types | New Shift Type: Duty Start/End Time default to the current UTC time |
+| [BUG-SST-003](bugs/BUG-SST-003.md) | Low | Settings: Shift Types | Roster Shifts: after Edit Group the selected group jumps back to Duty, so the next New Shift Type goes into the wrong group |
 | [BUG-STZ-002](bugs/BUG-STZ-002.md) | Low | Settings: Time Zone | Time Zone settings page has no Help (?) |
 | [BUG-SUP-002](bugs/BUG-SUP-002.md) | Low | Support | Support New Ticket: Ctrl+V doesn't paste a screenshot, though the error message tells you to use Ctrl+V |
 | [BUG-SUP-003](bugs/BUG-SUP-003.md) | Low | Support | Support ticket: clicking a .txt attachment shows an 'Error' popup containing the file's text |
@@ -1014,6 +1018,21 @@ Expected: Defaults to the local date and time (22/10/2026 00:37), as set in Sett
 Actual: Defaults to 21/10/2026 11:37, the UTC date and time. A report saved without changing it is dated 13 hours early. Same issue as BUG-FS-001 and BUG-FAD-005.
 
 ![BUG-SMS-002-1](bugs/screenshots/BUG-SMS-002-1.png)
+
+### BUG-SST-004: Roster Shifts on a phone: the table scrolls the page sideways and the group tabs are hidden
+
+Severity: Medium | Module: Settings: Shift Types | Check: SST-S05 ([39-settings-shifttypes](checklists/39-settings-shifttypes.md))
+
+Steps:
+1. Open Settings and Tools > Roster Shifts at a 390 px width.
+
+Expected: Group tabs (or a dropdown) to switch groups, and rows that fit or scroll inside their own box.
+
+Actual: The table is 513 px wide, so the whole page scrolls sideways and "On Schedule" and Actions (edit/delete) are off-screen. The Duty/Leave/Training/... group tabs are not shown, so you can't switch groups.
+
+Suspected cause: The table has no overflow-x wrapper or card layout, and the pill nav is hidden at narrow widths with no dropdown shown instead.
+
+![BUG-SST-004-1](bugs/screenshots/BUG-SST-004-1.png)
 
 ### BUG-STZ-001: Time Zone settings: the Example preview shows UTC, not the selected time zone
 
@@ -2189,6 +2208,56 @@ Actual: Flight Hours Last: 3102.7 (2026-05-09). Every "Last:" meter date on the 
 Suspected cause: The raw database date is shown without going through the shared date formatter.
 
 ![BUG-SRES-001-1](bugs/screenshots/BUG-SRES-001-1.png)
+
+### BUG-SST-001: Roster Shifts (Shift Type Editor): no Help (?), and Escape does not close popups
+
+Severity: Low | Module: Settings: Shift Types | Check: SST-S02 ([39-settings-shifttypes](checklists/39-settings-shifttypes.md))
+
+Steps:
+1. Settings and Tools > Roster Shifts.
+2. Look for a Help (?).
+
+Expected: A Help (?) that explains groups, duty times, Show on Schedule and Deleted Items.
+
+Actual: There is no Help button on the page, and Escape leaves Create New Group open.
+
+Suspected cause: The template has no help button or help modal.
+
+![BUG-SST-001-1](bugs/screenshots/BUG-SST-001-1.png)
+![BUG-SST-001-2](bugs/screenshots/BUG-SST-001-2.png)
+
+### BUG-SST-002: New Shift Type: Duty Start/End Time default to the current UTC time
+
+Severity: Low | Module: Settings: Shift Types | Check: SST-002 ([39-settings-shifttypes](checklists/39-settings-shifttypes.md))
+
+Steps:
+1. Settings and Tools > Roster Shifts > pick a group > New Shift Type.
+2. Look at Duty Start Time and Duty End Time.
+
+Expected: Empty duty times (most shifts here have none), or the local time if a default is wanted.
+
+Actual: Both show 14:02, which is the UTC time. Local time was 03:02 (Pacific/Auckland). If you save without changing them you get a 0-hour duty at a UTC time.
+
+Suspected cause: The DateTimePicker is given new Date() in UTC (same pattern as BUG-FS-001, SMS-002 and FBLD-002), and the duty times are not left empty when unset.
+
+![BUG-SST-002-1](bugs/screenshots/BUG-SST-002-1.png)
+
+### BUG-SST-003: Roster Shifts: after Edit Group the selected group jumps back to Duty, so the next New Shift Type goes into the wrong group
+
+Severity: Low | Module: Settings: Shift Types | Check: SST-001 ([39-settings-shifttypes](checklists/39-settings-shifttypes.md))
+
+Steps:
+1. Settings and Tools > Roster Shifts, then click the "BETA TEST ONLY Grp2" tab.
+2. Edit Group, rename it, then Update Group ("Group updated successfully").
+3. Look at the selected tab, then click New Shift Type and save.
+
+Expected: The renamed group stays selected, and the new shift type goes into it.
+
+Actual: The selected tab and the section header go back to "Duty". "BETA TEST ONLY Shift" was created in Duty and not in the group I had been working on, with nothing to tell me.
+
+Suspected cause: The group list is reloaded after the update and the first group is selected again. The current group ID is not kept.
+
+![BUG-SST-003-1](bugs/screenshots/BUG-SST-003-1.png)
 
 ### BUG-STZ-002: Time Zone settings page has no Help (?)
 
