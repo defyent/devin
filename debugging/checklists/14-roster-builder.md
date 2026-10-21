@@ -31,7 +31,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | RB-004 | Drag shift from palette to cell | Shift placed | PASS |  | BETA TEST ONLY Draft: dragged 'Office Hours' from the palette onto Aisha Johnston 1 Oct (empty) - cell shows OH, 'Shift added successfully' |
 | RB-005 | Drag shift to delete zone | Removed | PASS |  | Dragged the OH shift from Aisha Johnston 1 Oct onto the bin (delete zone) - 'Shift deleted successfully', cell empty |
 | RB-006 | Copy/paste with violations ON | Not allowed (documented) | TODO | | |
-| RB-007 | Violations OFF: click, Shift+click range, Ctrl+C/X/V, Esc | Blue/red borders; preview; earliest shift pasted | TODO | | |
+| RB-007 | Violations OFF: click, Shift+click range, Ctrl+C/X/V, Esc | Blue/red borders; preview; earliest shift pasted | PASS |  | Violations off (CHECKING DISABLED), draft: click selects 1 cell, Shift+click selects range 5-7 Oct (3), Ctrl+C 'Copied 3 cell(s)', click 1 Oct shows 3-cell paste preview, Ctrl+V 'Successfully pasted 3 shift(s)' (PM NT AM on 1-3 Oct), Esc clears selection |
 | RB-008 | Person name > Shift Summary; Apply Shift Pattern; Clear Month | Counts and hours correct | TODO | | |
 | RB-009 | Reorder people; Reset Order | Works | TODO | | |
 | RB-010 | Cell notes add/edit/delete | Works | TODO | | |
