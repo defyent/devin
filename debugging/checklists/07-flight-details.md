@@ -35,7 +35,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FD-008 | Start/End Time, SAR Time, SAR Watch default on | Pickers follow Time Zone setting; booking times may be exceeded by flight times (not a bug) | PASS |  | Flight #42903: Start 21/10/2026 08:30, End 21/10/2026 09:30, SAR Time 21/10/2026 09:30 (= end), SAR Watch toggle on by default; DD/MM/YYYY + 24 h like the Local clock |
 | FD-009 | Flight Follower / Authorized By | Only Admin/Staff people | TODO | | |
 | FD-010 | Notify Overdue by Text / Email | Saved | TODO | | |
-| FD-011 | Extra Information (F fields) | Fields from Extra Flight Info appear and save | TODO | | |
+| FD-011 | Extra Information (F fields) | Fields from Extra Flight Info appear and save | BLOCKED |  | No Extra Information section on Flight Details - no extra fields configured on stresstest. Retest after checklist 36 (Settings: Extra Flight Info) adds a field |
 | FD-012 | Comments | Add a Comment saves with flight | PASS |  | Typed 'BETA TEST ONLY comment' in Add a Comment (no separate add button) > Save Changes > comment listed 'Service Account, Oct 21, 2026, 10:17 PM' |
 | FD-013 | Customer: Existing (company first) + Contact Person suggestions | Works | PASS |  | Customer tab: Existing Customer / New Customer cards; Customer list has 'DEVIN TEST Customer Ltd' (only customer on stresstest) + Contact Person field. Suggestions not checked further (single customer) |
 | FD-014 | Customer: New Customer | Creates customer record (with Customer role) | TODO |  | New Customer shows First/Last/Company Name, Email, Address, City, Country, Mobile, Phone. Not saved yet |
