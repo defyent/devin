@@ -37,8 +37,8 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FD-010 | Notify Overdue by Text / Email | Saved | TODO | | |
 | FD-011 | Extra Information (F fields) | Fields from Extra Flight Info appear and save | TODO | | |
 | FD-012 | Comments | Add a Comment saves with flight | PASS |  | Typed 'BETA TEST ONLY comment' in Add a Comment (no separate add button) > Save Changes > comment listed 'Service Account, Oct 21, 2026, 10:17 PM' |
-| FD-013 | Customer: Existing (company first) + Contact Person suggestions | Works | TODO | | |
-| FD-014 | Customer: New Customer | Creates customer record (with Customer role) | TODO | | |
+| FD-013 | Customer: Existing (company first) + Contact Person suggestions | Works | PASS |  | Customer tab: Existing Customer / New Customer cards; Customer list has 'DEVIN TEST Customer Ltd' (only customer on stresstest) + Contact Person field. Suggestions not checked further (single customer) |
+| FD-014 | Customer: New Customer | Creates customer record (with Customer role) | TODO |  | New Customer shows First/Last/Company Name, Email, Address, City, Country, Mobile, Phone. Not saved yet |
 | FD-015 | Passenger List: Add Crew Member | Weight from personnel record or 'No weight on file – please enter' | PASS |  | Passenger List > Add Crew Member 'Aaron Foster' (no weight on file) > Required Information popup 'This crew member has no weight on file. Please enter their weight before adding.' with OK. PIC BETA TEST ONLY Lowperm listed in Crew with 0 kg |
 | FD-016 | Passenger List: Add Custom Passenger | Added to manifest | PASS |  | Add Custom Passenger 'BETA TEST ONLY Pax', 80 kg, NOK 'BETA TEST ONLY NOK 000' > listed under Passengers (type Passenger) with delete action |
 | FD-017 | kg/lbs toggle | Converts correctly | PASS |  | kg > lbs: table headers and the Weight input label switch to LBS, 80 kg shows 176 lbs; back to kg shows 80 again |
@@ -51,7 +51,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FD-024 | Crew Recency tab | Items per crew member from direct + group template assignments | PASS |  | Crew Recency tab: 'BETA TEST ONLY Lowperm (BETA TEST ONLY Group, Crew) / PIC - No currencies assigned to this crew member.' (no direct/group templates assigned). Populated case to retest with a crew member who has currencies |
 | FD-025 | Lesson tab | Only when PIC/crew is Student; lessons from assigned plan; exercises, assessment sliders 0–5, debrief | TODO |  | PIC is Crew, not Student: no Lesson tab shown (correct). Student case still to test |
 | FD-026 | Forms tab: Add Form | Works | TODO | | |
-| FD-027 | Files tab: upload (incl. > 30 MB) | Upload works; > 30 MB rejected cleanly | TODO | | |
+| FD-027 | Files tab: upload (incl. > 30 MB) | Upload works; > 30 MB rejected cleanly | PASS |  | Files: 31.5 MB file > Upload > 'Error: File size exceeds the maximum limit of 30MB.' (popup titled 'Required Information'), nothing attached; 32 B 'BETA_TEST_ONLY_small.txt' uploads and is listed (21/10/2026, Service Account, 32 B, download/delete) (shots fd_upload_big, fd_upload_small) |
 | FD-028 | Flight Status: Open / Complete / Canceled | Cards selectable; Reason for Cancellation when Canceled; secondary status pills | PASS |  | Flight Status cards Open / Complete / Canceled selectable; Canceled shows 'Reason for Cancellation' (Aircraft Maintenance, Airspace Closure, Crew Unavailable, Customer Request, Fuel Shortage, Medical, Other, Weather). Secondary Status shows no pills (none configured?) (shot fd_status_cancel). Cancel button > 'Discard Changes' popup with Stay on Page / Discard Changes |
 | FD-029 | Complete & Locked | Only visible to WL; admins need WL explicitly | TODO | | |
 | FD-030 | Locked flight | 'This flight is locked…' read-only for all; WL can unlock by changing status | TODO | | |
