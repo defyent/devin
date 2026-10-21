@@ -1,4 +1,4 @@
-# BUG-DFR-001: Daily Flight Record has no page Help (?), and Manage Columns doesn't close with Escape
+# BUG-DFR-001: Daily Flight Record has no page Help (?), and its popups (Manage Columns, Notes full text) don't close with Escape
 
 | Field | Value |
 |---|---|
@@ -15,12 +15,13 @@
 1. Sidebar > Flight Operations > Daily Flight Record
 2. Look for the Help (?) button in the page header
 3. Click Columns (Manage Columns popup), press Escape
+4. Click a Notes cell (Notes full-text popup), press Escape
 
 ## Expected
 A page Help (?) button like other modules; the Manage Columns popup closes with x, clicking outside and Escape.
 
 ## Actual
-There is no Help (?) button on the page. Manage Columns closes with x, Done and clicking outside, and stays open on drag-out (correct), but Escape does nothing.
+There is no Help (?) button on the page. Manage Columns closes with x, Done and clicking outside, and stays open on drag-out (correct), but Escape does nothing. The Notes full-text popup also stays open on Escape.
 
 ## Evidence
 - Screenshot: `screenshots/BUG-DFR-001-1.png`, `screenshots/BUG-DFR-001-2.png`

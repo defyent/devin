@@ -39,7 +39,7 @@
 | [BUG-AF-002](BUG-AF-002.md) | `AF-001` | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them | Medium | New | |
 | [BUG-AF-003](BUG-AF-003.md) | `AF-S02` | Active Flights | Active Flights has no page Help (?), and its popups (About Live Tracking, Adjust SAR, Add Note) don't close with Escape | Low | New | |
 | [BUG-AF-004](BUG-AF-004.md) | `AF-004` | Active Flights | Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC 'now' | High | New | |
-| [BUG-DFR-001](BUG-DFR-001.md) | `DFR-S02` | Daily Flight Record | Daily Flight Record has no page Help (?), and Manage Columns doesn't close with Escape | Low | New | |
+| [BUG-DFR-001](BUG-DFR-001.md) | `DFR-S02` | Daily Flight Record | Daily Flight Record has no page Help (?), and its popups (Manage Columns, Notes full text) don't close with Escape | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
