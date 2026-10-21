@@ -30,7 +30,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FD-003 | PDF with unsaved changes | Asks to save first | PASS |  | With unsaved passenger change, PDF > Required Information 'You have unsaved changes. Please save or cancel your changes before printing.' (shot fd_pdf_unsaved) |
 | FD-004 | Details: Aircraft dropdown | Only Active + Is Aircraft resources | TODO | | |
 | FD-005 | Details: PIC / Secondary Flight Crew | Only Crew or Student role people | FAIL | BUG-FD-004 | Main PIC / Secondary Flight Crew lists 84 people incl. BETA TEST ONLY Lowperm (Crew); not every name role-checked. Leg PIC / Secondary Flight Crew dropdowns however list the custom passenger 'BETA TEST ONLY Pax' (shot fd_leg) |
-| FD-006 | Notify toggles | Sends email/SMS on save; not stored (off on reopen) | TODO | | |
+| FD-006 | Notify toggles | Sends email/SMS on save; not stored (off on reopen) | PASS |  | Notify (PIC) toggled on > Save > after reload the toggle is off again (not stored). Email/SMS delivery not checked (PIC is betatest.low@example.com) |
 | FD-007 | Flight Category / Activity dropdowns | From Settings > Flight Types; auto-attach forms fire ('Form "X" auto-attached') | TODO | | |
 | FD-008 | Start/End Time, SAR Time, SAR Watch default on | Pickers follow Time Zone setting; booking times may be exceeded by flight times (not a bug) | PASS |  | Flight #42903: Start 21/10/2026 08:30, End 21/10/2026 09:30, SAR Time 21/10/2026 09:30 (= end), SAR Watch toggle on by default; DD/MM/YYYY + 24 h like the Local clock |
 | FD-009 | Flight Follower / Authorized By | Only Admin/Staff people | TODO | | |
