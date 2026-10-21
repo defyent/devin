@@ -28,7 +28,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | LOG-001 | Log out, load site root | Login card: 'Welcome back! Please login to your account.' | PASS |  | Text matches |
 | LOG-002 | Wrong password for a valid username | 'Invalid Username or Password' (no hint which field was wrong) | PASS |  | 'Invalid Username or Password' |
 | LOG-003 | Unknown username | Same generic message | PASS |  | Same generic message |
-| LOG-004 | Log in as an Inactive user (create one in Access Manager) | Same generic message; no login | TODO | | |
+| LOG-004 | Log in as an Inactive user (create one in Access Manager) | Same generic message; no login | PASS |  | Inactive betatest_low: 'Invalid Username or Password', no 2FA prompt, no login |
 | LOG-005 | Forgot Password? > enter any username > Send Reset Link | Always: 'If that username exists, a reset email has been sent.' | PASS |  | 'If that username exists, a reset email has been sent.' |
 | LOG-006 | Reset Password page: mismatched passwords, < 8 chars | Validation messages; Back to Login works | TODO | | |
 | LOG-007 | Enable 2FA on a test account (My Account > Security), log out and in | 2FA page appears: 'Enter the 6-digit code from your authenticator app' | PASS |  | betatest_low with 2FA: page 'Enter the 6-digit code from your authenticator app', backup-code hint, Trust this device checkbox |
@@ -41,7 +41,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | LOG-014 | Reload browser while on a non-default page | Same page reopens | PASS |  | DFR reopened after reload |
 | LOG-015 | Set Login Landing Page (My Account > Customize), log out and in | Lands on the chosen page; test every option (Dashboard, Active Flights, Flight Schedule, DFR, Roster Viewer, W&B Config, My Personnel Details, Support) | TODO | | |
 | LOG-016 | Logout confirmation | 'Are you sure you want to log out?' Cancel keeps you in; Log Out logs out and clears remembered page | FAIL | BUG-LOG-002 | Cancel/Log Out work and remembered page cleared, but Esc doesn't close the confirm (POP-02) and logout throws a JS error |
-| LOG-017 | Deactivate a logged-in test user from another browser/session | That user's session ends immediately; module shows Session Expired card with Login button | TODO | | |
+| LOG-017 | Deactivate a logged-in test user from another browser/session | That user's session ends immediately; module shows Session Expired card with Login button | PASS |  | Deactivated from Service Account while betatest_low was logged in: next navigation shows 'Session Expired - Your session has expired. Please click the button below to login again.' Open page is not cleared until the user clicks something |
 | LOG-018 | Session Expired card Login button | Reloads whole page to login | TODO | | |
 | LOG-019 | Disable 2FA and regenerate backup codes (password required) | Works; codes downloadable | TODO | | |
 

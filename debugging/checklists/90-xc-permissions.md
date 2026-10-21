@@ -21,7 +21,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PERM-005 | Flight Details WL (admin with explicit WL) | Can lock/unlock | TODO | | |
 | PERM-006 | Admin with an explicit lower row | Explicit level wins (deliberate) | TODO | | |
 | PERM-007 | No permission row | 'Access Denied' — never a blank page or JS error | PASS |  | 0-permission user: all 17 visible menu items show an Access Denied card, no blank page / JS error. But sidebar still lists them (BUG-PERM-001) |
-| PERM-008 | Inactive user with permissions | No access at all | TODO | | |
+| PERM-008 | Inactive user with permissions | No access at all | PASS |  | Inactive user with 1 permission: login refused with generic message; live session ends on next request |
 | PERM-009 | Server-side enforcement: hidden button but action attempted (e.g. Delete key, drag) as read-only | Server rejects with Access Denied popup | TODO | | |
 | PERM-010 | Group membership read/write flag caveat (§14) | Check whether Access Manager-saved memberships give WG schedule write | TODO | | |
 

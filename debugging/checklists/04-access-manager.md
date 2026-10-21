@@ -40,7 +40,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AM-013 | Create `BETA TEST ONLY` user | Created with Login Access = Inactive | PASS |  | BETA TEST ONLY Lowperm (betatest_low) created, Login Access = Inactive, 0 roles/groups |
 | AM-014 | Activate the new user (Inactive badge > Activate) | Confirmation then Active | PASS |  | Confirm 'Activate Login Access' then toast 'Login access activated for BETA TEST ONLY Lowperm'; badge Active |
 | AM-015 | Activate a user with no credentials | 'User must have login credentials before activation' and Change Login Credentials opens | TODO | | |
-| AM-016 | Deactivate a user | Confirmation; user signed out everywhere; no delete option exists | TODO | | |
+| AM-016 | Deactivate a user | Confirmation; user signed out everywhere; no delete option exists | PASS |  | Confirm 'Deactivate Login Access' then toast 'Login access deactivated for BETA TEST ONLY Lowperm'; no delete option anywhere. Sign-out effect: see LOG-017 |
 | AM-017 | Roles badge: tick/untick each role, Save Changes | Saved; hover on 'N Roles' lists them | TODO | | |
 | AM-018 | Roles: Admin checkbox as non-admin | Greyed out ('Only admins can grant or revoke admin access') | TODO | | |
 | AM-019 | Groups badge: toggle groups, search | On Roster auto-ticks when adding; Save replaces memberships | TODO | | |
