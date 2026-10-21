@@ -1,0 +1,40 @@
+# BUG-FS-003: Flight Schedule header overlaps when Live Edit is on - banner covers the page title, location pill cut off
+
+| Field | Value |
+|---|---|
+| Checklist row | `FS-008` in `checklists/06-flight-schedule.md` |
+| Module | Flight Schedule |
+| Severity | Low |
+| DataHangar version | v2.0.111 |
+| Account / permission level | Service Account (datahangar), admin |
+| Browser / width | Chrome 137 desktop, 1600 px |
+| Status | New |
+| Found / session | 21/10/2026 / https://app.devin.ai/sessions/15f654c4481f4789abb726226cefac9c |
+
+## Steps to reproduce
+1. Flight Schedule at 1568 px wide
+2. Pick a location in Locations (pill 'Viewing location: Auckland Base')
+3. Go to a past week and click Enable Live Edit
+
+## Expected
+Title, Live Edit banner, past-date banner and location pill all readable (wrap to a second line if needed).
+
+## Actual
+'Live Edit Mode' banner is drawn over the 'Flight Schedule' title and subtitle; 'Viewing location: Auckland Base' is cut to 'Viewing' and hidden behind the view buttons.
+
+## Evidence
+- Screenshot: `screenshots/BUG-FS-003-1.png`
+- Console / network errors: none
+
+## Suspected cause (optional)
+Header banners are absolutely positioned / flex row with no wrap; no room left when 3 banners show.
+
+## Test data involved
+none
+
+## Related
+
+
+## Retest log
+| Date | Version | Result | Notes |
+|---|---|---|---|
