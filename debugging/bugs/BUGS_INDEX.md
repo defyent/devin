@@ -32,6 +32,8 @@
 | [BUG-FS-007](BUG-FS-007.md) | `FS-025` | Flight Schedule | Edit-mode idle timeout switches Live Edit off silently, throws 'calendarEl is not defined' and leaves the schedule blank | Medium | New | |
 | [BUG-FD-001](BUG-FD-001.md) | `FD-034` | Flight Details | Flight Details Save Changes does not return to the Flight Schedule and gives no success message | Medium | New | |
 | [BUG-FD-002](BUG-FD-002.md) | `FD-037` | Flight Details | Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM > Unassigned' on schedule moves | Medium | New | |
+| [BUG-FD-003](BUG-FD-003.md) | `FD-019` | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings | Low | New | |
+| [BUG-FD-004](BUG-FD-004.md) | `FD-005` | Flight Details | Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC) | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

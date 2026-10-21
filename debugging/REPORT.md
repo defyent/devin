@@ -6,8 +6,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 
 | Severity | Count |
 |---|---|
-| Medium | 16 |
-| Low | 14 |
+| Medium | 17 |
+| Low | 15 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -15,6 +15,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-DSH-003](bugs/BUG-DSH-003.md) | Medium | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) |
 | [BUG-FD-001](bugs/BUG-FD-001.md) | Medium | Flight Details | Flight Details Save Changes does not return to the Flight Schedule and gives no success message |
 | [BUG-FD-002](bugs/BUG-FD-002.md) | Medium | Flight Details | Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM > Unassigned' on schedule moves |
+| [BUG-FD-004](bugs/BUG-FD-004.md) | Medium | Flight Details | Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC) |
 | [BUG-FS-001](bugs/BUG-FS-001.md) | Medium | Flight Schedule > Flight Details (new) | New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h) |
 | [BUG-FS-002](bugs/BUG-FS-002.md) | Medium | Flight Schedule | Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight |
 | [BUG-FS-003](bugs/BUG-FS-003.md) | Medium | Flight Schedule | Flight Schedule header overlaps when Live Edit is on - title covered, location pill cut off and its 'Show All' button cannot be clicked |
@@ -31,6 +32,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-AM-003](bugs/BUG-AM-003.md) | Low | Access Manager | Last Activity column sort does not change order |
 | [BUG-AM-004](bugs/BUG-AM-004.md) | Low | Access Manager > Manage User Permissions | Permission level dropdown shows bare codes 'WA' and 'G' next to full labels |
 | [BUG-DSH-001](bugs/BUG-DSH-001.md) | Low | Dashboard | Dashboard side tabs are icon-only with no tooltip or label |
+| [BUG-FD-003](bugs/BUG-FD-003.md) | Low | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings |
 | [BUG-FS-005](bugs/BUG-FS-005.md) | Low | Flight Schedule | JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop') |
 | [BUG-LOG-001](bugs/BUG-LOG-001.md) | Low | Shell (main) | Login Message popup reappears on every browser reload |
 | [BUG-LOG-002](bugs/BUG-LOG-002.md) | Low | Shell (main) | Logout throws JS error removeChild; Esc doesn't close the Log Out confirm |
@@ -112,6 +114,23 @@ Actual: The Flight Details save at 10:17 pm is not listed; newest entry is the 0
 Suspected cause: Schedule drag/resize audit compares against a payload without aircraft (null > 'Unassigned'); Flight Details save path either does not write to the audit log or only logs main-table fields (passengers/comments not tracked).
 
 ![BUG-FD-002-1](bugs/screenshots/BUG-FD-002-1.png)
+
+### BUG-FD-004: Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC)
+
+Severity: Medium | Module: Flight Details | Check: FD-005 ([07-flight-details](checklists/07-flight-details.md))
+
+Steps:
+1. Open flight #42903 > Passenger List > Add Custom Passenger 'BETA TEST ONLY Pax'
+2. Times and Weights > Add Leg
+3. Open the leg PIC or Secondary Flight Crew dropdown
+
+Expected: Only Crew or Student role people (like the flight-level PIC list).
+
+Actual: Leg PIC and Secondary Flight Crew list 'BETA TEST ONLY Lowperm' and 'BETA TEST ONLY Pax' - the custom passenger can be picked as the leg's pilot, which would put a passenger's hours into crew/FRMS records.
+
+Suspected cause: Leg crew dropdowns are filled from the whole manifest (crew + passengers) instead of crew only.
+
+![BUG-FD-004-1](bugs/screenshots/BUG-FD-004-1.png)
 
 ### BUG-FS-001: New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h)
 
@@ -384,6 +403,20 @@ Actual: Tabs show only Material icons (update, notifications, assignment_late, a
 Suspected cause: Tab buttons render the icon only; add title + aria-label (or a short text label).
 
 ![BUG-DSH-001-1](bugs/screenshots/BUG-DSH-001-1.png)
+
+### BUG-FD-003: Times and Meters: no link to the previous flight next to 'Previous' meter readings
+
+Severity: Low | Module: Flight Details | Check: FD-019 ([07-flight-details](checklists/07-flight-details.md))
+
+Steps:
+1. Open flight #42903 (ZK-SIM) > Times and Weights
+2. Look at Meters (Engine Hours, Flight Hours)
+
+Expected: Each meter shows the previous reading and a link to the flight it came from (guide).
+
+Actual: 'Previous: 2450.3 (+0.0)' is shown but there is no link; the only link in the panel is an info icon (href '#'). The user cannot check which flight set the previous reading.
+
+![BUG-FD-003-1](bugs/screenshots/BUG-FD-003-1.png)
 
 ### BUG-FS-005: JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop')
 
