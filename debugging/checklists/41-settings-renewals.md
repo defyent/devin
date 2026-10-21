@@ -37,4 +37,4 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | | | |
 
 
-**Cleanup (41):** test recency, renewal type and alert group (all "BETA TEST ONLY ...") deleted. The BETA TEST ONLY Group template was set back to 0 renewals / 0 recencies. Existing items were not changed.
+**Cleanup (41):** test recency, renewal type and alert group (all "BETA TEST ONLY ...") deleted. The BETA TEST ONLY Group template was set back to 0 renewals / 0 recencies, and BETA TEST ONLY Lowperm's Day Landings recency was removed with it (checked in Personnel Details). Existing items were not changed.

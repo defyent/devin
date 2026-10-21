@@ -6,9 +6,9 @@ Generated from the checklist results and bug files on this branch. Testing is st
 
 | Severity | Count |
 |---|---|
-| High | 6 |
+| High | 7 |
 | Medium | 54 |
-| Low | 88 |
+| Low | 89 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -18,6 +18,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PD-011](bugs/BUG-PD-011.md) | High | Personnel Details | Personnel Details > Security: Change Password always fails with 'Invalid Action: change_password' |
 | [BUG-RB-007](bugs/BUG-RB-007.md) | High | Roster Builder | Roster Builder: Clear then Publish of a draft month with no shifts does not clear the live roster and shows no message |
 | [BUG-SFS-002](bugs/BUG-SFS-002.md) | High | Settings: Flight Schedule | Changing Schedule Start Time saves a full date-time, and the setting then shows NaN:NaN |
+| [BUG-SLP-002](bugs/BUG-SLP-002.md) | High | Settings: Lesson Plans | Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave |
 | [BUG-AF-002](bugs/BUG-AF-002.md) | Medium | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them |
 | [BUG-AM-001](bugs/BUG-AM-001.md) | Medium | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) |
 | [BUG-DFR-002](bugs/BUG-DFR-002.md) | Medium | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied |
@@ -136,6 +137,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SFRMS-002](bugs/BUG-SFRMS-002.md) | Low | Settings: FRMS | FRMS Settings on a phone: the page scrolls sideways, "+ Add ... Rule" is off-screen and rule text is clipped |
 | [BUG-SFS-001](bugs/BUG-SFS-001.md) | Low | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted |
 | [BUG-SFT-001](bugs/BUG-SFT-001.md) | Low | Settings: Flight Types | Flight Types Settings: no Help (?), and Escape does not close popups |
+| [BUG-SLP-001](bugs/BUG-SLP-001.md) | Low | Settings: Lesson Plans | Lesson Plan Settings: no Help (?), and Escape does not close popups |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
 | [BUG-SMS-004](bugs/BUG-SMS-004.md) | Low | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register |
 | [BUG-SREN-001](bugs/BUG-SREN-001.md) | Low | Settings: Recency and Renewals | Recency & Renewals Settings: no Help (?), and Escape does not close popups |
@@ -271,6 +273,25 @@ Actual: The page saves the picker's full value ("2026-10-22 06:00:00"). On reloa
 Suspected cause: templates2/settings_flightschedule/index.js: the change listener does state.scheduleStartTime = e.target.value, but datetimepicker.js writes "YYYY-MM-DD HH:MM:SS" to .dtp-hidden-input. init then does state.scheduleStartTime.split(":").map(Number). Fix: keep only HH:MM (e.g. value.slice(11,16)) and check it is valid before saving.
 
 ![BUG-SFS-002-1](bugs/screenshots/BUG-SFS-002-1.png)
+
+### BUG-SLP-002: Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave
+
+Severity: High | Module: Settings: Lesson Plans | Check: SLP-001 ([42-settings-lessonplans](checklists/42-settings-lessonplans.md))
+
+Steps:
+1. Settings and Tools > Lesson Plans > Exercises > Add Exercise.
+2. Name "BETA TEST ONLY Ex", then Save. It shows in the list.
+3. Click edit on it, change the name to "BETA TEST ONLY Ex2", then Save.
+4. Go to Settings and Tools, then back to Lesson Plans > Exercises.
+
+Expected: The exercise is saved to the server, edit renames it, and it's still there when you come back.
+
+Actual: No request goes to the server on Save (none seen in the network log), and no success message shows. Edit adds a second row ("BETA TEST ONLY Ex" and "BETA TEST ONLY Ex2") instead of renaming. When you come back, the list says "No exercises configured". So exercises can never be set up, and the Exercise Configuration on lessons can't be used. Lesson Plans on the same page do save (POST settings_lessonplans_save, "Ok:14").
+
+Suspected cause: templates2/settings_lessonplans/index.js saveExercise() and deleteExercise() only change the in-memory exercises array ("// TODO: Implement API integration"), and loadExercises() only re-renders that array. The edit form doesn't carry the id, so data.id is empty and edit takes the "Add new" branch.
+
+![BUG-SLP-002-1](bugs/screenshots/BUG-SLP-002-1.png)
+![BUG-SLP-002-2](bugs/screenshots/BUG-SLP-002-2.png)
 
 ### BUG-AF-002: Active Flights lists future flights that have no SAR time, and the stats cards don't count them
 
@@ -2227,6 +2248,24 @@ Actual: There is no Help button on the page, and Escape leaves Add Flight Catego
 Suspected cause: The template has no help button or help modal.
 
 ![BUG-SFT-001-1](bugs/screenshots/BUG-SFT-001-1.png)
+
+### BUG-SLP-001: Lesson Plan Settings: no Help (?), and Escape does not close popups
+
+Severity: Low | Module: Settings: Lesson Plans | Check: SLP-S02 ([42-settings-lessonplans](checklists/42-settings-lessonplans.md))
+
+Steps:
+1. Settings and Tools > Lesson Plans.
+2. Look for a Help (?) button.
+3. Exercises > Add Exercise, then press Escape.
+
+Expected: There is a page Help (?), and Escape closes the popup.
+
+Actual: There is no page Help (?), and Escape leaves Add Exercise open.
+
+Suspected cause: The page has no help modal, and there is no Escape key handler on its modals.
+
+![BUG-SLP-001-1](bugs/screenshots/BUG-SLP-001-1.png)
+![BUG-SLP-001-2](bugs/screenshots/BUG-SLP-001-2.png)
 
 ### BUG-SMS-003: Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice
 
