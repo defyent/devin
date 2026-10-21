@@ -7,8 +7,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 4 |
-| Medium | 40 |
-| Low | 50 |
+| Medium | 42 |
+| Low | 52 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -24,6 +24,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-FB-003](bugs/BUG-FB-003.md) | Medium | File Browser | File Browser: clicking a .txt file shows 'File Access Error' with the file's own text |
 | [BUG-FB-005](bugs/BUG-FB-005.md) | Medium | File Browser | File Browser: Read/Write Access groups are not kept after Update Document |
 | [BUG-FB-006](bugs/BUG-FB-006.md) | Medium | File Browser | File Browser: deleting a folder fails with 'Invalid Action: filebrowser_deletefolder' |
+| [BUG-FBLD-002](bugs/BUG-FBLD-002.md) | Medium | Form Builder | Form Builder View Form: Date and Time widgets default to UTC, not local time |
+| [BUG-FBLD-003](bugs/BUG-FBLD-003.md) | Medium | Form Builder | Form Builder: table conditions do nothing in View Form |
 | [BUG-FD-001](bugs/BUG-FD-001.md) | Medium | Flight Details | Flight Details Save Changes does not return to the Flight Schedule and gives no success message |
 | [BUG-FD-002](bugs/BUG-FD-002.md) | Medium | Flight Details | Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM > Unassigned' on schedule moves |
 | [BUG-FD-004](bugs/BUG-FD-004.md) | Medium | Flight Details | Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC) |
@@ -72,6 +74,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-FB-002](bugs/BUG-FB-002.md) | Low | File Browser | File Browser shows Date Uploaded as 'Oct 22, 2026' instead of DD/MM/YYYY |
 | [BUG-FB-004](bugs/BUG-FB-004.md) | Low | File Browser | File Browser: Escape doesn't close the Create New Folder or Configure File popups |
 | [BUG-FB-007](bugs/BUG-FB-007.md) | Low | File Browser | File Browser on a phone: table is cut off, edit buttons are off-screen |
+| [BUG-FBLD-001](bugs/BUG-FBLD-001.md) | Low | Form Builder | Form Builder: popups ignore Escape and outside clicks (Help, Create New Form Template, Edit Options) |
+| [BUG-FBLD-004](bugs/BUG-FBLD-004.md) | Low | Form Builder | Form Builder on a phone: page is wider than the screen and the Toolbox covers the form |
 | [BUG-FD-003](bugs/BUG-FD-003.md) | Low | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings |
 | [BUG-FS-005](bugs/BUG-FS-005.md) | Low | Flight Schedule | JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop') |
 | [BUG-HAZ-003](bugs/BUG-HAZ-003.md) | Low | Hazard Register | Hazard Register has no way to create a hazard entry |
@@ -323,6 +327,40 @@ Actual: Error popup 'Delete Failed: Invalid Action: filebrowser_deletefolder' an
 Suspected cause: filebrowser/index.js performDeleteFolder() posts action filebrowser_deletefolder, which the server does not handle.
 
 ![BUG-FB-006-1](bugs/screenshots/BUG-FB-006-1.png)
+
+### BUG-FBLD-002: Form Builder View Form: Date and Time widgets default to UTC, not local time
+
+Severity: Medium | Module: Form Builder | Check: FBLD-S04 ([23-form-builder](checklists/23-form-builder.md))
+
+Steps:
+1. Settings and Tools > Form Builder, open a template with Date and Time widgets
+2. Click View Form
+3. Compare Date/Time with the header Local clock
+
+Expected: Local date and time: 22/10/2026 01:07.
+
+Actual: 21/10/2026 and 12:07, which is the UTC date and time. Same as earlier FORM-06.
+
+![BUG-FBLD-002-1](bugs/screenshots/BUG-FBLD-002-1.png)
+
+### BUG-FBLD-003: Form Builder: table conditions do nothing in View Form
+
+Severity: Medium | Module: Form Builder | Check: FBLD-005 ([23-form-builder](checklists/23-form-builder.md))
+
+Steps:
+1. Settings and Tools > Form Builder, template with a Dropdown (BETA A/B/C) in Table 1
+2. Add Table 2, click its C (Conditions)
+3. IF 'Choose an option' is 'BETA A' THEN show this table > Add > Save Conditions > Save Form Template
+4. View Form, pick BETA B, then BETA A
+
+Expected: Table 2 is hidden until BETA A is picked.
+
+Actual: Table 2 is always shown (with nothing picked, with BETA A and with BETA B). No console errors.
+
+Suspected cause: formbuilder/index.js render script looks up formContainer.querySelector('[data-table-id=...]') and [data-widget-id=...], but the rendered preview has no elements with data-table-id or data-widget-id, so every condition returns early. Related to FORM-17/FORM-18.
+
+![BUG-FBLD-003-1](bugs/screenshots/BUG-FBLD-003-1.png)
+![BUG-FBLD-003-2](bugs/screenshots/BUG-FBLD-003-2.png)
 
 ### BUG-FD-001: Flight Details Save Changes does not return to the Flight Schedule and gives no success message
 
@@ -1134,6 +1172,36 @@ Actual: The table stays 585px wide in a 390px screen. Revision, Uploader and the
 
 ![BUG-FB-007-1](bugs/screenshots/BUG-FB-007-1.png)
 
+### BUG-FBLD-001: Form Builder: popups ignore Escape and outside clicks (Help, Create New Form Template, Edit Options)
+
+Severity: Low | Module: Form Builder | Check: FBLD-S02 ([23-form-builder](checklists/23-form-builder.md))
+
+Steps:
+1. Settings and Tools > Form Builder
+2. Click Help (?)
+3. Press Escape, then click outside the popup
+
+Expected: The popup closes, as on Settings and Tools, Safety Reports and Hazard Register.
+
+Actual: Help, Create New Form Template and Edit Dropdown Options stay open on Escape and outside clicks. Only x, Close or Cancel close them. Same as earlier FORM-20.
+
+Suspected cause: formbuilder/index.js has no Escape handler and no overlay click handler; closeModal() only runs on [data-close] buttons.
+
+![BUG-FBLD-001-1](bugs/screenshots/BUG-FBLD-001-1.png)
+
+### BUG-FBLD-004: Form Builder on a phone: page is wider than the screen and the Toolbox covers the form
+
+Severity: Low | Module: Form Builder | Check: FBLD-S05 ([23-form-builder](checklists/23-form-builder.md))
+
+Steps:
+1. Open Settings and Tools > Form Builder on a 390px wide screen
+
+Expected: A usable layout, or a clear 'use a larger screen' message.
+
+Actual: The page is 644px wide in a 390px screen and scrolls sideways. The Toolbox panel opens over the form. The header, Form Template, Allow Confidential and Auto-Attach are cut off.
+
+![BUG-FBLD-004-1](bugs/screenshots/BUG-FBLD-004-1.png)
+
 ### BUG-FD-003: Times and Meters: no link to the previous flight next to 'Previous' meter readings
 
 Severity: Low | Module: Flight Details | Check: FD-019 ([07-flight-details](checklists/07-flight-details.md))
@@ -1735,3 +1803,4 @@ Suspected cause: saveLeaveType() in timesheets/leaverequests.js calls hideTypeMo
 | 19-safety-reports | Safety report #2060 'BETA TEST ONLY report' (Hazard Report, ZK-SIM, on behalf of Aisha Pearce) | Flight Safety > Safety Reports | TBD |
 | 20-hazard-register | Hazard entry for safety report #2060 'BETA TEST ONLY hazard' (goal Eliminate, controls edited, responsible Aisha Pearce) | Flight Safety > Hazard Register (edited via Safety Reports > #2060 > Final Report) | TBD - goes with report #2060 |
 | 22-file-browser | Folder 'BETA TEST ONLY Folder' (files fbA, fbB deleted) | Administration > File Browser > Home | No - folder can't be deleted (BUG-FB-006) |
+| 23-form-builder | Form group 'BETA TEST ONLY Forms' (template 'BETA TEST ONLY Form' deleted, auto-attach unticked) | Settings and Tools > Form Builder | No - empty group stays, no way to delete groups |

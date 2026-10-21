@@ -14,25 +14,25 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| FBLD-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | TODO | | |
-| FBLD-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | TODO | | |
-| FBLD-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
-| FBLD-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
-| FBLD-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
-| FBLD-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
+| FBLD-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Settings and Tools > Forms > Form Builder loads (template list QA Post-Flight Report ... QA Hazard Observation, toolbox, default Table 1), no page errors |
+| FBLD-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-FBLD-001 | Help opens and closes with x and Close (no 'Got it'). Escape and outside click do nothing (FORM-20) |
+| FBLD-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Drag-out from Help content keeps Help open |
+| FBLD-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | FAIL | BUG-FBLD-002 | Preview Date shows DD/MM/YYYY and Time HH:MM, but both default to UTC (21/10/2026 12:07) while local is 22/10/2026 01:07 (FORM-06) |
+| FBLD-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | FAIL | BUG-FBLD-004 | At 390px the page is 644px wide and scrolls sideways; Toolbox overlays the form and header controls are cut off |
+| FBLD-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | Form Builder is only linked from Settings and Tools; betatest_low gets Access Denied on Settings and Tools (HUB-S06) |
 
 ## Module checks
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| FBLD-001 | New Form Template (group + name) BETA TEST ONLY | Created | TODO | | |
-| FBLD-002 | Add Table, rows/columns, span cells | Works | TODO | | |
-| FBLD-003 | Drag every widget type from Toolbox | Header, Text Field, Textarea, Text Block, Date, Time, Dropdown, Radio, Checkbox, Toggle, List Box, Key-Value, Scribble, Image, Separator | TODO | | |
-| FBLD-004 | Edit label, star required, Edit Options | Works | TODO | | |
-| FBLD-005 | Condition (C): show/hide on equal/not equal | Works in View Form preview | TODO | | |
-| FBLD-006 | Size, Allow Confidential | Saved | TODO | | |
-| FBLD-007 | Flight Auto-Attach categories/activities > Save | Form auto-attaches on Flight Details; required on copy | TODO | | |
-| FBLD-008 | Save Form Template / Reset / Delete | Work with confirmation | TODO | | |
+| FBLD-001 | New Form Template (group + name) BETA TEST ONLY | Created | PASS |  | New Form Template with '+ New Group...' 'BETA TEST ONLY Forms' and name 'BETA TEST ONLY Form' creates it and selects it. Create with an empty name shows 'Validation Error: Please enter a template name' and closes the Create popup (FORM-21) |
+| FBLD-002 | Add Table, rows/columns, span cells | Works | PASS |  | Table 1: +Row x6 gives 8x2 cells, +Col/-Col add and remove a column, span Col+ on R1C1 spans both columns ('Col 2') and Col- undoes it |
+| FBLD-003 | Drag every widget type from Toolbox | Header, Text Field, Textarea, Text Block, Date, Time, Dropdown, Radio, Checkbox, Toggle, List Box, Key-Value, Scribble, Image, Separator | PASS |  | All 15 toolbox widgets dragged into cells and created: Header, Separator, Text Block, Text Field, Date, Time, Textarea, Dropdown, Radio Group, Checkbox, Toggle, Scribble, Key-Value Pair, List Box, Image |
+| FBLD-004 | Edit label, star required, Edit Options | Works | PASS | BUG-FBLD-001 | Text Field label edited to 'BETA TEST ONLY Name'; star toggles required (red * on label); Dropdown Edit Options replaced First/Second/Third with BETA A/B/C. Esc doesn't close Edit Options (BUG-FBLD-001) |
+| FBLD-005 | Condition (C): show/hide on equal/not equal | Works in View Form preview | FAIL | BUG-FBLD-003 | Table 2 condition 'Choose an option is BETA A > show' saved, but in View Form Table 2 always shows (none/BETA A/BETA B), even after Save Form Template |
+| FBLD-006 | Size, Allow Confidential | Saved | PASS |  | Size 16px and Allow Confidential on, Save Form Template (group/name prefilled) shows 'Template saved successfully.'; after switching template and back: 15 widgets, edited label, required star, BETA A/B/C options, 16px, Confidential on all kept |
+| FBLD-007 | Flight Auto-Attach categories/activities > Save | Form auto-attaches on Flight Details; required on copy | BLOCKED |  | Auto-Attach: ticking 'Maintenance Test' > Save shows 'Flight auto-attach settings saved successfully.' and stays ticked on reopen; unticked again afterwards. Attaching on Flight Details / required on copy not checked (needs a test flight with that activity) - retest in 99 |
+| FBLD-008 | Save Form Template / Reset / Delete | Work with confirmation | PASS |  | Save Form Template works (toast shown twice). Reset asks 'Confirm Reset ... grid will be reset to a 2x2 layout', Cancel keeps all widgets. Delete asks 'Are you sure you want to delete BETA TEST ONLY Form?' and removes it; Delete is then disabled |
 
 ## Known issues from external audits
 
@@ -72,4 +72,4 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| | | |
+| Form group 'BETA TEST ONLY Forms' (template 'BETA TEST ONLY Form' deleted, auto-attach unticked) | Settings and Tools > Form Builder | No - empty group stays, no way to delete groups |
