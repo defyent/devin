@@ -1091,3 +1091,7 @@ Suspected cause: Popup uses toLocaleDateString with a hard-coded long format ins
 | 12-personnel-details | BETA TEST ONLY Lowperm login landing page set to Flight Schedule in PD-028 | Personnel Details #276 Customize | Yes - restored to Dashboard |
 | 12-personnel-details | Photo BETA_TEST_ONLY_photo.png uploaded to BETA TEST ONLY Lowperm in PD-006 | Personnel Details #276 Photo | Yes - removed |
 | 12-personnel-details | Digital signature drawn and saved for BETA TEST ONLY Lowperm in PD-007 | Personnel Details #276 Signature | No - no delete option (only Update Signature); remove in the database or leave |
+| 14-roster-builder | Draft roster 'New Draft 1' created by Bulk > New Draft in RB-003 (no name prompt) | Roster Builder drafts | No - to delete in RB-003 |
+| 14-roster-builder | Draft roster 'New Draft 2' created in RB-003, renamed 'BETA TEST ONLY Draft' | Roster Builder drafts | No - to delete at end of 14 |
+| 14-roster-builder | Draft roster 'New Draft 1' created by Bulk > New Draft in RB-003 (no name prompt) | Roster Builder drafts | No - to delete in RB-003 |
+| 14-roster-builder | Draft roster 'New Draft 2' created in RB-003, renamed 'BETA TEST ONLY Draft' | Roster Builder drafts | No - to delete at end of 14 |

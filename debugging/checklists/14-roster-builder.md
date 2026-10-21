@@ -26,7 +26,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
 | RB-001 | « ‹ › » navigation, This Month, Search | Double arrows move half a month | PASS |  | » moves forward 2 weeks (Oct 18 - Nov 14), again to Nov 1-30; « back to Oct 18 - Nov 14; < / > whole months; This Month back to Oct 1-31. Search 'Aisha' highlights the 2 matching rows |
-| RB-002 | Select Roster View: Live / Draft | Switches | TODO | | |
+| RB-002 | Select Roster View: Live / Draft | Switches | PASS |  | Select Roster View lists Live Roster and the drafts; picking a draft switches the grid, the badge shows the draft name and an orange 'Draft Edit Mode - Changes are saved to this draft only' banner appears |
 | RB-003 | Bulk: New Draft (BETA TEST ONLY), Rename, Copy Live to Draft (Merge / Clear then Copy), Delete Draft | Each works with confirmation | TODO | | |
 | RB-004 | Drag shift from palette to cell | Shift placed | TODO | | |
 | RB-005 | Drag shift to delete zone | Removed | TODO | | |
@@ -53,4 +53,8 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| | | |
+| Draft roster 'New Draft 1' created by Bulk > New Draft in RB-003 (no name prompt) | Roster Builder drafts | No - to delete in RB-003 |
+| Draft roster 'New Draft 2' created in RB-003, renamed 'BETA TEST ONLY Draft' | Roster Builder drafts | No - to delete at end of 14 |
+
+| Draft roster 'New Draft 1' created by Bulk > New Draft in RB-003 (no name prompt) | Roster Builder drafts | No - to delete in RB-003 |
+| Draft roster 'New Draft 2' created in RB-003, renamed 'BETA TEST ONLY Draft' | Roster Builder drafts | No - to delete at end of 14 |
