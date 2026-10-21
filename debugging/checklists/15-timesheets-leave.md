@@ -14,8 +14,8 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| TS-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | TODO | | |
-| TS-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | TODO | | |
+| TS-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Administration > Settings and Tools > Timesheets opens 'Timesheet Approval' (October 2026, group pills All Personnel 110 / Administration 10 / Crew 40 / Engineers 20 / Pilots 40), no console errors |
+| TS-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-TS-001 | No Help (?) button on the page |
 | TS-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
 | TS-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
 | TS-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |

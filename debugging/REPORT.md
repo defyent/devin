@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 4 |
 | Medium | 30 |
-| Low | 30 |
+| Low | 31 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -76,6 +76,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RB-006](bugs/BUG-RB-006.md) | Low | Roster Builder | Roster Builder: at phone width the shift palette takes half the screen and the Draft Edit Mode banner covers the search box and palette |
 | [BUG-RV-001](bugs/BUG-RV-001.md) | Low | Roster Viewer | Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape |
 | [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
+| [BUG-TS-001](bugs/BUG-TS-001.md) | Low | Timesheets | Timesheet Approval has no page Help (?) |
 
 ## Bugs
 
@@ -1174,6 +1175,22 @@ Actual: Date: October 5, 2026
 Suspected cause: Popup uses toLocaleDateString with a hard-coded long format instead of the shared date formatter.
 
 ![BUG-RV-003-1](bugs/screenshots/BUG-RV-003-1.png)
+
+### BUG-TS-001: Timesheet Approval has no page Help (?)
+
+Severity: Low | Module: Timesheets | Check: TS-S02 ([15-timesheets-leave](checklists/15-timesheets-leave.md))
+
+Steps:
+1. Administration > Settings and Tools > Timesheets
+2. Look for the Help (?) button in the page header
+
+Expected: Standard Help (?) button opening the page help popup.
+
+Actual: No Help button anywhere on the page.
+
+Suspected cause: Timesheets template has no page-help block.
+
+![BUG-TS-001-1](bugs/screenshots/BUG-TS-001-1.png)
 
 ## Test data to clean up
 
