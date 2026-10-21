@@ -26,7 +26,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
 | PD-001 | Header: History, PDF (sections), Help, Save Changes | Work | TODO | | |
-| PD-002 | Tabs shown | Personal Details, Flights, Exams, Recency, Forms, Files, Security always; Timesheets only Staff; Lesson Plans only Student; Customize only own/admin | TODO | | |
+| PD-002 | Tabs shown | Personal Details, Flights, Exams, Recency, Forms, Files, Security always; Timesheets only Staff; Lesson Plans only Student; Customize only own/admin | PASS |  | Staff (Ethan Abbott): Personal Details, Flights, Timesheets, Exams, Recency and Renewals, Forms, Files, Security, Customize - no Lesson Plans. Student (Peter Archer): Lesson Plans shown, no Timesheets. Customize shown to Service Account (admin) (shots pd_open, pd_student) |
 | PD-003 | Forms/Files count badges | Correct counts | TODO | | |
 | PD-004 | Personal Details: edit every field, Save | Saved; dirty-state buttons; leave prompt | TODO | | |
 | PD-005 | Weight KG/Lbs toggle | Converts; used on manifests | TODO | | |
