@@ -2971,7 +2971,7 @@
  },
  {
   "id": "BUG-SINS-003",
-  "title": "Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and \"days overdue\" is one day short",
+  "title": "Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and the overdue day count is one day short",
   "row": "SINS-S04",
   "cl": "45-settings-inspections",
   "module": "Settings: Inspection Notifications",
@@ -2982,11 +2982,51 @@
    "Save with date 01/10/2026 and look at the Trigger column."
   ],
   "expected": "The date picker starts on the local date, 22/10/2026. The trigger shows \"01/10/2026 (21 days overdue)\".",
-  "actual": "The date picker starts on 21/10/2026, the UTC date. The trigger shows \"2026-10-01 (20 days overdue)\": the date format ignores the setting, and the day count is worked out from the UTC date.",
+  "actual": "The date picker starts on 21/10/2026, the UTC date. A past date shows \"2026-10-01 (20 days overdue)\" when it is 21 days locally, and the date format ignores the setting. Future dates count correctly (\"2026-12-31 (70 days)\").",
   "shots": [
    "sins_add_date",
    "sins_date_saved"
   ],
-  "cause": "The trigger text comes from the server, which writes an ISO date and counts days against the server/UTC date. The client defaults the date picker with new Date() without converting to the configured timezone."
+  "cause": "The server writes the trigger text with an ISO date. Its overdue count is one short, probably because it uses the UTC date or truncates the part day. The client defaults the date picker with new Date() and does not use the configured timezone."
+ },
+ {
+  "id": "BUG-SINT-001",
+  "title": "Google Calendar Settings: Help and Add Calendar don't close with Escape or an outside click",
+  "row": "SINT-S02",
+  "cl": "46-settings-integrations",
+  "module": "Settings: Google Calendar Sync",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Configuration > Google Calendar Sync.",
+   "Click the help (?) icon, then press Escape.",
+   "Open it again and click outside it.",
+   "Click Add Calendar and press Escape."
+  ],
+  "expected": "Help closes with Got it/\u00d7, an outside click and Escape. Add Calendar closes with Escape.",
+  "actual": "Help only closes with \u00d7 or Close. Escape and an outside click leave it open. Escape also leaves Add Calendar open.",
+  "shots": [
+   "sint_main",
+   "sint_add"
+  ],
+  "cause": "The page modals have no Escape key handler and no overlay click handler."
+ },
+ {
+  "id": "BUG-SINT-002",
+  "title": "Google Calendar Sync Status: flight dates show as 2024-01-01 07:55 instead of DD/MM/YYYY",
+  "row": "SINT-S04",
+  "cl": "46-settings-integrations",
+  "module": "Settings: Google Calendar Sync",
+  "sev": "Low",
+  "steps": [
+   "Time Zone settings: DD/MM/YYYY.",
+   "Settings and Tools > Configuration > Google Calendar Sync.",
+   "Expand Pending Sync."
+  ],
+  "expected": "Flight times follow Settings > Time Zone, e.g. \"01/01/2024 07:55\".",
+  "actual": "Each pending flight shows \"2024-01-01 07:55\".",
+  "shots": [
+   "sint_pending"
+  ],
+  "cause": "settings_googlecalendar_get_status returns start_time as \"YYYY-MM-DD HH:MM\", and the page shows it as it is."
  }
 ]

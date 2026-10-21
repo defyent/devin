@@ -158,7 +158,9 @@
 | [BUG-SSMS-001](BUG-SSMS-001.md) | `SSMS-S02` | Settings: Safety Reports | Safety Reports Settings: no Help (?), and Escape does not close popups | Low | New | |
 | [BUG-SINS-001](BUG-SINS-001.md) | `SINS-S02` | Settings: Inspection Notifications | Inspection Notifications Settings: no Help (?), and Escape does not close popups | Low | New | |
 | [BUG-SINS-002](BUG-SINS-002.md) | `SINS-002` | Settings: Inspection Notifications | Inspection Notifications: a meter inspection on an aircraft at 0.0 hours is never Overdue, and negative meter values are accepted | Medium | New | |
-| [BUG-SINS-003](BUG-SINS-003.md) | `SINS-S04` | Settings: Inspection Notifications | Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and "days overdue" is one day short | Low | New | |
+| [BUG-SINS-003](BUG-SINS-003.md) | `SINS-S04` | Settings: Inspection Notifications | Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and the overdue day count is one day short | Low | New | |
+| [BUG-SINT-001](BUG-SINT-001.md) | `SINT-S02` | Settings: Google Calendar Sync | Google Calendar Settings: Help and Add Calendar don't close with Escape or an outside click | Low | New | |
+| [BUG-SINT-002](BUG-SINT-002.md) | `SINT-S04` | Settings: Google Calendar Sync | Google Calendar Sync Status: flight dates show as 2024-01-01 07:55 instead of DD/MM/YYYY | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

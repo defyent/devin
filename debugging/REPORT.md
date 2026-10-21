@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 7 |
 | Medium | 55 |
-| Low | 95 |
+| Low | 97 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -139,7 +139,9 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SFS-001](bugs/BUG-SFS-001.md) | Low | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted |
 | [BUG-SFT-001](bugs/BUG-SFT-001.md) | Low | Settings: Flight Types | Flight Types Settings: no Help (?), and Escape does not close popups |
 | [BUG-SINS-001](bugs/BUG-SINS-001.md) | Low | Settings: Inspection Notifications | Inspection Notifications Settings: no Help (?), and Escape does not close popups |
-| [BUG-SINS-003](bugs/BUG-SINS-003.md) | Low | Settings: Inspection Notifications | Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and "days overdue" is one day short |
+| [BUG-SINS-003](bugs/BUG-SINS-003.md) | Low | Settings: Inspection Notifications | Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and the overdue day count is one day short |
+| [BUG-SINT-001](bugs/BUG-SINT-001.md) | Low | Settings: Google Calendar Sync | Google Calendar Settings: Help and Add Calendar don't close with Escape or an outside click |
+| [BUG-SINT-002](bugs/BUG-SINT-002.md) | Low | Settings: Google Calendar Sync | Google Calendar Sync Status: flight dates show as 2024-01-01 07:55 instead of DD/MM/YYYY |
 | [BUG-SLP-001](bugs/BUG-SLP-001.md) | Low | Settings: Lesson Plans | Lesson Plan Settings: no Help (?), and Escape does not close popups |
 | [BUG-SLP-003](bugs/BUG-SLP-003.md) | Low | Settings: Lesson Plans | Add Lesson accepts negative hours (Solo Hours -1 is saved and shown as "Solo: -1h") |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
@@ -2291,7 +2293,7 @@ Suspected cause: No help modal. The modal is built in templates2/settings_inspec
 ![BUG-SINS-001-1](bugs/screenshots/BUG-SINS-001-1.png)
 ![BUG-SINS-001-2](bugs/screenshots/BUG-SINS-001-2.png)
 
-### BUG-SINS-003: Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and "days overdue" is one day short
+### BUG-SINS-003: Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and the overdue day count is one day short
 
 Severity: Low | Module: Settings: Inspection Notifications | Check: SINS-S04 ([45-settings-inspections](checklists/45-settings-inspections.md))
 
@@ -2302,12 +2304,48 @@ Steps:
 
 Expected: The date picker starts on the local date, 22/10/2026. The trigger shows "01/10/2026 (21 days overdue)".
 
-Actual: The date picker starts on 21/10/2026, the UTC date. The trigger shows "2026-10-01 (20 days overdue)": the date format ignores the setting, and the day count is worked out from the UTC date.
+Actual: The date picker starts on 21/10/2026, the UTC date. A past date shows "2026-10-01 (20 days overdue)" when it is 21 days locally, and the date format ignores the setting. Future dates count correctly ("2026-12-31 (70 days)").
 
-Suspected cause: The trigger text comes from the server, which writes an ISO date and counts days against the server/UTC date. The client defaults the date picker with new Date() without converting to the configured timezone.
+Suspected cause: The server writes the trigger text with an ISO date. Its overdue count is one short, probably because it uses the UTC date or truncates the part day. The client defaults the date picker with new Date() and does not use the configured timezone.
 
 ![BUG-SINS-003-1](bugs/screenshots/BUG-SINS-003-1.png)
 ![BUG-SINS-003-2](bugs/screenshots/BUG-SINS-003-2.png)
+
+### BUG-SINT-001: Google Calendar Settings: Help and Add Calendar don't close with Escape or an outside click
+
+Severity: Low | Module: Settings: Google Calendar Sync | Check: SINT-S02 ([46-settings-integrations](checklists/46-settings-integrations.md))
+
+Steps:
+1. Settings and Tools > Configuration > Google Calendar Sync.
+2. Click the help (?) icon, then press Escape.
+3. Open it again and click outside it.
+4. Click Add Calendar and press Escape.
+
+Expected: Help closes with Got it/×, an outside click and Escape. Add Calendar closes with Escape.
+
+Actual: Help only closes with × or Close. Escape and an outside click leave it open. Escape also leaves Add Calendar open.
+
+Suspected cause: The page modals have no Escape key handler and no overlay click handler.
+
+![BUG-SINT-001-1](bugs/screenshots/BUG-SINT-001-1.png)
+![BUG-SINT-001-2](bugs/screenshots/BUG-SINT-001-2.png)
+
+### BUG-SINT-002: Google Calendar Sync Status: flight dates show as 2024-01-01 07:55 instead of DD/MM/YYYY
+
+Severity: Low | Module: Settings: Google Calendar Sync | Check: SINT-S04 ([46-settings-integrations](checklists/46-settings-integrations.md))
+
+Steps:
+1. Time Zone settings: DD/MM/YYYY.
+2. Settings and Tools > Configuration > Google Calendar Sync.
+3. Expand Pending Sync.
+
+Expected: Flight times follow Settings > Time Zone, e.g. "01/01/2024 07:55".
+
+Actual: Each pending flight shows "2024-01-01 07:55".
+
+Suspected cause: settings_googlecalendar_get_status returns start_time as "YYYY-MM-DD HH:MM", and the page shows it as it is.
+
+![BUG-SINT-002-1](bugs/screenshots/BUG-SINT-002-1.png)
 
 ### BUG-SLP-001: Lesson Plan Settings: no Help (?), and Escape does not close popups
 

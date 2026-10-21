@@ -1,4 +1,4 @@
-# BUG-SINS-003: Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and "days overdue" is one day short
+# BUG-SINS-003: Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and the overdue day count is one day short
 
 | Field | Value |
 |---|---|
@@ -20,14 +20,14 @@
 The date picker starts on the local date, 22/10/2026. The trigger shows "01/10/2026 (21 days overdue)".
 
 ## Actual
-The date picker starts on 21/10/2026, the UTC date. The trigger shows "2026-10-01 (20 days overdue)": the date format ignores the setting, and the day count is worked out from the UTC date.
+The date picker starts on 21/10/2026, the UTC date. A past date shows "2026-10-01 (20 days overdue)" when it is 21 days locally, and the date format ignores the setting. Future dates count correctly ("2026-12-31 (70 days)").
 
 ## Evidence
 - Screenshot: `screenshots/BUG-SINS-003-1.png`, `screenshots/BUG-SINS-003-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)
-The trigger text comes from the server, which writes an ISO date and counts days against the server/UTC date. The client defaults the date picker with new Date() without converting to the configured timezone.
+The server writes the trigger text with an ISO date. Its overdue count is one short, probably because it uses the UTC date or truncates the part day. The client defaults the date picker with new Date() and does not use the configured timezone.
 
 ## Test data involved
 none
