@@ -25,8 +25,8 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| SEFI-001 | Pills F / C; Add Field (Name*, Type, Display Tab, Active) | Appears in matching Flight Details tab, DFR column, Reports | TODO | | |
-| SEFI-002 | Edit, delete, drag reorder | Order reflected on Flight Details | TODO | | |
+| SEFI-001 | Pills F / C; Add Field (Name*, Type, Display Tab, Active) | Appears in matching Flight Details tab, DFR column, Reports | PASS |  | The Flight Details and Flight Status pills work. Add Field (Name required, with a "Name is required" message; Type Text/Number/Yes-No/URL/Date; Display Tab; Active) added "BETA TEST ONLY Text" and "BETA TEST ONLY YN". Both show on flight 42903 under "Extra Information" and in the Daily Flight Record Columns chooser. I did not check Reports. |
+| SEFI-002 | Edit, delete, drag reorder | Order reflected on Flight Details | PASS |  | Edit renamed the field to "BETA TEST ONLY Text2" ("Field updated successfully"). Dragging YN above Text2 shows "Order updated successfully", the order survives a reload, and Flight Details shows them in that order. Delete asks to confirm and names the field; once both were deleted, "Extra Information" no longer shows on flight 42903. |
 | SEFI-003 | 'Legacy' label in menu | Check naming consistency | PASS |  | The Settings and Tools card says "Extra Flight Info", with no "Legacy" label; this matches the page title "Extra Flight Info Settings". |
 
 ## Test data created
@@ -34,3 +34,6 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | Record | Where | Cleanup done? |
 |---|---|---|
 | | | |
+
+## Test data
+- The test fields "BETA TEST ONLY Text"/"Text2" and "BETA TEST ONLY YN" are deleted. Both tabs are empty again, as they were at the start.

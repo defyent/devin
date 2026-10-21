@@ -44,7 +44,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [33-settings-timezone](checklists/33-settings-timezone.md) | `STZ` | Settings – Time Zone (date/time matrix) | 11 | 7 | 4 | 0 | 2 | DONE |
 | [34-settings-resources](checklists/34-settings-resources.md) | `SRES` | Settings – Resources (Aircraft) | 18 | 14 | 1 | 3 | 0 | DONE |
 | [35-settings-wab](checklists/35-settings-wab.md) | `SWAB` | Settings – Weight and Balance Configs | 13 | 8 | 4 | 1 | 0 | DONE |
-| [36-settings-extraflightinfo](checklists/36-settings-extraflightinfo.md) | `SEFI` | Settings – Extra Flight Info | 9 | 5 | 1 | 0 | 0 | IN PROGRESS |
+| [36-settings-extraflightinfo](checklists/36-settings-extraflightinfo.md) | `SEFI` | Settings – Extra Flight Info | 9 | 7 | 1 | 0 | 0 | DONE |
 | [37-settings-flighttypes](checklists/37-settings-flighttypes.md) | `SFT` | Settings – Flight Types | 8 | 0 | 0 | 0 | 0 | TODO |
 | [38-settings-waypoints](checklists/38-settings-waypoints.md) | `SWP` | Settings – Waypoint Locations | 12 | 0 | 0 | 0 | 0 | TODO |
 | [39-settings-shifttypes](checklists/39-settings-shifttypes.md) | `SST` | Settings – Roster Shifts | 10 | 0 | 0 | 0 | 0 | TODO |
