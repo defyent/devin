@@ -7,8 +7,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 4 |
-| Medium | 43 |
-| Low | 60 |
+| Medium | 44 |
+| Low | 62 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -57,6 +57,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RV-002](bugs/BUG-RV-002.md) | Medium | Roster Viewer | Roster Viewer: clicking a shift does not open Shift Details |
 | [BUG-SMS-001](bugs/BUG-SMS-001.md) | Medium | Safety Reports | New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed |
 | [BUG-SMS-002](bugs/BUG-SMS-002.md) | Medium | Safety Reports | New Safety Report: Event Date/Time defaults to the UTC date and time, not local |
+| [BUG-SUP-001](bugs/BUG-SUP-001.md) | Medium | Support | Support has no page Help (?); Escape doesn't close New Ticket, but a click outside closes it and wipes everything typed |
 | [BUG-TS-002](bugs/BUG-TS-002.md) | Medium | Timesheets | Timesheet Approval: status filter 'Unsigned' shows 'No personnel found' although everyone has unsigned days |
 | [BUG-TS-003](bugs/BUG-TS-003.md) | Medium | Timesheets | Timesheet Approval list totals don't match Timesheet Details (Rostered Days and Duty Hours) |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
@@ -112,6 +113,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
 | [BUG-SMS-004](bugs/BUG-SMS-004.md) | Low | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register |
+| [BUG-SUP-002](bugs/BUG-SUP-002.md) | Low | Support | Support New Ticket: Ctrl+V doesn't paste a screenshot, though the error message tells you to use Ctrl+V |
+| [BUG-SUP-003](bugs/BUG-SUP-003.md) | Low | Support | Support ticket: clicking a .txt attachment shows an 'Error' popup containing the file's text |
 | [BUG-TS-001](bugs/BUG-TS-001.md) | Low | Timesheets | Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing |
 | [BUG-TS-004](bugs/BUG-TS-004.md) | Low | Timesheets | Timesheet Details shows dates as 'Oct 5' and times with seconds (14:00:00) |
 | [BUG-TS-005](bugs/BUG-TS-005.md) | Low | Timesheets | Timesheet Details: F&D and Roster Violation popups ignore Escape and show ISO dates in the title |
@@ -901,6 +904,27 @@ Expected: Defaults to the local date and time (22/10/2026 00:37), as set in Sett
 Actual: Defaults to 21/10/2026 11:37, the UTC date and time. A report saved without changing it is dated 13 hours early. Same issue as BUG-FS-001 and BUG-FAD-005.
 
 ![BUG-SMS-002-1](bugs/screenshots/BUG-SMS-002-1.png)
+
+### BUG-SUP-001: Support has no page Help (?); Escape doesn't close New Ticket, but a click outside closes it and wipes everything typed
+
+Severity: Medium | Module: Support | Check: SUP-S02 ([27-support](checklists/27-support.md))
+
+Steps:
+1. Administration > Support
+2. Look for a Help (?) button
+3. Click New Ticket, type a Subject and Bug Report fields
+4. Press Escape
+5. Click once on the dark area outside the popup
+6. Click New Ticket again
+
+Expected: Help (?) exists. Escape closes the popup (or nothing loses data). An outside click either does nothing or asks before throwing away typed text.
+
+Actual: No Help button. Escape does nothing. One outside click closes New Ticket, and reopening it shows every field empty (openNewTicketModal clears them), so the typed ticket is lost with no warning.
+
+Suspected cause: No keydown handler; overlay click calls closeNewTicketModal without a dirty check; openNewTicketModal resets all fields.
+
+![BUG-SUP-001-1](bugs/screenshots/BUG-SUP-001-1.png)
+![BUG-SUP-001-2](bugs/screenshots/BUG-SUP-001-2.png)
 
 ### BUG-TS-002: Timesheet Approval: status filter 'Unsigned' shows 'No personnel found' although everyone has unsigned days
 
@@ -1797,6 +1821,39 @@ Suspected cause: templates2/hazardregister/index.js maps goal code 'M' to 'Minim
 ![BUG-SMS-004-1](bugs/screenshots/BUG-SMS-004-1.png)
 ![BUG-SMS-004-2](bugs/screenshots/BUG-SMS-004-2.png)
 
+### BUG-SUP-002: Support New Ticket: Ctrl+V doesn't paste a screenshot, though the error message tells you to use Ctrl+V
+
+Severity: Low | Module: Support | Check: SUP-003 ([27-support](checklists/27-support.md))
+
+Steps:
+1. Administration > Support > New Ticket
+2. Copy a screenshot, click in the Description box and press Ctrl+V
+3. Also click Paste Screenshot without clipboard permission
+
+Expected: Ctrl+V adds the screenshot to Attachments (as the clipboard error message says).
+
+Actual: Nothing is attached on Ctrl+V. The page has no paste listener; only the Paste Screenshot button (navigator.clipboard.read) works, and its error says 'use Ctrl+V to paste'.
+
+Suspected cause: sup_index.js has no 'paste' event handler.
+
+![BUG-SUP-002-1](bugs/screenshots/BUG-SUP-002-1.png)
+
+### BUG-SUP-003: Support ticket: clicking a .txt attachment shows an 'Error' popup containing the file's text
+
+Severity: Low | Module: Support | Check: SUP-005 ([27-support](checklists/27-support.md))
+
+Steps:
+1. Administration > Support > open ticket #8
+2. Click the attachment BETA_TEST_ONLY_sup.txt
+
+Expected: File preview shows the text, or the file downloads.
+
+Actual: An 'Error' popup opens whose message is the file content ('BETA TEST ONLY attachment'); the File Preview popup behind it is blocked until OK is clicked. Same pattern as BUG-FB-003.
+
+Suspected cause: Text preview response is passed to showErrorModal.
+
+![BUG-SUP-003-1](bugs/screenshots/BUG-SUP-003-1.png)
+
 ### BUG-TS-001: Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing
 
 Severity: Low | Module: Timesheets | Check: TS-S02 ([15-timesheets-leave](checklists/15-timesheets-leave.md))
@@ -1951,3 +2008,4 @@ Actual: The feature card is indented about 90px and runs off the right edge; the
 | 23-form-builder | Form group 'BETA TEST ONLY Forms' (template 'BETA TEST ONLY Form' deleted, auto-attach unticked) | Settings and Tools > Form Builder | No - empty group stays, no way to delete groups |
 | 25-task-tracker | Project 'BETA TEST ONLY Project' (component, 2 features, 4 tasks, comment) | Administration > Task Tracker | Yes - project deleted ('Project deleted successfully!') |
 | 26-reports | Report template 'BETA TEST ONLY Report', its copy and its result | Administration > Reports | Yes - all deleted |
+| 27-support | Ticket #8 'BETA TEST ONLY ticket' with BETA_TEST_ONLY_sup.txt, reply | Administration > Support | Yes - deleted |

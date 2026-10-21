@@ -109,6 +109,9 @@
 | [BUG-RPT-001](BUG-RPT-001.md) | `RPT-S02` | Reports | Reports has no page Help (?), and Escape doesn't close New Report Template | Low | New | |
 | [BUG-RPT-002](BUG-RPT-002.md) | `RPT-009` | Reports | Reports Export CSV writes dates as '2026-10-16 06:00:00' instead of the org date format | Low | New | |
 | [BUG-RPT-003](BUG-RPT-003.md) | `RPT-S05` | Reports | Reports tables overlap on a phone: column text is drawn on top of other columns | Medium | New | |
+| [BUG-SUP-001](BUG-SUP-001.md) | `SUP-S02` | Support | Support has no page Help (?); Escape doesn't close New Ticket, but a click outside closes it and wipes everything typed | Medium | New | |
+| [BUG-SUP-002](BUG-SUP-002.md) | `SUP-003` | Support | Support New Ticket: Ctrl+V doesn't paste a screenshot, though the error message tells you to use Ctrl+V | Low | New | |
+| [BUG-SUP-003](BUG-SUP-003.md) | `SUP-005` | Support | Support ticket: clicking a .txt attachment shows an 'Error' popup containing the file's text | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

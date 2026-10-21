@@ -35,7 +35,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [24-form-browser](checklists/24-form-browser.md) | `FBR` | Form Browser / Form Viewer | 10 | 6 | 3 | 1 | 4 | DONE |
 | [25-task-tracker](checklists/25-task-tracker.md) | `TT` | Task Tracker | 12 | 7 | 3 | 2 | 2 | DONE |
 | [26-reports](checklists/26-reports.md) | `RPT` | Reports | 16 | 11 | 3 | 2 | 1 | DONE |
-| [27-support](checklists/27-support.md) | `SUP` | Support tickets | 14 | 0 | 0 | 0 | 0 | TODO |
+| [27-support](checklists/27-support.md) | `SUP` | Support tickets | 14 | 10 | 3 | 1 | 0 | DONE |
 | [28-chat](checklists/28-chat.md) | `CHAT` | Chat | 11 | 0 | 0 | 0 | 8 | TODO |
 | [29-exams](checklists/29-exams.md) | `EXM` | Exam Builder, Exam Editor, Exam Instances | 16 | 0 | 0 | 0 | 4 | TODO |
 | [30-maintenance](checklists/30-maintenance.md) | `MX` | Maintenance Portal | 11 | 0 | 0 | 0 | 0 | TODO |
