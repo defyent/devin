@@ -7,7 +7,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 3 |
-| Medium | 29 |
+| Medium | 30 |
 | Low | 29 |
 
 | Bug | Severity | Module | Title |
@@ -43,6 +43,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-POP-003](bugs/BUG-POP-003.md) | Medium | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved |
 | [BUG-RB-002](bugs/BUG-RB-002.md) | Medium | Roster Builder | Roster Builder: Copy Live to Draft copies one shift at a time and takes about 6 minutes for one month |
 | [BUG-RB-003](bugs/BUG-RB-003.md) | Medium | Roster Builder | Roster Builder: copy/paste still works with violation checking ON |
+| [BUG-RB-005](bugs/BUG-RB-005.md) | Medium | Roster Builder | Roster Builder: every validation error throws a JS error instead of showing a message (e.g. Apply Shift Pattern with no shifts) |
 | [BUG-RV-002](bugs/BUG-RV-002.md) | Medium | Roster Viewer | Roster Viewer: clicking a shift does not open Shift Details |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
 | [BUG-AF-003](bugs/BUG-AF-003.md) | Low | Active Flights | Active Flights has no page Help (?), and its popups (About Live Tracking, Adjust SAR, Add Note) don't close with Escape |
@@ -620,6 +621,23 @@ Suspected cause: rosterbuilder/index.js copy handler (around line 4528-4555) and
 ![BUG-RB-003-1](bugs/screenshots/BUG-RB-003-1.png)
 ![BUG-RB-003-2](bugs/screenshots/BUG-RB-003-2.png)
 
+### BUG-RB-005: Roster Builder: every validation error throws a JS error instead of showing a message (e.g. Apply Shift Pattern with no shifts)
+
+Severity: Medium | Module: Roster Builder | Check: RB-008 ([14-roster-builder](checklists/14-roster-builder.md))
+
+Steps:
+1. Settings and Tools > Roster Builder, select a draft
+2. Click a person's name > Shift Summary > Apply Shift Pattern
+3. Leave the pattern empty and click Apply
+
+Expected: Error popup 'Please add at least one shift to the pattern.' and the pattern popup stays open.
+
+Actual: The pattern popup closes, no message appears, and the console shows 'Cannot read properties of undefined (reading 'overlay')'.
+
+Suspected cause: openErrorModal() (rosterbuilder/index.js line 5057) hides elements.predictModal.overlay, but there is no predictModal in the elements map, so it throws before showing the error. Every openErrorModal call on the page is affected.
+
+![BUG-RB-005-1](bugs/screenshots/BUG-RB-005-1.png)
+
 ### BUG-RV-002: Roster Viewer: clicking a shift does not open Shift Details
 
 Severity: Medium | Module: Roster Viewer | Check: RV-004 ([13-roster-viewer](checklists/13-roster-viewer.md))
@@ -1062,7 +1080,7 @@ Steps:
 
 Expected: Standard page Help (?) like other modules; Escape and outside click close popups.
 
-Actual: Only a 'View copy/paste instructions' icon; no page Help. The Copy/Paste Instructions popup stays open on Escape and outside click; only × or Close work. The cell Note popup ('Note for <name>') also ignores Escape (outside click and x work).
+Actual: Only a 'View copy/paste instructions' icon; no page Help. The Copy/Paste Instructions popup stays open on Escape and outside click; only × or Close work. The cell Note popup ('Note for <name>') also ignores Escape (outside click and x work). Shift Summary popup also ignores Escape (outside click works).
 
 Suspected cause: Page has no help include; modal lacks Escape/outside-click handlers.
 

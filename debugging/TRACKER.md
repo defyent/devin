@@ -22,7 +22,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [11-personnel-list](checklists/11-personnel-list.md) | `PL` | All Personnel (Personnel List) | 11 | 9 | 1 | 1 | 2 | DONE |
 | [12-personnel-details](checklists/12-personnel-details.md) | `PD` | Personnel Details / My Account | 36 | 14 | 13 | 9 | 3 | DONE |
 | [13-roster-viewer](checklists/13-roster-viewer.md) | `RV` | Roster Viewer | 12 | 8 | 3 | 1 | 1 | DONE |
-| [14-roster-builder](checklists/14-roster-builder.md) | `RB` | Roster Builder | 21 | 9 | 4 | 0 | 1 | IN PROGRESS |
+| [14-roster-builder](checklists/14-roster-builder.md) | `RB` | Roster Builder | 21 | 9 | 5 | 0 | 1 | IN PROGRESS |
 | [15-timesheets-leave](checklists/15-timesheets-leave.md) | `TS` | Timesheets, Timesheet Details, Leave Requests | 17 | 0 | 0 | 0 | 0 | TODO |
 | [16-flight-and-duty](checklists/16-flight-and-duty.md) | `FAD` | Flight and Duty | 14 | 0 | 0 | 0 | 0 | TODO |
 | [17-notices](checklists/17-notices.md) | `NOT` | Notices | 16 | 0 | 0 | 0 | 0 | TODO |
