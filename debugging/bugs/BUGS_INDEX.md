@@ -124,6 +124,7 @@
 | [BUG-EXM-008](BUG-EXM-008.md) | `EXM-001` | Exams | Exam Builder: deleting an exam or exam group that has instances fails silently (error only in the console), and graded instances can't be removed | Medium | New | |
 | [BUG-SFS-001](BUG-SFS-001.md) | `SFS-003` | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted | Low | New | |
 | [BUG-SFS-002](BUG-SFS-002.md) | `SFS-004` | Settings: Flight Schedule | Changing Schedule Start Time saves a full date-time, and the setting then shows NaN:NaN | High | New | |
+| [BUG-SDFR-001](BUG-SDFR-001.md) | `SDFR-S01` | Settings: Daily Flight Record | Daily Flight Record Settings loads a colorpicker.js that does not exist (404 in the console) | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

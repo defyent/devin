@@ -2334,5 +2334,23 @@
    "sfs_nan"
   ],
   "cause": "templates2/settings_flightschedule/index.js: the change listener does state.scheduleStartTime = e.target.value, but datetimepicker.js writes \"YYYY-MM-DD HH:MM:SS\" to .dtp-hidden-input. init then does state.scheduleStartTime.split(\":\").map(Number). Fix: keep only HH:MM (e.g. value.slice(11,16)) and check it is valid before saving."
+ },
+ {
+  "id": "BUG-SDFR-001",
+  "title": "Daily Flight Record Settings loads a colorpicker.js that does not exist (404 in the console)",
+  "row": "SDFR-S01",
+  "cl": "32-settings-dfr",
+  "module": "Settings: Daily Flight Record",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Operations > Daily Flight Record.",
+   "Open DevTools > Console."
+  ],
+  "expected": "The page loads with no console errors.",
+  "actual": "GET /templates2/settings_dfr/colorpicker.js returns 404, and the console logs \"Failed to load resource: the server responded with a status of 404\". The page has no colour controls, so this looks like a leftover script tag copied from Flight Schedule Settings.",
+  "shots": [
+   "sdfr_main"
+  ],
+  "cause": "The settings_dfr template has a <script src=\"colorpicker.js\"> but that file is not in templates2/settings_dfr/. Remove the tag."
  }
 ]

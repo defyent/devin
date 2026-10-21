@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 6 |
 | Medium | 46 |
-| Low | 70 |
+| Low | 71 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -122,6 +122,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RPT-002](bugs/BUG-RPT-002.md) | Low | Reports | Reports Export CSV writes dates as '2026-10-16 06:00:00' instead of the org date format |
 | [BUG-RV-001](bugs/BUG-RV-001.md) | Low | Roster Viewer | Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape |
 | [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
+| [BUG-SDFR-001](bugs/BUG-SDFR-001.md) | Low | Settings: Daily Flight Record | Daily Flight Record Settings loads a colorpicker.js that does not exist (404 in the console) |
 | [BUG-SFS-001](bugs/BUG-SFS-001.md) | Low | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
 | [BUG-SMS-004](bugs/BUG-SMS-004.md) | Low | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register |
@@ -1973,6 +1974,22 @@ Actual: Date: October 5, 2026
 Suspected cause: Popup uses toLocaleDateString with a hard-coded long format instead of the shared date formatter.
 
 ![BUG-RV-003-1](bugs/screenshots/BUG-RV-003-1.png)
+
+### BUG-SDFR-001: Daily Flight Record Settings loads a colorpicker.js that does not exist (404 in the console)
+
+Severity: Low | Module: Settings: Daily Flight Record | Check: SDFR-S01 ([32-settings-dfr](checklists/32-settings-dfr.md))
+
+Steps:
+1. Settings and Tools > Operations > Daily Flight Record.
+2. Open DevTools > Console.
+
+Expected: The page loads with no console errors.
+
+Actual: GET /templates2/settings_dfr/colorpicker.js returns 404, and the console logs "Failed to load resource: the server responded with a status of 404". The page has no colour controls, so this looks like a leftover script tag copied from Flight Schedule Settings.
+
+Suspected cause: The settings_dfr template has a <script src="colorpicker.js"> but that file is not in templates2/settings_dfr/. Remove the tag.
+
+![BUG-SDFR-001-1](bugs/screenshots/BUG-SDFR-001-1.png)
 
 ### BUG-SFS-001: Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted
 

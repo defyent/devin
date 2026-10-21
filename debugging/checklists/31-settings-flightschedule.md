@@ -19,7 +19,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | SFS-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Help popup: mousedown inside, release outside, stays open. |
 | SFS-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | N/A |  | No dates or times shown on this page. |
 | SFS-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | At 390px the settings stack in one column with no sideways scroll; the Reset Colors popup fits. |
-| SFS-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
+| SFS-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low: Settings and Tools shows "Access Denied: You do not have permission to access the System Settings feature", so neither settings page can be reached. |
 
 ## Module checks
 
