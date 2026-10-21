@@ -54,7 +54,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FS-027 | RG/WG user | Sees only flights on aircraft in their groups; see §14 caveat on membership read/write flag | TODO | | |
 | FS-028 | View mode (if Location Planner enabled): Schedule Only / Schedule & Planner / Planner Only | Each works; Rows by Aircraft / by Location | PASS |  | Schedule Only / Schedule & Planner (planner left + schedule right; schedule half switches to list view from 1 Oct) / Planner Only all work. Rows by Aircraft lists aircraft + type (ZK-AIR C172-02 ...); Rows by Location lists AKL Auckland Base. Planner range 19/10-15/11 (4 Weeks), Day/Week/Month + 4/8/12 Weeks |
 | FS-029 | Planner: Filter by Location, search, Add Location (Name, Code, Color) | Works | IN PROGRESS |  | Locations > 'Filter by Location' modal: search 'zzz' > 'No locations found', 'auck' > AKL Auckland Base; picking it closes the modal and the header shows Auckland Base. Add Location: pending |
-| FS-030 | Planner: New Booking (From, To, Location, Aircraft, Notes) | Saved; appears in grid | TODO | | |
+| FS-030 | Planner: New Booking (From, To, Location, Aircraft, Notes) | Saved; appears in grid | PASS |  | New Booking ZK-SIM @ AKL 31/10-02/11/2026 + notes > Save Booking > toast 'Booking created'; bar 'ZK-SIM C182-02' appears in AKL row, header '1 aircraft in this period', planner Undo button appears. Needs Live Edit ON (drag silently ignored otherwise) |
 | FS-031 | Planner booking tabs: Details / Flights / Templates | Flights list correct for range; New Template requires Template Title | TODO | | |
 | FS-032 | Planner template copy onto schedule | Requires edit mode; flight created | TODO | | |
 | FS-033 | Undo Last Booking Change | Reverts | TODO | | |
@@ -75,3 +75,4 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 | Note 'BETA TEST ONLY Note' (21/10/2026) | Flight Schedule | Yes (deleted in FS-024) |
 | Flight #42903 ZK-SIM, PIC BETA TEST ONLY Lowperm, route NZWN-NZWN, notes 'BETA TEST ONLY flight', 21/10/2026 08:30 | Flight Schedule / Flight Details | No |
 | Flights #42904, #42905, #42906 (pasted copies of #42903, week 19-25 Oct 2026; #42906 from BUG-FS-002) | Flight Schedule | Yes (deleted in FS-020) |
+| Planner booking ZK-SIM @ AKL Auckland Base 31/10-02/11/2026, notes 'BETA TEST ONLY booking' | Flight Schedule > Planner | No |
