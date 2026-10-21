@@ -2871,5 +2871,43 @@
    "slp_lesson"
   ],
   "cause": "The lesson-*hours inputs have no min=\"0\", and neither saveLesson() nor settings_lessonplans_lessons_save checks the range."
+ },
+ {
+  "id": "BUG-SRM-001",
+  "title": "Risk Matrix Settings: no Help (?), and Escape does not close popups",
+  "row": "SRM-S02",
+  "cl": "43-settings-riskmatrix",
+  "module": "Settings: Risk Matrix",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Risk Matrix.",
+   "Look for a Help (?) button.",
+   "Click Add New Matrix, then press Escape."
+  ],
+  "expected": "There is a page Help (?), and Escape closes the popup.",
+  "actual": "There is no page Help (?), and Escape leaves Add New Matrix open.",
+  "shots": [
+   "srm_main",
+   "srm_add"
+  ],
+  "cause": "The page has no help modal, and there is no Escape key handler on its modals."
+ },
+ {
+  "id": "BUG-SRM-002",
+  "title": "Risk Matrix Settings on a phone: the page scrolls sideways and \"+ Add Level\" is cut off",
+  "row": "SRM-S05",
+  "cl": "43-settings-riskmatrix",
+  "module": "Settings: Risk Matrix",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Risk Matrix.",
+   "Make the window 390 px wide."
+  ],
+  "expected": "No sideways page scrolling. The matrix list wraps or stacks, and the Add Level buttons are fully visible.",
+  "actual": "The page is 419 px wide (there is a horizontal scrollbar). The matrix list row (.matrix-nav) is 774 px wide, and \"+ Add Level\" is cut off at the right edge. The grid itself scrolls inside its own box, which is fine.",
+  "shots": [
+   "srm_mobile"
+  ],
+  "cause": ".matrix-nav lays matrix items out in one non-wrapping row, and the level section headers don't wrap below 768 px."
  }
 ]

@@ -51,7 +51,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [40-settings-frms](checklists/40-settings-frms.md) | `SFRMS` | Settings – Fatigue Risk Management | 11 | 7 | 2 | 1 | 0 | DONE |
 | [41-settings-renewals](checklists/41-settings-renewals.md) | `SREN` | Settings – Recency and Renewals | 10 | 5 | 4 | 0 | 0 | DONE |
 | [42-settings-lessonplans](checklists/42-settings-lessonplans.md) | `SLP` | Settings – Lesson Plans | 9 | 5 | 3 | 0 | 0 | DONE |
-| [43-settings-riskmatrix](checklists/43-settings-riskmatrix.md) | `SRM` | Settings – Risk Matrix | 9 | 0 | 0 | 0 | 0 | TODO |
+| [43-settings-riskmatrix](checklists/43-settings-riskmatrix.md) | `SRM` | Settings – Risk Matrix | 9 | 6 | 2 | 0 | 0 | DONE |
 | [44-settings-smsreports](checklists/44-settings-smsreports.md) | `SSMS` | Settings – Safety Reports | 9 | 0 | 0 | 0 | 0 | TODO |
 | [45-settings-inspections](checklists/45-settings-inspections.md) | `SINS` | Settings – Inspection Notifications | 9 | 0 | 0 | 0 | 0 | TODO |
 | [46-settings-integrations](checklists/46-settings-integrations.md) | `SINT` | Settings – Google Calendar, WhatsApp | 10 | 0 | 0 | 0 | 0 | TODO |

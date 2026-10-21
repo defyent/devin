@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 7 |
 | Medium | 54 |
-| Low | 90 |
+| Low | 92 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -144,6 +144,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SREN-001](bugs/BUG-SREN-001.md) | Low | Settings: Recency and Renewals | Recency & Renewals Settings: no Help (?), and Escape does not close popups |
 | [BUG-SREN-004](bugs/BUG-SREN-004.md) | Low | Settings: Recency and Renewals | Recency & Renewals Settings on a phone: table columns overlap each other |
 | [BUG-SRES-001](bugs/BUG-SRES-001.md) | Low | Settings: Resources (Aircraft) | Resources: the meter "Last:" dates show as YYYY-MM-DD instead of the Time Zone date format |
+| [BUG-SRM-001](bugs/BUG-SRM-001.md) | Low | Settings: Risk Matrix | Risk Matrix Settings: no Help (?), and Escape does not close popups |
+| [BUG-SRM-002](bugs/BUG-SRM-002.md) | Low | Settings: Risk Matrix | Risk Matrix Settings on a phone: the page scrolls sideways and "+ Add Level" is cut off |
 | [BUG-SST-001](bugs/BUG-SST-001.md) | Low | Settings: Shift Types | Roster Shifts (Shift Type Editor): no Help (?), and Escape does not close popups |
 | [BUG-SST-002](bugs/BUG-SST-002.md) | Low | Settings: Shift Types | New Shift Type: Duty Start/End Time default to the current UTC time |
 | [BUG-SST-003](bugs/BUG-SST-003.md) | Low | Settings: Shift Types | Roster Shifts: after Edit Group the selected group jumps back to Duty, so the next New Shift Type goes into the wrong group |
@@ -2370,6 +2372,40 @@ Actual: Flight Hours Last: 3102.7 (2026-05-09). Every "Last:" meter date on the 
 Suspected cause: The raw database date is shown without going through the shared date formatter.
 
 ![BUG-SRES-001-1](bugs/screenshots/BUG-SRES-001-1.png)
+
+### BUG-SRM-001: Risk Matrix Settings: no Help (?), and Escape does not close popups
+
+Severity: Low | Module: Settings: Risk Matrix | Check: SRM-S02 ([43-settings-riskmatrix](checklists/43-settings-riskmatrix.md))
+
+Steps:
+1. Settings and Tools > Risk Matrix.
+2. Look for a Help (?) button.
+3. Click Add New Matrix, then press Escape.
+
+Expected: There is a page Help (?), and Escape closes the popup.
+
+Actual: There is no page Help (?), and Escape leaves Add New Matrix open.
+
+Suspected cause: The page has no help modal, and there is no Escape key handler on its modals.
+
+![BUG-SRM-001-1](bugs/screenshots/BUG-SRM-001-1.png)
+![BUG-SRM-001-2](bugs/screenshots/BUG-SRM-001-2.png)
+
+### BUG-SRM-002: Risk Matrix Settings on a phone: the page scrolls sideways and "+ Add Level" is cut off
+
+Severity: Low | Module: Settings: Risk Matrix | Check: SRM-S05 ([43-settings-riskmatrix](checklists/43-settings-riskmatrix.md))
+
+Steps:
+1. Settings and Tools > Risk Matrix.
+2. Make the window 390 px wide.
+
+Expected: No sideways page scrolling. The matrix list wraps or stacks, and the Add Level buttons are fully visible.
+
+Actual: The page is 419 px wide (there is a horizontal scrollbar). The matrix list row (.matrix-nav) is 774 px wide, and "+ Add Level" is cut off at the right edge. The grid itself scrolls inside its own box, which is fine.
+
+Suspected cause: .matrix-nav lays matrix items out in one non-wrapping row, and the level section headers don't wrap below 768 px.
+
+![BUG-SRM-002-1](bugs/screenshots/BUG-SRM-002-1.png)
 
 ### BUG-SST-001: Roster Shifts (Shift Type Editor): no Help (?), and Escape does not close popups
 

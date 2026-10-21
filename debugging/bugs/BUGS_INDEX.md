@@ -153,6 +153,8 @@
 | [BUG-SLP-001](BUG-SLP-001.md) | `SLP-S02` | Settings: Lesson Plans | Lesson Plan Settings: no Help (?), and Escape does not close popups | Low | New | |
 | [BUG-SLP-002](BUG-SLP-002.md) | `SLP-001` | Settings: Lesson Plans | Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave | High | New | |
 | [BUG-SLP-003](BUG-SLP-003.md) | `SLP-003` | Settings: Lesson Plans | Add Lesson accepts negative hours (Solo Hours -1 is saved and shown as "Solo: -1h") | Low | New | |
+| [BUG-SRM-001](BUG-SRM-001.md) | `SRM-S02` | Settings: Risk Matrix | Risk Matrix Settings: no Help (?), and Escape does not close popups | Low | New | |
+| [BUG-SRM-002](BUG-SRM-002.md) | `SRM-S05` | Settings: Risk Matrix | Risk Matrix Settings on a phone: the page scrolls sideways and "+ Add Level" is cut off | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
