@@ -19,7 +19,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | RV-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Drag-out (mousedown inside, release outside) keeps Group Visibility and Full Shift Legend open |
 | RV-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | FAIL | BUG-RV-003 | Header month and day numbers fine; shift note popup shows 'October 5, 2026' instead of 05/10/2026. Legend times 24-hour |
 | RV-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | 390 px: page itself doesn't scroll sideways; the grid scrolls inside its box with the Employee column fixed; month arrows, search, font and group buttons fit. 'This Month' link is hidden at this width |
-| RV-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
+| RV-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low (no roster permission): Personnel > Roster Viewer link shown, page says 'Access Denied: You do not have permission to access the roster viewer' (link visibility question is BUG-PERM-001) |
 
 ## Module checks
 
@@ -30,7 +30,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | RV-003 | Search staff… | Filters | PASS |  | Typing 'Aisha' in Search staff highlights the matching rows (Aisha Johnston, Aisha Pearce) in yellow; other rows stay visible (highlight, not hide). × clears it |
 | RV-004 | Click shift | Shift Details | FAIL | BUG-RV-002 | Clicking a shift badge does nothing. Only the small blue corner opens 'Note for <name>' (date + note). Note, legend closes with Esc and ×; Full Shift Legend lists codes, times and 'Counts as Duty Time' |
 | RV-005 | Group Visibility > Apply | Hides/shows groups | PASS |  | Group Visibility lists BETA TEST ONLY Group, Crew, Engineers, Pilots (Your Group). Ticking Engineers > Apply adds the Engineers block; unticking > Apply removes it; choice kept after reload. Restored to Pilots only |
-| RV-006 | RG / RO | Only own groups / self | TODO | | |
+| RV-006 | RG / RO | Only own groups / self | BLOCKED |  | Needs accounts with Roster Group (RG) and Roster Own (RO) levels; tested in 90 Permission levels |
 
 ## Known issues from external audits
 
