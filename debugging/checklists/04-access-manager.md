@@ -18,7 +18,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AM-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | PASS |  | Opens; × / Got It / Esc close. Outside click on the overlay does NOT close (probably deliberate since POP-01 fix; confirm with Jon) |
 | AM-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | FAIL | BUG-POP-001 | Drag-out: New User, Help, Change Credentials stay open (OK). Error modal ignores Esc |
 | AM-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | FAIL | BUG-AM-002 | Access Manager shows a UTC time (BUG-AM-002). |
-| AM-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
+| AM-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | See AM-032. |
 | AM-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low (0 permissions): Settings and Tools shows 'Access Denied: You do not have permission to access the System Settings feature' |
 
 ## Module checks
@@ -39,24 +39,24 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AM-012 | New User: reserved usernames (admin, root, test, support…) | 'That username is not allowed' | PASS |  | root, admin, support, test all refused: 'Failed to Create User - That username is not allowed' (error modal; Esc does not close it, see BUG-POP-001) |
 | AM-013 | Create `BETA TEST ONLY` user | Created with Login Access = Inactive | PASS |  | BETA TEST ONLY Lowperm (betatest_low) created, Login Access = Inactive, 0 roles/groups |
 | AM-014 | Activate the new user (Inactive badge > Activate) | Confirmation then Active | PASS |  | Confirm 'Activate Login Access' then toast 'Login access activated for BETA TEST ONLY Lowperm'; badge Active |
-| AM-015 | Activate a user with no credentials | 'User must have login credentials before activation' and Change Login Credentials opens | TODO | | |
+| AM-015 | Activate a user with no credentials | 'User must have login credentials before activation' and Change Login Credentials opens | BLOCKED |  | Every inactive person without a login on stresstest is a real person or customer (e.g. #274). Activating one would create a real login, so I did not. |
 | AM-016 | Deactivate a user | Confirmation; user signed out everywhere; no delete option exists | PASS |  | Confirm 'Deactivate Login Access' then toast 'Login access deactivated for BETA TEST ONLY Lowperm'; no delete option anywhere. Sign-out effect: see LOG-017 |
 | AM-017 | Roles badge: tick/untick each role, Save Changes | Saved; hover on 'N Roles' lists them | PASS |  | Ticked Crew > Save Changes > toast 'User roles updated for BETA TEST ONLY Lowperm (1 role)', badge '1 Role', hover 'Active: Crew - Click to manage roles' |
-| AM-018 | Roles: Admin checkbox as non-admin | Greyed out ('Only admins can grant or revoke admin access') | TODO | | |
+| AM-018 | Roles: Admin checkbox as non-admin | Greyed out ('Only admins can grant or revoke admin access') | BLOCKED | low_st_am | Gave Lowperm Access Manager WA. Access Manager is only reachable through Settings and Tools, which gives Lowperm "Access Denied: ... System Settings feature", so there is no UI path for a non-admin to open Roles. Not opened by URL. |
 | AM-019 | Groups badge: toggle groups, search | On Roster auto-ticks when adding; Save replaces memberships | FAIL | BUG-POP-003 | Search filters groups; ticking a group auto-ticks On Roster; Save > toast 'User groups updated ... (1 group)'. But Esc on a dirty Groups modal closes with no warning and the unsaved ticks are still shown when reopened |
 | AM-020 | Permissions badge: tick a type | Level dropdown enables with first valid level; only levels from §15.1 offered | FAIL | BUG-AM-004 | Tick enables level dropdown with first valid level (RA). Options for Personnel Details: RA, WA, RO, WO, G; 'WA' and 'G' shown as bare codes |
 | AM-021 | Permissions: untick, search types, Save | Toast 'Permissions updated for First Last (N permissions)' | PASS |  | Toast 'Permissions updated for BETA TEST ONLY Lowperm (1 permissions)' (grammar: '1 permissions'); badge '1 Permission' |
-| AM-022 | Permissions: Apply Template | Overwrites those types only; needs Save Changes | TODO | | |
+| AM-022 | Permissions: Apply Template | Overwrites those types only; needs Save Changes | PASS |  | Lowperm permissions > Select template "BETA TEST ONLY Tpl" > Apply Template shows "Template ... applied" and adds Access Manager = RA next to the existing Personnel Details = WO (merge, not replace; shot am_apply_tpl). I unticked the added row before saving, so Lowperm still has 1 permission. |
 | AM-023 | Permissions: Cancel with unsaved changes | Asks to confirm | FAIL | BUG-POP-002 | Asks 'You have unsaved changes. Are you sure you want to cancel?' but as a native browser confirm(), not an app modal |
 | AM-024 | Change credentials: < 10 chars, mismatch, reserved, duplicate | Rejected with messages | PASS |  | <10: 'Password must be at least 10 characters'; mismatch: 'Passwords do not match'; admin: 'That username is not allowed'; afisher13: 'Username is already taken' |
 | AM-025 | Generate Secure Password | 10-char mixed-case alphanumeric, fills both fields, copy button works | PASS |  | 10 chars, upper+lower+digit, fills both fields, copy button appears |
 | AM-026 | Groups tab: New Group with all 5 switches | Saved; card shows member count and Yes/No for each switch | PASS |  | Created 'BETA TEST ONLY Group' with all 5 switches: toast 'Group ... created successfully'; card shows Members 0 and Yes for Sidebar/Dropdown/Roster/Flight-Duty/Recency |
 | AM-027 | Group switches take effect | Show in Sidebar > sidebar; Show in Dropdown > Schedule Group By; Roster > Roster Builder/Viewer; F&D; Recency | IN PROGRESS |  | Show in Sidebar: 'BETA TEST ONLY Group' in People submenu + mobile drawer after reload. Show in Dropdown: listed in Flight Schedule Group By. Roster/F&D/Recency switches checked in 13/14/16/18 (group kept until then) |
 | AM-028 | Delete a group in use | Refused with list e.g. 'Cannot delete group: 3 user memberships, 1 notice link' | PASS |  | Delete confirm shows 'Members: 1 user'; Delete Group > 'Cannot Delete Group - This group cannot be deleted because it is currently in use: Dependencies: 1 user membership' |
-| AM-029 | Delete an unused BETA TEST group | Confirm then deleted | TODO | | |
+| AM-029 | Delete an unused BETA TEST group | Confirm then deleted | PASS |  | Groups > New Group "BETA TEST ONLY Del" > Save Group ("created successfully"). Delete asks first and names the group and member count ("Members: 0 users"), then "deleted successfully" and the card is gone. |
 | AM-030 | Permission Templates: New Template with no permissions | Rejected (at least one required) | PASS |  | New Template named "BETA TEST ONLY Tpl" with no permissions > Save Template shows "Please select at least one permission" and nothing is created (shot am_tpl_empty). |
 | AM-031 | Template card: 'N permissions' click | Expands list with level badges; edit/delete icons work | PASS |  | Template card "BETA TEST ONLY Tpl" > click "1 permission" expands the card to list "Access Manager - Read Only All" (expand_more changes to expand_less, shot am_tpl_count). |
-| AM-032 | Mobile width | Users table becomes cards | TODO | | |
+| AM-032 | Mobile width | Users table becomes cards | PASS |  | At 390 px Access Manager fits with no sideways scroll (scrollWidth 390). The tabs turn into a dropdown and the stats stack (shot am_mobile). The Performance panel covers the bottom of the page (BUG-SWAB-003). |
 
 ## Test data created
 

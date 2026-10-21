@@ -7,7 +7,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 7 |
-| Medium | 56 |
+| Medium | 57 |
 | Low | 98 |
 
 | Bug | Severity | Module | Title |
@@ -36,6 +36,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-FD-002](bugs/BUG-FD-002.md) | Medium | Flight Details | Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM > Unassigned' on schedule moves |
 | [BUG-FD-004](bugs/BUG-FD-004.md) | Medium | Flight Details | Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC) |
 | [BUG-FD-005](bugs/BUG-FD-005.md) | Medium | Flight Details | Leg with two unknown waypoints: only the first is offered for adding, the second is silently dropped on save |
+| [BUG-FD-006](bugs/BUG-FD-006.md) | Medium | Flight Details | Flight can be set to Complete with no times or destination on a leg; no 'Required Information' prompt |
 | [BUG-FS-001](bugs/BUG-FS-001.md) | Medium | Flight Schedule > Flight Details (new) | New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h) |
 | [BUG-FS-002](bugs/BUG-FS-002.md) | Medium | Flight Schedule | Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight |
 | [BUG-FS-003](bugs/BUG-FS-003.md) | Medium | Flight Schedule | Flight Schedule header overlaps when Live Edit is on - title covered, location pill cut off and its 'Show All' button cannot be clicked |
@@ -599,6 +600,21 @@ Suspected cause: After 'Add Waypoint' the save continues without re-validating t
 
 ![BUG-FD-005-1](bugs/screenshots/BUG-FD-005-1.png)
 ![BUG-FD-005-2](bugs/screenshots/BUG-FD-005-2.png)
+
+### BUG-FD-006: Flight can be set to Complete with no times or destination on a leg; no 'Required Information' prompt
+
+Severity: Medium | Module: Flight Details | Check: FD-031 ([07-flight-details](checklists/07-flight-details.md))
+
+Steps:
+1. Open flight #42903 in Flight Details (leg 1 has no destination, start/end times).
+2. Select status Complete.
+3. Click Save Changes.
+
+Expected: A 'Required Information' popup lists the missing Start/End/destination fields and the flight is not completed.
+
+Actual: The flight saves as Complete with no prompt. The header badge shows 'Complete' and Delete is hidden. The attached QA Post-Flight Report also has empty required fields.
+
+![BUG-FD-006-1](bugs/screenshots/BUG-FD-006-1.png)
 
 ### BUG-FS-001: New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h)
 

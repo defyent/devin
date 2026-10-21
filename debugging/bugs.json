@@ -3068,5 +3068,24 @@
    "perm_wo_notices"
   ],
   "cause": "The permission types table has more than one row with the same display name (probably a second set added for a newer module version). The editor lists every row by name only, with no grouping or description."
+ },
+ {
+  "id": "BUG-FD-006",
+  "title": "Flight can be set to Complete with no times or destination on a leg; no 'Required Information' prompt",
+  "row": "FD-031",
+  "cl": "07-flight-details",
+  "module": "Flight Details",
+  "sev": "Medium",
+  "steps": [
+   "Open flight #42903 in Flight Details (leg 1 has no destination, start/end times).",
+   "Select status Complete.",
+   "Click Save Changes."
+  ],
+  "expected": "A 'Required Information' popup lists the missing Start/End/destination fields and the flight is not completed.",
+  "actual": "The flight saves as Complete with no prompt. The header badge shows 'Complete' and Delete is hidden. The attached QA Post-Flight Report also has empty required fields.",
+  "shots": [
+   "fd_complete"
+  ],
+  "cause": ""
  }
 ]
