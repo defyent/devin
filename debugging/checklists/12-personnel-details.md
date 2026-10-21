@@ -27,12 +27,12 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 |---|---|---|---|---|---|
 | PD-001 | Header: History, PDF (sections), Help, Save Changes | Work | PASS |  | History opens Personnel History; Personnel Pdf opens section options (Personal Details, Exams, Forms, Timesheets, Recency & Renewals) and Generate PDF downloads Ethan_Abbott_Personnel_File.pdf; Help opens help; Save Changes saves (PD-004) |
 | PD-002 | Tabs shown | Personal Details, Flights, Exams, Recency, Forms, Files, Security always; Timesheets only Staff; Lesson Plans only Student; Customize only own/admin | PASS |  | Staff (Ethan Abbott): Personal Details, Flights, Timesheets, Exams, Recency and Renewals, Forms, Files, Security, Customize - no Lesson Plans. Student (Peter Archer): Lesson Plans shown, no Timesheets. Customize shown to Service Account (admin) (shots pd_open, pd_student) |
-| PD-003 | Forms/Files count badges | Correct counts | TODO | | |
+| PD-003 | Forms/Files count badges | Correct counts | PASS |  | Ethan Abbott Forms tab badge 2 = 2 attached forms (QA Annual Line Check, QA Equipment Issue); BETA TEST ONLY Lowperm has 0 forms and no badge |
 | PD-004 | Personal Details: edit every field, Save | Saved; dirty-state buttons; leave prompt | FAIL | BUG-NAV-001 | On BETA TEST ONLY Lowperm: Save is disabled until a change, then highlighted (pending changes); Save shows 'Personal details saved successfully!' and the values persist after reopening (restored afterwards). But leaving through the sidebar with unsaved edits gives no prompt and the edits are lost (BUG-NAV-001) (shot pd_saved) |
 | PD-005 | Weight KG/Lbs toggle | Converts; used on manifests | PASS |  | Weight 80 KG -> Lbs shows 176.4, back to KG 80.0 (manifest use covered in Flight Details FD kg/lbs check) |
 | PD-006 | Photo upload / delete | Appears in top bar and Access Manager | TODO | | |
 | PD-007 | Digital Signature: draw, refresh, password, Save | Saved; wrong password rejected | TODO | | |
-| PD-008 | Flights tab: search, click | Opens Flight Details | TODO | | |
+| PD-008 | Flights tab: search, click | Opens Flight Details | PASS |  | Flights tab lists the person's flights (ID, date, aircraft, PIC, SFC, flight/engine time, route). Search 'Charter' filters the list; clicking #7089 opens Flight Details for 7089 (shots pd_flights, pd_flight_open) |
 | PD-009 | Timesheets tab: < > Today | Days with Roster, Duty, Total, Flight Time, F&D, Status | TODO | | |
 | PD-010 | Timesheet day: add/remove sessions, claims, files | 'Session added' / 'Session removed' | TODO | | |
 | PD-011 | Sign day (password) / Bulk Sign | Status Pending | TODO | | |
