@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 5 |
 | Medium | 46 |
-| Low | 69 |
+| Low | 70 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -121,6 +121,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RPT-002](bugs/BUG-RPT-002.md) | Low | Reports | Reports Export CSV writes dates as '2026-10-16 06:00:00' instead of the org date format |
 | [BUG-RV-001](bugs/BUG-RV-001.md) | Low | Roster Viewer | Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape |
 | [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
+| [BUG-SFS-001](bugs/BUG-SFS-001.md) | Low | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
 | [BUG-SMS-004](bugs/BUG-SMS-004.md) | Low | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register |
 | [BUG-SUP-002](bugs/BUG-SUP-002.md) | Low | Support | Support New Ticket: Ctrl+V doesn't paste a screenshot, though the error message tells you to use Ctrl+V |
@@ -1954,6 +1955,23 @@ Suspected cause: Popup uses toLocaleDateString with a hard-coded long format ins
 
 ![BUG-RV-003-1](bugs/screenshots/BUG-RV-003-1.png)
 
+### BUG-SFS-001: Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted
+
+Severity: Low | Module: Settings: Flight Schedule | Check: SFS-003 ([31-settings-flightschedule](checklists/31-settings-flightschedule.md))
+
+Steps:
+1. Settings and Tools > Operations > Flight Schedule
+2. Click + on Schedule Slot Duration repeatedly
+3. Type 200 in the box
+
+Expected: Value stays between 5 and 120 (the input has min 5, max 120, step 5), and + is disabled at 120.
+
+Actual: + keeps going (135 after 26 clicks from 5) and 200 typed in stays 200. − stops at 5 correctly and typing 7 snaps to 5. handleUpdate() sends the value without checking it, so an out-of-range slot size can be saved.
+
+Suspected cause: handleNumberInput() caps the decrement with Math.max(5, ...) but has no Math.min(120, ...) on increment; handleUpdate() does parseInt only.
+
+![BUG-SFS-001-1](bugs/screenshots/BUG-SFS-001-1.png)
+
 ### BUG-SMS-003: Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice
 
 Severity: Low | Module: Safety Reports | Check: SMS-012 ([19-safety-reports](checklists/19-safety-reports.md))
@@ -2180,3 +2198,5 @@ Actual: The feature card is indented about 90px and runs off the right edge; the
 | 27-support | Ticket #8 'BETA TEST ONLY ticket' with BETA_TEST_ONLY_sup.txt, reply | Administration > Support | Yes - deleted |
 | 28-chat | Channel 'BETA TEST ONLY Channel' with test messages/images | Chat (header icon) | Yes - channel deleted |
 | 29-exams | Exam group 'BETA TEST ONLY Exams', exam 'BETA TEST ONLY Exam' (10 questions, Rev 2), its instance/batch for BETA TEST ONLY Lowperm | Exam Builder / Exam Instances | TBD |
+| 31-settings-flightschedule | Secondary status "BETA TEST ONLY Status" | Settings > Flight Schedule | Removed (Update Changes, checked after reload) |
+| 31-settings-flightschedule | Cancellation reason "BETA TEST ONLY Reason" | Settings > Flight Schedule | Deleted. Tester error during cleanup: my test script clicked the wrong delete button, so the original "Aircraft Maintenance" and "Airspace Closure" reasons (not in use) were deleted. I added them back with the same names, but they now have new IDs (15, 16). |
