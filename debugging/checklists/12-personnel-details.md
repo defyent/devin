@@ -17,7 +17,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PD-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | FAIL | BUG-PD-001 | All Personnel > Ethan Abbott opens Personnel Details (person_id=81), but every load throws 'getPickerMod is not defined' (BUG-PD-001) (shot pd_open) |
 | PD-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | PASS |  | Help (?) opens 'Personnel Details Help'; closes with Escape, x and outside click; stays open on drag-out (shot pd_help) |
 | PD-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | FAIL | BUG-PD-005 | Drag-out keeps Help, History and PDF Options open (pass). History and PDF Options don't close with Escape; PDF Options has no x (BUG-PD-005) |
-| PD-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
+| PD-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | PASS |  | Settings > Time Zone: Pacific/Auckland, DD/MM/YYYY, 24-hour. Personnel Details dates (files, flights, timesheets, recency) all show DD/MM/YYYY. Empty Birth Date showing today is BUG-PD-013 |
 | PD-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | 390 px: tabs become a dropdown, no sideways scrolling, fields fit the width. The Performance panel (BUG-PD-010) covers the photo controls on mobile until closed |
 | PD-S06 | Low-permission account | Access Denied or read-only as per permission | BLOCKED |  | betatest_low opens its own My Account and can edit Personal Details; whether that is right depends on its permission level, checked in 90 Permission levels (same as PD-030) |
 
