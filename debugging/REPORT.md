@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 3 |
 | Medium | 25 |
-| Low | 24 |
+| Low | 25 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -57,6 +57,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PD-010](bugs/BUG-PD-010.md) | Low | Personnel Details | Personnel Details: the 'Performance' timing panel is shown to users and covers buttons |
 | [BUG-PD-013](bugs/BUG-PD-013.md) | Low | Personnel Details | Personnel Details: an empty Birth Date shows today's date |
 | [BUG-PD-014](bugs/BUG-PD-014.md) | Low | Personnel Details | Digital Signature: wrong password closes the popup and throws away the drawing; empty Save gives no message |
+| [BUG-PD-015](bugs/BUG-PD-015.md) | Low | Personnel Details | Flight & Duty Analysis popup: title date is YYYY-MM-DD and Escape doesn't close it |
 | [BUG-PERF-001](bugs/BUG-PERF-001.md) | Low | All modules (debug panel) | 'Performance' debug timing panel shown on every page, including to non-admin users |
 | [BUG-PERM-001](bugs/BUG-PERM-001.md) | Low | Shell (main) sidebar | Sidebar lists modules the user has no permission for (all lead to Access Denied) |
 | [BUG-PL-001](bugs/BUG-PL-001.md) | Low | All Personnel | All Personnel has no page Help (?) |
@@ -834,6 +835,23 @@ Suspected cause: Save handler returns silently on empty input, and the error pat
 
 ![BUG-PD-014-1](bugs/screenshots/BUG-PD-014-1.png)
 ![BUG-PD-014-2](bugs/screenshots/BUG-PD-014-2.png)
+
+### BUG-PD-015: Flight & Duty Analysis popup: title date is YYYY-MM-DD and Escape doesn't close it
+
+Severity: Low | Module: Personnel Details | Check: PD-016 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. All Personnel > Ethan Abbott > Timesheets (October 2026)
+2. On 01 Thu click the Flight & Duty Info (F&D) icon
+3. Read the popup title, then press Escape
+
+Expected: Title date follows Settings > Time Zone (DD/MM/YYYY, e.g. 01/10/2026). Escape closes the popup.
+
+Actual: Title reads 'Flight & Duty Analysis for 2026-10-01'. Escape does nothing; only the x closes it. The rest-advice text also uses a different style ('6:00 AM on Friday, October 2, 2026') from the 24-hour setting.
+
+Suspected cause: Popup builds the title from the raw ISO data-date and the rest text with a hard-coded en-US format instead of the shared date/time formatter.
+
+![BUG-PD-015-1](bugs/screenshots/BUG-PD-015-1.png)
 
 ### BUG-PERF-001: 'Performance' debug timing panel shown on every page, including to non-admin users
 

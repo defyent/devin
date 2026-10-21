@@ -54,6 +54,7 @@
 | [BUG-PD-012](BUG-PD-012.md) | `PD-025` | Personnel Details | Personnel Details > Files: opening a file shows 'File Access Error' with the file's contents as the message | Medium | New | |
 | [BUG-PD-013](BUG-PD-013.md) | `PD-004` | Personnel Details | Personnel Details: an empty Birth Date shows today's date | Low | New | |
 | [BUG-PD-014](BUG-PD-014.md) | `PD-007` | Personnel Details | Digital Signature: wrong password closes the popup and throws away the drawing; empty Save gives no message | Low | New | |
+| [BUG-PD-015](BUG-PD-015.md) | `PD-016` | Personnel Details | Flight & Duty Analysis popup: title date is YYYY-MM-DD and Escape doesn't close it | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

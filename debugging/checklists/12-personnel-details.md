@@ -40,7 +40,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PD-013 | External Flight Time (decimal hours + note) | Saved and counted | TODO | | |
 | PD-014 | Legacy Duty Browser | Opens | PASS |  | Timesheets > Legacy Duty Browser link opens the 'Legacy Duty Browser' popup with < October 2026 > / Today and columns Date, Duty Start/End, Duty Hours, Legacy/System Flight Time, Note ('No legacy duty or flight time recorded for this month.') and Close (shot pd_legacy) |
 | PD-015 | Request Leave (type, dates, comments) > view/edit/withdraw | Works | TODO | | |
-| PD-016 | F&D / Roster Violation Analysis popups | Explain breaches | TODO | | |
+| PD-016 | F&D / Roster Violation Analysis popups | Explain breaches | FAIL | BUG-PD-015 | Ethan Abbott 01/10: F&D icon opens 'Flight & Duty Analysis' with Violations Detected (predicted duty 12.0 h > 8 h in 24 h), required rest and return time, plus Flight/Duty limit cards with usage bars. Title date is 2026-10-01, rest time is 12-hour US style, Escape ignored. Roster Violation Analysis not seen on this page |
 | PD-017 | Exams tab: open instance > Previous/Next/Submit; leave and resume | Progress saved; Exam History | TODO | | |
 | PD-018 | Lesson Plans tab: Assign (plan, start, end) | Assigned; lessons + progress; Lesson Details flights | TODO | | |
 | PD-019 | Recency tab: table/card, Group by, Order by | Work | FAIL | BUG-PD-006 | Table shows Renewals and Recencies groups, but Group by and Order by are disabled and the Table/Card view buttons are hidden (BUG-PD-006) (shot pd_recency) |
