@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 |---|---|
 | High | 9 |
 | Medium | 70 |
-| Low | 103 |
+| Low | 104 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -150,6 +150,7 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | [BUG-REC-002](bugs/BUG-REC-002.md) | Low | Recency and Renewals | Recency and Renewals at phone width: the table is cut off, so Total Items and Actions are hidden |
 | [BUG-RPT-001](bugs/BUG-RPT-001.md) | Low | Reports | Reports has no page Help (?), and Escape doesn't close New Report Template |
 | [BUG-RPT-002](bugs/BUG-RPT-002.md) | Low | Reports | Reports Export CSV writes dates as '2026-10-16 06:00:00' instead of the org date format |
+| [BUG-RPT-004](bugs/BUG-RPT-004.md) | Low | Reports | Reports: the Flight Hours meter column shows the aircraft's current meter on every flight, and Total adds them up |
 | [BUG-RV-001](bugs/BUG-RV-001.md) | Low | Roster Viewer | Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape |
 | [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
 | [BUG-SDFR-001](bugs/BUG-SDFR-001.md) | Low | Settings: Daily Flight Record | Daily Flight Record Settings loads a colorpicker.js that does not exist (404 in the console) |
@@ -2479,6 +2480,21 @@ Actual: CSV has '2026-10-16 06:00:00' (ISO with seconds). The screen shows 16/10
 Suspected cause: exportReportCSV() writes the raw value instead of the formatted one.
 
 ![BUG-RPT-002-1](bugs/screenshots/BUG-RPT-002-1.png)
+
+### BUG-RPT-004: Reports: the Flight Hours meter column shows the aircraft's current meter on every flight, and Total adds them up
+
+Severity: Low | Module: Reports | Check: RPT-006 ([26-reports](checklists/26-reports.md))
+
+Steps:
+1. Aircraft ZK-BTO has Flight Hours 'Last: 100.0 (2026-10-22)' in Resources (Aircraft).
+2. Flights #42909 (Complete), #42910 and #42911 (Open) are on ZK-BTO. None of them has a meter reading entered.
+3. Reports > Add Report Template > Custom Report > Flights, tick Meters > Flight Hours, filter Aircraft/Resource = ZK-BTO, run it and open the result.
+
+Expected: Each row shows that flight's own meter reading (or is empty when none was entered). Total is only shown when adding the values makes sense.
+
+Actual: All three flights show Flight Hours 100, including the two Open flights with no reading, and Total shows 300.
+
+![BUG-RPT-004-1](bugs/screenshots/BUG-RPT-004-1.png)
 
 ### BUG-RV-001: Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape
 

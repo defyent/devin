@@ -184,6 +184,7 @@
 | [BUG-DATE-001](BUG-DATE-001.md) | `DATE-006` | Flight Details | Flight time across a DST change is out by an hour (01:00-05:00 on 04/04/2027 gives 4.0 instead of 5.0) | Medium | New | |
 | [BUG-DSH-005](BUG-DSH-005.md) | `DSH-011` | Dashboard | Dashboard Project Tasks: clicking a task opens an empty project list instead of the project | Medium | New | |
 | [BUG-EXM-009](BUG-EXM-009.md) | `PD-017` | Exams | Exams: a hotspot question with no image shows a developer debug message to the person taking the exam | Low | New | |
+| [BUG-RPT-004](BUG-RPT-004.md) | `RPT-006` | Reports | Reports: the Flight Hours meter column shows the aircraft's current meter on every flight, and Total adds them up | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
