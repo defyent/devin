@@ -149,6 +149,7 @@
 | [BUG-SREN-001](BUG-SREN-001.md) | `SREN-S02` | Settings: Recency and Renewals | Recency & Renewals Settings: no Help (?), and Escape does not close popups | Low | New | |
 | [BUG-SREN-002](BUG-SREN-002.md) | `SREN-001` | Settings: Recency and Renewals | Add Recency accepts negative Days, and a Caution value higher than Warning | Medium | New | |
 | [BUG-SREN-003](BUG-SREN-003.md) | `SREN-002` | Settings: Recency and Renewals | Add Renewal Type accepts negative Days to Notify and a Frequency of 0 days | Medium | New | |
+| [BUG-SREN-004](BUG-SREN-004.md) | `SREN-S05` | Settings: Recency and Renewals | Recency & Renewals Settings on a phone: table columns overlap each other | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

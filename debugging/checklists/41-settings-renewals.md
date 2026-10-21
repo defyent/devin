@@ -18,7 +18,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | SREN-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-SREN-001 | No page Help (?), and Escape does not close Add Recency. |
 | SREN-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Drag from inside Add Recency to outside it: it stays open. |
 | SREN-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | N/A |  | No dates or times on this page, only day counts. |
-| SREN-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
+| SREN-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | FAIL | BUG-SREN-004 | 390 px: no page overflow (scrollWidth 390) and the tabs become a dropdown, but the table columns overlap (Days on top of Name, headers overlap, edit icon over the Alert Group pill). |
 | SREN-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low: Settings and Tools shows Access Denied (System Settings), same as 31-33. |
 
 ## Module checks
@@ -35,3 +35,6 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | Record | Where | Cleanup done? |
 |---|---|---|
 | | | |
+
+
+**Cleanup (41):** test recency, renewal type and alert group (all "BETA TEST ONLY ...") deleted. The BETA TEST ONLY Group template was set back to 0 renewals / 0 recencies. Existing items were not changed.

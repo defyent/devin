@@ -2794,5 +2794,23 @@
    "sren_badrenewal"
   ],
   "cause": "The number inputs have no min attribute, and the server doesn't check the range."
+ },
+ {
+  "id": "BUG-SREN-004",
+  "title": "Recency & Renewals Settings on a phone: table columns overlap each other",
+  "row": "SREN-S05",
+  "cl": "41-settings-renewals",
+  "module": "Settings: Recency and Renewals",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Recency and Renewals > Recencies.",
+   "Make the window 390 px wide."
+  ],
+  "expected": "The table scrolls inside its card or switches to a card layout, and the text stays readable.",
+  "actual": "The page doesn't scroll sideways and the tabs become a dropdown, which is good. But the columns are squeezed together: Days numbers sit on top of the names (\"Landings90\", \"Approaches180\"), the Warning Value / Caution Value headers run into each other, and the edit pencil covers the \"Pilot Licenses\" pill.",
+  "shots": [
+   "sren_mobile"
+  ],
+  "cause": "The table keeps 6 columns at narrow widths, with no overflow wrapper or card layout below 768 px."
  }
 ]

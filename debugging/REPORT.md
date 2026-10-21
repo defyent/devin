@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 6 |
 | Medium | 54 |
-| Low | 87 |
+| Low | 88 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -139,6 +139,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
 | [BUG-SMS-004](bugs/BUG-SMS-004.md) | Low | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register |
 | [BUG-SREN-001](bugs/BUG-SREN-001.md) | Low | Settings: Recency and Renewals | Recency & Renewals Settings: no Help (?), and Escape does not close popups |
+| [BUG-SREN-004](bugs/BUG-SREN-004.md) | Low | Settings: Recency and Renewals | Recency & Renewals Settings on a phone: table columns overlap each other |
 | [BUG-SRES-001](bugs/BUG-SRES-001.md) | Low | Settings: Resources (Aircraft) | Resources: the meter "Last:" dates show as YYYY-MM-DD instead of the Time Zone date format |
 | [BUG-SST-001](bugs/BUG-SST-001.md) | Low | Settings: Shift Types | Roster Shifts (Shift Type Editor): no Help (?), and Escape does not close popups |
 | [BUG-SST-002](bugs/BUG-SST-002.md) | Low | Settings: Shift Types | New Shift Type: Duty Start/End Time default to the current UTC time |
@@ -2280,6 +2281,22 @@ Suspected cause: The page has no help modal, and there is no Escape key handler 
 
 ![BUG-SREN-001-1](bugs/screenshots/BUG-SREN-001-1.png)
 ![BUG-SREN-001-2](bugs/screenshots/BUG-SREN-001-2.png)
+
+### BUG-SREN-004: Recency & Renewals Settings on a phone: table columns overlap each other
+
+Severity: Low | Module: Settings: Recency and Renewals | Check: SREN-S05 ([41-settings-renewals](checklists/41-settings-renewals.md))
+
+Steps:
+1. Settings and Tools > Recency and Renewals > Recencies.
+2. Make the window 390 px wide.
+
+Expected: The table scrolls inside its card or switches to a card layout, and the text stays readable.
+
+Actual: The page doesn't scroll sideways and the tabs become a dropdown, which is good. But the columns are squeezed together: Days numbers sit on top of the names ("Landings90", "Approaches180"), the Warning Value / Caution Value headers run into each other, and the edit pencil covers the "Pilot Licenses" pill.
+
+Suspected cause: The table keeps 6 columns at narrow widths, with no overflow wrapper or card layout below 768 px.
+
+![BUG-SREN-004-1](bugs/screenshots/BUG-SREN-004-1.png)
 
 ### BUG-SRES-001: Resources: the meter "Last:" dates show as YYYY-MM-DD instead of the Time Zone date format
 
