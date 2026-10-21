@@ -50,7 +50,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-LOG-002](bugs/BUG-LOG-002.md) | Low | Shell (main) | Logout throws JS error removeChild; Esc doesn't close the Log Out confirm |
 | [BUG-PD-002](bugs/BUG-PD-002.md) | Low | Personnel Details > Security | Personnel Details modals (Enable 2FA, Setup Error alert): title right-aligned, away from its icon |
 | [BUG-PD-004](bugs/BUG-PD-004.md) | Low | Personnel Details > Security | Security tab 'Enabled on' date ignores Settings > Time Zone format |
-| [BUG-PD-005](bugs/BUG-PD-005.md) | Low | Personnel Details | Personnel Details: History and PDF Options popups don't close with Escape, and PDF Options has no x |
+| [BUG-PD-005](bugs/BUG-PD-005.md) | Low | Personnel Details | Personnel Details: History, PDF Options and Legacy Duty Browser popups don't close with Escape, and PDF Options has no x |
 | [BUG-PERF-001](bugs/BUG-PERF-001.md) | Low | All modules (debug panel) | 'Performance' debug timing panel shown on every page, including to non-admin users |
 | [BUG-PERM-001](bugs/BUG-PERM-001.md) | Low | Shell (main) sidebar | Sidebar lists modules the user has no permission for (all lead to Access Denied) |
 | [BUG-PL-001](bugs/BUG-PL-001.md) | Low | All Personnel | All Personnel has no page Help (?) |
@@ -704,7 +704,7 @@ Suspected cause: Value printed as-is; not passed through formatDateWithConfig/fo
 
 ![BUG-PD-004-1](bugs/screenshots/BUG-PD-004-1.png)
 
-### BUG-PD-005: Personnel Details: History and PDF Options popups don't close with Escape, and PDF Options has no x
+### BUG-PD-005: Personnel Details: History, PDF Options and Legacy Duty Browser popups don't close with Escape, and PDF Options has no x
 
 Severity: Low | Module: Personnel Details | Check: PD-S03 ([12-personnel-details](checklists/12-personnel-details.md))
 
@@ -712,13 +712,15 @@ Steps:
 1. All Personnel > Ethan Abbott (Personnel Details)
 2. Click History, press Escape
 3. Click Personnel Pdf, press Escape, look for an x
+4. Timesheets tab > Legacy Duty Browser, press Escape
 
 Expected: Like the Help popup on this page, every popup closes with x, clicking outside and Escape.
 
-Actual: Help closes with Escape, x and outside click. Personnel History closes with x and outside click but not Escape. Personnel PDF Options has no x (only Cancel / Generate PDF) and does not close with Escape. All three stay open on drag-out (correct).
+Actual: Help closes with Escape, x and outside click. Personnel History closes with x and outside click but not Escape. Personnel PDF Options has no x (only Cancel / Generate PDF) and does not close with Escape. All three stay open on drag-out (correct). Timesheets > Legacy Duty Browser popup also ignores Escape (its Close button works).
 
 ![BUG-PD-005-1](bugs/screenshots/BUG-PD-005-1.png)
 ![BUG-PD-005-2](bugs/screenshots/BUG-PD-005-2.png)
+![BUG-PD-005-3](bugs/screenshots/BUG-PD-005-3.png)
 
 ### BUG-PERF-001: 'Performance' debug timing panel shown on every page, including to non-admin users
 

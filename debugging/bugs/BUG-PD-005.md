@@ -1,4 +1,4 @@
-# BUG-PD-005: Personnel Details: History and PDF Options popups don't close with Escape, and PDF Options has no x
+# BUG-PD-005: Personnel Details: History, PDF Options and Legacy Duty Browser popups don't close with Escape, and PDF Options has no x
 
 | Field | Value |
 |---|---|
@@ -15,15 +15,16 @@
 1. All Personnel > Ethan Abbott (Personnel Details)
 2. Click History, press Escape
 3. Click Personnel Pdf, press Escape, look for an x
+4. Timesheets tab > Legacy Duty Browser, press Escape
 
 ## Expected
 Like the Help popup on this page, every popup closes with x, clicking outside and Escape.
 
 ## Actual
-Help closes with Escape, x and outside click. Personnel History closes with x and outside click but not Escape. Personnel PDF Options has no x (only Cancel / Generate PDF) and does not close with Escape. All three stay open on drag-out (correct).
+Help closes with Escape, x and outside click. Personnel History closes with x and outside click but not Escape. Personnel PDF Options has no x (only Cancel / Generate PDF) and does not close with Escape. All three stay open on drag-out (correct). Timesheets > Legacy Duty Browser popup also ignores Escape (its Close button works).
 
 ## Evidence
-- Screenshot: `screenshots/BUG-PD-005-1.png`, `screenshots/BUG-PD-005-2.png`
+- Screenshot: `screenshots/BUG-PD-005-1.png`, `screenshots/BUG-PD-005-2.png`, `screenshots/BUG-PD-005-3.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

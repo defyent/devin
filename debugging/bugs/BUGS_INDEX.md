@@ -44,7 +44,7 @@
 | [BUG-DFR-003](BUG-DFR-003.md) | `DFR-008` | Daily Flight Record | Daily Flight Record: changing filters quickly appends results instead of replacing them, showing duplicate and wrong-status rows | Medium | New | |
 | [BUG-PL-001](BUG-PL-001.md) | `PL-S02` | All Personnel | All Personnel has no page Help (?) | Low | New | |
 | [BUG-PL-002](BUG-PL-002.md) | `PL-001` | All Personnel | A person with no name exists and is listed as '?' at the top of All Personnel (person #274, Customer) | Low | New | |
-| [BUG-PD-005](BUG-PD-005.md) | `PD-S03` | Personnel Details | Personnel Details: History and PDF Options popups don't close with Escape, and PDF Options has no x | Low | New | |
+| [BUG-PD-005](BUG-PD-005.md) | `PD-S03` | Personnel Details | Personnel Details: History, PDF Options and Legacy Duty Browser popups don't close with Escape, and PDF Options has no x | Low | New | |
 | [BUG-PD-006](BUG-PD-006.md) | `PD-019` | Personnel Details | Personnel Details > Recency and Renewals: Add Item, Table/Card view buttons are hidden and Group by / Order by are disabled | Medium | New | |
 | [BUG-PD-007](BUG-PD-007.md) | `PD-021` | Personnel Details | Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date | Medium | New | |
 | [BUG-PD-008](BUG-PD-008.md) | `PD-021` | Personnel Details | Personnel Details > Recency: the recency summary popup has no Add Manual Entry, no x, and doesn't close with Escape | Medium | New | |
