@@ -20,10 +20,10 @@
 SAR 09:30 local passed 13 hours ago: 'OVERDUE by 13h 03m', Active Time 14h 03m.
 
 ## Actual
-Row shows SAR '21/10/2026 09:30 OVERDUE by 3m' and Active Time '01h 03m' - the countdown uses UTC now (09:33) against the local time, so an overdue flight looks only just overdue for 13 hours. For a search-and-rescue watch this delays the alarm.
+Row shows SAR '21/10/2026 09:30 OVERDUE by 3m' and Active Time '01h 03m' - the countdown uses UTC now (09:33) against the local time, so an overdue flight looks only just overdue for 13 hours. For a search-and-rescue watch this delays the alarm. Confirmed with Adjust SAR: setting SAR to 21/10/2026 23:30 at 22:34 local shows '13h 55m remaining' instead of about 56m.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-AF-004-1.png`
+- Screenshot: `screenshots/BUG-AF-004-1.png`, `screenshots/BUG-AF-004-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

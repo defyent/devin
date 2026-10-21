@@ -32,7 +32,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AF-005 | Click row/card | Opens Flight Details | TODO | | |
 | AF-006 | Click PIC | Contact details popup | PASS |  | Click PIC 'Graham Clarke' > popup 'Graham Clarke - Contact Details' with Mobile 021-555-0096, Email graham.clarke96@datahangar.net, Close (shot af_pic) |
 | AF-007 | Notes | Readable | PASS |  | Notes column readable (e.g. 'Maintenance test flight post 100hr', 'No notes' when empty) |
-| AF-008 | Adjust SAR (A/WG) | Picker + Disable/Enable SAR Watch + Save; hidden for RA/RG | TODO |  | Adjust SAR on #42892 opens 'Adjust SAR Time - Flight 42892' with picker prefilled 27/06/2026 09:05, Cancel / Disable SAR Watch / Save (shot af_adjust_sar). Save to be tested on BETA flight #42903 |
+| AF-008 | Adjust SAR (A/WG) | Picker + Disable/Enable SAR Watch + Save; hidden for RA/RG | PASS | BUG-AF-004 | Adjust SAR on #42903: picker prefilled 21/10/2026 09:30, changed to 23:30 > Save > row turns ACTIVE with SAR '21/10/2026 23:30'. Remaining time wrong ('13h 55m remaining' at 22:34 local) - BUG-AF-004. Hidden for RA/RG not checked (no RA user) |
 | AF-009 | Add Note (A/WG) | Appended to flight | PASS |  | Add Note on #42903 > 'BETA TEST ONLY AF note' > Save > Notes column shows '[22:34] BETA TEST ONLY AF note' before the existing notes (timestamp in local time) |
 | AF-010 | Auto-refresh | Refreshes; pauses while editing | TODO | | |
 | AF-011 | Complete a flight | Disappears from Active Flights | TODO | | |
