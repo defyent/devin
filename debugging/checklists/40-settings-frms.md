@@ -17,22 +17,24 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | SFRMS-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Settings and Tools > Fatigue Risk Management Settings opens settings_frms, with no console errors. |
 | SFRMS-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-SFRMS-001 | No page Help (?), and Escape does not close Add Flight Time Limit Rule. |
 | SFRMS-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Drag from inside Add Flight Time Limit Rule to outside it: it stays open. |
-| SFRMS-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
-| SFRMS-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
-| SFRMS-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
+| SFRMS-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | N/A |  | No dates or times on this page, only hours and day counts. |
+| SFRMS-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | FAIL | BUG-SFRMS-002 | At 390 px the section pills become a dropdown (good), but the page is 506 px wide: it scrolls sideways, Add Rule is off-screen and rule text is clipped. |
+| SFRMS-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low: Administration > Settings and Tools shows Access Denied (System Settings), same as 31-33, so FRMS can't be reached. |
 
 ## Module checks
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| SFRMS-001 | Flight/Duty Time limit rules CRUD with all fields | Saved; validation of Warning/Caution vs Max | TODO | | |
-| SFRMS-002 | Rest & Recovery types | Saved | TODO | | |
-| SFRMS-003 | Roster rules: Max Consecutive / Max in Period / Shift Sequence | Saved; Roster Builder violations | TODO | | |
-| SFRMS-004 | AC119-2 wizard Next/Back through all 5 steps (add vs replace) | Rules imported | TODO | | |
-| SFRMS-005 | Results appear in Schedule, Flight Details, F&D page, Roster Builder, Timesheets | Consistent | TODO | | |
+| SFRMS-001 | Flight/Duty Time limit rules CRUD with all fields | Saved; validation of Warning/Caution vs Max | PASS |  | Flight and Duty Time Limit rules: add/edit/delete work on a BETA TEST ONLY Group rule (delete asks first and names the rule). Validation: required fields (native), "Warning threshold (12h) must be lower than the Caution threshold (11h)", "Caution threshold (11h) must not exceed Max Hours (10h)". Edit Max 10 -> 11 saved and showed. Test rules deleted. |
+| SFRMS-002 | Rest & Recovery types | Saved | PASS |  | Rest & Recovery: "Require minimum rest period" with Fixed duration (10 h) shows "Recovery Rule: Fixed 10 hours", and Equal to time worked shows "Recovery Rule: Equal to time worked". |
+| SFRMS-003 | Roster rules: Max Consecutive / Max in Period / Shift Sequence | Saved; Roster Builder violations | PASS |  | Rule types Max Consecutive / Max in Period / Shift Sequence (If shift is X, it can ONLY be followed by ...) are all there. A BETA Max Consecutive rule (2) saved as "No more than 2 'Any' shifts in a row BETA TEST ONLY Group" and was deleted (confirm names the rule). Roster Builder violations from FRMS rules were checked in 14 (RB). Minor: "In Period (Days)" is shown for Max Consecutive too, where it does not apply. |
+| SFRMS-004 | AC119-2 wizard Next/Back through all 5 steps (add vs replace) | Rules imported | PASS |  | AC119-2 wizard: 5 steps (Existing Rules keep/wipe, Operation Type, Rules toggle, User Groups, Rostered Shift Rules), and Back works. Each step checks its input: "Please select at least one operation type", "...user group", "...duty shift type or uncheck the roster rule". Imported with "Keep existing rules" + General Restrictions + BETA TEST ONLY Group + Day Shift: 2 duty rules (Max 200/30 days, Max 14/1 day) and roster rule "No more than 6 'Day Shift' shifts in a row" were added next to the existing rules, which were all kept. "Wipe all" was not run (it would remove the live rules). The imported BETA rules were then deleted. |
+| SFRMS-005 | Results appear in Schedule, Flight Details, F&D page, Roster Builder, Timesheets | Consistent | BLOCKED |  | FRMS results seen in Roster Builder (RB-011 violations), Timesheets (TS-007 F&D Analysis) and the F&D page (FAD-002/007). Schedule and Flight Details need a flight that breaks a limit, and stresstest has none (FS-023, FD-036). Moved to 99 (E2E) with a BETA rule and flight. |
 
 ## Test data created
 
 | Record | Where | Cleanup done? |
 |---|---|---|
 | | | |
+
+**Test data (40):** all BETA TEST ONLY Group rules (flight, duty, roster and the 3 imported AC119-2 rules) were deleted. No existing rules were changed.

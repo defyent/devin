@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 6 |
 | Medium | 52 |
-| Low | 85 |
+| Low | 86 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -131,6 +131,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SDFR-001](bugs/BUG-SDFR-001.md) | Low | Settings: Daily Flight Record | Daily Flight Record Settings loads a colorpicker.js that does not exist (404 in the console) |
 | [BUG-SEFI-001](bugs/BUG-SEFI-001.md) | Low | Settings: Extra Flight Info | Extra Flight Info Settings: no Help (?), and Escape does not close Add Field |
 | [BUG-SFRMS-001](bugs/BUG-SFRMS-001.md) | Low | Settings: FRMS | FRMS Settings: no Help (?), and Escape does not close popups |
+| [BUG-SFRMS-002](bugs/BUG-SFRMS-002.md) | Low | Settings: FRMS | FRMS Settings on a phone: the page scrolls sideways, "+ Add ... Rule" is off-screen and rule text is clipped |
 | [BUG-SFS-001](bugs/BUG-SFS-001.md) | Low | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted |
 | [BUG-SFT-001](bugs/BUG-SFT-001.md) | Low | Settings: Flight Types | Flight Types Settings: no Help (?), and Escape does not close popups |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
@@ -2141,6 +2142,22 @@ Suspected cause: The page has no help modal, and there is no keydown Escape hand
 
 ![BUG-SFRMS-001-1](bugs/screenshots/BUG-SFRMS-001-1.png)
 ![BUG-SFRMS-001-2](bugs/screenshots/BUG-SFRMS-001-2.png)
+
+### BUG-SFRMS-002: FRMS Settings on a phone: the page scrolls sideways, "+ Add ... Rule" is off-screen and rule text is clipped
+
+Severity: Low | Module: Settings: FRMS | Check: SFRMS-S05 ([40-settings-frms](checklists/40-settings-frms.md))
+
+Steps:
+1. Open Settings and Tools > Fatigue Risk Management Settings at a 390 px width.
+2. Pick Rostered Shift Rules (or any tab) from the section dropdown.
+
+Expected: The rule list, search and the Add button fit the screen.
+
+Actual: The page is 506 px wide, so it scrolls sideways. "+ Add Roster Rule" is off the right edge, and long rule names (e.g. "A 'Night Shift 12hr' shift can only be followed by: Rest Day") are cut off. The section dropdown itself works.
+
+Suspected cause: The .table-header row (search + Add button) and .rule-list have fixed or minimum widths and don't wrap below 768 px.
+
+![BUG-SFRMS-002-1](bugs/screenshots/BUG-SFRMS-002-1.png)
 
 ### BUG-SFS-001: Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted
 

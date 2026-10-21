@@ -2720,5 +2720,23 @@
    "sfrms_add"
   ],
   "cause": "The page has no help modal, and there is no keydown Escape handler on its modals."
+ },
+ {
+  "id": "BUG-SFRMS-002",
+  "title": "FRMS Settings on a phone: the page scrolls sideways, \"+ Add ... Rule\" is off-screen and rule text is clipped",
+  "row": "SFRMS-S05",
+  "cl": "40-settings-frms",
+  "module": "Settings: FRMS",
+  "sev": "Low",
+  "steps": [
+   "Open Settings and Tools > Fatigue Risk Management Settings at a 390 px width.",
+   "Pick Rostered Shift Rules (or any tab) from the section dropdown."
+  ],
+  "expected": "The rule list, search and the Add button fit the screen.",
+  "actual": "The page is 506 px wide, so it scrolls sideways. \"+ Add Roster Rule\" is off the right edge, and long rule names (e.g. \"A 'Night Shift 12hr' shift can only be followed by: Rest Day\") are cut off. The section dropdown itself works.",
+  "shots": [
+   "sfrms_mobile"
+  ],
+  "cause": "The .table-header row (search + Add button) and .rule-list have fixed or minimum widths and don't wrap below 768 px."
  }
 ]

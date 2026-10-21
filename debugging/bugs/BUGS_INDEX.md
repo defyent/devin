@@ -145,6 +145,7 @@
 | [BUG-SST-003](BUG-SST-003.md) | `SST-001` | Settings: Shift Types | Roster Shifts: after Edit Group the selected group jumps back to Duty, so the next New Shift Type goes into the wrong group | Low | New | |
 | [BUG-SST-004](BUG-SST-004.md) | `SST-S05` | Settings: Shift Types | Roster Shifts on a phone: the table scrolls the page sideways and the group tabs are hidden | Medium | New | |
 | [BUG-SFRMS-001](BUG-SFRMS-001.md) | `SFRMS-S02` | Settings: FRMS | FRMS Settings: no Help (?), and Escape does not close popups | Low | New | |
+| [BUG-SFRMS-002](BUG-SFRMS-002.md) | `SFRMS-S05` | Settings: FRMS | FRMS Settings on a phone: the page scrolls sideways, "+ Add ... Rule" is off-screen and rule text is clipped | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
