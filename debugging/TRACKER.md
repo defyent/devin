@@ -39,7 +39,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [28-chat](checklists/28-chat.md) | `CHAT` | Chat | 11 | 8 | 2 | 1 | 8 | DONE |
 | [29-exams](checklists/29-exams.md) | `EXM` | Exam Builder, Exam Editor, Exam Instances | 16 | 10 | 6 | 0 | 4 | DONE |
 | [30-maintenance](checklists/30-maintenance.md) | `MX` | Maintenance Portal | 11 | 0 | 0 | 11 | 0 | DONE |
-| [31-settings-flightschedule](checklists/31-settings-flightschedule.md) | `SFS` | Settings – Flight Schedule | 13 | 8 | 1 | 0 | 0 | IN PROGRESS |
+| [31-settings-flightschedule](checklists/31-settings-flightschedule.md) | `SFS` | Settings – Flight Schedule | 13 | 8 | 2 | 1 | 0 | IN PROGRESS |
 | [32-settings-dfr](checklists/32-settings-dfr.md) | `SDFR` | Settings – Daily Flight Record | 7 | 0 | 0 | 0 | 0 | TODO |
 | [33-settings-timezone](checklists/33-settings-timezone.md) | `STZ` | Settings – Time Zone (date/time matrix) | 11 | 0 | 0 | 0 | 2 | TODO |
 | [34-settings-resources](checklists/34-settings-resources.md) | `SRES` | Settings – Resources (Aircraft) | 18 | 0 | 0 | 0 | 0 | TODO |

@@ -1,0 +1,2338 @@
+[
+ {
+  "id": "BUG-NAV-001",
+  "title": "Leaving a page with unsaved changes gives no warning; edits are lost",
+  "row": "NAV-015",
+  "cl": "02-shell-navigation",
+  "module": "Shell (main) / Personnel Details",
+  "sev": "Medium",
+  "steps": [
+   "Click Service Account (top bar) to open My Personnel Details",
+   "Type in Middle Name: Save Changes becomes enabled",
+   "Hover Flight Operations in the sidebar and click Dashboard"
+  ],
+  "expected": "Guide \u00a73: 'The current page has unsaved changes...' modal with Cancel (stay) and Continue (leave).",
+  "actual": "Dashboard opens immediately, no modal; the typed change is discarded.",
+  "shots": [
+   "nav015"
+  ],
+  "cause": "Dirty-state check in `main/index.js` menu click handler is not wired to Personnel Details (or not at all)."
+ },
+ {
+  "id": "BUG-PD-001",
+  "title": "personneldetails/index.js is truncated: ReferenceError getPickerMod on every load",
+  "row": "PD-S01",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details / My Account",
+  "sev": "Medium",
+  "steps": [
+   "Click Service Account (top bar) or open any person from All Personnel",
+   "Watch the console"
+  ],
+  "expected": "No console errors.",
+  "actual": "`ReferenceError: getPickerMod is not defined` at `templates2/personneldetails/index.js?v=2.0.111:13734`. The file's last line is `window.getPickerMode = getPickerMod` (cut off; should be `getPickerMode;`), so `window.getPickerMode` is never set and anything after it never runs.",
+  "console": "ReferenceError: getPickerMod is not defined (index.js:13734:24)",
+  "cause": "`personneldetails/index.js` last line truncated during build/deploy; restore `window.getPickerMode = getPickerMode;` and check nothing else is missing from the end of the file."
+ },
+ {
+  "id": "BUG-LOG-001",
+  "title": "Login Message popup reappears on every browser reload",
+  "row": "LOG-013",
+  "cl": "01-login-auth",
+  "module": "Shell (main)",
+  "sev": "Low",
+  "steps": [
+   "Log in and close the Login Message with OK",
+   "Press F5 / reload on any page"
+  ],
+  "expected": "Guide: Login Message is shown after login (once per login).",
+  "actual": "The Login Message opens again after every reload. Guide or app?",
+  "shots": [
+   "login_msg_reload"
+  ]
+ },
+ {
+  "id": "BUG-LOG-002",
+  "title": "Logout throws JS error removeChild; Esc doesn't close the Log Out confirm",
+  "row": "LOG-016",
+  "cl": "01-login-auth",
+  "module": "Shell (main)",
+  "sev": "Low",
+  "steps": [
+   "Click Logout in the top bar",
+   "Press Esc (nothing happens)",
+   "Click Log Out"
+  ],
+  "expected": "Esc closes the confirm (CON-015); no console errors.",
+  "actual": "Esc ignored (see POP-02). On Log Out the console logs `Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.` Logout itself works.",
+  "console": "pageerror removeChild",
+  "related": "POP-02"
+ },
+ {
+  "id": "BUG-AM-001",
+  "title": "New User accepts a 6-character password (placeholder and Change Credentials require 10)",
+  "row": "AM-010",
+  "cl": "04-access-manager",
+  "module": "Access Manager",
+  "sev": "Medium",
+  "steps": [
+   "Settings and Tools > Access Manager > New User",
+   "Fill all fields, Password and Confirm = a 6-character value (e.g. 'short1')",
+   "Click Create User"
+  ],
+  "expected": "Rejected: 'Password must be at least 10 characters' (placeholder says 'Minimum 10 characters'; Change Credentials needs 10).",
+  "actual": "Toast 'User BETA TEST ONLY Lowperm created successfully'; account created with the 6-char password.",
+  "shots": [
+   "am_shortpw"
+  ],
+  "cause": "No min-length check in the New User handler (client and server) for create; only Change Credentials enforces 10."
+ },
+ {
+  "id": "BUG-AM-002",
+  "title": "Last Activity hover date ignores Settings > Time Zone format",
+  "row": "AM-007",
+  "cl": "04-access-manager",
+  "module": "Access Manager",
+  "sev": "Low",
+  "steps": [
+   "Settings > Time Zone is DD/MM/YYYY, 24-hour",
+   "Access Manager: hover the Last Activity value of Service Account ('4 mins ago')"
+  ],
+  "expected": "Exact date in org format, e.g. 21/10/2026 20:45 (local).",
+  "actual": "Tooltip '21 Oct 2026, 07:45 am': hard-coded format, 12-hour, and shows the UTC time (07:45) rather than local (20:45).",
+  "shots": [
+   "am_lastactivity_sort"
+  ],
+  "cause": "Tooltip built with toLocaleString / fixed format instead of formatDateWithConfig; timestamp not converted to org time zone.",
+  "related": "DATE-01"
+ },
+ {
+  "id": "BUG-AM-003",
+  "title": "Last Activity column sort does not change order",
+  "row": "AM-005",
+  "cl": "04-access-manager",
+  "module": "Access Manager",
+  "sev": "Low",
+  "steps": [
+   "Access Manager > User Permissions",
+   "Click the Last Activity header, then click it again"
+  ],
+  "expected": "Ascending then descending: Service Account (only user with activity) moves from top to bottom.",
+  "actual": "Same order both times: Service Account, Alex Richards, Zoe Mason, Curtis Porter... User and Username sort correctly.",
+  "shots": [
+   "am_lastactivity_sort"
+  ],
+  "cause": "Sort comparator for Last Activity ignores direction (or sorts on the relative text with 'Never' handled separately)."
+ },
+ {
+  "id": "BUG-POP-001",
+  "title": "Error modal ('Failed to Create User') does not close with Esc",
+  "row": "AM-S03",
+  "cl": "04-access-manager",
+  "module": "Access Manager (shared errorModal)",
+  "sev": "Low",
+  "steps": [
+   "Access Manager > New User",
+   "Username 'root', fill the rest, Create User",
+   "Error modal 'Failed to Create User - That username is not allowed' opens; press Esc"
+  ],
+  "expected": "Esc closes it (as Help does on the same page).",
+  "actual": "Modal stays open; only OK closes it. Same as the logout confirm (BUG-LOG-002).",
+  "shots": [
+   "am_reserved"
+  ],
+  "cause": "#errorModal has no keydown Escape handler."
+ },
+ {
+  "id": "BUG-PERM-001",
+  "title": "Sidebar lists modules the user has no permission for (all lead to Access Denied)",
+  "row": "PERM-007",
+  "cl": "90-permissions",
+  "module": "Shell (main) sidebar",
+  "sev": "Low",
+  "steps": [
+   "Access Manager: create user, give 0 roles / 0 permissions, set credentials, Activate",
+   "Log in as that user",
+   "Open the sidebar and click each item"
+  ],
+  "expected": "Only modules the user can open are listed (Roster Builder, Timesheets etc. are already hidden, so filtering exists).",
+  "actual": "17 items listed (Dashboard, Flight Schedule, Active Flights, DFR, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support); every one shows 'Access Denied'. The landing page (Dashboard) is also Access Denied.",
+  "shots": [
+   "lowp_Dashboard",
+   "lowp_Settings_and_Tools"
+  ],
+  "cause": "Sidebar build in main/index.pl does not check the permission types used by each module's own access check. Note: checklist NAV-019 (from the user guide) expects the link to stay visible and show Access Denied, so this may be by design - needs a product decision."
+ },
+ {
+  "id": "BUG-PERM-002",
+  "title": "User with no permissions cannot open their own My Account (no self-service password / 2FA)",
+  "row": "PERM-007",
+  "cl": "90-permissions",
+  "module": "Personnel Details / My Account",
+  "sev": "Medium",
+  "steps": [
+   "Log in as a user with 0 permissions (BETA TEST ONLY Lowperm)",
+   "Click your name in the top bar"
+  ],
+  "expected": "Own My Account opens (at least Security and Customize tabs) so the user can change password and set up 2FA.",
+  "actual": "'Access Denied: You do not have permission to access the Personnel Details' for person_id=276 (own record).",
+  "shots": [
+   "lowp_myaccount"
+  ],
+  "cause": "Personnel Details access check does not allow self (person_id == logged-in person) when no Personnel permission row exists."
+ },
+ {
+  "id": "BUG-AM-004",
+  "title": "Permission level dropdown shows bare codes 'WA' and 'G' next to full labels",
+  "row": "AM-020",
+  "cl": "04-access-manager",
+  "module": "Access Manager > Manage User Permissions",
+  "sev": "Low",
+  "steps": [
+   "Access Manager > a user's 'N Permissions' badge",
+   "Look at the level dropdown for Personnel Details (also Flight Schedule, Dashboard, DFR)"
+  ],
+  "expected": "Every level has a readable label, e.g. 'Read/Write All - Can view and modify all data', 'Group - level defined by group membership' (as in the Help).",
+  "actual": "Options: 'Read Only All - ...', 'WA', 'Read Only Own - ...', 'Write Own - ...', 'G'.",
+  "shots": [
+   "am_perms"
+  ],
+  "cause": "Label map in accessmanager JS is missing WA and G (falls back to the code)."
+ },
+ {
+  "id": "BUG-POP-002",
+  "title": "Manage User Permissions uses a native browser confirm() for unsaved changes",
+  "row": "AM-023",
+  "cl": "04-access-manager",
+  "module": "Access Manager > Manage User Permissions",
+  "sev": "Low",
+  "steps": [
+   "Access Manager > a user's 'N Permissions' badge",
+   "Tick any permission type",
+   "Click Cancel"
+  ],
+  "expected": "App-styled confirm modal (like Activate Login Access / Logout), Esc = stay.",
+  "actual": "Native Chrome confirm: 'You have unsaved changes. Are you sure you want to cancel?'. Looks out of place, cannot be styled, blocks the page.",
+  "shots": [
+   "am_perm_cancel"
+  ],
+  "cause": "accessmanager JS calls window.confirm() in the Cancel handler."
+ },
+ {
+  "id": "BUG-PERF-001",
+  "title": "'Performance' debug timing panel shown on every page, including to non-admin users",
+  "row": "PERF-001",
+  "cl": "95-performance",
+  "module": "All modules (debug panel)",
+  "sev": "Low",
+  "steps": [
+   "Log in as any user (also BETA TEST ONLY Lowperm with one permission)",
+   "Open My Account or Access Manager"
+  ],
+  "expected": "Debug timing panel hidden for normal users (only when debug is switched on for an admin), or at least off by default.",
+  "actual": "Bottom-right 'Performance' panel lists internal step timings (Permission Check, Load People, Load Permissions, Total Time...). Covers content and toasts, exposes internals.",
+  "shots": [
+   "am_help_outside",
+   "lowp_security"
+  ],
+  "cause": "Debug config ('Check Debug Config') is enabled site-wide on stresstest, or the check does not consider the user's role. Confirm with Jon whether this is intentional on staging."
+ },
+ {
+  "id": "BUG-PD-002",
+  "title": "Personnel Details modals (Enable 2FA, Setup Error alert): title right-aligned, away from its icon",
+  "row": "PD-027",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details > Security",
+  "sev": "Low",
+  "steps": [
+   "My Account > Security",
+   "Click Enable 2FA"
+  ],
+  "expected": "Header like other modals: icon then title, left-aligned (e.g. 'Activate Login Access').",
+  "actual": "Lock icon on the far left, 'Enable 2FA' title pushed to the far right of the header. Same on the shared #alert-modal ('Setup Error / Invalid password').",
+  "shots": [
+   "2fa_enable",
+   "2fa_wrongpw"
+  ],
+  "cause": "Header uses justify-content: space-between without the title wrapper used by other modals."
+ },
+ {
+  "id": "BUG-PD-003",
+  "title": "2FA setup: one wrong verification code closes the setup dialog and issues a new secret",
+  "row": "PD-027",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details > Security",
+  "sev": "Medium",
+  "steps": [
+   "My Account > Security > Enable 2FA, enter password, Confirm",
+   "Scan the QR code / note the key",
+   "Enter a wrong 6-digit code, click Verify and Enable",
+   "Click OK on '2FA Setup Failed - Error: Invalid verification code'"
+  ],
+  "expected": "Setup dialog stays open with the same QR/key so the user can retry the code.",
+  "actual": "Setup dialog closes. Clicking Enable 2FA again generates a new key and new backup codes, so the entry already added to the authenticator app is useless and must be deleted and re-scanned.",
+  "shots": [
+   "2fa_after_wrong"
+  ],
+  "cause": "Verify failure handler closes #2fa-setup-modal and discards the pending secret."
+ },
+ {
+  "id": "BUG-PD-004",
+  "title": "Security tab 'Enabled on' date ignores Settings > Time Zone format",
+  "row": "PD-S04",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details > Security",
+  "sev": "Low",
+  "steps": [
+   "Settings > Time Zone is DD/MM/YYYY, 24-hour HH:mm",
+   "Enable 2FA on an account, view My Account > Security"
+  ],
+  "expected": "'Enabled on: 21/10/2026 21:03'.",
+  "actual": "'Enabled on: 2026-10-21 21:03:55' (raw database format).",
+  "shots": [
+   "2fa_enabled"
+  ],
+  "cause": "Value printed as-is; not passed through formatDateWithConfig/formatTimeWithConfig.",
+  "related": "DATE-01"
+ },
+ {
+  "id": "BUG-LOG-003",
+  "title": "'Trust this device for 30 days' is lost on Logout (logout deletes the trusted-device cookie)",
+  "row": "LOG-010",
+  "cl": "01-login-auth",
+  "module": "Login / 2FA (main)",
+  "sev": "Medium",
+  "steps": [
+   "Log in as a 2FA user, tick 'Trust this device for 30 days', enter a valid code",
+   "Check cookies: dhkey_trusted_<user> set, expires in 29-30 days",
+   "Click Logout > Log Out",
+   "Log in again with username + password"
+  ],
+  "expected": "2FA page skipped on this browser for 30 days.",
+  "actual": "Logout deletes all cookies (dhkey_<user>, dhkey_trusted_<user>, dhkey_username); the next login asks for the 2FA code again. Trust only survives if the user never logs out.",
+  "shots": [
+   "2fa_trust_relogin"
+  ],
+  "cause": "Logout handler expires every dhkey_* cookie; should keep dhkey_trusted_*."
+ },
+ {
+  "id": "BUG-POP-003",
+  "title": "Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved",
+  "row": "AM-019",
+  "cl": "04-access-manager",
+  "module": "Access Manager",
+  "sev": "Medium",
+  "steps": [
+   "Settings and Tools > Access Manager, search betatest_low",
+   "Click the '0 Groups' badge",
+   "Tick 'Crew' (On Roster auto-ticks)",
+   "Press Esc",
+   "Note the row still says '0 Groups'",
+   "Click the Groups badge again"
+  ],
+  "expected": "Esc with unsaved changes asks to confirm (app modal); if discarded, the popup reopens with the saved memberships.",
+  "actual": "Popup closes silently, nothing is saved, and on reopen 'Crew' is still ticked even though the user has 0 groups. Saving then would apply changes the user thought were thrown away.",
+  "shots": [
+   "am_groups"
+  ],
+  "cause": "Groups modal has no dirty check on Esc/close and doesn't reset its checkbox state from the server data when reopened."
+ },
+ {
+  "id": "BUG-DSH-001",
+  "title": "Dashboard side tabs are icon-only with no tooltip or label",
+  "row": "DSH-012",
+  "cl": "05-dashboard",
+  "module": "Dashboard",
+  "sev": "Low",
+  "steps": [
+   "Open Dashboard from the sidebar",
+   "Hover each of the 6 tabs above the right-hand panel"
+  ],
+  "expected": "Each tab has a tooltip/label (Recency and Renewals, Unread Notices, Unsigned Timesheets, Safety Actions, Exams, Project Tasks).",
+  "actual": "Tabs show only Material icons (update, notifications, assignment_late, assignment, quiz, checklist); no title, aria-label or tooltip. Users must click each to find out what it is; screen readers read the icon ligature names.",
+  "shots": [
+   "dsh"
+  ],
+  "cause": "Tab buttons render the icon only; add title + aria-label (or a short text label)."
+ },
+ {
+  "id": "BUG-DSH-003",
+  "title": "Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals)",
+  "row": "DSH-006",
+  "cl": "05-dashboard",
+  "module": "Dashboard / Personnel Details",
+  "sev": "Medium",
+  "steps": [
+   "Open Dashboard from the sidebar",
+   "Recency and Renewals tab (first tab) is shown",
+   "Click 'Flight Review'"
+  ],
+  "expected": "Own Personnel Details opens on the Recency and Renewals tab with Flight Review highlighted.",
+  "actual": "Personnel Details opens (URL has alertname_id=3) but the Personal Details tab is active; user has to find the Recency tab manually. Page also throws 'getPickerMod is not defined' (BUG-PD-001), which may be what stops the tab switch.",
+  "shots": [
+   "dsh_recency_click"
+  ],
+  "cause": "alertname_id param not used to select the Recency tab, or the tab-switch code never runs because index.js is truncated (BUG-PD-001). Retest after BUG-PD-001 is fixed."
+ },
+ {
+  "id": "BUG-POP-004",
+  "title": "Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc",
+  "row": "FS-013",
+  "cl": "06-flight-schedule",
+  "module": "Flight Schedule",
+  "sev": "Low",
+  "steps": [
+   "Flight Schedule (week view), click a flight to select it",
+   "Click its note / View Details icon",
+   "Press Esc"
+  ],
+  "expected": "Popup closes (CON-015).",
+  "actual": "Popup stays open on Esc; only OK, x or a click outside closes it. Same for #fad-modal 'Double Booking Detected' and the Add/Edit Note modals.",
+  "shots": [
+   "fs_notepopup"
+  ],
+  "cause": "#flight-details-modal has no keydown Escape handler (same pattern as BUG-POP-001)."
+ },
+ {
+  "id": "BUG-FS-001",
+  "title": "New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h)",
+  "row": "FS-011",
+  "cl": "06-flight-schedule",
+  "module": "Flight Schedule > Flight Details (new)",
+  "sev": "Medium",
+  "steps": [
+   "Settings > Time Zone is Pacific/Auckland (header shows UTC 08:25, Local 21:25)",
+   "Flight Schedule > Enable Live Edit > Add Flight",
+   "Look at Start Time, End Time and SAR TIME (LOCAL)"
+  ],
+  "expected": "Start defaults to local now (21:25), end +1h (22:25), SAR time in local time.",
+  "actual": "Start 21/10/2026 08:25, End 09:25, SAR TIME (LOCAL) 09:25 - all UTC values. Near midnight the date would also be wrong. Also Cancel with no changes does nothing (only the back arrow leaves).",
+  "shots": [
+   "fs_addflight_cancel"
+  ],
+  "cause": "New-flight defaults built from server/UTC now() rather than the org time zone. Confirm whether flights are stored in UTC and shown in local everywhere else (see 92-xc-dates)."
+ },
+ {
+  "id": "BUG-FS-002",
+  "title": "Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight",
+  "row": "FS-021",
+  "cl": "06-flight-schedule",
+  "module": "Flight Schedule",
+  "sev": "Medium",
+  "steps": [
+   "Flight Schedule > Enable Live Edit",
+   "Select a flight, Ctrl+C, click an empty slot, Ctrl+V, Paste",
+   "Toast: '... press Escape to finish.' Press Esc",
+   "Click another empty slot, press Ctrl+V"
+  ],
+  "expected": "Esc ends paste mode; Ctrl+V afterwards does nothing.",
+  "actual": "No feedback on Esc; the click shows 'Press Ctrl+V to paste the flight here' and Ctrl+V creates another flight (created #42906). Users can create unwanted live flights.",
+  "shots": [
+   "fs_cut"
+  ],
+  "cause": "Escape keydown handler does not clear the copied-flight clipboard state (or is not bound inside the schedule iframe)."
+ },
+ {
+  "id": "BUG-FS-003",
+  "title": "Flight Schedule header overlaps when Live Edit is on - title covered, location pill cut off and its 'Show All' button cannot be clicked",
+  "row": "FS-008",
+  "cl": "06-flight-schedule",
+  "module": "Flight Schedule",
+  "sev": "Medium",
+  "steps": [
+   "Flight Schedule at 1568 px wide",
+   "Pick a location in Locations (pill 'Viewing location: Auckland Base')",
+   "Go to a past week and click Enable Live Edit"
+  ],
+  "expected": "Title, Live Edit banner, past-date banner and location pill all readable (wrap to a second line if needed).",
+  "actual": "'Live Edit Mode' banner is drawn over the 'Flight Schedule' title and subtitle; 'Viewing location: Auckland Base' is cut to 'Viewing' and hidden behind the view buttons. The pill's 'Show All' button sits under the view-mode buttons, so a click lands on 'Schedule & Planner' instead (the location filter can only be cleared after turning Live Edit off or via Locations > All Locations).",
+  "shots": [
+   "fs_week_state"
+  ],
+  "cause": "Header banners are absolutely positioned / flex row with no wrap; no room left when 3 banners show."
+ },
+ {
+  "id": "BUG-FS-004",
+  "title": "Planner Add Location replaces the New Booking popup - typed booking and location input is lost",
+  "row": "FS-029",
+  "cl": "06-flight-schedule",
+  "module": "Flight Schedule > Location Planner",
+  "sev": "Medium",
+  "steps": [
+   "Flight Schedule > Planner Only > Rows by Location > Enable Live Edit",
+   "Drag across empty days in a location row > New Booking opens; type a note",
+   "Click 'Add Location' in New Booking",
+   "Leave Name and Code empty, click Save, then OK on the Error popup"
+  ],
+  "expected": "Add Location opens on top of New Booking; after the error you are back in Add Location with your input; after saving you return to New Booking with the new location selected and your note kept.",
+  "actual": "Add Location replaces New Booking (the note is gone). OK on 'Name and Code are required.' closes all popups, so the user has to start again. After a successful Save ('Location created') New Booking does not come back either.",
+  "shots": [
+   "fs_addloc_err",
+   "fs_addloc_after_ok"
+  ],
+  "cause": "Planner popups use one shared modal slot: opening a modal closes the current one and closing the error closes everything instead of returning to the parent modal."
+ },
+ {
+  "id": "BUG-FS-005",
+  "title": "JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop')",
+  "row": "FS-008",
+  "cl": "06-flight-schedule",
+  "module": "Flight Schedule",
+  "sev": "Low",
+  "steps": [
+   "Flight Schedule (Planner Only or Schedule view), DevTools console open",
+   "Click Enable Live Edit",
+   "Click Disable Live Edit"
+  ],
+  "expected": "No console errors.",
+  "actual": "Each click logs uncaught TypeError \"Cannot read properties of null (reading 'scrollTop')\". The toggle still works, but later code in the same handler does not run.",
+  "shots": [],
+  "cause": "Edit-mode toggle handler saves/restores the scroll position of an element that does not exist in the current view mode (e.g. the time-grid scroller while the planner is shown); needs a null check."
+ },
+ {
+  "id": "BUG-FS-006",
+  "title": "Flight Schedule month view is slow: flightschedule_json takes ~1.6 s and rendering 2,500 events ~4.5 s",
+  "row": "FS-034",
+  "cl": "06-flight-schedule",
+  "module": "Flight Schedule",
+  "sev": "Medium",
+  "steps": [
+   "Flight Schedule > Schedule Only",
+   "Click Month (October 2026, range 28/09-08/11)",
+   "Measure in DevTools Network: index.pl?action=flightschedule_json&start=2026-09-28&end=2026-11-09"
+  ],
+  "expected": "Server response < 500 ms; month view usable in about 1-2 s.",
+  "actual": "Request 1,590 ms (first byte 844 ms); 2,493 events take 4.5 s from click to render. Page freezes while rendering.",
+  "shots": [
+   "fs_month_perf"
+  ],
+  "cause": "Whole 6-week range returned with full event details in one JSON call and every event rendered; consider a summary per day for month view, indexes on flight start/end, or lazy loading of 'more' events."
+ },
+ {
+  "id": "BUG-FS-007",
+  "title": "Edit-mode idle timeout switches Live Edit off silently, throws 'calendarEl is not defined' and leaves the schedule blank",
+  "row": "FS-025",
+  "cl": "06-flight-schedule",
+  "module": "Flight Schedule",
+  "sev": "Medium",
+  "steps": [
+   "Flight Schedule > Planner Only (or any view) > Enable Live Edit",
+   "Do not touch the page for 20 minutes"
+  ],
+  "expected": "Edit mode turns off with the message 'Edit mode has been disabled due to inactivity.'",
+  "actual": "At 20 min the button silently returns to 'Enable Live Edit'; no popup or toast, and the console shows uncaught ReferenceError 'calendarEl is not defined', so the rest of the timeout handler (probably the message and the calendar refresh) does not run. A user who comes back can think they are still editing. Afterwards the schedule is left blank (month view 'October 2026' with no flights) until the page is reloaded.",
+  "shots": [
+   "fs_idle"
+  ],
+  "cause": "Inactivity handler references a variable calendarEl that is not in scope (renamed or local to another function)."
+ },
+ {
+  "id": "BUG-FD-001",
+  "title": "Flight Details Save Changes does not return to the Flight Schedule and gives no success message",
+  "row": "FD-034",
+  "cl": "07-flight-details",
+  "module": "Flight Details",
+  "sev": "Medium",
+  "steps": [
+   "Flight Schedule > Schedule Only > week",
+   "Double-click flight #42903 > Flight Details",
+   "Add a passenger or comment",
+   "Click Save Changes"
+  ],
+  "expected": "Flight is saved and you return to where you came from (the Flight Schedule week you were on), as described in the guide.",
+  "actual": "The page reloads in place (URL now has return_url=/index.pl?action=flightschedule) and stays on Flight Details. No toast or message says it was saved; only the greyed-out Save Changes button hints at it. The user has to click Back.",
+  "shots": [
+   "fd_after_save"
+  ],
+  "cause": "Save handler reloads the details page with return_url instead of navigating to return_url after a successful save."
+ },
+ {
+  "id": "BUG-FD-002",
+  "title": "Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM > Unassigned' on schedule moves",
+  "row": "FD-037",
+  "cl": "07-flight-details",
+  "module": "Flight Details",
+  "sev": "Medium",
+  "steps": [
+   "Flight Schedule > Enable Live Edit > move/resize flight #42903 (ZK-SIM)",
+   "Double-click it > Flight Details > add a custom passenger and a comment > Save Changes",
+   "Click History"
+  ],
+  "expected": "History shows every change including the Flight Details save (passenger added, comment added), and only fields that really changed.",
+  "actual": "The Flight Details save at 10:17 pm is not listed; newest entry is the 09:31 pm schedule move. Each schedule move/resize entry lists 'Aircraft: ZK-SIM > Unassigned' (the aircraft stayed ZK-SIM) and 'Source: (blank) > Flight Schedule'. Values are shown as raw '2026-10-21 09:30:00' instead of DD/MM/YYYY HH:MM.",
+  "shots": [
+   "fd_history"
+  ],
+  "cause": "Schedule drag/resize audit compares against a payload without aircraft (null > 'Unassigned'); Flight Details save path either does not write to the audit log or only logs main-table fields (passengers/comments not tracked)."
+ },
+ {
+  "id": "BUG-FD-003",
+  "title": "Times and Meters: no link to the previous flight next to 'Previous' meter readings",
+  "row": "FD-019",
+  "cl": "07-flight-details",
+  "module": "Flight Details",
+  "sev": "Low",
+  "steps": [
+   "Open flight #42903 (ZK-SIM) > Times and Weights",
+   "Look at Meters (Engine Hours, Flight Hours)"
+  ],
+  "expected": "Each meter shows the previous reading and a link to the flight it came from (guide).",
+  "actual": "'Previous: 2450.3 (+0.0)' is shown but there is no link; the only link in the panel is an info icon (href '#'). The user cannot check which flight set the previous reading.",
+  "shots": [
+   "fd_times"
+  ]
+ },
+ {
+  "id": "BUG-FD-004",
+  "title": "Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC)",
+  "row": "FD-005",
+  "cl": "07-flight-details",
+  "module": "Flight Details",
+  "sev": "Medium",
+  "steps": [
+   "Open flight #42903 > Passenger List > Add Custom Passenger 'BETA TEST ONLY Pax'",
+   "Times and Weights > Add Leg",
+   "Open the leg PIC or Secondary Flight Crew dropdown"
+  ],
+  "expected": "Only Crew or Student role people (like the flight-level PIC list).",
+  "actual": "Leg PIC and Secondary Flight Crew list 'BETA TEST ONLY Lowperm' and 'BETA TEST ONLY Pax' - the custom passenger can be picked as the leg's pilot, which would put a passenger's hours into crew/FRMS records.",
+  "shots": [
+   "fd_leg"
+  ],
+  "cause": "Leg crew dropdowns are filled from the whole manifest (crew + passengers) instead of crew only."
+ },
+ {
+  "id": "BUG-FD-005",
+  "title": "Leg with two unknown waypoints: only the first is offered for adding, the second is silently dropped on save",
+  "row": "FD-022",
+  "cl": "07-flight-details",
+  "module": "Flight Details",
+  "sev": "Medium",
+  "steps": [
+   "Open flight #42903 > Times and Weights > Add Leg",
+   "Departure 'ZZZQ', Destination 'NZWN' (neither in Settings > Waypoints)",
+   "Save Changes > 'Add New Waypoint' for ZZZQ > Add Waypoint",
+   "Back, reopen the flight > Times and Weights"
+  ],
+  "expected": "You are asked about each unknown waypoint (ZZZQ, then NZWN) before the flight is saved; nothing you typed is lost.",
+  "actual": "Only ZZZQ is prompted ('Waypoint \"ZZZQ\" added successfully'), then the flight saves straight away and the leg Destination is stored empty - NZWN is lost without a warning. Typing NZWN again and saving does prompt for it.",
+  "shots": [
+   "fd_waypoint",
+   "fd_leg_reopen"
+  ],
+  "cause": "After 'Add Waypoint' the save continues without re-validating the remaining unknown waypoints, and unknown codes are blanked instead of blocking the save."
+ },
+ {
+  "id": "BUG-AF-001",
+  "title": "Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled",
+  "row": "AF-004",
+  "cl": "08-active-flights",
+  "module": "Active Flights",
+  "sev": "Low",
+  "steps": [
+   "Sidebar > Flight Operations > Active Flights",
+   "Look at the SAR Time column for PAST flights (e.g. #8861, #8844)"
+  ],
+  "expected": "Flights without SAR watch show a dash or just 'SAR Watch Disabled' in the SAR Time column.",
+  "actual": "SAR Time shows '01/01/1970 00:00' above 'SAR Watch Disabled' (Unix epoch shown for an empty SAR time).",
+  "shots": [
+   "af_open"
+  ],
+  "cause": "Empty/0 SAR timestamp formatted as a date instead of being treated as no value."
+ },
+ {
+  "id": "BUG-AF-002",
+  "title": "Active Flights lists future flights that have no SAR time, and the stats cards don't count them",
+  "row": "AF-001",
+  "cl": "08-active-flights",
+  "module": "Active Flights",
+  "sev": "Medium",
+  "steps": [
+   "Sidebar > Flight Operations > Active Flights",
+   "Look at the status column and the stats cards"
+  ],
+  "expected": "Only open flights whose start or SAR time has passed are listed, and Total = Active + Past + Overdue.",
+  "actual": "6 FUTURE flights (#8853, #8854, #8855, #8857, #8858, #8860) are listed with Active Time 00h 00m and SAR Time '01/01/1970 00:00 NO SAR TIME SET'. Cards show Total 1377, Active 0, Past 1364, Overdue 7, so the 6 future flights are in Total but in no other card.",
+  "shots": [
+   "af_future",
+   "af_open"
+  ],
+  "cause": "An empty SAR time is stored/treated as 0 (1970), which counts as 'passed', so future flights pass the list filter."
+ },
+ {
+  "id": "BUG-AF-003",
+  "title": "Active Flights has no page Help (?), and its popups (About Live Tracking, Adjust SAR, Add Note) don't close with Escape",
+  "row": "AF-S02",
+  "cl": "08-active-flights",
+  "module": "Active Flights",
+  "sev": "Low",
+  "steps": [
+   "Sidebar > Flight Operations > Active Flights",
+   "Look for the Help (?) button in the page header",
+   "Click the help icon in the Live Tracking box ('About Live Tracking')",
+   "Press Escape; look for an x button",
+   "Click Adjust SAR or Add Note on an OVERDUE row, press Escape"
+  ],
+  "expected": "Like other modules, a page Help (?) button that opens help; every help popup closes with Got it, x, clicking outside and Escape.",
+  "actual": "No page-level Help (?) button exists (the only help is 'About Live Tracking'). That popup has only 'Got it', no x, and Escape does not close it. Adjust SAR and Add Note popups also stay open on Escape (Add Note with typed text and no prompt). Got it / Cancel and clicking outside do close them.",
+  "shots": [
+   "af_help",
+   "af_add_note"
+  ]
+ },
+ {
+  "id": "BUG-AF-004",
+  "title": "Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC 'now'",
+  "row": "AF-004",
+  "cl": "08-active-flights",
+  "module": "Active Flights",
+  "sev": "High",
+  "steps": [
+   "Open flight #42903 (Start 21/10/2026 08:30, SAR TIME (LOCAL) 21/10/2026 09:30 in Flight Details) and set Flight Status to Open, Save",
+   "At 22:33 local / 09:33 UTC open Sidebar > Flight Operations > Active Flights",
+   "Look at row #42903"
+  ],
+  "expected": "SAR 09:30 local passed 13 hours ago: 'OVERDUE by 13h 03m', Active Time 14h 03m.",
+  "actual": "Row shows SAR '21/10/2026 09:30 OVERDUE by 3m' and Active Time '01h 03m' - the countdown uses UTC now (09:33) against the local time, so an overdue flight looks only just overdue for 13 hours. For a search-and-rescue watch this delays the alarm. Confirmed with Adjust SAR: setting SAR to 21/10/2026 23:30 at 22:34 local shows '13h 55m remaining' instead of about 56m.",
+  "shots": [
+   "af_overdue_tz",
+   "af_sar_saved"
+  ],
+  "cause": "Active Flights compares the stored local SAR/start time with the UTC clock (or Flight Details labels UTC times as local). Related to BUG-FS-001 (Add Flight defaults to UTC)."
+ },
+ {
+  "id": "BUG-DFR-001",
+  "title": "Daily Flight Record has no page Help (?), and its popups (Manage Columns, Notes full text) don't close with Escape",
+  "row": "DFR-S02",
+  "cl": "09-daily-flight-record",
+  "module": "Daily Flight Record",
+  "sev": "Low",
+  "steps": [
+   "Sidebar > Flight Operations > Daily Flight Record",
+   "Look for the Help (?) button in the page header",
+   "Click Columns (Manage Columns popup), press Escape",
+   "Click a Notes cell (Notes full-text popup), press Escape"
+  ],
+  "expected": "A page Help (?) button like other modules; the Manage Columns popup closes with x, clicking outside and Escape.",
+  "actual": "There is no Help (?) button on the page. Manage Columns closes with x, Done and clicking outside, and stays open on drag-out (correct), but Escape does nothing. The Notes full-text popup also stays open on Escape.",
+  "shots": [
+   "dfr_open",
+   "dfr_columns"
+  ],
+  "cause": "No help content or button wired for this module; the column modal has no keydown Escape handler."
+ },
+ {
+  "id": "BUG-DFR-002",
+  "title": "Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied",
+  "row": "DFR-008",
+  "cl": "09-daily-flight-record",
+  "module": "Daily Flight Record",
+  "sev": "Medium",
+  "steps": [
+   "Sidebar > Flight Operations > Daily Flight Record",
+   "Expand Advanced Filters: Completed and Complete Locked are ticked, Date From/To both show 21/10/2026 (today) but the list has flights from other days",
+   "Type Rego ZK-SIM (or any filter), press Enter",
+   "Click Clear Filters"
+  ],
+  "expected": "Clear Filters goes back to the default view: Completed + Complete Locked, no other filters. Empty date filters show empty fields (or the dates shown are actually applied).",
+  "actual": "Clear Filters unticks all five status pills, so the list shows every status, including Open and Deleted flights (e.g. #9476 Open, #42902 Deleted), and the filter badge disappears. The Date From/To fields show today's date on load and after clearing, yet no date filter is applied.",
+  "shots": [
+   "dfr_filters_fresh",
+   "dfr_cleared"
+  ],
+  "cause": "Clear resets status checkboxes to unchecked instead of the defaults, and an empty status set is treated as 'all'. The date pickers display a default value that is not sent as a filter."
+ },
+ {
+  "id": "BUG-DFR-003",
+  "title": "Daily Flight Record: changing filters quickly appends results instead of replacing them, showing duplicate and wrong-status rows",
+  "row": "DFR-008",
+  "cl": "09-daily-flight-record",
+  "module": "Daily Flight Record",
+  "sev": "Medium",
+  "steps": [
+   "Sidebar > Flight Operations > Daily Flight Record > expand Advanced Filters",
+   "Click the Open status pill twice quickly (on, then off)",
+   "Look at the list: only Completed + Complete Locked are ticked",
+   "Or: with only Cancelled ticked, quickly click Completed, Complete Locked and Cancelled to get back to the defaults"
+  ],
+  "expected": "The list always matches the current filters, each flight once (30 Completed rows).",
+  "actual": "Open on/off quickly: 60 rows, 30 Open flights plus 30 Completed, although Open is unticked. Three quick clicks back to the defaults: 90 rows of which 60 are duplicate IDs. Changing one filter at a time (4 s apart) is correct. Seen earlier too: Flight ID 42903 listed twice followed by unfiltered flights.",
+  "shots": [
+   "dfr_race"
+  ],
+  "cause": "Each filter change starts a new load, and every response is appended to the table; earlier, slower requests are not cancelled or ignored, and the table is not cleared per request."
+ },
+ {
+  "id": "BUG-PL-001",
+  "title": "All Personnel has no page Help (?)",
+  "row": "PL-S02",
+  "cl": "11-all-personnel",
+  "module": "All Personnel",
+  "sev": "Low",
+  "steps": [
+   "Sidebar > Personnel > All Personnel",
+   "Look for the Help (?) button in the page header"
+  ],
+  "expected": "A Help (?) button that opens help for the page, as on Personnel Details and Flight Details.",
+  "actual": "The page has only the search box and the group/role filters. There is no Help (?) button.",
+  "shots": [
+   "pl_open"
+  ]
+ },
+ {
+  "id": "BUG-PL-002",
+  "title": "A person with no name exists and is listed as '?' at the top of All Personnel (person #274, Customer)",
+  "row": "PL-001",
+  "cl": "11-all-personnel",
+  "module": "All Personnel",
+  "sev": "Low",
+  "steps": [
+   "Sidebar > Personnel > All Personnel",
+   "Look at the first row (or set All Roles > Customer)",
+   "Click it"
+  ],
+  "expected": "Every person has at least a name or company; creating a person or customer without one is refused.",
+  "actual": "The first row has a '?' avatar, an empty name, No Groups and role Customer. It opens Personnel Details for person_id=274 with First, Middle, Last Name and Company all empty. Its History only shows forms filled by Service Account on 17 Oct 2026 (AUDIT All Widgets), so it already existed before this run. How it was created isn't known; possibly an empty New Customer save in Flight Details.",
+  "shots": [
+   "pl_open",
+   "pl_blank_person",
+   "pl_blank_history"
+  ],
+  "cause": "Person/customer create path allows saving with all name fields empty."
+ },
+ {
+  "id": "BUG-PD-005",
+  "title": "Personnel Details: History, PDF Options and Legacy Duty Browser popups don't close with Escape, and PDF Options has no x",
+  "row": "PD-S03",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details",
+  "sev": "Low",
+  "steps": [
+   "All Personnel > Ethan Abbott (Personnel Details)",
+   "Click History, press Escape",
+   "Click Personnel Pdf, press Escape, look for an x",
+   "Timesheets tab > Legacy Duty Browser, press Escape"
+  ],
+  "expected": "Like the Help popup on this page, every popup closes with x, clicking outside and Escape.",
+  "actual": "Help closes with Escape, x and outside click. Personnel History closes with x and outside click but not Escape. Personnel PDF Options has no x (only Cancel / Generate PDF) and does not close with Escape. All three stay open on drag-out (correct). Timesheets > Legacy Duty Browser popup also ignores Escape (its Close button works).",
+  "shots": [
+   "pd_history",
+   "pd_pdf",
+   "pd_legacy"
+  ]
+ },
+ {
+  "id": "BUG-PD-006",
+  "title": "Personnel Details > Recency and Renewals: action buttons are hidden (Add Item, Table/Card view, renewal Save / Complete Renewal / Cancel) and Group by / Order by are disabled",
+  "row": "PD-019",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details",
+  "sev": "High",
+  "steps": [
+   "All Personnel > Ethan Abbott > Recency and Renewals tab",
+   "Try to change Group by to Status, or Order by to Expiry Date",
+   "Look for the Table / Card view buttons",
+   "Click the pencil on Dangerous Goods Training and look for Save / Complete Renewal"
+  ],
+  "expected": "Add Item opens the add renewal/recency search; Group by and Order by change the list; Table and Card buttons switch the layout.",
+  "actual": "Both dropdowns are disabled (greyed out, can't be changed). #add-recency-btn (Add Item), #view-table-btn and #view-card-btn exist in the page but are hidden (display:none), so you can't add a renewal/recency item or switch to card view. On the renewal edit page (pencil on Dangerous Goods Training) there is no Save, Complete Renewal or Cancel: #save-recency-btn, #complete-renewal-btn and #renewal-cancel-btn have display:none, so a renewal can't be saved or completed from Personnel Details. Renewal edit page has only the Go Back arrow, which discards changes without asking.",
+  "shots": [
+   "pd_recency",
+   "pd_renewal_calc"
+  ],
+  "cause": "Possibly the page script stops at the 'getPickerMod is not defined' error (BUG-PD-001) before it enables these controls."
+ },
+ {
+  "id": "BUG-PD-007",
+  "title": "Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date",
+  "row": "PD-021",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details",
+  "sev": "Medium",
+  "steps": [
+   "All Personnel > Ethan Abbott > Recency and Renewals tab",
+   "Look at the Pilot Licenses Recencies rows (today 21/10/2026)"
+  ],
+  "expected": "Days match the dates, e.g. Day Landings last conducted 03/02/2026 with a 90-day window expired about 170 days ago (260 days since last conducted), and an expired item shows Expired.",
+  "actual": "Day Landings: Last Conducted 03/02/2026, '462 days ago', status Caution, count 0/0 in 90 days. Instrument Approaches: 26/07/2025, '447 days ago', Caution, 0/0 in 180 days. Night Landings: 11/03/2026, '245 days ago', Caution. None of these numbers match the dates, and items long past their window show Caution, not Expired. PIC Hours / Total Flight Hours show Expired with no days value.",
+  "shots": [
+   "pd_recency"
+  ],
+  "cause": "Needs a check against the recency rules; a 0/0 requirement may be treated as Caution, and the days value may come from a different date than Last Conducted."
+ },
+ {
+  "id": "BUG-PD-008",
+  "title": "Personnel Details > Recency: the recency summary popup has no Add Manual Entry, no x, and doesn't close with Escape",
+  "row": "PD-021",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details",
+  "sev": "Medium",
+  "steps": [
+   "All Personnel > Ethan Abbott > Recency and Renewals tab",
+   "Click the Day Landings count '0/0 in 90 days'",
+   "Look for Add Manual Entry and a close button; press Escape"
+  ],
+  "expected": "The popup lists the recency flights/entries, has Add Manual Entry (Date*, Value*, Notes) and closes with x, outside click and Escape.",
+  "actual": "'Recency summary for Day Landings' lists 4 manual entries (03/02/2026, 15/06/2025, 02/06/2025, 17/04/2025) but has no buttons at all: no Add Manual Entry, no x. Escape does nothing; only clicking outside closes it. So manual recency entries can't be added from this page.",
+  "shots": [
+   "pd_recency_flights"
+  ],
+  "cause": "Possibly the dialog buttons are built by the part of personneldetails/index.js that is cut off (BUG-PD-001)."
+ },
+ {
+  "id": "BUG-PD-009",
+  "title": "Personnel Details > Renewal edit: the Today and Calculate links can't be clicked because the date fields cover them",
+  "row": "PD-022",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details",
+  "sev": "Medium",
+  "steps": [
+   "All Personnel > Ethan Abbott > Recency and Renewals > edit (pencil) on Dangerous Goods Training",
+   "Click 'Today' next to Last Conducted",
+   "Click 'Calculate' next to Expires"
+  ],
+  "expected": "Today sets Last Conducted to today; Calculate sets Expires to Last Conducted + frequency.",
+  "actual": "The date boxes are squeezed and overlap the links. A real click on 'Calculate' lands on the Renewal Notes textarea and a click on 'Today' lands on the Scheduled field's container, so nothing happens. When the link is triggered from code, Calculate works: Expires 20/10/2028 and toast 'Expiry date set to 20/10/2028 (730 days from Last Conducted)', which is correct and in the org date format.",
+  "shots": [
+   "pd_renewal_calc"
+  ],
+  "cause": "Layout of .input-with-button-container: the date inputs are too narrow and the link sits under the next field."
+ },
+ {
+  "id": "BUG-PD-010",
+  "title": "Personnel Details: the 'Performance' timing panel is shown to users and covers buttons",
+  "row": "PD-024",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details",
+  "sev": "Low",
+  "steps": [
+   "Open any person in Personnel Details",
+   "Look at the bottom right corner",
+   "Forms tab > archive a form > open Archived Forms and click Unarchive"
+  ],
+  "expected": "Debug timing info is hidden from normal users, or at least doesn't cover page controls.",
+  "actual": "A 'Performance' panel (Permission Check, Load Person & Groups ... Total Time) is shown at the bottom right on every load. It sits on top of the Archived Forms Unarchive button, so the click goes to the panel until you close it with its x. At 390 px width the panel covers most of the Photo section (Choose photo / Upload).",
+  "shots": [
+   "pd_perf_panel",
+   "pd_recency",
+   "pd_narrow_details"
+  ]
+ },
+ {
+  "id": "BUG-PD-011",
+  "title": "Personnel Details > Security: Change Password always fails with 'Invalid Action: change_password'",
+  "row": "PD-026",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details",
+  "sev": "High",
+  "steps": [
+   "As Service Account: All Personnel > BETA TEST ONLY Lowperm > Security tab",
+   "Enter the correct current password, a new 14-character password twice",
+   "Click Change Password"
+  ],
+  "expected": "'Password changed' and the new password works; a wrong current password gives a clear 'Current password is incorrect' message.",
+  "actual": "Both with the correct and with a wrong current password: 'Password Change Failed - Invalid Action: change_password'. The password is not changed. The client-side checks work: empty fields 'Please fill in all password fields', short 'New password must be at least 8 characters long', mismatch 'New passwords do not match'. Same result when betatest_low changes its own password from My Account (header name > own Personnel Details > Security).",
+  "shots": [
+   "pd_pw_correct",
+   "pd_pw_wrong_current",
+   "pd_low_pw"
+  ],
+  "cause": "The page posts action=change_password, which the server doesn't recognise (missing or renamed handler)."
+ },
+ {
+  "id": "BUG-PD-012",
+  "title": "Personnel Details > Files: opening a file shows 'File Access Error' with the file's contents as the message",
+  "row": "PD-025",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details",
+  "sev": "Medium",
+  "steps": [
+   "All Personnel > BETA TEST ONLY Lowperm > Files tab",
+   "Browse > BETA_TEST_ONLY_pd.txt (30 B) > Upload",
+   "Click the file name in the list"
+  ],
+  "expected": "The file opens in a preview (or a new tab).",
+  "actual": "An error popup 'File Access Error' appears whose message is the text inside the file ('BETA TEST ONLY personnel file'). No preview opens. After pressing OK on that error, the Delete file button does nothing: the confirm popup is set active but stays hidden (display:none), so nothing appears until the page is reloaded. The page also has two buttons with id confirm-modal-ok-btn (#alert-modal and #confirm-modal).",
+  "shots": [
+   "pd_file_preview",
+   "pd_file_delete_click"
+  ],
+  "cause": "The preview call probably expects JSON and treats the raw file response as an error message."
+ },
+ {
+  "id": "BUG-PD-013",
+  "title": "Personnel Details: an empty Birth Date shows today's date",
+  "row": "PD-004",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details",
+  "sev": "Low",
+  "steps": [
+   "All Personnel > BETA TEST ONLY Lowperm (no birth date on file) > Personal Details",
+   "Look at Birth Date"
+  ],
+  "expected": "Birth Date is blank when none is recorded.",
+  "actual": "The box shows 21/10/2026 (today), but the field has no value (data-has-value=false, initialValue empty). Users will think today's date is saved as the birth date.",
+  "shots": [
+   "pd_low_myaccount"
+  ],
+  "cause": "The date picker fills in today for empty values; may be linked to the picker load error in BUG-PD-001 (getPickerMod is not defined). Same pattern as the DFR date boxes in BUG-DFR-002."
+ },
+ {
+  "id": "BUG-PD-014",
+  "title": "Digital Signature: wrong password closes the popup and throws away the drawing; empty Save gives no message",
+  "row": "PD-007",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details",
+  "sev": "Low",
+  "steps": [
+   "All Personnel > BETA TEST ONLY Lowperm > Personal Details > Create Signature",
+   "Click Save Signature with nothing drawn and no password",
+   "Draw a signature, enter a wrong password, click Save Signature"
+  ],
+  "expected": "Empty drawing or password shows a message such as 'Please draw your signature' / 'Enter your password'. A wrong password shows the error and keeps the popup open with the drawing, so the user can retype the password.",
+  "actual": "Save with nothing drawn or no password does nothing at all, with no message. A wrong password shows 'Save Failed - Incorrect password' and closes the Create Signature popup, so the drawing is lost and must be redrawn. The correct password saves ('Digital signature saved successfully').",
+  "shots": [
+   "pd_sig_wrongpw",
+   "pd_sig_blank"
+  ],
+  "cause": "Save handler returns silently on empty input, and the error path closes the modal before showing the alert."
+ },
+ {
+  "id": "BUG-PD-015",
+  "title": "Flight & Duty Analysis popup: title date is YYYY-MM-DD and Escape doesn't close it",
+  "row": "PD-016",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details",
+  "sev": "Low",
+  "steps": [
+   "All Personnel > Ethan Abbott > Timesheets (October 2026)",
+   "On 01 Thu click the Flight & Duty Info (F&D) icon",
+   "Read the popup title, then press Escape"
+  ],
+  "expected": "Title date follows Settings > Time Zone (DD/MM/YYYY, e.g. 01/10/2026). Escape closes the popup.",
+  "actual": "Title reads 'Flight & Duty Analysis for 2026-10-01'. Escape does nothing; only the x closes it. The rest-advice text also uses a different style ('6:00 AM on Friday, October 2, 2026') from the 24-hour setting.",
+  "shots": [
+   "pd_fad_popup"
+  ],
+  "cause": "Popup builds the title from the raw ISO data-date and the rest text with a hard-coded en-US format instead of the shared date/time formatter."
+ },
+ {
+  "id": "BUG-PD-016",
+  "title": "Personnel Details > Timesheets: Add Claim button does nothing",
+  "row": "PD-010",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details",
+  "sev": "Medium",
+  "steps": [
+   "All Personnel > Ethan Abbott > Timesheets (October 2026)",
+   "On 01 Thu (Draft) click Add Claim"
+  ],
+  "expected": "A claim form opens (or the day's Timesheet Details opens) so a claim can be added.",
+  "actual": "Nothing happens: no popup, no page change, no network request, no console error. Add Claim is enabled on past days and disabled on future days, so it looks usable.",
+  "shots": [
+   "pd_ts_addclaim"
+  ],
+  "cause": "Click handler for .timesheet-claim-btn is probably not bound, possibly because the page script stops early (BUG-PD-001, getPickerMod is not defined)."
+ },
+ {
+  "id": "BUG-RV-001",
+  "title": "Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape",
+  "row": "RV-S02",
+  "cl": "13-roster-viewer",
+  "module": "Roster Viewer",
+  "sev": "Low",
+  "steps": [
+   "Personnel > Roster Viewer",
+   "Look for the Help (?) button in the page header",
+   "Click the Group Visibility (people) icon, press Escape"
+  ],
+  "expected": "A Help (?) button like other modules; Escape closes the Group Visibility popup.",
+  "actual": "No Help button on the page. Group Visibility stays open on Escape; only \u00d7 or a click outside closes it.",
+  "shots": [
+   "rv_load",
+   "rv_groupvis"
+  ],
+  "cause": "Roster Viewer header has no help-button include and the modal has no keydown Escape handler."
+ },
+ {
+  "id": "BUG-RV-002",
+  "title": "Roster Viewer: clicking a shift does not open Shift Details",
+  "row": "RV-004",
+  "cl": "13-roster-viewer",
+  "module": "Roster Viewer",
+  "sev": "Medium",
+  "steps": [
+   "Personnel > Roster Viewer (October 2026)",
+   "Click the PM shift for Aisha Johnston on 5 Oct (centre of the badge)",
+   "Then click the small blue corner on the same badge"
+  ],
+  "expected": "Clicking a shift opens Shift Details (shift name, times, notes).",
+  "actual": "Clicking the badge does nothing (no popup, no console error). Only the tiny blue corner opens a 'Note for Aisha Johnston' popup with the date and note text.",
+  "shots": [
+   "rv_shift",
+   "rv_note"
+  ],
+  "cause": "Only the note-corner element has a click handler; .assigned-shift has none."
+ },
+ {
+  "id": "BUG-RV-003",
+  "title": "Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY",
+  "row": "RV-S04",
+  "cl": "13-roster-viewer",
+  "module": "Roster Viewer",
+  "sev": "Low",
+  "steps": [
+   "Settings > Time Zone is DD/MM/YYYY",
+   "Personnel > Roster Viewer, click the blue corner of Aisha Johnston's 5 Oct shift"
+  ],
+  "expected": "Date: 05/10/2026",
+  "actual": "Date: October 5, 2026",
+  "shots": [
+   "rv_note"
+  ],
+  "cause": "Popup uses toLocaleDateString with a hard-coded long format instead of the shared date formatter."
+ },
+ {
+  "id": "BUG-RB-001",
+  "title": "Roster Builder: no page Help (?); Copy/Paste Instructions popup ignores Escape and outside click",
+  "row": "RB-S02",
+  "cl": "14-roster-builder",
+  "module": "Roster Builder",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Roster Builder",
+   "Look for the Help (?) button",
+   "Click the copy/paste instructions (?) icon, press Escape, then click outside the popup"
+  ],
+  "expected": "Standard page Help (?) like other modules; Escape and outside click close popups.",
+  "actual": "Only a 'View copy/paste instructions' icon; no page Help. The Copy/Paste Instructions popup stays open on Escape and outside click; only \u00d7 or Close work. The cell Note popup ('Note for <name>') also ignores Escape (outside click and x work). Shift Summary popup also ignores Escape (outside click works). Reset Custom Order confirm also ignores Escape. Confirm Live Roster Edit popup also ignores Escape.",
+  "shots": [
+   "rb_load",
+   "rb_cphelp"
+  ],
+  "cause": "Page has no help include; modal lacks Escape/outside-click handlers."
+ },
+ {
+  "id": "BUG-RB-002",
+  "title": "Roster Builder: Copy Live to Draft copies one shift at a time and takes about 6 minutes for one month",
+  "row": "RB-003",
+  "cl": "14-roster-builder",
+  "module": "Roster Builder",
+  "sev": "Medium",
+  "steps": [
+   "Settings and Tools > Roster Builder",
+   "Select Roster View: BETA TEST ONLY Draft",
+   "Bulk actions > Copy Live to Draft > Clear then Copy"
+  ],
+  "expected": "Copy finishes in a few seconds (one server call for the month).",
+  "actual": "An 'In Progress... Copying shift N of 1690 for <name>' dialog runs for about 6 minutes (10:41 to about 10:47 UTC on stresstest) and blocks the page. Closing the tab partway would leave a half-copied draft.",
+  "shots": [
+   "rb_copylive",
+   "rb_copied"
+  ],
+  "cause": "Client loops over every live shift and saves each with its own request instead of a bulk copy endpoint."
+ },
+ {
+  "id": "BUG-RB-003",
+  "title": "Roster Builder: copy/paste still works with violation checking ON",
+  "row": "RB-006",
+  "cl": "14-roster-builder",
+  "module": "Roster Builder",
+  "sev": "Medium",
+  "steps": [
+   "Settings and Tools > Roster Builder, select a draft",
+   "Turn the violations toggle ON (badge VIOLATIONS FOUND)",
+   "Click a cell with a shift, Ctrl+C",
+   "Click an empty cell, Ctrl+V"
+  ],
+  "expected": "Copy/paste is not allowed while violation checking is on (documented behaviour), with a message saying why.",
+  "actual": "'Copied 1 cell(s)' then 'Successfully pasted 1 shift(s)' - the shift is pasted with no warning, even onto a day that then shows a violation.",
+  "shots": [
+   "rb_copy_von",
+   "rb_paste_von"
+  ],
+  "cause": "rosterbuilder/index.js copy handler (around line 4528-4555) and paste never check violationsEnabled; only an empty selection is rejected."
+ },
+ {
+  "id": "BUG-RB-004",
+  "title": "Roster Builder: Rule Violations popup shows 'Monday, October 5' instead of the configured DD/MM/YYYY date",
+  "row": "RB-S04",
+  "cl": "14-roster-builder",
+  "module": "Roster Builder",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Roster Builder, select a draft",
+   "Turn the violations toggle ON",
+   "Click the warning triangle on a flagged shift (Aisha Johnston, 5 Oct)"
+  ],
+  "expected": "Date shown in the Time Zone setting format, e.g. Monday 05/10/2026.",
+  "actual": "'For Aisha Johnston on Monday, October 5:' - US long format, no year. Same issue as BUG-RV-003 in Roster Viewer.",
+  "shots": [
+   "rb_violation_click"
+  ],
+  "cause": "rosterbuilder/index.js line 5403 (and the note modal at 5247) uses toLocaleDateString(undefined, {weekday,month,day}) - browser locale, no year - instead of the shared Time Zone date formatter."
+ },
+ {
+  "id": "BUG-RB-005",
+  "title": "Roster Builder: every validation error throws a JS error instead of showing a message (e.g. Apply Shift Pattern with no shifts)",
+  "row": "RB-008",
+  "cl": "14-roster-builder",
+  "module": "Roster Builder",
+  "sev": "Medium",
+  "steps": [
+   "Settings and Tools > Roster Builder, select a draft",
+   "Click a person's name > Shift Summary > Apply Shift Pattern",
+   "Leave the pattern empty and click Apply"
+  ],
+  "expected": "Error popup 'Please add at least one shift to the pattern.' and the pattern popup stays open.",
+  "actual": "The pattern popup closes, no message appears, and the console shows 'Cannot read properties of undefined (reading 'overlay')'.",
+  "shots": [
+   "rb_pattern_empty"
+  ],
+  "cause": "openErrorModal() (rosterbuilder/index.js line 5057) hides elements.predictModal.overlay, but there is no predictModal in the elements map, so it throws before showing the error. Every openErrorModal call on the page is affected."
+ },
+ {
+  "id": "BUG-RB-006",
+  "title": "Roster Builder: at phone width the shift palette takes half the screen and the Draft Edit Mode banner covers the search box and palette",
+  "row": "RB-S05",
+  "cl": "14-roster-builder",
+  "module": "Roster Builder",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Roster Builder, select a draft",
+   "Resize the window to 390 px wide"
+  ],
+  "expected": "Grid usable, palette collapsible or below the grid, banner doesn't cover controls.",
+  "actual": "The roster grid gets only about 175 px (names column plus no visible days) while the palette fills the right half. The orange Draft Edit Mode banner sits on top of the search box and the first palette items. The violations toggle and Enable Live Edit are hidden. No page-level sideways scroll.",
+  "shots": [
+   "rb_mobile"
+  ],
+  "cause": "No narrow-screen layout for the builder: grid and palette stay side by side and the banner is absolutely positioned."
+ },
+ {
+  "id": "BUG-RB-007",
+  "title": "Roster Builder: Clear then Publish of a draft month with no shifts does not clear the live roster and shows no message",
+  "row": "RB-013",
+  "cl": "14-roster-builder",
+  "module": "Roster Builder",
+  "sev": "High",
+  "steps": [
+   "Settings and Tools > Roster Builder, pick a month that has a shift in the Live Roster (test used December 2027 with one BETA TEST ONLY Office Hours shift)",
+   "Select a draft that has no shifts for that month",
+   "Publish Month > Clear then Publish",
+   "Accept the browser confirm 'The draft ... has no shifts for December 2027. Publishing it will clear the live roster for this month. Do you want to continue?'",
+   "Switch to Live Roster (also after changing month and back)"
+  ],
+  "expected": "Live roster for the month is cleared and a 'published successfully' message shows.",
+  "actual": "No toast or message at all, and the live shift is still there after reloading the month. Publish Only (Merge) with one shift worked ('published to live roster successfully').",
+  "shots": [
+   "rb_publish_clear"
+  ],
+  "cause": "Suspected: publishDraft() (rosterbuilder/index.js around line 4139) hits an error in the clear/publish path, and the catch calls openErrorModal(), which itself throws (BUG-RB-005), so the failure is swallowed with no message. The 'draft has no shifts' path also uses a native confirm() instead of the app's popup."
+ },
+ {
+  "id": "BUG-TS-001",
+  "title": "Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing",
+  "row": "TS-S02",
+  "cl": "15-timesheets-leave",
+  "module": "Timesheets",
+  "sev": "Low",
+  "steps": [
+   "Administration > Settings and Tools > Timesheets",
+   "Look for the Help (?) button in the page header",
+   "Click a person > Timesheet Details > click (?)"
+  ],
+  "expected": "Standard Help (?) button opening the page help popup.",
+  "actual": "No Help button anywhere on the page. On Timesheet Details the (?) button (#helpBtn) is shown but clicking it opens nothing.",
+  "shots": [
+   "ts_load",
+   "ts_help2"
+  ],
+  "cause": "Timesheets template has no page-help block."
+ },
+ {
+  "id": "BUG-TS-002",
+  "title": "Timesheet Approval: status filter 'Unsigned' shows 'No personnel found' although everyone has unsigned days",
+  "row": "TS-001",
+  "cl": "15-timesheets-leave",
+  "module": "Timesheets",
+  "sev": "Medium",
+  "steps": [
+   "Administration > Settings and Tools > Timesheets (October 2026)",
+   "Note e.g. Aaron Foster Unsigned 10",
+   "Set the status filter to Unsigned"
+  ],
+  "expected": "Everyone with unsigned days is listed (110 people).",
+  "actual": "'No personnel found'. All Status lists 110 people, all with Unsigned counts above 0.",
+  "shots": [
+   "ts_unsigned"
+  ],
+  "cause": "filterPersonnel() in timesheets/index.js skips days with no timesheet_id ('if (!day.timesheet_id) return false') and then compares day.status to the filter value, but unsigned days have no timesheet record, so Unsigned can never match. The counts use other status names too ('draft'/'submitted'/'denied'), so Pending/Rejected may also never match."
+ },
+ {
+  "id": "BUG-TS-003",
+  "title": "Timesheet Approval list totals don't match Timesheet Details (Rostered Days and Duty Hours)",
+  "row": "TS-002",
+  "cl": "15-timesheets-leave",
+  "module": "Timesheets",
+  "sev": "Medium",
+  "steps": [
+   "Administration > Settings and Tools > Timesheets (October 2026)",
+   "Read Aisha Johnston's row",
+   "Click Aisha Johnston to open Timesheet Details"
+  ],
+  "expected": "Rostered Days and Duty Hours in the list match the details page.",
+  "actual": "List: 13 Rostered Days, 0.0h Duty Hours, 13 Unsigned. Details: 19 Rostered Days, 180 Duty Hours. Every person in the list shows 0.0h. The list's 13 seems to count only days up to today (21 Oct).",
+  "shots": [
+   "ts_load",
+   "ts_details"
+  ],
+  "cause": "List and details compute totals differently: the list appears to count rostered days up to today and duty hours only from saved timesheets."
+ },
+ {
+  "id": "BUG-TS-004",
+  "title": "Timesheet Details shows dates as 'Oct 5' and times with seconds (14:00:00)",
+  "row": "TS-S04",
+  "cl": "15-timesheets-leave",
+  "module": "Timesheets",
+  "sev": "Low",
+  "steps": [
+   "Timesheets > click a person > Timesheet Details",
+   "Look at the DATE and ROSTER columns"
+  ],
+  "expected": "Dates in the configured DD/MM/YYYY (05/10/2026 or 05/10), times as HH:MM.",
+  "actual": "Dates show 'Oct 5' (US month-day, no year) and roster times '14:00:00 02:00:00' with seconds.",
+  "shots": [
+   "ts_details"
+  ],
+  "cause": "Hard-coded month-day formatting in the timesheetdetails template instead of the Time Zone setting."
+ },
+ {
+  "id": "BUG-TS-005",
+  "title": "Timesheet Details: F&D and Roster Violation popups ignore Escape and show ISO dates in the title",
+  "row": "TS-007",
+  "cl": "15-timesheets-leave",
+  "module": "Timesheets",
+  "sev": "Low",
+  "steps": [
+   "Timesheets > Aisha Johnston (October 2026)",
+   "Click the F&D shield on Oct 5, press Escape",
+   "Click outside to close, then click the warning triangle on the Oct 7 roster shift, press Escape"
+  ],
+  "expected": "Escape closes the popups; title date in DD/MM/YYYY.",
+  "actual": "Both popups stay open on Escape (outside click closes them). Titles read 'Flight & Duty Analysis for 2026-10-05' and 'Roster Violation Analysis for 2026-10-07'.",
+  "shots": [
+   "ts_fd",
+   "ts_rviol"
+  ],
+  "cause": "timesheetdetails.js has no Escape handler for .active dialogs and puts the raw YYYY-MM-DD date into the title (same as BUG-PD-015)."
+ },
+ {
+  "id": "BUG-TS-006",
+  "title": "Leave Types: a validation error closes the Add Leave Type popup and throws away what you typed; the popup ignores Escape",
+  "row": "TS-010",
+  "cl": "15-timesheets-leave",
+  "module": "Leave Requests",
+  "sev": "Low",
+  "steps": [
+   "Timesheets > Leave Requests (beach icon) > Leave Types > Add Leave Type",
+   "Type a name, set Colour to ZZZZZZ, click Save",
+   "Click OK on the error"
+  ],
+  "expected": "Error is shown with the form still open and the entered values kept; Escape closes the popup.",
+  "actual": "The Add Leave Type popup closes, then 'Colour must be a 6 character hex value, e.g. #3B82F6.' is shown. After OK the form is gone and must be reopened and retyped. Same for an empty name. Escape does nothing on the Add Leave Type popup.",
+  "shots": [
+   "ts_ltype_badhex"
+  ],
+  "cause": "saveLeaveType() in timesheets/leaverequests.js calls hideTypeModal() before showErrorModal() for both validation errors."
+ },
+ {
+  "id": "BUG-FAD-001",
+  "title": "Flight and Duty has no page Help (?)",
+  "row": "FAD-S02",
+  "cl": "16-flight-and-duty",
+  "module": "Flight and Duty",
+  "sev": "Low",
+  "steps": [
+   "Flight Safety > Flight and Duty",
+   "Look for the (?) Help button in the page header"
+  ],
+  "expected": "A Help (?) button that opens the page help.",
+  "actual": "The header only has 'View as Date'; there is no Help button.",
+  "shots": [
+   "fad_load"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-FAD-002",
+  "title": "Flight and Duty popups (Flight Details, Duty Time Details, Roster Violations, Resolutions Required) ignore Escape",
+  "row": "FAD-S02",
+  "cl": "16-flight-and-duty",
+  "module": "Flight and Duty",
+  "sev": "Low",
+  "steps": [
+   "Flight Safety > Flight and Duty",
+   "Click Aisha Johnston's 11.0h flight time value",
+   "Press Escape"
+  ],
+  "expected": "Escape closes the popup.",
+  "actual": "The popup stays open. Outside click and Close/Ok work; drag-out keeps it open (correct).",
+  "shots": [
+   "fad_flights_popup",
+   "fad_roster_viol"
+  ],
+  "cause": "flightandduty/index.js has no keydown handler for #customModal; only the overlay click and Close button call closeModal()."
+ },
+ {
+  "id": "BUG-FAD-003",
+  "title": "Flight and Duty popups show dates as '16 Oct 2026' instead of the configured DD/MM/YYYY",
+  "row": "FAD-S04",
+  "cl": "16-flight-and-duty",
+  "module": "Flight and Duty",
+  "sev": "Low",
+  "steps": [
+   "Flight Safety > Flight and Duty",
+   "Click Aisha Johnston's 11.0h flight time value (flight #8795)",
+   "Click the Roster error icon on Aisha Johnston"
+  ],
+  "expected": "Dates as 16/10/2026 (Settings > Time Zone format, as used by the View as Date box).",
+  "actual": "Flight Details shows '16 Oct 2026'; Roster Violations shows '23 Oct 2026', '31 Oct 2026' and so on.",
+  "shots": [
+   "fad_flights_popup",
+   "fad_roster_viol"
+  ],
+  "cause": "Hard-coded toLocaleDateString('en-NZ', {day:'2-digit', month:'short', year:'numeric'}) in flightandduty/index.js instead of the Time Zone date format."
+ },
+ {
+  "id": "BUG-FAD-004",
+  "title": "Flight and Duty column headers are ambiguous: two '1 Days' and two '24 Hours' columns, and '1 Days' is ungrammatical",
+  "row": "FAD-002",
+  "cl": "16-flight-and-duty",
+  "module": "Flight and Duty",
+  "sev": "Low",
+  "steps": [
+   "Flight Safety > Flight and Duty",
+   "Scroll to the Pilots group and read the column headers"
+  ],
+  "expected": "Each FRMS rule column can be told apart (e.g. rule name or limit in the header) and singular periods read '1 Day'.",
+  "actual": "Flight Time: 24 Hours (10h), 1 Days (8h), 1 Days (8h), 7 Days (40h). Duty Time: 24 Hours (14h), 24 Hours (8h), 28 Days (180h). The two '1 Days' and the two '24 Hours' columns only differ by the small limit in brackets.",
+  "shots": [
+   "fad_pilots"
+  ],
+  "cause": "Header uses only the rule period ('<n> Days'/'<n> Hours') with no rule name and no singular form."
+ },
+ {
+  "id": "BUG-FAD-005",
+  "title": "Flight and Duty 'View as Date' defaults to the UTC date instead of the local date",
+  "row": "FAD-003",
+  "cl": "16-flight-and-duty",
+  "module": "Flight and Duty",
+  "sev": "Low",
+  "steps": [
+   "Do this when the local date differs from UTC (e.g. after 00:00 NZ time)",
+   "Flight Safety > Flight and Duty > View as Date"
+  ],
+  "expected": "Date box shows today's local date (22/10/2026 at Local 00:19 22/10/2026).",
+  "actual": "Date box shows 21/10/2026 (the UTC date); the hidden value is '2026-10-21 11:19:37', i.e. UTC time.",
+  "shots": [
+   "fad_viewdate"
+  ],
+  "cause": "The View as Date picker is initialised from the server/UTC time rather than the Settings > Time Zone local time."
+ },
+ {
+  "id": "BUG-NOT-001",
+  "title": "Notices has no page Help (?), and the Create New Notice popup ignores Escape",
+  "row": "NOT-S02",
+  "cl": "17-notices",
+  "module": "Notices",
+  "sev": "Low",
+  "steps": [
+   "Flight Safety > Notices",
+   "Look for the (?) Help button",
+   "Click New Notice, press Escape"
+  ],
+  "expected": "A Help (?) button; Escape closes the New Notice popup.",
+  "actual": "No Help button in the header. The Create New Notice popup stays open after Escape (x and Cancel work).",
+  "shots": [
+   "not_load",
+   "not_new"
+  ],
+  "cause": "notices/index.js has no Escape handler for #newNoticeModalOverlay."
+ },
+ {
+  "id": "BUG-NOT-002",
+  "title": "Notice Details: clicking a .txt attachment does nothing (no preview, no download)",
+  "row": "NOT-006",
+  "cl": "17-notices",
+  "module": "Notices",
+  "sev": "Medium",
+  "steps": [
+   "Flight Safety > Notices > open 'BETA TEST ONLY Notice' (#1189)",
+   "Click the attached file BETA_TEST_ONLY_notice.txt"
+  ],
+  "expected": "Preview popup (or download) for the attachment.",
+  "actual": "Nothing appears. The browser sends HEAD and GET to noticedetails_servefile&doc_id=453, but no preview, error or download is shown.",
+  "shots": [
+   "not_attach"
+  ],
+  "cause": "handleFilePreview() in notices/noticedetails.js treats any text/plain response that isn't 'Ok' as an error message (showErrorModal('File Access Error', text)), so a real .txt file's content is taken as an error and the preview never opens. Same pattern as BUG-PD-012."
+ },
+ {
+  "id": "BUG-NOT-003",
+  "title": "Settings and Tools hub: 'Notices' card has no links",
+  "row": "NOT-010",
+  "cl": "17-notices",
+  "module": "Notices",
+  "sev": "Low",
+  "steps": [
+   "Administration > Settings and Tools",
+   "Find the 'Notices' card"
+  ],
+  "expected": "Card links to a Notices setting, or no card at all.",
+  "actual": "The card says 'Manage system-wide notices and announcements.' but has no links or buttons. Every other card has at least one link.",
+  "shots": [
+   "not_hub"
+  ],
+  "cause": "Confirm whether this card is meant to be there."
+ },
+ {
+  "id": "BUG-REC-001",
+  "title": "Recency and Renewals overview has no page Help (?)",
+  "row": "REC-S02",
+  "cl": "18-recency",
+  "module": "Recency and Renewals",
+  "sev": "Low",
+  "steps": [
+   "Flight Safety > Recency and Renewals",
+   "Look for the (?) Help button"
+  ],
+  "expected": "A Help (?) button in the page header, like other modules.",
+  "actual": "No Help button. The header only has the page title.",
+  "shots": [
+   "rec_load"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-REC-002",
+  "title": "Recency and Renewals at phone width: the table is cut off, so Total Items and Actions are hidden",
+  "row": "REC-S05",
+  "cl": "18-recency",
+  "module": "Recency and Renewals",
+  "sev": "Low",
+  "steps": [
+   "Flight Safety > Recency and Renewals",
+   "Narrow the window to 390px"
+  ],
+  "expected": "Cards or a usable layout, with all columns reachable.",
+  "actual": "The table stays a table (423px wide inside a 303px card). The Total Items column is cut off and Actions (edit) can't be seen. There's no card view.",
+  "shots": [
+   "rec_mobile"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-SMS-001",
+  "title": "New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed",
+  "row": "SMS-004",
+  "cl": "19-safety-reports",
+  "module": "Safety Reports",
+  "sev": "Medium",
+  "steps": [
+   "Flight Safety > Safety Reports > New Report",
+   "Type a Subject",
+   "Click the (?) next to Confidential",
+   "Press Escape"
+  ],
+  "expected": "Escape closes only the help popup; the report form stays open with the Subject kept.",
+  "actual": "The Create New Safety Report form closes and the help popup stays open. Reopening New Report shows an empty Subject.",
+  "shots": [
+   "sms_esc_nested"
+  ],
+  "cause": "The global Escape handler in smsreports/index.js closes document.querySelector('.modal-overlay.active'), which is the first (outer) popup, not the top one."
+ },
+ {
+  "id": "BUG-SMS-002",
+  "title": "New Safety Report: Event Date/Time defaults to the UTC date and time, not local",
+  "row": "SMS-S04",
+  "cl": "19-safety-reports",
+  "module": "Safety Reports",
+  "sev": "Medium",
+  "steps": [
+   "At a time when UTC and local dates differ (e.g. local 00:37 22/10/2026, UTC 11:37 21/10/2026)",
+   "Flight Safety > Safety Reports > New Report",
+   "Look at Event Date/Time"
+  ],
+  "expected": "Defaults to the local date and time (22/10/2026 00:37), as set in Settings > Time Zone.",
+  "actual": "Defaults to 21/10/2026 11:37, the UTC date and time. A report saved without changing it is dated 13 hours early. Same issue as BUG-FS-001 and BUG-FAD-005.",
+  "shots": [
+   "sms_new_mobile"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-SMS-003",
+  "title": "Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice",
+  "row": "SMS-012",
+  "cl": "19-safety-reports",
+  "module": "Safety Reports",
+  "sev": "Low",
+  "steps": [
+   "Flight Safety > Safety Reports > open report #2060",
+   "Final Report tab",
+   "Open the Final Risk Likelihood or Consequence dropdown"
+  ],
+  "expected": "Each option once (Almost Certain, Likely, Possible, Unlikely, Rare).",
+  "actual": "Each option appears twice: Almost Certain, Likely, Possible, Unlikely, Rare, Almost Certain, Likely, ... Same for Consequence.",
+  "shots": [
+   "sms_final_tab"
+  ],
+  "cause": "smsreportdetails.js calls setupFinalRiskAssessment() twice (lines ~2828 and ~3557) and it appendChild()s the options without clearing the selects first."
+ },
+ {
+  "id": "BUG-SMS-004",
+  "title": "Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register",
+  "row": "SMS-013",
+  "cl": "19-safety-reports",
+  "module": "Safety Reports / Hazard Register",
+  "sev": "Low",
+  "steps": [
+   "Flight Safety > Safety Reports > open report #2060 > Final Report tab",
+   "Add to Hazard Register: Hazard 'BETA TEST ONLY hazard', Type Hazard, Goal Mitigate, Controls, Responsible Aisha Pearce",
+   "Save Changes",
+   "Flight Safety > Hazard Register"
+  ],
+  "expected": "Goal column shows Mitigate, the value picked.",
+  "actual": "Goal column shows 'Minimize'. The two pages use different names for the same goal.",
+  "shots": [
+   "sms_hazard_filled",
+   "haz_load"
+  ],
+  "cause": "templates2/hazardregister/index.js maps goal code 'M' to 'Minimize' (line ~584) while the Safety Report Final Report dropdown calls it 'Mitigate'."
+ },
+ {
+  "id": "BUG-HAZ-001",
+  "title": "Hazard Register details: Hazard Type always shows '--'",
+  "row": "HAZ-003",
+  "cl": "20-hazard-register",
+  "module": "Hazard Register",
+  "sev": "Medium",
+  "steps": [
+   "Flight Safety > Safety Reports > report #2060 > Final Report: Add to Hazard Register, Type = Hazard (later Risk), Save Changes",
+   "Flight Safety > Hazard Register > click #2060",
+   "Look at Hazard Details > HAZARD TYPE"
+  ],
+  "expected": "Shows the type picked on the safety report (Hazard / Risk).",
+  "actual": "Shows '--'.",
+  "shots": [
+   "haz_details"
+  ],
+  "cause": "hazarddetails.js getHazardTypeText() only knows the codes E/S/I/C/P (Eliminate, Substitute, Isolate, Control, PPE). The Safety Report form saves Hazard/Risk, so every type falls back to '--'."
+ },
+ {
+  "id": "BUG-HAZ-002",
+  "title": "Hazard Register details: Final Risk Assessment never shows the saved final risk",
+  "row": "HAZ-003",
+  "cl": "20-hazard-register",
+  "module": "Hazard Register",
+  "sev": "Medium",
+  "steps": [
+   "Safety report #2060: Final Report tab, Final Risk Unlikely x Minor, Save Changes (saved: reloading the report shows Unlikely/Minor)",
+   "Flight Safety > Hazard Register > #2060 > Risk Assessment tab"
+  ],
+  "expected": "Final Risk & Review shows Likelihood Unlikely, Consequence Minor and the resulting risk level. The list's Risk column should then use the final risk too.",
+  "actual": "Final Risk shows Likelihood '--', Consequence '--', risk '--'. Only the Closure Description is filled. The list Risk column shows the initial risk (Low).",
+  "shots": [
+   "haz_tab_risk"
+  ],
+  "cause": "hazarddetails.js (~line 221) only shows the card and the closure description. Its comment says 'You would need to fetch the final risk details from the API'; that was never done."
+ },
+ {
+  "id": "BUG-HAZ-003",
+  "title": "Hazard Register has no way to create a hazard entry",
+  "row": "HAZ-002",
+  "cl": "20-hazard-register",
+  "module": "Hazard Register",
+  "sev": "Low",
+  "steps": [
+   "Flight Safety > Hazard Register",
+   "Look for a New / Create button"
+  ],
+  "expected": "A Create New Hazard button that makes the hazard entry and its safety report (as the checklist describes).",
+  "actual": "The only buttons are Help and the search clear. Hazards can only be added from a Safety Report's Final Report tab.",
+  "shots": [
+   "haz_load"
+  ],
+  "cause": "hazardregister/index.js still has handleAddReport() and wires #addReportBtn plus the New Report / Confidential / Anonymous popups (copied from Safety Reports), but the page has no #addReportBtn."
+ },
+ {
+  "id": "BUG-FB-001",
+  "title": "File Browser has no page Help (?)",
+  "row": "FB-S02",
+  "cl": "22-file-browser",
+  "module": "File Browser",
+  "sev": "Low",
+  "steps": [
+   "Administration > File Browser",
+   "Look for the Help (?) button in the header"
+  ],
+  "expected": "A Help (?) button like other modules (Safety Reports, Hazard Register, Settings and Tools).",
+  "actual": "No Help button. The header only has search, Back, Make Folder and Upload File.",
+  "shots": [
+   "fb_load"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-FB-002",
+  "title": "File Browser shows Date Uploaded as 'Oct 22, 2026' instead of DD/MM/YYYY",
+  "row": "FB-S04",
+  "cl": "22-file-browser",
+  "module": "File Browser",
+  "sev": "Low",
+  "steps": [
+   "Administration > File Browser",
+   "Open SMS Reports > 2026 > October > SMS Report 2060, or search 'BETA_TEST_ONLY'",
+   "Look at Date Uploaded"
+  ],
+  "expected": "22/10/2026, as set in Settings > Time Zone.",
+  "actual": "Oct 22, 2026",
+  "shots": [
+   "fb_search"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-FB-003",
+  "title": "File Browser: clicking a .txt file shows 'File Access Error' with the file's own text",
+  "row": "FB-006",
+  "cl": "22-file-browser",
+  "module": "File Browser",
+  "sev": "Medium",
+  "steps": [
+   "Administration > File Browser",
+   "Search 'BETA_TEST_ONLY'",
+   "Click BETA_TEST_ONLY_notice-GCKLCWJK.txt"
+  ],
+  "expected": "The file opens in the preview (or downloads).",
+  "actual": "An error popup titled 'File Access Error' shows the file content ('BETA TEST ONLY notice attachment - please ignore'). No preview opens. Same cause as BUG-NOT-002 and BUG-PD-012.",
+  "shots": [
+   "fb_preview_txt"
+  ],
+  "cause": "filebrowser/index.js handleFilePreview(): any text/plain response that is not 'Ok' is treated as an error message, so every real .txt file is shown as an error."
+ },
+ {
+  "id": "BUG-FB-004",
+  "title": "File Browser: Escape doesn't close the Create New Folder or Configure File popups",
+  "row": "FB-S03",
+  "cl": "22-file-browser",
+  "module": "File Browser",
+  "sev": "Low",
+  "steps": [
+   "Administration > File Browser > Make Folder (create_new_folder)",
+   "Type a name",
+   "Press Escape"
+  ],
+  "expected": "The popup closes (as on Safety Reports, Hazard Register and Settings and Tools).",
+  "actual": "Both popups stay open on Escape (Create New Folder, Configure File).",
+  "shots": [
+   "fb_folder_created"
+  ],
+  "cause": "filebrowser/index.js has no keydown/Escape handler."
+ },
+ {
+  "id": "BUG-FB-005",
+  "title": "File Browser: Read/Write Access groups are not kept after Update Document",
+  "row": "FB-007",
+  "cl": "22-file-browser",
+  "module": "File Browser",
+  "sev": "Medium",
+  "steps": [
+   "Administration > File Browser, open edit (Configure File) on a file",
+   "Tick Read Access 'BETA TEST ONLY Group'",
+   "Update Document",
+   "Open edit on the same file again"
+  ],
+  "expected": "BETA TEST ONLY Group is still ticked and the file is limited to that group.",
+  "actual": "No group is ticked. The request sent read_access with the group (id 103), but the popup shows nothing ticked when reopened. Moving the file to Root (Parent Folder) did save.",
+  "shots": [
+   "fb_config_reopen"
+  ],
+  "cause": "Either the server does not store read_access/write_access, or handleOpenConfigModal() does not tick the saved groups. Needs a server-side check."
+ },
+ {
+  "id": "BUG-FB-006",
+  "title": "File Browser: deleting a folder fails with 'Invalid Action: filebrowser_deletefolder'",
+  "row": "FB-008",
+  "cl": "22-file-browser",
+  "module": "File Browser",
+  "sev": "Medium",
+  "steps": [
+   "Administration > File Browser > Make Folder 'BETA TEST ONLY Folder'",
+   "Click edit on the folder, then Delete",
+   "Confirm"
+  ],
+  "expected": "The folder is deleted.",
+  "actual": "Error popup 'Delete Failed: Invalid Action: filebrowser_deletefolder' and the folder stays. The confirm popup also says 'delete this file' for a folder.",
+  "shots": [
+   "fb_after_cleanup"
+  ],
+  "cause": "filebrowser/index.js performDeleteFolder() posts action filebrowser_deletefolder, which the server does not handle."
+ },
+ {
+  "id": "BUG-FB-007",
+  "title": "File Browser on a phone: table is cut off, edit buttons are off-screen",
+  "row": "FB-S05",
+  "cl": "22-file-browser",
+  "module": "File Browser",
+  "sev": "Low",
+  "steps": [
+   "Open Administration > File Browser on a 390px wide screen"
+  ],
+  "expected": "Cards (or a layout that fits), like Safety Reports and Hazard Register on a phone.",
+  "actual": "The table stays 585px wide in a 390px screen. Revision, Uploader and the edit buttons are hidden; you have to scroll sideways to reach them.",
+  "shots": [
+   "fb_mobile"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-FBLD-001",
+  "title": "Form Builder: popups ignore Escape and outside clicks (Help, Create New Form Template, Edit Options)",
+  "row": "FBLD-S02",
+  "cl": "23-form-builder",
+  "module": "Form Builder",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Form Builder",
+   "Click Help (?)",
+   "Press Escape, then click outside the popup"
+  ],
+  "expected": "The popup closes, as on Settings and Tools, Safety Reports and Hazard Register.",
+  "actual": "Help, Create New Form Template and Edit Dropdown Options stay open on Escape and outside clicks. Only x, Close or Cancel close them. Same as earlier FORM-20.",
+  "shots": [
+   "fbld_help"
+  ],
+  "cause": "formbuilder/index.js has no Escape handler and no overlay click handler; closeModal() only runs on [data-close] buttons."
+ },
+ {
+  "id": "BUG-FBLD-002",
+  "title": "Form Builder View Form: Date and Time widgets default to UTC, not local time",
+  "row": "FBLD-S04",
+  "cl": "23-form-builder",
+  "module": "Form Builder",
+  "sev": "Medium",
+  "steps": [
+   "Settings and Tools > Form Builder, open a template with Date and Time widgets",
+   "Click View Form",
+   "Compare Date/Time with the header Local clock"
+  ],
+  "expected": "Local date and time: 22/10/2026 01:07.",
+  "actual": "21/10/2026 and 12:07, which is the UTC date and time. Same as earlier FORM-06.",
+  "shots": [
+   "fbld_view_default"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-FBLD-003",
+  "title": "Form Builder: table conditions do nothing in View Form",
+  "row": "FBLD-005",
+  "cl": "23-form-builder",
+  "module": "Form Builder",
+  "sev": "Medium",
+  "steps": [
+   "Settings and Tools > Form Builder, template with a Dropdown (BETA A/B/C) in Table 1",
+   "Add Table 2, click its C (Conditions)",
+   "IF 'Choose an option' is 'BETA A' THEN show this table > Add > Save Conditions > Save Form Template",
+   "View Form, pick BETA B, then BETA A"
+  ],
+  "expected": "Table 2 is hidden until BETA A is picked.",
+  "actual": "Table 2 is always shown (with nothing picked, with BETA A and with BETA B). No console errors.",
+  "shots": [
+   "fbld_cond",
+   "fbld_view_cond_fail"
+  ],
+  "cause": "formbuilder/index.js render script looks up formContainer.querySelector('[data-table-id=...]') and [data-widget-id=...], but the rendered preview has no elements with data-table-id or data-widget-id, so every condition returns early. Related to FORM-17/FORM-18."
+ },
+ {
+  "id": "BUG-FBLD-004",
+  "title": "Form Builder on a phone: page is wider than the screen and the Toolbox covers the form",
+  "row": "FBLD-S05",
+  "cl": "23-form-builder",
+  "module": "Form Builder",
+  "sev": "Low",
+  "steps": [
+   "Open Settings and Tools > Form Builder on a 390px wide screen"
+  ],
+  "expected": "A usable layout, or a clear 'use a larger screen' message.",
+  "actual": "The page is 644px wide in a 390px screen and scrolls sideways. The Toolbox panel opens over the form. The header, Form Template, Allow Confidential and Auto-Attach are cut off.",
+  "shots": [
+   "fbld_mobile"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-FBR-001",
+  "title": "Form Browser has no page Help (?)",
+  "row": "FBR-S02",
+  "cl": "24-form-browser",
+  "module": "Form Browser",
+  "sev": "Low",
+  "steps": [
+   "Administration > Form Browser",
+   "Look for the Help (?) button in the header"
+  ],
+  "expected": "A Help (?) button like other modules.",
+  "actual": "No Help button. The header only has search and Back.",
+  "shots": [
+   "fbr_load"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-FBR-002",
+  "title": "Form Browser and Form Viewer dates ignore the date setting ('Oct 21, 2026', '10:24 PM')",
+  "row": "FBR-S04",
+  "cl": "24-form-browser",
+  "module": "Form Browser",
+  "sev": "Low",
+  "steps": [
+   "Administration > Form Browser",
+   "Open Flights > 2026 > October > Flight 42903 - 2026-10-21",
+   "Look at Created"
+  ],
+  "expected": "21/10/2026, as set in Settings > Time Zone.",
+  "actual": "List: 'Oct 21, 2026'. Form Viewer header: 'Oct 21, 2026 10:24 PM' (12-hour clock). Same as earlier FORM-08.",
+  "shots": [
+   "fbr_42903",
+   "fbr_viewer"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-FBR-003",
+  "title": "Form Browser on a phone: table is cut off, Created and Created By are off-screen",
+  "row": "FBR-S05",
+  "cl": "24-form-browser",
+  "module": "Form Browser",
+  "sev": "Low",
+  "steps": [
+   "Open Administration > Form Browser on a 390px wide screen",
+   "Search 'QA Post'"
+  ],
+  "expected": "Cards (or a layout that fits), like Safety Reports on a phone.",
+  "actual": "The table keeps its desktop width and scrolls sideways. Created and Created By are hidden off to the right.",
+  "shots": [
+   "fbr_mobile"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-TT-001",
+  "title": "Task Tracker: Escape doesn't close Help or Add Project",
+  "row": "TT-S02",
+  "cl": "25-task-tracker",
+  "module": "Task Tracker",
+  "sev": "Low",
+  "steps": [
+   "Administration > Task Tracker",
+   "Click the (?) Help icon, press Escape",
+   "Click Add Project, press Escape"
+  ],
+  "expected": "Escape closes the popup, like x, Got it! and clicking outside do.",
+  "actual": "Both popups stay open. tasktracker/index.js has no Escape/keydown handler for the modal.",
+  "shots": [
+   "tt_help"
+  ],
+  "cause": "No keydown listener in tasktracker/index.js closeModal/openModal."
+ },
+ {
+  "id": "BUG-TT-002",
+  "title": "Task Tracker dates ignore the date setting ('Dec 31', '2026-10-21')",
+  "row": "TT-S04",
+  "cl": "25-task-tracker",
+  "module": "Task Tracker",
+  "sev": "Low",
+  "steps": [
+   "Administration > Task Tracker > Add Project with Due Date 31/12/2026",
+   "Look at the Due Date and Created columns"
+  ],
+  "expected": "31/12/2026 and 21/10/2026, as set in Settings > Time Zone.",
+  "actual": "Due Date shows 'Dec 31' (no year), Created shows '2026-10-21'. Created is also the UTC date; local was 22/10/2026.",
+  "shots": [
+   "tt_project_created"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-TT-003",
+  "title": "Task Tracker on a phone: feature cards are pushed right and cut off",
+  "row": "TT-S05",
+  "cl": "25-task-tracker",
+  "module": "Task Tracker",
+  "sev": "Low",
+  "steps": [
+   "Open Administration > Task Tracker on a 390px wide screen",
+   "Open a project with a component and features"
+  ],
+  "expected": "Feature cards fit the screen width.",
+  "actual": "The feature card is indented about 90px and runs off the right edge; the feature progress % and task actions are cut off.",
+  "shots": [
+   "tt_mobile"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-RPT-001",
+  "title": "Reports has no page Help (?), and Escape doesn't close New Report Template",
+  "row": "RPT-S02",
+  "cl": "26-reports",
+  "module": "Reports",
+  "sev": "Low",
+  "steps": [
+   "Administration > Reports",
+   "Look for the Help (?) button",
+   "Click Add Report Template, press Escape"
+  ],
+  "expected": "A Help (?) button like other modules; Escape closes the popup.",
+  "actual": "No Help button on the page. The New Report Template popup stays open on Escape.",
+  "shots": [
+   "rpt_load",
+   "rpt_wizard1"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-RPT-002",
+  "title": "Reports Export CSV writes dates as '2026-10-16 06:00:00' instead of the org date format",
+  "row": "RPT-009",
+  "cl": "26-reports",
+  "module": "Reports",
+  "sev": "Low",
+  "steps": [
+   "Administration > Reports > Report Results",
+   "Open 'BETA TEST ONLY Report' (Flights, Scheduled Start Time column)",
+   "Click Export CSV and open the file"
+  ],
+  "expected": "Dates as on screen and in Settings > Time Zone: 16/10/2026 06:00.",
+  "actual": "CSV has '2026-10-16 06:00:00' (ISO with seconds). The screen shows 16/10/2026 06:00.",
+  "shots": [
+   "rpt_result_open"
+  ],
+  "cause": "exportReportCSV() writes the raw value instead of the formatted one."
+ },
+ {
+  "id": "BUG-RPT-003",
+  "title": "Reports tables overlap on a phone: column text is drawn on top of other columns",
+  "row": "RPT-S05",
+  "cl": "26-reports",
+  "module": "Reports",
+  "sev": "Medium",
+  "steps": [
+   "Open Administration > Reports at 390px wide (phone)",
+   "Look at the Report Templates list"
+  ],
+  "expected": "Readable rows (card layout or stacked columns), no overlapping text.",
+  "actual": "Template Name, Data Source, Columns, Filters, Last Run and Run By text run into each other (e.g. 'QA SMS Filter 107SMS Reports' over '16/10/2026 16:07'); Actions are cut off and need horizontal scroll.",
+  "shots": [
+   "rpt_mobile"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-SUP-001",
+  "title": "Support has no page Help (?); Escape doesn't close New Ticket, but a click outside closes it and wipes everything typed",
+  "row": "SUP-S02",
+  "cl": "27-support",
+  "module": "Support",
+  "sev": "Medium",
+  "steps": [
+   "Administration > Support",
+   "Look for a Help (?) button",
+   "Click New Ticket, type a Subject and Bug Report fields",
+   "Press Escape",
+   "Click once on the dark area outside the popup",
+   "Click New Ticket again"
+  ],
+  "expected": "Help (?) exists. Escape closes the popup (or nothing loses data). An outside click either does nothing or asks before throwing away typed text.",
+  "actual": "No Help button. Escape does nothing. One outside click closes New Ticket, and reopening it shows every field empty (openNewTicketModal clears them), so the typed ticket is lost with no warning.",
+  "shots": [
+   "sup_load",
+   "sup_filled"
+  ],
+  "cause": "No keydown handler; overlay click calls closeNewTicketModal without a dirty check; openNewTicketModal resets all fields."
+ },
+ {
+  "id": "BUG-SUP-002",
+  "title": "Support New Ticket: Ctrl+V doesn't paste a screenshot, though the error message tells you to use Ctrl+V",
+  "row": "SUP-003",
+  "cl": "27-support",
+  "module": "Support",
+  "sev": "Low",
+  "steps": [
+   "Administration > Support > New Ticket",
+   "Copy a screenshot, click in the Description box and press Ctrl+V",
+   "Also click Paste Screenshot without clipboard permission"
+  ],
+  "expected": "Ctrl+V adds the screenshot to Attachments (as the clipboard error message says).",
+  "actual": "Nothing is attached on Ctrl+V. The page has no paste listener; only the Paste Screenshot button (navigator.clipboard.read) works, and its error says 'use Ctrl+V to paste'.",
+  "shots": [
+   "sup_paste_ctrlv"
+  ],
+  "cause": "sup_index.js has no 'paste' event handler."
+ },
+ {
+  "id": "BUG-SUP-003",
+  "title": "Support ticket: clicking a .txt attachment shows an 'Error' popup containing the file's text",
+  "row": "SUP-005",
+  "cl": "27-support",
+  "module": "Support",
+  "sev": "Low",
+  "steps": [
+   "Administration > Support > open ticket #8",
+   "Click the attachment BETA_TEST_ONLY_sup.txt"
+  ],
+  "expected": "File preview shows the text, or the file downloads.",
+  "actual": "An 'Error' popup opens whose message is the file content ('BETA TEST ONLY attachment'); the File Preview popup behind it is blocked until OK is clicked. Same pattern as BUG-FB-003.",
+  "shots": [
+   "sup_file_error"
+  ],
+  "cause": "Text preview response is passed to showErrorModal."
+ },
+ {
+  "id": "BUG-CHAT-001",
+  "title": "Chat has no page Help (?); Escape doesn't close Create Channel; empty name does nothing with no message",
+  "row": "CHAT-S02",
+  "cl": "28-chat",
+  "module": "Chat",
+  "sev": "Low",
+  "steps": [
+   "Click the header chat icon",
+   "Look for a Help (?) button",
+   "Click + (Create channel), click Create with no name",
+   "Press Escape"
+  ],
+  "expected": "Help (?) exists; empty name shows a message; Escape closes the popup.",
+  "actual": "No Help button. Create with an empty name does nothing and shows nothing (external CHAT-05). Escape leaves the popup open (external CHAT-06); outside click now closes it.",
+  "shots": [
+   "chat_load",
+   "chat_create"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-CHAT-002",
+  "title": "Chat times show 12-hour '01:32 AM' and date separators 'Thursday, October 22, 2026' instead of the org format",
+  "row": "CHAT-S04",
+  "cl": "28-chat",
+  "module": "Chat",
+  "sev": "Low",
+  "steps": [
+   "Settings > Time Zone has 24-hour HH:mm",
+   "Header chat icon > #beta-test-only-channel",
+   "Send a message and read its time"
+  ],
+  "expected": "01:32 (HH:mm) and 22/10/2026 (DD/MM/YYYY), local time.",
+  "actual": "Message time '01:32 AM' (12-hour, external CHAT-01 still present) and day separator 'Thursday, October 22, 2026'.",
+  "shots": [
+   "chat_msg",
+   "chat_mobile"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-EXM-001",
+  "title": "Exam Builder/Editor have no page Help (?); Escape doesn't close Add Group, Add Exam or Choose Question Type",
+  "row": "EXM-S02",
+  "cl": "29-exams",
+  "module": "Exams",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Training > Exam Builder",
+   "Look for a Help (?) button",
+   "Click Add Group, press Escape"
+  ],
+  "expected": "Help (?) like other modules; Escape closes the popup.",
+  "actual": "No page Help (the help_outline icons on each exam row have no title or action). Add Group / Add Exam stay open on Escape; only outside click, x or Cancel close them. Escape is only handled in the confirm popups. In the Exam Editor, Escape also doesn't close Choose Question Type.",
+  "shots": [
+   "exm_load",
+   "exm_addgroup"
+  ],
+  "cause": "Only showConfirm/showAlert add an Escape listener; the global keydown handles Enter only."
+ },
+ {
+  "id": "BUG-EXM-002",
+  "title": "Exam dates ignore the org format: 'Oct 22, 2026' in Exam Builder and '10/22/2026 01:46 AM' in Exam Instances batches",
+  "row": "EXM-S04",
+  "cl": "29-exams",
+  "module": "Exams",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Training > Exam Builder",
+   "Read the Created column (e.g. new 'BETA TEST ONLY Exam')"
+  ],
+  "expected": "22/10/2026 (DD/MM/YYYY as set in Settings > Time Zone).",
+  "actual": "'Oct 22, 2026' (existing exams show 'May 11, 2026'). Exam Instances > Browse Batches shows '10/22/2026 01:46 AM' (US MM/DD, 12-hour).",
+  "shots": [
+   "exm_addexam",
+   "exi_batch"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-EXM-003",
+  "title": "Exam viewer 'Read Only' still shows Add Question, Add Group and Save Question",
+  "row": "EXM-004",
+  "cl": "29-exams",
+  "module": "Exams",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Training > Exam Builder",
+   "On a MASTER exam click View (Read Only)",
+   "Open any question"
+  ],
+  "expected": "Read-only view hides or disables Add Question, Add Group, Save Question and the option editors.",
+  "actual": "Banner says 'Viewing Master exam (Rev 2) - Read Only' but Add Question, Add Group and each question's Save Question / Add Image / Add Option are shown (external FUNC-05 still present).",
+  "shots": [
+   "exm_readonly"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-EXM-004",
+  "title": "Exam Builder has no way to link or unlink user groups on an exam group",
+  "row": "EXM-003",
+  "cl": "29-exams",
+  "module": "Exams",
+  "sev": "Medium",
+  "steps": [
+   "Settings and Tools > Training > Exam Builder (Service Account, permission A)",
+   "Look at an exam group header (e.g. 'BETA TEST ONLY Exams' or 'Aviation Theory')"
+  ],
+  "expected": "'User Groups:' badges and an 'Add User Group' button on each exam group, with a remove x on each badge.",
+  "actual": "The group header only has Add Exam and Delete Group. No User Groups row or Add User Group button is shown for any group.",
+  "shots": [
+   "exm_load",
+   "exm_mobile"
+  ],
+  "cause": "createUsergroupBadges() (exambuilder/index.js line 291) builds the User Groups row and Add User Group button but is never called."
+ },
+ {
+  "id": "BUG-EXM-005",
+  "title": "Exam Builder on a phone: exam table columns and action icons overlap",
+  "row": "EXM-S05",
+  "cl": "29-exams",
+  "module": "Exams",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Training > Exam Builder",
+   "Resize to 390px wide"
+  ],
+  "expected": "Exams shown as cards or a readable table with tappable actions.",
+  "actual": "The table is squeezed: Questions/Revision headers overlap, the MASTER/Rev pills sit under the action icons, and the icons overlap the Created date.",
+  "shots": [
+   "exm_mobile"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-EXM-006",
+  "module": "Exams",
+  "title": "Taking an exam: Multi-Response checkboxes toggle twice, so clicking the box does nothing and the saved answer can differ from what is ticked",
+  "steps": [
+   "Assign an exam with a Multi-Response question to a user.",
+   "Log in as that user > My Account > Exams > click the exam.",
+   "On the Multi-Response question click directly on a checkbox, then on an option's text."
+  ],
+  "expected": "Each click ticks or unticks the option once, and the answer saved is what is ticked on screen.",
+  "actual": "Clicking the checkbox square leaves it unchanged. renderMultiResponse() in personneldetails/index.js adds a click handler on the option row that flips checkbox.checked and the answers list, so a click on the box (native toggle + row handler) cancels out, and a click on the label fires the row handler twice. In my run the review showed 'Your Answer: BETA 1' while BETA 0 was the one I had just ticked, and the question was marked Incorrect.",
+  "shots": [
+   "exm_low_q1",
+   "exm_low_after_click"
+  ],
+  "sev": "High",
+  "row": "EXM-010",
+  "cl": "29-exams",
+  "cause": ""
+ },
+ {
+  "id": "BUG-EXM-007",
+  "module": "Exams",
+  "title": "Exam Instances batch: deleting a person's instance shows success but the row stays until the page is reloaded",
+  "steps": [
+   "Settings and Tools > Exam Instances > Browse Batches > open a batch.",
+   "Add a person (row appears).",
+   "Click the bin on that person > OK."
+  ],
+  "expected": "The row is removed and the batch totals update.",
+  "actual": "Toast 'Exam instance deleted successfully' but the row and the totals (2 TOTAL, 50% complete) stay. After leaving and reopening Exam Instances the row is gone. Adding a person does refresh the list.",
+  "shots": [
+   "exi_batch_deleted",
+   "exi_batch_fresh2"
+  ],
+  "sev": "Low",
+  "row": "EXM-009",
+  "cl": "29-exams",
+  "cause": ""
+ },
+ {
+  "id": "BUG-EXM-008",
+  "module": "Exams",
+  "title": "Exam Builder: deleting an exam or exam group that has instances fails silently (error only in the console), and graded instances can't be removed",
+  "steps": [
+   "Assign an exam and let the person submit it.",
+   "Exam Builder > exam row > Delete > Confirm.",
+   "Group header > Delete Group > Confirm."
+  ],
+  "expected": "A clear message saying why it can't be deleted, plus a way to archive the exam or remove its instances.",
+  "actual": "The confirm closes, no toast or message, and the exam/group stay. Console only: 'Cannot delete exam: 1 exam instance(s) exist. Exams with instances cannot be deleted.' and the same for the group. Exam Instances only lets you delete unstarted instances, so a test exam that has been taken can never be removed.",
+  "shots": [
+   "exm_cleanup_after"
+  ],
+  "sev": "Medium",
+  "row": "EXM-001",
+  "cl": "29-exams",
+  "cause": ""
+ },
+ {
+  "id": "BUG-SFS-001",
+  "title": "Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted",
+  "row": "SFS-003",
+  "cl": "31-settings-flightschedule",
+  "module": "Settings: Flight Schedule",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Operations > Flight Schedule",
+   "Click + on Schedule Slot Duration repeatedly",
+   "Type 200 in the box"
+  ],
+  "expected": "Value stays between 5 and 120 (the input has min 5, max 120, step 5), and + is disabled at 120.",
+  "actual": "+ keeps going (135 after 26 clicks from 5) and 200 typed in stays 200. \u2212 stops at 5 correctly and typing 7 snaps to 5. handleUpdate() sends the value without checking it, so an out-of-range slot size can be saved.",
+  "shots": [
+   "sfs_dirty"
+  ],
+  "cause": "handleNumberInput() caps the decrement with Math.max(5, ...) but has no Math.min(120, ...) on increment; handleUpdate() does parseInt only."
+ },
+ {
+  "id": "BUG-SFS-002",
+  "title": "Changing Schedule Start Time saves a full date-time, and the setting then shows NaN:NaN",
+  "row": "SFS-004",
+  "cl": "31-settings-flightschedule",
+  "module": "Settings: Flight Schedule",
+  "sev": "High",
+  "steps": [
+   "Settings and Tools > Operations > Flight Schedule.",
+   "In Schedule Start Time, type 06:00 and press Tab.",
+   "Click Update Changes (\"Settings updated successfully\").",
+   "Reload the page."
+  ],
+  "expected": "Start time is saved as 06:00 and still shows 06:00 after reload.",
+  "actual": "The page saves the picker's full value (\"2026-10-22 06:00:00\"). On reload it splits that on \":\" to get the hours, gets NaN, and the box shows \"NaN:NaN\". The server then stores \"NaN-NaN-NaN NaN:NaN:NaN\". After that, typing a new time does not enable Update Changes, so a user can't fix it from the UI.",
+  "shots": [
+   "sfs_nan.png"
+  ],
+  "cause": "templates2/settings_flightschedule/index.js: the change listener does state.scheduleStartTime = e.target.value, but datetimepicker.js writes \"YYYY-MM-DD HH:MM:SS\" to .dtp-hidden-input. init then does state.scheduleStartTime.split(\":\").map(Number). Fix: keep only HH:MM (e.g. value.slice(11,16)) and check it is valid before saving."
+ }
+]

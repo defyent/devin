@@ -6,7 +6,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 
 | Severity | Count |
 |---|---|
-| High | 5 |
+| High | 6 |
 | Medium | 46 |
 | Low | 70 |
 
@@ -17,6 +17,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PD-006](bugs/BUG-PD-006.md) | High | Personnel Details | Personnel Details > Recency and Renewals: action buttons are hidden (Add Item, Table/Card view, renewal Save / Complete Renewal / Cancel) and Group by / Order by are disabled |
 | [BUG-PD-011](bugs/BUG-PD-011.md) | High | Personnel Details | Personnel Details > Security: Change Password always fails with 'Invalid Action: change_password' |
 | [BUG-RB-007](bugs/BUG-RB-007.md) | High | Roster Builder | Roster Builder: Clear then Publish of a draft month with no shifts does not clear the live roster and shows no message |
+| [BUG-SFS-002](bugs/BUG-SFS-002.md) | High | Settings: Flight Schedule | Changing Schedule Start Time saves a full date-time, and the setting then shows NaN:NaN |
 | [BUG-AF-002](bugs/BUG-AF-002.md) | Medium | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them |
 | [BUG-AM-001](bugs/BUG-AM-001.md) | Medium | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) |
 | [BUG-DFR-002](bugs/BUG-DFR-002.md) | Medium | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied |
@@ -226,6 +227,24 @@ Actual: No toast or message at all, and the live shift is still there after relo
 Suspected cause: Suspected: publishDraft() (rosterbuilder/index.js around line 4139) hits an error in the clear/publish path, and the catch calls openErrorModal(), which itself throws (BUG-RB-005), so the failure is swallowed with no message. The 'draft has no shifts' path also uses a native confirm() instead of the app's popup.
 
 ![BUG-RB-007-1](bugs/screenshots/BUG-RB-007-1.png)
+
+### BUG-SFS-002: Changing Schedule Start Time saves a full date-time, and the setting then shows NaN:NaN
+
+Severity: High | Module: Settings: Flight Schedule | Check: SFS-004 ([31-settings-flightschedule](checklists/31-settings-flightschedule.md))
+
+Steps:
+1. Settings and Tools > Operations > Flight Schedule.
+2. In Schedule Start Time, type 06:00 and press Tab.
+3. Click Update Changes ("Settings updated successfully").
+4. Reload the page.
+
+Expected: Start time is saved as 06:00 and still shows 06:00 after reload.
+
+Actual: The page saves the picker's full value ("2026-10-22 06:00:00"). On reload it splits that on ":" to get the hours, gets NaN, and the box shows "NaN:NaN". The server then stores "NaN-NaN-NaN NaN:NaN:NaN". After that, typing a new time does not enable Update Changes, so a user can't fix it from the UI.
+
+Suspected cause: templates2/settings_flightschedule/index.js: the change listener does state.scheduleStartTime = e.target.value, but datetimepicker.js writes "YYYY-MM-DD HH:MM:SS" to .dtp-hidden-input. init then does state.scheduleStartTime.split(":").map(Number). Fix: keep only HH:MM (e.g. value.slice(11,16)) and check it is valid before saving.
+
+![BUG-SFS-002-1](bugs/screenshots/BUG-SFS-002-1.png)
 
 ### BUG-AF-002: Active Flights lists future flights that have no SAR time, and the stats cards don't count them
 
