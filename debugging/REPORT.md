@@ -790,3 +790,4 @@ Suspected cause: #flight-details-modal has no keydown Escape handler (same patte
 | 07-flight-details | Pre-existing, not created in this run: customer 'DEVIN TEST Customer Ltd' | Customers | No (check with Jon) |
 | 08-active-flights | Flight #42903 set to Open, SAR moved to 23:30, then Complete again (AF-011) | Flight #42903 | No (delete with the flight) |
 | 08-active-flights | Note 'BETA TEST ONLY AF note' | Flight #42903 notes | No |
+| 11-personnel-list | Pre-existing, not created in this run: person #274 with no name (Customer), found in PL-001 (BUG-PL-002) | All Personnel | No (check with Jon) |

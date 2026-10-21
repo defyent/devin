@@ -26,10 +26,10 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
 | PL-001 | Search, All Groups, All Roles filters | Filter correctly and combine | PASS |  | Search: 'Atkinson' 3, 'paige atk' 1, phone '021-555-0081' 1, 'zzzq' 0. Group Engineers 20 (all Engineers); Engineers+Student 0; Pilots+Student all match; Pilots+Student+'Barnes' -> Ryan Barnes only. Filters combine (shot pl_filter). Scrolling loads 30 more (30 > 60) |
-| PL-002 | Group sidebar entries (Administration, Crew, Engineers, Pilots) | Pre-filtered to that group | TODO | | |
+| PL-002 | Group sidebar entries (Administration, Crew, Engineers, Pilots) | Pre-filtered to that group | PASS |  | Sidebar group entries open All Personnel pre-filtered (usergroup_id, Group dropdown set): Administration 10, BETA TEST ONLY Group 1, Crew 30+, Engineers 20, Pilots 30+; every row in that group (shot pl_group_pilots) |
 | PL-003 | Click person | Opens Personnel Details | PASS |  | Clicking a row opens Personnel Details for that person (person_id=274) |
 | PL-004 | No create button | People created only in Access Manager | PASS |  | No create/add button on the page (only search + group/role filters); people are created in Access Manager |
-| PL-005 | WG/RG/WO/RO accounts | See only group members / self | TODO | | |
+| PL-005 | WG/RG/WO/RO accounts | See only group members / self | BLOCKED |  | No WG/RG/WO/RO test accounts yet; retest in checklist 90 (permission levels) |
 
 ## Known issues from external audits
 
@@ -44,4 +44,4 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| | | |
+| Pre-existing, not created in this run: person #274 with no name (Customer), found in PL-001 (BUG-PL-002) | All Personnel | No (check with Jon) |
