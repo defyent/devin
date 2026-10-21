@@ -7,7 +7,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 1 |
-| Medium | 23 |
+| Medium | 24 |
 | Low | 21 |
 
 | Bug | Severity | Module | Title |
@@ -34,6 +34,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PD-003](bugs/BUG-PD-003.md) | Medium | Personnel Details > Security | 2FA setup: one wrong verification code closes the setup dialog and issues a new secret |
 | [BUG-PD-006](bugs/BUG-PD-006.md) | Medium | Personnel Details | Personnel Details > Recency and Renewals: Group by and Order by are disabled and the Table/Card view buttons are hidden |
 | [BUG-PD-007](bugs/BUG-PD-007.md) | Medium | Personnel Details | Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date |
+| [BUG-PD-008](bugs/BUG-PD-008.md) | Medium | Personnel Details | Personnel Details > Recency: the recency summary popup has no Add Manual Entry, no x, and doesn't close with Escape |
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) |
 | [BUG-POP-003](bugs/BUG-POP-003.md) | Medium | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
@@ -441,6 +442,23 @@ Actual: Day Landings: Last Conducted 03/02/2026, '462 days ago', status Caution,
 Suspected cause: Needs a check against the recency rules; a 0/0 requirement may be treated as Caution, and the days value may come from a different date than Last Conducted.
 
 ![BUG-PD-007-1](bugs/screenshots/BUG-PD-007-1.png)
+
+### BUG-PD-008: Personnel Details > Recency: the recency summary popup has no Add Manual Entry, no x, and doesn't close with Escape
+
+Severity: Medium | Module: Personnel Details | Check: PD-021 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. All Personnel > Ethan Abbott > Recency and Renewals tab
+2. Click the Day Landings count '0/0 in 90 days'
+3. Look for Add Manual Entry and a close button; press Escape
+
+Expected: The popup lists the recency flights/entries, has Add Manual Entry (Date*, Value*, Notes) and closes with x, outside click and Escape.
+
+Actual: 'Recency summary for Day Landings' lists 4 manual entries (03/02/2026, 15/06/2025, 02/06/2025, 17/04/2025) but has no buttons at all: no Add Manual Entry, no x. Escape does nothing; only clicking outside closes it. So manual recency entries can't be added from this page.
+
+Suspected cause: Possibly the dialog buttons are built by the part of personneldetails/index.js that is cut off (BUG-PD-001).
+
+![BUG-PD-008-1](bugs/screenshots/BUG-PD-008-1.png)
 
 ### BUG-PERM-002: User with no permissions cannot open their own My Account (no self-service password / 2FA)
 

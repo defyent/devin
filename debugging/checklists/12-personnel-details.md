@@ -45,7 +45,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PD-018 | Lesson Plans tab: Assign (plan, start, end) | Assigned; lessons + progress; Lesson Details flights | TODO | | |
 | PD-019 | Recency tab: table/card, Group by, Order by | Work | FAIL | BUG-PD-006 | Table shows Renewals and Recencies groups, but Group by and Order by are disabled and the Table/Card view buttons are hidden (BUG-PD-006) (shot pd_recency) |
 | PD-020 | Add Item > Renewal / Recency | Search and add | TODO | | |
-| PD-021 | Recency count > Recency Flights; Add Manual Entry (Date*, Value*, Notes) | Works | TODO | | |
+| PD-021 | Recency count > Recency Flights; Add Manual Entry (Date*, Value*, Notes) | Works | FAIL | BUG-PD-008 | Clicking the Day Landings count opens 'Recency summary for Day Landings' with 4 manual entries, but there is no Add Manual Entry, no x, and Escape doesn't close it (outside click does) (BUG-PD-008) (shot pd_recency_flights) |
 | PD-022 | Renewal: Calculate, Today, Schedule with Flight, Complete Renewal (archive/keep attachments) | Dates correct in org format | TODO | | |
 | PD-023 | Status legend colours | OK green, Caution yellow, Expired red, Empty grey | PASS |  | Status dots: OK green, Caution orange/yellow, Expired red (no Empty item on Ethan Abbott to check grey). Recency days/status values look wrong, see BUG-PD-007 |
 | PD-024 | Forms tab: add, save, archive, unarchive, delete | Each confirms | TODO | | |
