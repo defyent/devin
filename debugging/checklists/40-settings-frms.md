@@ -14,9 +14,9 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| SFRMS-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | TODO | | |
-| SFRMS-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | TODO | | |
-| SFRMS-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
+| SFRMS-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Settings and Tools > Fatigue Risk Management Settings opens settings_frms, with no console errors. |
+| SFRMS-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-SFRMS-001 | No page Help (?), and Escape does not close Add Flight Time Limit Rule. |
+| SFRMS-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Drag from inside Add Flight Time Limit Rule to outside it: it stays open. |
 | SFRMS-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
 | SFRMS-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
 | SFRMS-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |

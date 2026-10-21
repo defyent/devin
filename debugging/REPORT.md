@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 6 |
 | Medium | 52 |
-| Low | 84 |
+| Low | 85 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -130,6 +130,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
 | [BUG-SDFR-001](bugs/BUG-SDFR-001.md) | Low | Settings: Daily Flight Record | Daily Flight Record Settings loads a colorpicker.js that does not exist (404 in the console) |
 | [BUG-SEFI-001](bugs/BUG-SEFI-001.md) | Low | Settings: Extra Flight Info | Extra Flight Info Settings: no Help (?), and Escape does not close Add Field |
+| [BUG-SFRMS-001](bugs/BUG-SFRMS-001.md) | Low | Settings: FRMS | FRMS Settings: no Help (?), and Escape does not close popups |
 | [BUG-SFS-001](bugs/BUG-SFS-001.md) | Low | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted |
 | [BUG-SFT-001](bugs/BUG-SFT-001.md) | Low | Settings: Flight Types | Flight Types Settings: no Help (?), and Escape does not close popups |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
@@ -2122,6 +2123,24 @@ Actual: There is no Help button, and Escape leaves Add New Field open.
 Suspected cause: No help modal, and no keydown handler on the modals.
 
 ![BUG-SEFI-001-1](bugs/screenshots/BUG-SEFI-001-1.png)
+
+### BUG-SFRMS-001: FRMS Settings: no Help (?), and Escape does not close popups
+
+Severity: Low | Module: Settings: FRMS | Check: SFRMS-S02 ([40-settings-frms](checklists/40-settings-frms.md))
+
+Steps:
+1. Settings and Tools > Fatigue Risk Management Settings.
+2. Look for a Help (?) button.
+3. Click + Add Flight Time Limit Rule, then press Escape.
+
+Expected: There is a page Help (?), and Escape closes the popup.
+
+Actual: There is no page Help (?). Escape leaves Add Flight Time Limit Rule open. Only the small field (?) tips are there.
+
+Suspected cause: The page has no help modal, and there is no keydown Escape handler on its modals.
+
+![BUG-SFRMS-001-1](bugs/screenshots/BUG-SFRMS-001-1.png)
+![BUG-SFRMS-001-2](bugs/screenshots/BUG-SFRMS-001-2.png)
 
 ### BUG-SFS-001: Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted
 

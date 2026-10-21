@@ -2700,5 +2700,25 @@
    "sst_mobile"
   ],
   "cause": "The table has no overflow-x wrapper or card layout, and the pill nav is hidden at narrow widths with no dropdown shown instead."
+ },
+ {
+  "id": "BUG-SFRMS-001",
+  "title": "FRMS Settings: no Help (?), and Escape does not close popups",
+  "row": "SFRMS-S02",
+  "cl": "40-settings-frms",
+  "module": "Settings: FRMS",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Fatigue Risk Management Settings.",
+   "Look for a Help (?) button.",
+   "Click + Add Flight Time Limit Rule, then press Escape."
+  ],
+  "expected": "There is a page Help (?), and Escape closes the popup.",
+  "actual": "There is no page Help (?). Escape leaves Add Flight Time Limit Rule open. Only the small field (?) tips are there.",
+  "shots": [
+   "sfrms_main",
+   "sfrms_add"
+  ],
+  "cause": "The page has no help modal, and there is no keydown Escape handler on its modals."
  }
 ]
