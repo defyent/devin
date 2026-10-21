@@ -29,7 +29,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FS-002 | Past/future date banners | 'You are viewing a past/future date' with Today button | PASS |  | Past: 'You are viewing a past date.'; future: 'You are viewing a future date.'; today button in toolbar returns |
 | FS-003 | Group By dropdown | Only groups with Show in Dropdown; WG/RG users see only their own | PASS |  | Group By lists Administration, BETA TEST ONLY Group (Show in Dropdown on), Crew, Engineers, Pilots. All 424 events/week, Pilots 191, BETA group 0. WG/RG-only part not testable (no such user) |
 | FS-004 | Toggle Roster | Roster row shows only Show-on-Schedule shifts and On Roster members | PASS |  | Toggle Roster (title 'Toggle Roster') hides/shows the roster row (178 shift items in week view); flights stay |
-| FS-005 | Toggle Notes | Notes show/hide | IN PROGRESS |  | Toggle Notes button works (active class flips) but there are no notes this week; retest after FS-024 adds a note. Notes button has a tooltip; view buttons today/month/week/day/list and < > have none (ICON-12) |
+| FS-005 | Toggle Notes | Notes show/hide | PASS |  | Toggle Notes hides/shows 'BETA TEST ONLY Note' (1 > 0 > 1) |
 | FS-006 | Compact view (month) | Max 3 events/day with +more | PASS |  | Compact (title 'Compact view (show +more)') in month view: 2 items per day + '+N more' link (e.g. '+66 more'). With Roster on, the 2 slots are roster shifts so flights are only reachable via +more |
 | FS-007 | Font size slider | Changes size; remembered? | PASS |  | Font button (title 'Adjust font size') opens slider 8-18; 14 -> 18 changes event text 11.9px -> 15.3px; kept after reload; restored to 14 |
 | FS-008 | Toggle Edit Mode (write users only) | Enable/Disable Live Edit; hidden for RA/RG | PASS |  | 'Enable Live Edit' > 'Disable Live Edit' (active); Undo, Add Note, Add Flight buttons appear. RA/RG hiding not testable (no such user) |
@@ -48,7 +48,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FS-021 | Esc during copy/cut | Cancels | TODO | | |
 | FS-022 | Double booking (same aircraft or person overlapping) | Warning shown | TODO | | |
 | FS-023 | F&D violation icon / popup | Flight & Duty Violations popup lists violations | TODO | | |
-| FS-024 | Add Note (Start, End, Title, Details) > view/edit/delete | Works | TODO | | |
+| FS-024 | Add Note (Start, End, Title, Details) > view/edit/delete | Works | IN PROGRESS |  | Add Note modal: Start/End Date (DD/MM/YYYY), Title, Details. Save Note > toast 'Note added successfully', note shows as all-day bar. Esc on the dirty modal does nothing (no close, no data loss). View/edit/delete: pending |
 | FS-025 | Idle 20 min in edit mode | 'Edit mode has been disabled due to inactivity.' | TODO | | |
 | FS-026 | Mobile width | List view; tap opens Flight Details; edit mode off; Add Flight visible | TODO | | |
 | FS-027 | RG/WG user | Sees only flights on aircraft in their groups; see §14 caveat on membership read/write flag | TODO | | |
@@ -72,4 +72,4 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| | | |
+| Note 'BETA TEST ONLY Note' (21/10/2026) | Flight Schedule | No |
