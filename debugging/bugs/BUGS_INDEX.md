@@ -100,6 +100,9 @@
 | [BUG-FBLD-002](BUG-FBLD-002.md) | `FBLD-S04` | Form Builder | Form Builder View Form: Date and Time widgets default to UTC, not local time | Medium | New | |
 | [BUG-FBLD-003](BUG-FBLD-003.md) | `FBLD-005` | Form Builder | Form Builder: table conditions do nothing in View Form | Medium | New | |
 | [BUG-FBLD-004](BUG-FBLD-004.md) | `FBLD-S05` | Form Builder | Form Builder on a phone: page is wider than the screen and the Toolbox covers the form | Low | New | |
+| [BUG-FBR-001](BUG-FBR-001.md) | `FBR-S02` | Form Browser | Form Browser has no page Help (?) | Low | New | |
+| [BUG-FBR-002](BUG-FBR-002.md) | `FBR-S04` | Form Browser | Form Browser and Form Viewer dates ignore the date setting ('Oct 21, 2026', '10:24 PM') | Low | New | |
+| [BUG-FBR-003](BUG-FBR-003.md) | `FBR-S05` | Form Browser | Form Browser on a phone: table is cut off, Created and Created By are off-screen | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

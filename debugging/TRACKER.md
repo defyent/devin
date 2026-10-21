@@ -32,7 +32,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [21-settings-hub](checklists/21-settings-hub.md) | `HUB` | Settings and Tools hub | 11 | 9 | 1 | 1 | 1 | DONE |
 | [22-file-browser](checklists/22-file-browser.md) | `FB` | File Browser | 14 | 8 | 6 | 0 | 1 | DONE |
 | [23-form-builder](checklists/23-form-builder.md) | `FBLD` | Form Builder | 14 | 9 | 4 | 1 | 27 | DONE |
-| [24-form-browser](checklists/24-form-browser.md) | `FBR` | Form Browser / Form Viewer | 10 | 0 | 0 | 0 | 4 | TODO |
+| [24-form-browser](checklists/24-form-browser.md) | `FBR` | Form Browser / Form Viewer | 10 | 6 | 3 | 1 | 4 | DONE |
 | [25-task-tracker](checklists/25-task-tracker.md) | `TT` | Task Tracker | 12 | 0 | 0 | 0 | 2 | TODO |
 | [26-reports](checklists/26-reports.md) | `RPT` | Reports | 16 | 0 | 0 | 0 | 1 | TODO |
 | [27-support](checklists/27-support.md) | `SUP` | Support tickets | 14 | 0 | 0 | 0 | 0 | TODO |

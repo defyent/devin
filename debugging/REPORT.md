@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 4 |
 | Medium | 42 |
-| Low | 52 |
+| Low | 55 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -76,6 +76,9 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-FB-007](bugs/BUG-FB-007.md) | Low | File Browser | File Browser on a phone: table is cut off, edit buttons are off-screen |
 | [BUG-FBLD-001](bugs/BUG-FBLD-001.md) | Low | Form Builder | Form Builder: popups ignore Escape and outside clicks (Help, Create New Form Template, Edit Options) |
 | [BUG-FBLD-004](bugs/BUG-FBLD-004.md) | Low | Form Builder | Form Builder on a phone: page is wider than the screen and the Toolbox covers the form |
+| [BUG-FBR-001](bugs/BUG-FBR-001.md) | Low | Form Browser | Form Browser has no page Help (?) |
+| [BUG-FBR-002](bugs/BUG-FBR-002.md) | Low | Form Browser | Form Browser and Form Viewer dates ignore the date setting ('Oct 21, 2026', '10:24 PM') |
+| [BUG-FBR-003](bugs/BUG-FBR-003.md) | Low | Form Browser | Form Browser on a phone: table is cut off, Created and Created By are off-screen |
 | [BUG-FD-003](bugs/BUG-FD-003.md) | Low | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings |
 | [BUG-FS-005](bugs/BUG-FS-005.md) | Low | Flight Schedule | JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop') |
 | [BUG-HAZ-003](bugs/BUG-HAZ-003.md) | Low | Hazard Register | Hazard Register has no way to create a hazard entry |
@@ -1201,6 +1204,50 @@ Expected: A usable layout, or a clear 'use a larger screen' message.
 Actual: The page is 644px wide in a 390px screen and scrolls sideways. The Toolbox panel opens over the form. The header, Form Template, Allow Confidential and Auto-Attach are cut off.
 
 ![BUG-FBLD-004-1](bugs/screenshots/BUG-FBLD-004-1.png)
+
+### BUG-FBR-001: Form Browser has no page Help (?)
+
+Severity: Low | Module: Form Browser | Check: FBR-S02 ([24-form-browser](checklists/24-form-browser.md))
+
+Steps:
+1. Administration > Form Browser
+2. Look for the Help (?) button in the header
+
+Expected: A Help (?) button like other modules.
+
+Actual: No Help button. The header only has search and Back.
+
+![BUG-FBR-001-1](bugs/screenshots/BUG-FBR-001-1.png)
+
+### BUG-FBR-002: Form Browser and Form Viewer dates ignore the date setting ('Oct 21, 2026', '10:24 PM')
+
+Severity: Low | Module: Form Browser | Check: FBR-S04 ([24-form-browser](checklists/24-form-browser.md))
+
+Steps:
+1. Administration > Form Browser
+2. Open Flights > 2026 > October > Flight 42903 - 2026-10-21
+3. Look at Created
+
+Expected: 21/10/2026, as set in Settings > Time Zone.
+
+Actual: List: 'Oct 21, 2026'. Form Viewer header: 'Oct 21, 2026 10:24 PM' (12-hour clock). Same as earlier FORM-08.
+
+![BUG-FBR-002-1](bugs/screenshots/BUG-FBR-002-1.png)
+![BUG-FBR-002-2](bugs/screenshots/BUG-FBR-002-2.png)
+
+### BUG-FBR-003: Form Browser on a phone: table is cut off, Created and Created By are off-screen
+
+Severity: Low | Module: Form Browser | Check: FBR-S05 ([24-form-browser](checklists/24-form-browser.md))
+
+Steps:
+1. Open Administration > Form Browser on a 390px wide screen
+2. Search 'QA Post'
+
+Expected: Cards (or a layout that fits), like Safety Reports on a phone.
+
+Actual: The table keeps its desktop width and scrolls sideways. Created and Created By are hidden off to the right.
+
+![BUG-FBR-003-1](bugs/screenshots/BUG-FBR-003-1.png)
 
 ### BUG-FD-003: Times and Meters: no link to the previous flight next to 'Previous' meter readings
 
