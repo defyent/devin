@@ -59,6 +59,7 @@
 | [BUG-RV-001](BUG-RV-001.md) | `RV-S02` | Roster Viewer | Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape | Low | New | |
 | [BUG-RV-002](BUG-RV-002.md) | `RV-004` | Roster Viewer | Roster Viewer: clicking a shift does not open Shift Details | Medium | New | |
 | [BUG-RV-003](BUG-RV-003.md) | `RV-S04` | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY | Low | New | |
+| [BUG-RB-001](BUG-RB-001.md) | `RB-S02` | Roster Builder | Roster Builder: no page Help (?); Copy/Paste Instructions popup ignores Escape and outside click | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

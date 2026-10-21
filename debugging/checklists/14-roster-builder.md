@@ -14,8 +14,8 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| RB-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | TODO | | |
-| RB-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | TODO | | |
+| RB-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Settings and Tools > People > Roster Builder opens 'Staff Roster Live' (Oct 2026), no console errors |
+| RB-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-RB-001 | No page Help (?). Copy/Paste Instructions popup: × and Close work, Escape and outside click don't |
 | RB-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
 | RB-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
 | RB-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
@@ -25,7 +25,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| RB-001 | « ‹ › » navigation, This Month, Search | Double arrows move half a month | TODO | | |
+| RB-001 | « ‹ › » navigation, This Month, Search | Double arrows move half a month | PASS |  | » moves forward 2 weeks (Oct 18 - Nov 14), again to Nov 1-30; « back to Oct 18 - Nov 14; < / > whole months; This Month back to Oct 1-31. Search 'Aisha' highlights the 2 matching rows |
 | RB-002 | Select Roster View: Live / Draft | Switches | TODO | | |
 | RB-003 | Bulk: New Draft (BETA TEST ONLY), Rename, Copy Live to Draft (Merge / Clear then Copy), Delete Draft | Each works with confirmation | TODO | | |
 | RB-004 | Drag shift from palette to cell | Shift placed | TODO | | |

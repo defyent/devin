@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 3 |
 | Medium | 27 |
-| Low | 27 |
+| Low | 28 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -67,6 +67,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-POP-001](bugs/BUG-POP-001.md) | Low | Access Manager (shared errorModal) | Error modal ('Failed to Create User') does not close with Esc |
 | [BUG-POP-002](bugs/BUG-POP-002.md) | Low | Access Manager > Manage User Permissions | Manage User Permissions uses a native browser confirm() for unsaved changes |
 | [BUG-POP-004](bugs/BUG-POP-004.md) | Low | Flight Schedule | Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc |
+| [BUG-RB-001](bugs/BUG-RB-001.md) | Low | Roster Builder | Roster Builder: no page Help (?); Copy/Paste Instructions popup ignores Escape and outside click |
 | [BUG-RV-001](bugs/BUG-RV-001.md) | Low | Roster Viewer | Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape |
 | [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
 
@@ -1009,6 +1010,24 @@ Actual: Popup stays open on Esc; only OK, x or a click outside closes it. Same f
 Suspected cause: #flight-details-modal has no keydown Escape handler (same pattern as BUG-POP-001).
 
 ![BUG-POP-004-1](bugs/screenshots/BUG-POP-004-1.png)
+
+### BUG-RB-001: Roster Builder: no page Help (?); Copy/Paste Instructions popup ignores Escape and outside click
+
+Severity: Low | Module: Roster Builder | Check: RB-S02 ([14-roster-builder](checklists/14-roster-builder.md))
+
+Steps:
+1. Settings and Tools > Roster Builder
+2. Look for the Help (?) button
+3. Click the copy/paste instructions (?) icon, press Escape, then click outside the popup
+
+Expected: Standard page Help (?) like other modules; Escape and outside click close popups.
+
+Actual: Only a 'View copy/paste instructions' icon; no page Help. The Copy/Paste Instructions popup stays open on Escape and outside click; only × or Close work.
+
+Suspected cause: Page has no help include; modal lacks Escape/outside-click handlers.
+
+![BUG-RB-001-1](bugs/screenshots/BUG-RB-001-1.png)
+![BUG-RB-001-2](bugs/screenshots/BUG-RB-001-2.png)
 
 ### BUG-RV-001: Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape
 
