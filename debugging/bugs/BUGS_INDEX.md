@@ -77,6 +77,9 @@
 | [BUG-FAD-003](BUG-FAD-003.md) | `FAD-S04` | Flight and Duty | Flight and Duty popups show dates as '16 Oct 2026' instead of the configured DD/MM/YYYY | Low | New | |
 | [BUG-FAD-004](BUG-FAD-004.md) | `FAD-002` | Flight and Duty | Flight and Duty column headers are ambiguous: two '1 Days' and two '24 Hours' columns, and '1 Days' is ungrammatical | Low | New | |
 | [BUG-FAD-005](BUG-FAD-005.md) | `FAD-003` | Flight and Duty | Flight and Duty 'View as Date' defaults to the UTC date instead of the local date | Low | New | |
+| [BUG-NOT-001](BUG-NOT-001.md) | `NOT-S02` | Notices | Notices has no page Help (?), and the Create New Notice popup ignores Escape | Low | New | |
+| [BUG-NOT-002](BUG-NOT-002.md) | `NOT-006` | Notices | Notice Details: clicking a .txt attachment does nothing (no preview, no download) | Medium | New | |
+| [BUG-NOT-003](BUG-NOT-003.md) | `NOT-010` | Notices | Settings and Tools hub: 'Notices' card has no links | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

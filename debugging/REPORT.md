@@ -7,8 +7,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 4 |
-| Medium | 32 |
-| Low | 39 |
+| Medium | 33 |
+| Low | 41 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -33,6 +33,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-FS-007](bugs/BUG-FS-007.md) | Medium | Flight Schedule | Edit-mode idle timeout switches Live Edit off silently, throws 'calendarEl is not defined' and leaves the schedule blank |
 | [BUG-LOG-003](bugs/BUG-LOG-003.md) | Medium | Login / 2FA (main) | 'Trust this device for 30 days' is lost on Logout (logout deletes the trusted-device cookie) |
 | [BUG-NAV-001](bugs/BUG-NAV-001.md) | Medium | Shell (main) / Personnel Details | Leaving a page with unsaved changes gives no warning; edits are lost |
+| [BUG-NOT-002](bugs/BUG-NOT-002.md) | Medium | Notices | Notice Details: clicking a .txt attachment does nothing (no preview, no download) |
 | [BUG-PD-001](bugs/BUG-PD-001.md) | Medium | Personnel Details / My Account | personneldetails/index.js is truncated: ReferenceError getPickerMod on every load |
 | [BUG-PD-003](bugs/BUG-PD-003.md) | Medium | Personnel Details > Security | 2FA setup: one wrong verification code closes the setup dialog and issues a new secret |
 | [BUG-PD-007](bugs/BUG-PD-007.md) | Medium | Personnel Details | Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date |
@@ -64,6 +65,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-FS-005](bugs/BUG-FS-005.md) | Low | Flight Schedule | JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop') |
 | [BUG-LOG-001](bugs/BUG-LOG-001.md) | Low | Shell (main) | Login Message popup reappears on every browser reload |
 | [BUG-LOG-002](bugs/BUG-LOG-002.md) | Low | Shell (main) | Logout throws JS error removeChild; Esc doesn't close the Log Out confirm |
+| [BUG-NOT-001](bugs/BUG-NOT-001.md) | Low | Notices | Notices has no page Help (?), and the Create New Notice popup ignores Escape |
+| [BUG-NOT-003](bugs/BUG-NOT-003.md) | Low | Notices | Settings and Tools hub: 'Notices' card has no links |
 | [BUG-PD-002](bugs/BUG-PD-002.md) | Low | Personnel Details > Security | Personnel Details modals (Enable 2FA, Setup Error alert): title right-aligned, away from its icon |
 | [BUG-PD-004](bugs/BUG-PD-004.md) | Low | Personnel Details > Security | Security tab 'Enabled on' date ignores Settings > Time Zone format |
 | [BUG-PD-005](bugs/BUG-PD-005.md) | Low | Personnel Details | Personnel Details: History, PDF Options and Legacy Duty Browser popups don't close with Escape, and PDF Options has no x |
@@ -462,6 +465,22 @@ Actual: Dashboard opens immediately, no modal; the typed change is discarded.
 Suspected cause: Dirty-state check in `main/index.js` menu click handler is not wired to Personnel Details (or not at all).
 
 ![BUG-NAV-001-1](bugs/screenshots/BUG-NAV-001-1.png)
+
+### BUG-NOT-002: Notice Details: clicking a .txt attachment does nothing (no preview, no download)
+
+Severity: Medium | Module: Notices | Check: NOT-006 ([17-notices](checklists/17-notices.md))
+
+Steps:
+1. Flight Safety > Notices > open 'BETA TEST ONLY Notice' (#1189)
+2. Click the attached file BETA_TEST_ONLY_notice.txt
+
+Expected: Preview popup (or download) for the attachment.
+
+Actual: Nothing appears. The browser sends HEAD and GET to noticedetails_servefile&doc_id=453, but no preview, error or download is shown.
+
+Suspected cause: handleFilePreview() in notices/noticedetails.js treats any text/plain response that isn't 'Ok' as an error message (showErrorModal('File Access Error', text)), so a real .txt file's content is taken as an error and the preview never opens. Same pattern as BUG-PD-012.
+
+![BUG-NOT-002-1](bugs/screenshots/BUG-NOT-002-1.png)
 
 ### BUG-PD-001: personneldetails/index.js is truncated: ReferenceError getPickerMod on every load
 
@@ -980,6 +999,40 @@ Expected: Esc closes the confirm (CON-015); no console errors.
 Actual: Esc ignored (see POP-02). On Log Out the console logs `Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.` Logout itself works.
 
 
+### BUG-NOT-001: Notices has no page Help (?), and the Create New Notice popup ignores Escape
+
+Severity: Low | Module: Notices | Check: NOT-S02 ([17-notices](checklists/17-notices.md))
+
+Steps:
+1. Flight Safety > Notices
+2. Look for the (?) Help button
+3. Click New Notice, press Escape
+
+Expected: A Help (?) button; Escape closes the New Notice popup.
+
+Actual: No Help button in the header. The Create New Notice popup stays open after Escape (x and Cancel work).
+
+Suspected cause: notices/index.js has no Escape handler for #newNoticeModalOverlay.
+
+![BUG-NOT-001-1](bugs/screenshots/BUG-NOT-001-1.png)
+![BUG-NOT-001-2](bugs/screenshots/BUG-NOT-001-2.png)
+
+### BUG-NOT-003: Settings and Tools hub: 'Notices' card has no links
+
+Severity: Low | Module: Notices | Check: NOT-010 ([17-notices](checklists/17-notices.md))
+
+Steps:
+1. Administration > Settings and Tools
+2. Find the 'Notices' card
+
+Expected: Card links to a Notices setting, or no card at all.
+
+Actual: The card says 'Manage system-wide notices and announcements.' but has no links or buttons. Every other card has at least one link.
+
+Suspected cause: Confirm whether this card is meant to be there.
+
+![BUG-NOT-003-1](bugs/screenshots/BUG-NOT-003-1.png)
+
 ### BUG-PD-002: Personnel Details modals (Enable 2FA, Setup Error alert): title right-aligned, away from its icon
 
 Severity: Low | Module: Personnel Details > Security | Check: PD-027 ([12-personnel-details](checklists/12-personnel-details.md))
@@ -1405,3 +1458,4 @@ Suspected cause: saveLeaveType() in timesheets/leaverequests.js calls hideTypeMo
 | 14-roster-builder | Pilots custom order (Aisha Pearce first) | Roster Builder Pilots group | Yes - Reset Order, alphabetical again |
 | 14-roster-builder | One Office Hours shift for Aisha Pearce on 01/12/2027 published to live | Live roster December 2027 | Yes - removed with Live Edit, December 2027 empty |
 | 15-timesheets-leave | Leave type 'BETA TEST ONLY Leave' (#AB12CD, sort 70) | Leave Requests > Leave Types | Partly - deactivated (Inactive); the app has no delete for leave types |
+| 17-notices | Notice #1189 'BETA TEST ONLY Notice edited' (BETA TEST ONLY Group, 2 .txt attachments, 1 comment) | Flight Safety > Notices | No - the app has no delete for notices |
