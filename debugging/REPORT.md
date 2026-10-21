@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 1 |
 | Medium | 19 |
-| Low | 17 |
+| Low | 18 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -37,6 +37,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-AM-002](bugs/BUG-AM-002.md) | Low | Access Manager | Last Activity hover date ignores Settings > Time Zone format |
 | [BUG-AM-003](bugs/BUG-AM-003.md) | Low | Access Manager | Last Activity column sort does not change order |
 | [BUG-AM-004](bugs/BUG-AM-004.md) | Low | Access Manager > Manage User Permissions | Permission level dropdown shows bare codes 'WA' and 'G' next to full labels |
+| [BUG-DFR-001](bugs/BUG-DFR-001.md) | Low | Daily Flight Record | Daily Flight Record has no page Help (?), and Manage Columns doesn't close with Escape |
 | [BUG-DSH-001](bugs/BUG-DSH-001.md) | Low | Dashboard | Dashboard side tabs are icon-only with no tooltip or label |
 | [BUG-FD-003](bugs/BUG-FD-003.md) | Low | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings |
 | [BUG-FS-005](bugs/BUG-FS-005.md) | Low | Flight Schedule | JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop') |
@@ -481,6 +482,24 @@ Actual: Options: 'Read Only All - ...', 'WA', 'Read Only Own - ...', 'Write Own 
 Suspected cause: Label map in accessmanager JS is missing WA and G (falls back to the code).
 
 ![BUG-AM-004-1](bugs/screenshots/BUG-AM-004-1.png)
+
+### BUG-DFR-001: Daily Flight Record has no page Help (?), and Manage Columns doesn't close with Escape
+
+Severity: Low | Module: Daily Flight Record | Check: DFR-S02 ([09-daily-flight-record](checklists/09-daily-flight-record.md))
+
+Steps:
+1. Sidebar > Flight Operations > Daily Flight Record
+2. Look for the Help (?) button in the page header
+3. Click Columns (Manage Columns popup), press Escape
+
+Expected: A page Help (?) button like other modules; the Manage Columns popup closes with x, clicking outside and Escape.
+
+Actual: There is no Help (?) button on the page. Manage Columns closes with x, Done and clicking outside, and stays open on drag-out (correct), but Escape does nothing.
+
+Suspected cause: No help content or button wired for this module; the column modal has no keydown Escape handler.
+
+![BUG-DFR-001-1](bugs/screenshots/BUG-DFR-001-1.png)
+![BUG-DFR-001-2](bugs/screenshots/BUG-DFR-001-2.png)
 
 ### BUG-DSH-001: Dashboard side tabs are icon-only with no tooltip or label
 
