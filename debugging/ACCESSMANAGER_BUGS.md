@@ -2,7 +2,7 @@
 
 From the DataHangar staging audit (stresstest.datahangar.net, v2.0.111). 11 bugs. Full audit: https://github.com/defyent/devin/pull/2 (debugging/).
 
-Related, filed elsewhere: BUG-PERM-001 (sidebar shows modules the user has no permission for).
+Related: BUG-PERM-001 (sidebar shows modules the user has no permission for). Checklist row AM-018 also fails: a non-admin with Access Manager WA gets "Access Denied: You need All Access permission to access the access manager", so they can never reach Roles. This is tracked under BUG-AM-005.
 
 | Bug | Severity | Title |
 |---|---|---|
