@@ -2388,5 +2388,24 @@
    "stz_main"
   ],
   "cause": "The settings_timezone template has no helpBtn or help modal."
+ },
+ {
+  "id": "BUG-STZ-003",
+  "title": "Time Zone settings: the Example preview shows MM/DD/YYYY for every date format except DD/MM/YYYY",
+  "row": "STZ-002",
+  "cl": "33-settings-timezone",
+  "module": "Settings: Time Zone",
+  "sev": "Medium",
+  "steps": [
+   "Settings and Tools > Configuration > Time Zone.",
+   "In \"Choose a date format\", pick YYYY-MM-DD, then DD.MM.YYYY.",
+   "Look at the Example preview."
+  ],
+  "expected": "The preview follows the chosen format: 2026-10-21, then 21.10.2026.",
+  "actual": "Both show \"10/21/2026\" (US order). Picking DD/MM/YYYY again shows 21/10/2026. Also, 4 of the 10 date formats (DD MMM YYYY, MMM DD, YYYY, DD MMMM YYYY, MMMM DD, YYYY) and 3 of the 5 time formats (all the 12-hour ones) are listed but greyed out, with no explanation of why. The time preview also ignores the choice: with HH:mm:ss picked it still shows \"13:20\". Once saved, the format itself does work: the header clocks show \"02:20:15 (2026-10-22)\" and Daily Flight Record shows \"2026-10-21 08:30:00\".",
+  "shots": [
+   "stz_preview_iso"
+  ],
+  "cause": "The preview picker seems to fall back to the browser locale for any format it does not know. The disabled options look deliberate (the type-in picker can't parse them?), but the page doesn't say so."
  }
 ]

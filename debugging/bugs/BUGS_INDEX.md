@@ -127,6 +127,7 @@
 | [BUG-SDFR-001](BUG-SDFR-001.md) | `SDFR-S01` | Settings: Daily Flight Record | Daily Flight Record Settings loads a colorpicker.js that does not exist (404 in the console) | Low | New | |
 | [BUG-STZ-001](BUG-STZ-001.md) | `STZ-S04` | Settings: Time Zone | Time Zone settings: the Example preview shows UTC, not the selected time zone | Medium | New | |
 | [BUG-STZ-002](BUG-STZ-002.md) | `STZ-S02` | Settings: Time Zone | Time Zone settings page has no Help (?) | Low | New | |
+| [BUG-STZ-003](BUG-STZ-003.md) | `STZ-002` | Settings: Time Zone | Time Zone settings: the Example preview shows MM/DD/YYYY for every date format except DD/MM/YYYY | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

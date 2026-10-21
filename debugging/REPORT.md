@@ -7,7 +7,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 6 |
-| Medium | 47 |
+| Medium | 48 |
 | Low | 72 |
 
 | Bug | Severity | Module | Title |
@@ -62,6 +62,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SMS-001](bugs/BUG-SMS-001.md) | Medium | Safety Reports | New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed |
 | [BUG-SMS-002](bugs/BUG-SMS-002.md) | Medium | Safety Reports | New Safety Report: Event Date/Time defaults to the UTC date and time, not local |
 | [BUG-STZ-001](bugs/BUG-STZ-001.md) | Medium | Settings: Time Zone | Time Zone settings: the Example preview shows UTC, not the selected time zone |
+| [BUG-STZ-003](bugs/BUG-STZ-003.md) | Medium | Settings: Time Zone | Time Zone settings: the Example preview shows MM/DD/YYYY for every date format except DD/MM/YYYY |
 | [BUG-SUP-001](bugs/BUG-SUP-001.md) | Medium | Support | Support has no page Help (?); Escape doesn't close New Ticket, but a click outside closes it and wipes everything typed |
 | [BUG-TS-002](bugs/BUG-TS-002.md) | Medium | Timesheets | Timesheet Approval: status filter 'Unsigned' shows 'No personnel found' although everyone has unsigned days |
 | [BUG-TS-003](bugs/BUG-TS-003.md) | Medium | Timesheets | Timesheet Approval list totals don't match Timesheet Details (Rostered Days and Duty Hours) |
@@ -1001,6 +1002,23 @@ Actual: The preview shows 21/10/2026 13:16, which is UTC (the same as the header
 Suspected cause: The preview pickers are given new Date() (the browser's time, which is UTC here) instead of the time in the configured zone.
 
 ![BUG-STZ-001-1](bugs/screenshots/BUG-STZ-001-1.png)
+
+### BUG-STZ-003: Time Zone settings: the Example preview shows MM/DD/YYYY for every date format except DD/MM/YYYY
+
+Severity: Medium | Module: Settings: Time Zone | Check: STZ-002 ([33-settings-timezone](checklists/33-settings-timezone.md))
+
+Steps:
+1. Settings and Tools > Configuration > Time Zone.
+2. In "Choose a date format", pick YYYY-MM-DD, then DD.MM.YYYY.
+3. Look at the Example preview.
+
+Expected: The preview follows the chosen format: 2026-10-21, then 21.10.2026.
+
+Actual: Both show "10/21/2026" (US order). Picking DD/MM/YYYY again shows 21/10/2026. Also, 4 of the 10 date formats (DD MMM YYYY, MMM DD, YYYY, DD MMMM YYYY, MMMM DD, YYYY) and 3 of the 5 time formats (all the 12-hour ones) are listed but greyed out, with no explanation of why. The time preview also ignores the choice: with HH:mm:ss picked it still shows "13:20". Once saved, the format itself does work: the header clocks show "02:20:15 (2026-10-22)" and Daily Flight Record shows "2026-10-21 08:30:00".
+
+Suspected cause: The preview picker seems to fall back to the browser locale for any format it does not know. The disabled options look deliberate (the type-in picker can't parse them?), but the page doesn't say so.
+
+![BUG-STZ-003-1](bugs/screenshots/BUG-STZ-003-1.png)
 
 ### BUG-SUP-001: Support has no page Help (?); Escape doesn't close New Ticket, but a click outside closes it and wipes everything typed
 

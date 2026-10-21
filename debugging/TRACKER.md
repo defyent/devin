@@ -41,7 +41,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [30-maintenance](checklists/30-maintenance.md) | `MX` | Maintenance Portal | 11 | 0 | 0 | 11 | 0 | DONE |
 | [31-settings-flightschedule](checklists/31-settings-flightschedule.md) | `SFS` | Settings – Flight Schedule | 13 | 9 | 2 | 1 | 0 | DONE |
 | [32-settings-dfr](checklists/32-settings-dfr.md) | `SDFR` | Settings – Daily Flight Record | 7 | 5 | 1 | 0 | 0 | DONE |
-| [33-settings-timezone](checklists/33-settings-timezone.md) | `STZ` | Settings – Time Zone (date/time matrix) | 11 | 3 | 2 | 0 | 2 | IN PROGRESS |
+| [33-settings-timezone](checklists/33-settings-timezone.md) | `STZ` | Settings – Time Zone (date/time matrix) | 11 | 7 | 4 | 0 | 2 | DONE |
 | [34-settings-resources](checklists/34-settings-resources.md) | `SRES` | Settings – Resources (Aircraft) | 18 | 0 | 0 | 0 | 0 | TODO |
 | [35-settings-wab](checklists/35-settings-wab.md) | `SWAB` | Settings – Weight and Balance Configs | 13 | 0 | 0 | 0 | 0 | TODO |
 | [36-settings-extraflightinfo](checklists/36-settings-extraflightinfo.md) | `SEFI` | Settings – Extra Flight Info | 9 | 0 | 0 | 0 | 0 | TODO |
