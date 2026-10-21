@@ -24,7 +24,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [13-roster-viewer](checklists/13-roster-viewer.md) | `RV` | Roster Viewer | 12 | 8 | 3 | 1 | 1 | DONE |
 | [14-roster-builder](checklists/14-roster-builder.md) | `RB` | Roster Builder | 21 | 13 | 7 | 1 | 1 | DONE |
 | [15-timesheets-leave](checklists/15-timesheets-leave.md) | `TS` | Timesheets, Timesheet Details, Leave Requests | 17 | 7 | 4 | 6 | 0 | DONE |
-| [16-flight-and-duty](checklists/16-flight-and-duty.md) | `FAD` | Flight and Duty | 14 | 0 | 0 | 0 | 0 | TODO |
+| [16-flight-and-duty](checklists/16-flight-and-duty.md) | `FAD` | Flight and Duty | 14 | 12 | 2 | 0 | 0 | DONE |
 | [17-notices](checklists/17-notices.md) | `NOT` | Notices | 16 | 0 | 0 | 0 | 0 | TODO |
 | [18-recency-renewals](checklists/18-recency-renewals.md) | `REC` | Recency and Renewals (overview page) | 11 | 0 | 0 | 0 | 2 | TODO |
 | [19-safety-reports](checklists/19-safety-reports.md) | `SMS` | Safety Reports (SMS) | 21 | 0 | 0 | 0 | 2 | TODO |

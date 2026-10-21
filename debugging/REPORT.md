@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 4 |
 | Medium | 32 |
-| Low | 34 |
+| Low | 39 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -55,6 +55,11 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-AM-004](bugs/BUG-AM-004.md) | Low | Access Manager > Manage User Permissions | Permission level dropdown shows bare codes 'WA' and 'G' next to full labels |
 | [BUG-DFR-001](bugs/BUG-DFR-001.md) | Low | Daily Flight Record | Daily Flight Record has no page Help (?), and its popups (Manage Columns, Notes full text) don't close with Escape |
 | [BUG-DSH-001](bugs/BUG-DSH-001.md) | Low | Dashboard | Dashboard side tabs are icon-only with no tooltip or label |
+| [BUG-FAD-001](bugs/BUG-FAD-001.md) | Low | Flight and Duty | Flight and Duty has no page Help (?) |
+| [BUG-FAD-002](bugs/BUG-FAD-002.md) | Low | Flight and Duty | Flight and Duty popups (Flight Details, Duty Time Details, Roster Violations, Resolutions Required) ignore Escape |
+| [BUG-FAD-003](bugs/BUG-FAD-003.md) | Low | Flight and Duty | Flight and Duty popups show dates as '16 Oct 2026' instead of the configured DD/MM/YYYY |
+| [BUG-FAD-004](bugs/BUG-FAD-004.md) | Low | Flight and Duty | Flight and Duty column headers are ambiguous: two '1 Days' and two '24 Hours' columns, and '1 Days' is ungrammatical |
+| [BUG-FAD-005](bugs/BUG-FAD-005.md) | Low | Flight and Duty | Flight and Duty 'View as Date' defaults to the UTC date instead of the local date |
 | [BUG-FD-003](bugs/BUG-FD-003.md) | Low | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings |
 | [BUG-FS-005](bugs/BUG-FS-005.md) | Low | Flight Schedule | JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop') |
 | [BUG-LOG-001](bugs/BUG-LOG-001.md) | Low | Shell (main) | Login Message popup reappears on every browser reload |
@@ -834,6 +839,88 @@ Actual: Tabs show only Material icons (update, notifications, assignment_late, a
 Suspected cause: Tab buttons render the icon only; add title + aria-label (or a short text label).
 
 ![BUG-DSH-001-1](bugs/screenshots/BUG-DSH-001-1.png)
+
+### BUG-FAD-001: Flight and Duty has no page Help (?)
+
+Severity: Low | Module: Flight and Duty | Check: FAD-S02 ([16-flight-and-duty](checklists/16-flight-and-duty.md))
+
+Steps:
+1. Flight Safety > Flight and Duty
+2. Look for the (?) Help button in the page header
+
+Expected: A Help (?) button that opens the page help.
+
+Actual: The header only has 'View as Date'; there is no Help button.
+
+![BUG-FAD-001-1](bugs/screenshots/BUG-FAD-001-1.png)
+
+### BUG-FAD-002: Flight and Duty popups (Flight Details, Duty Time Details, Roster Violations, Resolutions Required) ignore Escape
+
+Severity: Low | Module: Flight and Duty | Check: FAD-S02 ([16-flight-and-duty](checklists/16-flight-and-duty.md))
+
+Steps:
+1. Flight Safety > Flight and Duty
+2. Click Aisha Johnston's 11.0h flight time value
+3. Press Escape
+
+Expected: Escape closes the popup.
+
+Actual: The popup stays open. Outside click and Close/Ok work; drag-out keeps it open (correct).
+
+Suspected cause: flightandduty/index.js has no keydown handler for #customModal; only the overlay click and Close button call closeModal().
+
+![BUG-FAD-002-1](bugs/screenshots/BUG-FAD-002-1.png)
+![BUG-FAD-002-2](bugs/screenshots/BUG-FAD-002-2.png)
+
+### BUG-FAD-003: Flight and Duty popups show dates as '16 Oct 2026' instead of the configured DD/MM/YYYY
+
+Severity: Low | Module: Flight and Duty | Check: FAD-S04 ([16-flight-and-duty](checklists/16-flight-and-duty.md))
+
+Steps:
+1. Flight Safety > Flight and Duty
+2. Click Aisha Johnston's 11.0h flight time value (flight #8795)
+3. Click the Roster error icon on Aisha Johnston
+
+Expected: Dates as 16/10/2026 (Settings > Time Zone format, as used by the View as Date box).
+
+Actual: Flight Details shows '16 Oct 2026'; Roster Violations shows '23 Oct 2026', '31 Oct 2026' and so on.
+
+Suspected cause: Hard-coded toLocaleDateString('en-NZ', {day:'2-digit', month:'short', year:'numeric'}) in flightandduty/index.js instead of the Time Zone date format.
+
+![BUG-FAD-003-1](bugs/screenshots/BUG-FAD-003-1.png)
+![BUG-FAD-003-2](bugs/screenshots/BUG-FAD-003-2.png)
+
+### BUG-FAD-004: Flight and Duty column headers are ambiguous: two '1 Days' and two '24 Hours' columns, and '1 Days' is ungrammatical
+
+Severity: Low | Module: Flight and Duty | Check: FAD-002 ([16-flight-and-duty](checklists/16-flight-and-duty.md))
+
+Steps:
+1. Flight Safety > Flight and Duty
+2. Scroll to the Pilots group and read the column headers
+
+Expected: Each FRMS rule column can be told apart (e.g. rule name or limit in the header) and singular periods read '1 Day'.
+
+Actual: Flight Time: 24 Hours (10h), 1 Days (8h), 1 Days (8h), 7 Days (40h). Duty Time: 24 Hours (14h), 24 Hours (8h), 28 Days (180h). The two '1 Days' and the two '24 Hours' columns only differ by the small limit in brackets.
+
+Suspected cause: Header uses only the rule period ('<n> Days'/'<n> Hours') with no rule name and no singular form.
+
+![BUG-FAD-004-1](bugs/screenshots/BUG-FAD-004-1.png)
+
+### BUG-FAD-005: Flight and Duty 'View as Date' defaults to the UTC date instead of the local date
+
+Severity: Low | Module: Flight and Duty | Check: FAD-003 ([16-flight-and-duty](checklists/16-flight-and-duty.md))
+
+Steps:
+1. Do this when the local date differs from UTC (e.g. after 00:00 NZ time)
+2. Flight Safety > Flight and Duty > View as Date
+
+Expected: Date box shows today's local date (22/10/2026 at Local 00:19 22/10/2026).
+
+Actual: Date box shows 21/10/2026 (the UTC date); the hidden value is '2026-10-21 11:19:37', i.e. UTC time.
+
+Suspected cause: The View as Date picker is initialised from the server/UTC time rather than the Settings > Time Zone local time.
+
+![BUG-FAD-005-1](bugs/screenshots/BUG-FAD-005-1.png)
 
 ### BUG-FD-003: Times and Meters: no link to the previous flight next to 'Previous' meter readings
 

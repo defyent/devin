@@ -72,6 +72,11 @@
 | [BUG-TS-004](BUG-TS-004.md) | `TS-S04` | Timesheets | Timesheet Details shows dates as 'Oct 5' and times with seconds (14:00:00) | Low | New | |
 | [BUG-TS-005](BUG-TS-005.md) | `TS-007` | Timesheets | Timesheet Details: F&D and Roster Violation popups ignore Escape and show ISO dates in the title | Low | New | |
 | [BUG-TS-006](BUG-TS-006.md) | `TS-010` | Leave Requests | Leave Types: a validation error closes the Add Leave Type popup and throws away what you typed; the popup ignores Escape | Low | New | |
+| [BUG-FAD-001](BUG-FAD-001.md) | `FAD-S02` | Flight and Duty | Flight and Duty has no page Help (?) | Low | New | |
+| [BUG-FAD-002](BUG-FAD-002.md) | `FAD-S02` | Flight and Duty | Flight and Duty popups (Flight Details, Duty Time Details, Roster Violations, Resolutions Required) ignore Escape | Low | New | |
+| [BUG-FAD-003](BUG-FAD-003.md) | `FAD-S04` | Flight and Duty | Flight and Duty popups show dates as '16 Oct 2026' instead of the configured DD/MM/YYYY | Low | New | |
+| [BUG-FAD-004](BUG-FAD-004.md) | `FAD-002` | Flight and Duty | Flight and Duty column headers are ambiguous: two '1 Days' and two '24 Hours' columns, and '1 Days' is ungrammatical | Low | New | |
+| [BUG-FAD-005](BUG-FAD-005.md) | `FAD-003` | Flight and Duty | Flight and Duty 'View as Date' defaults to the UTC date instead of the local date | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
