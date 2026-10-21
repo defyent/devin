@@ -24,6 +24,7 @@
 | [BUG-DSH-003](BUG-DSH-003.md) | `DSH-006` | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) | Medium | New | |
 | [BUG-POP-004](BUG-POP-004.md) | `FS-013` | Flight Schedule | Flight Schedule 'View Details' popup does not close with Esc | Low | New | |
 | [BUG-FS-001](BUG-FS-001.md) | `FS-011` | Flight Schedule > Flight Details (new) | New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h) | Medium | New | |
+| [BUG-FS-002](BUG-FS-002.md) | `FS-021` | Flight Schedule | Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

@@ -43,9 +43,9 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FS-016 | Undo Last Action | Reverts last move/resize | PASS |  | Undo twice: 'Undo successful.' each time, 09:30-11:00 > 09:30-10:30 > 08:30-09:30; Undo button then disabled |
 | FS-017 | Ctrl+C > click slot > Ctrl+V | Copy Flight Options (Legs, Forms + content, Files with counts); required forms locked on | PASS |  | Ctrl+C on #42903 > toast 'Flight ... copied. Click on the schedule to place it, then press Ctrl+V'. Click empty slot > 'Press Ctrl+V to paste the flight here' > Copy Flight Options: Legs 0, Forms 0 + Include form content, Files 0, all ticked. Required-form lock not testable (no forms on flight). Ctrl+V before choosing a slot gives an Error modal 'Click on the schedule to choose where to paste the flight.' |
 | FS-018 | Paste multiple copies | Each paste creates a new flight | PASS |  | Paste > 'Flight pasted successfully. Click another spot and press Ctrl+V to paste again, or press Escape to finish.' Two pastes created #42904 (Mon 19 07:25) and #42905 (16:05); 2nd paste reused the chosen options without reopening the modal |
-| FS-019 | Ctrl+X > Ctrl+V on open flight | Flight moved; not allowed for completed/cancelled | TODO | | |
+| FS-019 | Ctrl+X > Ctrl+V on open flight | Flight moved; not allowed for completed/cancelled | PASS |  | Ctrl+X on #42905 > toast 'Flight ... cut. Click on the schedule to place it, then press Ctrl+V to move.' > click slot > 'Press Ctrl+V to move the flight here' > Ctrl+V moved #42905 16:05 > 09:05 (no copy left behind). Completed/cancelled not tested yet (no such BETA flight) |
 | FS-020 | Delete key on open flight | Confirmation then deleted; refused for non-open | TODO | | |
-| FS-021 | Esc during copy/cut | Cancels | TODO | | |
+| FS-021 | Esc during copy/cut | Cancels | FAIL | BUG-FS-002 | After pasting, toast says 'press Escape to finish'. Pressed Esc (no toast), clicked another slot > 'Press Ctrl+V to paste the flight here' > Ctrl+V created another copy #42906. Esc did not end paste mode |
 | FS-022 | Double booking (same aircraft or person overlapping) | Warning shown | TODO | | |
 | FS-023 | F&D violation icon / popup | Flight & Duty Violations popup lists violations | TODO | | |
 | FS-024 | Add Note (Start, End, Title, Details) > view/edit/delete | Works | PASS |  | Add Note: Start/End Date, Title, Details > 'Note added successfully'. Click note > Edit Note modal > Update > 'Note updated successfully'. Delete Note > app confirm 'Are you sure you want to delete this note?' > 'Note deleted successfully', gone from schedule. Esc on note modals does nothing (see BUG-POP-004) |
@@ -74,4 +74,4 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 |---|---|---|
 | Note 'BETA TEST ONLY Note' (21/10/2026) | Flight Schedule | Yes (deleted in FS-024) |
 | Flight #42903 ZK-SIM, PIC BETA TEST ONLY Lowperm, route NZWN-NZWN, notes 'BETA TEST ONLY flight', 21/10/2026 08:30 | Flight Schedule / Flight Details | No |
-| Flights #42904, #42905 (pasted copies of #42903, week 19-25 Oct 2026) | Flight Schedule | No |
+| Flights #42904, #42905, #42906 (pasted copies of #42903, week 19-25 Oct 2026; #42906 from BUG-FS-002) | Flight Schedule | No |
