@@ -7,7 +7,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 3 |
-| Medium | 28 |
+| Medium | 29 |
 | Low | 28 |
 
 | Bug | Severity | Module | Title |
@@ -42,6 +42,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) |
 | [BUG-POP-003](bugs/BUG-POP-003.md) | Medium | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved |
 | [BUG-RB-002](bugs/BUG-RB-002.md) | Medium | Roster Builder | Roster Builder: Copy Live to Draft copies one shift at a time and takes about 6 minutes for one month |
+| [BUG-RB-003](bugs/BUG-RB-003.md) | Medium | Roster Builder | Roster Builder: copy/paste still works with violation checking ON |
 | [BUG-RV-002](bugs/BUG-RV-002.md) | Medium | Roster Viewer | Roster Viewer: clicking a shift does not open Shift Details |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
 | [BUG-AF-003](bugs/BUG-AF-003.md) | Low | Active Flights | Active Flights has no page Help (?), and its popups (About Live Tracking, Adjust SAR, Add Note) don't close with Escape |
@@ -598,6 +599,25 @@ Suspected cause: Client loops over every live shift and saves each with its own 
 
 ![BUG-RB-002-1](bugs/screenshots/BUG-RB-002-1.png)
 ![BUG-RB-002-2](bugs/screenshots/BUG-RB-002-2.png)
+
+### BUG-RB-003: Roster Builder: copy/paste still works with violation checking ON
+
+Severity: Medium | Module: Roster Builder | Check: RB-006 ([14-roster-builder](checklists/14-roster-builder.md))
+
+Steps:
+1. Settings and Tools > Roster Builder, select a draft
+2. Turn the violations toggle ON (badge VIOLATIONS FOUND)
+3. Click a cell with a shift, Ctrl+C
+4. Click an empty cell, Ctrl+V
+
+Expected: Copy/paste is not allowed while violation checking is on (documented behaviour), with a message saying why.
+
+Actual: 'Copied 1 cell(s)' then 'Successfully pasted 1 shift(s)' - the shift is pasted with no warning, even onto a day that then shows a violation.
+
+Suspected cause: Copy/paste keyboard handlers don't check the violations toggle state.
+
+![BUG-RB-003-1](bugs/screenshots/BUG-RB-003-1.png)
+![BUG-RB-003-2](bugs/screenshots/BUG-RB-003-2.png)
 
 ### BUG-RV-002: Roster Viewer: clicking a shift does not open Shift Details
 

@@ -61,6 +61,7 @@
 | [BUG-RV-003](BUG-RV-003.md) | `RV-S04` | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY | Low | New | |
 | [BUG-RB-001](BUG-RB-001.md) | `RB-S02` | Roster Builder | Roster Builder: no page Help (?); Copy/Paste Instructions popup ignores Escape and outside click | Low | New | |
 | [BUG-RB-002](BUG-RB-002.md) | `RB-003` | Roster Builder | Roster Builder: Copy Live to Draft copies one shift at a time and takes about 6 minutes for one month | Medium | New | |
+| [BUG-RB-003](BUG-RB-003.md) | `RB-006` | Roster Builder | Roster Builder: copy/paste still works with violation checking ON | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
