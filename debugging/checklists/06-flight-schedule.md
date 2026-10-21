@@ -52,8 +52,8 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FS-025 | Idle 20 min in edit mode | 'Edit mode has been disabled due to inactivity.' | TODO | | |
 | FS-026 | Mobile width | List view; tap opens Flight Details; edit mode off; Add Flight visible | PASS |  | 390 px: list view (listMonth 'October 2026'), no horizontal scroll, Live Edit button + banner hidden, Add Flight visible. Tap #8688 opens Flight Details. Note: list starts at 1 Oct (not today) and each day lists ~20 Roster rows before the flights, so flights are hard to find |
 | FS-027 | RG/WG user | Sees only flights on aircraft in their groups; see §14 caveat on membership read/write flag | TODO | | |
-| FS-028 | View mode (if Location Planner enabled): Schedule Only / Schedule & Planner / Planner Only | Each works; Rows by Aircraft / by Location | TODO | | |
-| FS-029 | Planner: Filter by Location, search, Add Location (Name, Code, Color) | Works | TODO | | |
+| FS-028 | View mode (if Location Planner enabled): Schedule Only / Schedule & Planner / Planner Only | Each works; Rows by Aircraft / by Location | PASS |  | Schedule Only / Schedule & Planner (planner left + schedule right; schedule half switches to list view from 1 Oct) / Planner Only all work. Rows by Aircraft lists aircraft + type (ZK-AIR C172-02 ...); Rows by Location lists AKL Auckland Base. Planner range 19/10-15/11 (4 Weeks), Day/Week/Month + 4/8/12 Weeks |
+| FS-029 | Planner: Filter by Location, search, Add Location (Name, Code, Color) | Works | IN PROGRESS |  | Locations > 'Filter by Location' modal: search 'zzz' > 'No locations found', 'auck' > AKL Auckland Base; picking it closes the modal and the header shows Auckland Base. Add Location: pending |
 | FS-030 | Planner: New Booking (From, To, Location, Aircraft, Notes) | Saved; appears in grid | TODO | | |
 | FS-031 | Planner booking tabs: Details / Flights / Templates | Flights list correct for range; New Template requires Template Title | TODO | | |
 | FS-032 | Planner template copy onto schedule | Requires edit mode; flight created | TODO | | |
