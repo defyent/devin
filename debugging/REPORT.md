@@ -7,7 +7,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 7 |
-| Medium | 55 |
+| Medium | 56 |
 | Low | 98 |
 
 | Bug | Severity | Module | Title |
@@ -21,6 +21,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SLP-002](bugs/BUG-SLP-002.md) | High | Settings: Lesson Plans | Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave |
 | [BUG-AF-002](bugs/BUG-AF-002.md) | Medium | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them |
 | [BUG-AM-001](bugs/BUG-AM-001.md) | Medium | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) |
+| [BUG-AM-005](bugs/BUG-AM-005.md) | Medium | Access Manager | Access Manager: 16 permission types appear twice with the same name (e.g. two "Flight Schedule" cards with different levels) |
 | [BUG-DFR-002](bugs/BUG-DFR-002.md) | Medium | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied |
 | [BUG-DFR-003](bugs/BUG-DFR-003.md) | Medium | Daily Flight Record | Daily Flight Record: changing filters quickly appends results instead of replacing them, showing duplicate and wrong-status rows |
 | [BUG-DSH-003](bugs/BUG-DSH-003.md) | Medium | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) |
@@ -336,6 +337,23 @@ Actual: Toast 'User BETA TEST ONLY Lowperm created successfully'; account create
 Suspected cause: No min-length check in the New User handler (client and server) for create; only Change Credentials enforces 10.
 
 ![BUG-AM-001-1](bugs/screenshots/BUG-AM-001-1.png)
+
+### BUG-AM-005: Access Manager: 16 permission types appear twice with the same name (e.g. two "Flight Schedule" cards with different levels)
+
+Severity: Medium | Module: Access Manager | Check: PERM-001 ([90-xc-permissions](checklists/90-xc-permissions.md))
+
+Steps:
+1. Settings and Tools > Access Manager > User Permissions.
+2. Click the Permissions badge on BETA TEST ONLY Lowperm.
+3. Scroll through the permission cards.
+
+Expected: Each permission type shows once, or the cards are named or grouped clearly enough to tell them apart.
+
+Actual: 16 names are shown more than once, with no heading or hint to tell them apart: Flight Schedule (ids 2, 209), Dashboard (3, 208), Personnel List (4, 215), Daily Flight Record (5, 213), Personnel Details (6, 216), Roster Viewer (7, 217), Roster Builder (8, 223), File Browser (9, 225), Flight and Duty (10, 31, 218), Notices (11, 219), Safety Reports (13, 30, 221), Hazard Register (14, 222), System Settings (15, 211), Form Builder (16, 224), Exam Builder (18, 232), Access Manager (34, 210). The copies offer different levels: Flight Schedule id 2 offers RA/WA/G, id 209 offers A/RA/WG/RG. An admin can easily give the wrong one.
+
+Suspected cause: The permission types table has more than one row with the same display name (probably a second set added for a newer module version). The editor lists every row by name only, with no grouping or description.
+
+![BUG-AM-005-1](bugs/screenshots/BUG-AM-005-1.png)
 
 ### BUG-DFR-002: Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied
 
