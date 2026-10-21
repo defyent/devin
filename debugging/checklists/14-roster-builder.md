@@ -17,7 +17,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | RB-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Settings and Tools > People > Roster Builder opens 'Staff Roster Live' (Oct 2026), no console errors |
 | RB-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-RB-001 | No page Help (?). Copy/Paste Instructions popup: × and Close work, Escape and outside click don't |
 | RB-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
-| RB-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
+| RB-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | FAIL | BUG-RB-004 | Month header/day columns fine; Rule Violations popup says 'Monday, October 5' (US format, no year) |
 | RB-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
 | RB-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
 
@@ -35,7 +35,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | RB-008 | Person name > Shift Summary; Apply Shift Pattern; Clear Month | Counts and hours correct | TODO | | |
 | RB-009 | Reorder people; Reset Order | Works | TODO | | |
 | RB-010 | Cell notes add/edit/delete | Works | TODO | | |
-| RB-011 | Violations toggle | Rule Violations from FRMS rostered shift rules | TODO | | |
+| RB-011 | Violations toggle | Rule Violations from FRMS rostered shift rules | PASS |  | Toggle ON: badge VIOLATIONS FOUND, flagged shifts get red border + warning triangle (628 cells, about 0.5 s to compute). Triangle opens 'Rule Violations' - 'Max 8.0 Duty Time hours in any 24 hours period, Applies to: Pilots' (FRMS rostered shift rule). Toggle OFF restores CHECKING DISABLED. Triangle is mostly covered by the shift badge; only its top-left corner is clickable |
 | RB-012 | Export PDF | Generated | TODO | | |
 | RB-013 | Publish Month: Merge / Clear then Publish (on draft only) | Live roster updated; Viewer, Dashboard, Schedule roster row, Timesheets reflect it | TODO | | |
 | RB-014 | Enable Live Edit > Confirm & Edit | Live roster editable | TODO | | |

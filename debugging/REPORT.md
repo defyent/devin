@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 3 |
 | Medium | 29 |
-| Low | 28 |
+| Low | 29 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -70,6 +70,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-POP-002](bugs/BUG-POP-002.md) | Low | Access Manager > Manage User Permissions | Manage User Permissions uses a native browser confirm() for unsaved changes |
 | [BUG-POP-004](bugs/BUG-POP-004.md) | Low | Flight Schedule | Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc |
 | [BUG-RB-001](bugs/BUG-RB-001.md) | Low | Roster Builder | Roster Builder: no page Help (?); Copy/Paste Instructions popup ignores Escape and outside click |
+| [BUG-RB-004](bugs/BUG-RB-004.md) | Low | Roster Builder | Roster Builder: Rule Violations popup shows 'Monday, October 5' instead of the configured DD/MM/YYYY date |
 | [BUG-RV-001](bugs/BUG-RV-001.md) | Low | Roster Viewer | Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape |
 | [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
 
@@ -1067,6 +1068,23 @@ Suspected cause: Page has no help include; modal lacks Escape/outside-click hand
 
 ![BUG-RB-001-1](bugs/screenshots/BUG-RB-001-1.png)
 ![BUG-RB-001-2](bugs/screenshots/BUG-RB-001-2.png)
+
+### BUG-RB-004: Roster Builder: Rule Violations popup shows 'Monday, October 5' instead of the configured DD/MM/YYYY date
+
+Severity: Low | Module: Roster Builder | Check: RB-S04 ([14-roster-builder](checklists/14-roster-builder.md))
+
+Steps:
+1. Settings and Tools > Roster Builder, select a draft
+2. Turn the violations toggle ON
+3. Click the warning triangle on a flagged shift (Aisha Johnston, 5 Oct)
+
+Expected: Date shown in the Time Zone setting format, e.g. Monday 05/10/2026.
+
+Actual: 'For Aisha Johnston on Monday, October 5:' - US long format, no year. Same issue as BUG-RV-003 in Roster Viewer.
+
+Suspected cause: Popup builds the date with toLocaleDateString('en-US', ...) instead of the shared date formatter.
+
+![BUG-RB-004-1](bugs/screenshots/BUG-RB-004-1.png)
 
 ### BUG-RV-001: Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape
 
