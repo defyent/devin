@@ -35,7 +35,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | LOG-008 | 2FA wrong code | 'Invalid verification code. Please try again.' | PASS |  | 'Invalid verification code. Please try again.' |
 | LOG-009 | 2FA backup code XXXX-XXXX | Accepted once; cannot be reused | PASS |  | Backup code accepted once; reuse gives 'Invalid verification code. Please try again.' |
 | LOG-010 | 2FA 'Trust this device for 30 days' | Next login on same browser skips 2FA | FAIL | BUG-LOG-003 | Trusted cookie dhkey_trusted_betatest_low (29 days) is set, but Logout deletes every cookie including it; next login asks for 2FA again |
-| LOG-011 | 2FA > 10 wrong attempts within 15 min | 'Too many failed attempts. Please try again later.' | PASS |  | After ~10 wrong codes in 15 min: 'Too many failed attempts. Please try again later.'; a valid code is also refused while locked |
+| LOG-011 | 2FA > 10 wrong attempts within 15 min | 'Too many failed attempts. Please try again later.' | PASS |  | After ~10 wrong codes in 15 min: 'Too many failed attempts. Please try again later.'; a valid code is also refused while locked. Lock cleared about 19 min after it started |
 | LOG-012 | 2FA '← Back to login' | Returns to login page | PASS |  | '← Back to login' returns to login card |
 | LOG-013 | Login message popup after login | Login Message popup; closes with OK and with Esc | FAIL | BUG-LOG-001 | OK and Esc close it, but it also reappears on every browser reload, not just after login |
 | LOG-014 | Reload browser while on a non-default page | Same page reopens | PASS |  | DFR reopened after reload |
@@ -43,7 +43,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | LOG-016 | Logout confirmation | 'Are you sure you want to log out?' Cancel keeps you in; Log Out logs out and clears remembered page | FAIL | BUG-LOG-002 | Cancel/Log Out work and remembered page cleared, but Esc doesn't close the confirm (POP-02) and logout throws a JS error |
 | LOG-017 | Deactivate a logged-in test user from another browser/session | That user's session ends immediately; module shows Session Expired card with Login button | PASS |  | Deactivated from Service Account while betatest_low was logged in: next navigation shows 'Session Expired - Your session has expired. Please click the button below to login again.' Open page is not cleared until the user clicks something |
 | LOG-018 | Session Expired card Login button | Reloads whole page to login | PASS |  | Card 'Login' link reloads the whole page (single frame) to the login card |
-| LOG-019 | Disable 2FA and regenerate backup codes (password required) | Works; codes downloadable | IN PROGRESS |  | Regenerate: password required (wrong pw gives vague 'Failed to regenerate backup codes', not 'Invalid password'); 10 new codes, all different; Download gives datahangar-new-backup-codes.txt. Disable 2FA: pending |
+| LOG-019 | Disable 2FA and regenerate backup codes (password required) | Works; codes downloadable | PASS |  | Regenerate: password required (wrong pw gives vague 'Failed to regenerate backup codes'); 10 new codes, all different; Download gives datahangar-new-backup-codes.txt. Disable 2FA: password prompt > '2FA disabled successfully' |
 
 ## Test data created
 

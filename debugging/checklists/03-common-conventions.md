@@ -38,7 +38,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | CON-011 | History buttons/tabs | Show who changed what and when | TODO | | |
 | CON-012 | PDF export | Choose sections; generates PDF | TODO | | |
 | CON-013 | Field help icons (?) | Explain the field (Notify, Confidential, Anonymous...) | TODO | | |
-| CON-014 | POPUP DRAG-OUT BUG: in every popup, mousedown inside (e.g. in a text field), drag and release outside | Popup must NOT close | TODO | | |
+| CON-014 | POPUP DRAG-OUT BUG: in every popup, mousedown inside (e.g. in a text field), drag and release outside | Popup must NOT close | PASS |  | Drag-out keeps popups open so far (Access Manager, Flight Schedule details popup) |
 | CON-015 | Esc in any modal | Closes it (and does not lose unsaved data without a prompt) | FAIL | BUG-POP-001 | Esc does not close the error modal (BUG-POP-001); Esc on dirty Groups popup closes without prompt and keeps stale ticks (BUG-POP-003) |
 | CON-016 | Icon consistency | Same icon for the same action (add/edit/delete/help/save) across modules — record mismatches in ui-icons checklist | TODO | | |
 

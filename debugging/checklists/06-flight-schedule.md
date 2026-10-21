@@ -16,7 +16,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 |---|---|---|---|---|---|
 | FS-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Opened via sidebar, week view 19-25 October 2026; no console errors (iframe sandbox warning only) |
 | FS-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | VIS-06 | No Help (?) button on the Flight Schedule page header (only the settings page has one) - external VIS-06 |
-| FS-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
+| FS-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Flight details popup: mousedown inside, release outside > stays open. Outside click closes it |
 | FS-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
 | FS-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
 | FS-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
@@ -32,12 +32,12 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FS-005 | Toggle Notes | Notes show/hide | IN PROGRESS |  | Toggle Notes button works (active class flips) but there are no notes this week; retest after FS-024 adds a note. Notes button has a tooltip; view buttons today/month/week/day/list and < > have none (ICON-12) |
 | FS-006 | Compact view (month) | Max 3 events/day with +more | PASS |  | Compact (title 'Compact view (show +more)') in month view: 2 items per day + '+N more' link (e.g. '+66 more'). With Roster on, the 2 slots are roster shifts so flights are only reachable via +more |
 | FS-007 | Font size slider | Changes size; remembered? | PASS |  | Font button (title 'Adjust font size') opens slider 8-18; 14 -> 18 changes event text 11.9px -> 15.3px; kept after reload; restored to 14 |
-| FS-008 | Toggle Edit Mode (write users only) | Enable/Disable Live Edit; hidden for RA/RG | TODO | | |
+| FS-008 | Toggle Edit Mode (write users only) | Enable/Disable Live Edit; hidden for RA/RG | PASS |  | 'Enable Live Edit' > 'Disable Live Edit' (active); Undo, Add Note, Add Flight buttons appear. RA/RG hiding not testable (no such user) |
 | FS-009 | Edit mode: drag on empty slot in aircraft column | Flight Details opens pre-filled start/end/aircraft | TODO | | |
 | FS-010 | Edit mode: drag in all-day area | All-day flight created | TODO | | |
-| FS-011 | Add Flight button | Blank Flight Details | TODO | | |
-| FS-012 | Single-click a flight | Selected; edit / note / cancelled / F&D icons shown as applicable | TODO | | |
-| FS-013 | Note icon popup | PIC, crew, lesson, route, notes, aircraft inspections due | TODO | | |
+| FS-011 | Add Flight button | Blank Flight Details | PASS |  | Add Flight (title 'Add Flight') opens blank 'New Flight Details' (status Open, aircraft/PIC empty). Start defaults to 21/10/2026 08:25 = current UTC time, while local (Pacific/Auckland) is 21:25 - check in 07/92 |
+| FS-012 | Single-click a flight | Selected; edit / note / cancelled / F&D icons shown as applicable | PASS |  | Click selects the flight (blue outline, fc-event-selected); small edit + note icons appear on its top edge. Edit mode shows 'Live Edit Mode - Changes are live for everyone.' banner |
+| FS-013 | Note icon popup | PIC, crew, lesson, route, notes, aircraft inspections due | PASS |  | View Details icon (aria 'View Details') opens '#8656 ZK-SIM' popup: PIC, Crew, Route NZWN-NZNS, Notes, OK. Lesson/inspections empty for this flight so not shown. Esc does not close it (BUG-POP-004) |
 | FS-014 | Move / resize open flight | Toast 'Updated flight #ID time.' | TODO | | |
 | FS-015 | Move completed / cancelled flight | 'Completed flights cannot be moved.' / refused | TODO | | |
 | FS-016 | Undo Last Action | Reverts last move/resize | TODO | | |
