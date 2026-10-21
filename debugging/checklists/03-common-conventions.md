@@ -28,7 +28,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | CON-001 | Help (?) button top right | Opens page help; closes with Got it/Close, ×, click outside, Esc | TODO | | |
 | CON-002 | Pill navigation | Pills switch sections; narrow screen shows a dropdown | TODO | | |
 | CON-003 | Toast on save/add/delete | Bottom-right toast, disappears after ~3 s | TODO | | |
-| CON-004 | Server error / Access Denied | Popup modal with OK; if already in a popup, that popup closes first | TODO | | |
+| CON-004 | Server error / Access Denied | Popup modal with OK; if already in a popup, that popup closes first | PASS |  | Access Manager: delete in-use group > confirm popup closes first, then 'Cannot Delete Group' error modal with OK |
 | CON-005 | Destructive actions | Always a Cancel/Delete confirmation; NEVER a native browser alert/confirm | TODO | | |
 | CON-006 | Dirty-state buttons | Save/Cancel enable or change colour only after a change; revert when change undone | TODO | | |
 | CON-007 | Search boxes | Filter as you type; × clear button works | TODO | | |
@@ -39,7 +39,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | CON-012 | PDF export | Choose sections; generates PDF | TODO | | |
 | CON-013 | Field help icons (?) | Explain the field (Notify, Confidential, Anonymous...) | TODO | | |
 | CON-014 | POPUP DRAG-OUT BUG: in every popup, mousedown inside (e.g. in a text field), drag and release outside | Popup must NOT close | TODO | | |
-| CON-015 | Esc in any modal | Closes it (and does not lose unsaved data without a prompt) | TODO | | |
+| CON-015 | Esc in any modal | Closes it (and does not lose unsaved data without a prompt) | FAIL | BUG-POP-001 | Esc does not close the error modal (BUG-POP-001); Esc on dirty Groups popup closes without prompt and keeps stale ticks (BUG-POP-003) |
 | CON-016 | Icon consistency | Same icon for the same action (add/edit/delete/help/save) across modules — record mismatches in ui-icons checklist | TODO | | |
 
 ## Test data created
