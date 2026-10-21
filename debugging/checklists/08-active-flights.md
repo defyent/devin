@@ -16,7 +16,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 |---|---|---|---|---|---|
 | AF-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Sidebar > Flight Operations > Active Flights loads (action=activeflights), no console errors (shot af_open) |
 | AF-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-AF-003 | No page Help (?) button on Active Flights. 'About Live Tracking' popup: Got it closes, clicking outside closes, no x button, Escape does nothing (BUG-AF-003) |
-| AF-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
+| AF-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Mouse down inside Contact Details, Adjust SAR and Add Note popups, release outside: all stay open. (Escape does not close them - BUG-AF-003) |
 | AF-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
 | AF-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
 | AF-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |

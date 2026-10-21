@@ -31,7 +31,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) |
 | [BUG-POP-003](bugs/BUG-POP-003.md) | Medium | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
-| [BUG-AF-003](bugs/BUG-AF-003.md) | Low | Active Flights | Active Flights has no page Help (?) and the 'About Live Tracking' popup has no close (x) button and ignores Escape |
+| [BUG-AF-003](bugs/BUG-AF-003.md) | Low | Active Flights | Active Flights has no page Help (?), and its popups (About Live Tracking, Adjust SAR, Add Note) don't close with Escape |
 | [BUG-AM-002](bugs/BUG-AM-002.md) | Low | Access Manager | Last Activity hover date ignores Settings > Time Zone format |
 | [BUG-AM-003](bugs/BUG-AM-003.md) | Low | Access Manager | Last Activity column sort does not change order |
 | [BUG-AM-004](bugs/BUG-AM-004.md) | Low | Access Manager > Manage User Permissions | Permission level dropdown shows bare codes 'WA' and 'G' next to full labels |
@@ -396,7 +396,7 @@ Suspected cause: Empty/0 SAR timestamp formatted as a date instead of being trea
 
 ![BUG-AF-001-1](bugs/screenshots/BUG-AF-001-1.png)
 
-### BUG-AF-003: Active Flights has no page Help (?) and the 'About Live Tracking' popup has no close (x) button and ignores Escape
+### BUG-AF-003: Active Flights has no page Help (?), and its popups (About Live Tracking, Adjust SAR, Add Note) don't close with Escape
 
 Severity: Low | Module: Active Flights | Check: AF-S02 ([08-active-flights](checklists/08-active-flights.md))
 
@@ -405,12 +405,14 @@ Steps:
 2. Look for the Help (?) button in the page header
 3. Click the help icon in the Live Tracking box ('About Live Tracking')
 4. Press Escape; look for an x button
+5. Click Adjust SAR or Add Note on an OVERDUE row, press Escape
 
 Expected: Like other modules, a page Help (?) button that opens help; every help popup closes with Got it, x, clicking outside and Escape.
 
-Actual: No page-level Help (?) button exists (the only help is 'About Live Tracking'). That popup has only 'Got it'; there is no x, and Escape does not close it. Got it and clicking outside do close it.
+Actual: No page-level Help (?) button exists (the only help is 'About Live Tracking'). That popup has only 'Got it', no x, and Escape does not close it. Adjust SAR and Add Note popups also stay open on Escape (Add Note with typed text and no prompt). Got it / Cancel and clicking outside do close them.
 
 ![BUG-AF-003-1](bugs/screenshots/BUG-AF-003-1.png)
+![BUG-AF-003-2](bugs/screenshots/BUG-AF-003-2.png)
 
 ### BUG-AM-002: Last Activity hover date ignores Settings > Time Zone format
 
