@@ -89,6 +89,13 @@
 | [BUG-HAZ-001](BUG-HAZ-001.md) | `HAZ-003` | Hazard Register | Hazard Register details: Hazard Type always shows '--' | Medium | New | |
 | [BUG-HAZ-002](BUG-HAZ-002.md) | `HAZ-003` | Hazard Register | Hazard Register details: Final Risk Assessment never shows the saved final risk | Medium | New | |
 | [BUG-HAZ-003](BUG-HAZ-003.md) | `HAZ-002` | Hazard Register | Hazard Register has no way to create a hazard entry | Low | New | |
+| [BUG-FB-001](BUG-FB-001.md) | `FB-S02` | File Browser | File Browser has no page Help (?) | Low | New | |
+| [BUG-FB-002](BUG-FB-002.md) | `FB-S04` | File Browser | File Browser shows Date Uploaded as 'Oct 22, 2026' instead of DD/MM/YYYY | Low | New | |
+| [BUG-FB-003](BUG-FB-003.md) | `FB-006` | File Browser | File Browser: clicking a .txt file shows 'File Access Error' with the file's own text | Medium | New | |
+| [BUG-FB-004](BUG-FB-004.md) | `FB-S03` | File Browser | File Browser: Escape doesn't close the Create New Folder or Configure File popups | Low | New | |
+| [BUG-FB-005](BUG-FB-005.md) | `FB-007` | File Browser | File Browser: Read/Write Access groups are not kept after Update Document | Medium | New | |
+| [BUG-FB-006](BUG-FB-006.md) | `FB-008` | File Browser | File Browser: deleting a folder fails with 'Invalid Action: filebrowser_deletefolder' | Medium | New | |
+| [BUG-FB-007](BUG-FB-007.md) | `FB-S05` | File Browser | File Browser on a phone: table is cut off, edit buttons are off-screen | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

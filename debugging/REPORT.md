@@ -7,8 +7,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 4 |
-| Medium | 37 |
-| Low | 46 |
+| Medium | 40 |
+| Low | 50 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -21,6 +21,9 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-DFR-002](bugs/BUG-DFR-002.md) | Medium | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied |
 | [BUG-DFR-003](bugs/BUG-DFR-003.md) | Medium | Daily Flight Record | Daily Flight Record: changing filters quickly appends results instead of replacing them, showing duplicate and wrong-status rows |
 | [BUG-DSH-003](bugs/BUG-DSH-003.md) | Medium | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) |
+| [BUG-FB-003](bugs/BUG-FB-003.md) | Medium | File Browser | File Browser: clicking a .txt file shows 'File Access Error' with the file's own text |
+| [BUG-FB-005](bugs/BUG-FB-005.md) | Medium | File Browser | File Browser: Read/Write Access groups are not kept after Update Document |
+| [BUG-FB-006](bugs/BUG-FB-006.md) | Medium | File Browser | File Browser: deleting a folder fails with 'Invalid Action: filebrowser_deletefolder' |
 | [BUG-FD-001](bugs/BUG-FD-001.md) | Medium | Flight Details | Flight Details Save Changes does not return to the Flight Schedule and gives no success message |
 | [BUG-FD-002](bugs/BUG-FD-002.md) | Medium | Flight Details | Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM > Unassigned' on schedule moves |
 | [BUG-FD-004](bugs/BUG-FD-004.md) | Medium | Flight Details | Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC) |
@@ -65,6 +68,10 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-FAD-003](bugs/BUG-FAD-003.md) | Low | Flight and Duty | Flight and Duty popups show dates as '16 Oct 2026' instead of the configured DD/MM/YYYY |
 | [BUG-FAD-004](bugs/BUG-FAD-004.md) | Low | Flight and Duty | Flight and Duty column headers are ambiguous: two '1 Days' and two '24 Hours' columns, and '1 Days' is ungrammatical |
 | [BUG-FAD-005](bugs/BUG-FAD-005.md) | Low | Flight and Duty | Flight and Duty 'View as Date' defaults to the UTC date instead of the local date |
+| [BUG-FB-001](bugs/BUG-FB-001.md) | Low | File Browser | File Browser has no page Help (?) |
+| [BUG-FB-002](bugs/BUG-FB-002.md) | Low | File Browser | File Browser shows Date Uploaded as 'Oct 22, 2026' instead of DD/MM/YYYY |
+| [BUG-FB-004](bugs/BUG-FB-004.md) | Low | File Browser | File Browser: Escape doesn't close the Create New Folder or Configure File popups |
+| [BUG-FB-007](bugs/BUG-FB-007.md) | Low | File Browser | File Browser on a phone: table is cut off, edit buttons are off-screen |
 | [BUG-FD-003](bugs/BUG-FD-003.md) | Low | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings |
 | [BUG-FS-005](bugs/BUG-FS-005.md) | Low | Flight Schedule | JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop') |
 | [BUG-HAZ-003](bugs/BUG-HAZ-003.md) | Low | Hazard Register | Hazard Register has no way to create a hazard entry |
@@ -264,6 +271,58 @@ Actual: Personnel Details opens (URL has alertname_id=3) but the Personal Detail
 Suspected cause: alertname_id param not used to select the Recency tab, or the tab-switch code never runs because index.js is truncated (BUG-PD-001). Retest after BUG-PD-001 is fixed.
 
 ![BUG-DSH-003-1](bugs/screenshots/BUG-DSH-003-1.png)
+
+### BUG-FB-003: File Browser: clicking a .txt file shows 'File Access Error' with the file's own text
+
+Severity: Medium | Module: File Browser | Check: FB-006 ([22-file-browser](checklists/22-file-browser.md))
+
+Steps:
+1. Administration > File Browser
+2. Search 'BETA_TEST_ONLY'
+3. Click BETA_TEST_ONLY_notice-GCKLCWJK.txt
+
+Expected: The file opens in the preview (or downloads).
+
+Actual: An error popup titled 'File Access Error' shows the file content ('BETA TEST ONLY notice attachment - please ignore'). No preview opens. Same cause as BUG-NOT-002 and BUG-PD-012.
+
+Suspected cause: filebrowser/index.js handleFilePreview(): any text/plain response that is not 'Ok' is treated as an error message, so every real .txt file is shown as an error.
+
+![BUG-FB-003-1](bugs/screenshots/BUG-FB-003-1.png)
+
+### BUG-FB-005: File Browser: Read/Write Access groups are not kept after Update Document
+
+Severity: Medium | Module: File Browser | Check: FB-007 ([22-file-browser](checklists/22-file-browser.md))
+
+Steps:
+1. Administration > File Browser, open edit (Configure File) on a file
+2. Tick Read Access 'BETA TEST ONLY Group'
+3. Update Document
+4. Open edit on the same file again
+
+Expected: BETA TEST ONLY Group is still ticked and the file is limited to that group.
+
+Actual: No group is ticked. The request sent read_access with the group (id 103), but the popup shows nothing ticked when reopened. Moving the file to Root (Parent Folder) did save.
+
+Suspected cause: Either the server does not store read_access/write_access, or handleOpenConfigModal() does not tick the saved groups. Needs a server-side check.
+
+![BUG-FB-005-1](bugs/screenshots/BUG-FB-005-1.png)
+
+### BUG-FB-006: File Browser: deleting a folder fails with 'Invalid Action: filebrowser_deletefolder'
+
+Severity: Medium | Module: File Browser | Check: FB-008 ([22-file-browser](checklists/22-file-browser.md))
+
+Steps:
+1. Administration > File Browser > Make Folder 'BETA TEST ONLY Folder'
+2. Click edit on the folder, then Delete
+3. Confirm
+
+Expected: The folder is deleted.
+
+Actual: Error popup 'Delete Failed: Invalid Action: filebrowser_deletefolder' and the folder stays. The confirm popup also says 'delete this file' for a folder.
+
+Suspected cause: filebrowser/index.js performDeleteFolder() posts action filebrowser_deletefolder, which the server does not handle.
+
+![BUG-FB-006-1](bugs/screenshots/BUG-FB-006-1.png)
 
 ### BUG-FD-001: Flight Details Save Changes does not return to the Flight Schedule and gives no success message
 
@@ -1016,6 +1075,65 @@ Suspected cause: The View as Date picker is initialised from the server/UTC time
 
 ![BUG-FAD-005-1](bugs/screenshots/BUG-FAD-005-1.png)
 
+### BUG-FB-001: File Browser has no page Help (?)
+
+Severity: Low | Module: File Browser | Check: FB-S02 ([22-file-browser](checklists/22-file-browser.md))
+
+Steps:
+1. Administration > File Browser
+2. Look for the Help (?) button in the header
+
+Expected: A Help (?) button like other modules (Safety Reports, Hazard Register, Settings and Tools).
+
+Actual: No Help button. The header only has search, Back, Make Folder and Upload File.
+
+![BUG-FB-001-1](bugs/screenshots/BUG-FB-001-1.png)
+
+### BUG-FB-002: File Browser shows Date Uploaded as 'Oct 22, 2026' instead of DD/MM/YYYY
+
+Severity: Low | Module: File Browser | Check: FB-S04 ([22-file-browser](checklists/22-file-browser.md))
+
+Steps:
+1. Administration > File Browser
+2. Open SMS Reports > 2026 > October > SMS Report 2060, or search 'BETA_TEST_ONLY'
+3. Look at Date Uploaded
+
+Expected: 22/10/2026, as set in Settings > Time Zone.
+
+Actual: Oct 22, 2026
+
+![BUG-FB-002-1](bugs/screenshots/BUG-FB-002-1.png)
+
+### BUG-FB-004: File Browser: Escape doesn't close the Create New Folder or Configure File popups
+
+Severity: Low | Module: File Browser | Check: FB-S03 ([22-file-browser](checklists/22-file-browser.md))
+
+Steps:
+1. Administration > File Browser > Make Folder (create_new_folder)
+2. Type a name
+3. Press Escape
+
+Expected: The popup closes (as on Safety Reports, Hazard Register and Settings and Tools).
+
+Actual: Both popups stay open on Escape (Create New Folder, Configure File).
+
+Suspected cause: filebrowser/index.js has no keydown/Escape handler.
+
+![BUG-FB-004-1](bugs/screenshots/BUG-FB-004-1.png)
+
+### BUG-FB-007: File Browser on a phone: table is cut off, edit buttons are off-screen
+
+Severity: Low | Module: File Browser | Check: FB-S05 ([22-file-browser](checklists/22-file-browser.md))
+
+Steps:
+1. Open Administration > File Browser on a 390px wide screen
+
+Expected: Cards (or a layout that fits), like Safety Reports and Hazard Register on a phone.
+
+Actual: The table stays 585px wide in a 390px screen. Revision, Uploader and the edit buttons are hidden; you have to scroll sideways to reach them.
+
+![BUG-FB-007-1](bugs/screenshots/BUG-FB-007-1.png)
+
 ### BUG-FD-003: Times and Meters: no link to the previous flight next to 'Previous' meter readings
 
 Severity: Low | Module: Flight Details | Check: FD-019 ([07-flight-details](checklists/07-flight-details.md))
@@ -1616,3 +1734,4 @@ Suspected cause: saveLeaveType() in timesheets/leaverequests.js calls hideTypeMo
 | 17-notices | Notice #1189 'BETA TEST ONLY Notice edited' (BETA TEST ONLY Group, 2 .txt attachments, 1 comment) | Flight Safety > Notices | No - the app has no delete for notices |
 | 19-safety-reports | Safety report #2060 'BETA TEST ONLY report' (Hazard Report, ZK-SIM, on behalf of Aisha Pearce) | Flight Safety > Safety Reports | TBD |
 | 20-hazard-register | Hazard entry for safety report #2060 'BETA TEST ONLY hazard' (goal Eliminate, controls edited, responsible Aisha Pearce) | Flight Safety > Hazard Register (edited via Safety Reports > #2060 > Final Report) | TBD - goes with report #2060 |
+| 22-file-browser | Folder 'BETA TEST ONLY Folder' (files fbA, fbB deleted) | Administration > File Browser > Home | No - folder can't be deleted (BUG-FB-006) |
