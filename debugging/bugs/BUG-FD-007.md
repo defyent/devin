@@ -20,7 +20,7 @@
 Start defaults to the local date/time: 22/10/2026 09:40.
 
 ## Actual
-Start defaults to 21/10/2026 20:40 and end to 21/10/2026 21:40, which is UTC. A user who doesn't notice saves the flight on the previous day, 13 hours early.
+Start defaults to 21/10/2026 20:40 and end to 21/10/2026 21:40, which is UTC. A user who doesn't notice saves the flight on the previous day, 13 hours early. The SAR Watch time has the same problem: on flight #42910 (planned 22/10 13:00-14:00) SAR defaulted to 21/10/2026 21:55, which is the UTC time and is before the flight starts.
 
 ## Evidence
 - Screenshot: `screenshots/BUG-FD-007-1.png`

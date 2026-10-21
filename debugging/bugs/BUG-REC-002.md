@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Checklist row | `REC-S05` in `checklists/18-recency.md` |
+| Checklist row | `REC-S05` in `checklists/18-recency-renewals.md` |
 | Module | Recency and Renewals |
 | Severity | Low |
 | DataHangar version | v2.0.111 |

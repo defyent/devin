@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Checklist row | `PL-001` in `checklists/11-all-personnel.md` |
+| Checklist row | `PL-001` in `checklists/11-personnel-list.md` |
 | Module | All Personnel |
 | Severity | Low |
 | DataHangar version | v2.0.111 |

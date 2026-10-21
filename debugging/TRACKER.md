@@ -8,57 +8,57 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 
 | Checklist | Prefix | Area | Checks | Pass | Fail | Blocked | Ext. open | Status |
 |---|---|---|---|---|---|---|---|---|
-| [00-setup-and-accounts](checklists/00-setup-and-accounts.md) | `SET` | Session setup, accounts and baseline | 9 | 8 | 0 | 1 | 0 | DONE |
+| [00-setup-and-accounts](checklists/00-setup-and-accounts.md) | `SET` | Session setup, accounts and baseline | 9 | 9 | 0 | 0 | 0 | DONE |
 | [01-login-auth](checklists/01-login-auth.md) | `LOG` | Login, 2FA, sessions, landing page | 25 | 16 | 3 | 1 | 0 | DONE |
-| [02-shell-navigation](checklists/02-shell-navigation.md) | `NAV` | Application shell, sidebar, header, mobile | 27 | 22 | 2 | 2 | 1 | DONE |
+| [02-shell-navigation](checklists/02-shell-navigation.md) | `NAV` | Application shell, sidebar, header, mobile | 27 | 23 | 2 | 1 | 1 | DONE |
 | [03-common-conventions](checklists/03-common-conventions.md) | `CON` | Common screen conventions (apply on every page) | 22 | 17 | 5 | 0 | 0 | DONE |
-| [04-access-manager](checklists/04-access-manager.md) | `AM` | Access Manager (users, roles, groups, permissions, templates) | 38 | 27 | 8 | 2 | 0 | DONE |
-| [05-dashboard](checklists/05-dashboard.md) | `DSH` | Dashboard | 19 | 10 | 4 | 5 | 0 | DONE |
-| [06-flight-schedule](checklists/06-flight-schedule.md) | `FS` | Flight Schedule (incl. embedded Location Planner) | 40 | 30 | 7 | 2 | 1 | DONE |
-| [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 29 | 6 | 9 | 8 | DONE |
-| [08-active-flights](checklists/08-active-flights.md) | `AF` | Active Flights and Live Tracking | 19 | 14 | 4 | 1 | 3 | DONE |
-| [09-daily-flight-record](checklists/09-daily-flight-record.md) | `DFR` | Daily Flight Record | 16 | 12 | 2 | 2 | 1 | DONE |
+| [04-access-manager](checklists/04-access-manager.md) | `AM` | Access Manager (users, roles, groups, permissions, templates) | 38 | 28 | 9 | 0 | 0 | DONE |
+| [05-dashboard](checklists/05-dashboard.md) | `DSH` | Dashboard | 19 | 13 | 6 | 0 | 0 | DONE |
+| [06-flight-schedule](checklists/06-flight-schedule.md) | `FS` | Flight Schedule (incl. embedded Location Planner) | 40 | 30 | 8 | 1 | 1 | DONE |
+| [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 37 | 7 | 0 | 8 | DONE |
+| [08-active-flights](checklists/08-active-flights.md) | `AF` | Active Flights and Live Tracking | 19 | 15 | 4 | 0 | 3 | DONE |
+| [09-daily-flight-record](checklists/09-daily-flight-record.md) | `DFR` | Daily Flight Record | 16 | 14 | 2 | 0 | 1 | DONE |
 | [10-location-planner](checklists/10-location-planner.md) | `LP` | Location Planner (stand-alone) | 9 | 0 | 0 | 9 | 0 | DONE |
-| [11-personnel-list](checklists/11-personnel-list.md) | `PL` | All Personnel (Personnel List) | 11 | 9 | 1 | 1 | 2 | DONE |
-| [12-personnel-details](checklists/12-personnel-details.md) | `PD` | Personnel Details / My Account | 36 | 14 | 13 | 9 | 3 | DONE |
-| [13-roster-viewer](checklists/13-roster-viewer.md) | `RV` | Roster Viewer | 12 | 8 | 3 | 1 | 1 | DONE |
-| [14-roster-builder](checklists/14-roster-builder.md) | `RB` | Roster Builder | 21 | 13 | 7 | 1 | 1 | DONE |
-| [15-timesheets-leave](checklists/15-timesheets-leave.md) | `TS` | Timesheets, Timesheet Details, Leave Requests | 17 | 7 | 4 | 6 | 0 | DONE |
+| [11-personnel-list](checklists/11-personnel-list.md) | `PL` | All Personnel (Personnel List) | 11 | 10 | 1 | 0 | 2 | DONE |
+| [12-personnel-details](checklists/12-personnel-details.md) | `PD` | Personnel Details / My Account | 36 | 21 | 15 | 0 | 3 | DONE |
+| [13-roster-viewer](checklists/13-roster-viewer.md) | `RV` | Roster Viewer | 12 | 9 | 3 | 0 | 1 | DONE |
+| [14-roster-builder](checklists/14-roster-builder.md) | `RB` | Roster Builder | 21 | 13 | 8 | 0 | 1 | DONE |
+| [15-timesheets-leave](checklists/15-timesheets-leave.md) | `TS` | Timesheets, Timesheet Details, Leave Requests | 17 | 11 | 6 | 0 | 0 | DONE |
 | [16-flight-and-duty](checklists/16-flight-and-duty.md) | `FAD` | Flight and Duty | 14 | 12 | 2 | 0 | 0 | DONE |
-| [17-notices](checklists/17-notices.md) | `NOT` | Notices | 16 | 11 | 3 | 2 | 0 | DONE |
-| [18-recency-renewals](checklists/18-recency-renewals.md) | `REC` | Recency and Renewals (overview page) | 11 | 6 | 2 | 1 | 2 | DONE |
-| [19-safety-reports](checklists/19-safety-reports.md) | `SMS` | Safety Reports (SMS) | 21 | 16 | 1 | 4 | 2 | DONE |
+| [17-notices](checklists/17-notices.md) | `NOT` | Notices | 16 | 12 | 4 | 0 | 0 | DONE |
+| [18-recency-renewals](checklists/18-recency-renewals.md) | `REC` | Recency and Renewals (overview page) | 11 | 7 | 2 | 0 | 2 | DONE |
+| [19-safety-reports](checklists/19-safety-reports.md) | `SMS` | Safety Reports (SMS) | 21 | 18 | 2 | 1 | 2 | DONE |
 | [20-hazard-register](checklists/20-hazard-register.md) | `HAZ` | Hazard Register | 10 | 8 | 2 | 0 | 1 | DONE |
-| [21-settings-hub](checklists/21-settings-hub.md) | `HUB` | Settings and Tools hub | 11 | 9 | 1 | 1 | 1 | DONE |
+| [21-settings-hub](checklists/21-settings-hub.md) | `HUB` | Settings and Tools hub | 11 | 10 | 1 | 0 | 1 | DONE |
 | [22-file-browser](checklists/22-file-browser.md) | `FB` | File Browser | 14 | 8 | 6 | 0 | 1 | DONE |
-| [23-form-builder](checklists/23-form-builder.md) | `FBLD` | Form Builder | 14 | 9 | 4 | 1 | 27 | DONE |
-| [24-form-browser](checklists/24-form-browser.md) | `FBR` | Form Browser / Form Viewer | 10 | 6 | 3 | 1 | 4 | DONE |
-| [25-task-tracker](checklists/25-task-tracker.md) | `TT` | Task Tracker | 12 | 7 | 3 | 2 | 2 | DONE |
-| [26-reports](checklists/26-reports.md) | `RPT` | Reports | 16 | 11 | 3 | 2 | 1 | DONE |
-| [27-support](checklists/27-support.md) | `SUP` | Support tickets | 14 | 10 | 3 | 1 | 0 | DONE |
+| [23-form-builder](checklists/23-form-builder.md) | `FBLD` | Form Builder | 14 | 10 | 4 | 0 | 27 | DONE |
+| [24-form-browser](checklists/24-form-browser.md) | `FBR` | Form Browser / Form Viewer | 10 | 7 | 3 | 0 | 4 | DONE |
+| [25-task-tracker](checklists/25-task-tracker.md) | `TT` | Task Tracker | 12 | 8 | 4 | 0 | 2 | DONE |
+| [26-reports](checklists/26-reports.md) | `RPT` | Reports | 16 | 12 | 3 | 1 | 1 | DONE |
+| [27-support](checklists/27-support.md) | `SUP` | Support tickets | 14 | 10 | 4 | 0 | 0 | DONE |
 | [28-chat](checklists/28-chat.md) | `CHAT` | Chat | 11 | 8 | 2 | 1 | 8 | DONE |
 | [29-exams](checklists/29-exams.md) | `EXM` | Exam Builder, Exam Editor, Exam Instances | 16 | 10 | 6 | 0 | 4 | DONE |
 | [30-maintenance](checklists/30-maintenance.md) | `MX` | Maintenance Portal | 11 | 0 | 0 | 11 | 0 | DONE |
-| [31-settings-flightschedule](checklists/31-settings-flightschedule.md) | `SFS` | Settings – Flight Schedule | 13 | 9 | 2 | 1 | 0 | DONE |
+| [31-settings-flightschedule](checklists/31-settings-flightschedule.md) | `SFS` | Settings – Flight Schedule | 13 | 10 | 2 | 0 | 0 | DONE |
 | [32-settings-dfr](checklists/32-settings-dfr.md) | `SDFR` | Settings – Daily Flight Record | 7 | 5 | 1 | 0 | 0 | DONE |
 | [33-settings-timezone](checklists/33-settings-timezone.md) | `STZ` | Settings – Time Zone (date/time matrix) | 11 | 7 | 4 | 0 | 2 | DONE |
-| [34-settings-resources](checklists/34-settings-resources.md) | `SRES` | Settings – Resources (Aircraft) | 18 | 14 | 1 | 3 | 0 | DONE |
-| [35-settings-wab](checklists/35-settings-wab.md) | `SWAB` | Settings – Weight and Balance Configs | 13 | 8 | 4 | 1 | 0 | DONE |
+| [34-settings-resources](checklists/34-settings-resources.md) | `SRES` | Settings – Resources (Aircraft) | 18 | 16 | 2 | 0 | 0 | DONE |
+| [35-settings-wab](checklists/35-settings-wab.md) | `SWAB` | Settings – Weight and Balance Configs | 13 | 9 | 4 | 0 | 0 | DONE |
 | [36-settings-extraflightinfo](checklists/36-settings-extraflightinfo.md) | `SEFI` | Settings – Extra Flight Info | 9 | 7 | 1 | 0 | 0 | DONE |
 | [37-settings-flighttypes](checklists/37-settings-flighttypes.md) | `SFT` | Settings – Flight Types | 8 | 5 | 2 | 0 | 0 | DONE |
 | [38-settings-waypoints](checklists/38-settings-waypoints.md) | `SWP` | Settings – Waypoint Locations | 12 | 8 | 3 | 0 | 0 | DONE |
 | [39-settings-shifttypes](checklists/39-settings-shifttypes.md) | `SST` | Settings – Roster Shifts | 10 | 7 | 3 | 0 | 0 | DONE |
-| [40-settings-frms](checklists/40-settings-frms.md) | `SFRMS` | Settings – Fatigue Risk Management | 11 | 7 | 2 | 1 | 0 | DONE |
+| [40-settings-frms](checklists/40-settings-frms.md) | `SFRMS` | Settings – Fatigue Risk Management | 11 | 8 | 2 | 0 | 0 | DONE |
 | [41-settings-renewals](checklists/41-settings-renewals.md) | `SREN` | Settings – Recency and Renewals | 10 | 5 | 4 | 0 | 0 | DONE |
 | [42-settings-lessonplans](checklists/42-settings-lessonplans.md) | `SLP` | Settings – Lesson Plans | 9 | 5 | 3 | 0 | 0 | DONE |
 | [43-settings-riskmatrix](checklists/43-settings-riskmatrix.md) | `SRM` | Settings – Risk Matrix | 9 | 6 | 2 | 0 | 0 | DONE |
 | [44-settings-smsreports](checklists/44-settings-smsreports.md) | `SSMS` | Settings – Safety Reports | 9 | 7 | 1 | 0 | 0 | DONE |
-| [45-settings-inspections](checklists/45-settings-inspections.md) | `SINS` | Settings – Inspection Notifications | 9 | 5 | 3 | 1 | 0 | DONE |
+| [45-settings-inspections](checklists/45-settings-inspections.md) | `SINS` | Settings – Inspection Notifications | 9 | 6 | 3 | 0 | 0 | DONE |
 | [46-settings-integrations](checklists/46-settings-integrations.md) | `SINT` | Settings – Google Calendar, WhatsApp | 10 | 6 | 2 | 2 | 0 | DONE |
 | [47-settings-activitylog](checklists/47-settings-activitylog.md) | `SLOG` | Settings – Activity Log | 9 | 6 | 2 | 0 | 1 | DONE |
-| [90-xc-permissions](checklists/90-xc-permissions.md) | `PERM` | Cross-cutting: permission levels | 10 | 9 | 0 | 1 | 0 | DONE |
+| [90-xc-permissions](checklists/90-xc-permissions.md) | `PERM` | Cross-cutting: permission levels | 10 | 9 | 1 | 0 | 0 | DONE |
 | [91-xc-popups](checklists/91-xc-popups.md) | `POP` | Cross-cutting: popups/modals | 8 | 4 | 4 | 0 | 7 | DONE |
-| [92-xc-dates-timezones](checklists/92-xc-dates-timezones.md) | `DATE` | Cross-cutting: date/time formats and pickers | 7 | 2 | 4 | 1 | 5 | DONE |
+| [92-xc-dates-timezones](checklists/92-xc-dates-timezones.md) | `DATE` | Cross-cutting: date/time formats and pickers | 7 | 2 | 5 | 0 | 5 | DONE |
 | [93-xc-mobile](checklists/93-xc-mobile.md) | `MOB` | Cross-cutting: mobile / narrow layout | 4 | 2 | 2 | 0 | 0 | DONE |
 | [94-xc-ui-icons](checklists/94-xc-ui-icons.md) | `UI` | Cross-cutting: UI consistency and icon inventory | 7 | 3 | 4 | 0 | 41 | DONE |
 | [95-xc-performance-errors](checklists/95-xc-performance-errors.md) | `PERF` | Cross-cutting: performance, console and network | 4 | 1 | 3 | 0 | 0 | DONE |

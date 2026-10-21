@@ -3443,5 +3443,44 @@
    "date006_day"
   ],
   "cause": ""
+ },
+ {
+  "id": "BUG-DSH-005",
+  "title": "Dashboard Project Tasks: clicking a task opens an empty project list instead of the project",
+  "row": "DSH-011",
+  "cl": "05-dashboard",
+  "module": "Dashboard",
+  "sev": "Medium",
+  "steps": [
+   "Project 'BETA TEST ONLY TT DSH' (#14) has user group BETA TEST ONLY Group, with task 'BETA TEST ONLY Task for Second' in component/feature.",
+   "Assign the task to BETA TEST ONLY Grpuser (Task Tracker = WG, member of BETA TEST ONLY Group).",
+   "Log in as betatest_grp > Dashboard > Project Tasks tab > click the task."
+  ],
+  "expected": "The project opens with the task visible, as it is for an admin.",
+  "actual": "The URL goes to ?action=tasktracker&project_id=14 but the page shows 'Projects ... No projects yet', so the user can't see the project their task is in. With BETA TEST ONLY Second (no Task Tracker permission) the same click gives Access Denied, even though tasks can be assigned to them.",
+  "shots": [
+   "dsh011_grp_two_open",
+   "dsh011_two_open"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-EXM-009",
+  "title": "Exams: a hotspot question with no image shows a developer debug message to the person taking the exam",
+  "row": "PD-017",
+  "cl": "12-personnel-details",
+  "module": "Exams",
+  "sev": "Low",
+  "steps": [
+   "Exam 'BETA TEST ONLY Exam' has hotspot question 'BETA TEST ONLY hotspot question' (Question ID 67) with no image saved.",
+   "Assign it to BETA TEST ONLY Second.",
+   "Log in as betatest_two > Dashboard > Exams > open the exam > go to question 10."
+  ],
+  "expected": "The builder refuses to publish a hotspot question without an image, or the exam shows a plain message. No debug text is shown to users.",
+  "actual": "Question 10 shows 'No image available for this hotspot question Debug: BACKEND_UPDATED: No image_data found in database row Question ID: 67'. The question can't be answered.",
+  "shots": [
+   "pd017_q10_debug"
+  ],
+  "cause": ""
  }
 ]

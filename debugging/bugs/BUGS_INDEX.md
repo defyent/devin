@@ -166,6 +166,24 @@
 | [BUG-FD-006](BUG-FD-006.md) | `FD-031` | Flight Details | Flight can be set to Complete with no times or destination on a leg; no 'Required Information' prompt | Medium | New | |
 | [BUG-FD-007](BUG-FD-007.md) | `DATE-005` | Flight Details | New flight defaults its leg date/time to UTC instead of local time | Medium | New | |
 | [BUG-PD-017](BUG-PD-017.md) | `PD-018` | Personnel Details | Personnel Details > Lesson Plans: an assigned plan is saved but never listed; the dialog's dates default to the UTC date | Medium | New | |
+| [BUG-SWAB-005](BUG-SWAB-005.md) | `SWAB-003` | Settings: Weight and Balance | W&B Configs: two revisions show the same number ("Rev 5") until another import renumbers them | Low | New | |
+| [BUG-PD-018](BUG-PD-018.md) | `PD-015` | Personnel Details | Request Leave: Start and End Date default to the UTC date, not today's local date | Low | New | |
+| [BUG-TS-007](BUG-TS-007.md) | `TS-006` | Timesheets | Reject Claim: leaving the reason empty closes the reject popup and throws a script error | Low | New | |
+| [BUG-DSH-004](BUG-DSH-004.md) | `DSH-005` | Dashboard | Dashboard: My Flights and On Duty open on the UTC date, not today's local date | Medium | New | |
+| [BUG-TS-008](BUG-TS-008.md) | `TS-008` | Timesheets / Leave Requests | Approving a leave request doesn't change the rostered shifts, and rejecting with no reason gives no message | Medium | New | |
+| [BUG-FS-008](BUG-FS-008.md) | `FS-027` | Flight Schedule | Flight Schedule: a group-level user (G / WG) sees no flights, even on aircraft in their own group | High | New | |
+| [BUG-AF-005](BUG-AF-005.md) | `FS-027` | Active Flights | Active Flights: a Read Only Group (RG) user sees every company flight, not only their group's | Medium | New | |
+| [BUG-NOT-004](BUG-NOT-004.md) | `NOT-004` | Notices | Notices: a Write Group (WG) user gets 'An error occurred' when clicking New Notice | Medium | New | |
+| [BUG-SMS-005](BUG-SMS-005.md) | `SMS-015` | Safety Reports | Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted | High | New | |
+| [BUG-AM-006](BUG-AM-006.md) | `CHAT-005` | Access Manager / Chat | Access Manager has no Chat permission, so you can't give Chat to a non-admin user | Medium | New | |
+| [BUG-RB-008](BUG-RB-008.md) | `RB-015` | Roster Builder | Roster Builder can only be opened from Settings and Tools, so a Roster Builder user without System Settings can't reach it | Medium | New | |
+| [BUG-PL-003](BUG-PL-003.md) | `PD-029` | Personnel List / Personnel Details | All Personnel: a Read Only Group (RG) user can't open the details of anyone in their group | Medium | New | |
+| [BUG-SUP-004](BUG-SUP-004.md) | `SUP-008` | Support / Access Manager | Support: the only permission level is All Access, so regular staff can't raise or see their own tickets | Medium | New | |
+| [BUG-TT-004](BUG-TT-004.md) | `TT-006` | Task Tracker | Task Tracker: a Write Group (WG) user is treated as read-only and can't add a project | Medium | New | |
+| [BUG-AM-007](BUG-AM-007.md) | `AM-015` | Access Manager | Access Manager: a customer created from Flight Details is Active with no login credentials | Low | New | |
+| [BUG-DATE-001](BUG-DATE-001.md) | `DATE-006` | Flight Details | Flight time across a DST change is out by an hour (01:00-05:00 on 04/04/2027 gives 4.0 instead of 5.0) | Medium | New | |
+| [BUG-DSH-005](BUG-DSH-005.md) | `DSH-011` | Dashboard | Dashboard Project Tasks: clicking a task opens an empty project list instead of the project | Medium | New | |
+| [BUG-EXM-009](BUG-EXM-009.md) | `PD-017` | Exams | Exams: a hotspot question with no image shows a developer debug message to the person taking the exam | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

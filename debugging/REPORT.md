@@ -6,25 +6,32 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 
 | Severity | Count |
 |---|---|
-| High | 7 |
-| Medium | 57 |
-| Low | 98 |
+| High | 9 |
+| Medium | 70 |
+| Low | 103 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
 | [BUG-AF-004](bugs/BUG-AF-004.md) | High | Active Flights | Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC 'now' |
 | [BUG-EXM-006](bugs/BUG-EXM-006.md) | High | Exams | Taking an exam: Multi-Response checkboxes toggle twice, so clicking the box does nothing and the saved answer can differ from what is ticked |
+| [BUG-FS-008](bugs/BUG-FS-008.md) | High | Flight Schedule | Flight Schedule: a group-level user (G / WG) sees no flights, even on aircraft in their own group |
 | [BUG-PD-006](bugs/BUG-PD-006.md) | High | Personnel Details | Personnel Details > Recency and Renewals: action buttons are hidden (Add Item, Table/Card view, renewal Save / Complete Renewal / Cancel) and Group by / Order by are disabled |
 | [BUG-PD-011](bugs/BUG-PD-011.md) | High | Personnel Details | Personnel Details > Security: Change Password always fails with 'Invalid Action: change_password' |
 | [BUG-RB-007](bugs/BUG-RB-007.md) | High | Roster Builder | Roster Builder: Clear then Publish of a draft month with no shifts does not clear the live roster and shows no message |
 | [BUG-SFS-002](bugs/BUG-SFS-002.md) | High | Settings: Flight Schedule | Changing Schedule Start Time saves a full date-time, and the setting then shows NaN:NaN |
 | [BUG-SLP-002](bugs/BUG-SLP-002.md) | High | Settings: Lesson Plans | Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave |
+| [BUG-SMS-005](bugs/BUG-SMS-005.md) | High | Safety Reports | Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted |
 | [BUG-AF-002](bugs/BUG-AF-002.md) | Medium | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them |
+| [BUG-AF-005](bugs/BUG-AF-005.md) | Medium | Active Flights | Active Flights: a Read Only Group (RG) user sees every company flight, not only their group's |
 | [BUG-AM-001](bugs/BUG-AM-001.md) | Medium | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) |
 | [BUG-AM-005](bugs/BUG-AM-005.md) | Medium | Access Manager | Access Manager: 16 permission types appear twice with the same name (e.g. two "Flight Schedule" cards with different levels) |
+| [BUG-AM-006](bugs/BUG-AM-006.md) | Medium | Access Manager / Chat | Access Manager has no Chat permission, so you can't give Chat to a non-admin user |
+| [BUG-DATE-001](bugs/BUG-DATE-001.md) | Medium | Flight Details | Flight time across a DST change is out by an hour (01:00-05:00 on 04/04/2027 gives 4.0 instead of 5.0) |
 | [BUG-DFR-002](bugs/BUG-DFR-002.md) | Medium | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied |
 | [BUG-DFR-003](bugs/BUG-DFR-003.md) | Medium | Daily Flight Record | Daily Flight Record: changing filters quickly appends results instead of replacing them, showing duplicate and wrong-status rows |
 | [BUG-DSH-003](bugs/BUG-DSH-003.md) | Medium | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) |
+| [BUG-DSH-004](bugs/BUG-DSH-004.md) | Medium | Dashboard | Dashboard: My Flights and On Duty open on the UTC date, not today's local date |
+| [BUG-DSH-005](bugs/BUG-DSH-005.md) | Medium | Dashboard | Dashboard Project Tasks: clicking a task opens an empty project list instead of the project |
 | [BUG-EXM-004](bugs/BUG-EXM-004.md) | Medium | Exams | Exam Builder has no way to link or unlink user groups on an exam group |
 | [BUG-EXM-008](bugs/BUG-EXM-008.md) | Medium | Exams | Exam Builder: deleting an exam or exam group that has instances fails silently (error only in the console), and graded instances can't be removed |
 | [BUG-FB-003](bugs/BUG-FB-003.md) | Medium | File Browser | File Browser: clicking a .txt file shows 'File Access Error' with the file's own text |
@@ -37,6 +44,7 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | [BUG-FD-004](bugs/BUG-FD-004.md) | Medium | Flight Details | Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC) |
 | [BUG-FD-005](bugs/BUG-FD-005.md) | Medium | Flight Details | Leg with two unknown waypoints: only the first is offered for adding, the second is silently dropped on save |
 | [BUG-FD-006](bugs/BUG-FD-006.md) | Medium | Flight Details | Flight can be set to Complete with no times or destination on a leg; no 'Required Information' prompt |
+| [BUG-FD-007](bugs/BUG-FD-007.md) | Medium | Flight Details | New flight defaults its leg date/time to UTC instead of local time |
 | [BUG-FS-001](bugs/BUG-FS-001.md) | Medium | Flight Schedule > Flight Details (new) | New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h) |
 | [BUG-FS-002](bugs/BUG-FS-002.md) | Medium | Flight Schedule | Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight |
 | [BUG-FS-003](bugs/BUG-FS-003.md) | Medium | Flight Schedule | Flight Schedule header overlaps when Live Edit is on - title covered, location pill cut off and its 'Show All' button cannot be clicked |
@@ -48,6 +56,7 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | [BUG-LOG-003](bugs/BUG-LOG-003.md) | Medium | Login / 2FA (main) | 'Trust this device for 30 days' is lost on Logout (logout deletes the trusted-device cookie) |
 | [BUG-NAV-001](bugs/BUG-NAV-001.md) | Medium | Shell (main) / Personnel Details | Leaving a page with unsaved changes gives no warning; edits are lost |
 | [BUG-NOT-002](bugs/BUG-NOT-002.md) | Medium | Notices | Notice Details: clicking a .txt attachment does nothing (no preview, no download) |
+| [BUG-NOT-004](bugs/BUG-NOT-004.md) | Medium | Notices | Notices: a Write Group (WG) user gets 'An error occurred' when clicking New Notice |
 | [BUG-PD-001](bugs/BUG-PD-001.md) | Medium | Personnel Details / My Account | personneldetails/index.js is truncated: ReferenceError getPickerMod on every load |
 | [BUG-PD-003](bugs/BUG-PD-003.md) | Medium | Personnel Details > Security | 2FA setup: one wrong verification code closes the setup dialog and issues a new secret |
 | [BUG-PD-007](bugs/BUG-PD-007.md) | Medium | Personnel Details | Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date |
@@ -55,11 +64,14 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | [BUG-PD-009](bugs/BUG-PD-009.md) | Medium | Personnel Details | Personnel Details > Renewal edit: the Today and Calculate links can't be clicked because the date fields cover them |
 | [BUG-PD-012](bugs/BUG-PD-012.md) | Medium | Personnel Details | Personnel Details > Files: opening a file shows 'File Access Error' with the file's contents as the message |
 | [BUG-PD-016](bugs/BUG-PD-016.md) | Medium | Personnel Details | Personnel Details > Timesheets: Add Claim button does nothing |
+| [BUG-PD-017](bugs/BUG-PD-017.md) | Medium | Personnel Details | Personnel Details > Lesson Plans: an assigned plan is saved but never listed; the dialog's dates default to the UTC date |
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) |
+| [BUG-PL-003](bugs/BUG-PL-003.md) | Medium | Personnel List / Personnel Details | All Personnel: a Read Only Group (RG) user can't open the details of anyone in their group |
 | [BUG-POP-003](bugs/BUG-POP-003.md) | Medium | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved |
 | [BUG-RB-002](bugs/BUG-RB-002.md) | Medium | Roster Builder | Roster Builder: Copy Live to Draft copies one shift at a time and takes about 6 minutes for one month |
 | [BUG-RB-003](bugs/BUG-RB-003.md) | Medium | Roster Builder | Roster Builder: copy/paste still works with violation checking ON |
 | [BUG-RB-005](bugs/BUG-RB-005.md) | Medium | Roster Builder | Roster Builder: every validation error throws a JS error instead of showing a message (e.g. Apply Shift Pattern with no shifts) |
+| [BUG-RB-008](bugs/BUG-RB-008.md) | Medium | Roster Builder | Roster Builder can only be opened from Settings and Tools, so a Roster Builder user without System Settings can't reach it |
 | [BUG-RPT-003](bugs/BUG-RPT-003.md) | Medium | Reports | Reports tables overlap on a phone: column text is drawn on top of other columns |
 | [BUG-RV-002](bugs/BUG-RV-002.md) | Medium | Roster Viewer | Roster Viewer: clicking a shift does not open Shift Details |
 | [BUG-SFT-002](bugs/BUG-SFT-002.md) | Medium | Settings: Flight Types | Flight Types: a duplicate Flight Category name ("PIC") is accepted |
@@ -72,15 +84,19 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | [BUG-STZ-001](bugs/BUG-STZ-001.md) | Medium | Settings: Time Zone | Time Zone settings: the Example preview shows UTC, not the selected time zone |
 | [BUG-STZ-003](bugs/BUG-STZ-003.md) | Medium | Settings: Time Zone | Time Zone settings: the Example preview shows MM/DD/YYYY for every date format except DD/MM/YYYY |
 | [BUG-SUP-001](bugs/BUG-SUP-001.md) | Medium | Support | Support has no page Help (?); Escape doesn't close New Ticket, but a click outside closes it and wipes everything typed |
+| [BUG-SUP-004](bugs/BUG-SUP-004.md) | Medium | Support / Access Manager | Support: the only permission level is All Access, so regular staff can't raise or see their own tickets |
 | [BUG-SWP-002](bugs/BUG-SWP-002.md) | Medium | Settings: Waypoints | Waypoints: moving a waypoint about 250 nm saves with no "Significant Location Change" warning |
 | [BUG-SWP-004](bugs/BUG-SWP-004.md) | Medium | Settings: Waypoints | Waypoints on a phone: table columns overlap and Add Waypoint is off-screen |
 | [BUG-TS-002](bugs/BUG-TS-002.md) | Medium | Timesheets | Timesheet Approval: status filter 'Unsigned' shows 'No personnel found' although everyone has unsigned days |
 | [BUG-TS-003](bugs/BUG-TS-003.md) | Medium | Timesheets | Timesheet Approval list totals don't match Timesheet Details (Rostered Days and Duty Hours) |
+| [BUG-TS-008](bugs/BUG-TS-008.md) | Medium | Timesheets / Leave Requests | Approving a leave request doesn't change the rostered shifts, and rejecting with no reason gives no message |
+| [BUG-TT-004](bugs/BUG-TT-004.md) | Medium | Task Tracker | Task Tracker: a Write Group (WG) user is treated as read-only and can't add a project |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
 | [BUG-AF-003](bugs/BUG-AF-003.md) | Low | Active Flights | Active Flights has no page Help (?), and its popups (About Live Tracking, Adjust SAR, Add Note) don't close with Escape |
 | [BUG-AM-002](bugs/BUG-AM-002.md) | Low | Access Manager | Last Activity hover date ignores Settings > Time Zone format |
 | [BUG-AM-003](bugs/BUG-AM-003.md) | Low | Access Manager | Last Activity column sort does not change order |
 | [BUG-AM-004](bugs/BUG-AM-004.md) | Low | Access Manager > Manage User Permissions | Permission level dropdown shows bare codes 'WA' and 'G' next to full labels |
+| [BUG-AM-007](bugs/BUG-AM-007.md) | Low | Access Manager | Access Manager: a customer created from Flight Details is Active with no login credentials |
 | [BUG-CHAT-001](bugs/BUG-CHAT-001.md) | Low | Chat | Chat has no page Help (?); Escape doesn't close Create Channel; empty name does nothing with no message |
 | [BUG-CHAT-002](bugs/BUG-CHAT-002.md) | Low | Chat | Chat times show 12-hour '01:32 AM' and date separators 'Thursday, October 22, 2026' instead of the org format |
 | [BUG-DFR-001](bugs/BUG-DFR-001.md) | Low | Daily Flight Record | Daily Flight Record has no page Help (?), and its popups (Manage Columns, Notes full text) don't close with Escape |
@@ -90,6 +106,7 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | [BUG-EXM-003](bugs/BUG-EXM-003.md) | Low | Exams | Exam viewer 'Read Only' still shows Add Question, Add Group and Save Question |
 | [BUG-EXM-005](bugs/BUG-EXM-005.md) | Low | Exams | Exam Builder on a phone: exam table columns and action icons overlap |
 | [BUG-EXM-007](bugs/BUG-EXM-007.md) | Low | Exams | Exam Instances batch: deleting a person's instance shows success but the row stays until the page is reloaded |
+| [BUG-EXM-009](bugs/BUG-EXM-009.md) | Low | Exams | Exams: a hotspot question with no image shows a developer debug message to the person taking the exam |
 | [BUG-FAD-001](bugs/BUG-FAD-001.md) | Low | Flight and Duty | Flight and Duty has no page Help (?) |
 | [BUG-FAD-002](bugs/BUG-FAD-002.md) | Low | Flight and Duty | Flight and Duty popups (Flight Details, Duty Time Details, Roster Violations, Resolutions Required) ignore Escape |
 | [BUG-FAD-003](bugs/BUG-FAD-003.md) | Low | Flight and Duty | Flight and Duty popups show dates as '16 Oct 2026' instead of the configured DD/MM/YYYY |
@@ -118,6 +135,7 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | [BUG-PD-013](bugs/BUG-PD-013.md) | Low | Personnel Details | Personnel Details: an empty Birth Date shows today's date |
 | [BUG-PD-014](bugs/BUG-PD-014.md) | Low | Personnel Details | Digital Signature: wrong password closes the popup and throws away the drawing; empty Save gives no message |
 | [BUG-PD-015](bugs/BUG-PD-015.md) | Low | Personnel Details | Flight & Duty Analysis popup: title date is YYYY-MM-DD and Escape doesn't close it |
+| [BUG-PD-018](bugs/BUG-PD-018.md) | Low | Personnel Details | Request Leave: Start and End Date default to the UTC date, not today's local date |
 | [BUG-PERF-001](bugs/BUG-PERF-001.md) | Low | All modules (debug panel) | 'Performance' debug timing panel shown on every page, including to non-admin users |
 | [BUG-PERM-001](bugs/BUG-PERM-001.md) | Low | Shell (main) sidebar | Sidebar lists modules the user has no permission for (all lead to Access Denied) |
 | [BUG-PL-001](bugs/BUG-PL-001.md) | Low | All Personnel | All Personnel has no page Help (?) |
@@ -165,12 +183,14 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | [BUG-SWAB-002](bugs/BUG-SWAB-002.md) | Low | Settings: Weight and Balance | Weight & Balance Configs: dates show as "14 Oct 2026" / "29 Sept 2026" instead of DD/MM/YYYY |
 | [BUG-SWAB-003](bugs/BUG-SWAB-003.md) | Low | Settings: Weight and Balance | Weight & Balance Configs shows a debug "Performance" timing panel to users |
 | [BUG-SWAB-004](bugs/BUG-SWAB-004.md) | Low | Settings: Weight and Balance | Weight & Balance Configs: on a phone the page is wider than the screen |
+| [BUG-SWAB-005](bugs/BUG-SWAB-005.md) | Low | Settings: Weight and Balance | W&B Configs: two revisions show the same number ("Rev 5") until another import renumbers them |
 | [BUG-SWP-001](bugs/BUG-SWP-001.md) | Low | Settings: Waypoints | Waypoints Settings: no Help (?), and Escape does not close popups |
 | [BUG-SWP-003](bugs/BUG-SWP-003.md) | Low | Settings: Waypoints | Waypoints: the list is not refreshed after you save or delete on the detail page |
 | [BUG-TS-001](bugs/BUG-TS-001.md) | Low | Timesheets | Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing |
 | [BUG-TS-004](bugs/BUG-TS-004.md) | Low | Timesheets | Timesheet Details shows dates as 'Oct 5' and times with seconds (14:00:00) |
 | [BUG-TS-005](bugs/BUG-TS-005.md) | Low | Timesheets | Timesheet Details: F&D and Roster Violation popups ignore Escape and show ISO dates in the title |
 | [BUG-TS-006](bugs/BUG-TS-006.md) | Low | Leave Requests | Leave Types: a validation error closes the Add Leave Type popup and throws away what you typed; the popup ignores Escape |
+| [BUG-TS-007](bugs/BUG-TS-007.md) | Low | Timesheets | Reject Claim: leaving the reason empty closes the reject popup and throws a script error |
 | [BUG-TT-001](bugs/BUG-TT-001.md) | Low | Task Tracker | Task Tracker: Escape doesn't close Help or Add Project |
 | [BUG-TT-002](bugs/BUG-TT-002.md) | Low | Task Tracker | Task Tracker dates ignore the date setting ('Dec 31', '2026-10-21') |
 | [BUG-TT-003](bugs/BUG-TT-003.md) | Low | Task Tracker | Task Tracker on a phone: feature cards are pushed right and cut off |
@@ -210,6 +230,24 @@ Actual: Clicking the checkbox square leaves it unchanged. renderMultiResponse() 
 
 ![BUG-EXM-006-1](bugs/screenshots/BUG-EXM-006-1.png)
 ![BUG-EXM-006-2](bugs/screenshots/BUG-EXM-006-2.png)
+
+### BUG-FS-008: Flight Schedule: a group-level user (G / WG) sees no flights, even on aircraft in their own group
+
+Severity: High | Module: Flight Schedule | Check: FS-027 ([06-flight-schedule](checklists/06-flight-schedule.md))
+
+Steps:
+1. Aircraft ZK-BTO (BETA TEST ONLY R) has User Group Assignments = BETA TEST ONLY Group.
+2. BETA TEST ONLY Grpuser is a member of BETA TEST ONLY Group (On Roster) and has Flight Schedule = G on the first card and WG on the second (BUG-AM-005).
+3. Flights #42909 (PIC Grpuser, 22/10 10:00-11:00) and #42910 (22/10 08:00-09:00) are on ZK-BTO.
+4. Log in as betatest_grp > Flight Schedule > week of 19-25 Oct, then list view, then Group By = BETA TEST ONLY Group.
+
+Expected: ZK-BTO and its flights #42909 and #42910 are shown, including the user's own PIC flight.
+
+Actual: Week view shows no aircraft rows or events. List view says 'No events to display', even with Group By = BETA TEST ONLY Group ('Showing only aircraft and personnel in the "BETA TEST ONLY Group" group'). Daily Flight Record (RG) lists #42909 for the same user, so the data is there. Group memberships in Access Manager only have an 'On Roster' flag, with no read/write flag (§14 caveat).
+
+![BUG-FS-008-1](bugs/screenshots/BUG-FS-008-1.png)
+![BUG-FS-008-2](bugs/screenshots/BUG-FS-008-2.png)
+![BUG-FS-008-3](bugs/screenshots/BUG-FS-008-3.png)
 
 ### BUG-PD-006: Personnel Details > Recency and Renewals: action buttons are hidden (Add Item, Table/Card view, renewal Save / Complete Renewal / Cancel) and Group by / Order by are disabled
 
@@ -305,6 +343,24 @@ Suspected cause: templates2/settings_lessonplans/index.js saveExercise() and del
 ![BUG-SLP-002-1](bugs/screenshots/BUG-SLP-002-1.png)
 ![BUG-SLP-002-2](bugs/screenshots/BUG-SLP-002-2.png)
 
+### BUG-SMS-005: Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted
+
+Severity: High | Module: Safety Reports | Check: SMS-015 ([19-safety-reports](checklists/19-safety-reports.md))
+
+Steps:
+1. BETA TEST ONLY Grpuser has Safety Reports = WG. BETA TEST ONLY Second has Safety Reports = WO.
+2. As Grpuser: Safety Reports > New Report > 'BETA TEST ONLY confidential' (Near Miss, Confidential Yes) > Create Report. It opens report #2062.
+3. Go back to the Safety Reports list as Grpuser.
+4. Open Safety Reports as Second.
+
+Expected: Grpuser sees #2062 (their own) and the group's reports. Second sees their own reports. A confidential report from someone else stays hidden.
+
+Actual: Grpuser's list says '0 Total Reports, No reports found' right after creating #2062. Second also sees 0. The Service Account sees #2062 (Opened, submitter Grpuser). So non-admin reporters can't find or follow up on their own reports.
+
+![BUG-SMS-005-1](bugs/screenshots/BUG-SMS-005-1.png)
+![BUG-SMS-005-2](bugs/screenshots/BUG-SMS-005-2.png)
+![BUG-SMS-005-3](bugs/screenshots/BUG-SMS-005-3.png)
+
 ### BUG-AF-002: Active Flights lists future flights that have no SAR time, and the stats cards don't count them
 
 Severity: Medium | Module: Active Flights | Check: AF-001 ([08-active-flights](checklists/08-active-flights.md))
@@ -321,6 +377,20 @@ Suspected cause: An empty SAR time is stored/treated as 0 (1970), which counts a
 
 ![BUG-AF-002-1](bugs/screenshots/BUG-AF-002-1.png)
 ![BUG-AF-002-2](bugs/screenshots/BUG-AF-002-2.png)
+
+### BUG-AF-005: Active Flights: a Read Only Group (RG) user sees every company flight, not only their group's
+
+Severity: Medium | Module: Active Flights | Check: FS-027 ([08-active-flights](checklists/08-active-flights.md))
+
+Steps:
+1. BETA TEST ONLY Grpuser has Active Flights = RG and is only in BETA TEST ONLY Group.
+2. Log in as betatest_grp > Active Flights.
+
+Expected: Only flights on the group's aircraft or crew are listed (the same as Daily Flight Record RG, which shows 2 flights).
+
+Actual: All 1,381 flights are counted and listed, including #42892 (Unknown aircraft) and #42893 (R44-01, Aaron Fisher, not in the group), with their SAR times and notes.
+
+![BUG-AF-005-1](bugs/screenshots/BUG-AF-005-1.png)
 
 ### BUG-AM-001: New User accepts a 6-character password (placeholder and Change Credentials require 10)
 
@@ -351,12 +421,42 @@ Steps:
 
 Expected: Each permission type shows once, or the cards are named or grouped clearly enough to tell them apart.
 
-Actual: 16 names are shown more than once, with no heading or hint to tell them apart: Flight Schedule (ids 2, 209), Dashboard (3, 208), Personnel List (4, 215), Daily Flight Record (5, 213), Personnel Details (6, 216), Roster Viewer (7, 217), Roster Builder (8, 223), File Browser (9, 225), Flight and Duty (10, 31, 218), Notices (11, 219), Safety Reports (13, 30, 221), Hazard Register (14, 222), System Settings (15, 211), Form Builder (16, 224), Exam Builder (18, 232), Access Manager (34, 210). The copies offer different levels: Flight Schedule id 2 offers RA/WA/G, id 209 offers A/RA/WG/RG. An admin can easily give the wrong one. This has a real effect: giving Lowperm the first "Notices" card (id 11) at WO still gives "Access Denied: You do not have permission to access Notices", so the module checks the other Notices card. The first "Flight Schedule" card (id 2) is the one that works for the schedule, so you cannot tell from the name which copy each page uses.
+Actual: 16 names are shown more than once, with no heading or hint to tell them apart: Flight Schedule (ids 2, 209), Dashboard (3, 208), Personnel List (4, 215), Daily Flight Record (5, 213), Personnel Details (6, 216), Roster Viewer (7, 217), Roster Builder (8, 223), File Browser (9, 225), Flight and Duty (10, 31, 218), Notices (11, 219), Safety Reports (13, 30, 221), Hazard Register (14, 222), System Settings (15, 211), Form Builder (16, 224), Exam Builder (18, 232), Access Manager (34, 210). The copies offer different levels: Flight Schedule id 2 offers RA/WA/G, id 209 offers A/RA/WG/RG. An admin can easily give the wrong one. This has a real effect: giving Lowperm the first "Notices" card (id 11) at WO still gives "Access Denied: You do not have permission to access Notices", so the module checks the other Notices card. The first "Flight Schedule" card (id 2) is the one that works for the schedule, so you cannot tell from the name which copy each page uses. Also, BETA TEST ONLY Second with Access Manager WA on one card and A on the other still gets 'You need All Access permission to access the access manager' (AM-018).
 
 Suspected cause: The permission types table has more than one row with the same display name (probably a second set added for a newer module version). The editor lists every row by name only, with no grouping or description.
 
 ![BUG-AM-005-1](bugs/screenshots/BUG-AM-005-1.png)
 ![BUG-AM-005-2](bugs/screenshots/BUG-AM-005-2.png)
+
+### BUG-AM-006: Access Manager has no Chat permission, so you can't give Chat to a non-admin user
+
+Severity: Medium | Module: Access Manager / Chat | Check: CHAT-005 ([28-chat](checklists/28-chat.md))
+
+Steps:
+1. Settings and Tools > Access Manager > BETA TEST ONLY Second > Permissions.
+2. Look through all 76 permission cards for Chat (or Comms).
+3. Log in as BETA TEST ONLY Grpuser and click the chat icon in the header.
+
+Expected: There is a Chat card (the checklist says Chat = A), so an admin can let staff use Chat.
+
+Actual: None of the 76 cards is Chat or Comms. Every non-admin test user sees the chat icon in the header but gets 'Access Denied: You do not have permission to access the Chat feature'. Only the admin can use Chat, so you can't test unread badges between two users.
+
+![BUG-AM-006-1](bugs/screenshots/BUG-AM-006-1.png)
+
+### BUG-DATE-001: Flight time across a DST change is out by an hour (01:00-05:00 on 04/04/2027 gives 4.0 instead of 5.0)
+
+Severity: Medium | Module: Flight Details | Check: DATE-006 ([92-xc-dates-timezones](checklists/92-xc-dates-timezones.md))
+
+Steps:
+1. Flight #42911 (ZK-BTO): set Start 04/04/2027 01:00 and End 04/04/2027 05:00, then Save Changes. NZ daylight saving ends at 03:00 that morning, when clocks go back to 02:00.
+2. Times and Weights > Add Leg > Takeoff 01:00, Landing 05:00.
+
+Expected: Leg and flight total = 5.0 h, because 01:00 NZDT is 12:00 UTC and 05:00 NZST is 17:00 UTC. The schedule should also allow for the repeated 02:00-03:00 hour.
+
+Actual: Leg total and Total Flight Time both show 4.0. The flight saves and shows as 01:00-05:00 in the Daily Flight Record and the schedule (day view block is 4 hours tall), so the time is worked out from the clock times and the DST shift is ignored. This affects recorded hours, FRMS and timesheets for any flight that night (and the spring-forward night the other way round).
+
+![BUG-DATE-001-1](bugs/screenshots/BUG-DATE-001-1.png)
+![BUG-DATE-001-2](bugs/screenshots/BUG-DATE-001-2.png)
 
 ### BUG-DFR-002: Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied
 
@@ -411,6 +511,37 @@ Actual: Personnel Details opens (URL has alertname_id=3) but the Personal Detail
 Suspected cause: alertname_id param not used to select the Recency tab, or the tab-switch code never runs because index.js is truncated (BUG-PD-001). Retest after BUG-PD-001 is fixed.
 
 ![BUG-DSH-003-1](bugs/screenshots/BUG-DSH-003-1.png)
+
+### BUG-DSH-004: Dashboard: My Flights and On Duty open on the UTC date, not today's local date
+
+Severity: Medium | Module: Dashboard | Check: DSH-005 ([05-dashboard](checklists/05-dashboard.md))
+
+Steps:
+1. Time zone is Pacific/Auckland. Do this between local 00:00 and 13:00 (NZDT), when the UTC date is still the day before.
+2. Log in as BETA TEST ONLY Second, who is PIC of flight #42910 on 22/10/2026.
+3. Open Dashboard.
+
+Expected: My Flights and On Duty show today's local date (Thu 22/10/2026), including flight #42910.
+
+Actual: At local 10:38 on 22/10/2026 (UTC 21:38 on 21/10), the Dashboard showed 'My Flights for Wed, Oct 21, 2026: No flights scheduled for this day' and 'On Duty for Wed, Oct 21, 2026'. You have to click > to see today's flight. The dates are also in US format.
+
+![BUG-DSH-004-1](bugs/screenshots/BUG-DSH-004-1.png)
+
+### BUG-DSH-005: Dashboard Project Tasks: clicking a task opens an empty project list instead of the project
+
+Severity: Medium | Module: Dashboard | Check: DSH-011 ([05-dashboard](checklists/05-dashboard.md))
+
+Steps:
+1. Project 'BETA TEST ONLY TT DSH' (#14) has user group BETA TEST ONLY Group, with task 'BETA TEST ONLY Task for Second' in component/feature.
+2. Assign the task to BETA TEST ONLY Grpuser (Task Tracker = WG, member of BETA TEST ONLY Group).
+3. Log in as betatest_grp > Dashboard > Project Tasks tab > click the task.
+
+Expected: The project opens with the task visible, as it is for an admin.
+
+Actual: The URL goes to ?action=tasktracker&project_id=14 but the page shows 'Projects ... No projects yet', so the user can't see the project their task is in. With BETA TEST ONLY Second (no Task Tracker permission) the same click gives Access Denied, even though tasks can be assigned to them.
+
+![BUG-DSH-005-1](bugs/screenshots/BUG-DSH-005-1.png)
+![BUG-DSH-005-2](bugs/screenshots/BUG-DSH-005-2.png)
 
 ### BUG-EXM-004: Exam Builder has no way to link or unlink user groups on an exam group
 
@@ -616,6 +747,21 @@ Actual: The flight saves as Complete with no prompt. The header badge shows 'Com
 
 ![BUG-FD-006-1](bugs/screenshots/BUG-FD-006-1.png)
 
+### BUG-FD-007: New flight defaults its leg date/time to UTC instead of local time
+
+Severity: Medium | Module: Flight Details | Check: DATE-005 ([92-xc-dates-timezones](checklists/92-xc-dates-timezones.md))
+
+Steps:
+1. Settings > Time Zone is Pacific/Auckland (UTC+13).
+2. At local 09:42 on 22/10/2026 (UTC 20:42 on 21/10), open Flight Schedule > Live Edit > Add Flight.
+3. Look at the leg start/end date and time fields.
+
+Expected: Start defaults to the local date/time: 22/10/2026 09:40.
+
+Actual: Start defaults to 21/10/2026 20:40 and end to 21/10/2026 21:40, which is UTC. A user who doesn't notice saves the flight on the previous day, 13 hours early. The SAR Watch time has the same problem: on flight #42910 (planned 22/10 13:00-14:00) SAR defaulted to 21/10/2026 21:55, which is the UTC time and is before the flight starts.
+
+![BUG-FD-007-1](bugs/screenshots/BUG-FD-007-1.png)
+
 ### BUG-FS-001: New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h)
 
 Severity: Medium | Module: Flight Schedule > Flight Details (new) | Check: FS-011 ([06-flight-schedule](checklists/06-flight-schedule.md))
@@ -804,6 +950,20 @@ Suspected cause: handleFilePreview() in notices/noticedetails.js treats any text
 
 ![BUG-NOT-002-1](bugs/screenshots/BUG-NOT-002-1.png)
 
+### BUG-NOT-004: Notices: a Write Group (WG) user gets 'An error occurred' when clicking New Notice
+
+Severity: Medium | Module: Notices | Check: NOT-004 ([17-notices](checklists/17-notices.md))
+
+Steps:
+1. BETA TEST ONLY Grpuser has Notices = WG and is a member of BETA TEST ONLY Group.
+2. Log in as betatest_grp > Notices > New Notice.
+
+Expected: New Notice opens, and only the user's own groups (BETA TEST ONLY Group) can be picked.
+
+Actual: An 'Error: An error occurred.' popup appears and no form opens, so a WG user can't create a notice. The list itself works and shows notice #1189.
+
+![BUG-NOT-004-1](bugs/screenshots/BUG-NOT-004-1.png)
+
 ### BUG-PD-001: personneldetails/index.js is truncated: ReferenceError getPickerMod on every load
 
 Severity: Medium | Module: Personnel Details / My Account | Check: PD-S01 ([12-personnel-details](checklists/12-personnel-details.md))
@@ -921,9 +1081,25 @@ Suspected cause: Click handler for .timesheet-claim-btn is probably not bound, p
 
 ![BUG-PD-016-1](bugs/screenshots/BUG-PD-016-1.png)
 
+### BUG-PD-017: Personnel Details > Lesson Plans: an assigned plan is saved but never listed; the dialog's dates default to the UTC date
+
+Severity: Medium | Module: Personnel Details | Check: PD-018 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. Settings > Lesson Plans: make plan 'BETA TEST ONLY Plan' with lesson 'BETA TEST ONLY Lesson 1'.
+2. Personnel > BETA TEST ONLY Group > BETA TEST ONLY Grpuser > Lesson Plans > Assign Lesson Plan.
+3. Pick the plan, then click Assign Lesson Plan.
+4. Leave the page and open Grpuser again, then the Lesson Plans tab.
+
+Expected: The plan is listed with its lessons and progress. Start Date defaults to today's local date (22/10/2026) and End Date is empty (optional).
+
+Actual: The toast says 'Lesson plan assigned successfully' and the server replies 'Ok', but the tab still says 'No lesson plans assigned to this person', even after you reopen the page. The plan is assigned, because its lesson shows on the Lesson tab of the student's flight #42909. Start Date and End Date both default to 21/10/2026, which is the UTC date.
+
+![BUG-PD-017-1](bugs/screenshots/BUG-PD-017-1.png)
+
 ### BUG-PERM-002: User with no permissions cannot open their own My Account (no self-service password / 2FA)
 
-Severity: Medium | Module: Personnel Details / My Account | Check: PERM-007 ([90-permissions](checklists/90-permissions.md))
+Severity: Medium | Module: Personnel Details / My Account | Check: PERM-007 ([90-xc-permissions](checklists/90-xc-permissions.md))
 
 Steps:
 1. Log in as a user with 0 permissions (BETA TEST ONLY Lowperm)
@@ -936,6 +1112,22 @@ Actual: 'Access Denied: You do not have permission to access the Personnel Detai
 Suspected cause: Personnel Details access check does not allow self (person_id == logged-in person) when no Personnel permission row exists.
 
 ![BUG-PERM-002-1](bugs/screenshots/BUG-PERM-002-1.png)
+
+### BUG-PL-003: All Personnel: a Read Only Group (RG) user can't open the details of anyone in their group
+
+Severity: Medium | Module: Personnel List / Personnel Details | Check: PD-029 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. BETA TEST ONLY Grpuser has Personnel List = RG and Personnel Details = RG, and is in BETA TEST ONLY Group.
+2. Log in as betatest_grp > Personnel > All Personnel.
+3. Click BETA TEST ONLY Lowperm or BETA TEST ONLY Second.
+
+Expected: The person's details open read-only, because they are in the same group.
+
+Actual: The rows use cursor: default and clicking does nothing. The list shows the 3 group members, but the RG user can't see any of their details. Their own My Account (header name) opens read-only with no Save button, which is right for RG.
+
+![BUG-PL-003-1](bugs/screenshots/BUG-PL-003-1.png)
+![BUG-PL-003-2](bugs/screenshots/BUG-PL-003-2.png)
 
 ### BUG-POP-003: Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved
 
@@ -1010,6 +1202,21 @@ Actual: The pattern popup closes, no message appears, and the console shows 'Can
 Suspected cause: openErrorModal() (rosterbuilder/index.js line 5057) hides elements.predictModal.overlay, but there is no predictModal in the elements map, so it throws before showing the error. Every openErrorModal call on the page is affected.
 
 ![BUG-RB-005-1](bugs/screenshots/BUG-RB-005-1.png)
+
+### BUG-RB-008: Roster Builder can only be opened from Settings and Tools, so a Roster Builder user without System Settings can't reach it
+
+Severity: Medium | Module: Roster Builder | Check: RB-015 ([14-roster-builder](checklists/14-roster-builder.md))
+
+Steps:
+1. BETA TEST ONLY Grpuser has Roster Builder = WG and no System Settings permission.
+2. Log in as betatest_grp and look through every sidebar section.
+3. Open Settings and Tools.
+
+Expected: Roster Builder is in the Personnel menu (next to Roster Viewer), or Settings and Tools shows the pages the user is allowed to use, so a WG roster planner can edit their group's roster.
+
+Actual: The sidebar has no Roster Builder entry. Personnel only shows Roster Viewer, All Personnel and the groups. Settings and Tools is the only link to Roster Builder, but it needs System Settings. So the Roster Builder WG permission can't be used. Access Manager has the same problem (AM-018).
+
+![BUG-RB-008-1](bugs/screenshots/BUG-RB-008-1.png)
 
 ### BUG-RPT-003: Reports tables overlap on a phone: column text is drawn on top of other columns
 
@@ -1210,6 +1417,21 @@ Suspected cause: No keydown handler; overlay click calls closeNewTicketModal wit
 ![BUG-SUP-001-1](bugs/screenshots/BUG-SUP-001-1.png)
 ![BUG-SUP-001-2](bugs/screenshots/BUG-SUP-001-2.png)
 
+### BUG-SUP-004: Support: the only permission level is All Access, so regular staff can't raise or see their own tickets
+
+Severity: Medium | Module: Support / Access Manager | Check: SUP-008 ([27-support](checklists/27-support.md))
+
+Steps:
+1. Access Manager > any user > Permissions > Support Tickets: the only level offered is A.
+2. Log in as BETA TEST ONLY Grpuser (no Support permission) > Administration > Support.
+3. Compare with BETA TEST ONLY Second (Support Tickets = A).
+
+Expected: A regular user can open Support, raise tickets and see only their own. An admin sees all tickets.
+
+Actual: Grpuser gets 'Access Denied: You do not have permission to access the Support feature', although Support is in their sidebar and the header headset icon. The only way to let staff raise a ticket is All Access, which shows every ticket. There's no 'own tickets' level.
+
+![BUG-SUP-004-1](bugs/screenshots/BUG-SUP-004-1.png)
+
 ### BUG-SWP-002: Waypoints: moving a waypoint about 250 nm saves with no "Significant Location Change" warning
 
 Severity: Medium | Module: Settings: Waypoints | Check: SWP-006 ([38-settings-waypoints](checklists/38-settings-waypoints.md))
@@ -1276,6 +1498,40 @@ Suspected cause: List and details compute totals differently: the list appears t
 
 ![BUG-TS-003-1](bugs/screenshots/BUG-TS-003-1.png)
 ![BUG-TS-003-2](bugs/screenshots/BUG-TS-003-2.png)
+
+### BUG-TS-008: Approving a leave request doesn't change the rostered shifts, and rejecting with no reason gives no message
+
+Severity: Medium | Module: Timesheets / Leave Requests | Check: TS-008 ([15-timesheets-leave](checklists/15-timesheets-leave.md))
+
+Steps:
+1. Roster Builder (Live): give BETA TEST ONLY Second a Day Shift (DS) on 26 and 27 Nov 2026.
+2. As BETA TEST ONLY Second: My Account > Timesheets > Request Leave > Annual Leave 26/11/2026 to 27/11/2026 > Submit.
+3. As admin: Settings and Tools > Timesheets > Leave Requests > Pending Queue > Approve that request > Approve.
+4. Open Roster Builder Nov 2026 and check Second's 26 and 27 Nov.
+5. Also: on another pending request, click Reject with Your Comments left empty.
+
+Expected: The approve message says the roster shifts were updated, and 26 and 27 Nov change from DS to Annual Leave. Rejecting with no reason tells you a reason is required.
+
+Actual: The request shows Approved, but no roster-updated message appeared, and Roster Builder still shows DS on 26 and 27 Nov. Second's timesheet shows DS plus 'Annual Leave — Approved' on both days, so the person is rostered to work while on leave. With an empty reason, Reject does nothing and shows no message (the field placeholder says it's required for rejections).
+
+![BUG-TS-008-1](bugs/screenshots/BUG-TS-008-1.png)
+![BUG-TS-008-2](bugs/screenshots/BUG-TS-008-2.png)
+![BUG-TS-008-3](bugs/screenshots/BUG-TS-008-3.png)
+
+### BUG-TT-004: Task Tracker: a Write Group (WG) user is treated as read-only and can't add a project
+
+Severity: Medium | Module: Task Tracker | Check: TT-006 ([25-task-tracker](checklists/25-task-tracker.md))
+
+Steps:
+1. BETA TEST ONLY Grpuser has Task Tracker = WG and is in BETA TEST ONLY Group.
+2. Log in as betatest_grp > Administration > Task Tracker.
+3. Hover over or click Add Project.
+
+Expected: A WG user can create and edit projects for their own groups. Only RA/RG users are read-only.
+
+Actual: Add Project is disabled with the tooltip 'You have read-only access'. The list says 'No projects yet', so a WG user can't use Task Tracker at all.
+
+![BUG-TT-004-1](bugs/screenshots/BUG-TT-004-1.png)
 
 ### BUG-AF-001: Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled
 
@@ -1358,6 +1614,22 @@ Actual: Options: 'Read Only All - ...', 'WA', 'Read Only Own - ...', 'Write Own 
 Suspected cause: Label map in accessmanager JS is missing WA and G (falls back to the code).
 
 ![BUG-AM-004-1](bugs/screenshots/BUG-AM-004-1.png)
+
+### BUG-AM-007: Access Manager: a customer created from Flight Details is Active with no login credentials
+
+Severity: Low | Module: Access Manager | Check: AM-015 ([90-xc-permissions](checklists/90-xc-permissions.md))
+
+Steps:
+1. Open flight #42910 > Customer tab > New Customer.
+2. Enter First Name, Last Name, Company and Email, then click Save Changes.
+3. Settings and Tools > Access Manager > search for the new customer.
+
+Expected: The new customer is Inactive until login credentials are set. The rule 'User must have login credentials before activation' also applies when the person is created.
+
+Actual: BETA TEST ONLY Customer (#279) shows Login Access = Active, with no username and Last Login 'Never'. If you deactivate it and then click Inactive, Change Login Credentials opens as it should, so the check only runs when you activate from Access Manager.
+
+![BUG-AM-007-1](bugs/screenshots/BUG-AM-007-1.png)
+![BUG-AM-007-2](bugs/screenshots/BUG-AM-007-2.png)
 
 ### BUG-CHAT-001: Chat has no page Help (?); Escape doesn't close Create Channel; empty name does nothing with no message
 
@@ -1504,6 +1776,21 @@ Actual: Toast 'Exam instance deleted successfully' but the row and the totals (2
 
 ![BUG-EXM-007-1](bugs/screenshots/BUG-EXM-007-1.png)
 ![BUG-EXM-007-2](bugs/screenshots/BUG-EXM-007-2.png)
+
+### BUG-EXM-009: Exams: a hotspot question with no image shows a developer debug message to the person taking the exam
+
+Severity: Low | Module: Exams | Check: PD-017 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. Exam 'BETA TEST ONLY Exam' has hotspot question 'BETA TEST ONLY hotspot question' (Question ID 67) with no image saved.
+2. Assign it to BETA TEST ONLY Second.
+3. Log in as betatest_two > Dashboard > Exams > open the exam > go to question 10.
+
+Expected: The builder refuses to publish a hotspot question without an image, or the exam shows a plain message. No debug text is shown to users.
+
+Actual: Question 10 shows 'No image available for this hotspot question Debug: BACKEND_UPDATED: No image_data found in database row Question ID: 67'. The question can't be answered.
+
+![BUG-EXM-009-1](bugs/screenshots/BUG-EXM-009-1.png)
 
 ### BUG-FAD-001: Flight and Duty has no page Help (?)
 
@@ -1947,9 +2234,24 @@ Suspected cause: Popup builds the title from the raw ISO data-date and the rest 
 
 ![BUG-PD-015-1](bugs/screenshots/BUG-PD-015-1.png)
 
+### BUG-PD-018: Request Leave: Start and End Date default to the UTC date, not today's local date
+
+Severity: Low | Module: Personnel Details | Check: PD-015 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. Time zone is Pacific/Auckland. Do this when the UTC date is still the day before (local 00:00-13:00 in NZDT).
+2. Log in as a user with Timesheets own access (BETA TEST ONLY Second).
+3. My Account > Timesheets > Request Leave.
+
+Expected: Start Date and End Date default to today's local date (22/10/2026).
+
+Actual: At local 10:21 on 22/10/2026 (UTC 21:21 on 21/10), both dates showed 21/10/2026. The hidden values were '2026-10-21 21:21:23' (UTC time). Unless you change them, the leave is requested for the wrong day. It's the same UTC-default problem as BUG-FD-007 and BUG-SMS-002.
+
+![BUG-PD-018-1](bugs/screenshots/BUG-PD-018-1.png)
+
 ### BUG-PERF-001: 'Performance' debug timing panel shown on every page, including to non-admin users
 
-Severity: Low | Module: All modules (debug panel) | Check: PERF-001 ([95-performance](checklists/95-performance.md))
+Severity: Low | Module: All modules (debug panel) | Check: PERF-001 ([95-xc-performance-errors](checklists/95-xc-performance-errors.md))
 
 Steps:
 1. Log in as any user (also BETA TEST ONLY Lowperm with one permission)
@@ -1966,7 +2268,7 @@ Suspected cause: Debug config ('Check Debug Config') is enabled site-wide on str
 
 ### BUG-PERM-001: Sidebar lists modules the user has no permission for (all lead to Access Denied)
 
-Severity: Low | Module: Shell (main) sidebar | Check: PERM-007 ([90-permissions](checklists/90-permissions.md))
+Severity: Low | Module: Shell (main) sidebar | Check: PERM-007 ([90-xc-permissions](checklists/90-xc-permissions.md))
 
 Steps:
 1. Access Manager: create user, give 0 roles / 0 permissions, set credentials, Activate
@@ -1984,7 +2286,7 @@ Suspected cause: Sidebar build in main/index.pl does not check the permission ty
 
 ### BUG-PL-001: All Personnel has no page Help (?)
 
-Severity: Low | Module: All Personnel | Check: PL-S02 ([11-all-personnel](checklists/11-all-personnel.md))
+Severity: Low | Module: All Personnel | Check: PL-S02 ([11-personnel-list](checklists/11-personnel-list.md))
 
 Steps:
 1. Sidebar > Personnel > All Personnel
@@ -1998,7 +2300,7 @@ Actual: The page has only the search box and the group/role filters. There is no
 
 ### BUG-PL-002: A person with no name exists and is listed as '?' at the top of All Personnel (person #274, Customer)
 
-Severity: Low | Module: All Personnel | Check: PL-001 ([11-all-personnel](checklists/11-all-personnel.md))
+Severity: Low | Module: All Personnel | Check: PL-001 ([11-personnel-list](checklists/11-personnel-list.md))
 
 Steps:
 1. Sidebar > Personnel > All Personnel
@@ -2119,7 +2421,7 @@ Suspected cause: No narrow-screen layout for the builder: grid and palette stay 
 
 ### BUG-REC-001: Recency and Renewals overview has no page Help (?)
 
-Severity: Low | Module: Recency and Renewals | Check: REC-S02 ([18-recency](checklists/18-recency.md))
+Severity: Low | Module: Recency and Renewals | Check: REC-S02 ([18-recency-renewals](checklists/18-recency-renewals.md))
 
 Steps:
 1. Flight Safety > Recency and Renewals
@@ -2133,7 +2435,7 @@ Actual: No Help button. The header only has the page title.
 
 ### BUG-REC-002: Recency and Renewals at phone width: the table is cut off, so Total Items and Actions are hidden
 
-Severity: Low | Module: Recency and Renewals | Check: REC-S05 ([18-recency](checklists/18-recency.md))
+Severity: Low | Module: Recency and Renewals | Check: REC-S05 ([18-recency-renewals](checklists/18-recency-renewals.md))
 
 Steps:
 1. Flight Safety > Recency and Renewals
@@ -2738,6 +3040,23 @@ Suspected cause: The table wrapper has no overflow-x:auto and there is no respon
 
 ![BUG-SWAB-004-1](bugs/screenshots/BUG-SWAB-004-1.png)
 
+### BUG-SWAB-005: W&B Configs: two revisions show the same number ("Rev 5") until another import renumbers them
+
+Severity: Low | Module: Settings: Weight and Balance | Check: SWAB-003 ([35-settings-wab](checklists/35-settings-wab.md))
+
+Steps:
+1. Settings and Tools > Weight and Balance Configs (iPad App).
+2. Import an exported config (.json) to make a new draft, approve it and set it as Master.
+3. Keep working on the drafts in Revision History (review, Copy To) without reloading.
+4. Look at Revision History, then Import another file.
+
+Expected: Each revision has its own number, and numbers don't change.
+
+Actual: Revision History showed two rows labelled "Rev 5": the Master (config #12) and a Pending draft (config #13). They held different aircraft (1 and 2). After the next Import, the Pending one was relabelled "Rev 6" and the new import became "Rev 7". It's easy to approve or set the wrong draft as Master.
+
+![BUG-SWAB-005-1](bugs/screenshots/BUG-SWAB-005-1.png)
+![BUG-SWAB-005-2](bugs/screenshots/BUG-SWAB-005-2.png)
+
 ### BUG-SWP-001: Waypoints Settings: no Help (?), and Escape does not close popups
 
 Severity: Low | Module: Settings: Waypoints | Check: SWP-S02 ([38-settings-waypoints](checklists/38-settings-waypoints.md))
@@ -2839,6 +3158,22 @@ Actual: The Add Leave Type popup closes, then 'Colour must be a 6 character hex 
 Suspected cause: saveLeaveType() in timesheets/leaverequests.js calls hideTypeModal() before showErrorModal() for both validation errors.
 
 ![BUG-TS-006-1](bugs/screenshots/BUG-TS-006-1.png)
+
+### BUG-TS-007: Reject Claim: leaving the reason empty closes the reject popup and throws a script error
+
+Severity: Low | Module: Timesheets | Check: TS-006 ([15-timesheets-leave](checklists/15-timesheets-leave.md))
+
+Steps:
+1. Settings and Tools > Timesheets > open a person who has a pending claim (BETA TEST ONLY Second, 19 Oct).
+2. View Claims > the reject (×) button on the claim.
+3. Leave the reason empty and click Reject Claim.
+4. Close the 'Validation Error' popup.
+
+Expected: The error shows next to the reason and the Reject Claim popup stays open, so you can type a reason.
+
+Actual: 'Validation Error: Rejection reason is required' appears, but closing it also closes Reject Claim and the Claims list. The console shows "Cannot read properties of null (reading 'value')". You have to open View Claims and click reject again.
+
+![BUG-TS-007-1](bugs/screenshots/BUG-TS-007-1.png)
 
 ### BUG-TT-001: Task Tracker: Escape doesn't close Help or Add Project
 

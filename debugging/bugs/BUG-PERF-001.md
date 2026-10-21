@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Checklist row | `PERF-001` in `checklists/95-performance.md` |
+| Checklist row | `PERF-001` in `checklists/95-xc-performance-errors.md` |
 | Module | All modules (debug panel) |
 | Severity | Low |
 | DataHangar version | v2.0.111 |

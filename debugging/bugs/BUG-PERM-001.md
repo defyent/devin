@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Checklist row | `PERM-007` in `checklists/90-permissions.md` |
+| Checklist row | `PERM-007` in `checklists/90-xc-permissions.md` |
 | Module | Shell (main) sidebar |
 | Severity | Low |
 | DataHangar version | v2.0.111 |
