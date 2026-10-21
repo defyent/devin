@@ -2499,5 +2499,24 @@
    "swab_mobile"
   ],
   "cause": "The table wrapper has no overflow-x:auto and there is no responsive rule."
+ },
+ {
+  "id": "BUG-SEFI-001",
+  "title": "Extra Flight Info Settings: no Help (?), and Escape does not close Add Field",
+  "row": "SEFI-S02",
+  "cl": "36-settings-extraflightinfo",
+  "module": "Settings: Extra Flight Info",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Configuration > Extra Flight Info.",
+   "Look for a Help (?).",
+   "Click Add New Field, then press Escape."
+  ],
+  "expected": "A Help (?) is shown, and Escape closes the popup.",
+  "actual": "There is no Help button, and Escape leaves Add New Field open.",
+  "shots": [
+   "sefi_main"
+  ],
+  "cause": "No help modal, and no keydown handler on the modals."
  }
 ]

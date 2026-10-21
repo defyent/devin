@@ -133,6 +133,7 @@
 | [BUG-SWAB-002](BUG-SWAB-002.md) | `SWAB-S04` | Settings: Weight and Balance | Weight & Balance Configs: dates show as "14 Oct 2026" / "29 Sept 2026" instead of DD/MM/YYYY | Low | New | |
 | [BUG-SWAB-003](BUG-SWAB-003.md) | `SWAB-S01` | Settings: Weight and Balance | Weight & Balance Configs shows a debug "Performance" timing panel to users | Low | New | |
 | [BUG-SWAB-004](BUG-SWAB-004.md) | `SWAB-S05` | Settings: Weight and Balance | Weight & Balance Configs: on a phone the page is wider than the screen | Low | New | |
+| [BUG-SEFI-001](BUG-SEFI-001.md) | `SEFI-S02` | Settings: Extra Flight Info | Extra Flight Info Settings: no Help (?), and Escape does not close Add Field | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

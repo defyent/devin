@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 6 |
 | Medium | 48 |
-| Low | 77 |
+| Low | 78 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -125,6 +125,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RV-001](bugs/BUG-RV-001.md) | Low | Roster Viewer | Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape |
 | [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
 | [BUG-SDFR-001](bugs/BUG-SDFR-001.md) | Low | Settings: Daily Flight Record | Daily Flight Record Settings loads a colorpicker.js that does not exist (404 in the console) |
+| [BUG-SEFI-001](bugs/BUG-SEFI-001.md) | Low | Settings: Extra Flight Info | Extra Flight Info Settings: no Help (?), and Escape does not close Add Field |
 | [BUG-SFS-001](bugs/BUG-SFS-001.md) | Low | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
 | [BUG-SMS-004](bugs/BUG-SMS-004.md) | Low | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register |
@@ -2031,6 +2032,23 @@ Actual: GET /templates2/settings_dfr/colorpicker.js returns 404, and the console
 Suspected cause: The settings_dfr template has a <script src="colorpicker.js"> but that file is not in templates2/settings_dfr/. Remove the tag.
 
 ![BUG-SDFR-001-1](bugs/screenshots/BUG-SDFR-001-1.png)
+
+### BUG-SEFI-001: Extra Flight Info Settings: no Help (?), and Escape does not close Add Field
+
+Severity: Low | Module: Settings: Extra Flight Info | Check: SEFI-S02 ([36-settings-extraflightinfo](checklists/36-settings-extraflightinfo.md))
+
+Steps:
+1. Settings and Tools > Configuration > Extra Flight Info.
+2. Look for a Help (?).
+3. Click Add New Field, then press Escape.
+
+Expected: A Help (?) is shown, and Escape closes the popup.
+
+Actual: There is no Help button, and Escape leaves Add New Field open.
+
+Suspected cause: No help modal, and no keydown handler on the modals.
+
+![BUG-SEFI-001-1](bugs/screenshots/BUG-SEFI-001-1.png)
 
 ### BUG-SFS-001: Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted
 
