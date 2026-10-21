@@ -693,3 +693,5 @@ Suspected cause: #flight-details-modal has no keydown Escape handler (same patte
 | 07-flight-details | Waypoint 'ZZZQ' (added from the leg prompt) | Settings > Waypoints | No |
 | 07-flight-details | Notify Overdue by Text / Email switched on; status set to Complete | Flight #42903 > Details / Flight Status | No (deleted with the flight) |
 | 07-flight-details | Pre-existing, not created in this run: customer 'DEVIN TEST Customer Ltd' | Customers | No (check with Jon) |
+| 08-active-flights | Flight #42903 status set back to Open (was Complete) to test Active Flights | Flight #42903 | No (delete with the flight) |
+| 08-active-flights | Note 'BETA TEST ONLY AF note' | Flight #42903 notes | No |

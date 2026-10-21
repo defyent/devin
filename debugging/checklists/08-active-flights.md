@@ -33,7 +33,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AF-006 | Click PIC | Contact details popup | PASS |  | Click PIC 'Graham Clarke' > popup 'Graham Clarke - Contact Details' with Mobile 021-555-0096, Email graham.clarke96@datahangar.net, Close (shot af_pic) |
 | AF-007 | Notes | Readable | PASS |  | Notes column readable (e.g. 'Maintenance test flight post 100hr', 'No notes' when empty) |
 | AF-008 | Adjust SAR (A/WG) | Picker + Disable/Enable SAR Watch + Save; hidden for RA/RG | TODO |  | Adjust SAR on #42892 opens 'Adjust SAR Time - Flight 42892' with picker prefilled 27/06/2026 09:05, Cancel / Disable SAR Watch / Save (shot af_adjust_sar). Save to be tested on BETA flight #42903 |
-| AF-009 | Add Note (A/WG) | Appended to flight | TODO |  | Add Note opens 'Add Note - Flight 42892' (Note, Cancel / Save). Save to be tested on BETA flight #42903 |
+| AF-009 | Add Note (A/WG) | Appended to flight | PASS |  | Add Note on #42903 > 'BETA TEST ONLY AF note' > Save > Notes column shows '[22:34] BETA TEST ONLY AF note' before the existing notes (timestamp in local time) |
 | AF-010 | Auto-refresh | Refreshes; pauses while editing | TODO | | |
 | AF-011 | Complete a flight | Disappears from Active Flights | TODO | | |
 | AF-012 | Live Tracking map (with permission) | Live (last 10 min) / Historical with date; ADS-B toggle; re-centre; collapse; About | TODO | | |
@@ -54,4 +54,5 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| | | |
+| Flight #42903 status set back to Open (was Complete) to test Active Flights | Flight #42903 | No (delete with the flight) |
+| Note 'BETA TEST ONLY AF note' | Flight #42903 notes | No |
