@@ -10,7 +10,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 |---|---|---|---|---|---|---|---|---|
 | [00-setup-and-accounts](checklists/00-setup-and-accounts.md) | `SET` | Session setup, accounts and baseline | 9 | 8 | 0 | 1 | 0 | DONE |
 | [01-login-auth](checklists/01-login-auth.md) | `LOG` | Login, 2FA, sessions, landing page | 25 | 14 | 3 | 0 | 0 | IN PROGRESS |
-| [02-shell-navigation](checklists/02-shell-navigation.md) | `NAV` | Application shell, sidebar, header, mobile | 27 | 20 | 2 | 4 | 1 | DONE |
+| [02-shell-navigation](checklists/02-shell-navigation.md) | `NAV` | Application shell, sidebar, header, mobile | 27 | 22 | 2 | 2 | 1 | DONE |
 | [03-common-conventions](checklists/03-common-conventions.md) | `CON` | Common screen conventions (apply on every page) | 22 | 2 | 1 | 0 | 0 | IN PROGRESS |
 | [04-access-manager](checklists/04-access-manager.md) | `AM` | Access Manager (users, roles, groups, permissions, templates) | 38 | 21 | 7 | 0 | 0 | IN PROGRESS |
 | [05-dashboard](checklists/05-dashboard.md) | `DSH` | Dashboard | 19 | 10 | 4 | 5 | 0 | DONE |

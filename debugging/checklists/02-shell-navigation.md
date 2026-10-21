@@ -19,7 +19,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | NAV-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Logout confirm survives drag-out |
 | NAV-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | PASS |  | Clocks use DD/MM/YYYY HH:mm |
 | NAV-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | 700 px: drawer + card list work; see NAV-018 |
-| NAV-S06 | Low-permission account | Access Denied or read-only as per permission | BLOCKED |  | No low-permission account |
+| NAV-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low: sidebar renders, links to modules without permission open an Access Denied card (see NAV-019, AM-S06, PERM-007) |
 
 ## Module checks
 
@@ -43,7 +43,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | NAV-016 | Overdue alerts: enable setting, be Flight Follower on an open SAR-watched flight past end time | Banner within ~30 s with aircraft, PIC, route, hours overdue; click opens Active Flights; desktop notification when window inactive | BLOCKED |  | Needs an overdue SAR-watched flight; see 08-active-flights |
 | NAV-017 | New chat message while Chat closed | Banner 'New message in #channel' with preview; disappears after 8 s; click opens Chat | BLOCKED |  | Needs a second user to send a chat message |
 | NAV-018 | Resize to < 768 px | Burger opens Navigation drawer with sections + badges; tables become cards; pills become dropdown | PASS |  | Burger drawer has all sections + badges; Personnel shows cards |
-| NAV-019 | Menu link for a module without permission (use low-permission account) | Link visible; page shows 'Access Denied' | BLOCKED |  | No low-permission account |
+| NAV-019 | Menu link for a module without permission (use low-permission account) | Link visible; page shows 'Access Denied' | PASS |  | betatest_low (Crew, no Flight Schedule permission): Flight Schedule link shown in the sidebar; opening it shows 'Access Denied: You do not have permission to access the flight schedule' (shot fs_lowperm) |
 | NAV-020 | Maintenance Portal reachability | Note: guide says only direct/admin-added link. Record whether any UI path exists (we do NOT use ?action= URLs) | PASS |  | No UI path to Maintenance Portal in sidebar or Settings (only Inspection Notifications) |
 | NAV-021 | Icons load | Note: menu icons come from external CDN api.iconify.design (Jon prefers self-hosted icon pack) — log as UI finding | FAIL | ICON-01 | Still loads all menu icons from api.iconify.design |
 
