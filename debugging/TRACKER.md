@@ -15,7 +15,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [04-access-manager](checklists/04-access-manager.md) | `AM` | Access Manager (users, roles, groups, permissions, templates) | 38 | 21 | 7 | 0 | 0 | IN PROGRESS |
 | [05-dashboard](checklists/05-dashboard.md) | `DSH` | Dashboard | 19 | 10 | 4 | 5 | 0 | DONE |
 | [06-flight-schedule](checklists/06-flight-schedule.md) | `FS` | Flight Schedule (incl. embedded Location Planner) | 40 | 30 | 7 | 1 | 1 | IN PROGRESS |
-| [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 6 | 0 | 0 | 8 | IN PROGRESS |
+| [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 10 | 0 | 0 | 8 | IN PROGRESS |
 | [08-active-flights](checklists/08-active-flights.md) | `AF` | Active Flights and Live Tracking | 19 | 0 | 0 | 0 | 3 | TODO |
 | [09-daily-flight-record](checklists/09-daily-flight-record.md) | `DFR` | Daily Flight Record | 16 | 0 | 0 | 0 | 1 | TODO |
 | [10-location-planner](checklists/10-location-planner.md) | `LP` | Location Planner (stand-alone) | 9 | 0 | 0 | 0 | 0 | TODO |

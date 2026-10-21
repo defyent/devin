@@ -27,7 +27,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 |---|---|---|---|---|---|
 | FD-001 | Read-only user (RA/RG/RO) | Yellow banner e.g. 'Read-Only Group Access…'; Save/Cancel/Delete hidden | TODO | | |
 | FD-002 | Header: Back, PDF, History, Cancel, Save Changes, Delete (open only), Help | All present and working | PASS |  | Header shows Back, PDF, History, Cancel, Save Changes, Delete, Help on the open flight; individual actions tested in FD-003, FD-034, FD-037, FD-038 |
-| FD-003 | PDF with unsaved changes | Asks to save first | TODO | | |
+| FD-003 | PDF with unsaved changes | Asks to save first | PASS |  | With unsaved passenger change, PDF > Required Information 'You have unsaved changes. Please save or cancel your changes before printing.' (shot fd_pdf_unsaved) |
 | FD-004 | Details: Aircraft dropdown | Only Active + Is Aircraft resources | TODO | | |
 | FD-005 | Details: PIC / Secondary Flight Crew | Only Crew or Student role people | TODO | | |
 | FD-006 | Notify toggles | Sends email/SMS on save; not stored (off on reopen) | TODO | | |
@@ -39,9 +39,9 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FD-012 | Comments | Add a Comment saves with flight | TODO | | |
 | FD-013 | Customer: Existing (company first) + Contact Person suggestions | Works | TODO | | |
 | FD-014 | Customer: New Customer | Creates customer record (with Customer role) | TODO | | |
-| FD-015 | Passenger List: Add Crew Member | Weight from personnel record or 'No weight on file – please enter' | TODO | | |
-| FD-016 | Passenger List: Add Custom Passenger | Added to manifest | TODO | | |
-| FD-017 | kg/lbs toggle | Converts correctly | TODO | | |
+| FD-015 | Passenger List: Add Crew Member | Weight from personnel record or 'No weight on file – please enter' | PASS |  | Passenger List > Add Crew Member 'Aaron Foster' (no weight on file) > Required Information popup 'This crew member has no weight on file. Please enter their weight before adding.' with OK. PIC BETA TEST ONLY Lowperm listed in Crew with 0 kg |
+| FD-016 | Passenger List: Add Custom Passenger | Added to manifest | PASS |  | Add Custom Passenger 'BETA TEST ONLY Pax', 80 kg, NOK 'BETA TEST ONLY NOK 000' > listed under Passengers (type Passenger) with delete action |
+| FD-017 | kg/lbs toggle | Converts correctly | PASS |  | kg > lbs: table headers and the Weight input label switch to LBS, 80 kg shows 176 lbs; back to kg shows 80 again |
 | FD-018 | W&B toggle | Only if registration in Master W&B config; per-leg summary + graphs; newer revision prompt | TODO |  | ZK-SIM: Weights shows 'Weight & Balance is not configured for this aircraft.' (correct for an unregistered aircraft). Configured-aircraft case still to test |
 | FD-019 | Times and Meters | Totals with source hint; previous reading + link to previous flight | TODO | | |
 | FD-020 | Cumulative meter lower than previous | 'Meter "X" value (…) is less than previous reading (…)' | TODO | | |
