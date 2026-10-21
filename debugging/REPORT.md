@@ -6,11 +6,13 @@ Generated from the checklist results and bug files on this branch. Testing is st
 
 | Severity | Count |
 |---|---|
+| High | 1 |
 | Medium | 19 |
 | Low | 17 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
+| [BUG-AF-004](bugs/BUG-AF-004.md) | High | Active Flights | Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC 'now' |
 | [BUG-AF-002](bugs/BUG-AF-002.md) | Medium | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them |
 | [BUG-AM-001](bugs/BUG-AM-001.md) | Medium | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) |
 | [BUG-DSH-003](bugs/BUG-DSH-003.md) | Medium | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) |
@@ -49,6 +51,23 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-POP-004](bugs/BUG-POP-004.md) | Low | Flight Schedule | Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc |
 
 ## Bugs
+
+### BUG-AF-004: Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC 'now'
+
+Severity: High | Module: Active Flights | Check: AF-004 ([08-active-flights](checklists/08-active-flights.md))
+
+Steps:
+1. Open flight #42903 (Start 21/10/2026 08:30, SAR TIME (LOCAL) 21/10/2026 09:30 in Flight Details) and set Flight Status to Open, Save
+2. At 22:33 local / 09:33 UTC open Sidebar > Flight Operations > Active Flights
+3. Look at row #42903
+
+Expected: SAR 09:30 local passed 13 hours ago: 'OVERDUE by 13h 03m', Active Time 14h 03m.
+
+Actual: Row shows SAR '21/10/2026 09:30 OVERDUE by 3m' and Active Time '01h 03m' - the countdown uses UTC now (09:33) against the local time, so an overdue flight looks only just overdue for 13 hours. For a search-and-rescue watch this delays the alarm.
+
+Suspected cause: Active Flights compares the stored local SAR/start time with the UTC clock (or Flight Details labels UTC times as local). Related to BUG-FS-001 (Add Flight defaults to UTC).
+
+![BUG-AF-004-1](bugs/screenshots/BUG-AF-004-1.png)
 
 ### BUG-AF-002: Active Flights lists future flights that have no SAR time, and the stats cards don't count them
 
