@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 6 |
 | Medium | 48 |
-| Low | 72 |
+| Low | 73 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -128,6 +128,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SFS-001](bugs/BUG-SFS-001.md) | Low | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
 | [BUG-SMS-004](bugs/BUG-SMS-004.md) | Low | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register |
+| [BUG-SRES-001](bugs/BUG-SRES-001.md) | Low | Settings: Resources (Aircraft) | Resources: the meter "Last:" dates show as YYYY-MM-DD instead of the Time Zone date format |
 | [BUG-STZ-002](bugs/BUG-STZ-002.md) | Low | Settings: Time Zone | Time Zone settings page has no Help (?) |
 | [BUG-SUP-002](bugs/BUG-SUP-002.md) | Low | Support | Support New Ticket: Ctrl+V doesn't paste a screenshot, though the error message tells you to use Ctrl+V |
 | [BUG-SUP-003](bugs/BUG-SUP-003.md) | Low | Support | Support ticket: clicking a .txt attachment shows an 'Error' popup containing the file's text |
@@ -2079,6 +2080,23 @@ Suspected cause: templates2/hazardregister/index.js maps goal code 'M' to 'Minim
 
 ![BUG-SMS-004-1](bugs/screenshots/BUG-SMS-004-1.png)
 ![BUG-SMS-004-2](bugs/screenshots/BUG-SMS-004-2.png)
+
+### BUG-SRES-001: Resources: the meter "Last:" dates show as YYYY-MM-DD instead of the Time Zone date format
+
+Severity: Low | Module: Settings: Resources (Aircraft) | Check: SRES-S04 ([34-settings-resources](checklists/34-settings-resources.md))
+
+Steps:
+1. Settings > Time Zone date format is DD/MM/YYYY.
+2. Settings and Tools > Configuration > Resources (Aircraft).
+3. Look at the Meters column for C172-02 (ZK-AIR).
+
+Expected: Flight Hours Last: 3102.7 (09/05/2026)
+
+Actual: Flight Hours Last: 3102.7 (2026-05-09). Every "Last:" meter date on the page is in ISO format.
+
+Suspected cause: The raw database date is shown without going through the shared date formatter.
+
+![BUG-SRES-001-1](bugs/screenshots/BUG-SRES-001-1.png)
 
 ### BUG-STZ-002: Time Zone settings page has no Help (?)
 

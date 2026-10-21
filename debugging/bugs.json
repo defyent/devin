@@ -2407,5 +2407,24 @@
    "stz_preview_iso"
   ],
   "cause": "The preview picker seems to fall back to the browser locale for any format it does not know. The disabled options look deliberate (the type-in picker can't parse them?), but the page doesn't say so."
+ },
+ {
+  "id": "BUG-SRES-001",
+  "title": "Resources: the meter \"Last:\" dates show as YYYY-MM-DD instead of the Time Zone date format",
+  "row": "SRES-S04",
+  "cl": "34-settings-resources",
+  "module": "Settings: Resources (Aircraft)",
+  "sev": "Low",
+  "steps": [
+   "Settings > Time Zone date format is DD/MM/YYYY.",
+   "Settings and Tools > Configuration > Resources (Aircraft).",
+   "Look at the Meters column for C172-02 (ZK-AIR)."
+  ],
+  "expected": "Flight Hours Last: 3102.7 (09/05/2026)",
+  "actual": "Flight Hours Last: 3102.7 (2026-05-09). Every \"Last:\" meter date on the page is in ISO format.",
+  "shots": [
+   "sres_main"
+  ],
+  "cause": "The raw database date is shown without going through the shared date formatter."
  }
 ]
