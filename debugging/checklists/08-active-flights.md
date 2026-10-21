@@ -17,9 +17,9 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AF-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Sidebar > Flight Operations > Active Flights loads (action=activeflights), no console errors (shot af_open) |
 | AF-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-AF-003 | No page Help (?) button on Active Flights. 'About Live Tracking' popup: Got it closes, clicking outside closes, no x button, Escape does nothing (BUG-AF-003) |
 | AF-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Mouse down inside Contact Details, Adjust SAR and Add Note popups, release outside: all stay open. (Escape does not close them - BUG-AF-003) |
-| AF-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
+| AF-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | PASS | BUG-AF-004 | Dates shown DD/MM/YYYY HH:MM as set in Settings > Time Zone; note timestamps local ([22:34]). The overdue / remaining countdown uses the wrong zone - see BUG-AF-004 |
 | AF-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | 390 px: no horizontal scroll (375 <= 390), list shows cards only (table and table/card toggle hidden), map full width (shot af_mobile). Note: the 'Performance' timing panel (Active Flights API 295 ms) floats over the cards and hides Add Note until closed with x |
-| AF-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
+| AF-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low (no Active Flights right): menu link shown, opening it gives 'Access Denied: You do not have permission to access the Active Flights feature. Please contact your administrator.' No data, no Adjust SAR, no map (shot af_low) |
 
 ## Module checks
 
@@ -37,7 +37,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AF-010 | Auto-refresh | Refreshes; pauses while editing | PASS |  | activeflights_json re-requested every 20 s (live-tracking JSON separately). While Add Note was open with typed text the refresh kept running, but the popup and text were kept; no data lost |
 | AF-011 | Complete a flight | Disappears from Active Flights | PASS |  | #42903 set to Complete in Flight Details > Save > Back > no longer listed; cards back to Total 1377 / Active 0 / Past 1364 / Overdue 7 |
 | AF-012 | Live Tracking map (with permission) | Live (last 10 min) / Historical with date; ADS-B toggle; re-centre; collapse; About | PASS |  | Live Tracking card (starts collapsed; expand_more/less toggles 67 px <> 560 px map). Live / Historical toggle (Historical shows date field 21/10/2026); ADS-B button toggles on (11 markers); About (?) opens info. No separate re-centre control found (shots af_map_live, af_map_hist, af_map_adsb2) |
-| AF-013 | Without Live Tracking permission | Map hidden | TODO | | |
+| AF-013 | Without Live Tracking permission | Map hidden | BLOCKED |  | Needs a user with Active Flights but without Live Tracking permission; betatest_low has no Active Flights access at all. Retest in checklist 90 (permission levels) |
 
 ## Known issues from external audits
 
