@@ -51,7 +51,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PD-024 | Forms tab: add, save, archive, unarchive, delete | Each confirms | TODO | | |
 | PD-025 | Files tab | Upload, preview, download, delete | TODO | | |
 | PD-026 | Security: change password (wrong current, < 8, mismatch) | Validation; success | TODO | | |
-| PD-027 | Security: Enable 2FA (QR, backup codes download, verify) | Enabled | TODO | | |
+| PD-027 | Security: Enable 2FA (QR, backup codes download, verify) | Enabled | FAIL | BUG-PD-003 | Password prompt (wrong pw: 'Setup Error - Invalid password'), QR + manual key + 10 backup codes + Download, valid code -> '2FA enabled successfully!'. Wrong code closes the dialog and forces a new key |
 | PD-028 | Customize: Login Landing Page | Saved; used on next login | TODO | | |
 | PD-029 | Access as RO / WO / WG | Edit rights match level; WG can always edit self | TODO | | |
 | PD-030 | No Personnel Details permission > My Account | Access Denied | TODO | | |

@@ -25,7 +25,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| AM-001 | Header statistics | Total Users, With Permissions, Permission Types show sensible numbers | TODO | | |
+| AM-001 | Header statistics | Total Users, With Permissions, Permission Types show sensible numbers | PASS |  | 156 Total Users, With Permissions 0 -> 1 after granting betatest_low one permission, 75 Permission Types. Note: one user row has no name/username (blank avatar, first row) |
 | AM-002 | Pills | User Permissions, Groups, Permission Templates | PASS |  | User Permissions / Groups / Permission Templates pills present |
 | AM-003 | Search users by name, username, email | Filters correctly | PASS |  | Name (Higgins=2), username (afisher13=1), email (aaron.foster112@=1), no-match=0 |
 | AM-004 | All Roles filter (each role) and All Groups filter (each group) | Filters correctly; combine with search | PASS |  | Roles: Admin 1, Customer 2, Crew 41, Staff 110, Student 42. Groups: Pilots 83, Crew 40, Engineers 20, Administration 10. Crew+search 'Aaron' combines |
@@ -44,10 +44,10 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AM-017 | Roles badge: tick/untick each role, Save Changes | Saved; hover on 'N Roles' lists them | TODO | | |
 | AM-018 | Roles: Admin checkbox as non-admin | Greyed out ('Only admins can grant or revoke admin access') | TODO | | |
 | AM-019 | Groups badge: toggle groups, search | On Roster auto-ticks when adding; Save replaces memberships | TODO | | |
-| AM-020 | Permissions badge: tick a type | Level dropdown enables with first valid level; only levels from §15.1 offered | TODO | | |
-| AM-021 | Permissions: untick, search types, Save | Toast 'Permissions updated for First Last (N permissions)' | TODO | | |
+| AM-020 | Permissions badge: tick a type | Level dropdown enables with first valid level; only levels from §15.1 offered | FAIL | BUG-AM-004 | Tick enables level dropdown with first valid level (RA). Options for Personnel Details: RA, WA, RO, WO, G; 'WA' and 'G' shown as bare codes |
+| AM-021 | Permissions: untick, search types, Save | Toast 'Permissions updated for First Last (N permissions)' | PASS |  | Toast 'Permissions updated for BETA TEST ONLY Lowperm (1 permissions)' (grammar: '1 permissions'); badge '1 Permission' |
 | AM-022 | Permissions: Apply Template | Overwrites those types only; needs Save Changes | TODO | | |
-| AM-023 | Permissions: Cancel with unsaved changes | Asks to confirm | TODO | | |
+| AM-023 | Permissions: Cancel with unsaved changes | Asks to confirm | FAIL | BUG-POP-002 | Asks 'You have unsaved changes. Are you sure you want to cancel?' but as a native browser confirm(), not an app modal |
 | AM-024 | Change credentials: < 10 chars, mismatch, reserved, duplicate | Rejected with messages | PASS |  | <10: 'Password must be at least 10 characters'; mismatch: 'Passwords do not match'; admin: 'That username is not allowed'; afisher13: 'Username is already taken' |
 | AM-025 | Generate Secure Password | 10-char mixed-case alphanumeric, fills both fields, copy button works | PASS |  | 10 chars, upper+lower+digit, fills both fields, copy button appears |
 | AM-026 | Groups tab: New Group with all 5 switches | Saved; card shows member count and Yes/No for each switch | TODO | | |

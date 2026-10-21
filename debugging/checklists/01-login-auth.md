@@ -31,12 +31,12 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | LOG-004 | Log in as an Inactive user (create one in Access Manager) | Same generic message; no login | TODO | | |
 | LOG-005 | Forgot Password? > enter any username > Send Reset Link | Always: 'If that username exists, a reset email has been sent.' | PASS |  | 'If that username exists, a reset email has been sent.' |
 | LOG-006 | Reset Password page: mismatched passwords, < 8 chars | Validation messages; Back to Login works | TODO | | |
-| LOG-007 | Enable 2FA on a test account (My Account > Security), log out and in | 2FA page appears: 'Enter the 6-digit code from your authenticator app' | TODO | | |
-| LOG-008 | 2FA wrong code | 'Invalid verification code. Please try again.' | TODO | | |
-| LOG-009 | 2FA backup code XXXX-XXXX | Accepted once; cannot be reused | TODO | | |
-| LOG-010 | 2FA 'Trust this device for 30 days' | Next login on same browser skips 2FA | TODO | | |
+| LOG-007 | Enable 2FA on a test account (My Account > Security), log out and in | 2FA page appears: 'Enter the 6-digit code from your authenticator app' | PASS |  | betatest_low with 2FA: page 'Enter the 6-digit code from your authenticator app', backup-code hint, Trust this device checkbox |
+| LOG-008 | 2FA wrong code | 'Invalid verification code. Please try again.' | PASS |  | 'Invalid verification code. Please try again.' |
+| LOG-009 | 2FA backup code XXXX-XXXX | Accepted once; cannot be reused | PASS |  | Backup code accepted once; reuse gives 'Invalid verification code. Please try again.' |
+| LOG-010 | 2FA 'Trust this device for 30 days' | Next login on same browser skips 2FA | FAIL | BUG-LOG-003 | Trusted cookie dhkey_trusted_betatest_low (29 days) is set, but Logout deletes every cookie including it; next login asks for 2FA again |
 | LOG-011 | 2FA > 10 wrong attempts within 15 min | 'Too many failed attempts. Please try again later.' | TODO | | |
-| LOG-012 | 2FA '← Back to login' | Returns to login page | TODO | | |
+| LOG-012 | 2FA '← Back to login' | Returns to login page | PASS |  | '← Back to login' returns to login card |
 | LOG-013 | Login message popup after login | Login Message popup; closes with OK and with Esc | FAIL | BUG-LOG-001 | OK and Esc close it, but it also reappears on every browser reload, not just after login |
 | LOG-014 | Reload browser while on a non-default page | Same page reopens | PASS |  | DFR reopened after reload |
 | LOG-015 | Set Login Landing Page (My Account > Customize), log out and in | Lands on the chosen page; test every option (Dashboard, Active Flights, Flight Schedule, DFR, Roster Viewer, W&B Config, My Personnel Details, Support) | TODO | | |
