@@ -6,13 +6,14 @@ Generated from the checklist results and bug files on this branch. Testing is st
 
 | Severity | Count |
 |---|---|
-| High | 1 |
+| High | 2 |
 | Medium | 24 |
 | Low | 21 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
 | [BUG-AF-004](bugs/BUG-AF-004.md) | High | Active Flights | Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC 'now' |
+| [BUG-PD-006](bugs/BUG-PD-006.md) | High | Personnel Details | Personnel Details > Recency and Renewals: action buttons are hidden (Add Item, Table/Card view, renewal Save / Complete Renewal / Cancel) and Group by / Order by are disabled |
 | [BUG-AF-002](bugs/BUG-AF-002.md) | Medium | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them |
 | [BUG-AM-001](bugs/BUG-AM-001.md) | Medium | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) |
 | [BUG-DFR-002](bugs/BUG-DFR-002.md) | Medium | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied |
@@ -32,9 +33,9 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-NAV-001](bugs/BUG-NAV-001.md) | Medium | Shell (main) / Personnel Details | Leaving a page with unsaved changes gives no warning; edits are lost |
 | [BUG-PD-001](bugs/BUG-PD-001.md) | Medium | Personnel Details / My Account | personneldetails/index.js is truncated: ReferenceError getPickerMod on every load |
 | [BUG-PD-003](bugs/BUG-PD-003.md) | Medium | Personnel Details > Security | 2FA setup: one wrong verification code closes the setup dialog and issues a new secret |
-| [BUG-PD-006](bugs/BUG-PD-006.md) | Medium | Personnel Details | Personnel Details > Recency and Renewals: Add Item, Table/Card view buttons are hidden and Group by / Order by are disabled |
 | [BUG-PD-007](bugs/BUG-PD-007.md) | Medium | Personnel Details | Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date |
 | [BUG-PD-008](bugs/BUG-PD-008.md) | Medium | Personnel Details | Personnel Details > Recency: the recency summary popup has no Add Manual Entry, no x, and doesn't close with Escape |
+| [BUG-PD-009](bugs/BUG-PD-009.md) | Medium | Personnel Details | Personnel Details > Renewal edit: the Today and Calculate links can't be clicked because the date fields cover them |
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) |
 | [BUG-POP-003](bugs/BUG-POP-003.md) | Medium | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
@@ -78,6 +79,25 @@ Suspected cause: Active Flights compares the stored local SAR/start time with th
 
 ![BUG-AF-004-1](bugs/screenshots/BUG-AF-004-1.png)
 ![BUG-AF-004-2](bugs/screenshots/BUG-AF-004-2.png)
+
+### BUG-PD-006: Personnel Details > Recency and Renewals: action buttons are hidden (Add Item, Table/Card view, renewal Save / Complete Renewal / Cancel) and Group by / Order by are disabled
+
+Severity: High | Module: Personnel Details | Check: PD-019 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. All Personnel > Ethan Abbott > Recency and Renewals tab
+2. Try to change Group by to Status, or Order by to Expiry Date
+3. Look for the Table / Card view buttons
+4. Click the pencil on Dangerous Goods Training and look for Save / Complete Renewal
+
+Expected: Add Item opens the add renewal/recency search; Group by and Order by change the list; Table and Card buttons switch the layout.
+
+Actual: Both dropdowns are disabled (greyed out, can't be changed). #add-recency-btn (Add Item), #view-table-btn and #view-card-btn exist in the page but are hidden (display:none), so you can't add a renewal/recency item or switch to card view. On the renewal edit page (pencil on Dangerous Goods Training) there is no Save, Complete Renewal or Cancel: #save-recency-btn, #complete-renewal-btn and #renewal-cancel-btn have display:none, so a renewal can't be saved or completed from Personnel Details. Renewal edit page has only the Go Back arrow, which discards changes without asking.
+
+Suspected cause: Possibly the page script stops at the 'getPickerMod is not defined' error (BUG-PD-001) before it enables these controls.
+
+![BUG-PD-006-1](bugs/screenshots/BUG-PD-006-1.png)
+![BUG-PD-006-2](bugs/screenshots/BUG-PD-006-2.png)
 
 ### BUG-AF-002: Active Flights lists future flights that have no SAR time, and the stats cards don't count them
 
@@ -410,23 +430,6 @@ Suspected cause: Verify failure handler closes #2fa-setup-modal and discards the
 
 ![BUG-PD-003-1](bugs/screenshots/BUG-PD-003-1.png)
 
-### BUG-PD-006: Personnel Details > Recency and Renewals: Add Item, Table/Card view buttons are hidden and Group by / Order by are disabled
-
-Severity: Medium | Module: Personnel Details | Check: PD-019 ([12-personnel-details](checklists/12-personnel-details.md))
-
-Steps:
-1. All Personnel > Ethan Abbott > Recency and Renewals tab
-2. Try to change Group by to Status, or Order by to Expiry Date
-3. Look for the Table / Card view buttons
-
-Expected: Add Item opens the add renewal/recency search; Group by and Order by change the list; Table and Card buttons switch the layout.
-
-Actual: Both dropdowns are disabled (greyed out, can't be changed). #add-recency-btn (Add Item), #view-table-btn and #view-card-btn exist in the page but are hidden (display:none), so you can't add a renewal/recency item or switch to card view.
-
-Suspected cause: Possibly the page script stops at the 'getPickerMod is not defined' error (BUG-PD-001) before it enables these controls.
-
-![BUG-PD-006-1](bugs/screenshots/BUG-PD-006-1.png)
-
 ### BUG-PD-007: Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date
 
 Severity: Medium | Module: Personnel Details | Check: PD-021 ([12-personnel-details](checklists/12-personnel-details.md))
@@ -459,6 +462,23 @@ Actual: 'Recency summary for Day Landings' lists 4 manual entries (03/02/2026, 1
 Suspected cause: Possibly the dialog buttons are built by the part of personneldetails/index.js that is cut off (BUG-PD-001).
 
 ![BUG-PD-008-1](bugs/screenshots/BUG-PD-008-1.png)
+
+### BUG-PD-009: Personnel Details > Renewal edit: the Today and Calculate links can't be clicked because the date fields cover them
+
+Severity: Medium | Module: Personnel Details | Check: PD-022 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. All Personnel > Ethan Abbott > Recency and Renewals > edit (pencil) on Dangerous Goods Training
+2. Click 'Today' next to Last Conducted
+3. Click 'Calculate' next to Expires
+
+Expected: Today sets Last Conducted to today; Calculate sets Expires to Last Conducted + frequency.
+
+Actual: The date boxes are squeezed and overlap the links. A real click on 'Calculate' lands on the Renewal Notes textarea and a click on 'Today' lands on the Scheduled field's container, so nothing happens. When the link is triggered from code, Calculate works: Expires 20/10/2028 and toast 'Expiry date set to 20/10/2028 (730 days from Last Conducted)', which is correct and in the org date format.
+
+Suspected cause: Layout of .input-with-button-container: the date inputs are too narrow and the link sits under the next field.
+
+![BUG-PD-009-1](bugs/screenshots/BUG-PD-009-1.png)
 
 ### BUG-PERM-002: User with no permissions cannot open their own My Account (no self-service password / 2FA)
 
