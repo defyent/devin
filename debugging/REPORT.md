@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 7 |
 | Medium | 54 |
-| Low | 92 |
+| Low | 93 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -146,6 +146,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SRES-001](bugs/BUG-SRES-001.md) | Low | Settings: Resources (Aircraft) | Resources: the meter "Last:" dates show as YYYY-MM-DD instead of the Time Zone date format |
 | [BUG-SRM-001](bugs/BUG-SRM-001.md) | Low | Settings: Risk Matrix | Risk Matrix Settings: no Help (?), and Escape does not close popups |
 | [BUG-SRM-002](bugs/BUG-SRM-002.md) | Low | Settings: Risk Matrix | Risk Matrix Settings on a phone: the page scrolls sideways and "+ Add Level" is cut off |
+| [BUG-SSMS-001](bugs/BUG-SSMS-001.md) | Low | Settings: Safety Reports | Safety Reports Settings: no Help (?), and Escape does not close popups |
 | [BUG-SST-001](bugs/BUG-SST-001.md) | Low | Settings: Shift Types | Roster Shifts (Shift Type Editor): no Help (?), and Escape does not close popups |
 | [BUG-SST-002](bugs/BUG-SST-002.md) | Low | Settings: Shift Types | New Shift Type: Duty Start/End Time default to the current UTC time |
 | [BUG-SST-003](bugs/BUG-SST-003.md) | Low | Settings: Shift Types | Roster Shifts: after Edit Group the selected group jumps back to Duty, so the next New Shift Type goes into the wrong group |
@@ -2406,6 +2407,24 @@ Actual: The page is 419 px wide (there is a horizontal scrollbar). The matrix li
 Suspected cause: .matrix-nav lays matrix items out in one non-wrapping row, and the level section headers don't wrap below 768 px.
 
 ![BUG-SRM-002-1](bugs/screenshots/BUG-SRM-002-1.png)
+
+### BUG-SSMS-001: Safety Reports Settings: no Help (?), and Escape does not close popups
+
+Severity: Low | Module: Settings: Safety Reports | Check: SSMS-S02 ([44-settings-smsreports](checklists/44-settings-smsreports.md))
+
+Steps:
+1. Settings and Tools > Safety Reports.
+2. Look for a Help (?) button.
+3. Click Add Report Type, then press Escape.
+
+Expected: There is a page Help (?), and Escape closes the popup.
+
+Actual: There is no page Help (?), and Escape leaves Add Report Type open.
+
+Suspected cause: The page has no help modal, and there is no Escape key handler on its modals.
+
+![BUG-SSMS-001-1](bugs/screenshots/BUG-SSMS-001-1.png)
+![BUG-SSMS-001-2](bugs/screenshots/BUG-SSMS-001-2.png)
 
 ### BUG-SST-001: Roster Shifts (Shift Type Editor): no Help (?), and Escape does not close popups
 

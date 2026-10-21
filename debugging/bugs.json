@@ -2909,5 +2909,25 @@
    "srm_mobile"
   ],
   "cause": ".matrix-nav lays matrix items out in one non-wrapping row, and the level section headers don't wrap below 768 px."
+ },
+ {
+  "id": "BUG-SSMS-001",
+  "title": "Safety Reports Settings: no Help (?), and Escape does not close popups",
+  "row": "SSMS-S02",
+  "cl": "44-settings-smsreports",
+  "module": "Settings: Safety Reports",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Safety Reports.",
+   "Look for a Help (?) button.",
+   "Click Add Report Type, then press Escape."
+  ],
+  "expected": "There is a page Help (?), and Escape closes the popup.",
+  "actual": "There is no page Help (?), and Escape leaves Add Report Type open.",
+  "shots": [
+   "ssms_main",
+   "ssms_add"
+  ],
+  "cause": "The page has no help modal, and there is no Escape key handler on its modals."
  }
 ]
