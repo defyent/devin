@@ -29,13 +29,13 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AF-002 | Stats cards: Total, Active, Past, Overdue | Match list | FAIL | BUG-AF-002 | Cards: Total 1377, Active 0, Past 1364, Overdue 7. Past and Overdue match the list, but the 6 FUTURE rows are counted in Total and in no other card (BUG-AF-002) |
 | AF-003 | Table / card view; sort by SAR / Start Time | Works; mobile shows cards only | PASS |  | Table / card view toggle (table_rows / grid_view) works; Sort by SAR Time / Start Time re-orders the list. Mobile check in AF-S05 |
 | AF-004 | SAR countdown / overdue timer | Counts correctly; status colours from Settings > Flight Schedule | FAIL | BUG-AF-001, BUG-AF-004 | #42903 (SAR 09:30 local per Flight Details) shows 'OVERDUE by 3m' and Active Time 01h 03m at 22:33 local / 09:33 UTC - 13 h out (BUG-AF-004, shot af_overdue_tz). Also 1,365 rows with SAR watch disabled show SAR Time '01/01/1970 00:00' (BUG-AF-001) |
-| AF-005 | Click row/card | Opens Flight Details | TODO | | |
+| AF-005 | Click row/card | Opens Flight Details | PASS |  | Click row #42903 > opens Flight Details flight_id=42903; Back returns to Active Flights |
 | AF-006 | Click PIC | Contact details popup | PASS |  | Click PIC 'Graham Clarke' > popup 'Graham Clarke - Contact Details' with Mobile 021-555-0096, Email graham.clarke96@datahangar.net, Close (shot af_pic) |
 | AF-007 | Notes | Readable | PASS |  | Notes column readable (e.g. 'Maintenance test flight post 100hr', 'No notes' when empty) |
 | AF-008 | Adjust SAR (A/WG) | Picker + Disable/Enable SAR Watch + Save; hidden for RA/RG | PASS | BUG-AF-004 | Adjust SAR on #42903: picker prefilled 21/10/2026 09:30, changed to 23:30 > Save > row turns ACTIVE with SAR '21/10/2026 23:30'. Remaining time wrong ('13h 55m remaining' at 22:34 local) - BUG-AF-004. Hidden for RA/RG not checked (no RA user) |
 | AF-009 | Add Note (A/WG) | Appended to flight | PASS |  | Add Note on #42903 > 'BETA TEST ONLY AF note' > Save > Notes column shows '[22:34] BETA TEST ONLY AF note' before the existing notes (timestamp in local time) |
 | AF-010 | Auto-refresh | Refreshes; pauses while editing | TODO | | |
-| AF-011 | Complete a flight | Disappears from Active Flights | TODO | | |
+| AF-011 | Complete a flight | Disappears from Active Flights | PASS |  | #42903 set to Complete in Flight Details > Save > Back > no longer listed; cards back to Total 1377 / Active 0 / Past 1364 / Overdue 7 |
 | AF-012 | Live Tracking map (with permission) | Live (last 10 min) / Historical with date; ADS-B toggle; re-centre; collapse; About | TODO | | |
 | AF-013 | Without Live Tracking permission | Map hidden | TODO | | |
 
@@ -54,5 +54,5 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| Flight #42903 status set back to Open (was Complete) to test Active Flights | Flight #42903 | No (delete with the flight) |
+| Flight #42903 set to Open, SAR moved to 23:30, then Complete again (AF-011) | Flight #42903 | No (delete with the flight) |
 | Note 'BETA TEST ONLY AF note' | Flight #42903 notes | No |
