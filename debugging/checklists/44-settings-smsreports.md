@@ -36,4 +36,4 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | | | |
 
 
-**Cleanup (44):** report type "BETA TEST ONLY Type2" deleted. Permanent investigator Zoe Mason removed, and taken off report #2061. Extra Info Field "BETA TEST ONLY EIF" (id 8) can't be deleted because report #2060 has a value in it, so it is set to Inactive. New test report #2061 "BETA TEST ONLY report 2 (permanent investigator)" stays, because the app can't delete safety reports.
+**Cleanup (44):** report type "BETA TEST ONLY Type2" deleted. Permanent investigator Zoe Mason removed, and taken off report #2061 (checked: the Activity Log shows "Investigator removed: Zoe Mason" on #2061 at 22/10 03:44). Extra Info Field "BETA TEST ONLY EIF" (id 8) can't be deleted because report #2060 has a value in it, so it is set to Inactive. New test report #2061 "BETA TEST ONLY report 2 (permanent investigator)" stays, because the app can't delete safety reports.

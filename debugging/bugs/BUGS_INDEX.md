@@ -161,6 +161,7 @@
 | [BUG-SINS-003](BUG-SINS-003.md) | `SINS-S04` | Settings: Inspection Notifications | Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and the overdue day count is one day short | Low | New | |
 | [BUG-SINT-001](BUG-SINT-001.md) | `SINT-S02` | Settings: Google Calendar Sync | Google Calendar Settings: Help and Add Calendar don't close with Escape or an outside click | Low | New | |
 | [BUG-SINT-002](BUG-SINT-002.md) | `SINT-S04` | Settings: Google Calendar Sync | Google Calendar Sync Status: flight dates show as 2024-01-01 07:55 instead of DD/MM/YYYY | Low | New | |
+| [BUG-SLOG-001](BUG-SLOG-001.md) | `SLOG-S04` | Settings: Activity Log | Activity Log: no page Help (?), and dates show as "22 Oct 2026, 02:51 am" | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

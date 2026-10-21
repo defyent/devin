@@ -55,7 +55,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [44-settings-smsreports](checklists/44-settings-smsreports.md) | `SSMS` | Settings – Safety Reports | 9 | 7 | 1 | 0 | 0 | DONE |
 | [45-settings-inspections](checklists/45-settings-inspections.md) | `SINS` | Settings – Inspection Notifications | 9 | 5 | 3 | 0 | 0 | IN PROGRESS |
 | [46-settings-integrations](checklists/46-settings-integrations.md) | `SINT` | Settings – Google Calendar, WhatsApp | 10 | 6 | 2 | 2 | 0 | DONE |
-| [47-settings-activitylog](checklists/47-settings-activitylog.md) | `SLOG` | Settings – Activity Log | 9 | 0 | 0 | 0 | 1 | TODO |
+| [47-settings-activitylog](checklists/47-settings-activitylog.md) | `SLOG` | Settings – Activity Log | 9 | 6 | 2 | 0 | 1 | DONE |
 | [90-xc-permissions](checklists/90-xc-permissions.md) | `PERM` | Cross-cutting: permission levels | 10 | 2 | 0 | 0 | 0 | IN PROGRESS |
 | [91-xc-popups](checklists/91-xc-popups.md) | `POP` | Cross-cutting: popups/modals | 8 | 0 | 0 | 0 | 7 | TODO |
 | [92-xc-dates-timezones](checklists/92-xc-dates-timezones.md) | `DATE` | Cross-cutting: date/time formats and pickers | 7 | 0 | 0 | 0 | 5 | TODO |

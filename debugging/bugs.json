@@ -3028,5 +3028,24 @@
    "sint_pending"
   ],
   "cause": "settings_googlecalendar_get_status returns start_time as \"YYYY-MM-DD HH:MM\", and the page shows it as it is."
+ },
+ {
+  "id": "BUG-SLOG-001",
+  "title": "Activity Log: no page Help (?), and dates show as \"22 Oct 2026, 02:51 am\"",
+  "row": "SLOG-S04",
+  "cl": "47-settings-activitylog",
+  "module": "Settings: Activity Log",
+  "sev": "Low",
+  "steps": [
+   "Time Zone settings: DD/MM/YYYY, 24-hour.",
+   "Settings and Tools > Logs > Activity Log.",
+   "Look for a Help (?) button, and read the Date/Time column."
+  ],
+  "expected": "There is a page Help (?). Dates follow the settings, e.g. \"22/10/2026 02:51\" and \"21/10/2026 22:35\".",
+  "actual": "There is no Help (?). Dates show as \"22 Oct 2026, 02:51 am\" and \"21 Oct 2026, 10:35 pm\" (12-hour, month names). The local time itself is correct.",
+  "shots": [
+   "sact_main"
+  ],
+  "cause": "The activity log formats the date itself (with a locale date string) and ignores the Time Zone date and time format settings."
  }
 ]

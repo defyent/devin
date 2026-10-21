@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 7 |
 | Medium | 55 |
-| Low | 97 |
+| Low | 98 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -142,6 +142,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SINS-003](bugs/BUG-SINS-003.md) | Low | Settings: Inspection Notifications | Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and the overdue day count is one day short |
 | [BUG-SINT-001](bugs/BUG-SINT-001.md) | Low | Settings: Google Calendar Sync | Google Calendar Settings: Help and Add Calendar don't close with Escape or an outside click |
 | [BUG-SINT-002](bugs/BUG-SINT-002.md) | Low | Settings: Google Calendar Sync | Google Calendar Sync Status: flight dates show as 2024-01-01 07:55 instead of DD/MM/YYYY |
+| [BUG-SLOG-001](bugs/BUG-SLOG-001.md) | Low | Settings: Activity Log | Activity Log: no page Help (?), and dates show as "22 Oct 2026, 02:51 am" |
 | [BUG-SLP-001](bugs/BUG-SLP-001.md) | Low | Settings: Lesson Plans | Lesson Plan Settings: no Help (?), and Escape does not close popups |
 | [BUG-SLP-003](bugs/BUG-SLP-003.md) | Low | Settings: Lesson Plans | Add Lesson accepts negative hours (Solo Hours -1 is saved and shown as "Solo: -1h") |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
@@ -2346,6 +2347,23 @@ Actual: Each pending flight shows "2024-01-01 07:55".
 Suspected cause: settings_googlecalendar_get_status returns start_time as "YYYY-MM-DD HH:MM", and the page shows it as it is.
 
 ![BUG-SINT-002-1](bugs/screenshots/BUG-SINT-002-1.png)
+
+### BUG-SLOG-001: Activity Log: no page Help (?), and dates show as "22 Oct 2026, 02:51 am"
+
+Severity: Low | Module: Settings: Activity Log | Check: SLOG-S04 ([47-settings-activitylog](checklists/47-settings-activitylog.md))
+
+Steps:
+1. Time Zone settings: DD/MM/YYYY, 24-hour.
+2. Settings and Tools > Logs > Activity Log.
+3. Look for a Help (?) button, and read the Date/Time column.
+
+Expected: There is a page Help (?). Dates follow the settings, e.g. "22/10/2026 02:51" and "21/10/2026 22:35".
+
+Actual: There is no Help (?). Dates show as "22 Oct 2026, 02:51 am" and "21 Oct 2026, 10:35 pm" (12-hour, month names). The local time itself is correct.
+
+Suspected cause: The activity log formats the date itself (with a locale date string) and ignores the Time Zone date and time format settings.
+
+![BUG-SLOG-001-1](bugs/screenshots/BUG-SLOG-001-1.png)
 
 ### BUG-SLP-001: Lesson Plan Settings: no Help (?), and Escape does not close popups
 
