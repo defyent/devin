@@ -26,8 +26,8 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [15-timesheets-leave](checklists/15-timesheets-leave.md) | `TS` | Timesheets, Timesheet Details, Leave Requests | 17 | 7 | 4 | 6 | 0 | DONE |
 | [16-flight-and-duty](checklists/16-flight-and-duty.md) | `FAD` | Flight and Duty | 14 | 12 | 2 | 0 | 0 | DONE |
 | [17-notices](checklists/17-notices.md) | `NOT` | Notices | 16 | 11 | 3 | 2 | 0 | DONE |
-| [18-recency-renewals](checklists/18-recency-renewals.md) | `REC` | Recency and Renewals (overview page) | 11 | 0 | 0 | 0 | 2 | TODO |
-| [19-safety-reports](checklists/19-safety-reports.md) | `SMS` | Safety Reports (SMS) | 21 | 0 | 0 | 0 | 2 | TODO |
+| [18-recency-renewals](checklists/18-recency-renewals.md) | `REC` | Recency and Renewals (overview page) | 11 | 6 | 2 | 1 | 2 | DONE |
+| [19-safety-reports](checklists/19-safety-reports.md) | `SMS` | Safety Reports (SMS) | 21 | 1 | 0 | 0 | 2 | IN PROGRESS |
 | [20-hazard-register](checklists/20-hazard-register.md) | `HAZ` | Hazard Register | 10 | 0 | 0 | 0 | 1 | TODO |
 | [21-settings-hub](checklists/21-settings-hub.md) | `HUB` | Settings and Tools hub | 11 | 0 | 0 | 0 | 1 | TODO |
 | [22-file-browser](checklists/22-file-browser.md) | `FB` | File Browser | 14 | 0 | 0 | 0 | 1 | TODO |

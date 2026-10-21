@@ -19,7 +19,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | SMS-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
 | SMS-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
 | SMS-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
-| SMS-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
+| SMS-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low: 'Access Denied: You do not have permission to access SMS Reports' |
 
 ## Module checks
 

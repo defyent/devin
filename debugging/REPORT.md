@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 4 |
 | Medium | 33 |
-| Low | 41 |
+| Low | 43 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -84,6 +84,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RB-001](bugs/BUG-RB-001.md) | Low | Roster Builder | Roster Builder: no page Help (?); Copy/Paste Instructions popup ignores Escape and outside click |
 | [BUG-RB-004](bugs/BUG-RB-004.md) | Low | Roster Builder | Roster Builder: Rule Violations popup shows 'Monday, October 5' instead of the configured DD/MM/YYYY date |
 | [BUG-RB-006](bugs/BUG-RB-006.md) | Low | Roster Builder | Roster Builder: at phone width the shift palette takes half the screen and the Draft Edit Mode banner covers the search box and palette |
+| [BUG-REC-001](bugs/BUG-REC-001.md) | Low | Recency and Renewals | Recency and Renewals overview has no page Help (?) |
+| [BUG-REC-002](bugs/BUG-REC-002.md) | Low | Recency and Renewals | Recency and Renewals at phone width: the table is cut off, so Total Items and Actions are hidden |
 | [BUG-RV-001](bugs/BUG-RV-001.md) | Low | Roster Viewer | Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape |
 | [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
 | [BUG-TS-001](bugs/BUG-TS-001.md) | Low | Timesheets | Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing |
@@ -1321,6 +1323,34 @@ Actual: The roster grid gets only about 175 px (names column plus no visible day
 Suspected cause: No narrow-screen layout for the builder: grid and palette stay side by side and the banner is absolutely positioned.
 
 ![BUG-RB-006-1](bugs/screenshots/BUG-RB-006-1.png)
+
+### BUG-REC-001: Recency and Renewals overview has no page Help (?)
+
+Severity: Low | Module: Recency and Renewals | Check: REC-S02 ([18-recency](checklists/18-recency.md))
+
+Steps:
+1. Flight Safety > Recency and Renewals
+2. Look for the (?) Help button
+
+Expected: A Help (?) button in the page header, like other modules.
+
+Actual: No Help button. The header only has the page title.
+
+![BUG-REC-001-1](bugs/screenshots/BUG-REC-001-1.png)
+
+### BUG-REC-002: Recency and Renewals at phone width: the table is cut off, so Total Items and Actions are hidden
+
+Severity: Low | Module: Recency and Renewals | Check: REC-S05 ([18-recency](checklists/18-recency.md))
+
+Steps:
+1. Flight Safety > Recency and Renewals
+2. Narrow the window to 390px
+
+Expected: Cards or a usable layout, with all columns reachable.
+
+Actual: The table stays a table (423px wide inside a 303px card). The Total Items column is cut off and Actions (edit) can't be seen. There's no card view.
+
+![BUG-REC-002-1](bugs/screenshots/BUG-REC-002-1.png)
 
 ### BUG-RV-001: Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape
 

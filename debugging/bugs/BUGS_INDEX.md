@@ -80,6 +80,8 @@
 | [BUG-NOT-001](BUG-NOT-001.md) | `NOT-S02` | Notices | Notices has no page Help (?), and the Create New Notice popup ignores Escape | Low | New | |
 | [BUG-NOT-002](BUG-NOT-002.md) | `NOT-006` | Notices | Notice Details: clicking a .txt attachment does nothing (no preview, no download) | Medium | New | |
 | [BUG-NOT-003](BUG-NOT-003.md) | `NOT-010` | Notices | Settings and Tools hub: 'Notices' card has no links | Low | New | |
+| [BUG-REC-001](BUG-REC-001.md) | `REC-S02` | Recency and Renewals | Recency and Renewals overview has no page Help (?) | Low | New | |
+| [BUG-REC-002](BUG-REC-002.md) | `REC-S05` | Recency and Renewals | Recency and Renewals at phone width: the table is cut off, so Total Items and Actions are hidden | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
