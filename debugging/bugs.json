@@ -147,7 +147,7 @@
   "id": "BUG-PERM-001",
   "title": "Sidebar lists modules the user has no permission for (all lead to Access Denied)",
   "row": "PERM-007",
-  "cl": "90-permissions",
+  "cl": "90-xc-permissions",
   "module": "Shell (main) sidebar",
   "sev": "Low",
   "steps": [
@@ -167,7 +167,7 @@
   "id": "BUG-PERM-002",
   "title": "User with no permissions cannot open their own My Account (no self-service password / 2FA)",
   "row": "PERM-007",
-  "cl": "90-permissions",
+  "cl": "90-xc-permissions",
   "module": "Personnel Details / My Account",
   "sev": "Medium",
   "steps": [
@@ -222,7 +222,7 @@
   "id": "BUG-PERF-001",
   "title": "'Performance' debug timing panel shown on every page, including to non-admin users",
   "row": "PERF-001",
-  "cl": "95-performance",
+  "cl": "95-xc-performance-errors",
   "module": "All modules (debug panel)",
   "sev": "Low",
   "steps": [
@@ -766,7 +766,7 @@
   "id": "BUG-PL-001",
   "title": "All Personnel has no page Help (?)",
   "row": "PL-S02",
-  "cl": "11-all-personnel",
+  "cl": "11-personnel-list",
   "module": "All Personnel",
   "sev": "Low",
   "steps": [
@@ -783,7 +783,7 @@
   "id": "BUG-PL-002",
   "title": "A person with no name exists and is listed as '?' at the top of All Personnel (person #274, Customer)",
   "row": "PL-001",
-  "cl": "11-all-personnel",
+  "cl": "11-personnel-list",
   "module": "All Personnel",
   "sev": "Low",
   "steps": [
@@ -1500,7 +1500,7 @@
   "id": "BUG-REC-001",
   "title": "Recency and Renewals overview has no page Help (?)",
   "row": "REC-S02",
-  "cl": "18-recency",
+  "cl": "18-recency-renewals",
   "module": "Recency and Renewals",
   "sev": "Low",
   "steps": [
@@ -1518,7 +1518,7 @@
   "id": "BUG-REC-002",
   "title": "Recency and Renewals at phone width: the table is cut off, so Total Items and Actions are hidden",
   "row": "REC-S05",
-  "cl": "18-recency",
+  "cl": "18-recency-renewals",
   "module": "Recency and Renewals",
   "sev": "Low",
   "steps": [
@@ -3062,7 +3062,7 @@
    "Give the user the first \"Notices\" card at WO and Save, then log in as that user and open Notices."
   ],
   "expected": "Each permission type shows once, or the cards are named or grouped clearly enough to tell them apart.",
-  "actual": "16 names are shown more than once, with no heading or hint to tell them apart: Flight Schedule (ids 2, 209), Dashboard (3, 208), Personnel List (4, 215), Daily Flight Record (5, 213), Personnel Details (6, 216), Roster Viewer (7, 217), Roster Builder (8, 223), File Browser (9, 225), Flight and Duty (10, 31, 218), Notices (11, 219), Safety Reports (13, 30, 221), Hazard Register (14, 222), System Settings (15, 211), Form Builder (16, 224), Exam Builder (18, 232), Access Manager (34, 210). The copies offer different levels: Flight Schedule id 2 offers RA/WA/G, id 209 offers A/RA/WG/RG. An admin can easily give the wrong one. This has a real effect: giving Lowperm the first \"Notices\" card (id 11) at WO still gives \"Access Denied: You do not have permission to access Notices\", so the module checks the other Notices card. The first \"Flight Schedule\" card (id 2) is the one that works for the schedule, so you cannot tell from the name which copy each page uses.",
+  "actual": "16 names are shown more than once, with no heading or hint to tell them apart: Flight Schedule (ids 2, 209), Dashboard (3, 208), Personnel List (4, 215), Daily Flight Record (5, 213), Personnel Details (6, 216), Roster Viewer (7, 217), Roster Builder (8, 223), File Browser (9, 225), Flight and Duty (10, 31, 218), Notices (11, 219), Safety Reports (13, 30, 221), Hazard Register (14, 222), System Settings (15, 211), Form Builder (16, 224), Exam Builder (18, 232), Access Manager (34, 210). The copies offer different levels: Flight Schedule id 2 offers RA/WA/G, id 209 offers A/RA/WG/RG. An admin can easily give the wrong one. This has a real effect: giving Lowperm the first \"Notices\" card (id 11) at WO still gives \"Access Denied: You do not have permission to access Notices\", so the module checks the other Notices card. The first \"Flight Schedule\" card (id 2) is the one that works for the schedule, so you cannot tell from the name which copy each page uses. Also, BETA TEST ONLY Second with Access Manager WA on one card and A on the other still gets 'You need All Access permission to access the access manager' (AM-018).",
   "shots": [
    "perm_editor",
    "perm_wo_notices"
@@ -3085,6 +3085,362 @@
   "actual": "The flight saves as Complete with no prompt. The header badge shows 'Complete' and Delete is hidden. The attached QA Post-Flight Report also has empty required fields.",
   "shots": [
    "fd_complete"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-FD-007",
+  "title": "New flight defaults its leg date/time to UTC instead of local time",
+  "row": "DATE-005",
+  "cl": "92-xc-dates-timezones",
+  "module": "Flight Details",
+  "sev": "Medium",
+  "steps": [
+   "Settings > Time Zone is Pacific/Auckland (UTC+13).",
+   "At local 09:42 on 22/10/2026 (UTC 20:42 on 21/10), open Flight Schedule > Live Edit > Add Flight.",
+   "Look at the leg start/end date and time fields."
+  ],
+  "expected": "Start defaults to the local date/time: 22/10/2026 09:40.",
+  "actual": "Start defaults to 21/10/2026 20:40 and end to 21/10/2026 21:40, which is UTC. A user who doesn't notice saves the flight on the previous day, 13 hours early. The SAR Watch time has the same problem: on flight #42910 (planned 22/10 13:00-14:00) SAR defaulted to 21/10/2026 21:55, which is the UTC time and is before the flight starts.",
+  "shots": [
+   "fd_new_utc"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-PD-017",
+  "title": "Personnel Details > Lesson Plans: an assigned plan is saved but never listed; the dialog's dates default to the UTC date",
+  "row": "PD-018",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details",
+  "sev": "Medium",
+  "steps": [
+   "Settings > Lesson Plans: make plan 'BETA TEST ONLY Plan' with lesson 'BETA TEST ONLY Lesson 1'.",
+   "Personnel > BETA TEST ONLY Group > BETA TEST ONLY Grpuser > Lesson Plans > Assign Lesson Plan.",
+   "Pick the plan, then click Assign Lesson Plan.",
+   "Leave the page and open Grpuser again, then the Lesson Plans tab."
+  ],
+  "expected": "The plan is listed with its lessons and progress. Start Date defaults to today's local date (22/10/2026) and End Date is empty (optional).",
+  "actual": "The toast says 'Lesson plan assigned successfully' and the server replies 'Ok', but the tab still says 'No lesson plans assigned to this person', even after you reopen the page. The plan is assigned, because its lesson shows on the Lesson tab of the student's flight #42909. Start Date and End Date both default to 21/10/2026, which is the UTC date.",
+  "shots": [
+   "pd018_assign"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-SWAB-005",
+  "title": "W&B Configs: two revisions show the same number (\"Rev 5\") until another import renumbers them",
+  "row": "SWAB-003",
+  "cl": "35-settings-wab",
+  "module": "Settings: Weight and Balance",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Weight and Balance Configs (iPad App).",
+   "Import an exported config (.json) to make a new draft, approve it and set it as Master.",
+   "Keep working on the drafts in Revision History (review, Copy To) without reloading.",
+   "Look at Revision History, then Import another file."
+  ],
+  "expected": "Each revision has its own number, and numbers don't change.",
+  "actual": "Revision History showed two rows labelled \"Rev 5\": the Master (config #12) and a Pending draft (config #13). They held different aircraft (1 and 2). After the next Import, the Pending one was relabelled \"Rev 6\" and the new import became \"Rev 7\". It's easy to approve or set the wrong draft as Master.",
+  "shots": [
+   "swab_dup_rev5",
+   "swab_dup_import"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-PD-018",
+  "title": "Request Leave: Start and End Date default to the UTC date, not today's local date",
+  "row": "PD-015",
+  "cl": "12-personnel-details",
+  "module": "Personnel Details",
+  "sev": "Low",
+  "steps": [
+   "Time zone is Pacific/Auckland. Do this when the UTC date is still the day before (local 00:00-13:00 in NZDT).",
+   "Log in as a user with Timesheets own access (BETA TEST ONLY Second).",
+   "My Account > Timesheets > Request Leave."
+  ],
+  "expected": "Start Date and End Date default to today's local date (22/10/2026).",
+  "actual": "At local 10:21 on 22/10/2026 (UTC 21:21 on 21/10), both dates showed 21/10/2026. The hidden values were '2026-10-21 21:21:23' (UTC time). Unless you change them, the leave is requested for the wrong day. It's the same UTC-default problem as BUG-FD-007 and BUG-SMS-002.",
+  "shots": [
+   "pd015_modal"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-TS-007",
+  "title": "Reject Claim: leaving the reason empty closes the reject popup and throws a script error",
+  "row": "TS-006",
+  "cl": "15-timesheets-leave",
+  "module": "Timesheets",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Timesheets > open a person who has a pending claim (BETA TEST ONLY Second, 19 Oct).",
+   "View Claims > the reject (\u00d7) button on the claim.",
+   "Leave the reason empty and click Reject Claim.",
+   "Close the 'Validation Error' popup."
+  ],
+  "expected": "The error shows next to the reason and the Reject Claim popup stays open, so you can type a reason.",
+  "actual": "'Validation Error: Rejection reason is required' appears, but closing it also closes Reject Claim and the Claims list. The console shows \"Cannot read properties of null (reading 'value')\". You have to open View Claims and click reject again.",
+  "shots": [
+   "ts006_empty_reason"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-DSH-004",
+  "title": "Dashboard: My Flights and On Duty open on the UTC date, not today's local date",
+  "row": "DSH-005",
+  "cl": "05-dashboard",
+  "module": "Dashboard",
+  "sev": "Medium",
+  "steps": [
+   "Time zone is Pacific/Auckland. Do this between local 00:00 and 13:00 (NZDT), when the UTC date is still the day before.",
+   "Log in as BETA TEST ONLY Second, who is PIC of flight #42910 on 22/10/2026.",
+   "Open Dashboard."
+  ],
+  "expected": "My Flights and On Duty show today's local date (Thu 22/10/2026), including flight #42910.",
+  "actual": "At local 10:38 on 22/10/2026 (UTC 21:38 on 21/10), the Dashboard showed 'My Flights for Wed, Oct 21, 2026: No flights scheduled for this day' and 'On Duty for Wed, Oct 21, 2026'. You have to click > to see today's flight. The dates are also in US format.",
+  "shots": [
+   "dsh_two"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-TS-008",
+  "title": "Approving a leave request doesn't change the rostered shifts, and rejecting with no reason gives no message",
+  "row": "TS-008",
+  "cl": "15-timesheets-leave",
+  "module": "Timesheets / Leave Requests",
+  "sev": "Medium",
+  "steps": [
+   "Roster Builder (Live): give BETA TEST ONLY Second a Day Shift (DS) on 26 and 27 Nov 2026.",
+   "As BETA TEST ONLY Second: My Account > Timesheets > Request Leave > Annual Leave 26/11/2026 to 27/11/2026 > Submit.",
+   "As admin: Settings and Tools > Timesheets > Leave Requests > Pending Queue > Approve that request > Approve.",
+   "Open Roster Builder Nov 2026 and check Second's 26 and 27 Nov.",
+   "Also: on another pending request, click Reject with Your Comments left empty."
+  ],
+  "expected": "The approve message says the roster shifts were updated, and 26 and 27 Nov change from DS to Annual Leave. Rejecting with no reason tells you a reason is required.",
+  "actual": "The request shows Approved, but no roster-updated message appeared, and Roster Builder still shows DS on 26 and 27 Nov. Second's timesheet shows DS plus 'Annual Leave \u2014 Approved' on both days, so the person is rostered to work while on leave. With an empty reason, Reject does nothing and shows no message (the field placeholder says it's required for rejections).",
+  "shots": [
+   "ts008_roster_after",
+   "ts008_two_nov",
+   "ts008_reject_empty"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-FS-008",
+  "title": "Flight Schedule: a group-level user (G / WG) sees no flights, even on aircraft in their own group",
+  "row": "FS-027",
+  "cl": "06-flight-schedule",
+  "module": "Flight Schedule",
+  "sev": "High",
+  "steps": [
+   "Aircraft ZK-BTO (BETA TEST ONLY R) has User Group Assignments = BETA TEST ONLY Group.",
+   "BETA TEST ONLY Grpuser is a member of BETA TEST ONLY Group (On Roster) and has Flight Schedule = G on the first card and WG on the second (BUG-AM-005).",
+   "Flights #42909 (PIC Grpuser, 22/10 10:00-11:00) and #42910 (22/10 08:00-09:00) are on ZK-BTO.",
+   "Log in as betatest_grp > Flight Schedule > week of 19-25 Oct, then list view, then Group By = BETA TEST ONLY Group."
+  ],
+  "expected": "ZK-BTO and its flights #42909 and #42910 are shown, including the user's own PIC flight.",
+  "actual": "Week view shows no aircraft rows or events. List view says 'No events to display', even with Group By = BETA TEST ONLY Group ('Showing only aircraft and personnel in the \"BETA TEST ONLY Group\" group'). Daily Flight Record (RG) lists #42909 for the same user, so the data is there. Group memberships in Access Manager only have an 'On Roster' flag, with no read/write flag (\u00a714 caveat).",
+  "shots": [
+   "fs027_grp",
+   "fs027_grp_list",
+   "perm010_groups"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-AF-005",
+  "title": "Active Flights: a Read Only Group (RG) user sees every company flight, not only their group's",
+  "row": "FS-027",
+  "cl": "08-active-flights",
+  "module": "Active Flights",
+  "sev": "Medium",
+  "steps": [
+   "BETA TEST ONLY Grpuser has Active Flights = RG and is only in BETA TEST ONLY Group.",
+   "Log in as betatest_grp > Active Flights."
+  ],
+  "expected": "Only flights on the group's aircraft or crew are listed (the same as Daily Flight Record RG, which shows 2 flights).",
+  "actual": "All 1,381 flights are counted and listed, including #42892 (Unknown aircraft) and #42893 (R44-01, Aaron Fisher, not in the group), with their SAR times and notes.",
+  "shots": [
+   "af_grp"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-NOT-004",
+  "title": "Notices: a Write Group (WG) user gets 'An error occurred' when clicking New Notice",
+  "row": "NOT-004",
+  "cl": "17-notices",
+  "module": "Notices",
+  "sev": "Medium",
+  "steps": [
+   "BETA TEST ONLY Grpuser has Notices = WG and is a member of BETA TEST ONLY Group.",
+   "Log in as betatest_grp > Notices > New Notice."
+  ],
+  "expected": "New Notice opens, and only the user's own groups (BETA TEST ONLY Group) can be picked.",
+  "actual": "An 'Error: An error occurred.' popup appears and no form opens, so a WG user can't create a notice. The list itself works and shows notice #1189.",
+  "shots": [
+   "not004_wg"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-SMS-005",
+  "title": "Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted",
+  "row": "SMS-015",
+  "cl": "19-safety-reports",
+  "module": "Safety Reports",
+  "sev": "High",
+  "steps": [
+   "BETA TEST ONLY Grpuser has Safety Reports = WG. BETA TEST ONLY Second has Safety Reports = WO.",
+   "As Grpuser: Safety Reports > New Report > 'BETA TEST ONLY confidential' (Near Miss, Confidential Yes) > Create Report. It opens report #2062.",
+   "Go back to the Safety Reports list as Grpuser.",
+   "Open Safety Reports as Second."
+  ],
+  "expected": "Grpuser sees #2062 (their own) and the group's reports. Second sees their own reports. A confidential report from someone else stays hidden.",
+  "actual": "Grpuser's list says '0 Total Reports, No reports found' right after creating #2062. Second also sees 0. The Service Account sees #2062 (Opened, submitter Grpuser). So non-admin reporters can't find or follow up on their own reports.",
+  "shots": [
+   "sms015_wg",
+   "sms014_two",
+   "sms014_admin"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-AM-006",
+  "title": "Access Manager has no Chat permission, so you can't give Chat to a non-admin user",
+  "row": "CHAT-005",
+  "cl": "28-chat",
+  "module": "Access Manager / Chat",
+  "sev": "Medium",
+  "steps": [
+   "Settings and Tools > Access Manager > BETA TEST ONLY Second > Permissions.",
+   "Look through all 76 permission cards for Chat (or Comms).",
+   "Log in as BETA TEST ONLY Grpuser and click the chat icon in the header."
+  ],
+  "expected": "There is a Chat card (the checklist says Chat = A), so an admin can let staff use Chat.",
+  "actual": "None of the 76 cards is Chat or Comms. Every non-admin test user sees the chat icon in the header but gets 'Access Denied: You do not have permission to access the Chat feature'. Only the admin can use Chat, so you can't test unread badges between two users.",
+  "shots": [
+   "chat005_channel"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-RB-008",
+  "title": "Roster Builder can only be opened from Settings and Tools, so a Roster Builder user without System Settings can't reach it",
+  "row": "RB-015",
+  "cl": "14-roster-builder",
+  "module": "Roster Builder",
+  "sev": "Medium",
+  "steps": [
+   "BETA TEST ONLY Grpuser has Roster Builder = WG and no System Settings permission.",
+   "Log in as betatest_grp and look through every sidebar section.",
+   "Open Settings and Tools."
+  ],
+  "expected": "Roster Builder is in the Personnel menu (next to Roster Viewer), or Settings and Tools shows the pages the user is allowed to use, so a WG roster planner can edit their group's roster.",
+  "actual": "The sidebar has no Roster Builder entry. Personnel only shows Roster Viewer, All Personnel and the groups. Settings and Tools is the only link to Roster Builder, but it needs System Settings. So the Roster Builder WG permission can't be used. Access Manager has the same problem (AM-018).",
+  "shots": [
+   "rb015_wg"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-PL-003",
+  "title": "All Personnel: a Read Only Group (RG) user can't open the details of anyone in their group",
+  "row": "PD-029",
+  "cl": "12-personnel-details",
+  "module": "Personnel List / Personnel Details",
+  "sev": "Medium",
+  "steps": [
+   "BETA TEST ONLY Grpuser has Personnel List = RG and Personnel Details = RG, and is in BETA TEST ONLY Group.",
+   "Log in as betatest_grp > Personnel > All Personnel.",
+   "Click BETA TEST ONLY Lowperm or BETA TEST ONLY Second."
+  ],
+  "expected": "The person's details open read-only, because they are in the same group.",
+  "actual": "The rows use cursor: default and clicking does nothing. The list shows the 3 group members, but the RG user can't see any of their details. Their own My Account (header name) opens read-only with no Save button, which is right for RG.",
+  "shots": [
+   "pd029_rg_click",
+   "pd029_rg_self"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-SUP-004",
+  "title": "Support: the only permission level is All Access, so regular staff can't raise or see their own tickets",
+  "row": "SUP-008",
+  "cl": "27-support",
+  "module": "Support / Access Manager",
+  "sev": "Medium",
+  "steps": [
+   "Access Manager > any user > Permissions > Support Tickets: the only level offered is A.",
+   "Log in as BETA TEST ONLY Grpuser (no Support permission) > Administration > Support.",
+   "Compare with BETA TEST ONLY Second (Support Tickets = A)."
+  ],
+  "expected": "A regular user can open Support, raise tickets and see only their own. An admin sees all tickets.",
+  "actual": "Grpuser gets 'Access Denied: You do not have permission to access the Support feature', although Support is in their sidebar and the header headset icon. The only way to let staff raise a ticket is All Access, which shows every ticket. There's no 'own tickets' level.",
+  "shots": [
+   "sup008_grp"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-TT-004",
+  "title": "Task Tracker: a Write Group (WG) user is treated as read-only and can't add a project",
+  "row": "TT-006",
+  "cl": "25-task-tracker",
+  "module": "Task Tracker",
+  "sev": "Medium",
+  "steps": [
+   "BETA TEST ONLY Grpuser has Task Tracker = WG and is in BETA TEST ONLY Group.",
+   "Log in as betatest_grp > Administration > Task Tracker.",
+   "Hover over or click Add Project."
+  ],
+  "expected": "A WG user can create and edit projects for their own groups. Only RA/RG users are read-only.",
+  "actual": "Add Project is disabled with the tooltip 'You have read-only access'. The list says 'No projects yet', so a WG user can't use Task Tracker at all.",
+  "shots": [
+   "tt006_wg"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-AM-007",
+  "title": "Access Manager: a customer created from Flight Details is Active with no login credentials",
+  "row": "AM-015",
+  "cl": "90-xc-permissions",
+  "module": "Access Manager",
+  "sev": "Low",
+  "steps": [
+   "Open flight #42910 > Customer tab > New Customer.",
+   "Enter First Name, Last Name, Company and Email, then click Save Changes.",
+   "Settings and Tools > Access Manager > search for the new customer."
+  ],
+  "expected": "The new customer is Inactive until login credentials are set. The rule 'User must have login credentials before activation' also applies when the person is created.",
+  "actual": "BETA TEST ONLY Customer (#279) shows Login Access = Active, with no username and Last Login 'Never'. If you deactivate it and then click Inactive, Change Login Credentials opens as it should, so the check only runs when you activate from Access Manager.",
+  "shots": [
+   "am015_1",
+   "am015_2"
+  ],
+  "cause": ""
+ },
+ {
+  "id": "BUG-DATE-001",
+  "title": "Flight time across a DST change is out by an hour (01:00-05:00 on 04/04/2027 gives 4.0 instead of 5.0)",
+  "row": "DATE-006",
+  "cl": "92-xc-dates-timezones",
+  "module": "Flight Details",
+  "sev": "Medium",
+  "steps": [
+   "Flight #42911 (ZK-BTO): set Start 04/04/2027 01:00 and End 04/04/2027 05:00, then Save Changes. NZ daylight saving ends at 03:00 that morning, when clocks go back to 02:00.",
+   "Times and Weights > Add Leg > Takeoff 01:00, Landing 05:00."
+  ],
+  "expected": "Leg and flight total = 5.0 h, because 01:00 NZDT is 12:00 UTC and 05:00 NZST is 17:00 UTC. The schedule should also allow for the repeated 02:00-03:00 hour.",
+  "actual": "Leg total and Total Flight Time both show 4.0. The flight saves and shows as 01:00-05:00 in the Daily Flight Record and the schedule (day view block is 4 hours tall), so the time is worked out from the clock times and the DST shift is ignored. This affects recorded hours, FRMS and timesheets for any flight that night (and the spring-forward night the other way round).",
+  "shots": [
+   "date006_tw2",
+   "date006_day"
   ],
   "cause": ""
  }

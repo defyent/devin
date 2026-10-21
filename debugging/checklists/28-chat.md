@@ -29,7 +29,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | CHAT-002 | Enter sends, Shift+Enter newline | Works | PASS |  | Shift+Enter adds a new line in the box; Enter sends; message shows both lines and the box clears. Web address not turned into a link (CHAT-07 still open) |
 | CHAT-003 | Image attach < 10 MB with preview; > 10 MB | Sent / rejected cleanly | PASS |  | File picker accepts image/*. 104 B PNG shows a preview and sends (serve_image link shown in the channel). 11 MB PNG is rejected with 'Images must be less than 10MB.' |
 | CHAT-004 | Admin delete message / channel | Confirms; non-admins cannot | PASS |  | As admin: message delete asks 'Are you sure you want to permanently delete this message?' and removes it; channel delete (hover-only button) asks 'permanently delete #beta-test-only-channel? All messages and uploaded files will be deleted' and removes it. Escape doesn't close either confirm (BUG-CHAT-001). Non-admin hiding is in code (isAdmin) but not tried with a non-admin Chat user - retest in 90 |
-| CHAT-005 | Badge + banner in another session | Updates within ~20 s | BLOCKED |  | Needs a second user with Chat access to post while another session watches the badge/banner (betatest_low has no Chat access). Retest in 90 |
+| CHAT-005 | Badge + banner in another session | Updates within ~20 s | BLOCKED | chat005_channel | Channel "BETA TEST ONLY Chat" was created as admin, but no second user can get into Chat: Access Manager has no Chat permission (BUG-AM-006), and Grpuser gets Access Denied. The unread badge can't be tested. |
 
 ## Known issues from external audits
 

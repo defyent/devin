@@ -30,7 +30,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | TT-003 | Assign task, due date, complete, drag reorder | Works; shows on assignee Dashboard Project Tasks | BLOCKED |  | Assign (only people in the project's user groups are offered; assigned to BETA TEST ONLY Lowperm), due date ('Due date set to Oct 25!'), complete (progress 50%) and drag reorder (persists after re-render) all work. Dashboard Project Tasks not checked: the only assignable test user has no Dashboard permission. Retest in 90 |
 | TT-004 | Comments > Post Comment | Works | PASS |  | Comments icon on the component opens 'Comments: BETA TEST ONLY Component'; Post Comment adds 'BETA TEST ONLY comment' by Service Account. The page-level Post Comment button sits off-screen until a comments panel is opened (UX-07) |
 | TT-005 | Table / Card view; search | Works | PASS |  | Table and Card views both render the project; search 'Feature 2' filters to that feature, 'zzqq' shows 'No results found' |
-| TT-006 | RA / RG / WG | Read-only / scoped correctly | BLOCKED |  | Needs Task Tracker RA/RG/WG users. Retest in 90 |
+| TT-006 | RA / RG / WG | Read-only / scoped correctly | FAIL | tt006_wg | BUG-TT-004: Grpuser (Task Tracker WG) sees Add Project disabled with "You have read-only access", so WG behaves like RG. RA was not set up. |
 
 ## Known issues from external audits
 

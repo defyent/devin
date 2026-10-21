@@ -33,7 +33,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | DFR-006 | Enable Advanced Filtering in Settings > DFR | Filter panel appears | BLOCKED |  | Advanced Filters is already on; turning the setting off and on is tested in checklist 32 (Settings > Daily Flight Record) |
 | DFR-007 | Status checkboxes | Completed + Complete Locked ticked by default; others filter correctly | PASS |  | Status pills on a fresh load: Completed and Complete Locked ticked, Open/Cancelled/Deleted unticked; active-filter badge 2 |
 | DFR-008 | Date From/To, Flight ID, Rego, PIC, Customer, Search | Filter correctly; active-filter badge; clear works | FAIL | BUG-DFR-002, BUG-DFR-003 | Flight ID 42903 -> 1 row, badge 1; Rego ZK-SIM -> only ZK-SIM rows, badge 3; Date 01/05-08/05/2026 -> rows dated 06/05-08/05 only. Clear Filters unticks every status and shows Open/Deleted flights; date fields show today when unused (BUG-DFR-002). Quick filter changes append duplicate / wrong-status rows (BUG-DFR-003) |
-| DFR-009 | RG user | Only flights for people in their groups | BLOCKED |  | No RG (group-restricted) user on stresstest yet; retest in checklist 90 |
+| DFR-009 | RG user | Only flights for people in their groups | PASS | dfr009_grp | BETA TEST ONLY Grpuser (Daily Flight Record = RG, member of BETA TEST ONLY Group only) sees just 42909 (PIC Grpuser) and 42903 (PIC Lowperm, also in the group). No other people's flights are listed. |
 | DFR-010 | Performance with 9,400+ flights | Acceptable load time | PASS |  | Menu click to rows visible 1.4 s; dailyflightrecord_json 0.26-0.28 s for 30 rows. Scrolling the table loads 30 more each time (30 > 60 > 90), each page about 0.1 s server time |
 
 ## Known issues from external audits

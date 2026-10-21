@@ -29,7 +29,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | REC-002 | Only active people in groups with Recency and Renewals switch | Correct | PASS |  | Only groups with the Recency switch on are listed: Pilots (83 members) and BETA TEST ONLY Group (1). Crew, Engineers and Administration have it off and don't appear. 84 people shown = 83 + 1 |
 | REC-003 | Search by name | Works | PASS |  | Search 'Aisha' shows Aisha Johnston and Aisha Pearce |
 | REC-004 | Click person | Opens Personnel Details > Recency tab | PASS |  | Clicking Aisha Johnston opens Personnel Details on the Recency and Renewals tab (that page throws 'getPickerMod is not defined', same file as BUG-PD-001) |
-| REC-005 | Value entered on Flight Details Crew Recency | Reflected here after completion | BLOCKED |  | Needs a completed flight with a Crew Recency value for a pilot that has recency items set up (Settings > Recency and Renewals, checklist 41). Retest in 99 end-to-end |
+| REC-005 | Value entered on Flight Details Crew Recency | Reflected here after completion | PASS | rec005_recency | Gave BETA TEST ONLY Grpuser the recency "Day Landings" (Personnel Details > Recency > Add Item). BETA flight #42909 (Complete) > Crew Recency now shows a DAY LANDINGS field. Entered 3 and saved. Recency and Renewals lists Grpuser as OK, and the detail shows Day Landings OK, Last Conducted 22/10/2026, count 3/0. |
 
 ## Known issues from external audits
 

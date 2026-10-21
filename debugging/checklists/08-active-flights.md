@@ -37,7 +37,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AF-010 | Auto-refresh | Refreshes; pauses while editing | PASS |  | activeflights_json re-requested every 20 s (live-tracking JSON separately). While Add Note was open with typed text the refresh kept running, but the popup and text were kept; no data lost |
 | AF-011 | Complete a flight | Disappears from Active Flights | PASS |  | #42903 set to Complete in Flight Details > Save > Back > no longer listed; cards back to Total 1377 / Active 0 / Past 1364 / Overdue 7 |
 | AF-012 | Live Tracking map (with permission) | Live (last 10 min) / Historical with date; ADS-B toggle; re-centre; collapse; About | PASS |  | Live Tracking card (starts collapsed; expand_more/less toggles 67 px <> 560 px map). Live / Historical toggle (Historical shows date field 21/10/2026); ADS-B button toggles on (11 markers); About (?) opens info. No separate re-centre control found (shots af_map_live, af_map_hist, af_map_adsb2) |
-| AF-013 | Without Live Tracking permission | Map hidden | BLOCKED |  | Needs a user with Active Flights but without Live Tracking permission; betatest_low has no Active Flights access at all. Retest in checklist 90 (permission levels) |
+| AF-013 | Without Live Tracking permission | Map hidden | PASS | af013_two | BETA TEST ONLY Second has Active Flights = A. There is no Live Tracking card in Access Manager, so Second has no live tracking. Active Flights shows the table/grid with Adjust SAR and Add Note, and no map or map button. |
 
 ## Known issues from external audits
 

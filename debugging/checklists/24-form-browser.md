@@ -28,7 +28,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FBR-001 | Folders by source; columns Form Name, Status, Created, Created By, Forms | Correct | PASS |  | Home folders by source (Flights 13, People 8, SMS Reports 1) > year > month > 'Flight 42903 - 2026-10-21'; instance list has Form Name, Status, Created, Created By (folder levels show Form Name, Forms). QA Post-Flight Report #194 shows 'Submitted' though its required fields are empty (FORM-09) |
 | FBR-002 | Search instances | Works | PASS |  | Search 'QA Post' from Home lists every QA Post-Flight Report with its folder path (Flight 42903, 42902, 42901, 42900, 8795) |
 | FBR-003 | Open instance | Read-only Form Viewer; sections expand | PASS |  | Clicking QA Post-Flight Report #194 opens Form Viewer (read-only, 0 editable inputs); the section collapses and expands with the chevron; Back returns to Form Browser. Header date 'Oct 21, 2026 10:24 PM' (BUG-FBR-002); '0 / 11 fields' but status Submitted (FORM-09) |
-| FBR-004 | RG user / confidential forms | Scoped correctly | BLOCKED |  | Needs a Form Browser RG-level user and a confidential form from another user. Retest in 90 |
+| FBR-004 | RG user / confidential forms | Scoped correctly | PASS | fbr004_rg | Grpuser (Form Browser RG, BETA TEST ONLY Group) sees Flights 3 (the forms on the group's ZK-BTO flights), People 0 and SMS Reports 0. The admin sees Flights 13, People 8 and SMS Reports 1, so forms outside the group, including the SMS form, are hidden. There was no confidential form from another user to check. |
 
 ## Known issues from external audits
 

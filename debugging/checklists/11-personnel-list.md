@@ -29,7 +29,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PL-002 | Group sidebar entries (Administration, Crew, Engineers, Pilots) | Pre-filtered to that group | PASS |  | Sidebar group entries open All Personnel pre-filtered (usergroup_id, Group dropdown set): Administration 10, BETA TEST ONLY Group 1, Crew 30+, Engineers 20, Pilots 30+; every row in that group (shot pl_group_pilots) |
 | PL-003 | Click person | Opens Personnel Details | PASS |  | Clicking a row opens Personnel Details for that person (person_id=274) |
 | PL-004 | No create button | People created only in Access Manager | PASS |  | No create/add button on the page (only search + group/role filters); people are created in Access Manager |
-| PL-005 | WG/RG/WO/RO accounts | See only group members / self | BLOCKED |  | No WG/RG/WO/RO test accounts yet; retest in checklist 90 (permission levels) |
+| PL-005 | WG/RG/WO/RO accounts | See only group members / self | PASS | pl005_grp | Grpuser (Personnel List = RG) sees only the 3 BETA TEST ONLY Group members (Grpuser, Lowperm, Second). BETA TEST ONLY Second has no Personnel List permission and gets no list. WG/WO/RO levels aren't offered for this card. |
 
 ## Known issues from external audits
 

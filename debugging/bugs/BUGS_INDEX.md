@@ -164,6 +164,8 @@
 | [BUG-SLOG-001](BUG-SLOG-001.md) | `SLOG-S04` | Settings: Activity Log | Activity Log: no page Help (?), and dates show as "22 Oct 2026, 02:51 am" | Low | New | |
 | [BUG-AM-005](BUG-AM-005.md) | `PERM-001` | Access Manager | Access Manager: 16 permission types appear twice with the same name (e.g. two "Flight Schedule" cards with different levels) | Medium | New | |
 | [BUG-FD-006](BUG-FD-006.md) | `FD-031` | Flight Details | Flight can be set to Complete with no times or destination on a leg; no 'Required Information' prompt | Medium | New | |
+| [BUG-FD-007](BUG-FD-007.md) | `DATE-005` | Flight Details | New flight defaults its leg date/time to UTC instead of local time | Medium | New | |
+| [BUG-PD-017](BUG-PD-017.md) | `PD-018` | Personnel Details | Personnel Details > Lesson Plans: an assigned plan is saved but never listed; the dialog's dates default to the UTC date | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

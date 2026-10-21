@@ -30,7 +30,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | RV-003 | Search staff… | Filters | PASS |  | Typing 'Aisha' in Search staff highlights the matching rows (Aisha Johnston, Aisha Pearce) in yellow; other rows stay visible (highlight, not hide). × clears it |
 | RV-004 | Click shift | Shift Details | FAIL | BUG-RV-002 | Clicking a shift badge does nothing. Only the small blue corner opens 'Note for <name>' (date + note). Note, legend closes with Esc and ×; Full Shift Legend lists codes, times and 'Counts as Duty Time' |
 | RV-005 | Group Visibility > Apply | Hides/shows groups | PASS |  | Group Visibility lists BETA TEST ONLY Group, Crew, Engineers, Pilots (Your Group). Ticking Engineers > Apply adds the Engineers block; unticking > Apply removes it; choice kept after reload. Restored to Pilots only |
-| RV-006 | RG / RO | Only own groups / self | BLOCKED |  | Needs accounts with Roster Group (RG) and Roster Own (RO) levels; tested in 90 Permission levels |
+| RV-006 | RG / RO | Only own groups / self | PASS | rv006_ro | Roster Viewer: Grpuser (RG) sees only the BETA TEST ONLY Group (Grpuser, Lowperm, Second). BETA TEST ONLY Second (RO) sees only their own row (OH, PM, OC). |
 
 ## Known issues from external audits
 
