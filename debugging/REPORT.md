@@ -7,7 +7,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 3 |
-| Medium | 25 |
+| Medium | 26 |
 | Low | 25 |
 
 | Bug | Severity | Module | Title |
@@ -38,6 +38,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PD-008](bugs/BUG-PD-008.md) | Medium | Personnel Details | Personnel Details > Recency: the recency summary popup has no Add Manual Entry, no x, and doesn't close with Escape |
 | [BUG-PD-009](bugs/BUG-PD-009.md) | Medium | Personnel Details | Personnel Details > Renewal edit: the Today and Calculate links can't be clicked because the date fields cover them |
 | [BUG-PD-012](bugs/BUG-PD-012.md) | Medium | Personnel Details | Personnel Details > Files: opening a file shows 'File Access Error' with the file's contents as the message |
+| [BUG-PD-016](bugs/BUG-PD-016.md) | Medium | Personnel Details | Personnel Details > Timesheets: Add Claim button does nothing |
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) |
 | [BUG-POP-003](bugs/BUG-POP-003.md) | Medium | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
@@ -522,6 +523,22 @@ Suspected cause: The preview call probably expects JSON and treats the raw file 
 
 ![BUG-PD-012-1](bugs/screenshots/BUG-PD-012-1.png)
 ![BUG-PD-012-2](bugs/screenshots/BUG-PD-012-2.png)
+
+### BUG-PD-016: Personnel Details > Timesheets: Add Claim button does nothing
+
+Severity: Medium | Module: Personnel Details | Check: PD-010 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. All Personnel > Ethan Abbott > Timesheets (October 2026)
+2. On 01 Thu (Draft) click Add Claim
+
+Expected: A claim form opens (or the day's Timesheet Details opens) so a claim can be added.
+
+Actual: Nothing happens: no popup, no page change, no network request, no console error. Add Claim is enabled on past days and disabled on future days, so it looks usable.
+
+Suspected cause: Click handler for .timesheet-claim-btn is probably not bound, possibly because the page script stops early (BUG-PD-001, getPickerMod is not defined).
+
+![BUG-PD-016-1](bugs/screenshots/BUG-PD-016-1.png)
 
 ### BUG-PERM-002: User with no permissions cannot open their own My Account (no self-service password / 2FA)
 

@@ -55,6 +55,7 @@
 | [BUG-PD-013](BUG-PD-013.md) | `PD-004` | Personnel Details | Personnel Details: an empty Birth Date shows today's date | Low | New | |
 | [BUG-PD-014](BUG-PD-014.md) | `PD-007` | Personnel Details | Digital Signature: wrong password closes the popup and throws away the drawing; empty Save gives no message | Low | New | |
 | [BUG-PD-015](BUG-PD-015.md) | `PD-016` | Personnel Details | Flight & Duty Analysis popup: title date is YYYY-MM-DD and Escape doesn't close it | Low | New | |
+| [BUG-PD-016](BUG-PD-016.md) | `PD-010` | Personnel Details | Personnel Details > Timesheets: Add Claim button does nothing | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
