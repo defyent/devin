@@ -29,17 +29,17 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | SMS-002 | Click risk badge | Initial Risk Assessment Results | PASS |  | Clicking the Initial Risk badge opens Initial Risk Assessment Results (report 274: Likelihood Possible, Consequence Insignificant, Low) |
 | SMS-003 | New Report: submit empty | Required fields flagged (Subject, Type, Event Date/Time, Description, Risk Matrix, Likelihood, Consequence) | PASS |  | Create Report with nothing filled gives 'Subject is required'; with Subject only, 'Report Type is required'. Typed text is kept. Note: errors come one at a time in a popup and the fields themselves aren't highlighted |
 | SMS-004 | Help icons on Confidential / Anonymous | Explain fields | PASS | BUG-SMS-001 | Confidential and Anonymous (?) explain who can see the report and that the reporter shows as 'Anonymous'. But Escape on these help popups closes the report form behind them and loses the typed Subject (BUG-SMS-001) |
-| SMS-005 | Create BETA TEST ONLY report with On Behalf Of, Resource, PIC | Submitted; permanent investigators/reviewers auto-assigned | TODO | | |
-| SMS-006 | Risk Level display | Matches matrix cell | TODO | | |
-| SMS-007 | Open Investigation (investigator) > Close Investigation > Close Report (reviewer) | Each confirms; progress bar updates | TODO | | |
-| SMS-008 | Non-investigator / non-reviewer | Status buttons hidden | TODO | | |
+| SMS-005 | Create BETA TEST ONLY report with On Behalf Of, Resource, PIC | Submitted; permanent investigators/reviewers auto-assigned | PASS |  | Created report #2060 'BETA TEST ONLY report' (Hazard Report, On Behalf Of Aisha Pearce, Resource ZK-SIM). It opens Report Details with the values shown. PIC list had no 'Aisha J' so PIC left N/A. No investigators/reviewers were auto-assigned - check whether any permanent ones are set in checklist 44 (Settings: Safety Reports) and retest there |
+| SMS-006 | Risk Level display | Matches matrix cell | PASS |  | Rare x Insignificant shows Low, and Risk Matrix Details match (Once in 10+ years, 0.1 events/year, negligible impacts) |
+| SMS-007 | Open Investigation (investigator) > Close Investigation > Close Report (reviewer) | Each confirms; progress bar updates | PASS |  | #2060: Open Investigation > Close Investigation > Close Report each ask 'Are you sure you want to change the report status to ...?' and the progress bar moves Opened > Under Investigation > Under Review > Closed. Note: the Service Account could do every step with no investigator or reviewer assigned |
+| SMS-008 | Non-investigator / non-reviewer | Status buttons hidden | BLOCKED |  | Needs a user with Safety Reports access who is not an investigator/reviewer; betatest_low has no Safety Reports access. Retest in 90 |
 | SMS-009 | Details tab: Extra Safety Report Info save | Saved | TODO | | |
 | SMS-010 | Files, Comments, Forms, History tabs | Work | TODO | | |
 | SMS-011 | Actions: Create New Action (assign, request) | Appears on assignee Dashboard Safety Actions; completing it records action taken | TODO | | |
 | SMS-012 | Final Report: add/remove investigators & reviewers, summary, final risk | Saved | TODO | | |
 | SMS-013 | Add to Hazard Register | Hazard appears in Hazard Register | TODO | | |
-| SMS-014 | Confidential report as another user | Hidden appropriately | TODO | | |
-| SMS-015 | WO / WG / RA accounts | Visibility matches §10.4 rules | TODO | | |
+| SMS-014 | Confidential report as another user | Hidden appropriately | BLOCKED |  | Needs a second user with Safety Reports access to view a confidential report. Retest in 90 |
+| SMS-015 | WO / WG / RA accounts | Visibility matches §10.4 rules | BLOCKED |  | Needs WO / WG / RA Safety Reports accounts. Retest in 90 |
 
 ## Known issues from external audits
 
@@ -54,4 +54,4 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| | | |
+| Safety report #2060 'BETA TEST ONLY report' (Hazard Report, ZK-SIM, on behalf of Aisha Pearce) | Flight Safety > Safety Reports | TBD |

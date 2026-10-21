@@ -27,7 +27,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [16-flight-and-duty](checklists/16-flight-and-duty.md) | `FAD` | Flight and Duty | 14 | 12 | 2 | 0 | 0 | DONE |
 | [17-notices](checklists/17-notices.md) | `NOT` | Notices | 16 | 11 | 3 | 2 | 0 | DONE |
 | [18-recency-renewals](checklists/18-recency-renewals.md) | `REC` | Recency and Renewals (overview page) | 11 | 6 | 2 | 1 | 2 | DONE |
-| [19-safety-reports](checklists/19-safety-reports.md) | `SMS` | Safety Reports (SMS) | 21 | 9 | 1 | 0 | 2 | IN PROGRESS |
+| [19-safety-reports](checklists/19-safety-reports.md) | `SMS` | Safety Reports (SMS) | 21 | 12 | 1 | 3 | 2 | IN PROGRESS |
 | [20-hazard-register](checklists/20-hazard-register.md) | `HAZ` | Hazard Register | 10 | 0 | 0 | 0 | 1 | TODO |
 | [21-settings-hub](checklists/21-settings-hub.md) | `HUB` | Settings and Tools hub | 11 | 0 | 0 | 0 | 1 | TODO |
 | [22-file-browser](checklists/22-file-browser.md) | `FB` | File Browser | 14 | 0 | 0 | 0 | 1 | TODO |

@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 4 |
 | Medium | 35 |
-| Low | 43 |
+| Low | 44 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -90,6 +90,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-REC-002](bugs/BUG-REC-002.md) | Low | Recency and Renewals | Recency and Renewals at phone width: the table is cut off, so Total Items and Actions are hidden |
 | [BUG-RV-001](bugs/BUG-RV-001.md) | Low | Roster Viewer | Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape |
 | [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
+| [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
 | [BUG-TS-001](bugs/BUG-TS-001.md) | Low | Timesheets | Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing |
 | [BUG-TS-004](bugs/BUG-TS-004.md) | Low | Timesheets | Timesheet Details shows dates as 'Oct 5' and times with seconds (14:00:00) |
 | [BUG-TS-005](bugs/BUG-TS-005.md) | Low | Timesheets | Timesheet Details: F&D and Roster Violation popups ignore Escape and show ISO dates in the title |
@@ -1421,6 +1422,23 @@ Suspected cause: Popup uses toLocaleDateString with a hard-coded long format ins
 
 ![BUG-RV-003-1](bugs/screenshots/BUG-RV-003-1.png)
 
+### BUG-SMS-003: Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice
+
+Severity: Low | Module: Safety Reports | Check: SMS-012 ([19-safety-reports](checklists/19-safety-reports.md))
+
+Steps:
+1. Flight Safety > Safety Reports > open report #2060
+2. Final Report tab
+3. Open the Final Risk Likelihood or Consequence dropdown
+
+Expected: Each option once (Almost Certain, Likely, Possible, Unlikely, Rare).
+
+Actual: Each option appears twice: Almost Certain, Likely, Possible, Unlikely, Rare, Almost Certain, Likely, ... Same for Consequence.
+
+Suspected cause: The options are probably added twice when the Final Report tab loads.
+
+![BUG-SMS-003-1](bugs/screenshots/BUG-SMS-003-1.png)
+
 ### BUG-TS-001: Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing
 
 Severity: Low | Module: Timesheets | Check: TS-S02 ([15-timesheets-leave](checklists/15-timesheets-leave.md))
@@ -1524,3 +1542,4 @@ Suspected cause: saveLeaveType() in timesheets/leaverequests.js calls hideTypeMo
 | 14-roster-builder | One Office Hours shift for Aisha Pearce on 01/12/2027 published to live | Live roster December 2027 | Yes - removed with Live Edit, December 2027 empty |
 | 15-timesheets-leave | Leave type 'BETA TEST ONLY Leave' (#AB12CD, sort 70) | Leave Requests > Leave Types | Partly - deactivated (Inactive); the app has no delete for leave types |
 | 17-notices | Notice #1189 'BETA TEST ONLY Notice edited' (BETA TEST ONLY Group, 2 .txt attachments, 1 comment) | Flight Safety > Notices | No - the app has no delete for notices |
+| 19-safety-reports | Safety report #2060 'BETA TEST ONLY report' (Hazard Report, ZK-SIM, on behalf of Aisha Pearce) | Flight Safety > Safety Reports | TBD |
