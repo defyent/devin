@@ -29,7 +29,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PD-002 | Tabs shown | Personal Details, Flights, Exams, Recency, Forms, Files, Security always; Timesheets only Staff; Lesson Plans only Student; Customize only own/admin | PASS |  | Staff (Ethan Abbott): Personal Details, Flights, Timesheets, Exams, Recency and Renewals, Forms, Files, Security, Customize - no Lesson Plans. Student (Peter Archer): Lesson Plans shown, no Timesheets. Customize shown to Service Account (admin) (shots pd_open, pd_student) |
 | PD-003 | Forms/Files count badges | Correct counts | TODO | | |
 | PD-004 | Personal Details: edit every field, Save | Saved; dirty-state buttons; leave prompt | TODO | | |
-| PD-005 | Weight KG/Lbs toggle | Converts; used on manifests | TODO | | |
+| PD-005 | Weight KG/Lbs toggle | Converts; used on manifests | PASS |  | Weight 80 KG -> Lbs shows 176.4, back to KG 80.0 (manifest use covered in Flight Details FD kg/lbs check) |
 | PD-006 | Photo upload / delete | Appears in top bar and Access Manager | TODO | | |
 | PD-007 | Digital Signature: draw, refresh, password, Save | Saved; wrong password rejected | TODO | | |
 | PD-008 | Flights tab: search, click | Opens Flight Details | TODO | | |
