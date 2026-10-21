@@ -1062,7 +1062,7 @@ Steps:
 
 Expected: Standard page Help (?) like other modules; Escape and outside click close popups.
 
-Actual: Only a 'View copy/paste instructions' icon; no page Help. The Copy/Paste Instructions popup stays open on Escape and outside click; only × or Close work.
+Actual: Only a 'View copy/paste instructions' icon; no page Help. The Copy/Paste Instructions popup stays open on Escape and outside click; only × or Close work. The cell Note popup ('Note for <name>') also ignores Escape (outside click and x work).
 
 Suspected cause: Page has no help include; modal lacks Escape/outside-click handlers.
 

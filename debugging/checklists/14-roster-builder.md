@@ -16,7 +16,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 |---|---|---|---|---|---|
 | RB-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Settings and Tools > People > Roster Builder opens 'Staff Roster Live' (Oct 2026), no console errors |
 | RB-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-RB-001 | No page Help (?). Copy/Paste Instructions popup: × and Close work, Escape and outside click don't |
-| RB-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
+| RB-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Copy/Paste Instructions, Rename Draft and Copy Live to Draft popups stay open after mousedown inside / release outside |
 | RB-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | FAIL | BUG-RB-004 | Month header/day columns fine; Rule Violations popup says 'Monday, October 5' (US format, no year) |
 | RB-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
 | RB-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
@@ -34,7 +34,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | RB-007 | Violations OFF: click, Shift+click range, Ctrl+C/X/V, Esc | Blue/red borders; preview; earliest shift pasted | PASS |  | Violations off (CHECKING DISABLED), draft: click selects 1 cell, Shift+click selects range 5-7 Oct (3), Ctrl+C 'Copied 3 cell(s)', click 1 Oct shows 3-cell paste preview, Ctrl+V 'Successfully pasted 3 shift(s)' (PM NT AM on 1-3 Oct), Esc clears selection |
 | RB-008 | Person name > Shift Summary; Apply Shift Pattern; Clear Month | Counts and hours correct | TODO | | |
 | RB-009 | Reorder people; Reset Order | Works | TODO | | |
-| RB-010 | Cell notes add/edit/delete | Works | TODO | | |
+| RB-010 | Cell notes add/edit/delete | Works | PASS |  | Hover a shift cell > corner note button > 'Note for Aisha Johnston': add 'BETA TEST ONLY note', reopen shows it, edit saves, Delete Note clears it (marker gone). Empty cells open the popup with the textarea disabled ('A shift must be assigned to add a note.'). Escape doesn't close it (BUG-RB-001); date in US format (BUG-RB-004) |
 | RB-011 | Violations toggle | Rule Violations from FRMS rostered shift rules | PASS |  | Toggle ON: badge VIOLATIONS FOUND, flagged shifts get red border + warning triangle (628 cells, about 0.5 s to compute). Triangle opens 'Rule Violations' - 'Max 8.0 Duty Time hours in any 24 hours period, Applies to: Pilots' (FRMS rostered shift rule). Toggle OFF restores CHECKING DISABLED. Triangle is mostly covered by the shift badge; only its top-left corner is clickable |
 | RB-012 | Export PDF | Generated | TODO | | |
 | RB-013 | Publish Month: Merge / Clear then Publish (on draft only) | Live roster updated; Viewer, Dashboard, Schedule roster row, Timesheets reflect it | TODO | | |
