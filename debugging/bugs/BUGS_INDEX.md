@@ -103,6 +103,9 @@
 | [BUG-FBR-001](BUG-FBR-001.md) | `FBR-S02` | Form Browser | Form Browser has no page Help (?) | Low | New | |
 | [BUG-FBR-002](BUG-FBR-002.md) | `FBR-S04` | Form Browser | Form Browser and Form Viewer dates ignore the date setting ('Oct 21, 2026', '10:24 PM') | Low | New | |
 | [BUG-FBR-003](BUG-FBR-003.md) | `FBR-S05` | Form Browser | Form Browser on a phone: table is cut off, Created and Created By are off-screen | Low | New | |
+| [BUG-TT-001](BUG-TT-001.md) | `TT-S02` | Task Tracker | Task Tracker: Escape doesn't close Help or Add Project | Low | New | |
+| [BUG-TT-002](BUG-TT-002.md) | `TT-S04` | Task Tracker | Task Tracker dates ignore the date setting ('Dec 31', '2026-10-21') | Low | New | |
+| [BUG-TT-003](BUG-TT-003.md) | `TT-S05` | Task Tracker | Task Tracker on a phone: feature cards are pushed right and cut off | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

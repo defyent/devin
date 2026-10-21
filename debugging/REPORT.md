@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 4 |
 | Medium | 42 |
-| Low | 55 |
+| Low | 58 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -113,6 +113,9 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-TS-004](bugs/BUG-TS-004.md) | Low | Timesheets | Timesheet Details shows dates as 'Oct 5' and times with seconds (14:00:00) |
 | [BUG-TS-005](bugs/BUG-TS-005.md) | Low | Timesheets | Timesheet Details: F&D and Roster Violation popups ignore Escape and show ISO dates in the title |
 | [BUG-TS-006](bugs/BUG-TS-006.md) | Low | Leave Requests | Leave Types: a validation error closes the Add Leave Type popup and throws away what you typed; the popup ignores Escape |
+| [BUG-TT-001](bugs/BUG-TT-001.md) | Low | Task Tracker | Task Tracker: Escape doesn't close Help or Add Project |
+| [BUG-TT-002](bugs/BUG-TT-002.md) | Low | Task Tracker | Task Tracker dates ignore the date setting ('Dec 31', '2026-10-21') |
+| [BUG-TT-003](bugs/BUG-TT-003.md) | Low | Task Tracker | Task Tracker on a phone: feature cards are pushed right and cut off |
 
 ## Bugs
 
@@ -1813,6 +1816,51 @@ Suspected cause: saveLeaveType() in timesheets/leaverequests.js calls hideTypeMo
 
 ![BUG-TS-006-1](bugs/screenshots/BUG-TS-006-1.png)
 
+### BUG-TT-001: Task Tracker: Escape doesn't close Help or Add Project
+
+Severity: Low | Module: Task Tracker | Check: TT-S02 ([25-task-tracker](checklists/25-task-tracker.md))
+
+Steps:
+1. Administration > Task Tracker
+2. Click the (?) Help icon, press Escape
+3. Click Add Project, press Escape
+
+Expected: Escape closes the popup, like x, Got it! and clicking outside do.
+
+Actual: Both popups stay open. tasktracker/index.js has no Escape/keydown handler for the modal.
+
+Suspected cause: No keydown listener in tasktracker/index.js closeModal/openModal.
+
+![BUG-TT-001-1](bugs/screenshots/BUG-TT-001-1.png)
+
+### BUG-TT-002: Task Tracker dates ignore the date setting ('Dec 31', '2026-10-21')
+
+Severity: Low | Module: Task Tracker | Check: TT-S04 ([25-task-tracker](checklists/25-task-tracker.md))
+
+Steps:
+1. Administration > Task Tracker > Add Project with Due Date 31/12/2026
+2. Look at the Due Date and Created columns
+
+Expected: 31/12/2026 and 21/10/2026, as set in Settings > Time Zone.
+
+Actual: Due Date shows 'Dec 31' (no year), Created shows '2026-10-21'. Created is also the UTC date; local was 22/10/2026.
+
+![BUG-TT-002-1](bugs/screenshots/BUG-TT-002-1.png)
+
+### BUG-TT-003: Task Tracker on a phone: feature cards are pushed right and cut off
+
+Severity: Low | Module: Task Tracker | Check: TT-S05 ([25-task-tracker](checklists/25-task-tracker.md))
+
+Steps:
+1. Open Administration > Task Tracker on a 390px wide screen
+2. Open a project with a component and features
+
+Expected: Feature cards fit the screen width.
+
+Actual: The feature card is indented about 90px and runs off the right edge; the feature progress % and task actions are cut off.
+
+![BUG-TT-003-1](bugs/screenshots/BUG-TT-003-1.png)
+
 ## Test data to clean up
 
 | Checklist | Record | Where | Cleanup done? |
@@ -1851,3 +1899,4 @@ Suspected cause: saveLeaveType() in timesheets/leaverequests.js calls hideTypeMo
 | 20-hazard-register | Hazard entry for safety report #2060 'BETA TEST ONLY hazard' (goal Eliminate, controls edited, responsible Aisha Pearce) | Flight Safety > Hazard Register (edited via Safety Reports > #2060 > Final Report) | TBD - goes with report #2060 |
 | 22-file-browser | Folder 'BETA TEST ONLY Folder' (files fbA, fbB deleted) | Administration > File Browser > Home | No - folder can't be deleted (BUG-FB-006) |
 | 23-form-builder | Form group 'BETA TEST ONLY Forms' (template 'BETA TEST ONLY Form' deleted, auto-attach unticked) | Settings and Tools > Form Builder | No - empty group stays, no way to delete groups |
+| 25-task-tracker | Project 'BETA TEST ONLY Project' (component, 2 features, 4 tasks, comment) | Administration > Task Tracker | Yes - project deleted ('Project deleted successfully!') |
