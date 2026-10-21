@@ -1,4 +1,4 @@
-# BUG-PD-006: Personnel Details > Recency and Renewals: Group by and Order by are disabled and the Table/Card view buttons are hidden
+# BUG-PD-006: Personnel Details > Recency and Renewals: Add Item, Table/Card view buttons are hidden and Group by / Order by are disabled
 
 | Field | Value |
 |---|---|
@@ -17,10 +17,10 @@
 3. Look for the Table / Card view buttons
 
 ## Expected
-Group by and Order by change the list; Table and Card view buttons switch the layout.
+Add Item opens the add renewal/recency search; Group by and Order by change the list; Table and Card buttons switch the layout.
 
 ## Actual
-Both dropdowns are disabled (greyed out, can't be changed). #view-table-btn and #view-card-btn exist in the page but have display:none, so there is no way to switch to card view.
+Both dropdowns are disabled (greyed out, can't be changed). #add-recency-btn (Add Item), #view-table-btn and #view-card-btn exist in the page but are hidden (display:none), so you can't add a renewal/recency item or switch to card view.
 
 ## Evidence
 - Screenshot: `screenshots/BUG-PD-006-1.png`

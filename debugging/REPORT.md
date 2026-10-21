@@ -32,7 +32,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-NAV-001](bugs/BUG-NAV-001.md) | Medium | Shell (main) / Personnel Details | Leaving a page with unsaved changes gives no warning; edits are lost |
 | [BUG-PD-001](bugs/BUG-PD-001.md) | Medium | Personnel Details / My Account | personneldetails/index.js is truncated: ReferenceError getPickerMod on every load |
 | [BUG-PD-003](bugs/BUG-PD-003.md) | Medium | Personnel Details > Security | 2FA setup: one wrong verification code closes the setup dialog and issues a new secret |
-| [BUG-PD-006](bugs/BUG-PD-006.md) | Medium | Personnel Details | Personnel Details > Recency and Renewals: Group by and Order by are disabled and the Table/Card view buttons are hidden |
+| [BUG-PD-006](bugs/BUG-PD-006.md) | Medium | Personnel Details | Personnel Details > Recency and Renewals: Add Item, Table/Card view buttons are hidden and Group by / Order by are disabled |
 | [BUG-PD-007](bugs/BUG-PD-007.md) | Medium | Personnel Details | Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date |
 | [BUG-PD-008](bugs/BUG-PD-008.md) | Medium | Personnel Details | Personnel Details > Recency: the recency summary popup has no Add Manual Entry, no x, and doesn't close with Escape |
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) |
@@ -410,7 +410,7 @@ Suspected cause: Verify failure handler closes #2fa-setup-modal and discards the
 
 ![BUG-PD-003-1](bugs/screenshots/BUG-PD-003-1.png)
 
-### BUG-PD-006: Personnel Details > Recency and Renewals: Group by and Order by are disabled and the Table/Card view buttons are hidden
+### BUG-PD-006: Personnel Details > Recency and Renewals: Add Item, Table/Card view buttons are hidden and Group by / Order by are disabled
 
 Severity: Medium | Module: Personnel Details | Check: PD-019 ([12-personnel-details](checklists/12-personnel-details.md))
 
@@ -419,9 +419,9 @@ Steps:
 2. Try to change Group by to Status, or Order by to Expiry Date
 3. Look for the Table / Card view buttons
 
-Expected: Group by and Order by change the list; Table and Card view buttons switch the layout.
+Expected: Add Item opens the add renewal/recency search; Group by and Order by change the list; Table and Card buttons switch the layout.
 
-Actual: Both dropdowns are disabled (greyed out, can't be changed). #view-table-btn and #view-card-btn exist in the page but have display:none, so there is no way to switch to card view.
+Actual: Both dropdowns are disabled (greyed out, can't be changed). #add-recency-btn (Add Item), #view-table-btn and #view-card-btn exist in the page but are hidden (display:none), so you can't add a renewal/recency item or switch to card view.
 
 Suspected cause: Possibly the page script stops at the 'getPickerMod is not defined' error (BUG-PD-001) before it enables these controls.
 
