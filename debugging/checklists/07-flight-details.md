@@ -36,7 +36,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FD-009 | Flight Follower / Authorized By | Only Admin/Staff people | TODO | | |
 | FD-010 | Notify Overdue by Text / Email | Saved | TODO | | |
 | FD-011 | Extra Information (F fields) | Fields from Extra Flight Info appear and save | TODO | | |
-| FD-012 | Comments | Add a Comment saves with flight | TODO | | |
+| FD-012 | Comments | Add a Comment saves with flight | PASS |  | Typed 'BETA TEST ONLY comment' in Add a Comment (no separate add button) > Save Changes > comment listed 'Service Account, Oct 21, 2026, 10:17 PM' |
 | FD-013 | Customer: Existing (company first) + Contact Person suggestions | Works | TODO | | |
 | FD-014 | Customer: New Customer | Creates customer record (with Customer role) | TODO | | |
 | FD-015 | Passenger List: Add Crew Member | Weight from personnel record or 'No weight on file – please enter' | PASS |  | Passenger List > Add Crew Member 'Aaron Foster' (no weight on file) > Required Information popup 'This crew member has no weight on file. Please enter their weight before adding.' with OK. PIC BETA TEST ONLY Lowperm listed in Crew with 0 kg |
@@ -58,10 +58,10 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FD-031 | Complete without Start/End/SAR or end < start | Required Information popup | TODO | | |
 | FD-032 | W&B on, seated person weight 0 | Blocked | TODO | | |
 | FD-033 | Required to Complete meter left empty | Guide: not enforced (known gap) — confirm and log | TODO | | |
-| FD-034 | Save success | Returns to where you came from | TODO | | |
-| FD-035 | Leave with unsaved changes | Stay on Page / Leave Page | TODO | | |
+| FD-034 | Save success | Returns to where you came from | FAIL | BUG-FD-001 | Opened from Flight Schedule (week view), Save Changes > stays on Flight Details (page reloads with return_url=flightschedule, Save Changes greyed out), no success message; not returned to the schedule (shot fd_after_save) |
+| FD-035 | Leave with unsaved changes | Stay on Page / Leave Page | PASS |  | With unsaved changes, Back > app popup 'Unsaved Changes - You have unsaved changes. Are you sure you want to leave without saving?' with Stay on Page / Leave Page; Stay keeps the page and the changes (shot fd_leave_prompt) |
 | FD-036 | Flight & Duty Limit Alert | Shown when crew exceed FRMS limits | TODO | | |
-| FD-037 | History | Shows changes made in this run | TODO | | |
+| FD-037 | History | Shows changes made in this run | FAIL | BUG-FD-002 | History lists 5 entries (Created 09:29 pm + 4 schedule moves/resizes) but not the 10:17 pm Flight Details save (passenger + comment). Every schedule move also logs 'Aircraft: ZK-SIM > Unassigned' and 'Source: (blank) > Flight Schedule' although the aircraft did not change (shot fd_history) |
 | FD-038 | Delete open flight | Confirmation; flight soft-deleted (D) | TODO | | |
 
 ## Known issues from external audits

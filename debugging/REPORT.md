@@ -6,13 +6,15 @@ Generated from the checklist results and bug files on this branch. Testing is st
 
 | Severity | Count |
 |---|---|
-| Medium | 14 |
+| Medium | 16 |
 | Low | 14 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
 | [BUG-AM-001](bugs/BUG-AM-001.md) | Medium | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) |
 | [BUG-DSH-003](bugs/BUG-DSH-003.md) | Medium | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) |
+| [BUG-FD-001](bugs/BUG-FD-001.md) | Medium | Flight Details | Flight Details Save Changes does not return to the Flight Schedule and gives no success message |
+| [BUG-FD-002](bugs/BUG-FD-002.md) | Medium | Flight Details | Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM > Unassigned' on schedule moves |
 | [BUG-FS-001](bugs/BUG-FS-001.md) | Medium | Flight Schedule > Flight Details (new) | New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h) |
 | [BUG-FS-002](bugs/BUG-FS-002.md) | Medium | Flight Schedule | Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight |
 | [BUG-FS-003](bugs/BUG-FS-003.md) | Medium | Flight Schedule | Flight Schedule header overlaps when Live Edit is on - title covered, location pill cut off and its 'Show All' button cannot be clicked |
@@ -75,6 +77,41 @@ Actual: Personnel Details opens (URL has alertname_id=3) but the Personal Detail
 Suspected cause: alertname_id param not used to select the Recency tab, or the tab-switch code never runs because index.js is truncated (BUG-PD-001). Retest after BUG-PD-001 is fixed.
 
 ![BUG-DSH-003-1](bugs/screenshots/BUG-DSH-003-1.png)
+
+### BUG-FD-001: Flight Details Save Changes does not return to the Flight Schedule and gives no success message
+
+Severity: Medium | Module: Flight Details | Check: FD-034 ([07-flight-details](checklists/07-flight-details.md))
+
+Steps:
+1. Flight Schedule > Schedule Only > week
+2. Double-click flight #42903 > Flight Details
+3. Add a passenger or comment
+4. Click Save Changes
+
+Expected: Flight is saved and you return to where you came from (the Flight Schedule week you were on), as described in the guide.
+
+Actual: The page reloads in place (URL now has return_url=/index.pl?action=flightschedule) and stays on Flight Details. No toast or message says it was saved; only the greyed-out Save Changes button hints at it. The user has to click Back.
+
+Suspected cause: Save handler reloads the details page with return_url instead of navigating to return_url after a successful save.
+
+![BUG-FD-001-1](bugs/screenshots/BUG-FD-001-1.png)
+
+### BUG-FD-002: Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM > Unassigned' on schedule moves
+
+Severity: Medium | Module: Flight Details | Check: FD-037 ([07-flight-details](checklists/07-flight-details.md))
+
+Steps:
+1. Flight Schedule > Enable Live Edit > move/resize flight #42903 (ZK-SIM)
+2. Double-click it > Flight Details > add a custom passenger and a comment > Save Changes
+3. Click History
+
+Expected: History shows every change including the Flight Details save (passenger added, comment added), and only fields that really changed.
+
+Actual: The Flight Details save at 10:17 pm is not listed; newest entry is the 09:31 pm schedule move. Each schedule move/resize entry lists 'Aircraft: ZK-SIM > Unassigned' (the aircraft stayed ZK-SIM) and 'Source: (blank) > Flight Schedule'. Values are shown as raw '2026-10-21 09:30:00' instead of DD/MM/YYYY HH:MM.
+
+Suspected cause: Schedule drag/resize audit compares against a payload without aircraft (null > 'Unassigned'); Flight Details save path either does not write to the audit log or only logs main-table fields (passengers/comments not tracked).
+
+![BUG-FD-002-1](bugs/screenshots/BUG-FD-002-1.png)
 
 ### BUG-FS-001: New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h)
 
