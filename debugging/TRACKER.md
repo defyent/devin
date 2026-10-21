@@ -23,7 +23,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [12-personnel-details](checklists/12-personnel-details.md) | `PD` | Personnel Details / My Account | 36 | 14 | 13 | 9 | 3 | DONE |
 | [13-roster-viewer](checklists/13-roster-viewer.md) | `RV` | Roster Viewer | 12 | 8 | 3 | 1 | 1 | DONE |
 | [14-roster-builder](checklists/14-roster-builder.md) | `RB` | Roster Builder | 21 | 13 | 7 | 1 | 1 | DONE |
-| [15-timesheets-leave](checklists/15-timesheets-leave.md) | `TS` | Timesheets, Timesheet Details, Leave Requests | 17 | 3 | 4 | 0 | 0 | IN PROGRESS |
+| [15-timesheets-leave](checklists/15-timesheets-leave.md) | `TS` | Timesheets, Timesheet Details, Leave Requests | 17 | 4 | 4 | 4 | 0 | IN PROGRESS |
 | [16-flight-and-duty](checklists/16-flight-and-duty.md) | `FAD` | Flight and Duty | 14 | 0 | 0 | 0 | 0 | TODO |
 | [17-notices](checklists/17-notices.md) | `NOT` | Notices | 16 | 0 | 0 | 0 | 0 | TODO |
 | [18-recency-renewals](checklists/18-recency-renewals.md) | `REC` | Recency and Renewals (overview page) | 11 | 0 | 0 | 0 | 2 | TODO |
