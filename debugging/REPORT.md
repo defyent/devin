@@ -7,8 +7,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 6 |
-| Medium | 49 |
-| Low | 79 |
+| Medium | 51 |
+| Low | 81 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -65,6 +65,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-STZ-001](bugs/BUG-STZ-001.md) | Medium | Settings: Time Zone | Time Zone settings: the Example preview shows UTC, not the selected time zone |
 | [BUG-STZ-003](bugs/BUG-STZ-003.md) | Medium | Settings: Time Zone | Time Zone settings: the Example preview shows MM/DD/YYYY for every date format except DD/MM/YYYY |
 | [BUG-SUP-001](bugs/BUG-SUP-001.md) | Medium | Support | Support has no page Help (?); Escape doesn't close New Ticket, but a click outside closes it and wipes everything typed |
+| [BUG-SWP-002](bugs/BUG-SWP-002.md) | Medium | Settings: Waypoints | Waypoints: moving a waypoint about 250 nm saves with no "Significant Location Change" warning |
+| [BUG-SWP-004](bugs/BUG-SWP-004.md) | Medium | Settings: Waypoints | Waypoints on a phone: table columns overlap and Add Waypoint is off-screen |
 | [BUG-TS-002](bugs/BUG-TS-002.md) | Medium | Timesheets | Timesheet Approval: status filter 'Unsigned' shows 'No personnel found' although everyone has unsigned days |
 | [BUG-TS-003](bugs/BUG-TS-003.md) | Medium | Timesheets | Timesheet Approval list totals don't match Timesheet Details (Rostered Days and Duty Hours) |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
@@ -139,6 +141,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SWAB-002](bugs/BUG-SWAB-002.md) | Low | Settings: Weight and Balance | Weight & Balance Configs: dates show as "14 Oct 2026" / "29 Sept 2026" instead of DD/MM/YYYY |
 | [BUG-SWAB-003](bugs/BUG-SWAB-003.md) | Low | Settings: Weight and Balance | Weight & Balance Configs shows a debug "Performance" timing panel to users |
 | [BUG-SWAB-004](bugs/BUG-SWAB-004.md) | Low | Settings: Weight and Balance | Weight & Balance Configs: on a phone the page is wider than the screen |
+| [BUG-SWP-001](bugs/BUG-SWP-001.md) | Low | Settings: Waypoints | Waypoints Settings: no Help (?), and Escape does not close popups |
+| [BUG-SWP-003](bugs/BUG-SWP-003.md) | Low | Settings: Waypoints | Waypoints: the list is not refreshed after you save or delete on the detail page |
 | [BUG-TS-001](bugs/BUG-TS-001.md) | Low | Timesheets | Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing |
 | [BUG-TS-004](bugs/BUG-TS-004.md) | Low | Timesheets | Timesheet Details shows dates as 'Oct 5' and times with seconds (14:00:00) |
 | [BUG-TS-005](bugs/BUG-TS-005.md) | Low | Timesheets | Timesheet Details: F&D and Roster Violation popups ignore Escape and show ISO dates in the title |
@@ -1064,6 +1068,38 @@ Suspected cause: No keydown handler; overlay click calls closeNewTicketModal wit
 
 ![BUG-SUP-001-1](bugs/screenshots/BUG-SUP-001-1.png)
 ![BUG-SUP-001-2](bugs/screenshots/BUG-SUP-001-2.png)
+
+### BUG-SWP-002: Waypoints: moving a waypoint about 250 nm saves with no "Significant Location Change" warning
+
+Severity: Medium | Module: Settings: Waypoints | Check: SWP-006 ([38-settings-waypoints](checklists/38-settings-waypoints.md))
+
+Steps:
+1. Settings and Tools > Waypoint Locations, then open waypoint "BETA TEST ONLY WP1" (-36.85, 174.76).
+2. Change Latitude to -41.000000.
+3. Click Save Changes.
+
+Expected: A "Significant Location Change" confirmation, since the move is over 1 nm. The code has this check.
+
+Actual: Saved straight away with "Waypoint saved successfully" and no warning. That move is about 250 nm.
+
+Suspected cause: In settings_waypoints/index.js the >1 nm check (calculateDistanceNM, then the "Significant Location Change" showModal) is only in the old edit-modal save handler. The detail-page Save Changes path does not call it.
+
+![BUG-SWP-002-1](bugs/screenshots/BUG-SWP-002-1.png)
+
+### BUG-SWP-004: Waypoints on a phone: table columns overlap and Add Waypoint is off-screen
+
+Severity: Medium | Module: Settings: Waypoints | Check: SWP-S05 ([38-settings-waypoints](checklists/38-settings-waypoints.md))
+
+Steps:
+1. Open Settings and Tools > Waypoint Locations at a 390 px width.
+
+Expected: Readable rows (cards or a table that scrolls), with every header button on screen.
+
+Actual: Code, Latitude, Longitude and Flights are squeezed into a 303 px table, so their text overlaps and can't be read (e.g. "NZAA-37.008056174.791667"). The header button row is 420 px wide, so "Add Waypoint" is cut off at the right edge and the page scrolls sideways.
+
+Suspected cause: There is no responsive rule for the table cells (no wrap or min-width) or for the header button row (no flex-wrap).
+
+![BUG-SWP-004-1](bugs/screenshots/BUG-SWP-004-1.png)
 
 ### BUG-TS-002: Timesheet Approval: status filter 'Unsigned' shows 'No personnel found' although everyone has unsigned days
 
@@ -2267,6 +2303,39 @@ Actual: The document is 651 px wide on a 390 px screen. The 615 px revision tabl
 Suspected cause: The table wrapper has no overflow-x:auto and there is no responsive rule.
 
 ![BUG-SWAB-004-1](bugs/screenshots/BUG-SWAB-004-1.png)
+
+### BUG-SWP-001: Waypoints Settings: no Help (?), and Escape does not close popups
+
+Severity: Low | Module: Settings: Waypoints | Check: SWP-S02 ([38-settings-waypoints](checklists/38-settings-waypoints.md))
+
+Steps:
+1. Settings and Tools > Configuration > Waypoint Locations.
+2. Look for a Help (?).
+
+Expected: A Help (?) that explains duplicates, consolidation and coordinate formats.
+
+Actual: There is no Help button on the page, and Escape leaves the Coordinate Format, Scan for Duplicates and Bulk Add popups open.
+
+Suspected cause: The template has no help button or help modal.
+
+![BUG-SWP-001-1](bugs/screenshots/BUG-SWP-001-1.png)
+
+### BUG-SWP-003: Waypoints: the list is not refreshed after you save or delete on the detail page
+
+Severity: Low | Module: Settings: Waypoints | Check: SWP-005 ([38-settings-waypoints](checklists/38-settings-waypoints.md))
+
+Steps:
+1. Settings and Tools > Waypoint Locations, then open a test waypoint.
+2. Change Latitude and click Save Changes ("Waypoint saved successfully"), then go back to the list. It shows the old latitude.
+3. Open it again, click delete, then Delete ("Waypoint deleted successfully"). It is still in the list.
+
+Expected: The list shows the new values straight away, and a deleted waypoint is gone from it.
+
+Actual: The list keeps the old latitude (-36.85 instead of -41.00), and keeps the deleted waypoint, until you leave Waypoints and come back. Someone may think the save or delete failed and do it again. The detail-page delete popup also uses "Stay on Page / Delete" buttons and does not name the waypoint, while the list delete names it and uses Cancel/Confirm.
+
+Suspected cause: The detail-page save and delete handlers do not reload or update the cached waypoint list.
+
+![BUG-SWP-003-1](bugs/screenshots/BUG-SWP-003-1.png)
 
 ### BUG-TS-001: Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing
 

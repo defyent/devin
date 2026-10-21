@@ -2554,5 +2554,78 @@
    "sft_dup"
   ],
   "cause": "No unique check on the name, either client-side or server-side."
+ },
+ {
+  "id": "BUG-SWP-001",
+  "title": "Waypoints Settings: no Help (?), and Escape does not close popups",
+  "row": "SWP-S02",
+  "cl": "38-settings-waypoints",
+  "module": "Settings: Waypoints",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Configuration > Waypoint Locations.",
+   "Look for a Help (?)."
+  ],
+  "expected": "A Help (?) that explains duplicates, consolidation and coordinate formats.",
+  "actual": "There is no Help button on the page, and Escape leaves the Coordinate Format, Scan for Duplicates and Bulk Add popups open.",
+  "shots": [
+   "swp_main"
+  ],
+  "cause": "The template has no help button or help modal."
+ },
+ {
+  "id": "BUG-SWP-002",
+  "title": "Waypoints: moving a waypoint about 250 nm saves with no \"Significant Location Change\" warning",
+  "row": "SWP-006",
+  "cl": "38-settings-waypoints",
+  "module": "Settings: Waypoints",
+  "sev": "Medium",
+  "steps": [
+   "Settings and Tools > Waypoint Locations, then open waypoint \"BETA TEST ONLY WP1\" (-36.85, 174.76).",
+   "Change Latitude to -41.000000.",
+   "Click Save Changes."
+  ],
+  "expected": "A \"Significant Location Change\" confirmation, since the move is over 1 nm. The code has this check.",
+  "actual": "Saved straight away with \"Waypoint saved successfully\" and no warning. That move is about 250 nm.",
+  "shots": [
+   "swp_bigmove"
+  ],
+  "cause": "In settings_waypoints/index.js the >1 nm check (calculateDistanceNM, then the \"Significant Location Change\" showModal) is only in the old edit-modal save handler. The detail-page Save Changes path does not call it."
+ },
+ {
+  "id": "BUG-SWP-003",
+  "title": "Waypoints: the list is not refreshed after you save or delete on the detail page",
+  "row": "SWP-005",
+  "cl": "38-settings-waypoints",
+  "module": "Settings: Waypoints",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Waypoint Locations, then open a test waypoint.",
+   "Change Latitude and click Save Changes (\"Waypoint saved successfully\"), then go back to the list. It shows the old latitude.",
+   "Open it again, click delete, then Delete (\"Waypoint deleted successfully\"). It is still in the list."
+  ],
+  "expected": "The list shows the new values straight away, and a deleted waypoint is gone from it.",
+  "actual": "The list keeps the old latitude (-36.85 instead of -41.00), and keeps the deleted waypoint, until you leave Waypoints and come back. Someone may think the save or delete failed and do it again. The detail-page delete popup also uses \"Stay on Page / Delete\" buttons and does not name the waypoint, while the list delete names it and uses Cancel/Confirm.",
+  "shots": [
+   "swp_detail"
+  ],
+  "cause": "The detail-page save and delete handlers do not reload or update the cached waypoint list."
+ },
+ {
+  "id": "BUG-SWP-004",
+  "title": "Waypoints on a phone: table columns overlap and Add Waypoint is off-screen",
+  "row": "SWP-S05",
+  "cl": "38-settings-waypoints",
+  "module": "Settings: Waypoints",
+  "sev": "Medium",
+  "steps": [
+   "Open Settings and Tools > Waypoint Locations at a 390 px width."
+  ],
+  "expected": "Readable rows (cards or a table that scrolls), with every header button on screen.",
+  "actual": "Code, Latitude, Longitude and Flights are squeezed into a 303 px table, so their text overlaps and can't be read (e.g. \"NZAA-37.008056174.791667\"). The header button row is 420 px wide, so \"Add Waypoint\" is cut off at the right edge and the page scrolls sideways.",
+  "shots": [
+   "swp_mobile"
+  ],
+  "cause": "There is no responsive rule for the table cells (no wrap or min-width) or for the header button row (no flex-wrap)."
  }
 ]

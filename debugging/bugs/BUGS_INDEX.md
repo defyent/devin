@@ -136,6 +136,10 @@
 | [BUG-SEFI-001](BUG-SEFI-001.md) | `SEFI-S02` | Settings: Extra Flight Info | Extra Flight Info Settings: no Help (?), and Escape does not close Add Field | Low | New | |
 | [BUG-SFT-001](BUG-SFT-001.md) | `SFT-S02` | Settings: Flight Types | Flight Types Settings: no Help (?), and Escape does not close popups | Low | New | |
 | [BUG-SFT-002](BUG-SFT-002.md) | `SFT-001` | Settings: Flight Types | Flight Types: a duplicate Flight Category name ("PIC") is accepted | Medium | New | |
+| [BUG-SWP-001](BUG-SWP-001.md) | `SWP-S02` | Settings: Waypoints | Waypoints Settings: no Help (?), and Escape does not close popups | Low | New | |
+| [BUG-SWP-002](BUG-SWP-002.md) | `SWP-006` | Settings: Waypoints | Waypoints: moving a waypoint about 250 nm saves with no "Significant Location Change" warning | Medium | New | |
+| [BUG-SWP-003](BUG-SWP-003.md) | `SWP-005` | Settings: Waypoints | Waypoints: the list is not refreshed after you save or delete on the detail page | Low | New | |
+| [BUG-SWP-004](BUG-SWP-004.md) | `SWP-S05` | Settings: Waypoints | Waypoints on a phone: table columns overlap and Add Waypoint is off-screen | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
