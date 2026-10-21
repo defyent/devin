@@ -1,4 +1,4 @@
-# BUG-TS-001: Timesheet Approval has no page Help (?)
+# BUG-TS-001: Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing
 
 | Field | Value |
 |---|---|
@@ -14,15 +14,16 @@
 ## Steps to reproduce
 1. Administration > Settings and Tools > Timesheets
 2. Look for the Help (?) button in the page header
+3. Click a person > Timesheet Details > click (?)
 
 ## Expected
 Standard Help (?) button opening the page help popup.
 
 ## Actual
-No Help button anywhere on the page.
+No Help button anywhere on the page. On Timesheet Details the (?) button (#helpBtn) is shown but clicking it opens nothing.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-TS-001-1.png`
+- Screenshot: `screenshots/BUG-TS-001-1.png`, `screenshots/BUG-TS-001-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

@@ -66,7 +66,11 @@
 | [BUG-RB-005](BUG-RB-005.md) | `RB-008` | Roster Builder | Roster Builder: every validation error throws a JS error instead of showing a message (e.g. Apply Shift Pattern with no shifts) | Medium | New | |
 | [BUG-RB-006](BUG-RB-006.md) | `RB-S05` | Roster Builder | Roster Builder: at phone width the shift palette takes half the screen and the Draft Edit Mode banner covers the search box and palette | Low | New | |
 | [BUG-RB-007](BUG-RB-007.md) | `RB-013` | Roster Builder | Roster Builder: Clear then Publish of a draft month with no shifts does not clear the live roster and shows no message | High | New | |
-| [BUG-TS-001](BUG-TS-001.md) | `TS-S02` | Timesheets | Timesheet Approval has no page Help (?) | Low | New | |
+| [BUG-TS-001](BUG-TS-001.md) | `TS-S02` | Timesheets | Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing | Low | New | |
+| [BUG-TS-002](BUG-TS-002.md) | `TS-001` | Timesheets | Timesheet Approval: status filter 'Unsigned' shows 'No personnel found' although everyone has unsigned days | Medium | New | |
+| [BUG-TS-003](BUG-TS-003.md) | `TS-002` | Timesheets | Timesheet Approval list totals don't match Timesheet Details (Rostered Days and Duty Hours) | Medium | New | |
+| [BUG-TS-004](BUG-TS-004.md) | `TS-S04` | Timesheets | Timesheet Details shows dates as 'Oct 5' and times with seconds (14:00:00) | Low | New | |
+| [BUG-TS-005](BUG-TS-005.md) | `TS-007` | Timesheets | Timesheet Details: F&D and Roster Violation popups ignore Escape and show ISO dates in the title | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

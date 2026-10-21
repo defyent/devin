@@ -7,8 +7,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 4 |
-| Medium | 30 |
-| Low | 31 |
+| Medium | 32 |
+| Low | 33 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -46,6 +46,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RB-003](bugs/BUG-RB-003.md) | Medium | Roster Builder | Roster Builder: copy/paste still works with violation checking ON |
 | [BUG-RB-005](bugs/BUG-RB-005.md) | Medium | Roster Builder | Roster Builder: every validation error throws a JS error instead of showing a message (e.g. Apply Shift Pattern with no shifts) |
 | [BUG-RV-002](bugs/BUG-RV-002.md) | Medium | Roster Viewer | Roster Viewer: clicking a shift does not open Shift Details |
+| [BUG-TS-002](bugs/BUG-TS-002.md) | Medium | Timesheets | Timesheet Approval: status filter 'Unsigned' shows 'No personnel found' although everyone has unsigned days |
+| [BUG-TS-003](bugs/BUG-TS-003.md) | Medium | Timesheets | Timesheet Approval list totals don't match Timesheet Details (Rostered Days and Duty Hours) |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
 | [BUG-AF-003](bugs/BUG-AF-003.md) | Low | Active Flights | Active Flights has no page Help (?), and its popups (About Live Tracking, Adjust SAR, Add Note) don't close with Escape |
 | [BUG-AM-002](bugs/BUG-AM-002.md) | Low | Access Manager | Last Activity hover date ignores Settings > Time Zone format |
@@ -76,7 +78,9 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RB-006](bugs/BUG-RB-006.md) | Low | Roster Builder | Roster Builder: at phone width the shift palette takes half the screen and the Draft Edit Mode banner covers the search box and palette |
 | [BUG-RV-001](bugs/BUG-RV-001.md) | Low | Roster Viewer | Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape |
 | [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
-| [BUG-TS-001](bugs/BUG-TS-001.md) | Low | Timesheets | Timesheet Approval has no page Help (?) |
+| [BUG-TS-001](bugs/BUG-TS-001.md) | Low | Timesheets | Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing |
+| [BUG-TS-004](bugs/BUG-TS-004.md) | Low | Timesheets | Timesheet Details shows dates as 'Oct 5' and times with seconds (14:00:00) |
+| [BUG-TS-005](bugs/BUG-TS-005.md) | Low | Timesheets | Timesheet Details: F&D and Roster Violation popups ignore Escape and show ISO dates in the title |
 
 ## Bugs
 
@@ -678,6 +682,41 @@ Suspected cause: Only the note-corner element has a click handler; .assigned-shi
 ![BUG-RV-002-1](bugs/screenshots/BUG-RV-002-1.png)
 ![BUG-RV-002-2](bugs/screenshots/BUG-RV-002-2.png)
 
+### BUG-TS-002: Timesheet Approval: status filter 'Unsigned' shows 'No personnel found' although everyone has unsigned days
+
+Severity: Medium | Module: Timesheets | Check: TS-001 ([15-timesheets-leave](checklists/15-timesheets-leave.md))
+
+Steps:
+1. Administration > Settings and Tools > Timesheets (October 2026)
+2. Note e.g. Aaron Foster Unsigned 10
+3. Set the status filter to Unsigned
+
+Expected: Everyone with unsigned days is listed (110 people).
+
+Actual: 'No personnel found'. All Status lists 110 people, all with Unsigned counts above 0.
+
+Suspected cause: filterPersonnel() in timesheets/index.js skips days with no timesheet_id ('if (!day.timesheet_id) return false') and then compares day.status to the filter value, but unsigned days have no timesheet record, so Unsigned can never match. The counts use other status names too ('draft'/'submitted'/'denied'), so Pending/Rejected may also never match.
+
+![BUG-TS-002-1](bugs/screenshots/BUG-TS-002-1.png)
+
+### BUG-TS-003: Timesheet Approval list totals don't match Timesheet Details (Rostered Days and Duty Hours)
+
+Severity: Medium | Module: Timesheets | Check: TS-002 ([15-timesheets-leave](checklists/15-timesheets-leave.md))
+
+Steps:
+1. Administration > Settings and Tools > Timesheets (October 2026)
+2. Read Aisha Johnston's row
+3. Click Aisha Johnston to open Timesheet Details
+
+Expected: Rostered Days and Duty Hours in the list match the details page.
+
+Actual: List: 13 Rostered Days, 0.0h Duty Hours, 13 Unsigned. Details: 19 Rostered Days, 180 Duty Hours. Every person in the list shows 0.0h. The list's 13 seems to count only days up to today (21 Oct).
+
+Suspected cause: List and details compute totals differently: the list appears to count rostered days up to today and duty hours only from saved timesheets.
+
+![BUG-TS-003-1](bugs/screenshots/BUG-TS-003-1.png)
+![BUG-TS-003-2](bugs/screenshots/BUG-TS-003-2.png)
+
 ### BUG-AF-001: Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled
 
 Severity: Low | Module: Active Flights | Check: AF-004 ([08-active-flights](checklists/08-active-flights.md))
@@ -1176,21 +1215,57 @@ Suspected cause: Popup uses toLocaleDateString with a hard-coded long format ins
 
 ![BUG-RV-003-1](bugs/screenshots/BUG-RV-003-1.png)
 
-### BUG-TS-001: Timesheet Approval has no page Help (?)
+### BUG-TS-001: Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing
 
 Severity: Low | Module: Timesheets | Check: TS-S02 ([15-timesheets-leave](checklists/15-timesheets-leave.md))
 
 Steps:
 1. Administration > Settings and Tools > Timesheets
 2. Look for the Help (?) button in the page header
+3. Click a person > Timesheet Details > click (?)
 
 Expected: Standard Help (?) button opening the page help popup.
 
-Actual: No Help button anywhere on the page.
+Actual: No Help button anywhere on the page. On Timesheet Details the (?) button (#helpBtn) is shown but clicking it opens nothing.
 
 Suspected cause: Timesheets template has no page-help block.
 
 ![BUG-TS-001-1](bugs/screenshots/BUG-TS-001-1.png)
+![BUG-TS-001-2](bugs/screenshots/BUG-TS-001-2.png)
+
+### BUG-TS-004: Timesheet Details shows dates as 'Oct 5' and times with seconds (14:00:00)
+
+Severity: Low | Module: Timesheets | Check: TS-S04 ([15-timesheets-leave](checklists/15-timesheets-leave.md))
+
+Steps:
+1. Timesheets > click a person > Timesheet Details
+2. Look at the DATE and ROSTER columns
+
+Expected: Dates in the configured DD/MM/YYYY (05/10/2026 or 05/10), times as HH:MM.
+
+Actual: Dates show 'Oct 5' (US month-day, no year) and roster times '14:00:00 02:00:00' with seconds.
+
+Suspected cause: Hard-coded month-day formatting in the timesheetdetails template instead of the Time Zone setting.
+
+![BUG-TS-004-1](bugs/screenshots/BUG-TS-004-1.png)
+
+### BUG-TS-005: Timesheet Details: F&D and Roster Violation popups ignore Escape and show ISO dates in the title
+
+Severity: Low | Module: Timesheets | Check: TS-007 ([15-timesheets-leave](checklists/15-timesheets-leave.md))
+
+Steps:
+1. Timesheets > Aisha Johnston (October 2026)
+2. Click the F&D shield on Oct 5, press Escape
+3. Click outside to close, then click the warning triangle on the Oct 7 roster shift, press Escape
+
+Expected: Escape closes the popups; title date in DD/MM/YYYY.
+
+Actual: Both popups stay open on Escape (outside click closes them). Titles read 'Flight & Duty Analysis for 2026-10-05' and 'Roster Violation Analysis for 2026-10-07'.
+
+Suspected cause: timesheetdetails.js has no Escape handler for .active dialogs and puts the raw YYYY-MM-DD date into the title (same as BUG-PD-015).
+
+![BUG-TS-005-1](bugs/screenshots/BUG-TS-005-1.png)
+![BUG-TS-005-2](bugs/screenshots/BUG-TS-005-2.png)
 
 ## Test data to clean up
 
