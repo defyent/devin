@@ -27,7 +27,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 |---|---|---|---|---|---|
 | RB-001 | « ‹ › » navigation, This Month, Search | Double arrows move half a month | PASS |  | » moves forward 2 weeks (Oct 18 - Nov 14), again to Nov 1-30; « back to Oct 18 - Nov 14; < / > whole months; This Month back to Oct 1-31. Search 'Aisha' highlights the 2 matching rows |
 | RB-002 | Select Roster View: Live / Draft | Switches | PASS |  | Select Roster View lists Live Roster and the drafts; picking a draft switches the grid, the badge shows the draft name and an orange 'Draft Edit Mode - Changes are saved to this draft only' banner appears |
-| RB-003 | Bulk: New Draft (BETA TEST ONLY), Rename, Copy Live to Draft (Merge / Clear then Copy), Delete Draft | Each works with confirmation | FAIL | BUG-RB-002 | New Draft creates 'New Draft 1/2' straight away (no name prompt or message). Rename: empty name silently ignored; 'BETA TEST ONLY Draft' saves ('Draft renamed to ...'). Copy Live to Draft offers Clear then Copy / Copy Only (Merge); Clear then Copy works ('Live roster copied ... successfully', rows match live) but takes about 6 min for 1690 shifts. Delete Draft: see end of checklist |
+| RB-003 | Bulk: New Draft (BETA TEST ONLY), Rename, Copy Live to Draft (Merge / Clear then Copy), Delete Draft | Each works with confirmation | FAIL | BUG-RB-002 | New Draft (no name prompt) and Rename work; empty rename silently ignored. Copy Live to Draft Clear then Copy works but took about 6 min for 1690 shifts. Delete or Clear Draft popup: 'Delete entire draft permanently' gives 'Draft ... deleted successfully' and the draft leaves the list |
 | RB-004 | Drag shift from palette to cell | Shift placed | PASS |  | BETA TEST ONLY Draft: dragged 'Office Hours' from the palette onto Aisha Johnston 1 Oct (empty) - cell shows OH, 'Shift added successfully' |
 | RB-005 | Drag shift to delete zone | Removed | PASS |  | Dragged the OH shift from Aisha Johnston 1 Oct onto the bin (delete zone) - 'Shift deleted successfully', cell empty |
 | RB-006 | Copy/paste with violations ON | Not allowed (documented) | FAIL | BUG-RB-003 | Violations ON: Ctrl+C 'Copied 1 cell(s)', Ctrl+V 'Successfully pasted 1 shift(s)' - not blocked |
@@ -53,8 +53,7 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| Draft roster 'New Draft 1' created by Bulk > New Draft in RB-003 (no name prompt) | Roster Builder drafts | No - to delete in RB-003 |
-| Draft roster 'New Draft 2' created in RB-003, renamed 'BETA TEST ONLY Draft' | Roster Builder drafts | No - to delete at end of 14 |
-
-| Draft roster 'New Draft 1' created by Bulk > New Draft in RB-003 (no name prompt) | Roster Builder drafts | No - to delete in RB-003 |
-| Draft roster 'New Draft 2' created in RB-003, renamed 'BETA TEST ONLY Draft' | Roster Builder drafts | No - to delete at end of 14 |
+| Draft rosters 'New Draft 1' and 'New Draft 2' (renamed 'BETA TEST ONLY Draft', live October 2026 copied in, pattern/notes/paste tests) | Roster Builder drafts | Yes - both deleted with Delete entire draft permanently |
+| Aisha Johnston October 2026 shifts cleared (Clear Month test) | BETA TEST ONLY Draft only | Yes - draft deleted, live untouched |
+| Pilots custom order (Aisha Pearce first) | Roster Builder Pilots group | Yes - Reset Order, alphabetical again |
+| One Office Hours shift for Aisha Pearce on 01/12/2027 published to live | Live roster December 2027 | Yes - removed with Live Edit, December 2027 empty |
