@@ -1,4 +1,4 @@
-# BUG-FS-007: Edit-mode idle timeout switches Live Edit off silently and throws 'calendarEl is not defined'
+# BUG-FS-007: Edit-mode idle timeout switches Live Edit off silently, throws 'calendarEl is not defined' and leaves the schedule blank
 
 | Field | Value |
 |---|---|
@@ -19,7 +19,7 @@
 Edit mode turns off with the message 'Edit mode has been disabled due to inactivity.'
 
 ## Actual
-At 20 min the button silently returns to 'Enable Live Edit'; no popup or toast, and the console shows uncaught ReferenceError 'calendarEl is not defined', so the rest of the timeout handler (probably the message and the calendar refresh) does not run. A user who comes back can think they are still editing.
+At 20 min the button silently returns to 'Enable Live Edit'; no popup or toast, and the console shows uncaught ReferenceError 'calendarEl is not defined', so the rest of the timeout handler (probably the message and the calendar refresh) does not run. A user who comes back can think they are still editing. Afterwards the schedule is left blank (month view 'October 2026' with no flights) until the page is reloaded.
 
 ## Evidence
 - Screenshot: `screenshots/BUG-FS-007-1.png`

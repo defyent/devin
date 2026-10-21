@@ -29,7 +29,7 @@
 | [BUG-FS-004](BUG-FS-004.md) | `FS-029` | Flight Schedule > Location Planner | Planner Add Location replaces the New Booking popup - typed booking and location input is lost | Medium | New | |
 | [BUG-FS-005](BUG-FS-005.md) | `FS-008` | Flight Schedule | JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop') | Low | New | |
 | [BUG-FS-006](BUG-FS-006.md) | `FS-034` | Flight Schedule | Flight Schedule month view is slow: flightschedule_json takes ~1.6 s and rendering 2,500 events ~4.5 s | Medium | New | |
-| [BUG-FS-007](BUG-FS-007.md) | `FS-025` | Flight Schedule | Edit-mode idle timeout switches Live Edit off silently and throws 'calendarEl is not defined' | Medium | New | |
+| [BUG-FS-007](BUG-FS-007.md) | `FS-025` | Flight Schedule | Edit-mode idle timeout switches Live Edit off silently, throws 'calendarEl is not defined' and leaves the schedule blank | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
