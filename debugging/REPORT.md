@@ -6,13 +6,14 @@ Generated from the checklist results and bug files on this branch. Testing is st
 
 | Severity | Count |
 |---|---|
-| High | 4 |
-| Medium | 44 |
-| Low | 64 |
+| High | 5 |
+| Medium | 46 |
+| Low | 69 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
 | [BUG-AF-004](bugs/BUG-AF-004.md) | High | Active Flights | Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC 'now' |
+| [BUG-EXM-006](bugs/BUG-EXM-006.md) | High | Exams | Taking an exam: Multi-Response checkboxes toggle twice, so clicking the box does nothing and the saved answer can differ from what is ticked |
 | [BUG-PD-006](bugs/BUG-PD-006.md) | High | Personnel Details | Personnel Details > Recency and Renewals: action buttons are hidden (Add Item, Table/Card view, renewal Save / Complete Renewal / Cancel) and Group by / Order by are disabled |
 | [BUG-PD-011](bugs/BUG-PD-011.md) | High | Personnel Details | Personnel Details > Security: Change Password always fails with 'Invalid Action: change_password' |
 | [BUG-RB-007](bugs/BUG-RB-007.md) | High | Roster Builder | Roster Builder: Clear then Publish of a draft month with no shifts does not clear the live roster and shows no message |
@@ -21,6 +22,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-DFR-002](bugs/BUG-DFR-002.md) | Medium | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied |
 | [BUG-DFR-003](bugs/BUG-DFR-003.md) | Medium | Daily Flight Record | Daily Flight Record: changing filters quickly appends results instead of replacing them, showing duplicate and wrong-status rows |
 | [BUG-DSH-003](bugs/BUG-DSH-003.md) | Medium | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) |
+| [BUG-EXM-004](bugs/BUG-EXM-004.md) | Medium | Exams | Exam Builder has no way to link or unlink user groups on an exam group |
+| [BUG-EXM-008](bugs/BUG-EXM-008.md) | Medium | Exams | Exam Builder: deleting an exam or exam group that has instances fails silently (error only in the console), and graded instances can't be removed |
 | [BUG-FB-003](bugs/BUG-FB-003.md) | Medium | File Browser | File Browser: clicking a .txt file shows 'File Access Error' with the file's own text |
 | [BUG-FB-005](bugs/BUG-FB-005.md) | Medium | File Browser | File Browser: Read/Write Access groups are not kept after Update Document |
 | [BUG-FB-006](bugs/BUG-FB-006.md) | Medium | File Browser | File Browser: deleting a folder fails with 'Invalid Action: filebrowser_deletefolder' |
@@ -69,6 +72,11 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-CHAT-002](bugs/BUG-CHAT-002.md) | Low | Chat | Chat times show 12-hour '01:32 AM' and date separators 'Thursday, October 22, 2026' instead of the org format |
 | [BUG-DFR-001](bugs/BUG-DFR-001.md) | Low | Daily Flight Record | Daily Flight Record has no page Help (?), and its popups (Manage Columns, Notes full text) don't close with Escape |
 | [BUG-DSH-001](bugs/BUG-DSH-001.md) | Low | Dashboard | Dashboard side tabs are icon-only with no tooltip or label |
+| [BUG-EXM-001](bugs/BUG-EXM-001.md) | Low | Exams | Exam Builder/Editor have no page Help (?); Escape doesn't close Add Group, Add Exam or Choose Question Type |
+| [BUG-EXM-002](bugs/BUG-EXM-002.md) | Low | Exams | Exam dates ignore the org format: 'Oct 22, 2026' in Exam Builder and '10/22/2026 01:46 AM' in Exam Instances batches |
+| [BUG-EXM-003](bugs/BUG-EXM-003.md) | Low | Exams | Exam viewer 'Read Only' still shows Add Question, Add Group and Save Question |
+| [BUG-EXM-005](bugs/BUG-EXM-005.md) | Low | Exams | Exam Builder on a phone: exam table columns and action icons overlap |
+| [BUG-EXM-007](bugs/BUG-EXM-007.md) | Low | Exams | Exam Instances batch: deleting a person's instance shows success but the row stays until the page is reloaded |
 | [BUG-FAD-001](bugs/BUG-FAD-001.md) | Low | Flight and Duty | Flight and Duty has no page Help (?) |
 | [BUG-FAD-002](bugs/BUG-FAD-002.md) | Low | Flight and Duty | Flight and Duty popups (Flight Details, Duty Time Details, Roster Violations, Resolutions Required) ignore Escape |
 | [BUG-FAD-003](bugs/BUG-FAD-003.md) | Low | Flight and Duty | Flight and Duty popups show dates as '16 Oct 2026' instead of the configured DD/MM/YYYY |
@@ -144,6 +152,22 @@ Suspected cause: Active Flights compares the stored local SAR/start time with th
 
 ![BUG-AF-004-1](bugs/screenshots/BUG-AF-004-1.png)
 ![BUG-AF-004-2](bugs/screenshots/BUG-AF-004-2.png)
+
+### BUG-EXM-006: Taking an exam: Multi-Response checkboxes toggle twice, so clicking the box does nothing and the saved answer can differ from what is ticked
+
+Severity: High | Module: Exams | Check: EXM-010 ([29-exams](checklists/29-exams.md))
+
+Steps:
+1. Assign an exam with a Multi-Response question to a user.
+2. Log in as that user > My Account > Exams > click the exam.
+3. On the Multi-Response question click directly on a checkbox, then on an option's text.
+
+Expected: Each click ticks or unticks the option once, and the answer saved is what is ticked on screen.
+
+Actual: Clicking the checkbox square leaves it unchanged. renderMultiResponse() in personneldetails/index.js adds a click handler on the option row that flips checkbox.checked and the answers list, so a click on the box (native toggle + row handler) cancels out, and a click on the label fires the row handler twice. In my run the review showed 'Your Answer: BETA 1' while BETA 0 was the one I had just ticked, and the question was marked Incorrect.
+
+![BUG-EXM-006-1](bugs/screenshots/BUG-EXM-006-1.png)
+![BUG-EXM-006-2](bugs/screenshots/BUG-EXM-006-2.png)
 
 ### BUG-PD-006: Personnel Details > Recency and Renewals: action buttons are hidden (Add Item, Table/Card view, renewal Save / Complete Renewal / Cancel) and Group by / Order by are disabled
 
@@ -289,6 +313,38 @@ Actual: Personnel Details opens (URL has alertname_id=3) but the Personal Detail
 Suspected cause: alertname_id param not used to select the Recency tab, or the tab-switch code never runs because index.js is truncated (BUG-PD-001). Retest after BUG-PD-001 is fixed.
 
 ![BUG-DSH-003-1](bugs/screenshots/BUG-DSH-003-1.png)
+
+### BUG-EXM-004: Exam Builder has no way to link or unlink user groups on an exam group
+
+Severity: Medium | Module: Exams | Check: EXM-003 ([29-exams](checklists/29-exams.md))
+
+Steps:
+1. Settings and Tools > Training > Exam Builder (Service Account, permission A)
+2. Look at an exam group header (e.g. 'BETA TEST ONLY Exams' or 'Aviation Theory')
+
+Expected: 'User Groups:' badges and an 'Add User Group' button on each exam group, with a remove x on each badge.
+
+Actual: The group header only has Add Exam and Delete Group. No User Groups row or Add User Group button is shown for any group.
+
+Suspected cause: createUsergroupBadges() (exambuilder/index.js line 291) builds the User Groups row and Add User Group button but is never called.
+
+![BUG-EXM-004-1](bugs/screenshots/BUG-EXM-004-1.png)
+![BUG-EXM-004-2](bugs/screenshots/BUG-EXM-004-2.png)
+
+### BUG-EXM-008: Exam Builder: deleting an exam or exam group that has instances fails silently (error only in the console), and graded instances can't be removed
+
+Severity: Medium | Module: Exams | Check: EXM-001 ([29-exams](checklists/29-exams.md))
+
+Steps:
+1. Assign an exam and let the person submit it.
+2. Exam Builder > exam row > Delete > Confirm.
+3. Group header > Delete Group > Confirm.
+
+Expected: A clear message saying why it can't be deleted, plus a way to archive the exam or remove its instances.
+
+Actual: The confirm closes, no toast or message, and the exam/group stay. Console only: 'Cannot delete exam: 1 exam instance(s) exist. Exams with instances cannot be deleted.' and the same for the group. Exam Instances only lets you delete unstarted instances, so a test exam that has been taken can never be removed.
+
+![BUG-EXM-008-1](bugs/screenshots/BUG-EXM-008-1.png)
 
 ### BUG-FB-003: File Browser: clicking a .txt file shows 'File Access Error' with the file's own text
 
@@ -1112,6 +1168,84 @@ Actual: Tabs show only Material icons (update, notifications, assignment_late, a
 Suspected cause: Tab buttons render the icon only; add title + aria-label (or a short text label).
 
 ![BUG-DSH-001-1](bugs/screenshots/BUG-DSH-001-1.png)
+
+### BUG-EXM-001: Exam Builder/Editor have no page Help (?); Escape doesn't close Add Group, Add Exam or Choose Question Type
+
+Severity: Low | Module: Exams | Check: EXM-S02 ([29-exams](checklists/29-exams.md))
+
+Steps:
+1. Settings and Tools > Training > Exam Builder
+2. Look for a Help (?) button
+3. Click Add Group, press Escape
+
+Expected: Help (?) like other modules; Escape closes the popup.
+
+Actual: No page Help (the help_outline icons on each exam row have no title or action). Add Group / Add Exam stay open on Escape; only outside click, x or Cancel close them. Escape is only handled in the confirm popups. In the Exam Editor, Escape also doesn't close Choose Question Type.
+
+Suspected cause: Only showConfirm/showAlert add an Escape listener; the global keydown handles Enter only.
+
+![BUG-EXM-001-1](bugs/screenshots/BUG-EXM-001-1.png)
+![BUG-EXM-001-2](bugs/screenshots/BUG-EXM-001-2.png)
+
+### BUG-EXM-002: Exam dates ignore the org format: 'Oct 22, 2026' in Exam Builder and '10/22/2026 01:46 AM' in Exam Instances batches
+
+Severity: Low | Module: Exams | Check: EXM-S04 ([29-exams](checklists/29-exams.md))
+
+Steps:
+1. Settings and Tools > Training > Exam Builder
+2. Read the Created column (e.g. new 'BETA TEST ONLY Exam')
+
+Expected: 22/10/2026 (DD/MM/YYYY as set in Settings > Time Zone).
+
+Actual: 'Oct 22, 2026' (existing exams show 'May 11, 2026'). Exam Instances > Browse Batches shows '10/22/2026 01:46 AM' (US MM/DD, 12-hour).
+
+![BUG-EXM-002-1](bugs/screenshots/BUG-EXM-002-1.png)
+![BUG-EXM-002-2](bugs/screenshots/BUG-EXM-002-2.png)
+
+### BUG-EXM-003: Exam viewer 'Read Only' still shows Add Question, Add Group and Save Question
+
+Severity: Low | Module: Exams | Check: EXM-004 ([29-exams](checklists/29-exams.md))
+
+Steps:
+1. Settings and Tools > Training > Exam Builder
+2. On a MASTER exam click View (Read Only)
+3. Open any question
+
+Expected: Read-only view hides or disables Add Question, Add Group, Save Question and the option editors.
+
+Actual: Banner says 'Viewing Master exam (Rev 2) - Read Only' but Add Question, Add Group and each question's Save Question / Add Image / Add Option are shown (external FUNC-05 still present).
+
+![BUG-EXM-003-1](bugs/screenshots/BUG-EXM-003-1.png)
+
+### BUG-EXM-005: Exam Builder on a phone: exam table columns and action icons overlap
+
+Severity: Low | Module: Exams | Check: EXM-S05 ([29-exams](checklists/29-exams.md))
+
+Steps:
+1. Settings and Tools > Training > Exam Builder
+2. Resize to 390px wide
+
+Expected: Exams shown as cards or a readable table with tappable actions.
+
+Actual: The table is squeezed: Questions/Revision headers overlap, the MASTER/Rev pills sit under the action icons, and the icons overlap the Created date.
+
+![BUG-EXM-005-1](bugs/screenshots/BUG-EXM-005-1.png)
+
+### BUG-EXM-007: Exam Instances batch: deleting a person's instance shows success but the row stays until the page is reloaded
+
+Severity: Low | Module: Exams | Check: EXM-009 ([29-exams](checklists/29-exams.md))
+
+Steps:
+1. Settings and Tools > Exam Instances > Browse Batches > open a batch.
+2. Add a person (row appears).
+3. Click the bin on that person > OK.
+
+Expected: The row is removed and the batch totals update.
+
+Actual: Toast 'Exam instance deleted successfully' but the row and the totals (2 TOTAL, 50% complete) stay. After leaving and reopening Exam Instances the row is gone. Adding a person does refresh the list.
+
+![BUG-EXM-007-1](bugs/screenshots/BUG-EXM-007-1.png)
+![BUG-EXM-007-2](bugs/screenshots/BUG-EXM-007-2.png)
 
 ### BUG-FAD-001: Flight and Duty has no page Help (?)
 
@@ -2045,3 +2179,4 @@ Actual: The feature card is indented about 90px and runs off the right edge; the
 | 26-reports | Report template 'BETA TEST ONLY Report', its copy and its result | Administration > Reports | Yes - all deleted |
 | 27-support | Ticket #8 'BETA TEST ONLY ticket' with BETA_TEST_ONLY_sup.txt, reply | Administration > Support | Yes - deleted |
 | 28-chat | Channel 'BETA TEST ONLY Channel' with test messages/images | Chat (header icon) | Yes - channel deleted |
+| 29-exams | Exam group 'BETA TEST ONLY Exams', exam 'BETA TEST ONLY Exam' (10 questions, Rev 2), its instance/batch for BETA TEST ONLY Lowperm | Exam Builder / Exam Instances | TBD |

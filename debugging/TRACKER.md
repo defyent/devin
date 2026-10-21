@@ -37,8 +37,8 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [26-reports](checklists/26-reports.md) | `RPT` | Reports | 16 | 11 | 3 | 2 | 1 | DONE |
 | [27-support](checklists/27-support.md) | `SUP` | Support tickets | 14 | 10 | 3 | 1 | 0 | DONE |
 | [28-chat](checklists/28-chat.md) | `CHAT` | Chat | 11 | 8 | 2 | 1 | 8 | DONE |
-| [29-exams](checklists/29-exams.md) | `EXM` | Exam Builder, Exam Editor, Exam Instances | 16 | 0 | 0 | 0 | 4 | TODO |
-| [30-maintenance](checklists/30-maintenance.md) | `MX` | Maintenance Portal | 11 | 0 | 0 | 0 | 0 | TODO |
+| [29-exams](checklists/29-exams.md) | `EXM` | Exam Builder, Exam Editor, Exam Instances | 16 | 10 | 6 | 0 | 4 | DONE |
+| [30-maintenance](checklists/30-maintenance.md) | `MX` | Maintenance Portal | 11 | 0 | 0 | 11 | 0 | DONE |
 | [31-settings-flightschedule](checklists/31-settings-flightschedule.md) | `SFS` | Settings – Flight Schedule | 13 | 0 | 0 | 0 | 0 | TODO |
 | [32-settings-dfr](checklists/32-settings-dfr.md) | `SDFR` | Settings – Daily Flight Record | 7 | 0 | 0 | 0 | 0 | TODO |
 | [33-settings-timezone](checklists/33-settings-timezone.md) | `STZ` | Settings – Time Zone (date/time matrix) | 11 | 0 | 0 | 0 | 2 | TODO |

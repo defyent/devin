@@ -114,6 +114,14 @@
 | [BUG-SUP-003](BUG-SUP-003.md) | `SUP-005` | Support | Support ticket: clicking a .txt attachment shows an 'Error' popup containing the file's text | Low | New | |
 | [BUG-CHAT-001](BUG-CHAT-001.md) | `CHAT-S02` | Chat | Chat has no page Help (?); Escape doesn't close Create Channel; empty name does nothing with no message | Low | New | |
 | [BUG-CHAT-002](BUG-CHAT-002.md) | `CHAT-S04` | Chat | Chat times show 12-hour '01:32 AM' and date separators 'Thursday, October 22, 2026' instead of the org format | Low | New | |
+| [BUG-EXM-001](BUG-EXM-001.md) | `EXM-S02` | Exams | Exam Builder/Editor have no page Help (?); Escape doesn't close Add Group, Add Exam or Choose Question Type | Low | New | |
+| [BUG-EXM-002](BUG-EXM-002.md) | `EXM-S04` | Exams | Exam dates ignore the org format: 'Oct 22, 2026' in Exam Builder and '10/22/2026 01:46 AM' in Exam Instances batches | Low | New | |
+| [BUG-EXM-003](BUG-EXM-003.md) | `EXM-004` | Exams | Exam viewer 'Read Only' still shows Add Question, Add Group and Save Question | Low | New | |
+| [BUG-EXM-004](BUG-EXM-004.md) | `EXM-003` | Exams | Exam Builder has no way to link or unlink user groups on an exam group | Medium | New | |
+| [BUG-EXM-005](BUG-EXM-005.md) | `EXM-S05` | Exams | Exam Builder on a phone: exam table columns and action icons overlap | Low | New | |
+| [BUG-EXM-006](BUG-EXM-006.md) | `EXM-010` | Exams | Taking an exam: Multi-Response checkboxes toggle twice, so clicking the box does nothing and the saved answer can differ from what is ticked | High | New | |
+| [BUG-EXM-007](BUG-EXM-007.md) | `EXM-009` | Exams | Exam Instances batch: deleting a person's instance shows success but the row stays until the page is reloaded | Low | New | |
+| [BUG-EXM-008](BUG-EXM-008.md) | `EXM-001` | Exams | Exam Builder: deleting an exam or exam group that has instances fails silently (error only in the console), and graded instances can't be removed | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
