@@ -50,7 +50,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FS-023 | F&D violation icon / popup | Flight & Duty Violations popup lists violations | IN PROGRESS |  | Same alert popup (#fad-modal) works for double bookings; no flight with an F&D violation found yet to test the violations list |
 | FS-024 | Add Note (Start, End, Title, Details) > view/edit/delete | Works | PASS |  | Add Note: Start/End Date, Title, Details > 'Note added successfully'. Click note > Edit Note modal > Update > 'Note updated successfully'. Delete Note > app confirm 'Are you sure you want to delete this note?' > 'Note deleted successfully', gone from schedule. Esc on note modals does nothing (see BUG-POP-004) |
 | FS-025 | Idle 20 min in edit mode | 'Edit mode has been disabled due to inactivity.' | TODO | | |
-| FS-026 | Mobile width | List view; tap opens Flight Details; edit mode off; Add Flight visible | TODO | | |
+| FS-026 | Mobile width | List view; tap opens Flight Details; edit mode off; Add Flight visible | PASS |  | 390 px: list view (listMonth 'October 2026'), no horizontal scroll, Live Edit button + banner hidden, Add Flight visible. Tap #8688 opens Flight Details. Note: list starts at 1 Oct (not today) and each day lists ~20 Roster rows before the flights, so flights are hard to find |
 | FS-027 | RG/WG user | Sees only flights on aircraft in their groups; see §14 caveat on membership read/write flag | TODO | | |
 | FS-028 | View mode (if Location Planner enabled): Schedule Only / Schedule & Planner / Planner Only | Each works; Rows by Aircraft / by Location | TODO | | |
 | FS-029 | Planner: Filter by Location, search, Add Location (Name, Code, Color) | Works | TODO | | |
