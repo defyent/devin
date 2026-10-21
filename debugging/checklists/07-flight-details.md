@@ -17,7 +17,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FD-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Flight Schedule (menu) > Schedule Only > week > double-click flight #42903 > Flight Details 'Flight #42903 ZK-SIM Open 21/10/2026 08:30' loads, no console errors. Single click only selects the flight |
 | FD-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | PASS |  | Help opens 'Flight Details Help'; Got it!, x, Esc and a click on the backdrop each close it, no console errors (one removeChild error seen once in an earlier attempt, not reproducible) (shot fd_help) |
 | FD-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
-| FD-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
+| FD-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | PASS |  | Dates/times on Flight Details use DD/MM/YYYY and 24 h local time, matching the header Local clock (Pacific/Auckland) and the schedule |
 | FD-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
 | FD-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
 
@@ -32,7 +32,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FD-005 | Details: PIC / Secondary Flight Crew | Only Crew or Student role people | TODO | | |
 | FD-006 | Notify toggles | Sends email/SMS on save; not stored (off on reopen) | TODO | | |
 | FD-007 | Flight Category / Activity dropdowns | From Settings > Flight Types; auto-attach forms fire ('Form "X" auto-attached') | TODO | | |
-| FD-008 | Start/End Time, SAR Time, SAR Watch default on | Pickers follow Time Zone setting; booking times may be exceeded by flight times (not a bug) | TODO | | |
+| FD-008 | Start/End Time, SAR Time, SAR Watch default on | Pickers follow Time Zone setting; booking times may be exceeded by flight times (not a bug) | PASS |  | Flight #42903: Start 21/10/2026 08:30, End 21/10/2026 09:30, SAR Time 21/10/2026 09:30 (= end), SAR Watch toggle on by default; DD/MM/YYYY + 24 h like the Local clock |
 | FD-009 | Flight Follower / Authorized By | Only Admin/Staff people | TODO | | |
 | FD-010 | Notify Overdue by Text / Email | Saved | TODO | | |
 | FD-011 | Extra Information (F fields) | Fields from Extra Flight Info appear and save | TODO | | |
@@ -42,14 +42,14 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FD-015 | Passenger List: Add Crew Member | Weight from personnel record or 'No weight on file – please enter' | TODO | | |
 | FD-016 | Passenger List: Add Custom Passenger | Added to manifest | TODO | | |
 | FD-017 | kg/lbs toggle | Converts correctly | TODO | | |
-| FD-018 | W&B toggle | Only if registration in Master W&B config; per-leg summary + graphs; newer revision prompt | TODO | | |
+| FD-018 | W&B toggle | Only if registration in Master W&B config; per-leg summary + graphs; newer revision prompt | TODO |  | ZK-SIM: Weights shows 'Weight & Balance is not configured for this aircraft.' (correct for an unregistered aircraft). Configured-aircraft case still to test |
 | FD-019 | Times and Meters | Totals with source hint; previous reading + link to previous flight | TODO | | |
 | FD-020 | Cumulative meter lower than previous | 'Meter "X" value (…) is less than previous reading (…)' | TODO | | |
 | FD-021 | Legs: Add Leg top/bottom; delete leg | Works; delete confirms | TODO | | |
 | FD-022 | Leg waypoints unknown | Prompt to pick or add; 'Waypoint X added successfully' | TODO | | |
 | FD-023 | Leg time fields | Match resource Time Inputs settings | TODO | | |
-| FD-024 | Crew Recency tab | Items per crew member from direct + group template assignments | TODO | | |
-| FD-025 | Lesson tab | Only when PIC/crew is Student; lessons from assigned plan; exercises, assessment sliders 0–5, debrief | TODO | | |
+| FD-024 | Crew Recency tab | Items per crew member from direct + group template assignments | PASS |  | Crew Recency tab: 'BETA TEST ONLY Lowperm (BETA TEST ONLY Group, Crew) / PIC - No currencies assigned to this crew member.' (no direct/group templates assigned). Populated case to retest with a crew member who has currencies |
+| FD-025 | Lesson tab | Only when PIC/crew is Student; lessons from assigned plan; exercises, assessment sliders 0–5, debrief | TODO |  | PIC is Crew, not Student: no Lesson tab shown (correct). Student case still to test |
 | FD-026 | Forms tab: Add Form | Works | TODO | | |
 | FD-027 | Files tab: upload (incl. > 30 MB) | Upload works; > 30 MB rejected cleanly | TODO | | |
 | FD-028 | Flight Status: Open / Complete / Canceled | Cards selectable; Reason for Cancellation when Canceled; secondary status pills | TODO | | |
