@@ -1,6 +1,6 @@
 # DataHangar test run report (stresstest, v2.0.111)
 
-Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (510 pass, 168 fail, 92 blocked, 19 N/A).
+Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (557 pass, 186 fail, 27 blocked, 19 N/A).
 
 ## Summary
 
@@ -3286,3 +3286,31 @@ Actual: The feature card is indented about 90px and runs off the right edge; the
 | 44-settings-smsreports | Safety report #2061 "BETA TEST ONLY report 2 (permanent investigator)" | Flight Safety > Safety Reports | No - the app has no delete for safety reports |
 | 44-settings-smsreports | Extra Info Field "BETA TEST ONLY EIF" (id 8) | Settings > Safety Reports > Extra Info Fields | Partly - set Inactive; can't delete because report #2060 has a value in it |
 | 45-settings-inspections | Two BETA TEST ONLY inspections (date trigger and meter trigger) | Settings > Inspections, aircraft ZK-BTO | No - kept with test aircraft ZK-BTO; delete with it |
+
+## Test data from the blocked-row retest
+
+- Users betatest_grp (#277), betatest_two (roles, group BETA TEST ONLY Group, temporary permissions)
+- Flights #42909 (ZK-BTO, 22/10 10:00, Complete, lesson + Day Landings 3), #42910 (22/10 13:00, Maintenance Test, form QA Equipment Issue, EFI value), #42911 (copy of #42910, 24/10 06:10)
+- Lesson plan "BETA TEST ONLY Plan" (#15) with "BETA TEST ONLY Lesson 1"; assigned to Grpuser twice
+- Recency "Day Landings" added to Grpuser
+- Extra Flight Info field "BETA TEST ONLY EFI" (#24)
+- QA Equipment Issue Auto-Attach: activity Maintenance Test ticked (unticked again; checked after reload)
+- ZK-BTO Time Inputs: Engine Start/Stop turned off for a test, now back on (checked)
+- W&B: Rev 4 imported from Rev 3 export, ZK-HEL copied to ZK-BTO, approved (Rev 3 is Master again, see below)
+- W&B: Rev 5 (same as Rev 4) approved and set as Master to test the newer-revision prompt (Rev 3 is Master again, see below)
+- FRMS rule "Max 0.5 flight time hours in any 1 days" for BETA TEST ONLY Group (deleted, checked after reload)
+- Timesheets for BETA TEST ONLY Second: roster shifts OH 19/10, PM 20/10, OC 21/10, DS 26-27/11; external flight time 21/10 1.5 h "BETA TEST ONLY ext"; 19/10 Approved, 20/10 Submitted, 21/10 Draft
+- Meal claim 19/10 $25 "BETA TEST ONLY claim" (Approved)
+- Leave requests for Second: Annual Leave 5-6/11 (Rejected, "BETA TEST ONLY reject"), Annual Leave 26-27/11 (Approved)
+- Flight #42910 moved to 22/10 08:00-09:00 for the overdue alert test; now set to Canceled (no reason) so it no longer alerts
+- Safety reports #2062 "BETA TEST ONLY confidential" and #2063 "BETA TEST ONLY report 4" (by Grpuser; the app can't delete reports)
+- Chat channel "BETA TEST ONLY Chat" (deleted)
+- Lowperm Personnel Details WO was removed for a moment for PD-030 and has been put back (1 permission)
+- Customer "BETA TEST ONLY Customer" / "BETA TEST ONLY Cust Ltd" created from flight #42910 (FD-014, AM-015)
+- Flight #42911 moved to 04/04/2027 01:00-05:00 (across the NZ DST change) for DATE-006
+- Safety action "BETA TEST ONLY action for DSH-009" on report #2063, assigned to Second (Open)
+- Exam "BETA TEST ONLY Exam" assigned to Second (instance + batch, unstarted)
+- Task Tracker project "BETA TEST ONLY TT DSH" (group BETA TEST ONLY Group) with component "BETA TEST ONLY Comp" and feature "BETA TEST ONLY Feature" (deleted with its task; "Project deleted")
+- W&B: Rev 3 set back as Master (checked: "Revision 3, 1 aircraft"). Revs 4-6 stay as Approved history (the app has no delete for approved revisions)
+- Exam "BETA TEST ONLY Exam" instance for Second submitted and Graded (18% Fail); graded instances can't be removed (BUG-EXM-008)
+- Temporary Reports (A) permission on BETA TEST ONLY Second for RPT-002 (removed after the test; checked)

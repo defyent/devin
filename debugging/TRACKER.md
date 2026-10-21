@@ -1,7 +1,7 @@
 # Debugging tracker
 
 - **DataHangar version:** v2.0.111 (stresstest.datahangar.net at pack creation)
-- **Test accounts / levels:** Service Account (username datahangar, admin). No other levels available (SET-004 BLOCKED)
+- **Test accounts / levels:** Service Account (username datahangar, admin); betatest_low (BETA TEST ONLY Lowperm, own level); betatest_grp (BETA TEST ONLY Grpuser, group level); betatest_two (BETA TEST ONLY Second, own level + some admin)
 - **Original Time Zone settings:** Pacific/Auckland, DD/MM/YYYY, 24-hour HH:mm, Type-In Fields
 
 Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
