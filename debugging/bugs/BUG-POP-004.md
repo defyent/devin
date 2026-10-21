@@ -1,4 +1,4 @@
-# BUG-POP-004: Flight Schedule 'View Details' popup does not close with Esc
+# BUG-POP-004: Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc
 
 | Field | Value |
 |---|---|
@@ -20,7 +20,7 @@
 Popup closes (CON-015).
 
 ## Actual
-Popup stays open; only OK, x or a click outside closes it.
+Popup stays open on Esc; only OK, x or a click outside closes it. Same for #fad-modal 'Double Booking Detected' and the Add/Edit Note modals.
 
 ## Evidence
 - Screenshot: `screenshots/BUG-POP-004-1.png`
