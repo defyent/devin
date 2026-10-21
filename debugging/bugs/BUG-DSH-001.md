@@ -19,7 +19,7 @@
 Each tab has a tooltip/label (Recency and Renewals, Unread Notices, Unsigned Timesheets, Safety Actions, Exams, Project Tasks).
 
 ## Actual
-Tabs show only Material icons (update, notifications, assignment_late, assignment, quiz, checklist); no title, aria-label or tooltip. Users must click each to find out what it is; screen readers read the icon ligature names.
+Tabs show only Material icons (update, notifications, assignment_late, assignment, quiz, checklist); no title, aria-label or tooltip. Users must click each to find out what it is; screen readers read the icon ligature names. Retest 22/10/2026 (v2.0.111): fixed.
 
 ## Evidence
 - Screenshot: `screenshots/BUG-DSH-001-1.png`

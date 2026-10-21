@@ -1,6 +1,6 @@
 # DataHangar test run report (stresstest, v2.0.111)
 
-Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (557 pass, 186 fail, 27 blocked, 19 N/A).
+Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (562 pass, 181 fail, 27 blocked, 19 N/A).
 
 ## Summary
 
@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 |---|---|
 | High | 9 |
 | Medium | 70 |
-| Low | 104 |
+| Low | 105 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -101,6 +101,7 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | [BUG-CHAT-002](bugs/BUG-CHAT-002.md) | Low | Chat | Chat times show 12-hour '01:32 AM' and date separators 'Thursday, October 22, 2026' instead of the org format |
 | [BUG-DFR-001](bugs/BUG-DFR-001.md) | Low | Daily Flight Record | Daily Flight Record has no page Help (?), and its popups (Manage Columns, Notes full text) don't close with Escape |
 | [BUG-DSH-001](bugs/BUG-DSH-001.md) | Low | Dashboard | Dashboard side tabs are icon-only with no tooltip or label |
+| [BUG-DSH-006](bugs/BUG-DSH-006.md) | Low | Dashboard | Dashboard My Flights shows a canceled flight's status as 'Unknown' |
 | [BUG-EXM-001](bugs/BUG-EXM-001.md) | Low | Exams | Exam Builder/Editor have no page Help (?); Escape doesn't close Add Group, Add Exam or Choose Question Type |
 | [BUG-EXM-002](bugs/BUG-EXM-002.md) | Low | Exams | Exam dates ignore the org format: 'Oct 22, 2026' in Exam Builder and '10/22/2026 01:46 AM' in Exam Instances batches |
 | [BUG-EXM-003](bugs/BUG-EXM-003.md) | Low | Exams | Exam viewer 'Read Only' still shows Add Question, Add Group and Save Question |
@@ -507,7 +508,7 @@ Steps:
 
 Expected: Own Personnel Details opens on the Recency and Renewals tab with Flight Review highlighted.
 
-Actual: Personnel Details opens (URL has alertname_id=3) but the Personal Details tab is active; user has to find the Recency tab manually. Page also throws 'getPickerMod is not defined' (BUG-PD-001), which may be what stops the tab switch.
+Actual: Personnel Details opens (URL has alertname_id=3) but the Personal Details tab is active; user has to find the Recency tab manually. Page also throws 'getPickerMod is not defined' (BUG-PD-001), which may be what stops the tab switch. Retest 22/10/2026 (v2.0.111): fixed.
 
 Suspected cause: alertname_id param not used to select the Recency tab, or the tab-switch code never runs because index.js is truncated (BUG-PD-001). Retest after BUG-PD-001 is fixed.
 
@@ -524,7 +525,7 @@ Steps:
 
 Expected: My Flights and On Duty show today's local date (Thu 22/10/2026), including flight #42910.
 
-Actual: At local 10:38 on 22/10/2026 (UTC 21:38 on 21/10), the Dashboard showed 'My Flights for Wed, Oct 21, 2026: No flights scheduled for this day' and 'On Duty for Wed, Oct 21, 2026'. You have to click > to see today's flight. The dates are also in US format.
+Actual: At local 10:38 on 22/10/2026 (UTC 21:38 on 21/10), the Dashboard showed 'My Flights for Wed, Oct 21, 2026: No flights scheduled for this day' and 'On Duty for Wed, Oct 21, 2026'. You have to click > to see today's flight. The dates are also in US format. Retest 22/10/2026 (v2.0.111): fixed.
 
 ![BUG-DSH-004-1](bugs/screenshots/BUG-DSH-004-1.png)
 
@@ -539,10 +540,15 @@ Steps:
 
 Expected: The project opens with the task visible, as it is for an admin.
 
-Actual: The URL goes to ?action=tasktracker&project_id=14 but the page shows 'Projects ... No projects yet', so the user can't see the project their task is in. With BETA TEST ONLY Second (no Task Tracker permission) the same click gives Access Denied, even though tasks can be assigned to them.
+Actual: The URL goes to ?action=tasktracker&project_id=14 but the page shows 'Projects ... No projects yet', so the user can't see the project their task is in. With BETA TEST ONLY Second (no Task Tracker permission) the same click gives Access Denied, even though tasks can be assigned to them. Retest 22/10/2026 (v2.0.111): unchanged. With new project #15 the click now goes to ?action=tasktracker&project_id=15&task_id=468 and still shows 'No projects yet'. Second still gets Access Denied. Even an admin opening that URL lands on the project list, not the project.
+
+Suspected cause: For betatest_grp (Task Tracker WG, member of group 103 which is on project #15), ?action=tasktracker_json returns userPermission 'read' and projects []. The server isn't reading the group-level permission or the project's usergroup_ids. Task Tracker also doesn't read project_id/task_id from the URL to open the project.
 
 ![BUG-DSH-005-1](bugs/screenshots/BUG-DSH-005-1.png)
 ![BUG-DSH-005-2](bugs/screenshots/BUG-DSH-005-2.png)
+![BUG-DSH-005-3](bugs/screenshots/BUG-DSH-005-3.png)
+![BUG-DSH-005-4](bugs/screenshots/BUG-DSH-005-4.png)
+![BUG-DSH-005-5](bugs/screenshots/BUG-DSH-005-5.png)
 
 ### BUG-EXM-004: Exam Builder has no way to link or unlink user groups on an exam group
 
@@ -1694,11 +1700,27 @@ Steps:
 
 Expected: Each tab has a tooltip/label (Recency and Renewals, Unread Notices, Unsigned Timesheets, Safety Actions, Exams, Project Tasks).
 
-Actual: Tabs show only Material icons (update, notifications, assignment_late, assignment, quiz, checklist); no title, aria-label or tooltip. Users must click each to find out what it is; screen readers read the icon ligature names.
+Actual: Tabs show only Material icons (update, notifications, assignment_late, assignment, quiz, checklist); no title, aria-label or tooltip. Users must click each to find out what it is; screen readers read the icon ligature names. Retest 22/10/2026 (v2.0.111): fixed.
 
 Suspected cause: Tab buttons render the icon only; add title + aria-label (or a short text label).
 
 ![BUG-DSH-001-1](bugs/screenshots/BUG-DSH-001-1.png)
+
+### BUG-DSH-006: Dashboard My Flights shows a canceled flight's status as 'Unknown'
+
+Severity: Low | Module: Dashboard | Check: DSH-005 ([05-dashboard](checklists/05-dashboard.md))
+
+Steps:
+1. Flight #42910 (ZK-BTO, PIC BETA TEST ONLY Second, 22/10/2026 08:00-09:00) is set to Canceled.
+2. Log in as betatest_two > Dashboard > My Flights for Thu 22/10/2026.
+
+Expected: The status badge says 'Canceled' (as in Flight Details / Flight Schedule).
+
+Actual: The badge says 'Unknown'.
+
+Suspected cause: dashboard/index.js shows flight.status as sent by the server, so the Dashboard flights JSON has no mapping for the Canceled status.
+
+![BUG-DSH-006-1](bugs/screenshots/BUG-DSH-006-1.png)
 
 ### BUG-EXM-001: Exam Builder/Editor have no page Help (?); Escape doesn't close Add Group, Add Exam or Choose Question Type
 

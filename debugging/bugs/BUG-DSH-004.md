@@ -20,7 +20,7 @@
 My Flights and On Duty show today's local date (Thu 22/10/2026), including flight #42910.
 
 ## Actual
-At local 10:38 on 22/10/2026 (UTC 21:38 on 21/10), the Dashboard showed 'My Flights for Wed, Oct 21, 2026: No flights scheduled for this day' and 'On Duty for Wed, Oct 21, 2026'. You have to click > to see today's flight. The dates are also in US format.
+At local 10:38 on 22/10/2026 (UTC 21:38 on 21/10), the Dashboard showed 'My Flights for Wed, Oct 21, 2026: No flights scheduled for this day' and 'On Duty for Wed, Oct 21, 2026'. You have to click > to see today's flight. The dates are also in US format. Retest 22/10/2026 (v2.0.111): fixed.
 
 ## Evidence
 - Screenshot: `screenshots/BUG-DSH-004-1.png`

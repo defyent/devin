@@ -20,8 +20,8 @@
 | [BUG-PD-004](BUG-PD-004.md) | `PD-S04` | Personnel Details > Security | Security tab 'Enabled on' date ignores Settings > Time Zone format | Low | New | |
 | [BUG-LOG-003](BUG-LOG-003.md) | `LOG-010` | Login / 2FA (main) | 'Trust this device for 30 days' is lost on Logout (logout deletes the trusted-device cookie) | Medium | New | |
 | [BUG-POP-003](BUG-POP-003.md) | `AM-019` | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved | Medium | New | |
-| [BUG-DSH-001](BUG-DSH-001.md) | `DSH-012` | Dashboard | Dashboard side tabs are icon-only with no tooltip or label | Low | New | |
-| [BUG-DSH-003](BUG-DSH-003.md) | `DSH-006` | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) | Medium | New | |
+| [BUG-DSH-001](BUG-DSH-001.md) | `DSH-012` | Dashboard | Dashboard side tabs are icon-only with no tooltip or label | Low | Fixed (verified 22/10/2026) | |
+| [BUG-DSH-003](BUG-DSH-003.md) | `DSH-006` | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-POP-004](BUG-POP-004.md) | `FS-013` | Flight Schedule | Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc | Low | New | |
 | [BUG-FS-001](BUG-FS-001.md) | `FS-011` | Flight Schedule > Flight Details (new) | New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h) | Medium | New | |
 | [BUG-FS-002](BUG-FS-002.md) | `FS-021` | Flight Schedule | Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight | Medium | New | |
@@ -169,7 +169,7 @@
 | [BUG-SWAB-005](BUG-SWAB-005.md) | `SWAB-003` | Settings: Weight and Balance | W&B Configs: two revisions show the same number ("Rev 5") until another import renumbers them | Low | New | |
 | [BUG-PD-018](BUG-PD-018.md) | `PD-015` | Personnel Details | Request Leave: Start and End Date default to the UTC date, not today's local date | Low | New | |
 | [BUG-TS-007](BUG-TS-007.md) | `TS-006` | Timesheets | Reject Claim: leaving the reason empty closes the reject popup and throws a script error | Low | New | |
-| [BUG-DSH-004](BUG-DSH-004.md) | `DSH-005` | Dashboard | Dashboard: My Flights and On Duty open on the UTC date, not today's local date | Medium | New | |
+| [BUG-DSH-004](BUG-DSH-004.md) | `DSH-005` | Dashboard | Dashboard: My Flights and On Duty open on the UTC date, not today's local date | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-TS-008](BUG-TS-008.md) | `TS-008` | Timesheets / Leave Requests | Approving a leave request doesn't change the rostered shifts, and rejecting with no reason gives no message | Medium | New | |
 | [BUG-FS-008](BUG-FS-008.md) | `FS-027` | Flight Schedule | Flight Schedule: a group-level user (G / WG) sees no flights, even on aircraft in their own group | High | New | |
 | [BUG-AF-005](BUG-AF-005.md) | `FS-027` | Active Flights | Active Flights: a Read Only Group (RG) user sees every company flight, not only their group's | Medium | New | |
@@ -182,9 +182,10 @@
 | [BUG-TT-004](BUG-TT-004.md) | `TT-006` | Task Tracker | Task Tracker: a Write Group (WG) user is treated as read-only and can't add a project | Medium | New | |
 | [BUG-AM-007](BUG-AM-007.md) | `AM-015` | Access Manager | Access Manager: a customer created from Flight Details is Active with no login credentials | Low | New | |
 | [BUG-DATE-001](BUG-DATE-001.md) | `DATE-006` | Flight Details | Flight time across a DST change is out by an hour (01:00-05:00 on 04/04/2027 gives 4.0 instead of 5.0) | Medium | New | |
-| [BUG-DSH-005](BUG-DSH-005.md) | `DSH-011` | Dashboard | Dashboard Project Tasks: clicking a task opens an empty project list instead of the project | Medium | New | |
+| [BUG-DSH-005](BUG-DSH-005.md) | `DSH-011` | Dashboard | Dashboard Project Tasks: clicking a task opens an empty project list instead of the project | Medium | Still failing (retest 22/10/2026) | |
 | [BUG-EXM-009](BUG-EXM-009.md) | `PD-017` | Exams | Exams: a hotspot question with no image shows a developer debug message to the person taking the exam | Low | New | |
 | [BUG-RPT-004](BUG-RPT-004.md) | `RPT-006` | Reports | Reports: the Flight Hours meter column shows the aircraft's current meter on every flight, and Total adds them up | Low | New | |
+| [BUG-DSH-006](BUG-DSH-006.md) | `DSH-005` | Dashboard | Dashboard My Flights shows a canceled flight's status as 'Unknown' | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

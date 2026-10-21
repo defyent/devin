@@ -349,11 +349,12 @@
    "Hover each of the 6 tabs above the right-hand panel"
   ],
   "expected": "Each tab has a tooltip/label (Recency and Renewals, Unread Notices, Unsigned Timesheets, Safety Actions, Exams, Project Tasks).",
-  "actual": "Tabs show only Material icons (update, notifications, assignment_late, assignment, quiz, checklist); no title, aria-label or tooltip. Users must click each to find out what it is; screen readers read the icon ligature names.",
+  "actual": "Tabs show only Material icons (update, notifications, assignment_late, assignment, quiz, checklist); no title, aria-label or tooltip. Users must click each to find out what it is; screen readers read the icon ligature names. Retest 22/10/2026 (v2.0.111): fixed.",
   "shots": [
    "dsh"
   ],
-  "cause": "Tab buttons render the icon only; add title + aria-label (or a short text label)."
+  "cause": "Tab buttons render the icon only; add title + aria-label (or a short text label).",
+  "status": "Fixed (verified 22/10/2026)"
  },
  {
   "id": "BUG-DSH-003",
@@ -368,11 +369,12 @@
    "Click 'Flight Review'"
   ],
   "expected": "Own Personnel Details opens on the Recency and Renewals tab with Flight Review highlighted.",
-  "actual": "Personnel Details opens (URL has alertname_id=3) but the Personal Details tab is active; user has to find the Recency tab manually. Page also throws 'getPickerMod is not defined' (BUG-PD-001), which may be what stops the tab switch.",
+  "actual": "Personnel Details opens (URL has alertname_id=3) but the Personal Details tab is active; user has to find the Recency tab manually. Page also throws 'getPickerMod is not defined' (BUG-PD-001), which may be what stops the tab switch. Retest 22/10/2026 (v2.0.111): fixed.",
   "shots": [
    "dsh_recency_click"
   ],
-  "cause": "alertname_id param not used to select the Recency tab, or the tab-switch code never runs because index.js is truncated (BUG-PD-001). Retest after BUG-PD-001 is fixed."
+  "cause": "alertname_id param not used to select the Recency tab, or the tab-switch code never runs because index.js is truncated (BUG-PD-001). Retest after BUG-PD-001 is fixed.",
+  "status": "Fixed (verified 22/10/2026)"
  },
  {
   "id": "BUG-POP-004",
@@ -3200,11 +3202,12 @@
    "Open Dashboard."
   ],
   "expected": "My Flights and On Duty show today's local date (Thu 22/10/2026), including flight #42910.",
-  "actual": "At local 10:38 on 22/10/2026 (UTC 21:38 on 21/10), the Dashboard showed 'My Flights for Wed, Oct 21, 2026: No flights scheduled for this day' and 'On Duty for Wed, Oct 21, 2026'. You have to click > to see today's flight. The dates are also in US format.",
+  "actual": "At local 10:38 on 22/10/2026 (UTC 21:38 on 21/10), the Dashboard showed 'My Flights for Wed, Oct 21, 2026: No flights scheduled for this day' and 'On Duty for Wed, Oct 21, 2026'. You have to click > to see today's flight. The dates are also in US format. Retest 22/10/2026 (v2.0.111): fixed.",
   "shots": [
    "dsh_two"
   ],
-  "cause": ""
+  "cause": "",
+  "status": "Fixed (verified 22/10/2026)"
  },
  {
   "id": "BUG-TS-008",
@@ -3457,12 +3460,16 @@
    "Log in as betatest_grp > Dashboard > Project Tasks tab > click the task."
   ],
   "expected": "The project opens with the task visible, as it is for an admin.",
-  "actual": "The URL goes to ?action=tasktracker&project_id=14 but the page shows 'Projects ... No projects yet', so the user can't see the project their task is in. With BETA TEST ONLY Second (no Task Tracker permission) the same click gives Access Denied, even though tasks can be assigned to them.",
+  "actual": "The URL goes to ?action=tasktracker&project_id=14 but the page shows 'Projects ... No projects yet', so the user can't see the project their task is in. With BETA TEST ONLY Second (no Task Tracker permission) the same click gives Access Denied, even though tasks can be assigned to them. Retest 22/10/2026 (v2.0.111): unchanged. With new project #15 the click now goes to ?action=tasktracker&project_id=15&task_id=468 and still shows 'No projects yet'. Second still gets Access Denied. Even an admin opening that URL lands on the project list, not the project.",
   "shots": [
+   "re_dsh005_tab_betatest_grp",
+   "re_dsh005_open_betatest_grp",
+   "re_dsh005_open_betatest_two",
    "dsh011_grp_two_open",
    "dsh011_two_open"
   ],
-  "cause": ""
+  "cause": "For betatest_grp (Task Tracker WG, member of group 103 which is on project #15), ?action=tasktracker_json returns userPermission 'read' and projects []. The server isn't reading the group-level permission or the project's usergroup_ids. Task Tracker also doesn't read project_id/task_id from the URL to open the project.",
+  "status": "Still failing (retest 22/10/2026)"
  },
  {
   "id": "BUG-EXM-009",
@@ -3501,5 +3508,23 @@
    "rpt006_result"
   ],
   "cause": ""
+ },
+ {
+  "id": "BUG-DSH-006",
+  "title": "Dashboard My Flights shows a canceled flight's status as 'Unknown'",
+  "row": "DSH-005",
+  "cl": "05-dashboard",
+  "module": "Dashboard",
+  "sev": "Low",
+  "steps": [
+   "Flight #42910 (ZK-BTO, PIC BETA TEST ONLY Second, 22/10/2026 08:00-09:00) is set to Canceled.",
+   "Log in as betatest_two > Dashboard > My Flights for Thu 22/10/2026."
+  ],
+  "expected": "The status badge says 'Canceled' (as in Flight Details / Flight Schedule).",
+  "actual": "The badge says 'Unknown'.",
+  "shots": [
+   "re_dsh006_unknown"
+  ],
+  "cause": "dashboard/index.js shows flight.status as sent by the server, so the Dashboard flights JSON has no mapping for the Canceled status."
  }
 ]

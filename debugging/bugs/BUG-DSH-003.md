@@ -20,7 +20,7 @@
 Own Personnel Details opens on the Recency and Renewals tab with Flight Review highlighted.
 
 ## Actual
-Personnel Details opens (URL has alertname_id=3) but the Personal Details tab is active; user has to find the Recency tab manually. Page also throws 'getPickerMod is not defined' (BUG-PD-001), which may be what stops the tab switch.
+Personnel Details opens (URL has alertname_id=3) but the Personal Details tab is active; user has to find the Recency tab manually. Page also throws 'getPickerMod is not defined' (BUG-PD-001), which may be what stops the tab switch. Retest 22/10/2026 (v2.0.111): fixed.
 
 ## Evidence
 - Screenshot: `screenshots/BUG-DSH-003-1.png`

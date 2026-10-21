@@ -20,14 +20,14 @@
 The project opens with the task visible, as it is for an admin.
 
 ## Actual
-The URL goes to ?action=tasktracker&project_id=14 but the page shows 'Projects ... No projects yet', so the user can't see the project their task is in. With BETA TEST ONLY Second (no Task Tracker permission) the same click gives Access Denied, even though tasks can be assigned to them.
+The URL goes to ?action=tasktracker&project_id=14 but the page shows 'Projects ... No projects yet', so the user can't see the project their task is in. With BETA TEST ONLY Second (no Task Tracker permission) the same click gives Access Denied, even though tasks can be assigned to them. Retest 22/10/2026 (v2.0.111): unchanged. With new project #15 the click now goes to ?action=tasktracker&project_id=15&task_id=468 and still shows 'No projects yet'. Second still gets Access Denied. Even an admin opening that URL lands on the project list, not the project.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-DSH-005-1.png`, `screenshots/BUG-DSH-005-2.png`
+- Screenshot: `screenshots/BUG-DSH-005-1.png`, `screenshots/BUG-DSH-005-2.png`, `screenshots/BUG-DSH-005-3.png`, `screenshots/BUG-DSH-005-4.png`, `screenshots/BUG-DSH-005-5.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)
-
+For betatest_grp (Task Tracker WG, member of group 103 which is on project #15), ?action=tasktracker_json returns userPermission 'read' and projects []. The server isn't reading the group-level permission or the project's usergroup_ids. Task Tracker also doesn't read project_id/task_id from the URL to open the project.
 
 ## Test data involved
 none
