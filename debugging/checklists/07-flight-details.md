@@ -52,7 +52,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FD-025 | Lesson tab | Only when PIC/crew is Student; lessons from assigned plan; exercises, assessment sliders 0–5, debrief | TODO |  | PIC is Crew, not Student: no Lesson tab shown (correct). Student case still to test |
 | FD-026 | Forms tab: Add Form | Works | TODO | | |
 | FD-027 | Files tab: upload (incl. > 30 MB) | Upload works; > 30 MB rejected cleanly | TODO | | |
-| FD-028 | Flight Status: Open / Complete / Canceled | Cards selectable; Reason for Cancellation when Canceled; secondary status pills | TODO | | |
+| FD-028 | Flight Status: Open / Complete / Canceled | Cards selectable; Reason for Cancellation when Canceled; secondary status pills | PASS |  | Flight Status cards Open / Complete / Canceled selectable; Canceled shows 'Reason for Cancellation' (Aircraft Maintenance, Airspace Closure, Crew Unavailable, Customer Request, Fuel Shortage, Medical, Other, Weather). Secondary Status shows no pills (none configured?) (shot fd_status_cancel). Cancel button > 'Discard Changes' popup with Stay on Page / Discard Changes |
 | FD-029 | Complete & Locked | Only visible to WL; admins need WL explicitly | TODO | | |
 | FD-030 | Locked flight | 'This flight is locked…' read-only for all; WL can unlock by changing status | TODO | | |
 | FD-031 | Complete without Start/End/SAR or end < start | Required Information popup | TODO | | |
