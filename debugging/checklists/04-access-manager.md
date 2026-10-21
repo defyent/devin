@@ -62,5 +62,5 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| User BETA TEST ONLY Lowperm (betatest_low, betatest.low@example.com); 1 permission, role Crew, groups Crew + BETA TEST ONLY Group, 2FA on | Access Manager > User Permissions | No |
+| User BETA TEST ONLY Lowperm (betatest_low, betatest.low@example.com); 1 permission, role Crew, groups Crew + BETA TEST ONLY Group; 2FA enabled during testing, later disabled | Access Manager > User Permissions | No |
 | Group BETA TEST ONLY Group (all 5 switches on) | Access Manager > Groups | No |
