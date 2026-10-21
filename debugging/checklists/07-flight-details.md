@@ -16,9 +16,9 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 |---|---|---|---|---|---|
 | FD-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Flight Schedule (menu) > Schedule Only > week > double-click flight #42903 > Flight Details 'Flight #42903 ZK-SIM Open 21/10/2026 08:30' loads, no console errors. Single click only selects the flight |
 | FD-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | PASS |  | Help opens 'Flight Details Help'; Got it!, x, Esc and a click on the backdrop each close it, no console errors (one removeChild error seen once in an earlier attempt, not reproducible) (shot fd_help) |
-| FD-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
+| FD-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Mouse down inside Help and inside Add Form Template, release outside: both popups stay open; Escape closes them |
 | FD-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | PASS |  | Dates/times on Flight Details use DD/MM/YYYY and 24 h local time, matching the header Local clock (Pacific/Auckland) and the schedule |
-| FD-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
+| FD-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | 390 px: no horizontal scroll (375 <= 390), tabs become a dropdown, header buttons wrap, fields stack (shot fd_mobile). Minor: status badge shows only a tick icon (no 'Complete' text); tab dropdown lists 'Lesson' which the desktop tab bar hides for this non-student PIC |
 | FD-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
 
 ## Module checks
