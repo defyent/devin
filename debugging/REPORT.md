@@ -7,7 +7,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 1 |
-| Medium | 19 |
+| Medium | 20 |
 | Low | 18 |
 
 | Bug | Severity | Module | Title |
@@ -15,6 +15,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-AF-004](bugs/BUG-AF-004.md) | High | Active Flights | Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC 'now' |
 | [BUG-AF-002](bugs/BUG-AF-002.md) | Medium | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them |
 | [BUG-AM-001](bugs/BUG-AM-001.md) | Medium | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) |
+| [BUG-DFR-002](bugs/BUG-DFR-002.md) | Medium | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied |
 | [BUG-DSH-003](bugs/BUG-DSH-003.md) | Medium | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) |
 | [BUG-FD-001](bugs/BUG-FD-001.md) | Medium | Flight Details | Flight Details Save Changes does not return to the Flight Schedule and gives no success message |
 | [BUG-FD-002](bugs/BUG-FD-002.md) | Medium | Flight Details | Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM > Unassigned' on schedule moves |
@@ -104,6 +105,25 @@ Actual: Toast 'User BETA TEST ONLY Lowperm created successfully'; account create
 Suspected cause: No min-length check in the New User handler (client and server) for create; only Change Credentials enforces 10.
 
 ![BUG-AM-001-1](bugs/screenshots/BUG-AM-001-1.png)
+
+### BUG-DFR-002: Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied
+
+Severity: Medium | Module: Daily Flight Record | Check: DFR-008 ([09-daily-flight-record](checklists/09-daily-flight-record.md))
+
+Steps:
+1. Sidebar > Flight Operations > Daily Flight Record
+2. Expand Advanced Filters: Completed and Complete Locked are ticked, Date From/To both show 21/10/2026 (today) but the list has flights from other days
+3. Type Rego ZK-SIM (or any filter), press Enter
+4. Click Clear Filters
+
+Expected: Clear Filters goes back to the default view: Completed + Complete Locked, no other filters. Empty date filters show empty fields (or the dates shown are actually applied).
+
+Actual: Clear Filters unticks all five status pills, so the list shows every status, including Open and Deleted flights (e.g. #9476 Open, #42902 Deleted), and the filter badge disappears. The Date From/To fields show today's date on load and after clearing, yet no date filter is applied.
+
+Suspected cause: Clear resets status checkboxes to unchecked instead of the defaults, and an empty status set is treated as 'all'. The date pickers display a default value that is not sent as a filter.
+
+![BUG-DFR-002-1](bugs/screenshots/BUG-DFR-002-1.png)
+![BUG-DFR-002-2](bugs/screenshots/BUG-DFR-002-2.png)
 
 ### BUG-DSH-003: Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals)
 
