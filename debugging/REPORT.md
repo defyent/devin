@@ -6,7 +6,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 
 | Severity | Count |
 |---|---|
-| High | 3 |
+| High | 4 |
 | Medium | 30 |
 | Low | 30 |
 
@@ -15,6 +15,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-AF-004](bugs/BUG-AF-004.md) | High | Active Flights | Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC 'now' |
 | [BUG-PD-006](bugs/BUG-PD-006.md) | High | Personnel Details | Personnel Details > Recency and Renewals: action buttons are hidden (Add Item, Table/Card view, renewal Save / Complete Renewal / Cancel) and Group by / Order by are disabled |
 | [BUG-PD-011](bugs/BUG-PD-011.md) | High | Personnel Details | Personnel Details > Security: Change Password always fails with 'Invalid Action: change_password' |
+| [BUG-RB-007](bugs/BUG-RB-007.md) | High | Roster Builder | Roster Builder: Clear then Publish of a draft month with no shifts does not clear the live roster and shows no message |
 | [BUG-AF-002](bugs/BUG-AF-002.md) | Medium | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them |
 | [BUG-AM-001](bugs/BUG-AM-001.md) | Medium | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) |
 | [BUG-DFR-002](bugs/BUG-DFR-002.md) | Medium | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied |
@@ -133,6 +134,25 @@ Suspected cause: The page posts action=change_password, which the server doesn't
 ![BUG-PD-011-1](bugs/screenshots/BUG-PD-011-1.png)
 ![BUG-PD-011-2](bugs/screenshots/BUG-PD-011-2.png)
 ![BUG-PD-011-3](bugs/screenshots/BUG-PD-011-3.png)
+
+### BUG-RB-007: Roster Builder: Clear then Publish of a draft month with no shifts does not clear the live roster and shows no message
+
+Severity: High | Module: Roster Builder | Check: RB-013 ([14-roster-builder](checklists/14-roster-builder.md))
+
+Steps:
+1. Settings and Tools > Roster Builder, pick a month that has a shift in the Live Roster (test used December 2027 with one BETA TEST ONLY Office Hours shift)
+2. Select a draft that has no shifts for that month
+3. Publish Month > Clear then Publish
+4. Accept the browser confirm 'The draft ... has no shifts for December 2027. Publishing it will clear the live roster for this month. Do you want to continue?'
+5. Switch to Live Roster (also after changing month and back)
+
+Expected: Live roster for the month is cleared and a 'published successfully' message shows.
+
+Actual: No toast or message at all, and the live shift is still there after reloading the month. Publish Only (Merge) with one shift worked ('published to live roster successfully').
+
+Suspected cause: Suspected: publishDraft() (rosterbuilder/index.js around line 4139) hits an error in the clear/publish path, and the catch calls openErrorModal(), which itself throws (BUG-RB-005), so the failure is swallowed with no message. The 'draft has no shifts' path also uses a native confirm() instead of the app's popup.
+
+![BUG-RB-007-1](bugs/screenshots/BUG-RB-007-1.png)
 
 ### BUG-AF-002: Active Flights lists future flights that have no SAR time, and the stats cards don't count them
 
