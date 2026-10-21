@@ -7,8 +7,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 4 |
-| Medium | 35 |
-| Low | 45 |
+| Medium | 37 |
+| Low | 46 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -31,6 +31,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-FS-004](bugs/BUG-FS-004.md) | Medium | Flight Schedule > Location Planner | Planner Add Location replaces the New Booking popup - typed booking and location input is lost |
 | [BUG-FS-006](bugs/BUG-FS-006.md) | Medium | Flight Schedule | Flight Schedule month view is slow: flightschedule_json takes ~1.6 s and rendering 2,500 events ~4.5 s |
 | [BUG-FS-007](bugs/BUG-FS-007.md) | Medium | Flight Schedule | Edit-mode idle timeout switches Live Edit off silently, throws 'calendarEl is not defined' and leaves the schedule blank |
+| [BUG-HAZ-001](bugs/BUG-HAZ-001.md) | Medium | Hazard Register | Hazard Register details: Hazard Type always shows '--' |
+| [BUG-HAZ-002](bugs/BUG-HAZ-002.md) | Medium | Hazard Register | Hazard Register details: Final Risk Assessment never shows the saved final risk |
 | [BUG-LOG-003](bugs/BUG-LOG-003.md) | Medium | Login / 2FA (main) | 'Trust this device for 30 days' is lost on Logout (logout deletes the trusted-device cookie) |
 | [BUG-NAV-001](bugs/BUG-NAV-001.md) | Medium | Shell (main) / Personnel Details | Leaving a page with unsaved changes gives no warning; edits are lost |
 | [BUG-NOT-002](bugs/BUG-NOT-002.md) | Medium | Notices | Notice Details: clicking a .txt attachment does nothing (no preview, no download) |
@@ -65,6 +67,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-FAD-005](bugs/BUG-FAD-005.md) | Low | Flight and Duty | Flight and Duty 'View as Date' defaults to the UTC date instead of the local date |
 | [BUG-FD-003](bugs/BUG-FD-003.md) | Low | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings |
 | [BUG-FS-005](bugs/BUG-FS-005.md) | Low | Flight Schedule | JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop') |
+| [BUG-HAZ-003](bugs/BUG-HAZ-003.md) | Low | Hazard Register | Hazard Register has no way to create a hazard entry |
 | [BUG-LOG-001](bugs/BUG-LOG-001.md) | Low | Shell (main) | Login Message popup reappears on every browser reload |
 | [BUG-LOG-002](bugs/BUG-LOG-002.md) | Low | Shell (main) | Logout throws JS error removeChild; Esc doesn't close the Log Out confirm |
 | [BUG-NOT-001](bugs/BUG-NOT-001.md) | Low | Notices | Notices has no page Help (?), and the Create New Notice popup ignores Escape |
@@ -436,6 +439,39 @@ Actual: At 20 min the button silently returns to 'Enable Live Edit'; no popup or
 Suspected cause: Inactivity handler references a variable calendarEl that is not in scope (renamed or local to another function).
 
 ![BUG-FS-007-1](bugs/screenshots/BUG-FS-007-1.png)
+
+### BUG-HAZ-001: Hazard Register details: Hazard Type always shows '--'
+
+Severity: Medium | Module: Hazard Register | Check: HAZ-003 ([20-hazard-register](checklists/20-hazard-register.md))
+
+Steps:
+1. Flight Safety > Safety Reports > report #2060 > Final Report: Add to Hazard Register, Type = Hazard (later Risk), Save Changes
+2. Flight Safety > Hazard Register > click #2060
+3. Look at Hazard Details > HAZARD TYPE
+
+Expected: Shows the type picked on the safety report (Hazard / Risk).
+
+Actual: Shows '--'.
+
+Suspected cause: hazarddetails.js getHazardTypeText() only knows the codes E/S/I/C/P (Eliminate, Substitute, Isolate, Control, PPE). The Safety Report form saves Hazard/Risk, so every type falls back to '--'.
+
+![BUG-HAZ-001-1](bugs/screenshots/BUG-HAZ-001-1.png)
+
+### BUG-HAZ-002: Hazard Register details: Final Risk Assessment never shows the saved final risk
+
+Severity: Medium | Module: Hazard Register | Check: HAZ-003 ([20-hazard-register](checklists/20-hazard-register.md))
+
+Steps:
+1. Safety report #2060: Final Report tab, Final Risk Unlikely x Minor, Save Changes (saved: reloading the report shows Unlikely/Minor)
+2. Flight Safety > Hazard Register > #2060 > Risk Assessment tab
+
+Expected: Final Risk & Review shows Likelihood Unlikely, Consequence Minor and the resulting risk level. The list's Risk column should then use the final risk too.
+
+Actual: Final Risk shows Likelihood '--', Consequence '--', risk '--'. Only the Closure Description is filled. The list Risk column shows the initial risk (Low).
+
+Suspected cause: hazarddetails.js (~line 221) only shows the card and the closure description. Its comment says 'You would need to fetch the final risk details from the API'; that was never done.
+
+![BUG-HAZ-002-1](bugs/screenshots/BUG-HAZ-002-1.png)
 
 ### BUG-LOG-003: 'Trust this device for 30 days' is lost on Logout (logout deletes the trusted-device cookie)
 
@@ -1010,6 +1046,22 @@ Actual: Each click logs uncaught TypeError "Cannot read properties of null (read
 Suspected cause: Edit-mode toggle handler saves/restores the scroll position of an element that does not exist in the current view mode (e.g. the time-grid scroller while the planner is shown); needs a null check.
 
 
+### BUG-HAZ-003: Hazard Register has no way to create a hazard entry
+
+Severity: Low | Module: Hazard Register | Check: HAZ-002 ([20-hazard-register](checklists/20-hazard-register.md))
+
+Steps:
+1. Flight Safety > Hazard Register
+2. Look for a New / Create button
+
+Expected: A Create New Hazard button that makes the hazard entry and its safety report (as the checklist describes).
+
+Actual: The only buttons are Help and the search clear. Hazards can only be added from a Safety Report's Final Report tab.
+
+Suspected cause: hazardregister/index.js still has handleAddReport() and wires #addReportBtn plus the New Report / Confidential / Anonymous popups (copied from Safety Reports), but the page has no #addReportBtn.
+
+![BUG-HAZ-003-1](bugs/screenshots/BUG-HAZ-003-1.png)
+
 ### BUG-LOG-001: Login Message popup reappears on every browser reload
 
 Severity: Low | Module: Shell (main) | Check: LOG-013 ([01-login-auth](checklists/01-login-auth.md))
@@ -1436,7 +1488,7 @@ Expected: Each option once (Almost Certain, Likely, Possible, Unlikely, Rare).
 
 Actual: Each option appears twice: Almost Certain, Likely, Possible, Unlikely, Rare, Almost Certain, Likely, ... Same for Consequence.
 
-Suspected cause: The options are probably added twice when the Final Report tab loads.
+Suspected cause: smsreportdetails.js calls setupFinalRiskAssessment() twice (lines ~2828 and ~3557) and it appendChild()s the options without clearing the selects first.
 
 ![BUG-SMS-003-1](bugs/screenshots/BUG-SMS-003-1.png)
 
@@ -1563,3 +1615,4 @@ Suspected cause: saveLeaveType() in timesheets/leaverequests.js calls hideTypeMo
 | 15-timesheets-leave | Leave type 'BETA TEST ONLY Leave' (#AB12CD, sort 70) | Leave Requests > Leave Types | Partly - deactivated (Inactive); the app has no delete for leave types |
 | 17-notices | Notice #1189 'BETA TEST ONLY Notice edited' (BETA TEST ONLY Group, 2 .txt attachments, 1 comment) | Flight Safety > Notices | No - the app has no delete for notices |
 | 19-safety-reports | Safety report #2060 'BETA TEST ONLY report' (Hazard Report, ZK-SIM, on behalf of Aisha Pearce) | Flight Safety > Safety Reports | TBD |
+| 20-hazard-register | Hazard entry for safety report #2060 'BETA TEST ONLY hazard' (goal Eliminate, controls edited, responsible Aisha Pearce) | Flight Safety > Hazard Register (edited via Safety Reports > #2060 > Final Report) | TBD - goes with report #2060 |

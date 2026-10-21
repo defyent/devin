@@ -86,6 +86,9 @@
 | [BUG-SMS-002](BUG-SMS-002.md) | `SMS-S04` | Safety Reports | New Safety Report: Event Date/Time defaults to the UTC date and time, not local | Medium | New | |
 | [BUG-SMS-003](BUG-SMS-003.md) | `SMS-012` | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice | Low | New | |
 | [BUG-SMS-004](BUG-SMS-004.md) | `SMS-013` | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register | Low | New | |
+| [BUG-HAZ-001](BUG-HAZ-001.md) | `HAZ-003` | Hazard Register | Hazard Register details: Hazard Type always shows '--' | Medium | New | |
+| [BUG-HAZ-002](BUG-HAZ-002.md) | `HAZ-003` | Hazard Register | Hazard Register details: Final Risk Assessment never shows the saved final risk | Medium | New | |
+| [BUG-HAZ-003](BUG-HAZ-003.md) | `HAZ-002` | Hazard Register | Hazard Register has no way to create a hazard entry | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

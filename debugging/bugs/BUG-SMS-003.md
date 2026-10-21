@@ -27,7 +27,7 @@ Each option appears twice: Almost Certain, Likely, Possible, Unlikely, Rare, Alm
 - Console / network errors: none
 
 ## Suspected cause (optional)
-The options are probably added twice when the Final Report tab loads.
+smsreportdetails.js calls setupFinalRiskAssessment() twice (lines ~2828 and ~3557) and it appendChild()s the options without clearing the selects first.
 
 ## Test data involved
 none
