@@ -31,10 +31,10 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FD-004 | Details: Aircraft dropdown | Only Active + Is Aircraft resources | TODO | | |
 | FD-005 | Details: PIC / Secondary Flight Crew | Only Crew or Student role people | FAIL | BUG-FD-004 | Main PIC / Secondary Flight Crew lists 84 people incl. BETA TEST ONLY Lowperm (Crew); not every name role-checked. Leg PIC / Secondary Flight Crew dropdowns however list the custom passenger 'BETA TEST ONLY Pax' (shot fd_leg) |
 | FD-006 | Notify toggles | Sends email/SMS on save; not stored (off on reopen) | PASS |  | Notify (PIC) toggled on > Save > after reload the toggle is off again (not stored). Email/SMS delivery not checked (PIC is betatest.low@example.com) |
-| FD-007 | Flight Category / Activity dropdowns | From Settings > Flight Types; auto-attach forms fire ('Form "X" auto-attached') | TODO | | |
+| FD-007 | Flight Category / Activity dropdowns | From Settings > Flight Types; auto-attach forms fire ('Form "X" auto-attached') | BLOCKED |  | Category list: Dual / PIC / PICUS / Solo; Activity list: Charter, Check Ride, Commercial Operation, Cross Country, Ferry Flight, Maintenance Test, Night Flight, Private, Scenic Flight, Training... Picking Charter, Training, Dual attached no form and showed no 'auto-attached' message (Forms count stayed 1). Need to confirm in checklist 37 whether any auto-attach rule exists; Discard restored the values |
 | FD-008 | Start/End Time, SAR Time, SAR Watch default on | Pickers follow Time Zone setting; booking times may be exceeded by flight times (not a bug) | PASS |  | Flight #42903: Start 21/10/2026 08:30, End 21/10/2026 09:30, SAR Time 21/10/2026 09:30 (= end), SAR Watch toggle on by default; DD/MM/YYYY + 24 h like the Local clock |
 | FD-009 | Flight Follower / Authorized By | Only Admin/Staff people | TODO | | |
-| FD-010 | Notify Overdue by Text / Email | Saved | TODO | | |
+| FD-010 | Notify Overdue by Text / Email | Saved | PASS |  | Notify Overdue by Text and by Email switched on > Save > after reload both still on |
 | FD-011 | Extra Information (F fields) | Fields from Extra Flight Info appear and save | BLOCKED |  | No Extra Information section on Flight Details - no extra fields configured on stresstest. Retest after checklist 36 (Settings: Extra Flight Info) adds a field |
 | FD-012 | Comments | Add a Comment saves with flight | PASS |  | Typed 'BETA TEST ONLY comment' in Add a Comment (no separate add button) > Save Changes > comment listed 'Service Account, Oct 21, 2026, 10:17 PM' |
 | FD-013 | Customer: Existing (company first) + Contact Person suggestions | Works | PASS |  | Customer tab: Existing Customer / New Customer cards; Customer list has 'DEVIN TEST Customer Ltd' (only customer on stresstest) + Contact Person field. Suggestions not checked further (single customer) |
@@ -87,4 +87,5 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 | Comment 'BETA TEST ONLY comment' | Flight #42903 > Comments | No |
 | Leg 1 (Departure ZZZQ) | Flight #42903 > Times and Weights | No |
 | Waypoint 'ZZZQ' (added from the leg prompt) | Settings > Waypoints | No |
+| Notify Overdue by Text / Email switched on; status set to Complete | Flight #42903 > Details / Flight Status | No (deleted with the flight) |
 | Pre-existing, not created in this run: customer 'DEVIN TEST Customer Ltd' | Customers | No (check with Jon) |
