@@ -18,7 +18,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | RB-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-RB-001 | No page Help (?). Copy/Paste Instructions popup: × and Close work, Escape and outside click don't |
 | RB-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Copy/Paste Instructions, Rename Draft and Copy Live to Draft popups stay open after mousedown inside / release outside |
 | RB-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | FAIL | BUG-RB-004 | Month header/day columns fine; Rule Violations popup says 'Monday, October 5' (US format, no year) |
-| RB-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
+| RB-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | FAIL | BUG-RB-006 | 390 px: no page sideways scroll and month/draft/bulk/search controls visible, but grid squeezed to about 175 px beside the palette, Draft Edit Mode banner covers search and palette, violations toggle and Live Edit hidden |
 | RB-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
 
 ## Module checks
@@ -36,7 +36,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | RB-009 | Reorder people; Reset Order | Works | PASS |  | Pilots > Reorder: handles appear, dragged Aisha Pearce above Aisha Johnston, Save Order 'Order saved for Pilots', Reset Order button appears; Reset Order asks to confirm, 'Order reset for Pilots', alphabetical order back and Reset button gone. Confirm ignores Escape (BUG-RB-001) |
 | RB-010 | Cell notes add/edit/delete | Works | PASS |  | Hover a shift cell > corner note button > 'Note for Aisha Johnston': add 'BETA TEST ONLY note', reopen shows it, edit saves, Delete Note clears it (marker gone). Empty cells open the popup with the textarea disabled ('A shift must be assigned to add a note.'). Escape doesn't close it (BUG-RB-001); date in US format (BUG-RB-004) |
 | RB-011 | Violations toggle | Rule Violations from FRMS rostered shift rules | PASS |  | Toggle ON: badge VIOLATIONS FOUND, flagged shifts get red border + warning triangle (628 cells, about 0.5 s to compute). Triangle opens 'Rule Violations' - 'Max 8.0 Duty Time hours in any 24 hours period, Applies to: Pilots' (FRMS rostered shift rule). Toggle OFF restores CHECKING DISABLED. Triangle is mostly covered by the shift badge; only its top-left corner is clickable |
-| RB-012 | Export PDF | Generated | TODO | | |
+| RB-012 | Export PDF | Generated | PASS |  | Bulk actions > Export to PDF downloads 'Roster_October_2026_Draft___BETA_TEST_ONLY_Draft.pdf' (3 pages): title 'Roster for October 2026 - Draft - BETA TEST ONLY Draft', per-day totals per shift type and per-person rows; totals for 1-3 Oct match the grid (AM 18/0/20, PM 20/19/0, NT 0/20/20, OH 19/19/0) |
 | RB-013 | Publish Month: Merge / Clear then Publish (on draft only) | Live roster updated; Viewer, Dashboard, Schedule roster row, Timesheets reflect it | TODO | | |
 | RB-014 | Enable Live Edit > Confirm & Edit | Live roster editable | TODO | | |
 | RB-015 | WG user | Can only edit own groups | TODO | | |

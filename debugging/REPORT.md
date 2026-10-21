@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 3 |
 | Medium | 30 |
-| Low | 29 |
+| Low | 30 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -72,6 +72,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-POP-004](bugs/BUG-POP-004.md) | Low | Flight Schedule | Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc |
 | [BUG-RB-001](bugs/BUG-RB-001.md) | Low | Roster Builder | Roster Builder: no page Help (?); Copy/Paste Instructions popup ignores Escape and outside click |
 | [BUG-RB-004](bugs/BUG-RB-004.md) | Low | Roster Builder | Roster Builder: Rule Violations popup shows 'Monday, October 5' instead of the configured DD/MM/YYYY date |
+| [BUG-RB-006](bugs/BUG-RB-006.md) | Low | Roster Builder | Roster Builder: at phone width the shift palette takes half the screen and the Draft Edit Mode banner covers the search box and palette |
 | [BUG-RV-001](bugs/BUG-RV-001.md) | Low | Roster Viewer | Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape |
 | [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
 
@@ -1103,6 +1104,22 @@ Actual: 'For Aisha Johnston on Monday, October 5:' - US long format, no year. Sa
 Suspected cause: rosterbuilder/index.js line 5403 (and the note modal at 5247) uses toLocaleDateString(undefined, {weekday,month,day}) - browser locale, no year - instead of the shared Time Zone date formatter.
 
 ![BUG-RB-004-1](bugs/screenshots/BUG-RB-004-1.png)
+
+### BUG-RB-006: Roster Builder: at phone width the shift palette takes half the screen and the Draft Edit Mode banner covers the search box and palette
+
+Severity: Low | Module: Roster Builder | Check: RB-S05 ([14-roster-builder](checklists/14-roster-builder.md))
+
+Steps:
+1. Settings and Tools > Roster Builder, select a draft
+2. Resize the window to 390 px wide
+
+Expected: Grid usable, palette collapsible or below the grid, banner doesn't cover controls.
+
+Actual: The roster grid gets only about 175 px (names column plus no visible days) while the palette fills the right half. The orange Draft Edit Mode banner sits on top of the search box and the first palette items. The violations toggle and Enable Live Edit are hidden. No page-level sideways scroll.
+
+Suspected cause: No narrow-screen layout for the builder: grid and palette stay side by side and the banner is absolutely positioned.
+
+![BUG-RB-006-1](bugs/screenshots/BUG-RB-006-1.png)
 
 ### BUG-RV-001: Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape
 

@@ -64,6 +64,7 @@
 | [BUG-RB-003](BUG-RB-003.md) | `RB-006` | Roster Builder | Roster Builder: copy/paste still works with violation checking ON | Medium | New | |
 | [BUG-RB-004](BUG-RB-004.md) | `RB-S04` | Roster Builder | Roster Builder: Rule Violations popup shows 'Monday, October 5' instead of the configured DD/MM/YYYY date | Low | New | |
 | [BUG-RB-005](BUG-RB-005.md) | `RB-008` | Roster Builder | Roster Builder: every validation error throws a JS error instead of showing a message (e.g. Apply Shift Pattern with no shifts) | Medium | New | |
+| [BUG-RB-006](BUG-RB-006.md) | `RB-S05` | Roster Builder | Roster Builder: at phone width the shift palette takes half the screen and the Draft Edit Mode banner covers the search box and palette | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
