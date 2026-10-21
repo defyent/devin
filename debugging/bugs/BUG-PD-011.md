@@ -20,10 +20,10 @@
 'Password changed' and the new password works; a wrong current password gives a clear 'Current password is incorrect' message.
 
 ## Actual
-Both with the correct and with a wrong current password: 'Password Change Failed - Invalid Action: change_password'. The password is not changed. The client-side checks work: empty fields 'Please fill in all password fields', short 'New password must be at least 8 characters long', mismatch 'New passwords do not match'.
+Both with the correct and with a wrong current password: 'Password Change Failed - Invalid Action: change_password'. The password is not changed. The client-side checks work: empty fields 'Please fill in all password fields', short 'New password must be at least 8 characters long', mismatch 'New passwords do not match'. Same result when betatest_low changes its own password from My Account (header name > own Personnel Details > Security).
 
 ## Evidence
-- Screenshot: `screenshots/BUG-PD-011-1.png`, `screenshots/BUG-PD-011-2.png`
+- Screenshot: `screenshots/BUG-PD-011-1.png`, `screenshots/BUG-PD-011-2.png`, `screenshots/BUG-PD-011-3.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

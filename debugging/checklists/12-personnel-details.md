@@ -53,8 +53,8 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PD-026 | Security: change password (wrong current, < 8, mismatch) | Validation; success | FAIL | BUG-PD-011 | Validation messages work (empty, under 8 chars, mismatch), but a real change - correct or wrong current password - fails with 'Invalid Action: change_password' (BUG-PD-011). Tested by Service Account on BETA TEST ONLY Lowperm; password unchanged |
 | PD-027 | Security: Enable 2FA (QR, backup codes download, verify) | Enabled | FAIL | BUG-PD-003 | Password prompt (wrong pw: 'Setup Error - Invalid password'), QR + manual key + 10 backup codes + Download, valid code -> '2FA enabled successfully!'. Wrong code closes the dialog and forces a new key |
 | PD-028 | Customize: Login Landing Page | Saved; used on next login | TODO | | |
-| PD-029 | Access as RO / WO / WG | Edit rights match level; WG can always edit self | TODO | | |
-| PD-030 | No Personnel Details permission > My Account | Access Denied | TODO | | |
+| PD-029 | Access as RO / WO / WG | Edit rights match level; WG can always edit self | BLOCKED |  | Needs users at RO / WO / WG for Personnel Details; run with 90 Permission levels |
+| PD-030 | No Personnel Details permission > My Account | Access Denied | BLOCKED |  | betatest_low: clicking its name in the header opens its own Personnel Details (My Account, #276) with Personal Details editable. Whether that is right depends on its Personnel Details permission level; checked again in 90 Permission levels |
 
 ## Known issues from external audits
 
