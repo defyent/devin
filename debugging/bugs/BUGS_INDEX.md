@@ -52,6 +52,7 @@
 | [BUG-PD-010](BUG-PD-010.md) | `PD-024` | Personnel Details | Personnel Details: the 'Performance' timing panel is shown to users and covers buttons | Low | New | |
 | [BUG-PD-011](BUG-PD-011.md) | `PD-026` | Personnel Details | Personnel Details > Security: Change Password always fails with 'Invalid Action: change_password' | High | New | |
 | [BUG-PD-012](BUG-PD-012.md) | `PD-025` | Personnel Details | Personnel Details > Files: opening a file shows 'File Access Error' with the file's contents as the message | Medium | New | |
+| [BUG-PD-013](BUG-PD-013.md) | `PD-004` | Personnel Details | Personnel Details: an empty Birth Date shows today's date | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

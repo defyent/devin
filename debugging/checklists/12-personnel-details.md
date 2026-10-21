@@ -18,8 +18,8 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PD-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | PASS |  | Help (?) opens 'Personnel Details Help'; closes with Escape, x and outside click; stays open on drag-out (shot pd_help) |
 | PD-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | FAIL | BUG-PD-005 | Drag-out keeps Help, History and PDF Options open (pass). History and PDF Options don't close with Escape; PDF Options has no x (BUG-PD-005) |
 | PD-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
-| PD-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
-| PD-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
+| PD-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | 390 px: tabs become a dropdown, no sideways scrolling, fields fit the width. The Performance panel (BUG-PD-010) covers the photo controls on mobile until closed |
+| PD-S06 | Low-permission account | Access Denied or read-only as per permission | BLOCKED |  | betatest_low opens its own My Account and can edit Personal Details; whether that is right depends on its permission level, checked in 90 Permission levels (same as PD-030) |
 
 ## Module checks
 

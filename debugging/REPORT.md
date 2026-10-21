@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 3 |
 | Medium | 25 |
-| Low | 22 |
+| Low | 23 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -55,6 +55,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PD-004](bugs/BUG-PD-004.md) | Low | Personnel Details > Security | Security tab 'Enabled on' date ignores Settings > Time Zone format |
 | [BUG-PD-005](bugs/BUG-PD-005.md) | Low | Personnel Details | Personnel Details: History, PDF Options and Legacy Duty Browser popups don't close with Escape, and PDF Options has no x |
 | [BUG-PD-010](bugs/BUG-PD-010.md) | Low | Personnel Details | Personnel Details: the 'Performance' timing panel is shown to users and covers buttons |
+| [BUG-PD-013](bugs/BUG-PD-013.md) | Low | Personnel Details | Personnel Details: an empty Birth Date shows today's date |
 | [BUG-PERF-001](bugs/BUG-PERF-001.md) | Low | All modules (debug panel) | 'Performance' debug timing panel shown on every page, including to non-admin users |
 | [BUG-PERM-001](bugs/BUG-PERM-001.md) | Low | Shell (main) sidebar | Sidebar lists modules the user has no permission for (all lead to Access Denied) |
 | [BUG-PL-001](bugs/BUG-PL-001.md) | Low | All Personnel | All Personnel has no page Help (?) |
@@ -793,10 +794,27 @@ Steps:
 
 Expected: Debug timing info is hidden from normal users, or at least doesn't cover page controls.
 
-Actual: A 'Performance' panel (Permission Check, Load Person & Groups ... Total Time) is shown at the bottom right on every load. It sits on top of the Archived Forms Unarchive button, so the click goes to the panel until you close it with its x.
+Actual: A 'Performance' panel (Permission Check, Load Person & Groups ... Total Time) is shown at the bottom right on every load. It sits on top of the Archived Forms Unarchive button, so the click goes to the panel until you close it with its x. At 390 px width the panel covers most of the Photo section (Choose photo / Upload).
 
 ![BUG-PD-010-1](bugs/screenshots/BUG-PD-010-1.png)
 ![BUG-PD-010-2](bugs/screenshots/BUG-PD-010-2.png)
+![BUG-PD-010-3](bugs/screenshots/BUG-PD-010-3.png)
+
+### BUG-PD-013: Personnel Details: an empty Birth Date shows today's date
+
+Severity: Low | Module: Personnel Details | Check: PD-004 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. All Personnel > BETA TEST ONLY Lowperm (no birth date on file) > Personal Details
+2. Look at Birth Date
+
+Expected: Birth Date is blank when none is recorded.
+
+Actual: The box shows 21/10/2026 (today), but the field has no value (data-has-value=false, initialValue empty). Users will think today's date is saved as the birth date.
+
+Suspected cause: The date picker fills in today for empty values; may be linked to the picker load error in BUG-PD-001 (getPickerMod is not defined). Same pattern as the DFR date boxes in BUG-DFR-002.
+
+![BUG-PD-013-1](bugs/screenshots/BUG-PD-013-1.png)
 
 ### BUG-PERF-001: 'Performance' debug timing panel shown on every page, including to non-admin users
 

@@ -20,10 +20,10 @@
 Debug timing info is hidden from normal users, or at least doesn't cover page controls.
 
 ## Actual
-A 'Performance' panel (Permission Check, Load Person & Groups ... Total Time) is shown at the bottom right on every load. It sits on top of the Archived Forms Unarchive button, so the click goes to the panel until you close it with its x.
+A 'Performance' panel (Permission Check, Load Person & Groups ... Total Time) is shown at the bottom right on every load. It sits on top of the Archived Forms Unarchive button, so the click goes to the panel until you close it with its x. At 390 px width the panel covers most of the Photo section (Choose photo / Upload).
 
 ## Evidence
-- Screenshot: `screenshots/BUG-PD-010-1.png`, `screenshots/BUG-PD-010-2.png`
+- Screenshot: `screenshots/BUG-PD-010-1.png`, `screenshots/BUG-PD-010-2.png`, `screenshots/BUG-PD-010-3.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)
