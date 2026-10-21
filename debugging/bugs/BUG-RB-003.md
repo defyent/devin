@@ -28,7 +28,7 @@ Copy/paste is not allowed while violation checking is on (documented behaviour),
 - Console / network errors: none
 
 ## Suspected cause (optional)
-Copy/paste keyboard handlers don't check the violations toggle state.
+rosterbuilder/index.js copy handler (around line 4528-4555) and paste never check violationsEnabled; only an empty selection is rejected.
 
 ## Test data involved
 none

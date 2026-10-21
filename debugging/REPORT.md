@@ -615,7 +615,7 @@ Expected: Copy/paste is not allowed while violation checking is on (documented b
 
 Actual: 'Copied 1 cell(s)' then 'Successfully pasted 1 shift(s)' - the shift is pasted with no warning, even onto a day that then shows a violation.
 
-Suspected cause: Copy/paste keyboard handlers don't check the violations toggle state.
+Suspected cause: rosterbuilder/index.js copy handler (around line 4528-4555) and paste never check violationsEnabled; only an empty selection is rejected.
 
 ![BUG-RB-003-1](bugs/screenshots/BUG-RB-003-1.png)
 ![BUG-RB-003-2](bugs/screenshots/BUG-RB-003-2.png)
@@ -1082,7 +1082,7 @@ Expected: Date shown in the Time Zone setting format, e.g. Monday 05/10/2026.
 
 Actual: 'For Aisha Johnston on Monday, October 5:' - US long format, no year. Same issue as BUG-RV-003 in Roster Viewer.
 
-Suspected cause: Popup builds the date with toLocaleDateString('en-US', ...) instead of the shared date formatter.
+Suspected cause: rosterbuilder/index.js line 5403 (and the note modal at 5247) uses toLocaleDateString(undefined, {weekday,month,day}) - browser locale, no year - instead of the shared Time Zone date formatter.
 
 ![BUG-RB-004-1](bugs/screenshots/BUG-RB-004-1.png)
 

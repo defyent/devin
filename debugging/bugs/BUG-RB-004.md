@@ -27,7 +27,7 @@ Date shown in the Time Zone setting format, e.g. Monday 05/10/2026.
 - Console / network errors: none
 
 ## Suspected cause (optional)
-Popup builds the date with toLocaleDateString('en-US', ...) instead of the shared date formatter.
+rosterbuilder/index.js line 5403 (and the note modal at 5247) uses toLocaleDateString(undefined, {weekday,month,day}) - browser locale, no year - instead of the shared Time Zone date formatter.
 
 ## Test data involved
 none
