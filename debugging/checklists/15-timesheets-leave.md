@@ -16,9 +16,9 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 |---|---|---|---|---|---|
 | TS-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Administration > Settings and Tools > Timesheets opens 'Timesheet Approval' (October 2026, group pills All Personnel 110 / Administration 10 / Crew 40 / Engineers 20 / Pilots 40), no console errors |
 | TS-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-TS-001 | No Help on Timesheet Approval; Timesheet Details (?) does nothing |
-| TS-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
+| TS-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Add Leave Type popup stays open after mousedown inside / release outside. F&D and Roster Violation popups close on outside click as designed |
 | TS-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | FAIL | BUG-TS-004 | Details DATE column 'Oct 5', ROSTER times '14:00:00' with seconds |
-| TS-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
+| TS-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS | BUG-PD-010 | At 390px Timesheet Approval, Timesheet Details and Leave Requests fit the screen; group and section pills become dropdowns; tables scroll sideways inside their card (no card view). The Performance panel covers rows (BUG-PD-010) |
 | TS-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low: Settings and Tools gives Access Denied and its own Personnel Details has no Timesheets tab |
 
 ## Module checks
@@ -32,13 +32,13 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | TS-005 | Approve day with pending claim | Blocked until claim approved/rejected | BLOCKED |  | Needs a submitted day with a pending claim; Add Claim does nothing (BUG-PD-016). Retest in 90 |
 | TS-006 | Reject claim (reason required); move back to Pending | Works | BLOCKED |  | No claims exist (Claims 0) and Add Claim does nothing (BUG-PD-016). Retest in 90 |
 | TS-007 | F&D / Roster Violation popups | Open | PASS | BUG-TS-005 | F&D shield opens 'Flight & Duty Analysis' (FRMS limits, predicted violations); roster warning triangle opens 'Roster Violation Analysis' (Shift Sequence rule). Both ignore Escape and use ISO dates (BUG-TS-005) |
-| TS-008 | Leave Requests (beach icon) Pending Queue: search, filter, Approve/Reject | Approve toast reports roster shifts updated; roster changed | TODO | | |
-| TS-009 | All Requests: filters; return decided to Pending | Works | TODO | | |
-| TS-010 | Leave Types: Add (Name, hex Colour, Sort, Status); deactivate/reactivate | Works; invalid hex rejected | TODO | | |
+| TS-008 | Leave Requests (beach icon) Pending Queue: search, filter, Approve/Reject | Approve toast reports roster shifts updated; roster changed | BLOCKED |  | Leave Requests opens (Pending Queue, All Requests, Leave Types) with 0 pending/approved/rejected; there are no leave requests on stresstest and Request Leave is not available (see PD). Retest in 90 |
+| TS-009 | All Requests: filters; return decided to Pending | Works | BLOCKED |  | All Requests opens with Status/Person/Group/Type filters but no requests exist. The Person filter includes a blank entry (blank person #274, BUG-PL-002). Retest in 90 |
+| TS-010 | Leave Types: Add (Name, hex Colour, Sort, Status); deactivate/reactivate | Works; invalid hex rejected | PASS | BUG-TS-006 | Added 'BETA TEST ONLY Leave' #AB12CD sort 70 (toast 'Leave type added'); invalid hex ZZZZZZ rejected; deactivate (confirm) shows Inactive, reactivate works. Validation error closes the popup and loses input, popup ignores Escape (BUG-TS-006) |
 | TS-011 | Dashboard Unsigned Timesheets count after sign/approve | Updates | BLOCKED |  | Needs sign/approve (TS-004). Retest in 90 |
 
 ## Test data created
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| | | |
+| Leave type 'BETA TEST ONLY Leave' (#AB12CD, sort 70) | Leave Requests > Leave Types | Partly - deactivated (Inactive); the app has no delete for leave types |

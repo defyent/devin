@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 4 |
 | Medium | 32 |
-| Low | 33 |
+| Low | 34 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -81,6 +81,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-TS-001](bugs/BUG-TS-001.md) | Low | Timesheets | Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing |
 | [BUG-TS-004](bugs/BUG-TS-004.md) | Low | Timesheets | Timesheet Details shows dates as 'Oct 5' and times with seconds (14:00:00) |
 | [BUG-TS-005](bugs/BUG-TS-005.md) | Low | Timesheets | Timesheet Details: F&D and Roster Violation popups ignore Escape and show ISO dates in the title |
+| [BUG-TS-006](bugs/BUG-TS-006.md) | Low | Leave Requests | Leave Types: a validation error closes the Add Leave Type popup and throws away what you typed; the popup ignores Escape |
 
 ## Bugs
 
@@ -1267,6 +1268,23 @@ Suspected cause: timesheetdetails.js has no Escape handler for .active dialogs a
 ![BUG-TS-005-1](bugs/screenshots/BUG-TS-005-1.png)
 ![BUG-TS-005-2](bugs/screenshots/BUG-TS-005-2.png)
 
+### BUG-TS-006: Leave Types: a validation error closes the Add Leave Type popup and throws away what you typed; the popup ignores Escape
+
+Severity: Low | Module: Leave Requests | Check: TS-010 ([15-timesheets-leave](checklists/15-timesheets-leave.md))
+
+Steps:
+1. Timesheets > Leave Requests (beach icon) > Leave Types > Add Leave Type
+2. Type a name, set Colour to ZZZZZZ, click Save
+3. Click OK on the error
+
+Expected: Error is shown with the form still open and the entered values kept; Escape closes the popup.
+
+Actual: The Add Leave Type popup closes, then 'Colour must be a 6 character hex value, e.g. #3B82F6.' is shown. After OK the form is gone and must be reopened and retyped. Same for an empty name. Escape does nothing on the Add Leave Type popup.
+
+Suspected cause: saveLeaveType() in timesheets/leaverequests.js calls hideTypeModal() before showErrorModal() for both validation errors.
+
+![BUG-TS-006-1](bugs/screenshots/BUG-TS-006-1.png)
+
 ## Test data to clean up
 
 | Checklist | Record | Where | Cleanup done? |
@@ -1299,3 +1317,4 @@ Suspected cause: timesheetdetails.js has no Escape handler for .active dialogs a
 | 14-roster-builder | Aisha Johnston October 2026 shifts cleared (Clear Month test) | BETA TEST ONLY Draft only | Yes - draft deleted, live untouched |
 | 14-roster-builder | Pilots custom order (Aisha Pearce first) | Roster Builder Pilots group | Yes - Reset Order, alphabetical again |
 | 14-roster-builder | One Office Hours shift for Aisha Pearce on 01/12/2027 published to live | Live roster December 2027 | Yes - removed with Live Edit, December 2027 empty |
+| 15-timesheets-leave | Leave type 'BETA TEST ONLY Leave' (#AB12CD, sort 70) | Leave Requests > Leave Types | Partly - deactivated (Inactive); the app has no delete for leave types |

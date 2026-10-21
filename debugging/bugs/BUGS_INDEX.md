@@ -71,6 +71,7 @@
 | [BUG-TS-003](BUG-TS-003.md) | `TS-002` | Timesheets | Timesheet Approval list totals don't match Timesheet Details (Rostered Days and Duty Hours) | Medium | New | |
 | [BUG-TS-004](BUG-TS-004.md) | `TS-S04` | Timesheets | Timesheet Details shows dates as 'Oct 5' and times with seconds (14:00:00) | Low | New | |
 | [BUG-TS-005](BUG-TS-005.md) | `TS-007` | Timesheets | Timesheet Details: F&D and Roster Violation popups ignore Escape and show ISO dates in the title | Low | New | |
+| [BUG-TS-006](BUG-TS-006.md) | `TS-010` | Leave Requests | Leave Types: a validation error closes the Add Leave Type popup and throws away what you typed; the popup ignores Escape | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
