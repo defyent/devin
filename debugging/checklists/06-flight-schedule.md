@@ -27,11 +27,11 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 |---|---|---|---|---|---|
 | FS-001 | Day / Week / Month / List views; ‹ › Today | Each renders; view and date remembered on reload | PASS |  | month 'October 2026', week '19 - 25 October 2026', day, list all render; < > move by view; after reload + reopen, month view and date kept |
 | FS-002 | Past/future date banners | 'You are viewing a past/future date' with Today button | PASS |  | Past: 'You are viewing a past date.'; future: 'You are viewing a future date.'; today button in toolbar returns |
-| FS-003 | Group By dropdown | Only groups with Show in Dropdown; WG/RG users see only their own | TODO | | |
-| FS-004 | Toggle Roster | Roster row shows only Show-on-Schedule shifts and On Roster members | TODO | | |
-| FS-005 | Toggle Notes | Notes show/hide | TODO | | |
-| FS-006 | Compact view (month) | Max 3 events/day with +more | TODO | | |
-| FS-007 | Font size slider | Changes size; remembered? | TODO | | |
+| FS-003 | Group By dropdown | Only groups with Show in Dropdown; WG/RG users see only their own | PASS |  | Group By lists Administration, BETA TEST ONLY Group (Show in Dropdown on), Crew, Engineers, Pilots. All 424 events/week, Pilots 191, BETA group 0. WG/RG-only part not testable (no such user) |
+| FS-004 | Toggle Roster | Roster row shows only Show-on-Schedule shifts and On Roster members | PASS |  | Toggle Roster (title 'Toggle Roster') hides/shows the roster row (178 shift items in week view); flights stay |
+| FS-005 | Toggle Notes | Notes show/hide | IN PROGRESS |  | Toggle Notes button works (active class flips) but there are no notes this week; retest after FS-024 adds a note. Notes button has a tooltip; view buttons today/month/week/day/list and < > have none (ICON-12) |
+| FS-006 | Compact view (month) | Max 3 events/day with +more | PASS |  | Compact (title 'Compact view (show +more)') in month view: 2 items per day + '+N more' link (e.g. '+66 more'). With Roster on, the 2 slots are roster shifts so flights are only reachable via +more |
+| FS-007 | Font size slider | Changes size; remembered? | PASS |  | Font button (title 'Adjust font size') opens slider 8-18; 14 -> 18 changes event text 11.9px -> 15.3px; kept after reload; restored to 14 |
 | FS-008 | Toggle Edit Mode (write users only) | Enable/Disable Live Edit; hidden for RA/RG | TODO | | |
 | FS-009 | Edit mode: drag on empty slot in aircraft column | Flight Details opens pre-filled start/end/aircraft | TODO | | |
 | FS-010 | Edit mode: drag in all-day area | All-day flight created | TODO | | |

@@ -9,18 +9,18 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | Checklist | Prefix | Area | Checks | Pass | Fail | Blocked | Ext. open | Status |
 |---|---|---|---|---|---|---|---|---|
 | [00-setup-and-accounts](checklists/00-setup-and-accounts.md) | `SET` | Session setup, accounts and baseline | 9 | 8 | 0 | 1 | 0 | DONE |
-| [01-login-auth](checklists/01-login-auth.md) | `LOG` | Login, 2FA, sessions, landing page | 25 | 5 | 2 | 0 | 0 | IN PROGRESS |
+| [01-login-auth](checklists/01-login-auth.md) | `LOG` | Login, 2FA, sessions, landing page | 25 | 13 | 3 | 0 | 0 | IN PROGRESS |
 | [02-shell-navigation](checklists/02-shell-navigation.md) | `NAV` | Application shell, sidebar, header, mobile | 27 | 20 | 2 | 4 | 1 | DONE |
-| [03-common-conventions](checklists/03-common-conventions.md) | `CON` | Common screen conventions (apply on every page) | 22 | 0 | 0 | 0 | 0 | TODO |
-| [04-access-manager](checklists/04-access-manager.md) | `AM` | Access Manager (users, roles, groups, permissions, templates) | 38 | 0 | 0 | 0 | 0 | TODO |
-| [05-dashboard](checklists/05-dashboard.md) | `DSH` | Dashboard | 19 | 0 | 0 | 0 | 0 | TODO |
-| [06-flight-schedule](checklists/06-flight-schedule.md) | `FS` | Flight Schedule (incl. embedded Location Planner) | 40 | 0 | 0 | 0 | 1 | TODO |
+| [03-common-conventions](checklists/03-common-conventions.md) | `CON` | Common screen conventions (apply on every page) | 22 | 1 | 1 | 0 | 0 | IN PROGRESS |
+| [04-access-manager](checklists/04-access-manager.md) | `AM` | Access Manager (users, roles, groups, permissions, templates) | 38 | 21 | 7 | 0 | 0 | IN PROGRESS |
+| [05-dashboard](checklists/05-dashboard.md) | `DSH` | Dashboard | 19 | 10 | 4 | 5 | 0 | DONE |
+| [06-flight-schedule](checklists/06-flight-schedule.md) | `FS` | Flight Schedule (incl. embedded Location Planner) | 40 | 7 | 1 | 0 | 1 | IN PROGRESS |
 | [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 0 | 0 | 0 | 8 | TODO |
 | [08-active-flights](checklists/08-active-flights.md) | `AF` | Active Flights and Live Tracking | 19 | 0 | 0 | 0 | 3 | TODO |
 | [09-daily-flight-record](checklists/09-daily-flight-record.md) | `DFR` | Daily Flight Record | 16 | 0 | 0 | 0 | 1 | TODO |
 | [10-location-planner](checklists/10-location-planner.md) | `LP` | Location Planner (stand-alone) | 9 | 0 | 0 | 0 | 0 | TODO |
 | [11-personnel-list](checklists/11-personnel-list.md) | `PL` | All Personnel (Personnel List) | 11 | 0 | 0 | 0 | 2 | TODO |
-| [12-personnel-details](checklists/12-personnel-details.md) | `PD` | Personnel Details / My Account | 36 | 0 | 0 | 0 | 3 | TODO |
+| [12-personnel-details](checklists/12-personnel-details.md) | `PD` | Personnel Details / My Account | 36 | 0 | 1 | 0 | 3 | IN PROGRESS |
 | [13-roster-viewer](checklists/13-roster-viewer.md) | `RV` | Roster Viewer | 12 | 0 | 0 | 0 | 1 | TODO |
 | [14-roster-builder](checklists/14-roster-builder.md) | `RB` | Roster Builder | 21 | 0 | 0 | 0 | 1 | TODO |
 | [15-timesheets-leave](checklists/15-timesheets-leave.md) | `TS` | Timesheets, Timesheet Details, Leave Requests | 17 | 0 | 0 | 0 | 0 | TODO |
@@ -56,7 +56,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [45-settings-inspections](checklists/45-settings-inspections.md) | `SINS` | Settings – Inspection Notifications | 9 | 0 | 0 | 0 | 0 | TODO |
 | [46-settings-integrations](checklists/46-settings-integrations.md) | `SINT` | Settings – Google Calendar, WhatsApp | 10 | 0 | 0 | 0 | 0 | TODO |
 | [47-settings-activitylog](checklists/47-settings-activitylog.md) | `SLOG` | Settings – Activity Log | 9 | 0 | 0 | 0 | 1 | TODO |
-| [90-xc-permissions](checklists/90-xc-permissions.md) | `PERM` | Cross-cutting: permission levels | 10 | 0 | 0 | 0 | 0 | TODO |
+| [90-xc-permissions](checklists/90-xc-permissions.md) | `PERM` | Cross-cutting: permission levels | 10 | 2 | 0 | 0 | 0 | IN PROGRESS |
 | [91-xc-popups](checklists/91-xc-popups.md) | `POP` | Cross-cutting: popups/modals | 8 | 0 | 0 | 0 | 7 | TODO |
 | [92-xc-dates-timezones](checklists/92-xc-dates-timezones.md) | `DATE` | Cross-cutting: date/time formats and pickers | 7 | 0 | 0 | 0 | 5 | TODO |
 | [93-xc-mobile](checklists/93-xc-mobile.md) | `MOB` | Cross-cutting: mobile / narrow layout | 4 | 0 | 0 | 0 | 0 | TODO |
