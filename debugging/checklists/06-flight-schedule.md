@@ -38,17 +38,17 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FS-011 | Add Flight button | Blank Flight Details | FAIL | BUG-FS-001 | Add Flight opens blank 'New Flight Details' (Open, aircraft/PIC empty, Save disabled until change). But Start defaults to 08:25 = current UTC while org local (Pacific/Auckland) is 21:25, and 'SAR TIME (LOCAL)' shows 09:25. Cancel with no changes does nothing; back arrow returns to schedule (edit mode kept) |
 | FS-012 | Single-click a flight | Selected; edit / note / cancelled / F&D icons shown as applicable | PASS |  | Click selects the flight (blue outline, fc-event-selected); small edit + note icons appear on its top edge. Edit mode shows 'Live Edit Mode - Changes are live for everyone.' banner |
 | FS-013 | Note icon popup | PIC, crew, lesson, route, notes, aircraft inspections due | PASS |  | View Details icon (aria 'View Details') opens '#8656 ZK-SIM' popup: PIC, Crew, Route NZWN-NZNS, Notes, OK. Lesson/inspections empty for this flight so not shown. Esc does not close it (BUG-POP-004) |
-| FS-014 | Move / resize open flight | Toast 'Updated flight #ID time.' | TODO | | |
+| FS-014 | Move / resize open flight | Toast 'Updated flight #ID time.' | PASS |  | Move #42903 down 1h: 08:30-09:30 > 09:30-10:30, toast 'Updated flight #42903 time.'. Resize end handle +30 min: 09:30-11:00, toast 'Updated flight #42903 duration.' |
 | FS-015 | Move completed / cancelled flight | 'Completed flights cannot be moved.' / refused | TODO | | |
-| FS-016 | Undo Last Action | Reverts last move/resize | TODO | | |
-| FS-017 | Ctrl+C > click slot > Ctrl+V | Copy Flight Options (Legs, Forms + content, Files with counts); required forms locked on | TODO | | |
+| FS-016 | Undo Last Action | Reverts last move/resize | PASS |  | Undo twice: 'Undo successful.' each time, 09:30-11:00 > 09:30-10:30 > 08:30-09:30; Undo button then disabled |
+| FS-017 | Ctrl+C > click slot > Ctrl+V | Copy Flight Options (Legs, Forms + content, Files with counts); required forms locked on | PASS |  | Ctrl+C on #42903 > toast 'Flight ... copied. Click on the schedule to place it, then press Ctrl+V'. Click empty slot > 'Press Ctrl+V to paste the flight here' > Copy Flight Options: Legs 0, Forms 0 + Include form content, Files 0, all ticked. Required-form lock not testable (no forms on flight). Ctrl+V before choosing a slot gives an Error modal 'Click on the schedule to choose where to paste the flight.' |
 | FS-018 | Paste multiple copies | Each paste creates a new flight | TODO | | |
 | FS-019 | Ctrl+X > Ctrl+V on open flight | Flight moved; not allowed for completed/cancelled | TODO | | |
 | FS-020 | Delete key on open flight | Confirmation then deleted; refused for non-open | TODO | | |
 | FS-021 | Esc during copy/cut | Cancels | TODO | | |
 | FS-022 | Double booking (same aircraft or person overlapping) | Warning shown | TODO | | |
 | FS-023 | F&D violation icon / popup | Flight & Duty Violations popup lists violations | TODO | | |
-| FS-024 | Add Note (Start, End, Title, Details) > view/edit/delete | Works | IN PROGRESS |  | Add Note modal: Start/End Date (DD/MM/YYYY), Title, Details. Save Note > toast 'Note added successfully', note shows as all-day bar. Esc on the dirty modal does nothing (no close, no data loss). View/edit/delete: pending |
+| FS-024 | Add Note (Start, End, Title, Details) > view/edit/delete | Works | PASS |  | Add Note: Start/End Date, Title, Details > 'Note added successfully'. Click note > Edit Note modal > Update > 'Note updated successfully'. Delete Note > app confirm 'Are you sure you want to delete this note?' > 'Note deleted successfully', gone from schedule. Esc on note modals does nothing (see BUG-POP-004) |
 | FS-025 | Idle 20 min in edit mode | 'Edit mode has been disabled due to inactivity.' | TODO | | |
 | FS-026 | Mobile width | List view; tap opens Flight Details; edit mode off; Add Flight visible | TODO | | |
 | FS-027 | RG/WG user | Sees only flights on aircraft in their groups; see §14 caveat on membership read/write flag | TODO | | |
@@ -72,4 +72,5 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| Note 'BETA TEST ONLY Note' (21/10/2026) | Flight Schedule | No |
+| Note 'BETA TEST ONLY Note' (21/10/2026) | Flight Schedule | Yes (deleted in FS-024) |
+| Flight #42903 ZK-SIM, PIC BETA TEST ONLY Lowperm, route NZWN-NZWN, notes 'BETA TEST ONLY flight', 21/10/2026 08:30 | Flight Schedule / Flight Details | No |
