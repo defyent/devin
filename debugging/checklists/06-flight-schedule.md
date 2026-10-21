@@ -19,7 +19,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FS-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Flight details popup: mousedown inside, release outside > stays open. Outside click closes it |
 | FS-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | FAIL | BUG-FS-001 | Header shows UTC + Local (Pacific/Auckland); schedule/planner dates dd/mm/yyyy and event times local. But Add Flight defaults Start/End/SAR to the UTC time (BUG-FS-001) |
 | FS-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | See FS-026: 390 px switches to list view, no horizontal scroll, tap opens Flight Details |
-| FS-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
+| FS-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low (Crew, 1 permission, no Flight Schedule permission): menu still lists Flight Schedule; opening it shows 'Access Denied: You do not have permission to access the flight schedule', no Live Edit / Add Flight. See checklist 90 for menu visibility |
 
 ## Module checks
 
