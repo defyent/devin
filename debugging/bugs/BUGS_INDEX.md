@@ -20,6 +20,8 @@
 | [BUG-PD-004](BUG-PD-004.md) | `PD-S04` | Personnel Details > Security | Security tab 'Enabled on' date ignores Settings > Time Zone format | Low | New | |
 | [BUG-LOG-003](BUG-LOG-003.md) | `LOG-010` | Login / 2FA (main) | 'Trust this device for 30 days' is lost on Logout (logout deletes the trusted-device cookie) | Medium | New | |
 | [BUG-POP-003](BUG-POP-003.md) | `AM-019` | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved | Medium | New | |
+| [BUG-DSH-001](BUG-DSH-001.md) | `DSH-012` | Dashboard | Dashboard side tabs are icon-only with no tooltip or label | Low | New | |
+| [BUG-DSH-002](BUG-DSH-002.md) | `DSH-S02` | Dashboard | Dashboard has no Help (?) button | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
