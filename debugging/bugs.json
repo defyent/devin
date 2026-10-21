@@ -2352,5 +2352,41 @@
    "sdfr_main"
   ],
   "cause": "The settings_dfr template has a <script src=\"colorpicker.js\"> but that file is not in templates2/settings_dfr/. Remove the tag."
+ },
+ {
+  "id": "BUG-STZ-001",
+  "title": "Time Zone settings: the Example preview shows UTC, not the selected time zone",
+  "row": "STZ-S04",
+  "cl": "33-settings-timezone",
+  "module": "Settings: Time Zone",
+  "sev": "Medium",
+  "steps": [
+   "Settings and Tools > Configuration > Time Zone (time zone is Pacific/Auckland).",
+   "Look at the Example preview (Date & Time, Date Only, Time Only)."
+  ],
+  "expected": "The preview shows the current Pacific/Auckland date and time (22/10/2026 02:16, the same as the header's Local clock).",
+  "actual": "The preview shows 21/10/2026 13:16, which is UTC (the same as the header's UTC clock). So the page that sets the time zone shows the wrong local time. This is the same UTC default problem as BUG-FS-001, BUG-SMS-002 and BUG-FBLD-002.",
+  "shots": [
+   "stz_main"
+  ],
+  "cause": "The preview pickers are given new Date() (the browser's time, which is UTC here) instead of the time in the configured zone."
+ },
+ {
+  "id": "BUG-STZ-002",
+  "title": "Time Zone settings page has no Help (?)",
+  "row": "STZ-S02",
+  "cl": "33-settings-timezone",
+  "module": "Settings: Time Zone",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Configuration > Time Zone.",
+   "Look for the Help (?) in the page header."
+  ],
+  "expected": "A Help (?) in the header, like Flight Schedule and Daily Flight Record settings have, that explains the date format, time format and picker type options.",
+  "actual": "There is no Help button or help icon anywhere on the page.",
+  "shots": [
+   "stz_main"
+  ],
+  "cause": "The settings_timezone template has no helpBtn or help modal."
  }
 ]

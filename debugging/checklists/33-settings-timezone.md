@@ -14,18 +14,18 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| STZ-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | TODO | | |
-| STZ-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | TODO | | |
+| STZ-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Settings and Tools > Configuration > Time Zone loads with no console errors. |
+| STZ-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-STZ-002 | There is no Help (?) on the page. |
 | STZ-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
-| STZ-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
+| STZ-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | FAIL | BUG-STZ-001 | Example preview shows 21/10/2026 13:16 (UTC) when local Pacific/Auckland time is 22/10/2026 02:16. |
 | STZ-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
-| STZ-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
+| STZ-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low: Settings and Tools shows "Access Denied: You do not have permission to access the System Settings feature", so Time Zone cannot be reached. |
 
 ## Module checks
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| STZ-001 | Searchable timezone | Search works; clocks update | TODO | | |
+| STZ-001 | Searchable timezone | Search works; clocks update | PASS |  | The time zone list has 598 zones and a search box; typing "Honolulu" leaves only Pacific/Honolulu. Clocks not checked, because I did not save a different zone. |
 | STZ-002 | Cycle all 10 date formats | Example preview correct; then spot-check every module's dates (see 42-dates-timezones) | TODO | | |
 | STZ-003 | Cycle all 5 time formats | Preview + header clocks | TODO | | |
 | STZ-004 | Cycle picker types: Scroll Wheel / Type-In / Native | Every date field across modules uses selected type | TODO | | |

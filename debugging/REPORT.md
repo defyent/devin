@@ -7,8 +7,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 6 |
-| Medium | 46 |
-| Low | 71 |
+| Medium | 47 |
+| Low | 72 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -61,6 +61,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RV-002](bugs/BUG-RV-002.md) | Medium | Roster Viewer | Roster Viewer: clicking a shift does not open Shift Details |
 | [BUG-SMS-001](bugs/BUG-SMS-001.md) | Medium | Safety Reports | New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed |
 | [BUG-SMS-002](bugs/BUG-SMS-002.md) | Medium | Safety Reports | New Safety Report: Event Date/Time defaults to the UTC date and time, not local |
+| [BUG-STZ-001](bugs/BUG-STZ-001.md) | Medium | Settings: Time Zone | Time Zone settings: the Example preview shows UTC, not the selected time zone |
 | [BUG-SUP-001](bugs/BUG-SUP-001.md) | Medium | Support | Support has no page Help (?); Escape doesn't close New Ticket, but a click outside closes it and wipes everything typed |
 | [BUG-TS-002](bugs/BUG-TS-002.md) | Medium | Timesheets | Timesheet Approval: status filter 'Unsigned' shows 'No personnel found' although everyone has unsigned days |
 | [BUG-TS-003](bugs/BUG-TS-003.md) | Medium | Timesheets | Timesheet Approval list totals don't match Timesheet Details (Rostered Days and Duty Hours) |
@@ -126,6 +127,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SFS-001](bugs/BUG-SFS-001.md) | Low | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
 | [BUG-SMS-004](bugs/BUG-SMS-004.md) | Low | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register |
+| [BUG-STZ-002](bugs/BUG-STZ-002.md) | Low | Settings: Time Zone | Time Zone settings page has no Help (?) |
 | [BUG-SUP-002](bugs/BUG-SUP-002.md) | Low | Support | Support New Ticket: Ctrl+V doesn't paste a screenshot, though the error message tells you to use Ctrl+V |
 | [BUG-SUP-003](bugs/BUG-SUP-003.md) | Low | Support | Support ticket: clicking a .txt attachment shows an 'Error' popup containing the file's text |
 | [BUG-TS-001](bugs/BUG-TS-001.md) | Low | Timesheets | Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing |
@@ -983,6 +985,22 @@ Expected: Defaults to the local date and time (22/10/2026 00:37), as set in Sett
 Actual: Defaults to 21/10/2026 11:37, the UTC date and time. A report saved without changing it is dated 13 hours early. Same issue as BUG-FS-001 and BUG-FAD-005.
 
 ![BUG-SMS-002-1](bugs/screenshots/BUG-SMS-002-1.png)
+
+### BUG-STZ-001: Time Zone settings: the Example preview shows UTC, not the selected time zone
+
+Severity: Medium | Module: Settings: Time Zone | Check: STZ-S04 ([33-settings-timezone](checklists/33-settings-timezone.md))
+
+Steps:
+1. Settings and Tools > Configuration > Time Zone (time zone is Pacific/Auckland).
+2. Look at the Example preview (Date & Time, Date Only, Time Only).
+
+Expected: The preview shows the current Pacific/Auckland date and time (22/10/2026 02:16, the same as the header's Local clock).
+
+Actual: The preview shows 21/10/2026 13:16, which is UTC (the same as the header's UTC clock). So the page that sets the time zone shows the wrong local time. This is the same UTC default problem as BUG-FS-001, BUG-SMS-002 and BUG-FBLD-002.
+
+Suspected cause: The preview pickers are given new Date() (the browser's time, which is UTC here) instead of the time in the configured zone.
+
+![BUG-STZ-001-1](bugs/screenshots/BUG-STZ-001-1.png)
 
 ### BUG-SUP-001: Support has no page Help (?); Escape doesn't close New Ticket, but a click outside closes it and wipes everything typed
 
@@ -2043,6 +2061,22 @@ Suspected cause: templates2/hazardregister/index.js maps goal code 'M' to 'Minim
 
 ![BUG-SMS-004-1](bugs/screenshots/BUG-SMS-004-1.png)
 ![BUG-SMS-004-2](bugs/screenshots/BUG-SMS-004-2.png)
+
+### BUG-STZ-002: Time Zone settings page has no Help (?)
+
+Severity: Low | Module: Settings: Time Zone | Check: STZ-S02 ([33-settings-timezone](checklists/33-settings-timezone.md))
+
+Steps:
+1. Settings and Tools > Configuration > Time Zone.
+2. Look for the Help (?) in the page header.
+
+Expected: A Help (?) in the header, like Flight Schedule and Daily Flight Record settings have, that explains the date format, time format and picker type options.
+
+Actual: There is no Help button or help icon anywhere on the page.
+
+Suspected cause: The settings_timezone template has no helpBtn or help modal.
+
+![BUG-STZ-002-1](bugs/screenshots/BUG-STZ-002-1.png)
 
 ### BUG-SUP-002: Support New Ticket: Ctrl+V doesn't paste a screenshot, though the error message tells you to use Ctrl+V
 
