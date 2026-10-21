@@ -25,11 +25,14 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| SFT-001 | Categories / Activities: search, add, edit, delete (confirm) | Reflected in Flight Details, FRMS, Form auto-attach, Reports | TODO | | |
-| SFT-002 | Delete type in use | Check behaviour; log if silently orphaned | TODO | | |
+| SFT-001 | Categories / Activities: search, add, edit, delete (confirm) | Reflected in Flight Details, FRMS, Form auto-attach, Reports | FAIL | BUG-SFT-002 | Categories/Activities pills, search ("BETA" filters to one row), add (empty name refused: "Flight category name is required."), edit, and delete (confirm names the item) all work. "BETA TEST ONLY Cat2" and "BETA TEST ONLY Act" show on flight 42903 in the flight-category, flight-activity and leg category dropdowns. FAIL: a duplicate "PIC" was accepted (ID 15, since deleted). I did not check FRMS, Form auto-attach or Reports. |
+| SFT-002 | Delete type in use | Check behaviour; log if silently orphaned | PASS |  | I set flight 42903 to "BETA TEST ONLY Cat2" and "BETA TEST ONLY Act". Deleting either is refused: "Cannot delete this flight category/activity because 1 flight references it. Please update or remove those flights first." Nothing is orphaned. The message shows in a warning popup titled "API Error", which is not the clearest title. |
 
 ## Test data created
 
 | Record | Where | Cleanup done? |
 |---|---|---|
 | | | |
+
+## Test data
+- "BETA TEST ONLY Cat"/"Cat2", "BETA TEST ONLY Act" and the duplicate "PIC" (ID 15) are deleted. Flight 42903 is set back to no category and no activity.
