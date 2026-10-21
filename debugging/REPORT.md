@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 7 |
 | Medium | 54 |
-| Low | 89 |
+| Low | 90 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -138,6 +138,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SFS-001](bugs/BUG-SFS-001.md) | Low | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted |
 | [BUG-SFT-001](bugs/BUG-SFT-001.md) | Low | Settings: Flight Types | Flight Types Settings: no Help (?), and Escape does not close popups |
 | [BUG-SLP-001](bugs/BUG-SLP-001.md) | Low | Settings: Lesson Plans | Lesson Plan Settings: no Help (?), and Escape does not close popups |
+| [BUG-SLP-003](bugs/BUG-SLP-003.md) | Low | Settings: Lesson Plans | Add Lesson accepts negative hours (Solo Hours -1 is saved and shown as "Solo: -1h") |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
 | [BUG-SMS-004](bugs/BUG-SMS-004.md) | Low | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register |
 | [BUG-SREN-001](bugs/BUG-SREN-001.md) | Low | Settings: Recency and Renewals | Recency & Renewals Settings: no Help (?), and Escape does not close popups |
@@ -2266,6 +2267,22 @@ Suspected cause: The page has no help modal, and there is no Escape key handler 
 
 ![BUG-SLP-001-1](bugs/screenshots/BUG-SLP-001-1.png)
 ![BUG-SLP-001-2](bugs/screenshots/BUG-SLP-001-2.png)
+
+### BUG-SLP-003: Add Lesson accepts negative hours (Solo Hours -1 is saved and shown as "Solo: -1h")
+
+Severity: Low | Module: Settings: Lesson Plans | Check: SLP-003 ([42-settings-lessonplans](checklists/42-settings-lessonplans.md))
+
+Steps:
+1. Settings and Tools > Lesson Plans > Lessons > Add Lesson.
+2. Lesson Plan "BETA TEST ONLY LP2", Name "BETA TEST ONLY Lesson", Dual 1.5, Solo -1, Ground 1, then Save.
+
+Expected: Hours can't be negative. The save should be refused with a message.
+
+Actual: "Lesson saved successfully" (server replied Ok:65). The lesson card shows "Solo: -1h".
+
+Suspected cause: The lesson-*hours inputs have no min="0", and neither saveLesson() nor settings_lessonplans_lessons_save checks the range.
+
+![BUG-SLP-003-1](bugs/screenshots/BUG-SLP-003-1.png)
 
 ### BUG-SMS-003: Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice
 

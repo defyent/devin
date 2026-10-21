@@ -17,20 +17,23 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | SLP-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Settings and Tools > Lesson Plans opens settings_lessonplans (tabs: Lesson Plans, Lessons, Exercises; "No lesson plans configured"), with no console errors. |
 | SLP-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-SLP-001 | No page Help (?), and Escape does not close Add Exercise. |
 | SLP-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Drag from inside Add Exercise to outside it: it stays open. |
-| SLP-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
-| SLP-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
-| SLP-S06 | Low-permission account | Access Denied or read-only as per permission | TODO | | |
+| SLP-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | N/A |  | No dates or times on this page. |
+| SLP-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | 390 px: no page overflow, tabs become a dropdown, lessons show as cards and are readable. |
+| SLP-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low: Settings and Tools shows Access Denied (System Settings). |
 
 ## Module checks
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
 | SLP-001 | Exercises CRUD | Saved | FAIL | BUG-SLP-002 | Empty name gives "Please enter an exercise name" (good). But exercises are never sent to the server (code has "TODO: Implement API integration"): edit makes a duplicate, and everything is gone after leaving the page. |
-| SLP-002 | Lesson Plans CRUD; delete in use | Set Inactive instead | TODO | | |
-| SLP-003 | Lessons: hours, notes, check flight, Exercise Configuration dual/solo, filter | Saved; Lesson tab on flights reflects | TODO | | |
+| SLP-002 | Lesson Plans CRUD; delete in use | Set Inactive instead | PASS |  | Add/edit Lesson Plan saved to the server (settings_lessonplans_save "Ok:14") and still there after leaving the page. Deleting a plan that has a lesson: server replies HAS_LESSONS:1, and the app offers "Cannot Delete ... make it inactive instead?". OK sets it Inactive ("Lesson plan set to inactive"). |
+| SLP-003 | Lessons: hours, notes, check flight, Exercise Configuration dual/solo, filter | Saved; Lesson tab on flights reflects | FAIL | BUG-SLP-003 | Add Lesson: empty save gives "Please fill in all required fields". Hours, notes and Check Flight are saved and load back in edit. But Solo -1 is accepted (BUG-SLP-003). Exercise Configuration can't be tested because exercises can't be saved (BUG-SLP-002). Lesson tab on flights not checked: no student/lesson flight on stresstest (see 07 blocked rows). |
 
 ## Test data created
 
 | Record | Where | Cleanup done? |
 |---|---|---|
 | | | |
+
+
+**Cleanup (42):** test lesson (id 65) and lesson plan "BETA TEST ONLY LP2" (id 14) deleted. Test exercises were never saved to the server (BUG-SLP-002), so there was nothing to clean up. Lesson Plans, Lessons and Exercises are all empty again, as they were.

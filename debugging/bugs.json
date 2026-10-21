@@ -2850,8 +2850,26 @@
   "actual": "No request goes to the server on Save (none seen in the network log), and no success message shows. Edit adds a second row (\"BETA TEST ONLY Ex\" and \"BETA TEST ONLY Ex2\") instead of renaming. When you come back, the list says \"No exercises configured\". So exercises can never be set up, and the Exercise Configuration on lessons can't be used. Lesson Plans on the same page do save (POST settings_lessonplans_save, \"Ok:14\").",
   "shots": [
    "slp_addex",
-   "slp_ex_dup"
+   "slp_ex_empty"
   ],
   "cause": "templates2/settings_lessonplans/index.js saveExercise() and deleteExercise() only change the in-memory exercises array (\"// TODO: Implement API integration\"), and loadExercises() only re-renders that array. The edit form doesn't carry the id, so data.id is empty and edit takes the \"Add new\" branch."
+ },
+ {
+  "id": "BUG-SLP-003",
+  "title": "Add Lesson accepts negative hours (Solo Hours -1 is saved and shown as \"Solo: -1h\")",
+  "row": "SLP-003",
+  "cl": "42-settings-lessonplans",
+  "module": "Settings: Lesson Plans",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Lesson Plans > Lessons > Add Lesson.",
+   "Lesson Plan \"BETA TEST ONLY LP2\", Name \"BETA TEST ONLY Lesson\", Dual 1.5, Solo -1, Ground 1, then Save."
+  ],
+  "expected": "Hours can't be negative. The save should be refused with a message.",
+  "actual": "\"Lesson saved successfully\" (server replied Ok:65). The lesson card shows \"Solo: -1h\".",
+  "shots": [
+   "slp_lesson"
+  ],
+  "cause": "The lesson-*hours inputs have no min=\"0\", and neither saveLesson() nor settings_lessonplans_lessons_save checks the range."
  }
 ]

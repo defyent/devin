@@ -150,6 +150,9 @@
 | [BUG-SREN-002](BUG-SREN-002.md) | `SREN-001` | Settings: Recency and Renewals | Add Recency accepts negative Days, and a Caution value higher than Warning | Medium | New | |
 | [BUG-SREN-003](BUG-SREN-003.md) | `SREN-002` | Settings: Recency and Renewals | Add Renewal Type accepts negative Days to Notify and a Frequency of 0 days | Medium | New | |
 | [BUG-SREN-004](BUG-SREN-004.md) | `SREN-S05` | Settings: Recency and Renewals | Recency & Renewals Settings on a phone: table columns overlap each other | Low | New | |
+| [BUG-SLP-001](BUG-SLP-001.md) | `SLP-S02` | Settings: Lesson Plans | Lesson Plan Settings: no Help (?), and Escape does not close popups | Low | New | |
+| [BUG-SLP-002](BUG-SLP-002.md) | `SLP-001` | Settings: Lesson Plans | Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave | High | New | |
+| [BUG-SLP-003](BUG-SLP-003.md) | `SLP-003` | Settings: Lesson Plans | Add Lesson accepts negative hours (Solo Hours -1 is saved and shown as "Solo: -1h") | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
