@@ -123,6 +123,7 @@
 | [BUG-EXM-007](BUG-EXM-007.md) | `EXM-009` | Exams | Exam Instances batch: deleting a person's instance shows success but the row stays until the page is reloaded | Low | New | |
 | [BUG-EXM-008](BUG-EXM-008.md) | `EXM-001` | Exams | Exam Builder: deleting an exam or exam group that has instances fails silently (error only in the console), and graded instances can't be removed | Medium | New | |
 | [BUG-SFS-001](BUG-SFS-001.md) | `SFS-003` | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted | Low | New | |
+| [BUG-SFS-002](BUG-SFS-002.md) | `SFS-004` | Settings: Flight Schedule | Changing Schedule Start Time saves a full date-time, and the setting then shows NaN:NaN | High | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

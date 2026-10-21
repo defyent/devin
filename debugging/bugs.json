@@ -2331,7 +2331,7 @@
   "expected": "Start time is saved as 06:00 and still shows 06:00 after reload.",
   "actual": "The page saves the picker's full value (\"2026-10-22 06:00:00\"). On reload it splits that on \":\" to get the hours, gets NaN, and the box shows \"NaN:NaN\". The server then stores \"NaN-NaN-NaN NaN:NaN:NaN\". After that, typing a new time does not enable Update Changes, so a user can't fix it from the UI.",
   "shots": [
-   "sfs_nan.png"
+   "sfs_nan"
   ],
   "cause": "templates2/settings_flightschedule/index.js: the change listener does state.scheduleStartTime = e.target.value, but datetimepicker.js writes \"YYYY-MM-DD HH:MM:SS\" to .dtp-hidden-input. init then does state.scheduleStartTime.split(\":\").map(Number). Fix: keep only HH:MM (e.g. value.slice(11,16)) and check it is valid before saving."
  }
