@@ -42,7 +42,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| | | |
+| Resource "BETA TEST ONLY R" / ZK-BTO (Cessna 172, BETA TEST ONLY Group, Flight Hours meter from 100) | Settings > Resources | No - kept for testing; delete after the audit |
 
 ## Test data left
 - Resource "BETA TEST ONLY R" / ZK-BTO (Cessna 172, BETA TEST ONLY Group, Flight Hours meter starting at 100). Kept for 99. Delete after the audit.

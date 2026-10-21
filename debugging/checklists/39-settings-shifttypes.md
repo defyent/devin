@@ -34,6 +34,6 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| | | |
+| Shift group "BETA TEST ONLY Grp3" and shift type "BETA TEST ONLY Shift" (BETAT) | Settings > Roster Shifts > View Deleted | Partly - deleted, but the app only soft-deletes them |
 
 **Test data (39):** temp group "BETA TEST ONLY Grp3" and shift type "BETA TEST ONLY Shift" (BETAT) deleted. The app only soft-deletes them: the group is still listed in View Deleted, and there is no permanent delete.

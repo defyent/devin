@@ -33,4 +33,4 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | Record | Where | Cleanup done? |
 |---|---|---|
-| | | |
+| Two BETA TEST ONLY inspections (date trigger and meter trigger) | Settings > Inspections, aircraft ZK-BTO | No - kept with test aircraft ZK-BTO; delete with it |
