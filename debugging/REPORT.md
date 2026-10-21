@@ -7,8 +7,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 4 |
-| Medium | 42 |
-| Low | 58 |
+| Medium | 43 |
+| Low | 60 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -53,6 +53,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RB-002](bugs/BUG-RB-002.md) | Medium | Roster Builder | Roster Builder: Copy Live to Draft copies one shift at a time and takes about 6 minutes for one month |
 | [BUG-RB-003](bugs/BUG-RB-003.md) | Medium | Roster Builder | Roster Builder: copy/paste still works with violation checking ON |
 | [BUG-RB-005](bugs/BUG-RB-005.md) | Medium | Roster Builder | Roster Builder: every validation error throws a JS error instead of showing a message (e.g. Apply Shift Pattern with no shifts) |
+| [BUG-RPT-003](bugs/BUG-RPT-003.md) | Medium | Reports | Reports tables overlap on a phone: column text is drawn on top of other columns |
 | [BUG-RV-002](bugs/BUG-RV-002.md) | Medium | Roster Viewer | Roster Viewer: clicking a shift does not open Shift Details |
 | [BUG-SMS-001](bugs/BUG-SMS-001.md) | Medium | Safety Reports | New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed |
 | [BUG-SMS-002](bugs/BUG-SMS-002.md) | Medium | Safety Reports | New Safety Report: Event Date/Time defaults to the UTC date and time, not local |
@@ -105,6 +106,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RB-006](bugs/BUG-RB-006.md) | Low | Roster Builder | Roster Builder: at phone width the shift palette takes half the screen and the Draft Edit Mode banner covers the search box and palette |
 | [BUG-REC-001](bugs/BUG-REC-001.md) | Low | Recency and Renewals | Recency and Renewals overview has no page Help (?) |
 | [BUG-REC-002](bugs/BUG-REC-002.md) | Low | Recency and Renewals | Recency and Renewals at phone width: the table is cut off, so Total Items and Actions are hidden |
+| [BUG-RPT-001](bugs/BUG-RPT-001.md) | Low | Reports | Reports has no page Help (?), and Escape doesn't close New Report Template |
+| [BUG-RPT-002](bugs/BUG-RPT-002.md) | Low | Reports | Reports Export CSV writes dates as '2026-10-16 06:00:00' instead of the org date format |
 | [BUG-RV-001](bugs/BUG-RV-001.md) | Low | Roster Viewer | Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape |
 | [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
@@ -833,6 +836,20 @@ Actual: The pattern popup closes, no message appears, and the console shows 'Can
 Suspected cause: openErrorModal() (rosterbuilder/index.js line 5057) hides elements.predictModal.overlay, but there is no predictModal in the elements map, so it throws before showing the error. Every openErrorModal call on the page is affected.
 
 ![BUG-RB-005-1](bugs/screenshots/BUG-RB-005-1.png)
+
+### BUG-RPT-003: Reports tables overlap on a phone: column text is drawn on top of other columns
+
+Severity: Medium | Module: Reports | Check: RPT-S05 ([26-reports](checklists/26-reports.md))
+
+Steps:
+1. Open Administration > Reports at 390px wide (phone)
+2. Look at the Report Templates list
+
+Expected: Readable rows (card layout or stacked columns), no overlapping text.
+
+Actual: Template Name, Data Source, Columns, Filters, Last Run and Run By text run into each other (e.g. 'QA SMS Filter 107SMS Reports' over '16/10/2026 16:07'); Actions are cut off and need horizontal scroll.
+
+![BUG-RPT-003-1](bugs/screenshots/BUG-RPT-003-1.png)
 
 ### BUG-RV-002: Roster Viewer: clicking a shift does not open Shift Details
 
@@ -1677,6 +1694,39 @@ Actual: The table stays a table (423px wide inside a 303px card). The Total Item
 
 ![BUG-REC-002-1](bugs/screenshots/BUG-REC-002-1.png)
 
+### BUG-RPT-001: Reports has no page Help (?), and Escape doesn't close New Report Template
+
+Severity: Low | Module: Reports | Check: RPT-S02 ([26-reports](checklists/26-reports.md))
+
+Steps:
+1. Administration > Reports
+2. Look for the Help (?) button
+3. Click Add Report Template, press Escape
+
+Expected: A Help (?) button like other modules; Escape closes the popup.
+
+Actual: No Help button on the page. The New Report Template popup stays open on Escape.
+
+![BUG-RPT-001-1](bugs/screenshots/BUG-RPT-001-1.png)
+![BUG-RPT-001-2](bugs/screenshots/BUG-RPT-001-2.png)
+
+### BUG-RPT-002: Reports Export CSV writes dates as '2026-10-16 06:00:00' instead of the org date format
+
+Severity: Low | Module: Reports | Check: RPT-009 ([26-reports](checklists/26-reports.md))
+
+Steps:
+1. Administration > Reports > Report Results
+2. Open 'BETA TEST ONLY Report' (Flights, Scheduled Start Time column)
+3. Click Export CSV and open the file
+
+Expected: Dates as on screen and in Settings > Time Zone: 16/10/2026 06:00.
+
+Actual: CSV has '2026-10-16 06:00:00' (ISO with seconds). The screen shows 16/10/2026 06:00.
+
+Suspected cause: exportReportCSV() writes the raw value instead of the formatted one.
+
+![BUG-RPT-002-1](bugs/screenshots/BUG-RPT-002-1.png)
+
 ### BUG-RV-001: Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape
 
 Severity: Low | Module: Roster Viewer | Check: RV-S02 ([13-roster-viewer](checklists/13-roster-viewer.md))
@@ -1900,3 +1950,4 @@ Actual: The feature card is indented about 90px and runs off the right edge; the
 | 22-file-browser | Folder 'BETA TEST ONLY Folder' (files fbA, fbB deleted) | Administration > File Browser > Home | No - folder can't be deleted (BUG-FB-006) |
 | 23-form-builder | Form group 'BETA TEST ONLY Forms' (template 'BETA TEST ONLY Form' deleted, auto-attach unticked) | Settings and Tools > Form Builder | No - empty group stays, no way to delete groups |
 | 25-task-tracker | Project 'BETA TEST ONLY Project' (component, 2 features, 4 tasks, comment) | Administration > Task Tracker | Yes - project deleted ('Project deleted successfully!') |
+| 26-reports | Report template 'BETA TEST ONLY Report', its copy and its result | Administration > Reports | Yes - all deleted |

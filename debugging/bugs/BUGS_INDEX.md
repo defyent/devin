@@ -106,6 +106,9 @@
 | [BUG-TT-001](BUG-TT-001.md) | `TT-S02` | Task Tracker | Task Tracker: Escape doesn't close Help or Add Project | Low | New | |
 | [BUG-TT-002](BUG-TT-002.md) | `TT-S04` | Task Tracker | Task Tracker dates ignore the date setting ('Dec 31', '2026-10-21') | Low | New | |
 | [BUG-TT-003](BUG-TT-003.md) | `TT-S05` | Task Tracker | Task Tracker on a phone: feature cards are pushed right and cut off | Low | New | |
+| [BUG-RPT-001](BUG-RPT-001.md) | `RPT-S02` | Reports | Reports has no page Help (?), and Escape doesn't close New Report Template | Low | New | |
+| [BUG-RPT-002](BUG-RPT-002.md) | `RPT-009` | Reports | Reports Export CSV writes dates as '2026-10-16 06:00:00' instead of the org date format | Low | New | |
+| [BUG-RPT-003](BUG-RPT-003.md) | `RPT-S05` | Reports | Reports tables overlap on a phone: column text is drawn on top of other columns | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
