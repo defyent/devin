@@ -156,6 +156,9 @@
 | [BUG-SRM-001](BUG-SRM-001.md) | `SRM-S02` | Settings: Risk Matrix | Risk Matrix Settings: no Help (?), and Escape does not close popups | Low | New | |
 | [BUG-SRM-002](BUG-SRM-002.md) | `SRM-S05` | Settings: Risk Matrix | Risk Matrix Settings on a phone: the page scrolls sideways and "+ Add Level" is cut off | Low | New | |
 | [BUG-SSMS-001](BUG-SSMS-001.md) | `SSMS-S02` | Settings: Safety Reports | Safety Reports Settings: no Help (?), and Escape does not close popups | Low | New | |
+| [BUG-SINS-001](BUG-SINS-001.md) | `SINS-S02` | Settings: Inspection Notifications | Inspection Notifications Settings: no Help (?), and Escape does not close popups | Low | New | |
+| [BUG-SINS-002](BUG-SINS-002.md) | `SINS-002` | Settings: Inspection Notifications | Inspection Notifications: a meter inspection on an aircraft at 0.0 hours is never Overdue, and negative meter values are accepted | Medium | New | |
+| [BUG-SINS-003](BUG-SINS-003.md) | `SINS-S04` | Settings: Inspection Notifications | Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and "days overdue" is one day short | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

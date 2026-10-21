@@ -53,7 +53,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [42-settings-lessonplans](checklists/42-settings-lessonplans.md) | `SLP` | Settings – Lesson Plans | 9 | 5 | 3 | 0 | 0 | DONE |
 | [43-settings-riskmatrix](checklists/43-settings-riskmatrix.md) | `SRM` | Settings – Risk Matrix | 9 | 6 | 2 | 0 | 0 | DONE |
 | [44-settings-smsreports](checklists/44-settings-smsreports.md) | `SSMS` | Settings – Safety Reports | 9 | 7 | 1 | 0 | 0 | DONE |
-| [45-settings-inspections](checklists/45-settings-inspections.md) | `SINS` | Settings – Inspection Notifications | 9 | 0 | 0 | 0 | 0 | TODO |
+| [45-settings-inspections](checklists/45-settings-inspections.md) | `SINS` | Settings – Inspection Notifications | 9 | 5 | 3 | 0 | 0 | IN PROGRESS |
 | [46-settings-integrations](checklists/46-settings-integrations.md) | `SINT` | Settings – Google Calendar, WhatsApp | 10 | 0 | 0 | 0 | 0 | TODO |
 | [47-settings-activitylog](checklists/47-settings-activitylog.md) | `SLOG` | Settings – Activity Log | 9 | 0 | 0 | 0 | 1 | TODO |
 | [90-xc-permissions](checklists/90-xc-permissions.md) | `PERM` | Cross-cutting: permission levels | 10 | 2 | 0 | 0 | 0 | IN PROGRESS |

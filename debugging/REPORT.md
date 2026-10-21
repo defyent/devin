@@ -7,8 +7,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 7 |
-| Medium | 54 |
-| Low | 93 |
+| Medium | 55 |
+| Low | 95 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -61,6 +61,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RPT-003](bugs/BUG-RPT-003.md) | Medium | Reports | Reports tables overlap on a phone: column text is drawn on top of other columns |
 | [BUG-RV-002](bugs/BUG-RV-002.md) | Medium | Roster Viewer | Roster Viewer: clicking a shift does not open Shift Details |
 | [BUG-SFT-002](bugs/BUG-SFT-002.md) | Medium | Settings: Flight Types | Flight Types: a duplicate Flight Category name ("PIC") is accepted |
+| [BUG-SINS-002](bugs/BUG-SINS-002.md) | Medium | Settings: Inspection Notifications | Inspection Notifications: a meter inspection on an aircraft at 0.0 hours is never Overdue, and negative meter values are accepted |
 | [BUG-SMS-001](bugs/BUG-SMS-001.md) | Medium | Safety Reports | New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed |
 | [BUG-SMS-002](bugs/BUG-SMS-002.md) | Medium | Safety Reports | New Safety Report: Event Date/Time defaults to the UTC date and time, not local |
 | [BUG-SREN-002](bugs/BUG-SREN-002.md) | Medium | Settings: Recency and Renewals | Add Recency accepts negative Days, and a Caution value higher than Warning |
@@ -137,6 +138,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-SFRMS-002](bugs/BUG-SFRMS-002.md) | Low | Settings: FRMS | FRMS Settings on a phone: the page scrolls sideways, "+ Add ... Rule" is off-screen and rule text is clipped |
 | [BUG-SFS-001](bugs/BUG-SFS-001.md) | Low | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted |
 | [BUG-SFT-001](bugs/BUG-SFT-001.md) | Low | Settings: Flight Types | Flight Types Settings: no Help (?), and Escape does not close popups |
+| [BUG-SINS-001](bugs/BUG-SINS-001.md) | Low | Settings: Inspection Notifications | Inspection Notifications Settings: no Help (?), and Escape does not close popups |
+| [BUG-SINS-003](bugs/BUG-SINS-003.md) | Low | Settings: Inspection Notifications | Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and "days overdue" is one day short |
 | [BUG-SLP-001](bugs/BUG-SLP-001.md) | Low | Settings: Lesson Plans | Lesson Plan Settings: no Help (?), and Escape does not close popups |
 | [BUG-SLP-003](bugs/BUG-SLP-003.md) | Low | Settings: Lesson Plans | Add Lesson accepts negative hours (Solo Hours -1 is saved and shown as "Solo: -1h") |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
@@ -1016,6 +1019,23 @@ Actual: "Flight category added successfully". The list now has two "PIC" rows (I
 Suspected cause: No unique check on the name, either client-side or server-side.
 
 ![BUG-SFT-002-1](bugs/screenshots/BUG-SFT-002-1.png)
+
+### BUG-SINS-002: Inspection Notifications: a meter inspection on an aircraft at 0.0 hours is never Overdue, and negative meter values are accepted
+
+Severity: Medium | Module: Settings: Inspection Notifications | Check: SINS-002 ([45-settings-inspections](checklists/45-settings-inspections.md))
+
+Steps:
+1. Settings and Tools > Maintenance > Inspection Notifications > Add Inspection.
+2. Resource: BETA TEST ONLY R (meter 0.0). Trigger: Flight Hours. Meter: -5. Save.
+3. Look at the new row.
+
+Expected: Meter values below 0 are rejected. If the trigger text says the inspection is overdue, the Status says Overdue too.
+
+Actual: -5 is saved. The row then says "0.0 / -5.0 (5.0 overdue)" but the Status is PENDING. Any aircraft whose current meter reading is 0 can never show Overdue.
+
+Suspected cause: In calculateOverdueStatus() (templates2/settings_inspections/index.js), `if (!record.meter || !record.current_meter_reading) return false;` treats a 0 reading (and a 0 meter value) as missing. #inspectionMeter has no min, and the server does not range-check the value.
+
+![BUG-SINS-002-1](bugs/screenshots/BUG-SINS-002-1.png)
 
 ### BUG-SMS-001: New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed
 
@@ -2252,6 +2272,42 @@ Actual: There is no Help button on the page, and Escape leaves Add Flight Catego
 Suspected cause: The template has no help button or help modal.
 
 ![BUG-SFT-001-1](bugs/screenshots/BUG-SFT-001-1.png)
+
+### BUG-SINS-001: Inspection Notifications Settings: no Help (?), and Escape does not close popups
+
+Severity: Low | Module: Settings: Inspection Notifications | Check: SINS-S02 ([45-settings-inspections](checklists/45-settings-inspections.md))
+
+Steps:
+1. Settings and Tools > Maintenance > Inspection Notifications.
+2. Look for a Help (?) button.
+3. Click Add Inspection, then press Escape.
+
+Expected: There is a page Help (?), and Escape closes the popup.
+
+Actual: There is no page Help (?), and Escape leaves Add Inspection open.
+
+Suspected cause: No help modal. The modal is built in templates2/settings_inspections/index.js with only an overlay click handler (setupOverlayClickHandler) and no keydown/Escape handler.
+
+![BUG-SINS-001-1](bugs/screenshots/BUG-SINS-001-1.png)
+![BUG-SINS-001-2](bugs/screenshots/BUG-SINS-001-2.png)
+
+### BUG-SINS-003: Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and "days overdue" is one day short
+
+Severity: Low | Module: Settings: Inspection Notifications | Check: SINS-S04 ([45-settings-inspections](checklists/45-settings-inspections.md))
+
+Steps:
+1. Time Zone settings: Pacific/Auckland, DD/MM/YYYY.
+2. Early in the local day (22/10 here, 21/10 in UTC), open Add Inspection and pick the Date trigger.
+3. Save with date 01/10/2026 and look at the Trigger column.
+
+Expected: The date picker starts on the local date, 22/10/2026. The trigger shows "01/10/2026 (21 days overdue)".
+
+Actual: The date picker starts on 21/10/2026, the UTC date. The trigger shows "2026-10-01 (20 days overdue)": the date format ignores the setting, and the day count is worked out from the UTC date.
+
+Suspected cause: The trigger text comes from the server, which writes an ISO date and counts days against the server/UTC date. The client defaults the date picker with new Date() without converting to the configured timezone.
+
+![BUG-SINS-003-1](bugs/screenshots/BUG-SINS-003-1.png)
+![BUG-SINS-003-2](bugs/screenshots/BUG-SINS-003-2.png)
 
 ### BUG-SLP-001: Lesson Plan Settings: no Help (?), and Escape does not close popups
 

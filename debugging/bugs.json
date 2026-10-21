@@ -2929,5 +2929,64 @@
    "ssms_add"
   ],
   "cause": "The page has no help modal, and there is no Escape key handler on its modals."
+ },
+ {
+  "id": "BUG-SINS-001",
+  "title": "Inspection Notifications Settings: no Help (?), and Escape does not close popups",
+  "row": "SINS-S02",
+  "cl": "45-settings-inspections",
+  "module": "Settings: Inspection Notifications",
+  "sev": "Low",
+  "steps": [
+   "Settings and Tools > Maintenance > Inspection Notifications.",
+   "Look for a Help (?) button.",
+   "Click Add Inspection, then press Escape."
+  ],
+  "expected": "There is a page Help (?), and Escape closes the popup.",
+  "actual": "There is no page Help (?), and Escape leaves Add Inspection open.",
+  "shots": [
+   "sins_main",
+   "sins_add"
+  ],
+  "cause": "No help modal. The modal is built in templates2/settings_inspections/index.js with only an overlay click handler (setupOverlayClickHandler) and no keydown/Escape handler."
+ },
+ {
+  "id": "BUG-SINS-002",
+  "title": "Inspection Notifications: a meter inspection on an aircraft at 0.0 hours is never Overdue, and negative meter values are accepted",
+  "row": "SINS-002",
+  "cl": "45-settings-inspections",
+  "module": "Settings: Inspection Notifications",
+  "sev": "Medium",
+  "steps": [
+   "Settings and Tools > Maintenance > Inspection Notifications > Add Inspection.",
+   "Resource: BETA TEST ONLY R (meter 0.0). Trigger: Flight Hours. Meter: -5. Save.",
+   "Look at the new row."
+  ],
+  "expected": "Meter values below 0 are rejected. If the trigger text says the inspection is overdue, the Status says Overdue too.",
+  "actual": "-5 is saved. The row then says \"0.0 / -5.0 (5.0 overdue)\" but the Status is PENDING. Any aircraft whose current meter reading is 0 can never show Overdue.",
+  "shots": [
+   "sins_meter_saved"
+  ],
+  "cause": "In calculateOverdueStatus() (templates2/settings_inspections/index.js), `if (!record.meter || !record.current_meter_reading) return false;` treats a 0 reading (and a 0 meter value) as missing. #inspectionMeter has no min, and the server does not range-check the value."
+ },
+ {
+  "id": "BUG-SINS-003",
+  "title": "Inspection Notifications: trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and \"days overdue\" is one day short",
+  "row": "SINS-S04",
+  "cl": "45-settings-inspections",
+  "module": "Settings: Inspection Notifications",
+  "sev": "Low",
+  "steps": [
+   "Time Zone settings: Pacific/Auckland, DD/MM/YYYY.",
+   "Early in the local day (22/10 here, 21/10 in UTC), open Add Inspection and pick the Date trigger.",
+   "Save with date 01/10/2026 and look at the Trigger column."
+  ],
+  "expected": "The date picker starts on the local date, 22/10/2026. The trigger shows \"01/10/2026 (21 days overdue)\".",
+  "actual": "The date picker starts on 21/10/2026, the UTC date. The trigger shows \"2026-10-01 (20 days overdue)\": the date format ignores the setting, and the day count is worked out from the UTC date.",
+  "shots": [
+   "sins_add_date",
+   "sins_date_saved"
+  ],
+  "cause": "The trigger text comes from the server, which writes an ISO date and counts days against the server/UTC date. The client defaults the date picker with new Date() without converting to the configured timezone."
  }
 ]
