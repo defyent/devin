@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 4 |
 | Medium | 35 |
-| Low | 44 |
+| Low | 45 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -91,6 +91,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-RV-001](bugs/BUG-RV-001.md) | Low | Roster Viewer | Roster Viewer: no page Help (?) and Group Visibility popup ignores Escape |
 | [BUG-RV-003](bugs/BUG-RV-003.md) | Low | Roster Viewer | Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice |
+| [BUG-SMS-004](bugs/BUG-SMS-004.md) | Low | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register |
 | [BUG-TS-001](bugs/BUG-TS-001.md) | Low | Timesheets | Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing |
 | [BUG-TS-004](bugs/BUG-TS-004.md) | Low | Timesheets | Timesheet Details shows dates as 'Oct 5' and times with seconds (14:00:00) |
 | [BUG-TS-005](bugs/BUG-TS-005.md) | Low | Timesheets | Timesheet Details: F&D and Roster Violation popups ignore Escape and show ISO dates in the title |
@@ -1438,6 +1439,25 @@ Actual: Each option appears twice: Almost Certain, Likely, Possible, Unlikely, R
 Suspected cause: The options are probably added twice when the Final Report tab loads.
 
 ![BUG-SMS-003-1](bugs/screenshots/BUG-SMS-003-1.png)
+
+### BUG-SMS-004: Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register
+
+Severity: Low | Module: Safety Reports / Hazard Register | Check: SMS-013 ([19-safety-reports](checklists/19-safety-reports.md))
+
+Steps:
+1. Flight Safety > Safety Reports > open report #2060 > Final Report tab
+2. Add to Hazard Register: Hazard 'BETA TEST ONLY hazard', Type Hazard, Goal Mitigate, Controls, Responsible Aisha Pearce
+3. Save Changes
+4. Flight Safety > Hazard Register
+
+Expected: Goal column shows Mitigate, the value picked.
+
+Actual: Goal column shows 'Minimize'. The two pages use different names for the same goal.
+
+Suspected cause: templates2/hazardregister/index.js maps goal code 'M' to 'Minimize' (line ~584) while the Safety Report Final Report dropdown calls it 'Mitigate'.
+
+![BUG-SMS-004-1](bugs/screenshots/BUG-SMS-004-1.png)
+![BUG-SMS-004-2](bugs/screenshots/BUG-SMS-004-2.png)
 
 ### BUG-TS-001: Timesheets: no page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing
 

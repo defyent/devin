@@ -85,6 +85,7 @@
 | [BUG-SMS-001](BUG-SMS-001.md) | `SMS-004` | Safety Reports | New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed | Medium | New | |
 | [BUG-SMS-002](BUG-SMS-002.md) | `SMS-S04` | Safety Reports | New Safety Report: Event Date/Time defaults to the UTC date and time, not local | Medium | New | |
 | [BUG-SMS-003](BUG-SMS-003.md) | `SMS-012` | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice | Low | New | |
+| [BUG-SMS-004](BUG-SMS-004.md) | `SMS-013` | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
