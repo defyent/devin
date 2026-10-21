@@ -38,7 +38,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | RB-011 | Violations toggle | Rule Violations from FRMS rostered shift rules | PASS |  | Toggle ON: badge VIOLATIONS FOUND, flagged shifts get red border + warning triangle (628 cells, about 0.5 s to compute). Triangle opens 'Rule Violations' - 'Max 8.0 Duty Time hours in any 24 hours period, Applies to: Pilots' (FRMS rostered shift rule). Toggle OFF restores CHECKING DISABLED. Triangle is mostly covered by the shift badge; only its top-left corner is clickable |
 | RB-012 | Export PDF | Generated | PASS |  | Bulk actions > Export to PDF downloads 'Roster_October_2026_Draft___BETA_TEST_ONLY_Draft.pdf' (3 pages): title 'Roster for October 2026 - Draft - BETA TEST ONLY Draft', per-day totals per shift type and per-person rows; totals for 1-3 Oct match the grid (AM 18/0/20, PM 20/19/0, NT 0/20/20, OH 19/19/0) |
 | RB-013 | Publish Month: Merge / Clear then Publish (on draft only) | Live roster updated; Viewer, Dashboard, Schedule roster row, Timesheets reflect it | TODO | | |
-| RB-014 | Enable Live Edit > Confirm & Edit | Live roster editable | TODO | | |
+| RB-014 | Enable Live Edit > Confirm & Edit | Live roster editable | PASS |  | Live Roster view is read-only (0 draggable shifts). Enable Live Edit > 'Confirm Live Roster Edit' (20 minute access warning) > Confirm & Edit: button becomes Finish Editing, all 1690 shifts draggable. Finish Editing turns it off. No live data changed. Confirm popup ignores Escape (BUG-RB-001) |
 | RB-015 | WG user | Can only edit own groups | TODO | | |
 
 ## Known issues from external audits
