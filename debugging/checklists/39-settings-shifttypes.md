@@ -26,7 +26,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
 | SST-001 | Groups add/edit/delete | Works | PASS | BUG-SST-003 | Groups: Create (empty name gives "Group name is required"), Edit/rename ("Group updated successfully") and Delete all work. Deleting a group with a shift type warns: "The 1 shift type(s) will appear in Unassigned until you restore this group", and the shift moves to an "Unassigned" tab. After Edit Group, the selected tab jumps back to Duty (BUG-SST-003). |
-| SST-002 | Add Shift: Short Name > 5 chars, colour, duty times, Show on Schedule | Validation; palette + schedule row update | TODO | | |
+| SST-002 | Add Shift: Short Name > 5 chars, colour, duty times, Show on Schedule | Validation; palette + schedule row update | FAIL | BUG-SST-002 | Create/edit shift type work: name required (native "Please fill out this field"), short name capped at 5 chars, colour, Show on Schedule toggle, group change. 22:00-06:00 shows 8h (overnight OK; PM/NT show 12h). New shift shows in Roster Builder palette under its group (BETA TEST ONLY GRP3) in Live Edit. Duty Start/End default to current UTC time (BUG-SST-002). |
 | SST-003 | Deleted Items restore | Restored | PASS |  | View Deleted lists Deleted Groups. Restoring "BETA TEST ONLY Grp3" asked to confirm, then: "Group restored successfully". The tab came back and its shift type BETAT went back into it from Unassigned. |
 | SST-004 | Overnight shift (e.g. 14:00–02:00) | Duty hours computed correctly | PASS |  | The existing "PM Afternoon Shift" 14:00 - 02:00 shows 12h, and "NT" 18:00 - 06:00 shows 12h. My new "BETA TEST ONLY Shift" 22:00 - 06:00 saved and shows 8h. Overnight duration is right. |
 
@@ -35,3 +35,5 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | Record | Where | Cleanup done? |
 |---|---|---|
 | | | |
+
+**Test data (39):** temp group "BETA TEST ONLY Grp3" and shift type "BETA TEST ONLY Shift" (BETAT) deleted. The app only soft-deletes them: the group is still listed in View Deleted, and there is no permanent delete.
