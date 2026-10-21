@@ -2,7 +2,10 @@
 
 | Bug ID | Checklist row | Module | Title | Severity | Status | Handover file |
 |---|---|---|---|---|---|---|
-| | | | | | | |
+| [BUG-NAV-001](BUG-NAV-001.md) | `NAV-015` | Shell (main) / Personnel Details | Leaving a page with unsaved changes gives no warning; edits are lost | Medium | New | |
+| [BUG-PD-001](BUG-PD-001.md) | `PD-S01` | Personnel Details / My Account | personneldetails/index.js is truncated: ReferenceError getPickerMod on every load | Medium | New | |
+| [BUG-LOG-001](BUG-LOG-001.md) | `LOG-013` | Shell (main) | Login Message popup reappears on every browser reload | Low | New | |
+| [BUG-LOG-002](BUG-LOG-002.md) | `LOG-016` | Shell (main) | Logout throws JS error removeChild; Esc doesn't close the Log Out confirm | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

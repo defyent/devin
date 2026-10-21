@@ -1,16 +1,16 @@
 # Debugging tracker
 
 - **DataHangar version:** v2.0.111 (stresstest.datahangar.net at pack creation)
-- **Test accounts / levels:** Service Account (admin). Other levels: _ask Jon_
-- **Original Time Zone settings:** _record before changing_
+- **Test accounts / levels:** Service Account (username datahangar, admin). No other levels available (SET-004 BLOCKED)
+- **Original Time Zone settings:** Pacific/Auckland, DD/MM/YYYY, 24-hour HH:mm, Type-In Fields
 
 Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 
 | Checklist | Prefix | Area | Checks | Pass | Fail | Blocked | Ext. open | Status |
 |---|---|---|---|---|---|---|---|---|
-| [00-setup-and-accounts](checklists/00-setup-and-accounts.md) | `SET` | Session setup, accounts and baseline | 9 | 0 | 0 | 0 | 0 | TODO |
-| [01-login-auth](checklists/01-login-auth.md) | `LOG` | Login, 2FA, sessions, landing page | 25 | 0 | 0 | 0 | 0 | TODO |
-| [02-shell-navigation](checklists/02-shell-navigation.md) | `NAV` | Application shell, sidebar, header, mobile | 27 | 0 | 0 | 0 | 1 | TODO |
+| [00-setup-and-accounts](checklists/00-setup-and-accounts.md) | `SET` | Session setup, accounts and baseline | 9 | 8 | 0 | 1 | 0 | DONE |
+| [01-login-auth](checklists/01-login-auth.md) | `LOG` | Login, 2FA, sessions, landing page | 25 | 5 | 2 | 0 | 0 | IN PROGRESS |
+| [02-shell-navigation](checklists/02-shell-navigation.md) | `NAV` | Application shell, sidebar, header, mobile | 27 | 20 | 2 | 4 | 1 | DONE |
 | [03-common-conventions](checklists/03-common-conventions.md) | `CON` | Common screen conventions (apply on every page) | 22 | 0 | 0 | 0 | 0 | TODO |
 | [04-access-manager](checklists/04-access-manager.md) | `AM` | Access Manager (users, roles, groups, permissions, templates) | 38 | 0 | 0 | 0 | 0 | TODO |
 | [05-dashboard](checklists/05-dashboard.md) | `DSH` | Dashboard | 19 | 0 | 0 | 0 | 0 | TODO |

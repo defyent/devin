@@ -14,15 +14,15 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| SET-001 | Record DataHangar version from the top bar (e.g. v2.0.111) in TRACKER.md | Version noted | TODO | | |
-| SET-002 | Clear browser cache / hard reload before starting (modules without ?v= on assets serve stale JS) | Fresh assets loaded | TODO | | |
-| SET-003 | Record the test account name, roles (Admin/Customer/Crew/Staff/Student) and groups | Recorded in TRACKER.md | TODO | | |
-| SET-004 | Confirm with Jon which extra test accounts exist per permission level (A, RA, WG, RG, WO, RO, WL) | Account-to-level map recorded; missing levels listed as BLOCKED | TODO | | |
-| SET-005 | Record current Settings > Time Zone values (zone, date format, time format, picker type) before changing anything | Original values recorded so they can be restored | TODO | | |
-| SET-006 | Record the staging aircraft (expected ZK-HDY/HLO/HQO/JET/NFL) and whether each is Active / Is Aircraft | Fleet baseline recorded | TODO | | |
-| SET-007 | Open DevTools Console + Network tabs and keep them open for the run | JS errors and failed requests are visible | TODO | | |
-| SET-008 | Agree the test-data naming prefix: every created record starts with `BETA TEST ONLY` | All test data is identifiable for cleanup | TODO | | |
-| SET-009 | Note the Performance timing panel (bottom right); record any server timing > 500 ms as a PERF finding | Timings captured | TODO | | |
+| SET-001 | Record DataHangar version from the top bar (e.g. v2.0.111) in TRACKER.md | Version noted | PASS |  | v2.0.111 (21/10/2026) |
+| SET-002 | Clear browser cache / hard reload before starting (modules without ?v= on assets serve stale JS) | Fresh assets loaded | PASS |  | Reloaded before the run; cache cleared again before retests |
+| SET-003 | Record the test account name, roles (Admin/Customer/Crew/Staff/Student) and groups | Recorded in TRACKER.md | PASS |  | Service Account (username datahangar), group Pilots, admin |
+| SET-004 | Confirm with Jon which extra test accounts exist per permission level (A, RA, WG, RG, WO, RO, WL) | Account-to-level map recorded; missing levels listed as BLOCKED | BLOCKED |  | Only the Service Account exists for testing (Jon: datahangar = Service Account). Levels RA/WG/RG/WO/RO/WL untested |
+| SET-005 | Record current Settings > Time Zone values (zone, date format, time format, picker type) before changing anything | Original values recorded so they can be restored | PASS |  | Pacific/Auckland, DD/MM/YYYY, 24-hour HH:mm, Type-In Fields |
+| SET-006 | Record the staging aircraft (expected ZK-HDY/HLO/HQO/JET/NFL) and whether each is Active / Is Aircraft | Fleet baseline recorded | PASS |  | Fleet differs from old notes: 20 active aircraft (ZK-JET/JRA/JST/FLY/AIR/SKY/SLK/SUN/SIG/SIM/DIA/WAR/WAX/WLD/HEL/HLO/RAV/RVN/RTB/RTN), 0 inactive |
+| SET-007 | Open DevTools Console + Network tabs and keep them open for the run | JS errors and failed requests are visible | PASS |  | Console, page errors and HTTP >= 400 captured via CDP for the whole run |
+| SET-008 | Agree the test-data naming prefix: every created record starts with `BETA TEST ONLY` | All test data is identifiable for cleanup | PASS |  | Prefix BETA TEST ONLY |
+| SET-009 | Note the Performance timing panel (bottom right); record any server timing > 500 ms as a PERF finding | Timings captured | PASS |  | Panel visible; Dashboard server timings all < 100 ms |
 
 ## Test data created
 
