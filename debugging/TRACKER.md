@@ -29,7 +29,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [18-recency-renewals](checklists/18-recency-renewals.md) | `REC` | Recency and Renewals (overview page) | 11 | 6 | 2 | 1 | 2 | DONE |
 | [19-safety-reports](checklists/19-safety-reports.md) | `SMS` | Safety Reports (SMS) | 21 | 16 | 1 | 4 | 2 | DONE |
 | [20-hazard-register](checklists/20-hazard-register.md) | `HAZ` | Hazard Register | 10 | 8 | 2 | 0 | 1 | DONE |
-| [21-settings-hub](checklists/21-settings-hub.md) | `HUB` | Settings and Tools hub | 11 | 0 | 0 | 0 | 1 | TODO |
+| [21-settings-hub](checklists/21-settings-hub.md) | `HUB` | Settings and Tools hub | 11 | 9 | 1 | 1 | 1 | DONE |
 | [22-file-browser](checklists/22-file-browser.md) | `FB` | File Browser | 14 | 0 | 0 | 0 | 1 | TODO |
 | [23-form-builder](checklists/23-form-builder.md) | `FBLD` | Form Builder | 14 | 0 | 0 | 0 | 27 | TODO |
 | [24-form-browser](checklists/24-form-browser.md) | `FBR` | Form Browser / Form Viewer | 10 | 0 | 0 | 0 | 4 | TODO |
