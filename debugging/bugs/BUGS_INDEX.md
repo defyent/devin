@@ -23,6 +23,7 @@
 | [BUG-DSH-001](BUG-DSH-001.md) | `DSH-012` | Dashboard | Dashboard side tabs are icon-only with no tooltip or label | Low | New | |
 | [BUG-DSH-003](BUG-DSH-003.md) | `DSH-006` | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) | Medium | New | |
 | [BUG-POP-004](BUG-POP-004.md) | `FS-013` | Flight Schedule | Flight Schedule 'View Details' popup does not close with Esc | Low | New | |
+| [BUG-FS-001](BUG-FS-001.md) | `FS-011` | Flight Schedule > Flight Details (new) | New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h) | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
