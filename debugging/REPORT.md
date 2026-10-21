@@ -7,7 +7,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 1 |
-| Medium | 21 |
+| Medium | 23 |
 | Low | 21 |
 
 | Bug | Severity | Module | Title |
@@ -32,6 +32,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-NAV-001](bugs/BUG-NAV-001.md) | Medium | Shell (main) / Personnel Details | Leaving a page with unsaved changes gives no warning; edits are lost |
 | [BUG-PD-001](bugs/BUG-PD-001.md) | Medium | Personnel Details / My Account | personneldetails/index.js is truncated: ReferenceError getPickerMod on every load |
 | [BUG-PD-003](bugs/BUG-PD-003.md) | Medium | Personnel Details > Security | 2FA setup: one wrong verification code closes the setup dialog and issues a new secret |
+| [BUG-PD-006](bugs/BUG-PD-006.md) | Medium | Personnel Details | Personnel Details > Recency and Renewals: Group by and Order by are disabled and the Table/Card view buttons are hidden |
+| [BUG-PD-007](bugs/BUG-PD-007.md) | Medium | Personnel Details | Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date |
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) |
 | [BUG-POP-003](bugs/BUG-POP-003.md) | Medium | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved |
 | [BUG-AF-001](bugs/BUG-AF-001.md) | Low | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled |
@@ -406,6 +408,39 @@ Actual: Setup dialog closes. Clicking Enable 2FA again generates a new key and n
 Suspected cause: Verify failure handler closes #2fa-setup-modal and discards the pending secret.
 
 ![BUG-PD-003-1](bugs/screenshots/BUG-PD-003-1.png)
+
+### BUG-PD-006: Personnel Details > Recency and Renewals: Group by and Order by are disabled and the Table/Card view buttons are hidden
+
+Severity: Medium | Module: Personnel Details | Check: PD-019 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. All Personnel > Ethan Abbott > Recency and Renewals tab
+2. Try to change Group by to Status, or Order by to Expiry Date
+3. Look for the Table / Card view buttons
+
+Expected: Group by and Order by change the list; Table and Card view buttons switch the layout.
+
+Actual: Both dropdowns are disabled (greyed out, can't be changed). #view-table-btn and #view-card-btn exist in the page but have display:none, so there is no way to switch to card view.
+
+Suspected cause: Possibly the page script stops at the 'getPickerMod is not defined' error (BUG-PD-001) before it enables these controls.
+
+![BUG-PD-006-1](bugs/screenshots/BUG-PD-006-1.png)
+
+### BUG-PD-007: Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date
+
+Severity: Medium | Module: Personnel Details | Check: PD-021 ([12-personnel-details](checklists/12-personnel-details.md))
+
+Steps:
+1. All Personnel > Ethan Abbott > Recency and Renewals tab
+2. Look at the Pilot Licenses Recencies rows (today 21/10/2026)
+
+Expected: Days match the dates, e.g. Day Landings last conducted 03/02/2026 with a 90-day window expired about 170 days ago (260 days since last conducted), and an expired item shows Expired.
+
+Actual: Day Landings: Last Conducted 03/02/2026, '462 days ago', status Caution, count 0/0 in 90 days. Instrument Approaches: 26/07/2025, '447 days ago', Caution, 0/0 in 180 days. Night Landings: 11/03/2026, '245 days ago', Caution. None of these numbers match the dates, and items long past their window show Caution, not Expired. PIC Hours / Total Flight Hours show Expired with no days value.
+
+Suspected cause: Needs a check against the recency rules; a 0/0 requirement may be treated as Caution, and the days value may come from a different date than Last Conducted.
+
+![BUG-PD-007-1](bugs/screenshots/BUG-PD-007-1.png)
 
 ### BUG-PERM-002: User with no permissions cannot open their own My Account (no self-service password / 2FA)
 

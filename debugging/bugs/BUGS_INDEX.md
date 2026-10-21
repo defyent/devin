@@ -45,6 +45,8 @@
 | [BUG-PL-001](BUG-PL-001.md) | `PL-S02` | All Personnel | All Personnel has no page Help (?) | Low | New | |
 | [BUG-PL-002](BUG-PL-002.md) | `PL-001` | All Personnel | A person with no name exists and is listed as '?' at the top of All Personnel (person #274, Customer) | Low | New | |
 | [BUG-PD-005](BUG-PD-005.md) | `PD-S03` | Personnel Details | Personnel Details: History and PDF Options popups don't close with Escape, and PDF Options has no x | Low | New | |
+| [BUG-PD-006](BUG-PD-006.md) | `PD-019` | Personnel Details | Personnel Details > Recency and Renewals: Group by and Order by are disabled and the Table/Card view buttons are hidden | Medium | New | |
+| [BUG-PD-007](BUG-PD-007.md) | `PD-021` | Personnel Details | Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date | Medium | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 
