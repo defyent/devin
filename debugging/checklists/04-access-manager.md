@@ -41,16 +41,16 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AM-014 | Activate the new user (Inactive badge > Activate) | Confirmation then Active | PASS |  | Confirm 'Activate Login Access' then toast 'Login access activated for BETA TEST ONLY Lowperm'; badge Active |
 | AM-015 | Activate a user with no credentials | 'User must have login credentials before activation' and Change Login Credentials opens | TODO | | |
 | AM-016 | Deactivate a user | Confirmation; user signed out everywhere; no delete option exists | PASS |  | Confirm 'Deactivate Login Access' then toast 'Login access deactivated for BETA TEST ONLY Lowperm'; no delete option anywhere. Sign-out effect: see LOG-017 |
-| AM-017 | Roles badge: tick/untick each role, Save Changes | Saved; hover on 'N Roles' lists them | TODO | | |
+| AM-017 | Roles badge: tick/untick each role, Save Changes | Saved; hover on 'N Roles' lists them | PASS |  | Ticked Crew > Save Changes > toast 'User roles updated for BETA TEST ONLY Lowperm (1 role)', badge '1 Role', hover 'Active: Crew - Click to manage roles' |
 | AM-018 | Roles: Admin checkbox as non-admin | Greyed out ('Only admins can grant or revoke admin access') | TODO | | |
-| AM-019 | Groups badge: toggle groups, search | On Roster auto-ticks when adding; Save replaces memberships | TODO | | |
+| AM-019 | Groups badge: toggle groups, search | On Roster auto-ticks when adding; Save replaces memberships | FAIL | BUG-POP-003 | Search filters groups; ticking a group auto-ticks On Roster; Save > toast 'User groups updated ... (1 group)'. But Esc on a dirty Groups modal closes with no warning and the unsaved ticks are still shown when reopened |
 | AM-020 | Permissions badge: tick a type | Level dropdown enables with first valid level; only levels from §15.1 offered | FAIL | BUG-AM-004 | Tick enables level dropdown with first valid level (RA). Options for Personnel Details: RA, WA, RO, WO, G; 'WA' and 'G' shown as bare codes |
 | AM-021 | Permissions: untick, search types, Save | Toast 'Permissions updated for First Last (N permissions)' | PASS |  | Toast 'Permissions updated for BETA TEST ONLY Lowperm (1 permissions)' (grammar: '1 permissions'); badge '1 Permission' |
 | AM-022 | Permissions: Apply Template | Overwrites those types only; needs Save Changes | TODO | | |
 | AM-023 | Permissions: Cancel with unsaved changes | Asks to confirm | FAIL | BUG-POP-002 | Asks 'You have unsaved changes. Are you sure you want to cancel?' but as a native browser confirm(), not an app modal |
 | AM-024 | Change credentials: < 10 chars, mismatch, reserved, duplicate | Rejected with messages | PASS |  | <10: 'Password must be at least 10 characters'; mismatch: 'Passwords do not match'; admin: 'That username is not allowed'; afisher13: 'Username is already taken' |
 | AM-025 | Generate Secure Password | 10-char mixed-case alphanumeric, fills both fields, copy button works | PASS |  | 10 chars, upper+lower+digit, fills both fields, copy button appears |
-| AM-026 | Groups tab: New Group with all 5 switches | Saved; card shows member count and Yes/No for each switch | TODO | | |
+| AM-026 | Groups tab: New Group with all 5 switches | Saved; card shows member count and Yes/No for each switch | PASS |  | Created 'BETA TEST ONLY Group' with all 5 switches: toast 'Group ... created successfully'; card shows Members 0 and Yes for Sidebar/Dropdown/Roster/Flight-Duty/Recency |
 | AM-027 | Group switches take effect | Show in Sidebar > sidebar; Show in Dropdown > Schedule Group By; Roster > Roster Builder/Viewer; F&D; Recency | TODO | | |
 | AM-028 | Delete a group in use | Refused with list e.g. 'Cannot delete group: 3 user memberships, 1 notice link' | TODO | | |
 | AM-029 | Delete an unused BETA TEST group | Confirm then deleted | TODO | | |
