@@ -31,6 +31,15 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | STZ-004 | Cycle picker types: Scroll Wheel / Type-In / Native | Every date field across modules uses selected type | TODO | | |
 | STZ-005 | Restore original settings | Back to baseline recorded in SET | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| DATE-12 | Low | Open (external) | Time Zone settings: greyed-out formats with no explanation |
+| DATE-13 | Low | Open (external) | Time Zone save: banner and toast both show; page reload required |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

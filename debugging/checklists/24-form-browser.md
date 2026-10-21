@@ -30,6 +30,18 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FBR-003 | Open instance | Read-only Form Viewer; sections expand | TODO | | |
 | FBR-004 | RG user / confidential forms | Scoped correctly | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| FORM-04 | High | Open (external) | Form Viewer shows no value for Date and Time widgets |
+| FORM-08 | Medium | Open (external) | Form Browser dates ignore the date setting ("Oct 17, 2026") |
+| FORM-09 | Medium | Open (external) | Form Browser shows incomplete forms as "Submitted"; no Draft/Incomplete status |
+| FORM-30 | Low | Open (external) | Viewer is read-only but List Box × buttons still look active |
+| FORM-39 | Info | Info | Hidden empty "Error" modal in Form Viewer DOM (opacity 0, not visible) |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

@@ -64,6 +64,21 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FD-037 | History | Shows changes made in this run | TODO | | |
 | FD-038 | Delete open flight | Confirmation; flight soft-deleted (D) | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| FORM-01 | High | Open (external) | Flight Details saves a form with 9 empty required fields, no warning |
+| FORM-10 | Medium | Open (external) | Field count differs: Viewer 8/11 vs Flight Details 11/11; defaults count as filled |
+| FORM-11 | Medium | Open (external) | "Updated" time doesn't change after a later save of a flight form |
+| FORM-22 | Low | Open (external) | Flight Delete Form confirm uses "Stay on Page" instead of "Cancel" |
+| FUNC-02 | Medium | Open (external) | PDF Summary "Generate PDF" gives no visible result or feedback |
+| VIS-26 | Low | Open (external) | Flight Details card heading and checkbox sizes vary |
+| VIS-27 | Low | Open (external) | Weight unit wording "KG/Lbs" vs "kg/lbs" |
+| UX-09 | Low | Open (external) | Flight Details: two Add Leg buttons, empty "Secondary Status" label, no units on Crew Recency inputs |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

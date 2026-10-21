@@ -56,6 +56,16 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PD-029 | Access as RO / WO / WG | Edit rights match level; WG can always edit self | TODO | | |
 | PD-030 | No Personnel Details permission > My Account | Access Denied | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| FORM-03 | High | Open (external) | Personnel "Archived Forms" section won't expand, so archived forms can't be viewed or unarchived |
+| FORM-37 | Low | Open (external) | Personnel instance delete button has no tooltip; Archive has one |
+| UX-02 | Medium | Open (external) | Personnel Details has no name/title and no back button |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

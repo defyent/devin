@@ -32,6 +32,15 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | TT-005 | Table / Card view; search | Works | TODO | | |
 | TT-006 | RA / RG / WG | Read-only / scoped correctly | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| VIS-28 | Low | Open (external) | Task Tracker header card narrower than other pages |
+| UX-07 | Low | Open (external) | Task Tracker icon button with no label/tooltip; Post Comment shown with no projects |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

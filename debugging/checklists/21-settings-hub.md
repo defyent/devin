@@ -31,6 +31,14 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | HUB-004 | Empty 'Notices' card | Card has no links on staging — log | TODO | | |
 | HUB-005 | Missing from hub vs guide | WhatsApp, Maintenance, Location Planner, Chat not linked — confirm intended | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| UX-11 | Low | Open (external) | Settings hub "Notices" card has no links (see also seed HUB-004) |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

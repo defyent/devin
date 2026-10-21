@@ -47,6 +47,14 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | NAV-020 | Maintenance Portal reachability | Note: guide says only direct/admin-added link. Record whether any UI path exists (we do NOT use ?action= URLs) | TODO | | |
 | NAV-021 | Icons load | Note: menu icons come from external CDN api.iconify.design (Jon prefers self-hosted icon pack) — log as UI finding | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| UX-03 | Low | Open (external) | Detail page URLs inconsistent (index.pl vs ?action=) |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

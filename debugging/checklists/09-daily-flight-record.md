@@ -36,6 +36,14 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | DFR-009 | RG user | Only flights for people in their groups | TODO | | |
 | DFR-010 | Performance with 9,400+ flights | Acceptable load time | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| DATE-05 | Medium | Open (external) | DFR filter dates are lost in Scroll Wheel and Native modes |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

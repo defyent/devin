@@ -36,6 +36,17 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | EXM-009 | Browse Instances / Batches; remove/delete; add person to batch | Works | TODO | | |
 | EXM-010 | Assigned exam on Personnel > Exams and Dashboard > Exams | Appears; take and score | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| FUNC-05 | Low | Open (external) | Exam editor says "Read Only" but still shows Add Question and Add Group |
+| VIS-25 | Low | Open (external) | Disabled button styles differ (Exam editor) |
+| UX-06 | Low | Open (external) | Exam Builder action icons misaligned between rows; wrong icon for Download Paper |
+| UX-12 | Low | Open (external) | Exam editor uses a text "Back" button; other pages use an icon |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

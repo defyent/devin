@@ -34,6 +34,14 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FB-007 | Configure Item: Owner, Read/Write Access groups, Parent Folder move, Update Document | Saved | TODO | | |
 | FB-008 | Delete file / folder | Confirms | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| VIS-22 | Low | Open (external) | Files Upload button uses a sync-style icon; dark navy buttons differ from app blue |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

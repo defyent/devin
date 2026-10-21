@@ -40,6 +40,7 @@ Within a checklist: work top to bottom, fill `Result` immediately, don't batch.
 - **Checklist rows:** `<PREFIX>-<NNN>` (module checks) and `<PREFIX>-S<NN>` (standard checks). Prefixes are listed in `TRACKER.md`.
 - **Bugs:** `BUG-<PREFIX>-<NNN>`, numbered per prefix in the order found (e.g. `BUG-FS-001`). Jon can reply per ID.
 - **Screenshots:** `bugs/screenshots/BUG-<PREFIX>-<NNN>-<n>.png`.
+- **External audit IDs** (`FORM-NN`, `POP-NN`, `DATE-NN`, `VIS-NN`, `UX-NN`, `ICON-NN`, `CHAT-NN`, …) from `external-audits/` are kept as-is and listed in `bugs/BUGS_INDEX.md`; Jon can reply with either kind of ID.
 
 ## 5. Severity
 | Severity | Meaning | Examples |

@@ -39,6 +39,17 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | AF-012 | Live Tracking map (with permission) | Live (last 10 min) / Historical with date; ADS-B toggle; re-centre; collapse; About | TODO | | |
 | AF-013 | Without Live Tracking permission | Map hidden | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| DATE-06 | Medium | Open (external) | Active Flights falls back to DD/MM/YYYY for text-month formats |
+| DATE-07 | Medium | Open (external) | Active Flights shows 01/01/1970 for an empty SAR time |
+| DATE-14 | Info | Info | Flight #8795 SAR time is before the booking start (may be expected) |
+| DATA-01 | Low | Open (external) | Active Flights overdue rows: follower "Unknown", empty route |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

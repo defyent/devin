@@ -16,6 +16,7 @@ debugging/
 │   ├── 31-…47-                        settings pages
 │   ├── 90-…95-                        cross-cutting (permissions, popups, dates, mobile, UI/icons, perf)
 │   └── 99-e2e-workflows.md            (run last)
+├── external-audits/        (Forms + UI/UX audits, 17/10/2026)
 ├── bugs/
 │   ├── BUG_TEMPLATE.md     ← copy for each bug
 │   ├── BUGS_INDEX.md       ← list of all bugs (ID, module, severity, status)

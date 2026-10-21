@@ -31,6 +31,15 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PL-004 | No create button | People created only in Access Manager | TODO | | |
 | PL-005 | WG/RG/WO/RO accounts | See only group members / self | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| UX-10 | Low | Open (external) | Personnel menu has an "Administration" group, the same name as the main section |
+| DATA-02 | Low | Open (external) | Person with a blank name in All Personnel / Access Manager |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

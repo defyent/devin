@@ -36,6 +36,15 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | RPT-009 | Export CSV / Create PDF | Files correct, dates in org format | TODO | | |
 | RPT-010 | Report Results: reopen / delete | Works; result access rules per §11.6 | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| FORM-38 | Info | Info | Reports help text mentions renewals, but Form Browser has no Renewals folder |
+| DATE-01 | High | Open (external) | Reports Last Run shows "16 10M 2026" with DD MMM YYYY; Reports time ignores 12-hour setting |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

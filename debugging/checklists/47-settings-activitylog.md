@@ -29,6 +29,14 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | SLOG-002 | View-only | No edit controls | TODO | | |
 | SLOG-003 | Performance with large log | Acceptable | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| DATE-08 | Low | Open (external) | Activity Log uses lowercase "am" and 12-hour time even when 24-hour is set |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

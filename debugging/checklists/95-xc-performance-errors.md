@@ -19,6 +19,15 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | PERF-003 | Network | No 4xx/5xx; no duplicate repeated calls | TODO | | |
 | PERF-004 | Badge polling (60 s / chat 20 s) | No runaway requests | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| INFO-01 | Info | Info | Version tag (?v=) missing on about half the modules (see section 5). Seen in the POP-01 retest: without ?v= the browser kept serving old JS, so the drag-out fixes only appeared after clearing the cache. Users may not get fixes until their cache expires |
+| INFO-02 | Info | Info | Performance popup shows on 9 modules and covers content (see section 6) |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

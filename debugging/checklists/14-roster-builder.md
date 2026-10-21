@@ -41,6 +41,14 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | RB-014 | Enable Live Edit > Confirm & Edit | Live roster editable | TODO | | |
 | RB-015 | WG user | Can only edit own groups | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| VIS-24 | Low | Open (external) | Roster Builder: only orange primary button; dashed-border trash button |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

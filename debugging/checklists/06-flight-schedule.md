@@ -60,6 +60,14 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FS-033 | Undo Last Booking Change | Reverts | TODO | | |
 | FS-034 | Performance on month view with 9,400+ flights | Loads; server timings < 500 ms | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| FUNC-03 | Low | Open (external) | Flight Schedule toolbar buttons disappear after toggling sticky notes |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

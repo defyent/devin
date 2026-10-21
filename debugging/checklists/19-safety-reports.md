@@ -41,6 +41,15 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | SMS-014 | Confidential report as another user | Hidden appropriately | TODO | | |
 | SMS-015 | WO / WG / RA accounts | Visibility matches §10.4 rules | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| FORM-02 | High | Open (external) | Safety Report form edits are lost: Save Changes never enables, values gone after reopening |
+| FORM-07 | Medium | Open (external) | Safety Report instance dates use MM/DD/YYYY and switch between UTC and local |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

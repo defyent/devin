@@ -32,6 +32,14 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | RV-005 | Group Visibility > Apply | Hides/shows groups | TODO | | |
 | RV-006 | RG / RO | Only own groups / self | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| VIS-20 | Low | Open (external) | Text "< >" arrows used in Roster Viewer, Roster Builder and date picker; "today" vs "Today" |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

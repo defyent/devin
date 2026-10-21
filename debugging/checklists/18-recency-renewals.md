@@ -31,6 +31,15 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | REC-004 | Click person | Opens Personnel Details > Recency tab | TODO | | |
 | REC-005 | Value entered on Flight Details Crew Recency | Reflected here after completion | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| VIS-15 | Low | Open (external) | Recency table header styled differently |
+| DATA-03 | Low | Open (external) | Recency status "Expired" while Next Expiry says "74 days" |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |

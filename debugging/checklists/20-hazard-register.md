@@ -30,6 +30,14 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | HAZ-003 | Details tabs: Hazard Details, Original SMS Report, Risk Assessment | Correct data | TODO | | |
 | HAZ-004 | Edit hazard fields (Type, Goal, Controls, Review Date, Responsible) | Saved | TODO | | |
 
+## Known issues from external audits
+
+From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BUGS_INDEX.md)). Retest each one while working this checklist and note the result.
+
+| Ext ID | Severity | Status | Issue |
+|---|---|---|---|
+| DATE-09 | Low | Open (external) | Hazard Register date has no leading zero ("8 Jan 2026") |
+
 ## Test data created
 
 | Record | Where | Cleanup done? |
