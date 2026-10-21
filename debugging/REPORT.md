@@ -808,3 +808,4 @@ Suspected cause: #flight-details-modal has no keydown Escape handler (same patte
 | 08-active-flights | Flight #42903 set to Open, SAR moved to 23:30, then Complete again (AF-011) | Flight #42903 | No (delete with the flight) |
 | 08-active-flights | Note 'BETA TEST ONLY AF note' | Flight #42903 notes | No |
 | 11-personnel-list | Pre-existing, not created in this run: person #274 with no name (Customer), found in PL-001 (BUG-PL-002) | All Personnel | No (check with Jon) |
+| 12-personnel-details | BETA TEST ONLY Lowperm: Middle Name 'BETA', City 'BETA TEST ONLY City', Weight 80 saved in PD-004 | Personnel Details #276 | Yes - cleared again |
