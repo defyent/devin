@@ -32,7 +32,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | DFR-005 | Simple search multi-word | Each word must match across ID, rego, PIC, crew, customer, route, notes, activity, category | PASS |  | 'ZK-RVN Fisher' -> 1 row (#8795), so words are ANDed across rego and PIC; 'BETA zzznomatch' -> 0 rows. 'Aaron Charter' and 'Charter Aaron' give the same rows (word order ignored) |
 | DFR-006 | Enable Advanced Filtering in Settings > DFR | Filter panel appears | TODO | | |
 | DFR-007 | Status checkboxes | Completed + Complete Locked ticked by default; others filter correctly | PASS |  | Status pills on a fresh load: Completed and Complete Locked ticked, Open/Cancelled/Deleted unticked; active-filter badge 2 |
-| DFR-008 | Date From/To, Flight ID, Rego, PIC, Customer, Search | Filter correctly; active-filter badge; clear works | FAIL | BUG-DFR-002 | Flight ID 42903 -> 1 row, badge 1; Rego ZK-SIM -> only ZK-SIM rows, badge 3; Date 01/05-08/05/2026 -> rows dated 06/05-08/05 only. Clear Filters unticks every status and shows Open/Deleted flights; date fields show today when unused (BUG-DFR-002) |
+| DFR-008 | Date From/To, Flight ID, Rego, PIC, Customer, Search | Filter correctly; active-filter badge; clear works | FAIL | BUG-DFR-002, BUG-DFR-003 | Flight ID 42903 -> 1 row, badge 1; Rego ZK-SIM -> only ZK-SIM rows, badge 3; Date 01/05-08/05/2026 -> rows dated 06/05-08/05 only. Clear Filters unticks every status and shows Open/Deleted flights; date fields show today when unused (BUG-DFR-002). Quick filter changes append duplicate / wrong-status rows (BUG-DFR-003) |
 | DFR-009 | RG user | Only flights for people in their groups | TODO | | |
 | DFR-010 | Performance with 9,400+ flights | Acceptable load time | TODO | | |
 

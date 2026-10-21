@@ -7,7 +7,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | Severity | Count |
 |---|---|
 | High | 1 |
-| Medium | 20 |
+| Medium | 21 |
 | Low | 18 |
 
 | Bug | Severity | Module | Title |
@@ -16,6 +16,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-AF-002](bugs/BUG-AF-002.md) | Medium | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them |
 | [BUG-AM-001](bugs/BUG-AM-001.md) | Medium | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) |
 | [BUG-DFR-002](bugs/BUG-DFR-002.md) | Medium | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied |
+| [BUG-DFR-003](bugs/BUG-DFR-003.md) | Medium | Daily Flight Record | Daily Flight Record: changing filters quickly appends results instead of replacing them, showing duplicate and wrong-status rows |
 | [BUG-DSH-003](bugs/BUG-DSH-003.md) | Medium | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) |
 | [BUG-FD-001](bugs/BUG-FD-001.md) | Medium | Flight Details | Flight Details Save Changes does not return to the Flight Schedule and gives no success message |
 | [BUG-FD-002](bugs/BUG-FD-002.md) | Medium | Flight Details | Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM > Unassigned' on schedule moves |
@@ -124,6 +125,24 @@ Suspected cause: Clear resets status checkboxes to unchecked instead of the defa
 
 ![BUG-DFR-002-1](bugs/screenshots/BUG-DFR-002-1.png)
 ![BUG-DFR-002-2](bugs/screenshots/BUG-DFR-002-2.png)
+
+### BUG-DFR-003: Daily Flight Record: changing filters quickly appends results instead of replacing them, showing duplicate and wrong-status rows
+
+Severity: Medium | Module: Daily Flight Record | Check: DFR-008 ([09-daily-flight-record](checklists/09-daily-flight-record.md))
+
+Steps:
+1. Sidebar > Flight Operations > Daily Flight Record > expand Advanced Filters
+2. Click the Open status pill twice quickly (on, then off)
+3. Look at the list: only Completed + Complete Locked are ticked
+4. Or: with only Cancelled ticked, quickly click Completed, Complete Locked and Cancelled to get back to the defaults
+
+Expected: The list always matches the current filters, each flight once (30 Completed rows).
+
+Actual: Open on/off quickly: 60 rows, 30 Open flights plus 30 Completed, although Open is unticked. Three quick clicks back to the defaults: 90 rows of which 60 are duplicate IDs. Changing one filter at a time (4 s apart) is correct. Seen earlier too: Flight ID 42903 listed twice followed by unfiltered flights.
+
+Suspected cause: Each filter change starts a new load, and every response is appended to the table; earlier, slower requests are not cancelled or ignored, and the table is not cleared per request.
+
+![BUG-DFR-003-1](bugs/screenshots/BUG-DFR-003-1.png)
 
 ### BUG-DSH-003: Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals)
 
