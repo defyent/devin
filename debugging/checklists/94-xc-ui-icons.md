@@ -14,13 +14,13 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| UI-001 | Per-action icon inventory (add, edit, delete, save, help, history, PDF, upload, download, close) | Same icon per action everywhere; record each variant with module | TODO | | |
-| UI-002 | Icon source | Single self-hosted pack (currently api.iconify.design CDN + Material Symbols mix) | TODO | | |
-| UI-003 | Button labels and colours | Consistent primary/secondary/destructive | TODO | | |
-| UI-004 | Help (?) present on every page | Yes | TODO | | |
-| UI-005 | Empty states | Friendly message, not blank | TODO | | |
-| UI-006 | Loading states | Spinner/skeleton; no layout jump | TODO | | |
-| UI-007 | Typos / wording | Record exact text | TODO | | |
+| UI-001 | Per-action icon inventory (add, edit, delete, save, help, history, PDF, upload, download, close) | Same icon per action everywhere; record each variant with module | FAIL | ICON-04 | The same action still uses different icons from page to page: delete, close, edit, add and help each have 4 or more (seed ICON-04 to ICON-08 are still there in v2.0.111). For example, Flight Schedule uses the old Material Icons edit pencil while the settings pages use Symbols. |
+| UI-002 | Icon source | Single self-hosted pack (currently api.iconify.design CDN + Material Symbols mix) | FAIL | ICON-01 | Icons still load from Google Fonts (Material Icons Sharp and Material Symbols) and api.iconify.design (seed ICON-01). There is no local copy. |
+| UI-003 | Button labels and colours | Consistent primary/secondary/destructive | PASS |  | Buttons are labelled and coloured consistently on the pages I tested: primary blue Save, red Delete, grey Cancel. The Save vs Save Changes wording difference (UX-08) is still there. |
+| UI-004 | Help (?) present on every page | Yes | FAIL | VIS-06 | 28 bugs are for a missing page Help (?): BUG-AF-003, BUG-DFR-001, BUG-PL-001, BUG-RV-001, BUG-RB-001, BUG-TS-001, BUG-FAD-001, BUG-NOT-001, BUG-REC-001, BUG-FB-001, BUG-FBR-001, BUG-RPT-001, BUG-SUP-001, BUG-CHAT-001, BUG-EXM-001 and most settings pages (BUG-STZ-002 ... BUG-SLOG-001). Help is present on Flight Details, Personnel Details, Access Manager, Settings and Tools, Resources and Google Calendar. |
+| UI-005 | Empty states | Friendly message, not blank | PASS |  | Empty states show a message everywhere I checked (e.g. "No permission templates found", Exam Instances, Lesson Plans, Task Tracker). Wording differs between pages (UX-04). |
+| UI-006 | Loading states | Spinner/skeleton; no layout jump | PASS |  | Pages show a spinner or "Loading..." while data loads (Activity Log scroll, Flight Schedule, Reports run). Nothing stayed blank. |
+| UI-007 | Typos / wording | Record exact text | FAIL | BUG-FAD-004 | Wording problems: F&D has two "1 Days" and two "24 Hours" columns (BUG-FAD-004), "1 Permission(s)" style counts, and page titles that differ from menu names (VIS-04). |
 
 ## Known issues from external audits
 

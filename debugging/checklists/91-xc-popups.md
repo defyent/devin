@@ -14,14 +14,14 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| POP-001 | Drag-out: mousedown inside popup, release outside | Popup stays open (recurring bug — check EVERY popup) | TODO | | |
-| POP-002 | Click on backdrop (true outside click) | Closes only where documented; never loses unsaved input silently | TODO | | |
-| POP-003 | Esc | Closes | TODO | | |
-| POP-004 | × and Cancel | Close; unsaved changes prompt where applicable | TODO | | |
-| POP-005 | Error while inside popup | Popup closes first, error modal readable | TODO | | |
-| POP-006 | Stacked popups (popup opens popup) | Correct z-order; closing child keeps parent | TODO | | |
-| POP-007 | Long content | Scrolls inside popup; buttons reachable | TODO | | |
-| POP-008 | Mobile width | Popup fits screen | TODO | | |
+| POP-001 | Drag-out: mousedown inside popup, release outside | Popup stays open (recurring bug — check EVERY popup) | PASS |  | Every popup I tested stays open after a drag-out (mousedown inside, release outside), across checklists 04 to 47: e.g. DFR Manage Columns, F&D popups, Inspections and Google Calendar Add, Access Manager. The 17/10 fix holds. |
+| POP-002 | Click on backdrop (true outside click) | Closes only where documented; never loses unsaved input silently | FAIL | BUG-POP-004 | Outside click is inconsistent. It closes Help, Flight Schedule View Details, Personnel History, Support New Ticket (wiping what you typed, BUG-SUP-001) and others. It does nothing on Form Builder, Google Calendar Add and many settings popups. See the 14 bugs that mention outside click (BUG-AF-003, BUG-FBLD-001, BUG-SINT-001...). |
+| POP-003 | Esc | Closes | FAIL | BUG-POP-001 | Escape closes only page Help on a few pages. It does nothing on almost every other popup: 38 bugs mention it (BUG-POP-001, BUG-POP-004, BUG-FS-002, BUG-PD-005, BUG-TS-005 ... BUG-SINS-001, BUG-SINT-001). |
+| POP-004 | × and Cancel | Close; unsaved changes prompt where applicable | PASS |  | The x and Cancel buttons close the popup wherever they are shown. Personnel PDF Options has no x (BUG-PD-005). |
+| POP-005 | Error while inside popup | Popup closes first, error modal readable | FAIL | BUG-TS-006 | An error inside a popup often closes the popup and loses the input: wrong colour in Add Leave Type (BUG-TS-006), wrong password on the signature (BUG-PD-014). Roster Builder error messages never show because openErrorModal throws (BUG-RB-005). |
+| POP-006 | Stacked popups (popup opens popup) | Correct z-order; closing child keeps parent | FAIL | BUG-SMS-001 | Stacked popups: Escape on the Confidential/Anonymous (?) inside New Safety Report closes the whole form and loses the input (BUG-SMS-001). Error popups opened over a form need OK before the form can be used again. |
+| POP-007 | Long content | Scrolls inside popup; buttons reachable | PASS |  | Long content scrolls inside the popup: DFR Notes full text, Google Calendar Setup Instructions, the Help popups and Exam Instances. |
+| POP-008 | Mobile width | Popup fits screen | PASS |  | At 390 px the Flight Details Help popup fits inside the screen (left 9 px, right 366 px), scrolls inside and keeps Got it! visible (shot mob_popup). Earlier mobile checks also found the module popups usable. |
 
 ## Known issues from external audits
 
