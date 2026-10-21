@@ -42,6 +42,8 @@
 | [BUG-DFR-001](BUG-DFR-001.md) | `DFR-S02` | Daily Flight Record | Daily Flight Record has no page Help (?), and its popups (Manage Columns, Notes full text) don't close with Escape | Low | New | |
 | [BUG-DFR-002](BUG-DFR-002.md) | `DFR-008` | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied | Medium | New | |
 | [BUG-DFR-003](BUG-DFR-003.md) | `DFR-008` | Daily Flight Record | Daily Flight Record: changing filters quickly appends results instead of replacing them, showing duplicate and wrong-status rows | Medium | New | |
+| [BUG-PL-001](BUG-PL-001.md) | `PL-S02` | All Personnel | All Personnel has no page Help (?) | Low | New | |
+| [BUG-PL-002](BUG-PL-002.md) | `PL-001` | All Personnel | A person with no name exists and is listed as '?' at the top of All Personnel (person #274, Customer) | Low | New | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

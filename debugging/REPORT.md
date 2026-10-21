@@ -8,7 +8,7 @@ Generated from the checklist results and bug files on this branch. Testing is st
 |---|---|
 | High | 1 |
 | Medium | 21 |
-| Low | 18 |
+| Low | 20 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -49,6 +49,8 @@ Generated from the checklist results and bug files on this branch. Testing is st
 | [BUG-PD-004](bugs/BUG-PD-004.md) | Low | Personnel Details > Security | Security tab 'Enabled on' date ignores Settings > Time Zone format |
 | [BUG-PERF-001](bugs/BUG-PERF-001.md) | Low | All modules (debug panel) | 'Performance' debug timing panel shown on every page, including to non-admin users |
 | [BUG-PERM-001](bugs/BUG-PERM-001.md) | Low | Shell (main) sidebar | Sidebar lists modules the user has no permission for (all lead to Access Denied) |
+| [BUG-PL-001](bugs/BUG-PL-001.md) | Low | All Personnel | All Personnel has no page Help (?) |
+| [BUG-PL-002](bugs/BUG-PL-002.md) | Low | All Personnel | A person with no name exists and is listed as '?' at the top of All Personnel (person #274, Customer) |
 | [BUG-POP-001](bugs/BUG-POP-001.md) | Low | Access Manager (shared errorModal) | Error modal ('Failed to Create User') does not close with Esc |
 | [BUG-POP-002](bugs/BUG-POP-002.md) | Low | Access Manager > Manage User Permissions | Manage User Permissions uses a native browser confirm() for unsaved changes |
 | [BUG-POP-004](bugs/BUG-POP-004.md) | Low | Flight Schedule | Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc |
@@ -682,6 +684,39 @@ Suspected cause: Sidebar build in main/index.pl does not check the permission ty
 
 ![BUG-PERM-001-1](bugs/screenshots/BUG-PERM-001-1.png)
 ![BUG-PERM-001-2](bugs/screenshots/BUG-PERM-001-2.png)
+
+### BUG-PL-001: All Personnel has no page Help (?)
+
+Severity: Low | Module: All Personnel | Check: PL-S02 ([11-all-personnel](checklists/11-all-personnel.md))
+
+Steps:
+1. Sidebar > Personnel > All Personnel
+2. Look for the Help (?) button in the page header
+
+Expected: A Help (?) button that opens help for the page, as on Personnel Details and Flight Details.
+
+Actual: The page has only the search box and the group/role filters. There is no Help (?) button.
+
+![BUG-PL-001-1](bugs/screenshots/BUG-PL-001-1.png)
+
+### BUG-PL-002: A person with no name exists and is listed as '?' at the top of All Personnel (person #274, Customer)
+
+Severity: Low | Module: All Personnel | Check: PL-001 ([11-all-personnel](checklists/11-all-personnel.md))
+
+Steps:
+1. Sidebar > Personnel > All Personnel
+2. Look at the first row (or set All Roles > Customer)
+3. Click it
+
+Expected: Every person has at least a name or company; creating a person or customer without one is refused.
+
+Actual: The first row has a '?' avatar, an empty name, No Groups and role Customer. It opens Personnel Details for person_id=274 with First, Middle, Last Name and Company all empty. Its History only shows forms filled by Service Account on 17 Oct 2026 (AUDIT All Widgets), so it already existed before this run. How it was created isn't known; possibly an empty New Customer save in Flight Details.
+
+Suspected cause: Person/customer create path allows saving with all name fields empty.
+
+![BUG-PL-002-1](bugs/screenshots/BUG-PL-002-1.png)
+![BUG-PL-002-2](bugs/screenshots/BUG-PL-002-2.png)
+![BUG-PL-002-3](bugs/screenshots/BUG-PL-002-3.png)
 
 ### BUG-POP-001: Error modal ('Failed to Create User') does not close with Esc
 
