@@ -62,7 +62,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | FD-035 | Leave with unsaved changes | Stay on Page / Leave Page | PASS |  | With unsaved changes, Back > app popup 'Unsaved Changes - You have unsaved changes. Are you sure you want to leave without saving?' with Stay on Page / Leave Page; Stay keeps the page and the changes (shot fd_leave_prompt) |
 | FD-036 | Flight & Duty Limit Alert | Shown when crew exceed FRMS limits | TODO | | |
 | FD-037 | History | Shows changes made in this run | FAIL | BUG-FD-002 | History lists 5 entries (Created 09:29 pm + 4 schedule moves/resizes) but not the 10:17 pm Flight Details save (passenger + comment). Every schedule move also logs 'Aircraft: ZK-SIM > Unassigned' and 'Source: (blank) > Flight Schedule' although the aircraft did not change (shot fd_history) |
-| FD-038 | Delete open flight | Confirmation; flight soft-deleted (D) | TODO | | |
+| FD-038 | Delete open flight | Confirmation; flight soft-deleted (D) | PASS |  | Open flight #42908 > delete > 'Delete Flight - Are you sure you want to delete this flight? This will mark it as deleted and return you to the flight schedule.' (Stay on Page / Delete Flight) > Delete Flight > back on Flight Schedule, #42908 gone from 19-25 Oct. No toast. Soft-delete (D) not visible from UI. Delete button hidden on the Complete flight #42903 (shots fd_delete_confirm, fd_deleted) |
 
 ## Known issues from external audits
 
