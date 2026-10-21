@@ -15,7 +15,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
 | CON-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | TODO | | |
-| CON-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | TODO | | |
+| CON-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | PASS |  | Checked on Flight Details: Got it! / x / backdrop click / Esc all close Help |
 | CON-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
 | CON-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
 | CON-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
@@ -25,7 +25,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| CON-001 | Help (?) button top right | Opens page help; closes with Got it/Close, ×, click outside, Esc | TODO | | |
+| CON-001 | Help (?) button top right | Opens page help; closes with Got it/Close, ×, click outside, Esc | PASS |  | Flight Details Help (?) top right opens page help; closes with Got it!, x, backdrop click, Esc. Note: Dashboard and Flight Schedule have no Help button (VIS-06) |
 | CON-002 | Pill navigation | Pills switch sections; narrow screen shows a dropdown | TODO | | |
 | CON-003 | Toast on save/add/delete | Bottom-right toast, disappears after ~3 s | TODO | | |
 | CON-004 | Server error / Access Denied | Popup modal with OK; if already in a popup, that popup closes first | PASS |  | Access Manager: delete in-use group > confirm popup closes first, then 'Cannot Delete Group' error modal with OK |

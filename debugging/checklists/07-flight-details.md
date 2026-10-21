@@ -14,8 +14,8 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| FD-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | TODO | | |
-| FD-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | TODO | | |
+| FD-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Flight Schedule (menu) > Schedule Only > week > double-click flight #42903 > Flight Details 'Flight #42903 ZK-SIM Open 21/10/2026 08:30' loads, no console errors. Single click only selects the flight |
+| FD-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | PASS |  | Help opens 'Flight Details Help'; Got it!, x, Esc and a click on the backdrop each close it, no console errors (one removeChild error seen once in an earlier attempt, not reproducible) (shot fd_help) |
 | FD-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | TODO | | |
 | FD-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | TODO | | |
 | FD-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | TODO | | |
@@ -26,7 +26,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
 | FD-001 | Read-only user (RA/RG/RO) | Yellow banner e.g. 'Read-Only Group Access…'; Save/Cancel/Delete hidden | TODO | | |
-| FD-002 | Header: Back, PDF, History, Cancel, Save Changes, Delete (open only), Help | All present and working | TODO | | |
+| FD-002 | Header: Back, PDF, History, Cancel, Save Changes, Delete (open only), Help | All present and working | PASS |  | Header shows Back, PDF, History, Cancel, Save Changes, Delete, Help on the open flight; individual actions tested in FD-003, FD-034, FD-037, FD-038 |
 | FD-003 | PDF with unsaved changes | Asks to save first | TODO | | |
 | FD-004 | Details: Aircraft dropdown | Only Active + Is Aircraft resources | TODO | | |
 | FD-005 | Details: PIC / Secondary Flight Crew | Only Crew or Student role people | TODO | | |
