@@ -20,10 +20,10 @@
 Start defaults to local now (21:25), end +1h (22:25), SAR time in local time.
 
 ## Actual
-Start 21/10/2026 08:25, End 09:25, SAR TIME (LOCAL) 09:25 - all UTC values. Near midnight the date would also be wrong. Also Cancel with no changes does nothing (only the back arrow leaves).
+Start 21/10/2026 08:25, End 09:25, SAR TIME (LOCAL) 09:25 - all UTC values. Near midnight the date would also be wrong. Also Cancel with no changes does nothing (only the back arrow leaves). Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. At local 18:09 (UTC 05:09) on 22/10/2026, Flight Schedule > Live Edit > Add Flight opens New Flight Details with Start 22/10/2026 05:10, End 06:10 and SAR TIME (LOCAL) 06:10, i.e. UTC, 13 h behind local. Header 'Time: 05:10' also UTC. Cancel with no changes still does nothing (URL stays action=flightdetails).
 
 ## Evidence
-- Screenshot: `screenshots/BUG-FS-001-1.png`
+- Screenshot: `screenshots/BUG-FS-001-1.png`, `screenshots/BUG-FS-001-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

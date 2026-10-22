@@ -21,10 +21,10 @@
 ZK-BTO and its flights #42909 and #42910 are shown, including the user's own PIC flight.
 
 ## Actual
-Week view shows no aircraft rows or events. List view says 'No events to display', even with Group By = BETA TEST ONLY Group ('Showing only aircraft and personnel in the "BETA TEST ONLY Group" group'). Daily Flight Record (RG) lists #42909 for the same user, so the data is there. Group memberships in Access Manager only have an 'On Roster' flag, with no read/write flag (§14 caveat).
+Week view shows no aircraft rows or events. List view says 'No events to display', even with Group By = BETA TEST ONLY Group ('Showing only aircraft and personnel in the "BETA TEST ONLY Group" group'). Daily Flight Record (RG) lists #42909 for the same user, so the data is there. Group memberships in Access Manager only have an 'On Roster' flag, with no read/write flag (§14 caveat). Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): fixed. betatest_grp (Flight Schedule #209=WG, member of BETA TEST ONLY Group) now sees ZK-BTO with #42909 and #42910 in week view, list view and Group By = BETA TEST ONLY Group. No script errors.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-FS-008-1.png`, `screenshots/BUG-FS-008-2.png`, `screenshots/BUG-FS-008-3.png`
+- Screenshot: `screenshots/BUG-FS-008-1.png`, `screenshots/BUG-FS-008-2.png`, `screenshots/BUG-FS-008-3.png`, `screenshots/BUG-FS-008-4.png`, `screenshots/BUG-FS-008-5.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

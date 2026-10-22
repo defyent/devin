@@ -24,3 +24,7 @@
 - W&B: Rev 3 set back as Master (checked: "Revision 3, 1 aircraft"). Revs 4-6 stay as Approved history (the app has no delete for approved revisions)
 - Exam "BETA TEST ONLY Exam" instance for Second submitted and Graded (18% Fail); graded instances can't be removed (BUG-EXM-008)
 - Temporary Reports (A) permission on BETA TEST ONLY Second for RPT-002 (removed after the test; checked)
+- Flight Schedule retest 22/10/2026: flight #42912 (paste of #42909, ZK-BTO 24/10 14:10-15:10) created for FS-021, deleted via Flight Details > delete (gone from the schedule)
+- Location "BETA TEST ONLY Loc2" / BT2 created from Planner > New Booking > Add Location for FS-029 (kept; no delete found in the Locations popup). The New Booking was cancelled, not saved
+- Settings > Flight Schedule > Schedule Start Time broke to NaN:NaN during the SFS-004 retest (BUG-SFS-002); the UI could not fix it, so it was restored to 07:00 by rewriting the save request (checked after reload: 07:00, Slot Duration 30)
+- Flight #42910 was found back at Open on 22/10/2026 (raising an "Overdue: 9 hours" alert for ZK-BTO); set back to Canceled from Flight Details > Flight Status (checked after reload)

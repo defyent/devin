@@ -20,10 +20,10 @@
 Title, Live Edit banner, past-date banner and location pill all readable (wrap to a second line if needed).
 
 ## Actual
-'Live Edit Mode' banner is drawn over the 'Flight Schedule' title and subtitle; 'Viewing location: Auckland Base' is cut to 'Viewing' and hidden behind the view buttons. The pill's 'Show All' button sits under the view-mode buttons, so a click lands on 'Schedule & Planner' instead (the location filter can only be cleared after turning Live Edit off or via Locations > All Locations).
+'Live Edit Mode' banner is drawn over the 'Flight Schedule' title and subtitle; 'Viewing location: Auckland Base' is cut to 'Viewing' and hidden behind the view buttons. The pill's 'Show All' button sits under the view-mode buttons, so a click lands on 'Schedule & Planner' instead (the location filter can only be cleared after turning Live Edit off or via Locations > All Locations). Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): fixed. At 1568 px with location Auckland Base picked, a past week shown and Live Edit on, the Live Edit, past-date and 'Viewing location: Auckland Base / Show All' banners sit on their own row under the title with no overlap. Show All is the top element at its centre and clicking it clears the location filter.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-FS-003-1.png`
+- Screenshot: `screenshots/BUG-FS-003-1.png`, `screenshots/BUG-FS-003-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

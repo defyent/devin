@@ -21,7 +21,7 @@
 Esc ends paste mode; Ctrl+V afterwards does nothing.
 
 ## Actual
-No feedback on Esc; the click shows 'Press Ctrl+V to paste the flight here' and Ctrl+V creates another flight (created #42906). Users can create unwanted live flights.
+No feedback on Esc; the click shows 'Press Ctrl+V to paste the flight here' and Ctrl+V creates another flight (created #42906). Users can create unwanted live flights. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): fixed. Live Edit > select #42909 > Ctrl+C > click 24/10 14:00 > Ctrl+V > Copy Flight Options > Paste created #42912 ('Flight pasted successfully... or press Escape to finish'). Esc now shows 'Copy/paste finished. Ctrl+V will no longer paste.' Clicking another slot and pressing Ctrl+V afterwards creates nothing (only 'Click on the schedule to choose where to paste the flight.'). #42912 deleted afterwards.
 
 ## Evidence
 - Screenshot: `screenshots/BUG-FS-002-1.png`

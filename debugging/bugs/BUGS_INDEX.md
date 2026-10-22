@@ -22,14 +22,14 @@
 | [BUG-POP-003](BUG-POP-003.md) | `AM-019` | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-DSH-001](BUG-DSH-001.md) | `DSH-012` | Dashboard | Dashboard side tabs are icon-only with no tooltip or label | Low | Fixed (verified 22/10/2026) | |
 | [BUG-DSH-003](BUG-DSH-003.md) | `DSH-006` | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) | Medium | Fixed (verified 22/10/2026) | |
-| [BUG-POP-004](BUG-POP-004.md) | `FS-013` | Flight Schedule | Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc | Low | New | |
-| [BUG-FS-001](BUG-FS-001.md) | `FS-011` | Flight Schedule > Flight Details (new) | New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h) | Medium | New | |
-| [BUG-FS-002](BUG-FS-002.md) | `FS-021` | Flight Schedule | Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight | Medium | New | |
-| [BUG-FS-003](BUG-FS-003.md) | `FS-008` | Flight Schedule | Flight Schedule header overlaps when Live Edit is on - title covered, location pill cut off and its 'Show All' button cannot be clicked | Medium | New | |
-| [BUG-FS-004](BUG-FS-004.md) | `FS-029` | Flight Schedule > Location Planner | Planner Add Location replaces the New Booking popup - typed booking and location input is lost | Medium | New | |
-| [BUG-FS-005](BUG-FS-005.md) | `FS-008` | Flight Schedule | JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop') | Low | New | |
-| [BUG-FS-006](BUG-FS-006.md) | `FS-034` | Flight Schedule | Flight Schedule month view is slow: flightschedule_json takes ~1.6 s and rendering 2,500 events ~4.5 s | Medium | New | |
-| [BUG-FS-007](BUG-FS-007.md) | `FS-025` | Flight Schedule | Edit-mode idle timeout switches Live Edit off silently, throws 'calendarEl is not defined' and leaves the schedule blank | Medium | New | |
+| [BUG-POP-004](BUG-POP-004.md) | `FS-013` | Flight Schedule | Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc | Low | Fixed (verified 22/10/2026) | |
+| [BUG-FS-001](BUG-FS-001.md) | `FS-011` | Flight Schedule > Flight Details (new) | New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h) | Medium | Open (retested 22/10/2026, still failing) | |
+| [BUG-FS-002](BUG-FS-002.md) | `FS-021` | Flight Schedule | Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight | Medium | Fixed (verified 22/10/2026) | |
+| [BUG-FS-003](BUG-FS-003.md) | `FS-008` | Flight Schedule | Flight Schedule header overlaps when Live Edit is on - title covered, location pill cut off and its 'Show All' button cannot be clicked | Medium | Fixed (verified 22/10/2026) | |
+| [BUG-FS-004](BUG-FS-004.md) | `FS-029` | Flight Schedule > Location Planner | Planner Add Location replaces the New Booking popup - typed booking and location input is lost | Medium | Fixed (verified 22/10/2026) | |
+| [BUG-FS-005](BUG-FS-005.md) | `FS-008` | Flight Schedule | JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop') | Low | Fixed (verified 22/10/2026) | |
+| [BUG-FS-006](BUG-FS-006.md) | `FS-034` | Flight Schedule | Flight Schedule month view is slow: flightschedule_json takes ~1.6 s and rendering 2,500 events ~4.5 s | Medium | Open (retested 22/10/2026, still failing) | |
+| [BUG-FS-007](BUG-FS-007.md) | `FS-025` | Flight Schedule | Edit-mode idle timeout switches Live Edit off silently, throws 'calendarEl is not defined' and leaves the schedule blank | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-FD-001](BUG-FD-001.md) | `FD-034` | Flight Details | Flight Details Save Changes does not return to the Flight Schedule and gives no success message | Medium | New | |
 | [BUG-FD-002](BUG-FD-002.md) | `FD-037` | Flight Details | Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM > Unassigned' on schedule moves | Medium | New | |
 | [BUG-FD-003](BUG-FD-003.md) | `FD-019` | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings | Low | New | |
@@ -122,8 +122,8 @@
 | [BUG-EXM-006](BUG-EXM-006.md) | `EXM-010` | Exams | Taking an exam: Multi-Response checkboxes toggle twice, so clicking the box does nothing and the saved answer can differ from what is ticked | High | New | |
 | [BUG-EXM-007](BUG-EXM-007.md) | `EXM-009` | Exams | Exam Instances batch: deleting a person's instance shows success but the row stays until the page is reloaded | Low | New | |
 | [BUG-EXM-008](BUG-EXM-008.md) | `EXM-001` | Exams | Exam Builder: deleting an exam or exam group that has instances fails silently (error only in the console), and graded instances can't be removed | Medium | New | |
-| [BUG-SFS-001](BUG-SFS-001.md) | `SFS-003` | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted | Low | New | |
-| [BUG-SFS-002](BUG-SFS-002.md) | `SFS-004` | Settings: Flight Schedule | Changing Schedule Start Time saves a full date-time, and the setting then shows NaN:NaN | High | New | |
+| [BUG-SFS-001](BUG-SFS-001.md) | `SFS-003` | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted | Low | Open (retested 22/10/2026, still failing) | |
+| [BUG-SFS-002](BUG-SFS-002.md) | `SFS-004` | Settings: Flight Schedule | Changing Schedule Start Time saves a full date-time, and the setting then shows NaN:NaN | High | Open (retested 22/10/2026, still failing) | |
 | [BUG-SDFR-001](BUG-SDFR-001.md) | `SDFR-S01` | Settings: Daily Flight Record | Daily Flight Record Settings loads a colorpicker.js that does not exist (404 in the console) | Low | New | |
 | [BUG-STZ-001](BUG-STZ-001.md) | `STZ-S04` | Settings: Time Zone | Time Zone settings: the Example preview shows UTC, not the selected time zone | Medium | New | |
 | [BUG-STZ-002](BUG-STZ-002.md) | `STZ-S02` | Settings: Time Zone | Time Zone settings page has no Help (?) | Low | New | |
@@ -164,14 +164,14 @@
 | [BUG-SLOG-001](BUG-SLOG-001.md) | `SLOG-S04` | Settings: Activity Log | Activity Log: no page Help (?), and dates show as "22 Oct 2026, 02:51 am" | Low | New | |
 | [BUG-AM-005](BUG-AM-005.md) | `PERM-001` | Access Manager | Access Manager: 16 permission types appear twice with the same name (e.g. two "Flight Schedule" cards with different levels) | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-FD-006](BUG-FD-006.md) | `FD-031` | Flight Details | Flight can be set to Complete with no times or destination on a leg; no 'Required Information' prompt | Medium | New | |
-| [BUG-FD-007](BUG-FD-007.md) | `DATE-005` | Flight Details | New flight defaults its leg date/time to UTC instead of local time | Medium | New | |
+| [BUG-FD-007](BUG-FD-007.md) | `DATE-005` | Flight Details | New flight defaults its leg date/time to UTC instead of local time | Medium | Open (retested 22/10/2026, still failing) | |
 | [BUG-PD-017](BUG-PD-017.md) | `PD-018` | Personnel Details | Personnel Details > Lesson Plans: an assigned plan is saved but never listed; the dialog's dates default to the UTC date | Medium | New | |
 | [BUG-SWAB-005](BUG-SWAB-005.md) | `SWAB-003` | Settings: Weight and Balance | W&B Configs: two revisions show the same number ("Rev 5") until another import renumbers them | Low | New | |
 | [BUG-PD-018](BUG-PD-018.md) | `PD-015` | Personnel Details | Request Leave: Start and End Date default to the UTC date, not today's local date | Low | New | |
 | [BUG-TS-007](BUG-TS-007.md) | `TS-006` | Timesheets | Reject Claim: leaving the reason empty closes the reject popup and throws a script error | Low | New | |
 | [BUG-DSH-004](BUG-DSH-004.md) | `DSH-005` | Dashboard | Dashboard: My Flights and On Duty open on the UTC date, not today's local date | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-TS-008](BUG-TS-008.md) | `TS-008` | Timesheets / Leave Requests | Approving a leave request doesn't change the rostered shifts, and rejecting with no reason gives no message | Medium | New | |
-| [BUG-FS-008](BUG-FS-008.md) | `FS-027` | Flight Schedule | Flight Schedule: a group-level user (G / WG) sees no flights, even on aircraft in their own group | High | New | |
+| [BUG-FS-008](BUG-FS-008.md) | `FS-027` | Flight Schedule | Flight Schedule: a group-level user (G / WG) sees no flights, even on aircraft in their own group | High | Fixed (verified 22/10/2026) | |
 | [BUG-AF-005](BUG-AF-005.md) | `FS-027` | Active Flights | Active Flights: a Read Only Group (RG) user sees every company flight, not only their group's | Medium | New | |
 | [BUG-NOT-004](BUG-NOT-004.md) | `NOT-004` | Notices | Notices: a Write Group (WG) user gets 'An error occurred' when clicking New Notice | Medium | New | |
 | [BUG-SMS-005](BUG-SMS-005.md) | `SMS-015` | Safety Reports | Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted | High | New | |

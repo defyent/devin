@@ -1,6 +1,6 @@
 # DataHangar test run report (stresstest, v2.0.111)
 
-Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (576 pass, 167 fail, 27 blocked, 19 N/A).
+Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (582 pass, 161 fail, 27 blocked, 19 N/A).
 
 ## Summary
 
@@ -245,11 +245,13 @@ Steps:
 
 Expected: ZK-BTO and its flights #42909 and #42910 are shown, including the user's own PIC flight.
 
-Actual: Week view shows no aircraft rows or events. List view says 'No events to display', even with Group By = BETA TEST ONLY Group ('Showing only aircraft and personnel in the "BETA TEST ONLY Group" group'). Daily Flight Record (RG) lists #42909 for the same user, so the data is there. Group memberships in Access Manager only have an 'On Roster' flag, with no read/write flag (§14 caveat).
+Actual: Week view shows no aircraft rows or events. List view says 'No events to display', even with Group By = BETA TEST ONLY Group ('Showing only aircraft and personnel in the "BETA TEST ONLY Group" group'). Daily Flight Record (RG) lists #42909 for the same user, so the data is there. Group memberships in Access Manager only have an 'On Roster' flag, with no read/write flag (§14 caveat). Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): fixed. betatest_grp (Flight Schedule #209=WG, member of BETA TEST ONLY Group) now sees ZK-BTO with #42909 and #42910 in week view, list view and Group By = BETA TEST ONLY Group. No script errors.
 
 ![BUG-FS-008-1](bugs/screenshots/BUG-FS-008-1.png)
 ![BUG-FS-008-2](bugs/screenshots/BUG-FS-008-2.png)
 ![BUG-FS-008-3](bugs/screenshots/BUG-FS-008-3.png)
+![BUG-FS-008-4](bugs/screenshots/BUG-FS-008-4.png)
+![BUG-FS-008-5](bugs/screenshots/BUG-FS-008-5.png)
 
 ### BUG-PD-006: Personnel Details > Recency and Renewals: action buttons are hidden (Add Item, Table/Card view, renewal Save / Complete Renewal / Cancel) and Group by / Order by are disabled
 
@@ -320,11 +322,12 @@ Steps:
 
 Expected: Start time is saved as 06:00 and still shows 06:00 after reload.
 
-Actual: The page saves the picker's full value ("2026-10-22 06:00:00"). On reload it splits that on ":" to get the hours, gets NaN, and the box shows "NaN:NaN". The server then stores "NaN-NaN-NaN NaN:NaN:NaN". After that, typing a new time does not enable Update Changes, so a user can't fix it from the UI.
+Actual: The page saves the picker's full value ("2026-10-22 06:00:00"). On reload it splits that on ":" to get the hours, gets NaN, and the box shows "NaN:NaN". The server then stores "NaN-NaN-NaN NaN:NaN:NaN". After that, typing a new time does not enable Update Changes, so a user can't fix it from the UI. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. Typing 06:00 in Schedule Start Time and saving sent scheduleStartTime='2026-10-22 06:00:00'; after reload the box shows NaN:NaN (hidden value 'NaN-NaN-NaN NaN:NaN:NaN') and typing a time does not enable Update Changes. The save still posts the full date-time. Repaired for the test site by rewriting the save request to scheduleStartTime=07:00; reload then shows 07:00.
 
 Suspected cause: templates2/settings_flightschedule/index.js: the change listener does state.scheduleStartTime = e.target.value, but datetimepicker.js writes "YYYY-MM-DD HH:MM:SS" to .dtp-hidden-input. init then does state.scheduleStartTime.split(":").map(Number). Fix: keep only HH:MM (e.g. value.slice(11,16)) and check it is valid before saving.
 
 ![BUG-SFS-002-1](bugs/screenshots/BUG-SFS-002-1.png)
+![BUG-SFS-002-2](bugs/screenshots/BUG-SFS-002-2.png)
 
 ### BUG-SLP-002: Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave
 
@@ -774,9 +777,10 @@ Steps:
 
 Expected: Start defaults to the local date/time: 22/10/2026 09:40.
 
-Actual: Start defaults to 21/10/2026 20:40 and end to 21/10/2026 21:40, which is UTC. A user who doesn't notice saves the flight on the previous day, 13 hours early. The SAR Watch time has the same problem: on flight #42910 (planned 22/10 13:00-14:00) SAR defaulted to 21/10/2026 21:55, which is the UTC time and is before the flight starts.
+Actual: Start defaults to 21/10/2026 20:40 and end to 21/10/2026 21:40, which is UTC. A user who doesn't notice saves the flight on the previous day, 13 hours early. The SAR Watch time has the same problem: on flight #42910 (planned 22/10 13:00-14:00) SAR defaulted to 21/10/2026 21:55, which is the UTC time and is before the flight starts. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing: new flight Start/End/SAR default to the UTC time (05:10 at local 18:09), see BUG-FS-001.
 
 ![BUG-FD-007-1](bugs/screenshots/BUG-FD-007-1.png)
+![BUG-FD-007-2](bugs/screenshots/BUG-FD-007-2.png)
 
 ### BUG-FS-001: New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h)
 
@@ -789,11 +793,12 @@ Steps:
 
 Expected: Start defaults to local now (21:25), end +1h (22:25), SAR time in local time.
 
-Actual: Start 21/10/2026 08:25, End 09:25, SAR TIME (LOCAL) 09:25 - all UTC values. Near midnight the date would also be wrong. Also Cancel with no changes does nothing (only the back arrow leaves).
+Actual: Start 21/10/2026 08:25, End 09:25, SAR TIME (LOCAL) 09:25 - all UTC values. Near midnight the date would also be wrong. Also Cancel with no changes does nothing (only the back arrow leaves). Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. At local 18:09 (UTC 05:09) on 22/10/2026, Flight Schedule > Live Edit > Add Flight opens New Flight Details with Start 22/10/2026 05:10, End 06:10 and SAR TIME (LOCAL) 06:10, i.e. UTC, 13 h behind local. Header 'Time: 05:10' also UTC. Cancel with no changes still does nothing (URL stays action=flightdetails).
 
 Suspected cause: New-flight defaults built from server/UTC now() rather than the org time zone. Confirm whether flights are stored in UTC and shown in local everywhere else (see 92-xc-dates).
 
 ![BUG-FS-001-1](bugs/screenshots/BUG-FS-001-1.png)
+![BUG-FS-001-2](bugs/screenshots/BUG-FS-001-2.png)
 
 ### BUG-FS-002: Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight
 
@@ -807,7 +812,7 @@ Steps:
 
 Expected: Esc ends paste mode; Ctrl+V afterwards does nothing.
 
-Actual: No feedback on Esc; the click shows 'Press Ctrl+V to paste the flight here' and Ctrl+V creates another flight (created #42906). Users can create unwanted live flights.
+Actual: No feedback on Esc; the click shows 'Press Ctrl+V to paste the flight here' and Ctrl+V creates another flight (created #42906). Users can create unwanted live flights. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): fixed. Live Edit > select #42909 > Ctrl+C > click 24/10 14:00 > Ctrl+V > Copy Flight Options > Paste created #42912 ('Flight pasted successfully... or press Escape to finish'). Esc now shows 'Copy/paste finished. Ctrl+V will no longer paste.' Clicking another slot and pressing Ctrl+V afterwards creates nothing (only 'Click on the schedule to choose where to paste the flight.'). #42912 deleted afterwards.
 
 Suspected cause: Escape keydown handler does not clear the copied-flight clipboard state (or is not bound inside the schedule iframe).
 
@@ -824,11 +829,12 @@ Steps:
 
 Expected: Title, Live Edit banner, past-date banner and location pill all readable (wrap to a second line if needed).
 
-Actual: 'Live Edit Mode' banner is drawn over the 'Flight Schedule' title and subtitle; 'Viewing location: Auckland Base' is cut to 'Viewing' and hidden behind the view buttons. The pill's 'Show All' button sits under the view-mode buttons, so a click lands on 'Schedule & Planner' instead (the location filter can only be cleared after turning Live Edit off or via Locations > All Locations).
+Actual: 'Live Edit Mode' banner is drawn over the 'Flight Schedule' title and subtitle; 'Viewing location: Auckland Base' is cut to 'Viewing' and hidden behind the view buttons. The pill's 'Show All' button sits under the view-mode buttons, so a click lands on 'Schedule & Planner' instead (the location filter can only be cleared after turning Live Edit off or via Locations > All Locations). Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): fixed. At 1568 px with location Auckland Base picked, a past week shown and Live Edit on, the Live Edit, past-date and 'Viewing location: Auckland Base / Show All' banners sit on their own row under the title with no overlap. Show All is the top element at its centre and clicking it clears the location filter.
 
 Suspected cause: Header banners are absolutely positioned / flex row with no wrap; no room left when 3 banners show.
 
 ![BUG-FS-003-1](bugs/screenshots/BUG-FS-003-1.png)
+![BUG-FS-003-2](bugs/screenshots/BUG-FS-003-2.png)
 
 ### BUG-FS-004: Planner Add Location replaces the New Booking popup - typed booking and location input is lost
 
@@ -842,12 +848,14 @@ Steps:
 
 Expected: Add Location opens on top of New Booking; after the error you are back in Add Location with your input; after saving you return to New Booking with the new location selected and your note kept.
 
-Actual: Add Location replaces New Booking (the note is gone). OK on 'Name and Code are required.' closes all popups, so the user has to start again. After a successful Save ('Location created') New Booking does not come back either.
+Actual: Add Location replaces New Booking (the note is gone). OK on 'Name and Code are required.' closes all popups, so the user has to start again. After a successful Save ('Location created') New Booking does not come back either. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): fixed. Planner Only > Rows by Location > Live Edit > drag 26-28/10 on BETA TEST ONLY Loc > New Booking > typed a note > Add Location opens on top of New Booking. Empty Save shows 'Name and Code are required.' and OK returns to Add Location. Saving 'BETA TEST ONLY Loc2' / BT2 returns to New Booking with the new location in the list and the typed note kept. Booking was then cancelled. Minor: after Filter by Location > pick a location, the Locations popup stays open until Esc/Close.
 
 Suspected cause: Planner popups use one shared modal slot: opening a modal closes the current one and closing the error closes everything instead of returning to the parent modal.
 
 ![BUG-FS-004-1](bugs/screenshots/BUG-FS-004-1.png)
 ![BUG-FS-004-2](bugs/screenshots/BUG-FS-004-2.png)
+![BUG-FS-004-3](bugs/screenshots/BUG-FS-004-3.png)
+![BUG-FS-004-4](bugs/screenshots/BUG-FS-004-4.png)
 
 ### BUG-FS-006: Flight Schedule month view is slow: flightschedule_json takes ~1.6 s and rendering 2,500 events ~4.5 s
 
@@ -860,7 +868,7 @@ Steps:
 
 Expected: Server response < 500 ms; month view usable in about 1-2 s.
 
-Actual: Request 1,590 ms (first byte 844 ms); 2,493 events take 4.5 s from click to render. Page freezes while rendering.
+Actual: Request 1,590 ms (first byte 844 ms); 2,493 events take 4.5 s from click to render. Page freezes while rendering. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): improved but still over target. Schedule Only > Month (October 2026): flightschedule_json&start=2026-09-28&end=2026-11-09 took 1,072-1,369 ms total (first byte 365-384 ms, 511,679 bytes), 2,497 events rendered, no errors. Was 1,590 ms (first byte 844 ms). Server time is still over the 500 ms target.
 
 Suspected cause: Whole 6-week range returned with full event details in one JSON call and every event rendered; consider a summary per day for month view, indexes on flight start/end, or lazy loading of 'more' events.
 
@@ -876,11 +884,12 @@ Steps:
 
 Expected: Edit mode turns off with the message 'Edit mode has been disabled due to inactivity.'
 
-Actual: At 20 min the button silently returns to 'Enable Live Edit'; no popup or toast, and the console shows uncaught ReferenceError 'calendarEl is not defined', so the rest of the timeout handler (probably the message and the calendar refresh) does not run. A user who comes back can think they are still editing. Afterwards the schedule is left blank (month view 'October 2026' with no flights) until the page is reloaded.
+Actual: At 20 min the button silently returns to 'Enable Live Edit'; no popup or toast, and the console shows uncaught ReferenceError 'calendarEl is not defined', so the rest of the timeout handler (probably the message and the calendar refresh) does not run. A user who comes back can think they are still editing. Afterwards the schedule is left blank (month view 'October 2026' with no flights) until the page is reloaded. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): fixed. betatest_grp enabled Live Edit at 04:54:45 UTC and left the page idle: at 20.0 min Live Edit turned off with the toast 'Edit mode has been disabled due to inactivity.', no script errors, and week view still shows its flights (6 events) without a reload.
 
 Suspected cause: Inactivity handler references a variable calendarEl that is not in scope (renamed or local to another function).
 
 ![BUG-FS-007-1](bugs/screenshots/BUG-FS-007-1.png)
+![BUG-FS-007-2](bugs/screenshots/BUG-FS-007-2.png)
 
 ### BUG-HAZ-001: Hazard Register details: Hazard Type always shows '--'
 
@@ -2075,7 +2084,7 @@ Steps:
 
 Expected: No console errors.
 
-Actual: Each click logs uncaught TypeError "Cannot read properties of null (reading 'scrollTop')". The toggle still works, but later code in the same handler does not run.
+Actual: Each click logs uncaught TypeError "Cannot read properties of null (reading 'scrollTop')". The toggle still works, but later code in the same handler does not run. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): fixed. Enable/Disable Live Edit as Service Account and betatest_grp logs no script errors.
 
 Suspected cause: Edit-mode toggle handler saves/restores the scroll position of an element that does not exist in the current view mode (e.g. the time-grid scroller while the planner is shown); needs a null check.
 
@@ -2410,7 +2419,7 @@ Steps:
 
 Expected: Popup closes (CON-015).
 
-Actual: Popup stays open on Esc; only OK, x or a click outside closes it. Same for #fad-modal 'Double Booking Detected' and the Add/Edit Note modals.
+Actual: Popup stays open on Esc; only OK, x or a click outside closes it. Same for #fad-modal 'Double Booking Detected' and the Add/Edit Note modals. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): fixed for the popups tested. View Details on #8834 opens the flight popup and Esc closes it; Add Note popup closes with Esc; Help closes with Esc and outside click. The Double Booking alert (#fad-modal) was not triggered in this retest.
 
 Suspected cause: #flight-details-modal has no keydown Escape handler (same pattern as BUG-POP-001).
 
@@ -2655,11 +2664,12 @@ Steps:
 
 Expected: Value stays between 5 and 120 (the input has min 5, max 120, step 5), and + is disabled at 120.
 
-Actual: + keeps going (135 after 26 clicks from 5) and 200 typed in stays 200. − stops at 5 correctly and typing 7 snaps to 5. handleUpdate() sends the value without checking it, so an out-of-range slot size can be saved.
+Actual: + keeps going (135 after 26 clicks from 5) and 200 typed in stays 200. − stops at 5 correctly and typing 7 snaps to 5. handleUpdate() sends the value without checking it, so an out-of-range slot size can be saved. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. + still goes past 120 (25 clicks reach 155, + never disables) and typed 200 is kept with Update Changes enabled.
 
 Suspected cause: handleNumberInput() caps the decrement with Math.max(5, ...) but has no Math.min(120, ...) on increment; handleUpdate() does parseInt only.
 
 ![BUG-SFS-001-1](bugs/screenshots/BUG-SFS-001-1.png)
+![BUG-SFS-001-2](bugs/screenshots/BUG-SFS-001-2.png)
 
 ### BUG-SFT-001: Flight Types Settings: no Help (?), and Escape does not close popups
 
@@ -3361,3 +3371,7 @@ Actual: The feature card is indented about 90px and runs off the right edge; the
 - W&B: Rev 3 set back as Master (checked: "Revision 3, 1 aircraft"). Revs 4-6 stay as Approved history (the app has no delete for approved revisions)
 - Exam "BETA TEST ONLY Exam" instance for Second submitted and Graded (18% Fail); graded instances can't be removed (BUG-EXM-008)
 - Temporary Reports (A) permission on BETA TEST ONLY Second for RPT-002 (removed after the test; checked)
+- Flight Schedule retest 22/10/2026: flight #42912 (paste of #42909, ZK-BTO 24/10 14:10-15:10) created for FS-021, deleted via Flight Details > delete (gone from the schedule)
+- Location "BETA TEST ONLY Loc2" / BT2 created from Planner > New Booking > Add Location for FS-029 (kept; no delete found in the Locations popup). The New Booking was cancelled, not saved
+- Settings > Flight Schedule > Schedule Start Time broke to NaN:NaN during the SFS-004 retest (BUG-SFS-002); the UI could not fix it, so it was restored to 07:00 by rewriting the save request (checked after reload: 07:00, Slot Duration 30)
+- Flight #42910 was found back at Open on 22/10/2026 (raising an "Overdue: 9 hours" alert for ZK-BTO); set back to Canceled from Flight Details > Flight Status (checked after reload)

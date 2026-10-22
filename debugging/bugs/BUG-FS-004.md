@@ -21,10 +21,10 @@
 Add Location opens on top of New Booking; after the error you are back in Add Location with your input; after saving you return to New Booking with the new location selected and your note kept.
 
 ## Actual
-Add Location replaces New Booking (the note is gone). OK on 'Name and Code are required.' closes all popups, so the user has to start again. After a successful Save ('Location created') New Booking does not come back either.
+Add Location replaces New Booking (the note is gone). OK on 'Name and Code are required.' closes all popups, so the user has to start again. After a successful Save ('Location created') New Booking does not come back either. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): fixed. Planner Only > Rows by Location > Live Edit > drag 26-28/10 on BETA TEST ONLY Loc > New Booking > typed a note > Add Location opens on top of New Booking. Empty Save shows 'Name and Code are required.' and OK returns to Add Location. Saving 'BETA TEST ONLY Loc2' / BT2 returns to New Booking with the new location in the list and the typed note kept. Booking was then cancelled. Minor: after Filter by Location > pick a location, the Locations popup stays open until Esc/Close.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-FS-004-1.png`, `screenshots/BUG-FS-004-2.png`
+- Screenshot: `screenshots/BUG-FS-004-1.png`, `screenshots/BUG-FS-004-2.png`, `screenshots/BUG-FS-004-3.png`, `screenshots/BUG-FS-004-4.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

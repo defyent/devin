@@ -20,7 +20,7 @@
 Popup closes (CON-015).
 
 ## Actual
-Popup stays open on Esc; only OK, x or a click outside closes it. Same for #fad-modal 'Double Booking Detected' and the Add/Edit Note modals.
+Popup stays open on Esc; only OK, x or a click outside closes it. Same for #fad-modal 'Double Booking Detected' and the Add/Edit Note modals. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): fixed for the popups tested. View Details on #8834 opens the flight popup and Esc closes it; Add Note popup closes with Esc; Help closes with Esc and outside click. The Double Booking alert (#fad-modal) was not triggered in this retest.
 
 ## Evidence
 - Screenshot: `screenshots/BUG-POP-004-1.png`

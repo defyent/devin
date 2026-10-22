@@ -20,7 +20,7 @@
 No console errors.
 
 ## Actual
-Each click logs uncaught TypeError "Cannot read properties of null (reading 'scrollTop')". The toggle still works, but later code in the same handler does not run.
+Each click logs uncaught TypeError "Cannot read properties of null (reading 'scrollTop')". The toggle still works, but later code in the same handler does not run. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): fixed. Enable/Disable Live Edit as Service Account and betatest_grp logs no script errors.
 
 ## Evidence
 - Screenshot: n/a
