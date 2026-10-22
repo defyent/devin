@@ -41,3 +41,7 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 | Record | Where | Cleanup done? |
 |---|---|---|
 | | | |
+
+### Retest v2.0.119 (23/10/2026)
+- DATE-005 still FAIL (BUG-FD-007): siteNow() is in the JS, but the server sends no siteTimeZone/serverNow, so the defaults fall back to the browser clock.
+- DATE-006 still FAIL (BUG-DATE-001): 04/04/2027 01:00-05:00 gives 4.0 h (should be 5.0).

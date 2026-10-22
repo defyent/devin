@@ -470,8 +470,13 @@ Expected: Leg and flight total = 5.0 h, because 01:00 NZDT is 12:00 UTC and 05:0
 
 Actual: Leg total and Total Flight Time both show 4.0. The flight saves and shows as 01:00-05:00 in the Daily Flight Record and the schedule (day view block is 4 hours tall), so the time is worked out from the clock times and the DST shift is ignored. This affects recorded hours, FRMS and timesheets for any flight that night (and the spring-forward night the other way round).
 
+Retest v2.0.119: #42911 Add Leg, engine and flight 2027-04-04 01:00 > 05:00: leg 4.0/4.0, flight total 4.0/4.0 (should be 5.0). Not saved. Still fails.
+
+Suspected cause: calculateTimeDifference(start,end) (index.js ~L2310) only gets HH:MM and uses new Date(0,0,0,h,m), so the date and DST are ignored.
+
 ![BUG-DATE-001-1](bugs/screenshots/BUG-DATE-001-1.png)
 ![BUG-DATE-001-2](bugs/screenshots/BUG-DATE-001-2.png)
+![BUG-DATE-001-3](bugs/screenshots/BUG-DATE-001-3.png)
 
 ### BUG-DFR-002: Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied
 
@@ -697,7 +702,11 @@ Expected: Flight is saved and you return to where you came from (the Flight Sche
 
 Actual: The page reloads in place (URL now has return_url=/index.pl?action=flightschedule) and stays on Flight Details. No toast or message says it was saved; only the greyed-out Save Changes button hints at it. The user has to click Back.
 
+Retest v2.0.119: Save on #42903 opened with return_url=/?action=flightschedule reloads action=flightdetails&flight_id=42903&return_url=... ; no success message. Still fails.
+
 Suspected cause: Save handler reloads the details page with return_url instead of navigating to return_url after a successful save.
+
+Success branch (index.js ~L8088-8096) navigates to the URL the server returns after 'Ok:'; the server returns the flightdetails URL, not return_url, and no message is shown.
 
 ![BUG-FD-001-1](bugs/screenshots/BUG-FD-001-1.png)
 
@@ -714,7 +723,11 @@ Expected: History shows every change including the Flight Details save (passenge
 
 Actual: The Flight Details save at 10:17 pm is not listed; newest entry is the 09:31 pm schedule move. Each schedule move/resize entry lists 'Aircraft: ZK-SIM > Unassigned' (the aircraft stayed ZK-SIM) and 'Source: (blank) > Flight Schedule'. Values are shown as raw '2026-10-21 09:30:00' instead of DD/MM/YYYY HH:MM.
 
+Retest v2.0.119: a schedule resize of #42903 (flightschedule_updateflight without resource_id) logs 'Aircraft: ZK-SIM > Unassigned' (aircraft really still ZK-SIM) and 'Source: > Flight Schedule', and also overwrote SAR Time 21/10 23:30 > 09:45 (real change). A Flight Details save of leg 1 depart/dest/PIC added no history entry (main fields like Status/Notes are logged). Modal shows dates as '23 Oct 2026', not DD/MM/YYYY. Still fails.
+
 Suspected cause: Schedule drag/resize audit compares against a payload without aircraft (null > 'Unassigned'); Flight Details save path either does not write to the audit log or only logs main-table fields (passengers/comments not tracked).
+
+fs_new.js eventResize (~L1536-1570) omits resource_id (eventDrop sends it); server diffs the missing value as Unassigned, always logs Source and resets SAR to the end time. Flight Details save doesn't diff legs/manifest/comments. History modal uses toLocaleDateString('en-NZ',{month:'short'}).
 
 ![BUG-FD-002-1](bugs/screenshots/BUG-FD-002-1.png)
 
@@ -731,7 +744,11 @@ Expected: Only Crew or Student role people (like the flight-level PIC list).
 
 Actual: Leg PIC and Secondary Flight Crew list 'BETA TEST ONLY Lowperm' and 'BETA TEST ONLY Pax' - the custom passenger can be picked as the leg's pilot, which would put a passenger's hours into crew/FRMS records.
 
+Retest v2.0.119: #42903 leg 1 PIC options are 'Select...', 'BETA TEST ONLY Lowperm', 'BETA TEST ONLY Pax' - the passenger is still offered. Still fails.
+
 Suspected cause: Leg crew dropdowns are filled from the whole manifest (crew + passengers) instead of crew only.
+
+buildFrontSeatOptions() (index.js L2753-2776) deliberately adds a 'Passengers' optgroup from getOrderedManifestPeople() to the leg PIC and Secondary Flight Crew selects.
 
 ![BUG-FD-004-1](bugs/screenshots/BUG-FD-004-1.png)
 
@@ -749,10 +766,16 @@ Expected: You are asked about each unknown waypoint (ZZZQ, then NZWN) before the
 
 Actual: Only ZZZQ is prompted ('Waypoint "ZZZQ" added successfully'), then the flight saves straight away and the leg Destination is stored empty - NZWN is lost without a warning. Typing NZWN again and saving does prompt for it.
 
+Retest v2.0.119 (23/10/2026, #42903): leg 1 Departure BTQA + Destination BTQB (both unknown) > Save > only 'Add New Waypoint "BTQA"' is asked (cancel button still says 'Stay on Page') > Add Waypoint > saves immediately; after reload Destination is empty, BTQB lost. Still fails.
+
 Suspected cause: After 'Add Waypoint' the save continues without re-validating the remaining unknown waypoints, and unknown codes are blanked instead of blocking the save.
+
+index.js submit handler (~L7929-7948) returns at the first unknown waypoint; its onSuccess sets skipWaypointValidation=true and calls form.requestSubmit(), so every remaining waypoint check is skipped. Server stores an unmatched dest as empty instead of rejecting.
 
 ![BUG-FD-005-1](bugs/screenshots/BUG-FD-005-1.png)
 ![BUG-FD-005-2](bugs/screenshots/BUG-FD-005-2.png)
+![BUG-FD-005-3](bugs/screenshots/BUG-FD-005-3.png)
+![BUG-FD-005-4](bugs/screenshots/BUG-FD-005-4.png)
 
 ### BUG-FD-006: Flight can be set to Complete with no times or destination on a leg; no 'Required Information' prompt
 
@@ -766,6 +789,10 @@ Steps:
 Expected: A 'Required Information' popup lists the missing Start/End/destination fields and the flight is not completed.
 
 Actual: The flight saves as Complete with no prompt. The header badge shows 'Complete' and Delete is hidden. The attached QA Post-Flight Report also has empty required fields.
+
+Retest v2.0.119: #42903 (Complete) saved with leg 1 Destination empty, all leg times 00:00 and totals 0.0. Only a flight PIC and a PIC on every leg are now checked. Still fails.
+
+Suspected cause: index.js isCompleting block (~L7882-7893) checks PICs only; no check of leg waypoints, leg times/totals or Required-to-Complete meters, and no server-side check.
 
 ![BUG-FD-006-1](bugs/screenshots/BUG-FD-006-1.png)
 
@@ -2044,6 +2071,10 @@ Expected: Each meter shows the previous reading and a link to the flight it came
 
 Actual: 'Previous: 2450.3 (+0.0)' is shown but there is no link; the only link in the panel is an info icon (href '#'). The user cannot check which flight set the previous reading.
 
+Retest v2.0.119: #42903 shows 'Previous: 0 / 2450.3 / 2450.3' and #42909 'Previous: 100' as plain text, no link. Still fails.
+
+Suspected cause: JS renders the link only when meter.previousFlightId is set (L4415-4425, ~L2701); resourceMeters for these aircraft has no previousFlightId (falls back to startValue).
+
 ![BUG-FD-003-1](bugs/screenshots/BUG-FD-003-1.png)
 
 ### BUG-FD-007: New flight defaults its leg date/time to UTC instead of local time
@@ -2059,7 +2090,11 @@ Expected: Start defaults to the local date/time: 22/10/2026 09:40.
 
 Actual: Start defaults to 21/10/2026 20:40 and end to 21/10/2026 21:40, which is UTC. A user who doesn't notice saves the flight on the previous day, 13 hours early. The SAR Watch time has the same problem: on flight #42910 (planned 22/10 13:00-14:00) SAR defaulted to 21/10/2026 21:55, which is the UTC time and is before the flight starts. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing: new flight Start/End/SAR default to the UTC time (05:10 at local 18:09), see BUG-FS-001. Second retest 22/10/2026 (v2.0.114): unchanged; at local 20:43 the new flight defaults to 07:45 (UTC). Third retest 22/10/2026 (v2.0.115): unchanged; at local 20:49 the new flight defaults to 07:50 (UTC). Fourth retest 22/10/2026 (v2.0.117): unchanged; at local 21:00 the new flight defaults to 08:00 (UTC). Retest 22/10/2026 (v2.0.118): unchanged; at local 21:20 the new flight defaults to 08:20 (UTC). Retest 23/10/2026 (v2.0.119): still failing in a UTC browser (local 09:20 23/10 -> Start 22/10/2026 20:20). Correct when the browser time zone is Pacific/Auckland (09:25 23/10), so the default uses the browser time zone. See BUG-FS-001.
 
+Retest v2.0.119: allFlightData (new and existing flights) has no siteTimeZone or serverNow key, and config has no time zone, so siteNow() falls back to the browser clock. Still fails in a UTC browser.
+
 Suspected cause: Uses the browser time zone, not Settings > Time Zone (see BUG-FS-001).
+
+Front end siteNow() (index.js L1546-1561) is ready but the flightdetails JSON doesn't send siteTimeZone/serverNow.
 
 ![BUG-FD-007-1](bugs/screenshots/BUG-FD-007-1.png)
 ![BUG-FD-007-2](bugs/screenshots/BUG-FD-007-2.png)
@@ -3406,3 +3441,8 @@ Actual: The feature card is indented about 90px and runs off the right edge; the
 - Server-side settings check 22/10/2026 (v2.0.117): bad save requests (slotDuration 200/7, scheduleStartTime NaN:NaN/25:99) were rejected; settings confirmed at 07:00 / 30 after a normal save. Double Booking Esc check used existing flight #8852 (only opened the alert, nothing changed)
 - Lazy loading check 22/10/2026 (v2.0.118): view-only (month/week navigation, copy then Esc); no data created or changed
 - Flight Schedule retest 23/10/2026 (v2.0.119): no flights created or saved; the Add Flight forms (one with test text in Notes) were left without saving
+## Flight Details 8-bug retest (v2.0.119, 23/10/2026)
+- #42903: leg 1 Departure/Destination/PIC changed for BUG-FD-005/006, then restored to empty.
+- #42903: two test resizes (end 09:45, then back to 09:30) overwrote SAR Time 21/10 23:30 > 21/10 09:30 (BUG-FD-002). Left as is (BETA TEST ONLY flight).
+- Waypoint `BTQA` created by the BUG-FD-005 test. Retained: no delete path found.
+- #42911: a leg was added but not saved. No change. No settings changed.

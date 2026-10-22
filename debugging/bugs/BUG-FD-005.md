@@ -23,12 +23,16 @@ You are asked about each unknown waypoint (ZZZQ, then NZWN) before the flight is
 ## Actual
 Only ZZZQ is prompted ('Waypoint "ZZZQ" added successfully'), then the flight saves straight away and the leg Destination is stored empty - NZWN is lost without a warning. Typing NZWN again and saving does prompt for it.
 
+Retest v2.0.119 (23/10/2026, #42903): leg 1 Departure BTQA + Destination BTQB (both unknown) > Save > only 'Add New Waypoint "BTQA"' is asked (cancel button still says 'Stay on Page') > Add Waypoint > saves immediately; after reload Destination is empty, BTQB lost. Still fails.
+
 ## Evidence
-- Screenshot: `screenshots/BUG-FD-005-1.png`, `screenshots/BUG-FD-005-2.png`
+- Screenshot: `screenshots/BUG-FD-005-1.png`, `screenshots/BUG-FD-005-2.png`, `screenshots/BUG-FD-005-3.png`, `screenshots/BUG-FD-005-4.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)
 After 'Add Waypoint' the save continues without re-validating the remaining unknown waypoints, and unknown codes are blanked instead of blocking the save.
+
+index.js submit handler (~L7929-7948) returns at the first unknown waypoint; its onSuccess sets skipWaypointValidation=true and calls form.requestSubmit(), so every remaining waypoint check is skipped. Server stores an unmatched dest as empty instead of rejecting.
 
 ## Test data involved
 none

@@ -34,3 +34,9 @@
 - Server-side settings check 22/10/2026 (v2.0.117): bad save requests (slotDuration 200/7, scheduleStartTime NaN:NaN/25:99) were rejected; settings confirmed at 07:00 / 30 after a normal save. Double Booking Esc check used existing flight #8852 (only opened the alert, nothing changed)
 - Lazy loading check 22/10/2026 (v2.0.118): view-only (month/week navigation, copy then Esc); no data created or changed
 - Flight Schedule retest 23/10/2026 (v2.0.119): no flights created or saved; the Add Flight forms (one with test text in Notes) were left without saving
+
+## Flight Details 8-bug retest (v2.0.119, 23/10/2026)
+- #42903: leg 1 Departure/Destination/PIC changed for BUG-FD-005/006, then restored to empty.
+- #42903: two test resizes (end 09:45, then back to 09:30) overwrote SAR Time 21/10 23:30 > 21/10 09:30 (BUG-FD-002). Left as is (BETA TEST ONLY flight).
+- Waypoint `BTQA` created by the BUG-FD-005 test. Retained: no delete path found.
+- #42911: a leg was added but not saved. No change. No settings changed.

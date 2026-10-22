@@ -21,12 +21,14 @@ Leg and flight total = 5.0 h, because 01:00 NZDT is 12:00 UTC and 05:00 NZST is 
 ## Actual
 Leg total and Total Flight Time both show 4.0. The flight saves and shows as 01:00-05:00 in the Daily Flight Record and the schedule (day view block is 4 hours tall), so the time is worked out from the clock times and the DST shift is ignored. This affects recorded hours, FRMS and timesheets for any flight that night (and the spring-forward night the other way round).
 
+Retest v2.0.119: #42911 Add Leg, engine and flight 2027-04-04 01:00 > 05:00: leg 4.0/4.0, flight total 4.0/4.0 (should be 5.0). Not saved. Still fails.
+
 ## Evidence
-- Screenshot: `screenshots/BUG-DATE-001-1.png`, `screenshots/BUG-DATE-001-2.png`
+- Screenshot: `screenshots/BUG-DATE-001-1.png`, `screenshots/BUG-DATE-001-2.png`, `screenshots/BUG-DATE-001-3.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)
-
+calculateTimeDifference(start,end) (index.js ~L2310) only gets HH:MM and uses new Date(0,0,0,h,m), so the date and DST are ignored.
 
 ## Test data involved
 none

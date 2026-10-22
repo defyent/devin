@@ -22,12 +22,16 @@ Only Crew or Student role people (like the flight-level PIC list).
 ## Actual
 Leg PIC and Secondary Flight Crew list 'BETA TEST ONLY Lowperm' and 'BETA TEST ONLY Pax' - the custom passenger can be picked as the leg's pilot, which would put a passenger's hours into crew/FRMS records.
 
+Retest v2.0.119: #42903 leg 1 PIC options are 'Select...', 'BETA TEST ONLY Lowperm', 'BETA TEST ONLY Pax' - the passenger is still offered. Still fails.
+
 ## Evidence
 - Screenshot: `screenshots/BUG-FD-004-1.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)
 Leg crew dropdowns are filled from the whole manifest (crew + passengers) instead of crew only.
+
+buildFrontSeatOptions() (index.js L2753-2776) deliberately adds a 'Passengers' optgroup from getOrderedManifestPeople() to the leg PIC and Secondary Flight Crew selects.
 
 ## Test data involved
 none

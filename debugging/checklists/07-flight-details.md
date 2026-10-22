@@ -91,3 +91,6 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 | Waypoint 'ZZZQ' (added from the leg prompt) | Settings > Waypoints | No |
 | Notify Overdue by Text / Email switched on; status set to Complete | Flight #42903 > Details / Flight Status | No (deleted with the flight) |
 | Pre-existing, not created in this run: customer 'DEVIN TEST Customer Ltd' | Customers | No (check with Jon) |
+
+### Retest v2.0.119 (23/10/2026, Service Account, #42903/#42909/#42911)
+All seven failing rows retested. They still FAIL: FD-005 (BUG-FD-004), FD-019 (BUG-FD-003), FD-022 (BUG-FD-005), FD-031/FD-033 (BUG-FD-006: only PIC checks added), FD-034 (BUG-FD-001), FD-037 (BUG-FD-002). FD-037 also has a new finding: a schedule resize overwrites SAR Time with the end time.

@@ -22,12 +22,16 @@ History shows every change including the Flight Details save (passenger added, c
 ## Actual
 The Flight Details save at 10:17 pm is not listed; newest entry is the 09:31 pm schedule move. Each schedule move/resize entry lists 'Aircraft: ZK-SIM > Unassigned' (the aircraft stayed ZK-SIM) and 'Source: (blank) > Flight Schedule'. Values are shown as raw '2026-10-21 09:30:00' instead of DD/MM/YYYY HH:MM.
 
+Retest v2.0.119: a schedule resize of #42903 (flightschedule_updateflight without resource_id) logs 'Aircraft: ZK-SIM > Unassigned' (aircraft really still ZK-SIM) and 'Source: > Flight Schedule', and also overwrote SAR Time 21/10 23:30 > 09:45 (real change). A Flight Details save of leg 1 depart/dest/PIC added no history entry (main fields like Status/Notes are logged). Modal shows dates as '23 Oct 2026', not DD/MM/YYYY. Still fails.
+
 ## Evidence
 - Screenshot: `screenshots/BUG-FD-002-1.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)
 Schedule drag/resize audit compares against a payload without aircraft (null > 'Unassigned'); Flight Details save path either does not write to the audit log or only logs main-table fields (passengers/comments not tracked).
+
+fs_new.js eventResize (~L1536-1570) omits resource_id (eventDrop sends it); server diffs the missing value as Unassigned, always logs Source and resets SAR to the end time. Flight Details save doesn't diff legs/manifest/comments. History modal uses toLocaleDateString('en-NZ',{month:'short'}).
 
 ## Test data involved
 none

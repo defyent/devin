@@ -21,12 +21,14 @@ Each meter shows the previous reading and a link to the flight it came from (gui
 ## Actual
 'Previous: 2450.3 (+0.0)' is shown but there is no link; the only link in the panel is an info icon (href '#'). The user cannot check which flight set the previous reading.
 
+Retest v2.0.119: #42903 shows 'Previous: 0 / 2450.3 / 2450.3' and #42909 'Previous: 100' as plain text, no link. Still fails.
+
 ## Evidence
 - Screenshot: `screenshots/BUG-FD-003-1.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)
-
+JS renders the link only when meter.previousFlightId is set (L4415-4425, ~L2701); resourceMeters for these aircraft has no previousFlightId (falls back to startValue).
 
 ## Test data involved
 none

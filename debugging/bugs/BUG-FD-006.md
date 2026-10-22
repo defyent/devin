@@ -22,12 +22,14 @@ A 'Required Information' popup lists the missing Start/End/destination fields an
 ## Actual
 The flight saves as Complete with no prompt. The header badge shows 'Complete' and Delete is hidden. The attached QA Post-Flight Report also has empty required fields.
 
+Retest v2.0.119: #42903 (Complete) saved with leg 1 Destination empty, all leg times 00:00 and totals 0.0. Only a flight PIC and a PIC on every leg are now checked. Still fails.
+
 ## Evidence
 - Screenshot: `screenshots/BUG-FD-006-1.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)
-
+index.js isCompleting block (~L7882-7893) checks PICs only; no check of leg waypoints, leg times/totals or Required-to-Complete meters, and no server-side check.
 
 ## Test data involved
 none

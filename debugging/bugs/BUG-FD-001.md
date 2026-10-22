@@ -23,12 +23,16 @@ Flight is saved and you return to where you came from (the Flight Schedule week 
 ## Actual
 The page reloads in place (URL now has return_url=/index.pl?action=flightschedule) and stays on Flight Details. No toast or message says it was saved; only the greyed-out Save Changes button hints at it. The user has to click Back.
 
+Retest v2.0.119: Save on #42903 opened with return_url=/?action=flightschedule reloads action=flightdetails&flight_id=42903&return_url=... ; no success message. Still fails.
+
 ## Evidence
 - Screenshot: `screenshots/BUG-FD-001-1.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)
 Save handler reloads the details page with return_url instead of navigating to return_url after a successful save.
+
+Success branch (index.js ~L8088-8096) navigates to the URL the server returns after 'Ok:'; the server returns the flightdetails URL, not return_url, and no message is shown.
 
 ## Test data involved
 none
