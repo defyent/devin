@@ -1,6 +1,6 @@
 # DataHangar test run report (stresstest, v2.0.111)
 
-Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (575 pass, 167 fail, 28 blocked, 19 N/A).
+Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (576 pass, 166 fail, 28 blocked, 19 N/A).
 
 ## Summary
 
@@ -424,7 +424,7 @@ Steps:
 
 Expected: Each permission type shows once, or the cards are named or grouped clearly enough to tell them apart.
 
-Actual: 16 names are shown more than once, with no heading or hint to tell them apart: Flight Schedule (ids 2, 209), Dashboard (3, 208), Personnel List (4, 215), Daily Flight Record (5, 213), Personnel Details (6, 216), Roster Viewer (7, 217), Roster Builder (8, 223), File Browser (9, 225), Flight and Duty (10, 31, 218), Notices (11, 219), Safety Reports (13, 30, 221), Hazard Register (14, 222), System Settings (15, 211), Form Builder (16, 224), Exam Builder (18, 232), Access Manager (34, 210). The copies offer different levels: Flight Schedule id 2 offers RA/WA/G, id 209 offers A/RA/WG/RG. An admin can easily give the wrong one. This has a real effect: giving Lowperm the first "Notices" card (id 11) at WO still gives "Access Denied: You do not have permission to access Notices", so the module checks the other Notices card. The first "Flight Schedule" card (id 2) is the one that works for the schedule, so you cannot tell from the name which copy each page uses. Also, BETA TEST ONLY Second with Access Manager WA on one card and A on the other still gets 'You need All Access permission to access the access manager' (AM-018). Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): part fixed. Each card now shows its module key and id plus a 'Duplicate name' tag (e.g. 'accessmanager · #34 · Duplicate name' and 'accessmanager · #210 · Duplicate name'). But the same 16 names are still duplicated, and both copies show the same module key, so you still can't tell which one the module checks. AM-018 still fails: betatest_two has Access Manager #34=WA and #210=A and still gets 'Access Denied: You need All Access permission to access the access manager'.
+Actual: 16 names are shown more than once, with no heading or hint to tell them apart: Flight Schedule (ids 2, 209), Dashboard (3, 208), Personnel List (4, 215), Daily Flight Record (5, 213), Personnel Details (6, 216), Roster Viewer (7, 217), Roster Builder (8, 223), File Browser (9, 225), Flight and Duty (10, 31, 218), Notices (11, 219), Safety Reports (13, 30, 221), Hazard Register (14, 222), System Settings (15, 211), Form Builder (16, 224), Exam Builder (18, 232), Access Manager (34, 210). The copies offer different levels: Flight Schedule id 2 offers RA/WA/G, id 209 offers A/RA/WG/RG. An admin can easily give the wrong one. This has a real effect: giving Lowperm the first "Notices" card (id 11) at WO still gives "Access Denied: You do not have permission to access Notices", so the module checks the other Notices card. The first "Flight Schedule" card (id 2) is the one that works for the schedule, so you cannot tell from the name which copy each page uses. Also, BETA TEST ONLY Second with Access Manager WA on one card and A on the other still gets 'You need All Access permission to access the access manager' (AM-018). Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): part fixed. Each card now shows its module key and id plus a 'Duplicate name' tag (e.g. 'accessmanager · #34 · Duplicate name' and 'accessmanager · #210 · Duplicate name'). But the same 16 names are still duplicated, and both copies show the same module key, so you still can't tell which one the module checks. AM-018 still fails: betatest_two has Access Manager #34=WA and #210=A and still gets 'Access Denied: You need All Access permission to access the access manager'. Retest 2 22/10/2026 (v2.0.113): fixed. The permissions editor now has 47 cards (was 76), with no duplicate names or module keys; the 29 old ids (2-11, 13-28, 30, 31, 34) are gone and each module has one card (e.g. accessmanager #210, notices #219, flightschedule #209). AM-018 now passes: betatest_two (Access Manager #210=A) opens Access Manager, and in Roles the Admin checkbox is disabled ('Only admins can grant admin access'). betatest_grp still opens Flight Schedule, Notices, Roster Viewer and Daily Flight Record after the cleanup.
 
 Suspected cause: The permission types table has more than one row with the same display name (probably a second set added for a newer module version). The editor lists every row by name only, with no grouping or description.
 
@@ -432,6 +432,8 @@ Suspected cause: The permission types table has more than one row with the same 
 ![BUG-AM-005-2](bugs/screenshots/BUG-AM-005-2.png)
 ![BUG-AM-005-3](bugs/screenshots/BUG-AM-005-3.png)
 ![BUG-AM-005-4](bugs/screenshots/BUG-AM-005-4.png)
+![BUG-AM-005-5](bugs/screenshots/BUG-AM-005-5.png)
+![BUG-AM-005-6](bugs/screenshots/BUG-AM-005-6.png)
 
 ### BUG-AM-006: Access Manager has no Chat permission, so you can't give Chat to a non-admin user
 
