@@ -19,10 +19,10 @@
 The status badge says 'Canceled' (as in Flight Details / Flight Schedule).
 
 ## Actual
-The badge says 'Unknown'.
+The badge says 'Unknown'. Retest 22/10/2026 after the Dashboard update: fixed. The badge says 'Canceled' (brown, #8b4513), and the click opens Flight Details #42910 showing Canceled.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-DSH-006-1.png`
+- Screenshot: `screenshots/BUG-DSH-006-1.png`, `screenshots/BUG-DSH-006-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

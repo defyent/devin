@@ -3523,10 +3523,12 @@
    "Log in as betatest_two > Dashboard > My Flights for Thu 22/10/2026."
   ],
   "expected": "The status badge says 'Canceled' (as in Flight Details / Flight Schedule).",
-  "actual": "The badge says 'Unknown'.",
+  "actual": "The badge says 'Unknown'. Retest 22/10/2026 after the Dashboard update: fixed. The badge says 'Canceled' (brown, #8b4513), and the click opens Flight Details #42910 showing Canceled.",
   "shots": [
+   "re3_dsh006_click",
    "re_dsh006_unknown"
   ],
-  "cause": "dashboard/index.js shows flight.status as sent by the server, so the Dashboard flights JSON has no mapping for the Canceled status."
+  "cause": "dashboard/index.js shows flight.status as sent by the server, so the Dashboard flights JSON has no mapping for the Canceled status.",
+  "status": "Fixed (verified 22/10/2026)"
  }
 ]

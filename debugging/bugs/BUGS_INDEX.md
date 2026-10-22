@@ -185,7 +185,7 @@
 | [BUG-DSH-005](BUG-DSH-005.md) | `DSH-011` | Dashboard | Dashboard Project Tasks: clicking a task opens an empty project list instead of the project | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-EXM-009](BUG-EXM-009.md) | `PD-017` | Exams | Exams: a hotspot question with no image shows a developer debug message to the person taking the exam | Low | New | |
 | [BUG-RPT-004](BUG-RPT-004.md) | `RPT-006` | Reports | Reports: the Flight Hours meter column shows the aircraft's current meter on every flight, and Total adds them up | Low | New | |
-| [BUG-DSH-006](BUG-DSH-006.md) | `DSH-005` | Dashboard | Dashboard My Flights shows a canceled flight's status as 'Unknown' | Low | New | |
+| [BUG-DSH-006](BUG-DSH-006.md) | `DSH-005` | Dashboard | Dashboard My Flights shows a canceled flight's status as 'Unknown' | Low | Fixed (verified 22/10/2026) | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

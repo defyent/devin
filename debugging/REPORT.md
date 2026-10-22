@@ -1718,11 +1718,12 @@ Steps:
 
 Expected: The status badge says 'Canceled' (as in Flight Details / Flight Schedule).
 
-Actual: The badge says 'Unknown'.
+Actual: The badge says 'Unknown'. Retest 22/10/2026 after the Dashboard update: fixed. The badge says 'Canceled' (brown, #8b4513), and the click opens Flight Details #42910 showing Canceled.
 
 Suspected cause: dashboard/index.js shows flight.status as sent by the server, so the Dashboard flights JSON has no mapping for the Canceled status.
 
 ![BUG-DSH-006-1](bugs/screenshots/BUG-DSH-006-1.png)
+![BUG-DSH-006-2](bugs/screenshots/BUG-DSH-006-2.png)
 
 ### BUG-EXM-001: Exam Builder/Editor have no page Help (?); Escape doesn't close Add Group, Add Exam or Choose Question Type
 
