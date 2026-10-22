@@ -25,3 +25,5 @@ Save as `fixit-handovers/FIXIT_HANDOVER_<module>_v<version>.md` (repo root), scr
 ## Test data left for cleanup
 | Record | Where |
 |---|---|
+
+> **Icon rule (all modules, from 22/10/2026):** every icon must be a self-hosted SVG from `/templates2/main/icons/`. Don't use Material Icons or Material Symbols (Google Fonts), api.iconify.design, or any other external icon source. If an icon you need isn't in that folder, add the SVG to `/templates2/main/icons/` (same naming: `<name>-outline-rounded.svg` or `<name>-rounded.svg`) and use it from there. Any icon that doesn't come from this folder is a UI FAIL under ICON-01. The full list is in `debugging/DEBUGGING_GUIDE.md` under "Icons".

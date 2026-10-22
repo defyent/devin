@@ -64,3 +64,36 @@ Steps from the menu, expected (with guide §), actual (exact on-screen text), ac
 3. Fix in priority order (Critical → UI). Keep edits minimal; bump `?v=` on changed assets.
 4. Reply per Bug ID with the fix summary and PR link; set status `Fixed (deployed)` once Jon deploys.
 5. The tester session then retests the linked checklist rows and marks `Verified` / `Reopened`.
+
+## Icons
+
+All icons in every DataHangar module must come from the self-hosted folder `/templates2/main/icons/` (SVG files). This applies to all icons, not just the sidebar.
+
+- Don't use Material Icons or Material Symbols (Google Fonts), api.iconify.design, or any other CDN.
+- If an icon you need doesn't exist, add the SVG to `/templates2/main/icons/` and use it from there. Keep the naming style: `<name>-outline-rounded.svg`, or `<name>-rounded.svg` for filled icons.
+- Use the same icon for the same action everywhere (see UI-001).
+- When testing, any icon loaded from somewhere else is a UI FAIL under ICON-01.
+
+Icons in the folder on 22/10/2026:
+
+- `badge-outline-rounded.svg`
+- `bar-chart-rounded.svg`
+- `calendar-month-outline-rounded.svg`
+- `dashboard-outline-rounded.svg`
+- `description-outline-rounded.svg`
+- `dynamic-form-outline-rounded.svg`
+- `event-note-outline-rounded.svg`
+- `flight-rounded.svg`
+- `flight-takeoff-rounded.svg`
+- `folder-open-outline-rounded.svg`
+- `group-outline-rounded.svg`
+- `headset-mic-outline-rounded.svg`
+- `health-and-safety-outline-rounded.svg`
+- `notifications-outline-rounded.svg`
+- `report-outline-rounded.svg`
+- `schedule-outline-rounded.svg`
+- `settings-outline-rounded.svg`
+- `task-outline-rounded.svg`
+- `tune-rounded.svg`
+- `verified-outline-rounded.svg`
+- `warning-outline-rounded.svg`

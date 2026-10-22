@@ -37,3 +37,5 @@ debugging/
 ## Handing to the bug-fixing session
 
 Give it: this `debugging/` folder, the handover file, and the user guide. It should read `DEBUGGING_GUIDE.md` §"For the bug-fixing session" first.
+
+**Icon rule:** all modules must use icons from `/templates2/main/icons/` only. Missing icons are added to that folder. See `DEBUGGING_GUIDE.md` under "Icons".
