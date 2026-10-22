@@ -20,10 +20,10 @@
 The new customer is Inactive until login credentials are set. The rule 'User must have login credentials before activation' also applies when the person is created.
 
 ## Actual
-BETA TEST ONLY Customer (#279) shows Login Access = Active, with no username and Last Login 'Never'. If you deactivate it and then click Inactive, Change Login Credentials opens as it should, so the check only runs when you activate from Access Manager.
+BETA TEST ONLY Customer (#279) shows Login Access = Active, with no username and Last Login 'Never'. If you deactivate it and then click Inactive, Change Login Credentials opens as it should, so the check only runs when you activate from Access Manager. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. A new customer made from flightdetails #42910 > Customer > New Customer (BETA TEST ONLY Cust2) shows Login Access = Inactive in Access Manager.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-AM-007-1.png`, `screenshots/BUG-AM-007-2.png`
+- Screenshot: `screenshots/BUG-AM-007-1.png`, `screenshots/BUG-AM-007-2.png`, `screenshots/BUG-AM-007-3.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

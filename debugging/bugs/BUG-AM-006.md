@@ -20,10 +20,10 @@
 There is a Chat card (the checklist says Chat = A), so an admin can let staff use Chat.
 
 ## Actual
-None of the 76 cards is Chat or Comms. Every non-admin test user sees the chat icon in the header but gets 'Access Denied: You do not have permission to access the Chat feature'. Only the admin can use Chat, so you can't test unread badges between two users.
+None of the 76 cards is Chat or Comms. Every non-admin test user sees the chat icon in the header but gets 'Access Denied: You do not have permission to access the Chat feature'. Only the admin can use Chat, so you can't test unread badges between two users. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): part fixed. There is now a Chat card (chat · #249, level A). With Chat A, betatest_grp opens Comms (Channels list). But the header chat icon still shows for users without Chat: betatest_low clicks it and gets 'Access Denied: You do not have permission to access the Chat feature'.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-AM-006-1.png`
+- Screenshot: `screenshots/BUG-AM-006-1.png`, `screenshots/BUG-AM-006-2.png`, `screenshots/BUG-AM-006-3.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

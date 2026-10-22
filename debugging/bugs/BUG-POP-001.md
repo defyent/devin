@@ -20,10 +20,10 @@
 Esc closes it (as Help does on the same page).
 
 ## Actual
-Modal stays open; only OK closes it. Same as the logout confirm (BUG-LOG-002).
+Modal stays open; only OK closes it. Same as the logout confirm (BUG-LOG-002). Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. Esc closes the 'Failed to Create User - That username is not allowed' error modal.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-POP-001-1.png`
+- Screenshot: `screenshots/BUG-POP-001-1.png`, `screenshots/BUG-POP-001-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

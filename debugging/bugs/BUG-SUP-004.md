@@ -20,10 +20,10 @@
 A regular user can open Support, raise tickets and see only their own. An admin sees all tickets.
 
 ## Actual
-Grpuser gets 'Access Denied: You do not have permission to access the Support feature', although Support is in their sidebar and the header headset icon. The only way to let staff raise a ticket is All Access, which shows every ticket. There's no 'own tickets' level.
+Grpuser gets 'Access Denied: You do not have permission to access the Support feature', although Support is in their sidebar and the header headset icon. The only way to let staff raise a ticket is All Access, which shows every ticket. There's no 'own tickets' level. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): part verified. Support Tickets (#245) now offers A, RA, WG, RG, WO and RO. With WO, betatest_grp opens Support, sees 'No support tickets found' and can open New Ticket. Not verified that WO users see only their own tickets: no tickets exist on stresstest, and submitting one may go to the real support queue (Bug Tracker Sync).
 
 ## Evidence
-- Screenshot: `screenshots/BUG-SUP-004-1.png`
+- Screenshot: `screenshots/BUG-SUP-004-1.png`, `screenshots/BUG-SUP-004-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

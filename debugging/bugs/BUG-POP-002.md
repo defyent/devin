@@ -20,10 +20,10 @@
 App-styled confirm modal (like Activate Login Access / Logout), Esc = stay.
 
 ## Actual
-Native Chrome confirm: 'You have unsaved changes. Are you sure you want to cancel?'. Looks out of place, cannot be styled, blocks the page.
+Native Chrome confirm: 'You have unsaved changes. Are you sure you want to cancel?'. Looks out of place, cannot be styled, blocks the page. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. Cancel with unsaved changes opens an app modal 'Unsaved Changes ... Keep Editing / Discard Changes'; no native confirm. Esc closes the confirm and keeps editing; Discard Changes closes the editor.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-POP-002-1.png`
+- Screenshot: `screenshots/BUG-POP-002-1.png`, `screenshots/BUG-POP-002-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

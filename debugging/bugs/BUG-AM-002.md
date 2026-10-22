@@ -19,10 +19,10 @@
 Exact date in org format, e.g. 21/10/2026 20:45 (local).
 
 ## Actual
-Tooltip '21 Oct 2026, 07:45 am': hard-coded format, 12-hour, and shows the UTC time (07:45) rather than local (20:45).
+Tooltip '21 Oct 2026, 07:45 am': hard-coded format, 12-hour, and shows the UTC time (07:45) rather than local (20:45). Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. The Last Activity hover title is now in local time and org format, e.g. '22/10/2026 15:01' for '1h 17m ago' at local 16:19.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-AM-002-1.png`
+- Screenshot: `screenshots/BUG-AM-002-1.png`, `screenshots/BUG-AM-002-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

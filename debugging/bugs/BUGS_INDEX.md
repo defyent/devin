@@ -6,20 +6,20 @@
 | [BUG-PD-001](BUG-PD-001.md) | `PD-S01` | Personnel Details / My Account | personneldetails/index.js is truncated: ReferenceError getPickerMod on every load | Medium | New | |
 | [BUG-LOG-001](BUG-LOG-001.md) | `LOG-013` | Shell (main) | Login Message popup reappears on every browser reload | Low | Fixed (verified 22/10/2026) | |
 | [BUG-LOG-002](BUG-LOG-002.md) | `LOG-016` | Shell (main) | Logout throws JS error removeChild; Esc doesn't close the Log Out confirm | Low | Fixed (verified 22/10/2026) | |
-| [BUG-AM-001](BUG-AM-001.md) | `AM-010` | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) | Medium | New | |
-| [BUG-AM-002](BUG-AM-002.md) | `AM-007` | Access Manager | Last Activity hover date ignores Settings > Time Zone format | Low | New | |
-| [BUG-AM-003](BUG-AM-003.md) | `AM-005` | Access Manager | Last Activity column sort does not change order | Low | New | |
-| [BUG-POP-001](BUG-POP-001.md) | `AM-S03` | Access Manager (shared errorModal) | Error modal ('Failed to Create User') does not close with Esc | Low | New | |
+| [BUG-AM-001](BUG-AM-001.md) | `AM-010` | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) | Medium | Fixed (verified 22/10/2026) | |
+| [BUG-AM-002](BUG-AM-002.md) | `AM-007` | Access Manager | Last Activity hover date ignores Settings > Time Zone format | Low | Fixed (verified 22/10/2026) | |
+| [BUG-AM-003](BUG-AM-003.md) | `AM-005` | Access Manager | Last Activity column sort does not change order | Low | Fixed (verified 22/10/2026) | |
+| [BUG-POP-001](BUG-POP-001.md) | `AM-S03` | Access Manager (shared errorModal) | Error modal ('Failed to Create User') does not close with Esc | Low | Fixed (verified 22/10/2026) | |
 | [BUG-PERM-001](BUG-PERM-001.md) | `PERM-007` | Shell (main) sidebar | Sidebar lists modules the user has no permission for (all lead to Access Denied) | Low | New | |
 | [BUG-PERM-002](BUG-PERM-002.md) | `PERM-007` | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) | Medium | New | |
-| [BUG-AM-004](BUG-AM-004.md) | `AM-020` | Access Manager > Manage User Permissions | Permission level dropdown shows bare codes 'WA' and 'G' next to full labels | Low | New | |
-| [BUG-POP-002](BUG-POP-002.md) | `AM-023` | Access Manager > Manage User Permissions | Manage User Permissions uses a native browser confirm() for unsaved changes | Low | New | |
+| [BUG-AM-004](BUG-AM-004.md) | `AM-020` | Access Manager > Manage User Permissions | Permission level dropdown shows bare codes 'WA' and 'G' next to full labels | Low | Fixed (verified 22/10/2026) | |
+| [BUG-POP-002](BUG-POP-002.md) | `AM-023` | Access Manager > Manage User Permissions | Manage User Permissions uses a native browser confirm() for unsaved changes | Low | Fixed (verified 22/10/2026) | |
 | [BUG-PERF-001](BUG-PERF-001.md) | `PERF-001` | All modules (debug panel) | 'Performance' debug timing panel shown on every page, including to non-admin users | Low | New | |
 | [BUG-PD-002](BUG-PD-002.md) | `PD-027` | Personnel Details > Security | Personnel Details modals (Enable 2FA, Setup Error alert): title right-aligned, away from its icon | Low | New | |
 | [BUG-PD-003](BUG-PD-003.md) | `PD-027` | Personnel Details > Security | 2FA setup: one wrong verification code closes the setup dialog and issues a new secret | Medium | New | |
 | [BUG-PD-004](BUG-PD-004.md) | `PD-S04` | Personnel Details > Security | Security tab 'Enabled on' date ignores Settings > Time Zone format | Low | New | |
 | [BUG-LOG-003](BUG-LOG-003.md) | `LOG-010` | Login / 2FA (main) | 'Trust this device for 30 days' is lost on Logout (logout deletes the trusted-device cookie) | Medium | Fixed (verified 22/10/2026) | |
-| [BUG-POP-003](BUG-POP-003.md) | `AM-019` | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved | Medium | New | |
+| [BUG-POP-003](BUG-POP-003.md) | `AM-019` | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-DSH-001](BUG-DSH-001.md) | `DSH-012` | Dashboard | Dashboard side tabs are icon-only with no tooltip or label | Low | Fixed (verified 22/10/2026) | |
 | [BUG-DSH-003](BUG-DSH-003.md) | `DSH-006` | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-POP-004](BUG-POP-004.md) | `FS-013` | Flight Schedule | Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc | Low | New | |
@@ -162,7 +162,7 @@
 | [BUG-SINT-001](BUG-SINT-001.md) | `SINT-S02` | Settings: Google Calendar Sync | Google Calendar Settings: Help and Add Calendar don't close with Escape or an outside click | Low | New | |
 | [BUG-SINT-002](BUG-SINT-002.md) | `SINT-S04` | Settings: Google Calendar Sync | Google Calendar Sync Status: flight dates show as 2024-01-01 07:55 instead of DD/MM/YYYY | Low | New | |
 | [BUG-SLOG-001](BUG-SLOG-001.md) | `SLOG-S04` | Settings: Activity Log | Activity Log: no page Help (?), and dates show as "22 Oct 2026, 02:51 am" | Low | New | |
-| [BUG-AM-005](BUG-AM-005.md) | `PERM-001` | Access Manager | Access Manager: 16 permission types appear twice with the same name (e.g. two "Flight Schedule" cards with different levels) | Medium | New | |
+| [BUG-AM-005](BUG-AM-005.md) | `PERM-001` | Access Manager | Access Manager: 16 permission types appear twice with the same name (e.g. two "Flight Schedule" cards with different levels) | Medium | Open (retested 22/10/2026, part fixed) | |
 | [BUG-FD-006](BUG-FD-006.md) | `FD-031` | Flight Details | Flight can be set to Complete with no times or destination on a leg; no 'Required Information' prompt | Medium | New | |
 | [BUG-FD-007](BUG-FD-007.md) | `DATE-005` | Flight Details | New flight defaults its leg date/time to UTC instead of local time | Medium | New | |
 | [BUG-PD-017](BUG-PD-017.md) | `PD-018` | Personnel Details | Personnel Details > Lesson Plans: an assigned plan is saved but never listed; the dialog's dates default to the UTC date | Medium | New | |
@@ -175,12 +175,12 @@
 | [BUG-AF-005](BUG-AF-005.md) | `FS-027` | Active Flights | Active Flights: a Read Only Group (RG) user sees every company flight, not only their group's | Medium | New | |
 | [BUG-NOT-004](BUG-NOT-004.md) | `NOT-004` | Notices | Notices: a Write Group (WG) user gets 'An error occurred' when clicking New Notice | Medium | New | |
 | [BUG-SMS-005](BUG-SMS-005.md) | `SMS-015` | Safety Reports | Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted | High | New | |
-| [BUG-AM-006](BUG-AM-006.md) | `CHAT-005` | Access Manager / Chat | Access Manager has no Chat permission, so you can't give Chat to a non-admin user | Medium | New | |
+| [BUG-AM-006](BUG-AM-006.md) | `CHAT-005` | Access Manager / Chat | Access Manager has no Chat permission, so you can't give Chat to a non-admin user | Medium | Open (retested 22/10/2026, part fixed) | |
 | [BUG-RB-008](BUG-RB-008.md) | `RB-015` | Roster Builder | Roster Builder can only be opened from Settings and Tools, so a Roster Builder user without System Settings can't reach it | Medium | New | |
 | [BUG-PL-003](BUG-PL-003.md) | `PD-029` | Personnel List / Personnel Details | All Personnel: a Read Only Group (RG) user can't open the details of anyone in their group | Medium | New | |
-| [BUG-SUP-004](BUG-SUP-004.md) | `SUP-008` | Support / Access Manager | Support: the only permission level is All Access, so regular staff can't raise or see their own tickets | Medium | New | |
+| [BUG-SUP-004](BUG-SUP-004.md) | `SUP-008` | Support / Access Manager | Support: the only permission level is All Access, so regular staff can't raise or see their own tickets | Medium | Open (retested 22/10/2026, levels added; own-only filter not verified) | |
 | [BUG-TT-004](BUG-TT-004.md) | `TT-006` | Task Tracker | Task Tracker: a Write Group (WG) user is treated as read-only and can't add a project | Medium | New | |
-| [BUG-AM-007](BUG-AM-007.md) | `AM-015` | Access Manager | Access Manager: a customer created from Flight Details is Active with no login credentials | Low | New | |
+| [BUG-AM-007](BUG-AM-007.md) | `AM-015` | Access Manager | Access Manager: a customer created from Flight Details is Active with no login credentials | Low | Fixed (verified 22/10/2026) | |
 | [BUG-DATE-001](BUG-DATE-001.md) | `DATE-006` | Flight Details | Flight time across a DST change is out by an hour (01:00-05:00 on 04/04/2027 gives 4.0 instead of 5.0) | Medium | New | |
 | [BUG-DSH-005](BUG-DSH-005.md) | `DSH-011` | Dashboard | Dashboard Project Tasks: clicking a task opens an empty project list instead of the project | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-EXM-009](BUG-EXM-009.md) | `PD-017` | Exams | Exams: a hotspot question with no image shows a developer debug message to the person taking the exam | Low | New | |

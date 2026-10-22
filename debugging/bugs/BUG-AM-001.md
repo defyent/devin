@@ -20,10 +20,10 @@
 Rejected: 'Password must be at least 10 characters' (placeholder says 'Minimum 10 characters'; Change Credentials needs 10).
 
 ## Actual
-Toast 'User BETA TEST ONLY Lowperm created successfully'; account created with the 6-char password.
+Toast 'User BETA TEST ONLY Lowperm created successfully'; account created with the 6-char password. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. New User with 'short1' shows the error 'Password must be at least 10 characters' and no user is created.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-AM-001-1.png`
+- Screenshot: `screenshots/BUG-AM-001-1.png`, `screenshots/BUG-AM-001-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

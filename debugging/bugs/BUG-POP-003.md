@@ -23,10 +23,10 @@
 Esc with unsaved changes asks to confirm (app modal); if discarded, the popup reopens with the saved memberships.
 
 ## Actual
-Popup closes silently, nothing is saved, and on reopen 'Crew' is still ticked even though the user has 0 groups. Saving then would apply changes the user thought were thrown away.
+Popup closes silently, nothing is saved, and on reopen 'Crew' is still ticked even though the user has 0 groups. Saving then would apply changes the user thought were thrown away. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. With a group ticked, Esc and Cancel both open 'Unsaved Changes: You have unsaved group changes...' (Keep Editing / Discard Changes). After Discard, the badge is unchanged and reopening shows the saved memberships. Clicking outside doesn't close it.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-POP-003-1.png`
+- Screenshot: `screenshots/BUG-POP-003-1.png`, `screenshots/BUG-POP-003-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

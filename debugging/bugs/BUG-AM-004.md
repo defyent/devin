@@ -19,10 +19,10 @@
 Every level has a readable label, e.g. 'Read/Write All - Can view and modify all data', 'Group - level defined by group membership' (as in the Help).
 
 ## Actual
-Options: 'Read Only All - ...', 'WA', 'Read Only Own - ...', 'Write Own - ...', 'G'.
+Options: 'Read Only All - ...', 'WA', 'Read Only Own - ...', 'Write Own - ...', 'G'. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. Every option on all 76 permission cards has a label, e.g. 'WA=Read/Write All - ...' and 'G=Group - Level defined by group membership'. No bare codes.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-AM-004-1.png`
+- Screenshot: `screenshots/BUG-AM-004-1.png`, `screenshots/BUG-AM-004-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

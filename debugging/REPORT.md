@@ -1,6 +1,6 @@
 # DataHangar test run report (stresstest, v2.0.111)
 
-Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (568 pass, 175 fail, 27 blocked, 19 N/A).
+Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (575 pass, 167 fail, 28 blocked, 19 N/A).
 
 ## Summary
 
@@ -405,11 +405,12 @@ Steps:
 
 Expected: Rejected: 'Password must be at least 10 characters' (placeholder says 'Minimum 10 characters'; Change Credentials needs 10).
 
-Actual: Toast 'User BETA TEST ONLY Lowperm created successfully'; account created with the 6-char password.
+Actual: Toast 'User BETA TEST ONLY Lowperm created successfully'; account created with the 6-char password. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. New User with 'short1' shows the error 'Password must be at least 10 characters' and no user is created.
 
 Suspected cause: No min-length check in the New User handler (client and server) for create; only Change Credentials enforces 10.
 
 ![BUG-AM-001-1](bugs/screenshots/BUG-AM-001-1.png)
+![BUG-AM-001-2](bugs/screenshots/BUG-AM-001-2.png)
 
 ### BUG-AM-005: Access Manager: 16 permission types appear twice with the same name (e.g. two "Flight Schedule" cards with different levels)
 
@@ -423,12 +424,14 @@ Steps:
 
 Expected: Each permission type shows once, or the cards are named or grouped clearly enough to tell them apart.
 
-Actual: 16 names are shown more than once, with no heading or hint to tell them apart: Flight Schedule (ids 2, 209), Dashboard (3, 208), Personnel List (4, 215), Daily Flight Record (5, 213), Personnel Details (6, 216), Roster Viewer (7, 217), Roster Builder (8, 223), File Browser (9, 225), Flight and Duty (10, 31, 218), Notices (11, 219), Safety Reports (13, 30, 221), Hazard Register (14, 222), System Settings (15, 211), Form Builder (16, 224), Exam Builder (18, 232), Access Manager (34, 210). The copies offer different levels: Flight Schedule id 2 offers RA/WA/G, id 209 offers A/RA/WG/RG. An admin can easily give the wrong one. This has a real effect: giving Lowperm the first "Notices" card (id 11) at WO still gives "Access Denied: You do not have permission to access Notices", so the module checks the other Notices card. The first "Flight Schedule" card (id 2) is the one that works for the schedule, so you cannot tell from the name which copy each page uses. Also, BETA TEST ONLY Second with Access Manager WA on one card and A on the other still gets 'You need All Access permission to access the access manager' (AM-018).
+Actual: 16 names are shown more than once, with no heading or hint to tell them apart: Flight Schedule (ids 2, 209), Dashboard (3, 208), Personnel List (4, 215), Daily Flight Record (5, 213), Personnel Details (6, 216), Roster Viewer (7, 217), Roster Builder (8, 223), File Browser (9, 225), Flight and Duty (10, 31, 218), Notices (11, 219), Safety Reports (13, 30, 221), Hazard Register (14, 222), System Settings (15, 211), Form Builder (16, 224), Exam Builder (18, 232), Access Manager (34, 210). The copies offer different levels: Flight Schedule id 2 offers RA/WA/G, id 209 offers A/RA/WG/RG. An admin can easily give the wrong one. This has a real effect: giving Lowperm the first "Notices" card (id 11) at WO still gives "Access Denied: You do not have permission to access Notices", so the module checks the other Notices card. The first "Flight Schedule" card (id 2) is the one that works for the schedule, so you cannot tell from the name which copy each page uses. Also, BETA TEST ONLY Second with Access Manager WA on one card and A on the other still gets 'You need All Access permission to access the access manager' (AM-018). Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): part fixed. Each card now shows its module key and id plus a 'Duplicate name' tag (e.g. 'accessmanager · #34 · Duplicate name' and 'accessmanager · #210 · Duplicate name'). But the same 16 names are still duplicated, and both copies show the same module key, so you still can't tell which one the module checks. AM-018 still fails: betatest_two has Access Manager #34=WA and #210=A and still gets 'Access Denied: You need All Access permission to access the access manager'.
 
 Suspected cause: The permission types table has more than one row with the same display name (probably a second set added for a newer module version). The editor lists every row by name only, with no grouping or description.
 
 ![BUG-AM-005-1](bugs/screenshots/BUG-AM-005-1.png)
 ![BUG-AM-005-2](bugs/screenshots/BUG-AM-005-2.png)
+![BUG-AM-005-3](bugs/screenshots/BUG-AM-005-3.png)
+![BUG-AM-005-4](bugs/screenshots/BUG-AM-005-4.png)
 
 ### BUG-AM-006: Access Manager has no Chat permission, so you can't give Chat to a non-admin user
 
@@ -441,9 +444,11 @@ Steps:
 
 Expected: There is a Chat card (the checklist says Chat = A), so an admin can let staff use Chat.
 
-Actual: None of the 76 cards is Chat or Comms. Every non-admin test user sees the chat icon in the header but gets 'Access Denied: You do not have permission to access the Chat feature'. Only the admin can use Chat, so you can't test unread badges between two users.
+Actual: None of the 76 cards is Chat or Comms. Every non-admin test user sees the chat icon in the header but gets 'Access Denied: You do not have permission to access the Chat feature'. Only the admin can use Chat, so you can't test unread badges between two users. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): part fixed. There is now a Chat card (chat · #249, level A). With Chat A, betatest_grp opens Comms (Channels list). But the header chat icon still shows for users without Chat: betatest_low clicks it and gets 'Access Denied: You do not have permission to access the Chat feature'.
 
 ![BUG-AM-006-1](bugs/screenshots/BUG-AM-006-1.png)
+![BUG-AM-006-2](bugs/screenshots/BUG-AM-006-2.png)
+![BUG-AM-006-3](bugs/screenshots/BUG-AM-006-3.png)
 
 ### BUG-DATE-001: Flight time across a DST change is out by an hour (01:00-05:00 on 04/04/2027 gives 4.0 instead of 5.0)
 
@@ -1155,11 +1160,12 @@ Steps:
 
 Expected: Esc with unsaved changes asks to confirm (app modal); if discarded, the popup reopens with the saved memberships.
 
-Actual: Popup closes silently, nothing is saved, and on reopen 'Crew' is still ticked even though the user has 0 groups. Saving then would apply changes the user thought were thrown away.
+Actual: Popup closes silently, nothing is saved, and on reopen 'Crew' is still ticked even though the user has 0 groups. Saving then would apply changes the user thought were thrown away. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. With a group ticked, Esc and Cancel both open 'Unsaved Changes: You have unsaved group changes...' (Keep Editing / Discard Changes). After Discard, the badge is unchanged and reopening shows the saved memberships. Clicking outside doesn't close it.
 
 Suspected cause: Groups modal has no dirty check on Esc/close and doesn't reset its checkbox state from the server data when reopened.
 
 ![BUG-POP-003-1](bugs/screenshots/BUG-POP-003-1.png)
+![BUG-POP-003-2](bugs/screenshots/BUG-POP-003-2.png)
 
 ### BUG-RB-002: Roster Builder: Copy Live to Draft copies one shift at a time and takes about 6 minutes for one month
 
@@ -1440,9 +1446,10 @@ Steps:
 
 Expected: A regular user can open Support, raise tickets and see only their own. An admin sees all tickets.
 
-Actual: Grpuser gets 'Access Denied: You do not have permission to access the Support feature', although Support is in their sidebar and the header headset icon. The only way to let staff raise a ticket is All Access, which shows every ticket. There's no 'own tickets' level.
+Actual: Grpuser gets 'Access Denied: You do not have permission to access the Support feature', although Support is in their sidebar and the header headset icon. The only way to let staff raise a ticket is All Access, which shows every ticket. There's no 'own tickets' level. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): part verified. Support Tickets (#245) now offers A, RA, WG, RG, WO and RO. With WO, betatest_grp opens Support, sees 'No support tickets found' and can open New Ticket. Not verified that WO users see only their own tickets: no tickets exist on stresstest, and submitting one may go to the real support queue (Bug Tracker Sync).
 
 ![BUG-SUP-004-1](bugs/screenshots/BUG-SUP-004-1.png)
+![BUG-SUP-004-2](bugs/screenshots/BUG-SUP-004-2.png)
 
 ### BUG-SWP-002: Waypoints: moving a waypoint about 250 nm saves with no "Significant Location Change" warning
 
@@ -1589,11 +1596,12 @@ Steps:
 
 Expected: Exact date in org format, e.g. 21/10/2026 20:45 (local).
 
-Actual: Tooltip '21 Oct 2026, 07:45 am': hard-coded format, 12-hour, and shows the UTC time (07:45) rather than local (20:45).
+Actual: Tooltip '21 Oct 2026, 07:45 am': hard-coded format, 12-hour, and shows the UTC time (07:45) rather than local (20:45). Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. The Last Activity hover title is now in local time and org format, e.g. '22/10/2026 15:01' for '1h 17m ago' at local 16:19.
 
 Suspected cause: Tooltip built with toLocaleString / fixed format instead of formatDateWithConfig; timestamp not converted to org time zone.
 
 ![BUG-AM-002-1](bugs/screenshots/BUG-AM-002-1.png)
+![BUG-AM-002-2](bugs/screenshots/BUG-AM-002-2.png)
 
 ### BUG-AM-003: Last Activity column sort does not change order
 
@@ -1605,7 +1613,7 @@ Steps:
 
 Expected: Ascending then descending: Service Account (only user with activity) moves from top to bottom.
 
-Actual: Same order both times: Service Account, Alex Richards, Zoe Mason, Curtis Porter... User and Username sort correctly.
+Actual: Same order both times: Service Account, Alex Richards, Zoe Mason, Curtis Porter... User and Username sort correctly. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. The first click puts the most recent activity at the top (Service Account, Just now); the second click reverses it (Never rows first).
 
 Suspected cause: Sort comparator for Last Activity ignores direction (or sorts on the relative text with 'Never' handled separately).
 
@@ -1621,11 +1629,12 @@ Steps:
 
 Expected: Every level has a readable label, e.g. 'Read/Write All - Can view and modify all data', 'Group - level defined by group membership' (as in the Help).
 
-Actual: Options: 'Read Only All - ...', 'WA', 'Read Only Own - ...', 'Write Own - ...', 'G'.
+Actual: Options: 'Read Only All - ...', 'WA', 'Read Only Own - ...', 'Write Own - ...', 'G'. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. Every option on all 76 permission cards has a label, e.g. 'WA=Read/Write All - ...' and 'G=Group - Level defined by group membership'. No bare codes.
 
 Suspected cause: Label map in accessmanager JS is missing WA and G (falls back to the code).
 
 ![BUG-AM-004-1](bugs/screenshots/BUG-AM-004-1.png)
+![BUG-AM-004-2](bugs/screenshots/BUG-AM-004-2.png)
 
 ### BUG-AM-007: Access Manager: a customer created from Flight Details is Active with no login credentials
 
@@ -1638,10 +1647,11 @@ Steps:
 
 Expected: The new customer is Inactive until login credentials are set. The rule 'User must have login credentials before activation' also applies when the person is created.
 
-Actual: BETA TEST ONLY Customer (#279) shows Login Access = Active, with no username and Last Login 'Never'. If you deactivate it and then click Inactive, Change Login Credentials opens as it should, so the check only runs when you activate from Access Manager.
+Actual: BETA TEST ONLY Customer (#279) shows Login Access = Active, with no username and Last Login 'Never'. If you deactivate it and then click Inactive, Change Login Credentials opens as it should, so the check only runs when you activate from Access Manager. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. A new customer made from flightdetails #42910 > Customer > New Customer (BETA TEST ONLY Cust2) shows Login Access = Inactive in Access Manager.
 
 ![BUG-AM-007-1](bugs/screenshots/BUG-AM-007-1.png)
 ![BUG-AM-007-2](bugs/screenshots/BUG-AM-007-2.png)
+![BUG-AM-007-3](bugs/screenshots/BUG-AM-007-3.png)
 
 ### BUG-CHAT-001: Chat has no page Help (?); Escape doesn't close Create Channel; empty name does nothing with no message
 
@@ -2307,13 +2317,14 @@ Steps:
 
 Expected: Only modules the user can open are listed (Roster Builder, Timesheets etc. are already hidden, so filtering exists).
 
-Actual: 17 items listed (Dashboard, Flight Schedule, Active Flights, DFR, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support); every one shows 'Access Denied'. The landing page (Dashboard) is also Access Denied. Retest 22/10/2026 (v2.0.112): unchanged. betatest_low still sees all 17 module links and each gives Access Denied, including the Dashboard landing page. Still needs a product decision (NAV-019 expects visible links).
+Actual: 17 items listed (Dashboard, Flight Schedule, Active Flights, DFR, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support); every one shows 'Access Denied'. The landing page (Dashboard) is also Access Denied. Retest 22/10/2026 (v2.0.112): unchanged. betatest_low still sees all 17 module links and each gives Access Denied, including the Dashboard landing page. Still needs a product decision (NAV-019 expects visible links). Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): unchanged. betatest_low still sees every module link in the sidebar (Dashboard, Flight Schedule, Active Flights, Daily Flight Record, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support), and the Dashboard landing page shows Access Denied. Still needs a product decision.
 
 Suspected cause: Sidebar build in main/index.pl does not check the permission types used by each module's own access check. Note: checklist NAV-019 (from the user guide) expects the link to stay visible and show Access Denied, so this may be by design - needs a product decision.
 
 ![BUG-PERM-001-1](bugs/screenshots/BUG-PERM-001-1.png)
 ![BUG-PERM-001-2](bugs/screenshots/BUG-PERM-001-2.png)
 ![BUG-PERM-001-3](bugs/screenshots/BUG-PERM-001-3.png)
+![BUG-PERM-001-4](bugs/screenshots/BUG-PERM-001-4.png)
 
 ### BUG-PL-001: All Personnel has no page Help (?)
 
@@ -2359,11 +2370,12 @@ Steps:
 
 Expected: Esc closes it (as Help does on the same page).
 
-Actual: Modal stays open; only OK closes it. Same as the logout confirm (BUG-LOG-002).
+Actual: Modal stays open; only OK closes it. Same as the logout confirm (BUG-LOG-002). Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. Esc closes the 'Failed to Create User - That username is not allowed' error modal.
 
 Suspected cause: #errorModal has no keydown Escape handler.
 
 ![BUG-POP-001-1](bugs/screenshots/BUG-POP-001-1.png)
+![BUG-POP-001-2](bugs/screenshots/BUG-POP-001-2.png)
 
 ### BUG-POP-002: Manage User Permissions uses a native browser confirm() for unsaved changes
 
@@ -2376,11 +2388,12 @@ Steps:
 
 Expected: App-styled confirm modal (like Activate Login Access / Logout), Esc = stay.
 
-Actual: Native Chrome confirm: 'You have unsaved changes. Are you sure you want to cancel?'. Looks out of place, cannot be styled, blocks the page.
+Actual: Native Chrome confirm: 'You have unsaved changes. Are you sure you want to cancel?'. Looks out of place, cannot be styled, blocks the page. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. Cancel with unsaved changes opens an app modal 'Unsaved Changes ... Keep Editing / Discard Changes'; no native confirm. Esc closes the confirm and keeps editing; Discard Changes closes the editor.
 
 Suspected cause: accessmanager JS calls window.confirm() in the Cancel handler.
 
 ![BUG-POP-002-1](bugs/screenshots/BUG-POP-002-1.png)
+![BUG-POP-002-2](bugs/screenshots/BUG-POP-002-2.png)
 
 ### BUG-POP-004: Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc
 

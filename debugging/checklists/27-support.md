@@ -34,7 +34,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | SUP-005 | View: reply, edit message/subject/description | Works; header badge updates | FAIL | BUG-SUP-003 | Reply 'BETA TEST ONLY reply' shown (Support Staff, 22/10/2026); title edit (popup) and inline description edit saved and kept after reopen. Clicking the .txt attachment shows an Error popup with the file text. No header badge seen to update |
 | SUP-006 | Status / Priority change | Allowed per access | PASS |  | Priority Low > Normal and Status Open > In Progress save immediately and show in the list and on reopen (Service Account) |
 | SUP-007 | Delete Ticket | Confirms | PASS |  | Delete asks 'Delete Ticket - This will permanently delete this ticket, all of its replies and all attachments...' (Cancel keeps it; Escape does nothing - BUG-SUP-001). Delete removed #8; list shows 'No support tickets found' |
-| SUP-008 | Regular user vs admin | Own tickets vs all | FAIL | sup008_grp | BUG-SUP-004: Support Tickets only has level A. Grpuser (no Support permission) gets Access Denied, and Second (A) sees the all-tickets view (none exist now). There is no regular-user "own tickets" level. |
+| SUP-008 | Regular user vs admin | Own tickets vs all | BLOCKED | BUG-SUP-004 | Retest 22/10/2026: Support Tickets now has A/RA/WG/RG/WO/RO and betatest_grp (WO) can open Support and New Ticket. Own-only filtering not verified: no tickets exist and submitting one may reach the real support queue |
 
 ## Test data created
 

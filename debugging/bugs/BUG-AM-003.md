@@ -19,7 +19,7 @@
 Ascending then descending: Service Account (only user with activity) moves from top to bottom.
 
 ## Actual
-Same order both times: Service Account, Alex Richards, Zoe Mason, Curtis Porter... User and Username sort correctly.
+Same order both times: Service Account, Alex Richards, Zoe Mason, Curtis Porter... User and Username sort correctly. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): fixed. The first click puts the most recent activity at the top (Service Account, Just now); the second click reverses it (Never rows first).
 
 ## Evidence
 - Screenshot: `screenshots/BUG-AM-003-1.png`

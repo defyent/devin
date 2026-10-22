@@ -24,3 +24,10 @@
 - W&B: Rev 3 set back as Master (checked: "Revision 3, 1 aircraft"). Revs 4-6 stay as Approved history (the app has no delete for approved revisions)
 - Exam "BETA TEST ONLY Exam" instance for Second submitted and Graded (18% Fail); graded instances can't be removed (BUG-EXM-008)
 - Temporary Reports (A) permission on BETA TEST ONLY Second for RPT-002 (removed after the test; checked)
+
+
+## Access Manager retest (22/10/2026, v2.0.113)
+
+- Retained: customer BETA TEST ONLY Cust2 (betatest.cust2@example.com), created from flightdetails #42910 > Customer > New Customer to retest BUG-AM-007. Inactive, no login. Flight #42910 (Canceled) now has this customer on its Customer tab. There's no delete option in Access Manager.
+- Reverted: betatest_grp was given Chat (#249) A and Support Tickets (#245) WO for the test, then both were removed.
+- Not created: the New User tests (betatest_pw6 with a 6-character password, and root) were both rejected, so no users were added.
