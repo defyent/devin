@@ -21,10 +21,10 @@
 Start time is saved as 06:00 and still shows 06:00 after reload.
 
 ## Actual
-The page saves the picker's full value ("2026-10-22 06:00:00"). On reload it splits that on ":" to get the hours, gets NaN, and the box shows "NaN:NaN". The server then stores "NaN-NaN-NaN NaN:NaN:NaN". After that, typing a new time does not enable Update Changes, so a user can't fix it from the UI. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. Typing 06:00 in Schedule Start Time and saving sent scheduleStartTime='2026-10-22 06:00:00'; after reload the box shows NaN:NaN (hidden value 'NaN-NaN-NaN NaN:NaN:NaN') and typing a time does not enable Update Changes. The save still posts the full date-time. Repaired for the test site by rewriting the save request to scheduleStartTime=07:00; reload then shows 07:00.
+The page saves the picker's full value ("2026-10-22 06:00:00"). On reload it splits that on ":" to get the hours, gets NaN, and the box shows "NaN:NaN". The server then stores "NaN-NaN-NaN NaN:NaN:NaN". After that, typing a new time does not enable Update Changes, so a user can't fix it from the UI. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. Typing 06:00 in Schedule Start Time and saving sent scheduleStartTime='2026-10-22 06:00:00'; after reload the box shows NaN:NaN (hidden value 'NaN-NaN-NaN NaN:NaN:NaN') and typing a time does not enable Update Changes. The save still posts the full date-time. Repaired for the test site by rewriting the save request to scheduleStartTime=07:00; reload then shows 07:00. Second retest 22/10/2026 (v2.0.114): unchanged; the save request still sends scheduleStartTime=2026-10-22 06:00:00, reload shows NaN:NaN, and typing 07:00 and saving leaves it NaN:NaN. Restored to 07:00 again by rewriting the save request.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-SFS-002-1.png`, `screenshots/BUG-SFS-002-2.png`
+- Screenshot: `screenshots/BUG-SFS-002-1.png`, `screenshots/BUG-SFS-002-2.png`, `screenshots/BUG-SFS-002-3.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

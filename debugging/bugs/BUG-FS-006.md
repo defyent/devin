@@ -20,10 +20,10 @@
 Server response < 500 ms; month view usable in about 1-2 s.
 
 ## Actual
-Request 1,590 ms (first byte 844 ms); 2,493 events take 4.5 s from click to render. Page freezes while rendering. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): improved but still over target. Schedule Only > Month (October 2026): flightschedule_json&start=2026-09-28&end=2026-11-09 took 1,072-1,369 ms total (first byte 365-384 ms, 511,679 bytes), 2,497 events rendered, no errors. Was 1,590 ms (first byte 844 ms). Server time is still over the 500 ms target.
+Request 1,590 ms (first byte 844 ms); 2,493 events take 4.5 s from click to render. Page freezes while rendering. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): improved but still over target. Schedule Only > Month (October 2026): flightschedule_json&start=2026-09-28&end=2026-11-09 took 1,072-1,369 ms total (first byte 365-384 ms, 511,679 bytes), 2,497 events rendered, no errors. Was 1,590 ms (first byte 844 ms). Server time is still over the 500 ms target. Second retest 22/10/2026 (v2.0.114): month JSON 1,286-1,344 ms total, first byte 576-633 ms, 511,380 bytes, 2,497 events, no Content-Encoding (not gzipped). Still over 500 ms.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-FS-006-1.png`
+- Screenshot: `screenshots/BUG-FS-006-1.png`, `screenshots/BUG-FS-006-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

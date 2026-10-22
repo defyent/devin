@@ -20,10 +20,10 @@
 Value stays between 5 and 120 (the input has min 5, max 120, step 5), and + is disabled at 120.
 
 ## Actual
-+ keeps going (135 after 26 clicks from 5) and 200 typed in stays 200. − stops at 5 correctly and typing 7 snaps to 5. handleUpdate() sends the value without checking it, so an out-of-range slot size can be saved. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. + still goes past 120 (25 clicks reach 155, + never disables) and typed 200 is kept with Update Changes enabled.
++ keeps going (135 after 26 clicks from 5) and 200 typed in stays 200. − stops at 5 correctly and typing 7 snaps to 5. handleUpdate() sends the value without checking it, so an out-of-range slot size can be saved. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. + still goes past 120 (25 clicks reach 155, + never disables) and typed 200 is kept with Update Changes enabled. Second retest 22/10/2026 (v2.0.114): unchanged; 25 + clicks reach 155 with + still enabled, typed 200 kept with Update Changes enabled.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-SFS-001-1.png`, `screenshots/BUG-SFS-001-2.png`
+- Screenshot: `screenshots/BUG-SFS-001-1.png`, `screenshots/BUG-SFS-001-2.png`, `screenshots/BUG-SFS-001-3.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)
