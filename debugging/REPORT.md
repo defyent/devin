@@ -1,6 +1,6 @@
 # DataHangar test run report (stresstest, v2.0.111)
 
-Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (576 pass, 166 fail, 28 blocked, 19 N/A).
+Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (576 pass, 167 fail, 27 blocked, 19 N/A).
 
 ## Summary
 
@@ -1448,10 +1448,12 @@ Steps:
 
 Expected: A regular user can open Support, raise tickets and see only their own. An admin sees all tickets.
 
-Actual: Grpuser gets 'Access Denied: You do not have permission to access the Support feature', although Support is in their sidebar and the header headset icon. The only way to let staff raise a ticket is All Access, which shows every ticket. There's no 'own tickets' level. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): part verified. Support Tickets (#245) now offers A, RA, WG, RG, WO and RO. With WO, betatest_grp opens Support, sees 'No support tickets found' and can open New Ticket. Not verified that WO users see only their own tickets: no tickets exist on stresstest, and submitting one may go to the real support queue (Bug Tracker Sync).
+Actual: Grpuser gets 'Access Denied: You do not have permission to access the Support feature', although Support is in their sidebar and the header headset icon. The only way to let staff raise a ticket is All Access, which shows every ticket. There's no 'own tickets' level. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): part verified. Support Tickets (#245) now offers A, RA, WG, RG, WO and RO. With WO, betatest_grp opens Support, sees 'No support tickets found' and can open New Ticket. Not verified that WO users see only their own tickets: no tickets exist on stresstest, and submitting one may go to the real support queue (Bug Tracker Sync). Retest 2 22/10/2026 (v2.0.113, test tickets authorised by Jon): fixed. With Support Tickets #245=WO, betatest_grp submitted ticket #9 and betatest_low submitted ticket #10 (Support Question, Low) from the header headset icon > New Ticket. Each sees only their own ticket (also when searching 'BETA TEST ONLY'). betatest_two (#245=A) and Service Account see both #9 and #10 with the creator's name. No script errors.
 
 ![BUG-SUP-004-1](bugs/screenshots/BUG-SUP-004-1.png)
 ![BUG-SUP-004-2](bugs/screenshots/BUG-SUP-004-2.png)
+![BUG-SUP-004-3](bugs/screenshots/BUG-SUP-004-3.png)
+![BUG-SUP-004-4](bugs/screenshots/BUG-SUP-004-4.png)
 
 ### BUG-SWP-002: Waypoints: moving a waypoint about 250 nm saves with no "Significant Location Change" warning
 
@@ -2317,9 +2319,9 @@ Steps:
 2. Log in as that user
 3. Open the sidebar and click each item
 
-Expected: Only modules the user can open are listed (Roster Builder, Timesheets etc. are already hidden, so filtering exists).
+Expected: Links to modules the user has no permission for are hidden from the sidebar (Jon confirmed 22/10/2026). Only modules the user can open are listed (Roster Builder, Timesheets etc. are already hidden, so filtering exists).
 
-Actual: 17 items listed (Dashboard, Flight Schedule, Active Flights, DFR, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support); every one shows 'Access Denied'. The landing page (Dashboard) is also Access Denied. Retest 22/10/2026 (v2.0.112): unchanged. betatest_low still sees all 17 module links and each gives Access Denied, including the Dashboard landing page. Still needs a product decision (NAV-019 expects visible links). Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): unchanged. betatest_low still sees every module link in the sidebar (Dashboard, Flight Schedule, Active Flights, Daily Flight Record, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support), and the Dashboard landing page shows Access Denied. Still needs a product decision.
+Actual: 17 items listed (Dashboard, Flight Schedule, Active Flights, DFR, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support); every one shows 'Access Denied'. The landing page (Dashboard) is also Access Denied. Retest 22/10/2026 (v2.0.112): unchanged. betatest_low still sees all 17 module links and each gives Access Denied, including the Dashboard landing page. Still needs a product decision (NAV-019 expects visible links). Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): unchanged. betatest_low still sees every module link in the sidebar (Dashboard, Flight Schedule, Active Flights, Daily Flight Record, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support), and the Dashboard landing page shows Access Denied. Still needs a product decision. Product decision 22/10/2026 (Jon): links the user can't open must be hidden, so this is a confirmed bug and NAV-019 now expects hidden links.
 
 Suspected cause: Sidebar build in main/index.pl does not check the permission types used by each module's own access check. Note: checklist NAV-019 (from the user guide) expects the link to stay visible and show Access Denied, so this may be by design - needs a product decision.
 

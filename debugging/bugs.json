@@ -169,15 +169,16 @@
    "Log in as that user",
    "Open the sidebar and click each item"
   ],
-  "expected": "Only modules the user can open are listed (Roster Builder, Timesheets etc. are already hidden, so filtering exists).",
-  "actual": "17 items listed (Dashboard, Flight Schedule, Active Flights, DFR, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support); every one shows 'Access Denied'. The landing page (Dashboard) is also Access Denied. Retest 22/10/2026 (v2.0.112): unchanged. betatest_low still sees all 17 module links and each gives Access Denied, including the Dashboard landing page. Still needs a product decision (NAV-019 expects visible links). Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): unchanged. betatest_low still sees every module link in the sidebar (Dashboard, Flight Schedule, Active Flights, Daily Flight Record, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support), and the Dashboard landing page shows Access Denied. Still needs a product decision.",
+  "expected": "Links to modules the user has no permission for are hidden from the sidebar (Jon confirmed 22/10/2026). Only modules the user can open are listed (Roster Builder, Timesheets etc. are already hidden, so filtering exists).",
+  "actual": "17 items listed (Dashboard, Flight Schedule, Active Flights, DFR, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support); every one shows 'Access Denied'. The landing page (Dashboard) is also Access Denied. Retest 22/10/2026 (v2.0.112): unchanged. betatest_low still sees all 17 module links and each gives Access Denied, including the Dashboard landing page. Still needs a product decision (NAV-019 expects visible links). Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): unchanged. betatest_low still sees every module link in the sidebar (Dashboard, Flight Schedule, Active Flights, Daily Flight Record, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support), and the Dashboard landing page shows Access Denied. Still needs a product decision. Product decision 22/10/2026 (Jon): links the user can't open must be hidden, so this is a confirmed bug and NAV-019 now expects hidden links.",
   "shots": [
    "lowp_Dashboard",
    "lowp_Settings_and_Tools",
    "re_perm001_sidebar",
    "re_perm001_low"
   ],
-  "cause": "Sidebar build in main/index.pl does not check the permission types used by each module's own access check. Note: checklist NAV-019 (from the user guide) expects the link to stay visible and show Access Denied, so this may be by design - needs a product decision."
+  "cause": "Sidebar build in main/index.pl does not check the permission types used by each module's own access check. Note: checklist NAV-019 (from the user guide) expects the link to stay visible and show Access Denied, so this may be by design - needs a product decision.",
+  "status": "Open (confirmed 22/10/2026)"
  },
  {
   "id": "BUG-PERM-002",
@@ -3415,13 +3416,15 @@
    "Compare with BETA TEST ONLY Second (Support Tickets = A)."
   ],
   "expected": "A regular user can open Support, raise tickets and see only their own. An admin sees all tickets.",
-  "actual": "Grpuser gets 'Access Denied: You do not have permission to access the Support feature', although Support is in their sidebar and the header headset icon. The only way to let staff raise a ticket is All Access, which shows every ticket. There's no 'own tickets' level. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): part verified. Support Tickets (#245) now offers A, RA, WG, RG, WO and RO. With WO, betatest_grp opens Support, sees 'No support tickets found' and can open New Ticket. Not verified that WO users see only their own tickets: no tickets exist on stresstest, and submitting one may go to the real support queue (Bug Tracker Sync).",
+  "actual": "Grpuser gets 'Access Denied: You do not have permission to access the Support feature', although Support is in their sidebar and the header headset icon. The only way to let staff raise a ticket is All Access, which shows every ticket. There's no 'own tickets' level. Retest 22/10/2026 (v2.0.113, accessmanager/index.js?v=2.0.113): part verified. Support Tickets (#245) now offers A, RA, WG, RG, WO and RO. With WO, betatest_grp opens Support, sees 'No support tickets found' and can open New Ticket. Not verified that WO users see only their own tickets: no tickets exist on stresstest, and submitting one may go to the real support queue (Bug Tracker Sync). Retest 2 22/10/2026 (v2.0.113, test tickets authorised by Jon): fixed. With Support Tickets #245=WO, betatest_grp submitted ticket #9 and betatest_low submitted ticket #10 (Support Question, Low) from the header headset icon > New Ticket. Each sees only their own ticket (also when searching 'BETA TEST ONLY'). betatest_two (#245=A) and Service Account see both #9 and #10 with the creator's name. No script errors.",
   "shots": [
    "sup008_grp",
-   "re_sup004_grp"
+   "re_sup004_grp",
+   "re_sup004_list_betatest_grp",
+   "re_sup004_list_betatest_two"
   ],
   "cause": "",
-  "status": "Open (retested 22/10/2026, levels added; own-only filter not verified)"
+  "status": "Fixed (verified 22/10/2026)"
  },
  {
   "id": "BUG-TT-004",

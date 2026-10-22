@@ -10,7 +10,7 @@
 | [BUG-AM-002](BUG-AM-002.md) | `AM-007` | Access Manager | Last Activity hover date ignores Settings > Time Zone format | Low | Fixed (verified 22/10/2026) | |
 | [BUG-AM-003](BUG-AM-003.md) | `AM-005` | Access Manager | Last Activity column sort does not change order | Low | Fixed (verified 22/10/2026) | |
 | [BUG-POP-001](BUG-POP-001.md) | `AM-S03` | Access Manager (shared errorModal) | Error modal ('Failed to Create User') does not close with Esc | Low | Fixed (verified 22/10/2026) | |
-| [BUG-PERM-001](BUG-PERM-001.md) | `PERM-007` | Shell (main) sidebar | Sidebar lists modules the user has no permission for (all lead to Access Denied) | Low | New | |
+| [BUG-PERM-001](BUG-PERM-001.md) | `PERM-007` | Shell (main) sidebar | Sidebar lists modules the user has no permission for (all lead to Access Denied) | Low | Open (confirmed 22/10/2026) | |
 | [BUG-PERM-002](BUG-PERM-002.md) | `PERM-007` | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) | Medium | New | |
 | [BUG-AM-004](BUG-AM-004.md) | `AM-020` | Access Manager > Manage User Permissions | Permission level dropdown shows bare codes 'WA' and 'G' next to full labels | Low | Fixed (verified 22/10/2026) | |
 | [BUG-POP-002](BUG-POP-002.md) | `AM-023` | Access Manager > Manage User Permissions | Manage User Permissions uses a native browser confirm() for unsaved changes | Low | Fixed (verified 22/10/2026) | |
@@ -178,7 +178,7 @@
 | [BUG-AM-006](BUG-AM-006.md) | `CHAT-005` | Access Manager / Chat | Access Manager has no Chat permission, so you can't give Chat to a non-admin user | Medium | Open (retested 22/10/2026, part fixed) | |
 | [BUG-RB-008](BUG-RB-008.md) | `RB-015` | Roster Builder | Roster Builder can only be opened from Settings and Tools, so a Roster Builder user without System Settings can't reach it | Medium | New | |
 | [BUG-PL-003](BUG-PL-003.md) | `PD-029` | Personnel List / Personnel Details | All Personnel: a Read Only Group (RG) user can't open the details of anyone in their group | Medium | New | |
-| [BUG-SUP-004](BUG-SUP-004.md) | `SUP-008` | Support / Access Manager | Support: the only permission level is All Access, so regular staff can't raise or see their own tickets | Medium | Open (retested 22/10/2026, levels added; own-only filter not verified) | |
+| [BUG-SUP-004](BUG-SUP-004.md) | `SUP-008` | Support / Access Manager | Support: the only permission level is All Access, so regular staff can't raise or see their own tickets | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-TT-004](BUG-TT-004.md) | `TT-006` | Task Tracker | Task Tracker: a Write Group (WG) user is treated as read-only and can't add a project | Medium | New | |
 | [BUG-AM-007](BUG-AM-007.md) | `AM-015` | Access Manager | Access Manager: a customer created from Flight Details is Active with no login credentials | Low | Fixed (verified 22/10/2026) | |
 | [BUG-DATE-001](BUG-DATE-001.md) | `DATE-006` | Flight Details | Flight time across a DST change is out by an hour (01:00-05:00 on 04/04/2027 gives 4.0 instead of 5.0) | Medium | New | |

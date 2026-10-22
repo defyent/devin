@@ -10,7 +10,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 |---|---|---|---|---|---|---|---|---|
 | [00-setup-and-accounts](checklists/00-setup-and-accounts.md) | `SET` | Session setup, accounts and baseline | 9 | 9 | 0 | 0 | 0 | DONE |
 | [01-login-auth](checklists/01-login-auth.md) | `LOG` | Login, 2FA, sessions, landing page | 25 | 19 | 0 | 1 | 0 | DONE |
-| [02-shell-navigation](checklists/02-shell-navigation.md) | `NAV` | Application shell, sidebar, header, mobile | 27 | 25 | 0 | 1 | 1 | DONE |
+| [02-shell-navigation](checklists/02-shell-navigation.md) | `NAV` | Application shell, sidebar, header, mobile | 27 | 24 | 1 | 1 | 1 | DONE |
 | [03-common-conventions](checklists/03-common-conventions.md) | `CON` | Common screen conventions (apply on every page) | 22 | 17 | 5 | 0 | 0 | DONE |
 | [04-access-manager](checklists/04-access-manager.md) | `AM` | Access Manager (users, roles, groups, permissions, templates) | 38 | 36 | 1 | 0 | 0 | DONE |
 | [05-dashboard](checklists/05-dashboard.md) | `DSH` | Dashboard | 19 | 19 | 0 | 0 | 0 | DONE |
@@ -35,7 +35,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [24-form-browser](checklists/24-form-browser.md) | `FBR` | Form Browser / Form Viewer | 10 | 7 | 3 | 0 | 4 | DONE |
 | [25-task-tracker](checklists/25-task-tracker.md) | `TT` | Task Tracker | 12 | 8 | 4 | 0 | 2 | DONE |
 | [26-reports](checklists/26-reports.md) | `RPT` | Reports | 16 | 13 | 3 | 0 | 1 | DONE |
-| [27-support](checklists/27-support.md) | `SUP` | Support tickets | 14 | 10 | 3 | 1 | 0 | DONE |
+| [27-support](checklists/27-support.md) | `SUP` | Support tickets | 14 | 11 | 3 | 0 | 0 | DONE |
 | [28-chat](checklists/28-chat.md) | `CHAT` | Chat | 11 | 8 | 2 | 1 | 8 | DONE |
 | [29-exams](checklists/29-exams.md) | `EXM` | Exam Builder, Exam Editor, Exam Instances | 16 | 10 | 6 | 0 | 4 | DONE |
 | [30-maintenance](checklists/30-maintenance.md) | `MX` | Maintenance Portal | 11 | 0 | 0 | 11 | 0 | DONE |
