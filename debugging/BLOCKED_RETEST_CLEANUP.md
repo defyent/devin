@@ -32,3 +32,4 @@
 - Third Flight Schedule retest 22/10/2026 (v2.0.115): Schedule Start Time broke to NaN:NaN again and was restored to 07:00 by rewriting the save request (checked after reload: 07:00, Slot Duration 30). No flights created
 - Fourth Flight Schedule retest 22/10/2026 (v2.0.117): Schedule Start Time set to 06:00 for the SFS-004 test and back to 07:00 through the UI (checked after reload: 07:00, Slot Duration 30). No flights created
 - Server-side settings check 22/10/2026 (v2.0.117): bad save requests (slotDuration 200/7, scheduleStartTime NaN:NaN/25:99) were rejected; settings confirmed at 07:00 / 30 after a normal save. Double Booking Esc check used existing flight #8852 (only opened the alert, nothing changed)
+- Lazy loading check 22/10/2026 (v2.0.118): view-only (month/week navigation, copy then Esc); no data created or changed
