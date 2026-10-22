@@ -182,7 +182,7 @@
 | [BUG-TT-004](BUG-TT-004.md) | `TT-006` | Task Tracker | Task Tracker: a Write Group (WG) user is treated as read-only and can't add a project | Medium | New | |
 | [BUG-AM-007](BUG-AM-007.md) | `AM-015` | Access Manager | Access Manager: a customer created from Flight Details is Active with no login credentials | Low | New | |
 | [BUG-DATE-001](BUG-DATE-001.md) | `DATE-006` | Flight Details | Flight time across a DST change is out by an hour (01:00-05:00 on 04/04/2027 gives 4.0 instead of 5.0) | Medium | New | |
-| [BUG-DSH-005](BUG-DSH-005.md) | `DSH-011` | Dashboard | Dashboard Project Tasks: clicking a task opens an empty project list instead of the project | Medium | Still failing (retest 22/10/2026) | |
+| [BUG-DSH-005](BUG-DSH-005.md) | `DSH-011` | Dashboard | Dashboard Project Tasks: clicking a task opens an empty project list instead of the project | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-EXM-009](BUG-EXM-009.md) | `PD-017` | Exams | Exams: a hotspot question with no image shows a developer debug message to the person taking the exam | Low | New | |
 | [BUG-RPT-004](BUG-RPT-004.md) | `RPT-006` | Reports | Reports: the Flight Hours meter column shows the aircraft's current meter on every flight, and Total adds them up | Low | New | |
 | [BUG-DSH-006](BUG-DSH-006.md) | `DSH-005` | Dashboard | Dashboard My Flights shows a canceled flight's status as 'Unknown' | Low | New | |

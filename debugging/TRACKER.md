@@ -13,7 +13,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [02-shell-navigation](checklists/02-shell-navigation.md) | `NAV` | Application shell, sidebar, header, mobile | 27 | 23 | 2 | 1 | 1 | DONE |
 | [03-common-conventions](checklists/03-common-conventions.md) | `CON` | Common screen conventions (apply on every page) | 22 | 17 | 5 | 0 | 0 | DONE |
 | [04-access-manager](checklists/04-access-manager.md) | `AM` | Access Manager (users, roles, groups, permissions, templates) | 38 | 28 | 9 | 0 | 0 | DONE |
-| [05-dashboard](checklists/05-dashboard.md) | `DSH` | Dashboard | 19 | 18 | 1 | 0 | 0 | DONE |
+| [05-dashboard](checklists/05-dashboard.md) | `DSH` | Dashboard | 19 | 19 | 0 | 0 | 0 | DONE |
 | [06-flight-schedule](checklists/06-flight-schedule.md) | `FS` | Flight Schedule (incl. embedded Location Planner) | 40 | 30 | 8 | 1 | 1 | DONE |
 | [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 37 | 7 | 0 | 8 | DONE |
 | [08-active-flights](checklists/08-active-flights.md) | `AF` | Active Flights and Live Tracking | 19 | 15 | 4 | 0 | 3 | DONE |
