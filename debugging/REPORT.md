@@ -1,6 +1,6 @@
 # DataHangar test run report (stresstest, v2.0.111)
 
-Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (582 pass, 161 fail, 27 blocked, 19 N/A).
+Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (584 pass, 159 fail, 27 blocked, 19 N/A).
 
 ## Summary
 
@@ -322,7 +322,7 @@ Steps:
 
 Expected: Start time is saved as 06:00 and still shows 06:00 after reload.
 
-Actual: The page saves the picker's full value ("2026-10-22 06:00:00"). On reload it splits that on ":" to get the hours, gets NaN, and the box shows "NaN:NaN". The server then stores "NaN-NaN-NaN NaN:NaN:NaN". After that, typing a new time does not enable Update Changes, so a user can't fix it from the UI. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. Typing 06:00 in Schedule Start Time and saving sent scheduleStartTime='2026-10-22 06:00:00'; after reload the box shows NaN:NaN (hidden value 'NaN-NaN-NaN NaN:NaN:NaN') and typing a time does not enable Update Changes. The save still posts the full date-time. Repaired for the test site by rewriting the save request to scheduleStartTime=07:00; reload then shows 07:00. Second retest 22/10/2026 (v2.0.114): unchanged; the save request still sends scheduleStartTime=2026-10-22 06:00:00, reload shows NaN:NaN, and typing 07:00 and saving leaves it NaN:NaN. Restored to 07:00 again by rewriting the save request. Third retest 22/10/2026 (v2.0.115): unchanged; the save still sends scheduleStartTime=2026-10-22 06:00:00, the reload shows NaN:NaN, and the UI can't fix it. Restored to 07:00 again by rewriting the save request.
+Actual: The page saves the picker's full value ("2026-10-22 06:00:00"). On reload it splits that on ":" to get the hours, gets NaN, and the box shows "NaN:NaN". The server then stores "NaN-NaN-NaN NaN:NaN:NaN". After that, typing a new time does not enable Update Changes, so a user can't fix it from the UI. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. Typing 06:00 in Schedule Start Time and saving sent scheduleStartTime='2026-10-22 06:00:00'; after reload the box shows NaN:NaN (hidden value 'NaN-NaN-NaN NaN:NaN:NaN') and typing a time does not enable Update Changes. The save still posts the full date-time. Repaired for the test site by rewriting the save request to scheduleStartTime=07:00; reload then shows 07:00. Second retest 22/10/2026 (v2.0.114): unchanged; the save request still sends scheduleStartTime=2026-10-22 06:00:00, reload shows NaN:NaN, and typing 07:00 and saving leaves it NaN:NaN. Restored to 07:00 again by rewriting the save request. Third retest 22/10/2026 (v2.0.115): unchanged; the save still sends scheduleStartTime=2026-10-22 06:00:00, the reload shows NaN:NaN, and the UI can't fix it. Restored to 07:00 again by rewriting the save request. Fourth retest 22/10/2026 (v2.0.117): fixed. Typing 06:00 and saving sends scheduleStartTime=06:00; reload shows 06:00; setting it back to 07:00 through the UI works (checked after reload). Server-side validation of bad values not tested.
 
 Suspected cause: templates2/settings_flightschedule/index.js: the change listener does state.scheduleStartTime = e.target.value, but datetimepicker.js writes "YYYY-MM-DD HH:MM:SS" to .dtp-hidden-input. init then does state.scheduleStartTime.split(":").map(Number). Fix: keep only HH:MM (e.g. value.slice(11,16)) and check it is valid before saving.
 
@@ -330,6 +330,7 @@ Suspected cause: templates2/settings_flightschedule/index.js: the change listene
 ![BUG-SFS-002-2](bugs/screenshots/BUG-SFS-002-2.png)
 ![BUG-SFS-002-3](bugs/screenshots/BUG-SFS-002-3.png)
 ![BUG-SFS-002-4](bugs/screenshots/BUG-SFS-002-4.png)
+![BUG-SFS-002-5](bugs/screenshots/BUG-SFS-002-5.png)
 
 ### BUG-SLP-002: Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave
 
@@ -779,12 +780,13 @@ Steps:
 
 Expected: Start defaults to the local date/time: 22/10/2026 09:40.
 
-Actual: Start defaults to 21/10/2026 20:40 and end to 21/10/2026 21:40, which is UTC. A user who doesn't notice saves the flight on the previous day, 13 hours early. The SAR Watch time has the same problem: on flight #42910 (planned 22/10 13:00-14:00) SAR defaulted to 21/10/2026 21:55, which is the UTC time and is before the flight starts. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing: new flight Start/End/SAR default to the UTC time (05:10 at local 18:09), see BUG-FS-001. Second retest 22/10/2026 (v2.0.114): unchanged; at local 20:43 the new flight defaults to 07:45 (UTC). Third retest 22/10/2026 (v2.0.115): unchanged; at local 20:49 the new flight defaults to 07:50 (UTC).
+Actual: Start defaults to 21/10/2026 20:40 and end to 21/10/2026 21:40, which is UTC. A user who doesn't notice saves the flight on the previous day, 13 hours early. The SAR Watch time has the same problem: on flight #42910 (planned 22/10 13:00-14:00) SAR defaulted to 21/10/2026 21:55, which is the UTC time and is before the flight starts. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing: new flight Start/End/SAR default to the UTC time (05:10 at local 18:09), see BUG-FS-001. Second retest 22/10/2026 (v2.0.114): unchanged; at local 20:43 the new flight defaults to 07:45 (UTC). Third retest 22/10/2026 (v2.0.115): unchanged; at local 20:49 the new flight defaults to 07:50 (UTC). Fourth retest 22/10/2026 (v2.0.117): unchanged; at local 21:00 the new flight defaults to 08:00 (UTC).
 
 ![BUG-FD-007-1](bugs/screenshots/BUG-FD-007-1.png)
 ![BUG-FD-007-2](bugs/screenshots/BUG-FD-007-2.png)
 ![BUG-FD-007-3](bugs/screenshots/BUG-FD-007-3.png)
 ![BUG-FD-007-4](bugs/screenshots/BUG-FD-007-4.png)
+![BUG-FD-007-5](bugs/screenshots/BUG-FD-007-5.png)
 
 ### BUG-FS-001: New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h)
 
@@ -797,7 +799,7 @@ Steps:
 
 Expected: Start defaults to local now (21:25), end +1h (22:25), SAR time in local time.
 
-Actual: Start 21/10/2026 08:25, End 09:25, SAR TIME (LOCAL) 09:25 - all UTC values. Near midnight the date would also be wrong. Also Cancel with no changes does nothing (only the back arrow leaves). Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. At local 18:09 (UTC 05:09) on 22/10/2026, Flight Schedule > Live Edit > Add Flight opens New Flight Details with Start 22/10/2026 05:10, End 06:10 and SAR TIME (LOCAL) 06:10, i.e. UTC, 13 h behind local. Header 'Time: 05:10' also UTC. Cancel with no changes still does nothing (URL stays action=flightdetails). Second retest 22/10/2026 (still v2.0.114, no new version deployed): at local 20:43 (UTC 07:43) Add Flight shows Start 07:45, End 08:45, SAR 08:45 and header Time 07:45, still UTC. Cancel with no changes still stays on action=flightdetails. Third retest 22/10/2026 (v2.0.115, flightdetails/index.js?v=2.0.115): unchanged. At local 20:49 (UTC 07:49) Add Flight shows Start 07:50, End 08:50, SAR 08:50, header Time 07:50 (UTC). Cancel with no changes still stays on action=flightdetails.
+Actual: Start 21/10/2026 08:25, End 09:25, SAR TIME (LOCAL) 09:25 - all UTC values. Near midnight the date would also be wrong. Also Cancel with no changes does nothing (only the back arrow leaves). Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. At local 18:09 (UTC 05:09) on 22/10/2026, Flight Schedule > Live Edit > Add Flight opens New Flight Details with Start 22/10/2026 05:10, End 06:10 and SAR TIME (LOCAL) 06:10, i.e. UTC, 13 h behind local. Header 'Time: 05:10' also UTC. Cancel with no changes still does nothing (URL stays action=flightdetails). Second retest 22/10/2026 (still v2.0.114, no new version deployed): at local 20:43 (UTC 07:43) Add Flight shows Start 07:45, End 08:45, SAR 08:45 and header Time 07:45, still UTC. Cancel with no changes still stays on action=flightdetails. Third retest 22/10/2026 (v2.0.115, flightdetails/index.js?v=2.0.115): unchanged. At local 20:49 (UTC 07:49) Add Flight shows Start 07:50, End 08:50, SAR 08:50, header Time 07:50 (UTC). Cancel with no changes still stays on action=flightdetails. Fourth retest 22/10/2026 (v2.0.117, flightdetails/index.js?v=2.0.117): unchanged. At local 21:00 (UTC 08:00) Add Flight shows Start 08:00, End 09:00, SAR 09:00, header Time 08:00 (UTC). Cancel with no changes still stays on action=flightdetails.
 
 Suspected cause: New-flight defaults built from server/UTC now() rather than the org time zone. Confirm whether flights are stored in UTC and shown in local everywhere else (see 92-xc-dates).
 
@@ -805,6 +807,7 @@ Suspected cause: New-flight defaults built from server/UTC now() rather than the
 ![BUG-FS-001-2](bugs/screenshots/BUG-FS-001-2.png)
 ![BUG-FS-001-3](bugs/screenshots/BUG-FS-001-3.png)
 ![BUG-FS-001-4](bugs/screenshots/BUG-FS-001-4.png)
+![BUG-FS-001-5](bugs/screenshots/BUG-FS-001-5.png)
 
 ### BUG-FS-002: Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight
 
@@ -874,13 +877,14 @@ Steps:
 
 Expected: Server response < 500 ms; month view usable in about 1-2 s.
 
-Actual: Request 1,590 ms (first byte 844 ms); 2,493 events take 4.5 s from click to render. Page freezes while rendering. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): improved but still over target. Schedule Only > Month (October 2026): flightschedule_json&start=2026-09-28&end=2026-11-09 took 1,072-1,369 ms total (first byte 365-384 ms, 511,679 bytes), 2,497 events rendered, no errors. Was 1,590 ms (first byte 844 ms). Server time is still over the 500 ms target. Second retest 22/10/2026 (v2.0.114): month JSON 1,286-1,344 ms total, first byte 576-633 ms, 511,380 bytes, 2,497 events, no Content-Encoding (not gzipped). Still over 500 ms. Third retest 22/10/2026 (v2.0.115): partly fixed. JSON is now gzipped and 465,003 bytes (was 511,380). Direct repeat requests take 364-373 ms (under 500 ms), but the first request took 835 ms, and in the browser the month load took 777 ms with the first byte at 635 ms.
+Actual: Request 1,590 ms (first byte 844 ms); 2,493 events take 4.5 s from click to render. Page freezes while rendering. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): improved but still over target. Schedule Only > Month (October 2026): flightschedule_json&start=2026-09-28&end=2026-11-09 took 1,072-1,369 ms total (first byte 365-384 ms, 511,679 bytes), 2,497 events rendered, no errors. Was 1,590 ms (first byte 844 ms). Server time is still over the 500 ms target. Second retest 22/10/2026 (v2.0.114): month JSON 1,286-1,344 ms total, first byte 576-633 ms, 511,380 bytes, 2,497 events, no Content-Encoding (not gzipped). Still over 500 ms. Third retest 22/10/2026 (v2.0.115): partly fixed. JSON is now gzipped and 465,003 bytes (was 511,380). Direct repeat requests take 364-373 ms (under 500 ms), but the first request took 835 ms, and in the browser the month load took 777 ms with the first byte at 635 ms. Fourth retest 22/10/2026 (v2.0.117): unchanged since v2.0.115. Gzipped, 465,003 bytes; repeat requests 367-370 ms, first request 866 ms; in the browser 777 ms total, first byte 635 ms.
 
 Suspected cause: Whole 6-week range returned with full event details in one JSON call and every event rendered; consider a summary per day for month view, indexes on flight start/end, or lazy loading of 'more' events.
 
 ![BUG-FS-006-1](bugs/screenshots/BUG-FS-006-1.png)
 ![BUG-FS-006-2](bugs/screenshots/BUG-FS-006-2.png)
 ![BUG-FS-006-3](bugs/screenshots/BUG-FS-006-3.png)
+![BUG-FS-006-4](bugs/screenshots/BUG-FS-006-4.png)
 
 ### BUG-FS-007: Edit-mode idle timeout switches Live Edit off silently, throws 'calendarEl is not defined' and leaves the schedule blank
 
@@ -2672,7 +2676,7 @@ Steps:
 
 Expected: Value stays between 5 and 120 (the input has min 5, max 120, step 5), and + is disabled at 120.
 
-Actual: + keeps going (135 after 26 clicks from 5) and 200 typed in stays 200. − stops at 5 correctly and typing 7 snaps to 5. handleUpdate() sends the value without checking it, so an out-of-range slot size can be saved. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. + still goes past 120 (25 clicks reach 155, + never disables) and typed 200 is kept with Update Changes enabled. Second retest 22/10/2026 (v2.0.114): unchanged; 25 + clicks reach 155 with + still enabled, typed 200 kept with Update Changes enabled. Third retest 22/10/2026 (v2.0.115): unchanged; 25 + clicks reach 155 with + still enabled, typed 200 kept with Update Changes enabled.
+Actual: + keeps going (135 after 26 clicks from 5) and 200 typed in stays 200. − stops at 5 correctly and typing 7 snaps to 5. handleUpdate() sends the value without checking it, so an out-of-range slot size can be saved. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. + still goes past 120 (25 clicks reach 155, + never disables) and typed 200 is kept with Update Changes enabled. Second retest 22/10/2026 (v2.0.114): unchanged; 25 + clicks reach 155 with + still enabled, typed 200 kept with Update Changes enabled. Third retest 22/10/2026 (v2.0.115): unchanged; 25 + clicks reach 155 with + still enabled, typed 200 kept with Update Changes enabled. Fourth retest 22/10/2026 (v2.0.117, index.js?v=2.0.117): fixed. 25 + clicks stop at 120 and + turns off; typed 200 is clamped to 120. Server-side range check not tested.
 
 Suspected cause: handleNumberInput() caps the decrement with Math.max(5, ...) but has no Math.min(120, ...) on increment; handleUpdate() does parseInt only.
 
@@ -2680,6 +2684,7 @@ Suspected cause: handleNumberInput() caps the decrement with Math.max(5, ...) bu
 ![BUG-SFS-001-2](bugs/screenshots/BUG-SFS-001-2.png)
 ![BUG-SFS-001-3](bugs/screenshots/BUG-SFS-001-3.png)
 ![BUG-SFS-001-4](bugs/screenshots/BUG-SFS-001-4.png)
+![BUG-SFS-001-5](bugs/screenshots/BUG-SFS-001-5.png)
 
 ### BUG-SFT-001: Flight Types Settings: no Help (?), and Escape does not close popups
 
@@ -3387,3 +3392,4 @@ Actual: The feature card is indented about 90px and runs off the right edge; the
 - Flight #42910 was found back at Open on 22/10/2026 (raising an "Overdue: 9 hours" alert for ZK-BTO); set back to Canceled from Flight Details > Flight Status (checked after reload)
 - Second Flight Schedule retest 22/10/2026: Schedule Start Time broke to NaN:NaN again in the SFS-004 test and was restored to 07:00 the same way (checked after reload: 07:00, Slot Duration 30). No flights created; #42910 still Canceled
 - Third Flight Schedule retest 22/10/2026 (v2.0.115): Schedule Start Time broke to NaN:NaN again and was restored to 07:00 by rewriting the save request (checked after reload: 07:00, Slot Duration 30). No flights created
+- Fourth Flight Schedule retest 22/10/2026 (v2.0.117): Schedule Start Time set to 06:00 for the SFS-004 test and back to 07:00 through the UI (checked after reload: 07:00, Slot Duration 30). No flights created

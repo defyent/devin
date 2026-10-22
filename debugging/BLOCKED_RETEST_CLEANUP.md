@@ -30,3 +30,4 @@
 - Flight #42910 was found back at Open on 22/10/2026 (raising an "Overdue: 9 hours" alert for ZK-BTO); set back to Canceled from Flight Details > Flight Status (checked after reload)
 - Second Flight Schedule retest 22/10/2026: Schedule Start Time broke to NaN:NaN again in the SFS-004 test and was restored to 07:00 the same way (checked after reload: 07:00, Slot Duration 30). No flights created; #42910 still Canceled
 - Third Flight Schedule retest 22/10/2026 (v2.0.115): Schedule Start Time broke to NaN:NaN again and was restored to 07:00 by rewriting the save request (checked after reload: 07:00, Slot Duration 30). No flights created
+- Fourth Flight Schedule retest 22/10/2026 (v2.0.117): Schedule Start Time set to 06:00 for the SFS-004 test and back to 07:00 through the UI (checked after reload: 07:00, Slot Duration 30). No flights created
