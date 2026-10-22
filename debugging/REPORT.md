@@ -7,8 +7,8 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | Severity | Count |
 |---|---|
 | High | 9 |
-| Medium | 70 |
-| Low | 105 |
+| Medium | 68 |
+| Low | 107 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
@@ -44,8 +44,6 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | [BUG-FD-004](bugs/BUG-FD-004.md) | Medium | Flight Details | Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC) |
 | [BUG-FD-005](bugs/BUG-FD-005.md) | Medium | Flight Details | Leg with two unknown waypoints: only the first is offered for adding, the second is silently dropped on save |
 | [BUG-FD-006](bugs/BUG-FD-006.md) | Medium | Flight Details | Flight can be set to Complete with no times or destination on a leg; no 'Required Information' prompt |
-| [BUG-FD-007](bugs/BUG-FD-007.md) | Medium | Flight Details | New flight defaults its leg date/time to UTC instead of local time |
-| [BUG-FS-001](bugs/BUG-FS-001.md) | Medium | Flight Schedule > Flight Details (new) | New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h) |
 | [BUG-FS-002](bugs/BUG-FS-002.md) | Medium | Flight Schedule | Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight |
 | [BUG-FS-003](bugs/BUG-FS-003.md) | Medium | Flight Schedule | Flight Schedule header overlaps when Live Edit is on - title covered, location pill cut off and its 'Show All' button cannot be clicked |
 | [BUG-FS-004](bugs/BUG-FS-004.md) | Medium | Flight Schedule > Location Planner | Planner Add Location replaces the New Booking popup - typed booking and location input is lost |
@@ -123,6 +121,8 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | [BUG-FBR-002](bugs/BUG-FBR-002.md) | Low | Form Browser | Form Browser and Form Viewer dates ignore the date setting ('Oct 21, 2026', '10:24 PM') |
 | [BUG-FBR-003](bugs/BUG-FBR-003.md) | Low | Form Browser | Form Browser on a phone: table is cut off, Created and Created By are off-screen |
 | [BUG-FD-003](bugs/BUG-FD-003.md) | Low | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings |
+| [BUG-FD-007](bugs/BUG-FD-007.md) | Low | Flight Details | New flight defaults its leg date/time to UTC instead of local time |
+| [BUG-FS-001](bugs/BUG-FS-001.md) | Low | Flight Schedule > Flight Details (new) | New flight defaults (and Planner 'today') follow the browser time zone instead of Settings > Time Zone |
 | [BUG-FS-005](bugs/BUG-FS-005.md) | Low | Flight Schedule | JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop') |
 | [BUG-HAZ-003](bugs/BUG-HAZ-003.md) | Low | Hazard Register | Hazard Register has no way to create a hazard entry |
 | [BUG-LOG-001](bugs/BUG-LOG-001.md) | Low | Shell (main) | Login Message popup reappears on every browser reload |
@@ -768,47 +768,6 @@ Expected: A 'Required Information' popup lists the missing Start/End/destination
 Actual: The flight saves as Complete with no prompt. The header badge shows 'Complete' and Delete is hidden. The attached QA Post-Flight Report also has empty required fields.
 
 ![BUG-FD-006-1](bugs/screenshots/BUG-FD-006-1.png)
-
-### BUG-FD-007: New flight defaults its leg date/time to UTC instead of local time
-
-Severity: Medium | Module: Flight Details | Check: DATE-005 ([92-xc-dates-timezones](checklists/92-xc-dates-timezones.md))
-
-Steps:
-1. Settings > Time Zone is Pacific/Auckland (UTC+13).
-2. At local 09:42 on 22/10/2026 (UTC 20:42 on 21/10), open Flight Schedule > Live Edit > Add Flight.
-3. Look at the leg start/end date and time fields.
-
-Expected: Start defaults to the local date/time: 22/10/2026 09:40.
-
-Actual: Start defaults to 21/10/2026 20:40 and end to 21/10/2026 21:40, which is UTC. A user who doesn't notice saves the flight on the previous day, 13 hours early. The SAR Watch time has the same problem: on flight #42910 (planned 22/10 13:00-14:00) SAR defaulted to 21/10/2026 21:55, which is the UTC time and is before the flight starts. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing: new flight Start/End/SAR default to the UTC time (05:10 at local 18:09), see BUG-FS-001. Second retest 22/10/2026 (v2.0.114): unchanged; at local 20:43 the new flight defaults to 07:45 (UTC). Third retest 22/10/2026 (v2.0.115): unchanged; at local 20:49 the new flight defaults to 07:50 (UTC). Fourth retest 22/10/2026 (v2.0.117): unchanged; at local 21:00 the new flight defaults to 08:00 (UTC). Retest 22/10/2026 (v2.0.118): unchanged; at local 21:20 the new flight defaults to 08:20 (UTC).
-
-![BUG-FD-007-1](bugs/screenshots/BUG-FD-007-1.png)
-![BUG-FD-007-2](bugs/screenshots/BUG-FD-007-2.png)
-![BUG-FD-007-3](bugs/screenshots/BUG-FD-007-3.png)
-![BUG-FD-007-4](bugs/screenshots/BUG-FD-007-4.png)
-![BUG-FD-007-5](bugs/screenshots/BUG-FD-007-5.png)
-
-### BUG-FS-001: New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h)
-
-Severity: Medium | Module: Flight Schedule > Flight Details (new) | Check: FS-011 ([06-flight-schedule](checklists/06-flight-schedule.md))
-
-Steps:
-1. Settings > Time Zone is Pacific/Auckland (header shows UTC 08:25, Local 21:25)
-2. Flight Schedule > Enable Live Edit > Add Flight
-3. Look at Start Time, End Time and SAR TIME (LOCAL)
-
-Expected: Start defaults to local now (21:25), end +1h (22:25), SAR time in local time.
-
-Actual: Start 21/10/2026 08:25, End 09:25, SAR TIME (LOCAL) 09:25 - all UTC values. Near midnight the date would also be wrong. Also Cancel with no changes does nothing (only the back arrow leaves). Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. At local 18:09 (UTC 05:09) on 22/10/2026, Flight Schedule > Live Edit > Add Flight opens New Flight Details with Start 22/10/2026 05:10, End 06:10 and SAR TIME (LOCAL) 06:10, i.e. UTC, 13 h behind local. Header 'Time: 05:10' also UTC. Cancel with no changes still does nothing (URL stays action=flightdetails). Second retest 22/10/2026 (still v2.0.114, no new version deployed): at local 20:43 (UTC 07:43) Add Flight shows Start 07:45, End 08:45, SAR 08:45 and header Time 07:45, still UTC. Cancel with no changes still stays on action=flightdetails. Third retest 22/10/2026 (v2.0.115, flightdetails/index.js?v=2.0.115): unchanged. At local 20:49 (UTC 07:49) Add Flight shows Start 07:50, End 08:50, SAR 08:50, header Time 07:50 (UTC). Cancel with no changes still stays on action=flightdetails. Fourth retest 22/10/2026 (v2.0.117, flightdetails/index.js?v=2.0.117): unchanged. At local 21:00 (UTC 08:00) Add Flight shows Start 08:00, End 09:00, SAR 09:00, header Time 08:00 (UTC). Cancel with no changes still stays on action=flightdetails. Retest 22/10/2026 (v2.0.118): unchanged. At local 21:20 (UTC 08:20) Add Flight shows Start 08:20, End 09:20, SAR 09:20, header Time 08:20 (UTC). Cancel with no changes still stays on action=flightdetails.
-
-Suspected cause: New-flight defaults built from server/UTC now() rather than the org time zone. Confirm whether flights are stored in UTC and shown in local everywhere else (see 92-xc-dates).
-
-![BUG-FS-001-1](bugs/screenshots/BUG-FS-001-1.png)
-![BUG-FS-001-2](bugs/screenshots/BUG-FS-001-2.png)
-![BUG-FS-001-3](bugs/screenshots/BUG-FS-001-3.png)
-![BUG-FS-001-4](bugs/screenshots/BUG-FS-001-4.png)
-![BUG-FS-001-5](bugs/screenshots/BUG-FS-001-5.png)
-![BUG-FS-001-6](bugs/screenshots/BUG-FS-001-6.png)
 
 ### BUG-FS-002: Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight
 
@@ -2086,6 +2045,54 @@ Expected: Each meter shows the previous reading and a link to the flight it came
 Actual: 'Previous: 2450.3 (+0.0)' is shown but there is no link; the only link in the panel is an info icon (href '#'). The user cannot check which flight set the previous reading.
 
 ![BUG-FD-003-1](bugs/screenshots/BUG-FD-003-1.png)
+
+### BUG-FD-007: New flight defaults its leg date/time to UTC instead of local time
+
+Severity: Low | Module: Flight Details | Check: DATE-005 ([92-xc-dates-timezones](checklists/92-xc-dates-timezones.md))
+
+Steps:
+1. Settings > Time Zone is Pacific/Auckland (UTC+13).
+2. At local 09:42 on 22/10/2026 (UTC 20:42 on 21/10), open Flight Schedule > Live Edit > Add Flight.
+3. Look at the leg start/end date and time fields.
+
+Expected: Start defaults to the local date/time: 22/10/2026 09:40.
+
+Actual: Start defaults to 21/10/2026 20:40 and end to 21/10/2026 21:40, which is UTC. A user who doesn't notice saves the flight on the previous day, 13 hours early. The SAR Watch time has the same problem: on flight #42910 (planned 22/10 13:00-14:00) SAR defaulted to 21/10/2026 21:55, which is the UTC time and is before the flight starts. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing: new flight Start/End/SAR default to the UTC time (05:10 at local 18:09), see BUG-FS-001. Second retest 22/10/2026 (v2.0.114): unchanged; at local 20:43 the new flight defaults to 07:45 (UTC). Third retest 22/10/2026 (v2.0.115): unchanged; at local 20:49 the new flight defaults to 07:50 (UTC). Fourth retest 22/10/2026 (v2.0.117): unchanged; at local 21:00 the new flight defaults to 08:00 (UTC). Retest 22/10/2026 (v2.0.118): unchanged; at local 21:20 the new flight defaults to 08:20 (UTC). Retest 23/10/2026 (v2.0.119): still failing in a UTC browser (local 09:20 23/10 -> Start 22/10/2026 20:20). Correct when the browser time zone is Pacific/Auckland (09:25 23/10), so the default uses the browser time zone. See BUG-FS-001.
+
+Suspected cause: Uses the browser time zone, not Settings > Time Zone (see BUG-FS-001).
+
+![BUG-FD-007-1](bugs/screenshots/BUG-FD-007-1.png)
+![BUG-FD-007-2](bugs/screenshots/BUG-FD-007-2.png)
+![BUG-FD-007-3](bugs/screenshots/BUG-FD-007-3.png)
+![BUG-FD-007-4](bugs/screenshots/BUG-FD-007-4.png)
+![BUG-FD-007-5](bugs/screenshots/BUG-FD-007-5.png)
+![BUG-FD-007-6](bugs/screenshots/BUG-FD-007-6.png)
+![BUG-FD-007-7](bugs/screenshots/BUG-FD-007-7.png)
+
+### BUG-FS-001: New flight defaults (and Planner 'today') follow the browser time zone instead of Settings > Time Zone
+
+Severity: Low | Module: Flight Schedule > Flight Details (new) | Check: FS-011 ([06-flight-schedule](checklists/06-flight-schedule.md))
+
+Steps:
+1. Settings > Time Zone is Pacific/Auckland (header shows UTC 08:25, Local 21:25)
+2. Flight Schedule > Enable Live Edit > Add Flight
+3. Look at Start Time, End Time and SAR TIME (LOCAL)
+
+Expected: Start defaults to local now (21:25), end +1h (22:25), SAR time in local time.
+
+Actual: Start 21/10/2026 08:25, End 09:25, SAR TIME (LOCAL) 09:25 - all UTC values. Near midnight the date would also be wrong. Also Cancel with no changes does nothing (only the back arrow leaves). Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. At local 18:09 (UTC 05:09) on 22/10/2026, Flight Schedule > Live Edit > Add Flight opens New Flight Details with Start 22/10/2026 05:10, End 06:10 and SAR TIME (LOCAL) 06:10, i.e. UTC, 13 h behind local. Header 'Time: 05:10' also UTC. Cancel with no changes still does nothing (URL stays action=flightdetails). Second retest 22/10/2026 (still v2.0.114, no new version deployed): at local 20:43 (UTC 07:43) Add Flight shows Start 07:45, End 08:45, SAR 08:45 and header Time 07:45, still UTC. Cancel with no changes still stays on action=flightdetails. Third retest 22/10/2026 (v2.0.115, flightdetails/index.js?v=2.0.115): unchanged. At local 20:49 (UTC 07:49) Add Flight shows Start 07:50, End 08:50, SAR 08:50, header Time 07:50 (UTC). Cancel with no changes still stays on action=flightdetails. Fourth retest 22/10/2026 (v2.0.117, flightdetails/index.js?v=2.0.117): unchanged. At local 21:00 (UTC 08:00) Add Flight shows Start 08:00, End 09:00, SAR 09:00, header Time 08:00 (UTC). Cancel with no changes still stays on action=flightdetails. Retest 22/10/2026 (v2.0.118): unchanged. At local 21:20 (UTC 08:20) Add Flight shows Start 08:20, End 09:20, SAR 09:20, header Time 08:20 (UTC). Cancel with no changes still stays on action=flightdetails. Retest 23/10/2026 (v2.0.119): Cancel is fixed: with no changes it returns to action=flightschedule, and after editing Notes it shows the Unsaved Changes popup (Stay on Page / Leave Page). Default times still wrong in a UTC browser: at local 09:20 on 23/10/2026 (UTC 20:20 on 22/10) Add Flight shows Start 22/10/2026 20:20, End 21:20, SAR 21:20 and header Date 22/10/2026 Time 20:20 (UTC, previous day). Cause narrowed: the same test with the browser time zone set to Pacific/Auckland shows Start 23/10/2026 09:25, End 10:25, SAR 10:25, so the defaults use the browser's own clock/time zone, not the server and not Settings > Time Zone. The Planner 'today' column has the same cause: in a UTC browser it highlights 22/10 while the org date is 23/10 (FullCalendar's today is correct, 23/10).
+
+Suspected cause: Defaults are built with the browser's new Date() / local time zone. Correct for users whose computer is set to the org time zone (Pacific/Auckland); wrong for any other browser time zone (travelling users, UTC machines). Build 'now' in the org time zone instead. Planner today-column highlight uses the same browser date.
+
+![BUG-FS-001-1](bugs/screenshots/BUG-FS-001-1.png)
+![BUG-FS-001-2](bugs/screenshots/BUG-FS-001-2.png)
+![BUG-FS-001-3](bugs/screenshots/BUG-FS-001-3.png)
+![BUG-FS-001-4](bugs/screenshots/BUG-FS-001-4.png)
+![BUG-FS-001-5](bugs/screenshots/BUG-FS-001-5.png)
+![BUG-FS-001-6](bugs/screenshots/BUG-FS-001-6.png)
+![BUG-FS-001-7](bugs/screenshots/BUG-FS-001-7.png)
+![BUG-FS-001-8](bugs/screenshots/BUG-FS-001-8.png)
+![BUG-FS-001-9](bugs/screenshots/BUG-FS-001-9.png)
 
 ### BUG-FS-005: JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop')
 
@@ -3398,3 +3405,4 @@ Actual: The feature card is indented about 90px and runs off the right edge; the
 - Fourth Flight Schedule retest 22/10/2026 (v2.0.117): Schedule Start Time set to 06:00 for the SFS-004 test and back to 07:00 through the UI (checked after reload: 07:00, Slot Duration 30). No flights created
 - Server-side settings check 22/10/2026 (v2.0.117): bad save requests (slotDuration 200/7, scheduleStartTime NaN:NaN/25:99) were rejected; settings confirmed at 07:00 / 30 after a normal save. Double Booking Esc check used existing flight #8852 (only opened the alert, nothing changed)
 - Lazy loading check 22/10/2026 (v2.0.118): view-only (month/week navigation, copy then Esc); no data created or changed
+- Flight Schedule retest 23/10/2026 (v2.0.119): no flights created or saved; the Add Flight forms (one with test text in Notes) were left without saving

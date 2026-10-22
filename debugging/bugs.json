@@ -424,28 +424,31 @@
  },
  {
   "id": "BUG-FS-001",
-  "title": "New flight defaults to the current UTC time instead of local time (SAR TIME labelled LOCAL shows UTC+1h)",
+  "title": "New flight defaults (and Planner 'today') follow the browser time zone instead of Settings > Time Zone",
   "row": "FS-011",
   "cl": "06-flight-schedule",
   "module": "Flight Schedule > Flight Details (new)",
-  "sev": "Medium",
+  "sev": "Low",
   "steps": [
    "Settings > Time Zone is Pacific/Auckland (header shows UTC 08:25, Local 21:25)",
    "Flight Schedule > Enable Live Edit > Add Flight",
    "Look at Start Time, End Time and SAR TIME (LOCAL)"
   ],
   "expected": "Start defaults to local now (21:25), end +1h (22:25), SAR time in local time.",
-  "actual": "Start 21/10/2026 08:25, End 09:25, SAR TIME (LOCAL) 09:25 - all UTC values. Near midnight the date would also be wrong. Also Cancel with no changes does nothing (only the back arrow leaves). Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. At local 18:09 (UTC 05:09) on 22/10/2026, Flight Schedule > Live Edit > Add Flight opens New Flight Details with Start 22/10/2026 05:10, End 06:10 and SAR TIME (LOCAL) 06:10, i.e. UTC, 13 h behind local. Header 'Time: 05:10' also UTC. Cancel with no changes still does nothing (URL stays action=flightdetails). Second retest 22/10/2026 (still v2.0.114, no new version deployed): at local 20:43 (UTC 07:43) Add Flight shows Start 07:45, End 08:45, SAR 08:45 and header Time 07:45, still UTC. Cancel with no changes still stays on action=flightdetails. Third retest 22/10/2026 (v2.0.115, flightdetails/index.js?v=2.0.115): unchanged. At local 20:49 (UTC 07:49) Add Flight shows Start 07:50, End 08:50, SAR 08:50, header Time 07:50 (UTC). Cancel with no changes still stays on action=flightdetails. Fourth retest 22/10/2026 (v2.0.117, flightdetails/index.js?v=2.0.117): unchanged. At local 21:00 (UTC 08:00) Add Flight shows Start 08:00, End 09:00, SAR 09:00, header Time 08:00 (UTC). Cancel with no changes still stays on action=flightdetails. Retest 22/10/2026 (v2.0.118): unchanged. At local 21:20 (UTC 08:20) Add Flight shows Start 08:20, End 09:20, SAR 09:20, header Time 08:20 (UTC). Cancel with no changes still stays on action=flightdetails.",
+  "actual": "Start 21/10/2026 08:25, End 09:25, SAR TIME (LOCAL) 09:25 - all UTC values. Near midnight the date would also be wrong. Also Cancel with no changes does nothing (only the back arrow leaves). Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. At local 18:09 (UTC 05:09) on 22/10/2026, Flight Schedule > Live Edit > Add Flight opens New Flight Details with Start 22/10/2026 05:10, End 06:10 and SAR TIME (LOCAL) 06:10, i.e. UTC, 13 h behind local. Header 'Time: 05:10' also UTC. Cancel with no changes still does nothing (URL stays action=flightdetails). Second retest 22/10/2026 (still v2.0.114, no new version deployed): at local 20:43 (UTC 07:43) Add Flight shows Start 07:45, End 08:45, SAR 08:45 and header Time 07:45, still UTC. Cancel with no changes still stays on action=flightdetails. Third retest 22/10/2026 (v2.0.115, flightdetails/index.js?v=2.0.115): unchanged. At local 20:49 (UTC 07:49) Add Flight shows Start 07:50, End 08:50, SAR 08:50, header Time 07:50 (UTC). Cancel with no changes still stays on action=flightdetails. Fourth retest 22/10/2026 (v2.0.117, flightdetails/index.js?v=2.0.117): unchanged. At local 21:00 (UTC 08:00) Add Flight shows Start 08:00, End 09:00, SAR 09:00, header Time 08:00 (UTC). Cancel with no changes still stays on action=flightdetails. Retest 22/10/2026 (v2.0.118): unchanged. At local 21:20 (UTC 08:20) Add Flight shows Start 08:20, End 09:20, SAR 09:20, header Time 08:20 (UTC). Cancel with no changes still stays on action=flightdetails. Retest 23/10/2026 (v2.0.119): Cancel is fixed: with no changes it returns to action=flightschedule, and after editing Notes it shows the Unsaved Changes popup (Stay on Page / Leave Page). Default times still wrong in a UTC browser: at local 09:20 on 23/10/2026 (UTC 20:20 on 22/10) Add Flight shows Start 22/10/2026 20:20, End 21:20, SAR 21:20 and header Date 22/10/2026 Time 20:20 (UTC, previous day). Cause narrowed: the same test with the browser time zone set to Pacific/Auckland shows Start 23/10/2026 09:25, End 10:25, SAR 10:25, so the defaults use the browser's own clock/time zone, not the server and not Settings > Time Zone. The Planner 'today' column has the same cause: in a UTC browser it highlights 22/10 while the org date is 23/10 (FullCalendar's today is correct, 23/10).",
   "shots": [
    "fs_addflight_cancel",
    "re_fs001_new",
    "r2_fs001_new",
    "r3_fs001_new",
    "r4_fs001_new",
-   "r6_fs001_new"
+   "r6_fs001_new",
+   "r7_fs001_new",
+   "r7_dirty_cancel",
+   "r7_nz_new"
   ],
-  "cause": "New-flight defaults built from server/UTC now() rather than the org time zone. Confirm whether flights are stored in UTC and shown in local everywhere else (see 92-xc-dates).",
-  "status": "Open (retested 4 times 22/10/2026, still failing)"
+  "cause": "Defaults are built with the browser's new Date() / local time zone. Correct for users whose computer is set to the org time zone (Pacific/Auckland); wrong for any other browser time zone (travelling users, UTC machines). Build 'now' in the org time zone instead. Planner today-column highlight uses the same browser date.",
+  "status": "Open (retested 23/10/2026 v2.0.119: Cancel fixed; default times still follow the browser time zone)"
  },
  {
   "id": "BUG-FS-002",
@@ -3158,23 +3161,25 @@
   "row": "DATE-005",
   "cl": "92-xc-dates-timezones",
   "module": "Flight Details",
-  "sev": "Medium",
+  "sev": "Low",
   "steps": [
    "Settings > Time Zone is Pacific/Auckland (UTC+13).",
    "At local 09:42 on 22/10/2026 (UTC 20:42 on 21/10), open Flight Schedule > Live Edit > Add Flight.",
    "Look at the leg start/end date and time fields."
   ],
   "expected": "Start defaults to the local date/time: 22/10/2026 09:40.",
-  "actual": "Start defaults to 21/10/2026 20:40 and end to 21/10/2026 21:40, which is UTC. A user who doesn't notice saves the flight on the previous day, 13 hours early. The SAR Watch time has the same problem: on flight #42910 (planned 22/10 13:00-14:00) SAR defaulted to 21/10/2026 21:55, which is the UTC time and is before the flight starts. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing: new flight Start/End/SAR default to the UTC time (05:10 at local 18:09), see BUG-FS-001. Second retest 22/10/2026 (v2.0.114): unchanged; at local 20:43 the new flight defaults to 07:45 (UTC). Third retest 22/10/2026 (v2.0.115): unchanged; at local 20:49 the new flight defaults to 07:50 (UTC). Fourth retest 22/10/2026 (v2.0.117): unchanged; at local 21:00 the new flight defaults to 08:00 (UTC). Retest 22/10/2026 (v2.0.118): unchanged; at local 21:20 the new flight defaults to 08:20 (UTC).",
+  "actual": "Start defaults to 21/10/2026 20:40 and end to 21/10/2026 21:40, which is UTC. A user who doesn't notice saves the flight on the previous day, 13 hours early. The SAR Watch time has the same problem: on flight #42910 (planned 22/10 13:00-14:00) SAR defaulted to 21/10/2026 21:55, which is the UTC time and is before the flight starts. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing: new flight Start/End/SAR default to the UTC time (05:10 at local 18:09), see BUG-FS-001. Second retest 22/10/2026 (v2.0.114): unchanged; at local 20:43 the new flight defaults to 07:45 (UTC). Third retest 22/10/2026 (v2.0.115): unchanged; at local 20:49 the new flight defaults to 07:50 (UTC). Fourth retest 22/10/2026 (v2.0.117): unchanged; at local 21:00 the new flight defaults to 08:00 (UTC). Retest 22/10/2026 (v2.0.118): unchanged; at local 21:20 the new flight defaults to 08:20 (UTC). Retest 23/10/2026 (v2.0.119): still failing in a UTC browser (local 09:20 23/10 -> Start 22/10/2026 20:20). Correct when the browser time zone is Pacific/Auckland (09:25 23/10), so the default uses the browser time zone. See BUG-FS-001.",
   "shots": [
    "fd_new_utc",
    "re_fs001_new",
    "r2_fs001_new",
    "r3_fs001_new",
-   "r4_fs001_new"
+   "r4_fs001_new",
+   "r7_fs001_new",
+   "r7_nz_new"
   ],
-  "cause": "",
-  "status": "Open (retested 4 times 22/10/2026, still failing)"
+  "cause": "Uses the browser time zone, not Settings > Time Zone (see BUG-FS-001).",
+  "status": "Open (retested 23/10/2026 v2.0.119, browser time zone dependent)"
  },
  {
   "id": "BUG-PD-017",
