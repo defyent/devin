@@ -1,6 +1,6 @@
 # DataHangar test run report (stresstest, v2.0.111)
 
-Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (567 pass, 176 fail, 27 blocked, 19 N/A).
+Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (568 pass, 175 fail, 27 blocked, 19 N/A).
 
 ## Summary
 
@@ -938,12 +938,13 @@ Steps:
 
 Expected: Guide §3: 'The current page has unsaved changes...' modal with Cancel (stay) and Continue (leave).
 
-Actual: Dashboard opens immediately, no modal; the typed change is discarded. Retest 22/10/2026 (v2.0.112): still fails. The shell side now works: main/index.js has checkIframeDirtyState() (window.isDirty() or window.parent.setDirty()), and with setDirty(true) forced the Unsaved Changes modal shows, Cancel stays with the edit kept and Continue leaves. But personneldetails never reports dirty: after typing in Middle Name (Save Changes enabled) it has no window.isDirty and never calls parent.setDirty, so the sidebar and top-bar still leave with no prompt and the edit is lost.
+Actual: Dashboard opens immediately, no modal; the typed change is discarded. Retest 22/10/2026 (v2.0.112): still fails. The shell side now works: main/index.js has checkIframeDirtyState() (window.isDirty() or window.parent.setDirty()), and with setDirty(true) forced the Unsaved Changes modal shows, Cancel stays with the edit kept and Continue leaves. But personneldetails never reports dirty: after typing in Middle Name (Save Changes enabled) it has no window.isDirty and never calls parent.setDirty, so the sidebar and top-bar still leave with no prompt and the edit is lost. Retest 2 22/10/2026 after the personneldetails update: fixed. personneldetails now exposes window.isDirty() (false when clean, true after typing). With an unsaved edit, the sidebar and top-bar both show the Unsaved Changes modal. Cancel stays with the edit kept, Continue leaves without saving, and reload triggers the beforeunload prompt. A clean page or a just-saved page leaves with no prompt.
 
 Suspected cause: Shell is fixed; personneldetails/index.js has to expose window.isDirty() or call window.parent.setDirty(true/false) when its form changes and after save.
 
 ![BUG-NAV-001-1](bugs/screenshots/BUG-NAV-001-1.png)
 ![BUG-NAV-001-2](bugs/screenshots/BUG-NAV-001-2.png)
+![BUG-NAV-001-3](bugs/screenshots/BUG-NAV-001-3.png)
 
 ### BUG-NOT-002: Notice Details: clicking a .txt attachment does nothing (no preview, no download)
 
