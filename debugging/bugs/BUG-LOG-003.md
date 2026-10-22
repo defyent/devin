@@ -21,10 +21,10 @@
 2FA page skipped on this browser for 30 days.
 
 ## Actual
-Logout deletes all cookies (dhkey_<user>, dhkey_trusted_<user>, dhkey_username); the next login asks for the 2FA code again. Trust only survives if the user never logs out.
+Logout deletes all cookies (dhkey_<user>, dhkey_trusted_<user>, dhkey_username); the next login asks for the 2FA code again. Trust only survives if the user never logs out. Retest 22/10/2026 (v2.0.112): fixed. After Logout only dhkey_trusted_betatest_low (30 days) is kept; the next login skips the 2FA page.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-LOG-003-1.png`
+- Screenshot: `screenshots/BUG-LOG-003-1.png`, `screenshots/BUG-LOG-003-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

@@ -11,12 +11,14 @@
    "Type in Middle Name: Save Changes becomes enabled",
    "Hover Flight Operations in the sidebar and click Dashboard"
   ],
-  "expected": "Guide \u00a73: 'The current page has unsaved changes...' modal with Cancel (stay) and Continue (leave).",
-  "actual": "Dashboard opens immediately, no modal; the typed change is discarded.",
+  "expected": "Guide §3: 'The current page has unsaved changes...' modal with Cancel (stay) and Continue (leave).",
+  "actual": "Dashboard opens immediately, no modal; the typed change is discarded. Retest 22/10/2026 (v2.0.112): still fails. The shell side now works: main/index.js has checkIframeDirtyState() (window.isDirty() or window.parent.setDirty()), and with setDirty(true) forced the Unsaved Changes modal shows, Cancel stays with the edit kept and Continue leaves. But personneldetails never reports dirty: after typing in Middle Name (Save Changes enabled) it has no window.isDirty and never calls parent.setDirty, so the sidebar and top-bar still leave with no prompt and the edit is lost.",
   "shots": [
-   "nav015"
+   "nav015",
+   "re_nav001_manualdirty"
   ],
-  "cause": "Dirty-state check in `main/index.js` menu click handler is not wired to Personnel Details (or not at all)."
+  "cause": "Shell is fixed; personneldetails/index.js has to expose window.isDirty() or call window.parent.setDirty(true/false) when its form changes and after save.",
+  "status": "Open (retested 22/10/2026, still failing)"
  },
  {
   "id": "BUG-PD-001",
@@ -46,10 +48,12 @@
    "Press F5 / reload on any page"
   ],
   "expected": "Guide: Login Message is shown after login (once per login).",
-  "actual": "The Login Message opens again after every reload. Guide or app?",
+  "actual": "The Login Message opens again after every reload. Guide or app? Retest 22/10/2026 (v2.0.112): fixed. The Login Message shows after login, and doesn't come back after two reloads.",
   "shots": [
-   "login_msg_reload"
-  ]
+   "login_msg_reload",
+   "re_log001_reload"
+  ],
+  "status": "Fixed (verified 22/10/2026)"
  },
  {
   "id": "BUG-LOG-002",
@@ -64,9 +68,11 @@
    "Click Log Out"
   ],
   "expected": "Esc closes the confirm (CON-015); no console errors.",
-  "actual": "Esc ignored (see POP-02). On Log Out the console logs `Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.` Logout itself works.",
+  "actual": "Esc ignored (see POP-02). On Log Out the console logs `Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.` Logout itself works. Retest 22/10/2026 (v2.0.112): fixed. Esc closes the Log Out confirm, and Log Out completes with no console errors.",
   "console": "pageerror removeChild",
-  "related": "POP-02"
+  "related": "POP-02",
+  "status": "Fixed (verified 22/10/2026)",
+  "shots": []
  },
  {
   "id": "BUG-AM-001",
@@ -156,10 +162,11 @@
    "Open the sidebar and click each item"
   ],
   "expected": "Only modules the user can open are listed (Roster Builder, Timesheets etc. are already hidden, so filtering exists).",
-  "actual": "17 items listed (Dashboard, Flight Schedule, Active Flights, DFR, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support); every one shows 'Access Denied'. The landing page (Dashboard) is also Access Denied.",
+  "actual": "17 items listed (Dashboard, Flight Schedule, Active Flights, DFR, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support); every one shows 'Access Denied'. The landing page (Dashboard) is also Access Denied. Retest 22/10/2026 (v2.0.112): unchanged. betatest_low still sees all 17 module links and each gives Access Denied, including the Dashboard landing page. Still needs a product decision (NAV-019 expects visible links).",
   "shots": [
    "lowp_Dashboard",
-   "lowp_Settings_and_Tools"
+   "lowp_Settings_and_Tools",
+   "re_perm001_sidebar"
   ],
   "cause": "Sidebar build in main/index.pl does not check the permission types used by each module's own access check. Note: checklist NAV-019 (from the user guide) expects the link to stay visible and show Access Denied, so this may be by design - needs a product decision."
  },
@@ -309,11 +316,13 @@
    "Log in again with username + password"
   ],
   "expected": "2FA page skipped on this browser for 30 days.",
-  "actual": "Logout deletes all cookies (dhkey_<user>, dhkey_trusted_<user>, dhkey_username); the next login asks for the 2FA code again. Trust only survives if the user never logs out.",
+  "actual": "Logout deletes all cookies (dhkey_<user>, dhkey_trusted_<user>, dhkey_username); the next login asks for the 2FA code again. Trust only survives if the user never logs out. Retest 22/10/2026 (v2.0.112): fixed. After Logout only dhkey_trusted_betatest_low (30 days) is kept; the next login skips the 2FA page.",
   "shots": [
-   "2fa_trust_relogin"
+   "2fa_trust_relogin",
+   "re_log003_relogin"
   ],
-  "cause": "Logout handler expires every dhkey_* cookie; should keep dhkey_trusted_*."
+  "cause": "Logout handler expires every dhkey_* cookie; should keep dhkey_trusted_*.",
+  "status": "Fixed (verified 22/10/2026)"
  },
  {
   "id": "BUG-POP-003",
@@ -1049,7 +1058,7 @@
    "Click the Group Visibility (people) icon, press Escape"
   ],
   "expected": "A Help (?) button like other modules; Escape closes the Group Visibility popup.",
-  "actual": "No Help button on the page. Group Visibility stays open on Escape; only \u00d7 or a click outside closes it.",
+  "actual": "No Help button on the page. Group Visibility stays open on Escape; only × or a click outside closes it.",
   "shots": [
    "rv_load",
    "rv_groupvis"
@@ -1107,7 +1116,7 @@
    "Click the copy/paste instructions (?) icon, press Escape, then click outside the popup"
   ],
   "expected": "Standard page Help (?) like other modules; Escape and outside click close popups.",
-  "actual": "Only a 'View copy/paste instructions' icon; no page Help. The Copy/Paste Instructions popup stays open on Escape and outside click; only \u00d7 or Close work. The cell Note popup ('Note for <name>') also ignores Escape (outside click and x work). Shift Summary popup also ignores Escape (outside click works). Reset Custom Order confirm also ignores Escape. Confirm Live Roster Edit popup also ignores Escape.",
+  "actual": "Only a 'View copy/paste instructions' icon; no page Help. The Copy/Paste Instructions popup stays open on Escape and outside click; only × or Close work. The cell Note popup ('Note for <name>') also ignores Escape (outside click and x work). Shift Summary popup also ignores Escape (outside click works). Reset Custom Order confirm also ignores Escape. Confirm Live Roster Edit popup also ignores Escape.",
   "shots": [
    "rb_load",
    "rb_cphelp"
@@ -2311,7 +2320,7 @@
    "Type 200 in the box"
   ],
   "expected": "Value stays between 5 and 120 (the input has min 5, max 120, step 5), and + is disabled at 120.",
-  "actual": "+ keeps going (135 after 26 clicks from 5) and 200 typed in stays 200. \u2212 stops at 5 correctly and typing 7 snaps to 5. handleUpdate() sends the value without checking it, so an out-of-range slot size can be saved.",
+  "actual": "+ keeps going (135 after 26 clicks from 5) and 200 typed in stays 200. − stops at 5 correctly and typing 7 snaps to 5. handleUpdate() sends the value without checking it, so an out-of-range slot size can be saved.",
   "shots": [
    "sfs_dirty"
   ],
@@ -2478,7 +2487,7 @@
    "Look at the page."
   ],
   "expected": "No developer timing panel.",
-  "actual": "A visible 176x394 px \"Performance\" panel shows \"settings_wabconfigs_json Permission Check 0.8ms ... Server Wait 177.0ms ... response kb 1\", with a \u00d7 to close it.",
+  "actual": "A visible 176x394 px \"Performance\" panel shows \"settings_wabconfigs_json Permission Check 0.8ms ... Server Wait 177.0ms ... response kb 1\", with a × to close it.",
   "shots": [
    "swab_main"
   ],
@@ -3004,8 +3013,8 @@
    "Open it again and click outside it.",
    "Click Add Calendar and press Escape."
   ],
-  "expected": "Help closes with Got it/\u00d7, an outside click and Escape. Add Calendar closes with Escape.",
-  "actual": "Help only closes with \u00d7 or Close. Escape and an outside click leave it open. Escape also leaves Add Calendar open.",
+  "expected": "Help closes with Got it/×, an outside click and Escape. Add Calendar closes with Escape.",
+  "actual": "Help only closes with × or Close. Escape and an outside click leave it open. Escape also leaves Add Calendar open.",
   "shots": [
    "sint_main",
    "sint_add"
@@ -3178,7 +3187,7 @@
   "sev": "Low",
   "steps": [
    "Settings and Tools > Timesheets > open a person who has a pending claim (BETA TEST ONLY Second, 19 Oct).",
-   "View Claims > the reject (\u00d7) button on the claim.",
+   "View Claims > the reject (×) button on the claim.",
    "Leave the reason empty and click Reject Claim.",
    "Close the 'Validation Error' popup."
   ],
@@ -3224,7 +3233,7 @@
    "Also: on another pending request, click Reject with Your Comments left empty."
   ],
   "expected": "The approve message says the roster shifts were updated, and 26 and 27 Nov change from DS to Annual Leave. Rejecting with no reason tells you a reason is required.",
-  "actual": "The request shows Approved, but no roster-updated message appeared, and Roster Builder still shows DS on 26 and 27 Nov. Second's timesheet shows DS plus 'Annual Leave \u2014 Approved' on both days, so the person is rostered to work while on leave. With an empty reason, Reject does nothing and shows no message (the field placeholder says it's required for rejections).",
+  "actual": "The request shows Approved, but no roster-updated message appeared, and Roster Builder still shows DS on 26 and 27 Nov. Second's timesheet shows DS plus 'Annual Leave — Approved' on both days, so the person is rostered to work while on leave. With an empty reason, Reject does nothing and shows no message (the field placeholder says it's required for rejections).",
   "shots": [
    "ts008_roster_after",
    "ts008_two_nov",
@@ -3246,7 +3255,7 @@
    "Log in as betatest_grp > Flight Schedule > week of 19-25 Oct, then list view, then Group By = BETA TEST ONLY Group."
   ],
   "expected": "ZK-BTO and its flights #42909 and #42910 are shown, including the user's own PIC flight.",
-  "actual": "Week view shows no aircraft rows or events. List view says 'No events to display', even with Group By = BETA TEST ONLY Group ('Showing only aircraft and personnel in the \"BETA TEST ONLY Group\" group'). Daily Flight Record (RG) lists #42909 for the same user, so the data is there. Group memberships in Access Manager only have an 'On Roster' flag, with no read/write flag (\u00a714 caveat).",
+  "actual": "Week view shows no aircraft rows or events. List view says 'No events to display', even with Group By = BETA TEST ONLY Group ('Showing only aircraft and personnel in the \"BETA TEST ONLY Group\" group'). Daily Flight Record (RG) lists #42909 for the same user, so the data is there. Group memberships in Access Manager only have an 'On Roster' flag, with no read/write flag (§14 caveat).",
   "shots": [
    "fs027_grp",
    "fs027_grp_list",

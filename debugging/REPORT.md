@@ -1,6 +1,6 @@
 # DataHangar test run report (stresstest, v2.0.111)
 
-Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (563 pass, 180 fail, 27 blocked, 19 N/A).
+Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (567 pass, 176 fail, 27 blocked, 19 N/A).
 
 ## Summary
 
@@ -920,11 +920,12 @@ Steps:
 
 Expected: 2FA page skipped on this browser for 30 days.
 
-Actual: Logout deletes all cookies (dhkey_<user>, dhkey_trusted_<user>, dhkey_username); the next login asks for the 2FA code again. Trust only survives if the user never logs out.
+Actual: Logout deletes all cookies (dhkey_<user>, dhkey_trusted_<user>, dhkey_username); the next login asks for the 2FA code again. Trust only survives if the user never logs out. Retest 22/10/2026 (v2.0.112): fixed. After Logout only dhkey_trusted_betatest_low (30 days) is kept; the next login skips the 2FA page.
 
 Suspected cause: Logout handler expires every dhkey_* cookie; should keep dhkey_trusted_*.
 
 ![BUG-LOG-003-1](bugs/screenshots/BUG-LOG-003-1.png)
+![BUG-LOG-003-2](bugs/screenshots/BUG-LOG-003-2.png)
 
 ### BUG-NAV-001: Leaving a page with unsaved changes gives no warning; edits are lost
 
@@ -937,11 +938,12 @@ Steps:
 
 Expected: Guide §3: 'The current page has unsaved changes...' modal with Cancel (stay) and Continue (leave).
 
-Actual: Dashboard opens immediately, no modal; the typed change is discarded.
+Actual: Dashboard opens immediately, no modal; the typed change is discarded. Retest 22/10/2026 (v2.0.112): still fails. The shell side now works: main/index.js has checkIframeDirtyState() (window.isDirty() or window.parent.setDirty()), and with setDirty(true) forced the Unsaved Changes modal shows, Cancel stays with the edit kept and Continue leaves. But personneldetails never reports dirty: after typing in Middle Name (Save Changes enabled) it has no window.isDirty and never calls parent.setDirty, so the sidebar and top-bar still leave with no prompt and the edit is lost.
 
-Suspected cause: Dirty-state check in `main/index.js` menu click handler is not wired to Personnel Details (or not at all).
+Suspected cause: Shell is fixed; personneldetails/index.js has to expose window.isDirty() or call window.parent.setDirty(true/false) when its form changes and after save.
 
 ![BUG-NAV-001-1](bugs/screenshots/BUG-NAV-001-1.png)
+![BUG-NAV-001-2](bugs/screenshots/BUG-NAV-001-2.png)
 
 ### BUG-NOT-002: Notice Details: clicking a .txt attachment does nothing (no preview, no download)
 
@@ -2089,9 +2091,10 @@ Steps:
 
 Expected: Guide: Login Message is shown after login (once per login).
 
-Actual: The Login Message opens again after every reload. Guide or app?
+Actual: The Login Message opens again after every reload. Guide or app? Retest 22/10/2026 (v2.0.112): fixed. The Login Message shows after login, and doesn't come back after two reloads.
 
 ![BUG-LOG-001-1](bugs/screenshots/BUG-LOG-001-1.png)
+![BUG-LOG-001-2](bugs/screenshots/BUG-LOG-001-2.png)
 
 ### BUG-LOG-002: Logout throws JS error removeChild; Esc doesn't close the Log Out confirm
 
@@ -2104,7 +2107,7 @@ Steps:
 
 Expected: Esc closes the confirm (CON-015); no console errors.
 
-Actual: Esc ignored (see POP-02). On Log Out the console logs `Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.` Logout itself works.
+Actual: Esc ignored (see POP-02). On Log Out the console logs `Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.` Logout itself works. Retest 22/10/2026 (v2.0.112): fixed. Esc closes the Log Out confirm, and Log Out completes with no console errors.
 
 
 ### BUG-NOT-001: Notices has no page Help (?), and the Create New Notice popup ignores Escape
@@ -2303,12 +2306,13 @@ Steps:
 
 Expected: Only modules the user can open are listed (Roster Builder, Timesheets etc. are already hidden, so filtering exists).
 
-Actual: 17 items listed (Dashboard, Flight Schedule, Active Flights, DFR, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support); every one shows 'Access Denied'. The landing page (Dashboard) is also Access Denied.
+Actual: 17 items listed (Dashboard, Flight Schedule, Active Flights, DFR, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support); every one shows 'Access Denied'. The landing page (Dashboard) is also Access Denied. Retest 22/10/2026 (v2.0.112): unchanged. betatest_low still sees all 17 module links and each gives Access Denied, including the Dashboard landing page. Still needs a product decision (NAV-019 expects visible links).
 
 Suspected cause: Sidebar build in main/index.pl does not check the permission types used by each module's own access check. Note: checklist NAV-019 (from the user guide) expects the link to stay visible and show Access Denied, so this may be by design - needs a product decision.
 
 ![BUG-PERM-001-1](bugs/screenshots/BUG-PERM-001-1.png)
 ![BUG-PERM-001-2](bugs/screenshots/BUG-PERM-001-2.png)
+![BUG-PERM-001-3](bugs/screenshots/BUG-PERM-001-3.png)
 
 ### BUG-PL-001: All Personnel has no page Help (?)
 

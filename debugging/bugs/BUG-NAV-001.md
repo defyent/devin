@@ -20,14 +20,14 @@
 Guide §3: 'The current page has unsaved changes...' modal with Cancel (stay) and Continue (leave).
 
 ## Actual
-Dashboard opens immediately, no modal; the typed change is discarded.
+Dashboard opens immediately, no modal; the typed change is discarded. Retest 22/10/2026 (v2.0.112): still fails. The shell side now works: main/index.js has checkIframeDirtyState() (window.isDirty() or window.parent.setDirty()), and with setDirty(true) forced the Unsaved Changes modal shows, Cancel stays with the edit kept and Continue leaves. But personneldetails never reports dirty: after typing in Middle Name (Save Changes enabled) it has no window.isDirty and never calls parent.setDirty, so the sidebar and top-bar still leave with no prompt and the edit is lost.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-NAV-001-1.png`
+- Screenshot: `screenshots/BUG-NAV-001-1.png`, `screenshots/BUG-NAV-001-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)
-Dirty-state check in `main/index.js` menu click handler is not wired to Personnel Details (or not at all).
+Shell is fixed; personneldetails/index.js has to expose window.isDirty() or call window.parent.setDirty(true/false) when its form changes and after save.
 
 ## Test data involved
 none

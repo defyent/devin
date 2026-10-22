@@ -20,10 +20,10 @@
 Only modules the user can open are listed (Roster Builder, Timesheets etc. are already hidden, so filtering exists).
 
 ## Actual
-17 items listed (Dashboard, Flight Schedule, Active Flights, DFR, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support); every one shows 'Access Denied'. The landing page (Dashboard) is also Access Denied.
+17 items listed (Dashboard, Flight Schedule, Active Flights, DFR, Roster Viewer, All Personnel, Flight and Duty, Notices, Recency and Renewals, Safety Reports, Hazard Register, Settings and Tools, File Browser, Form Browser, Task Tracker, Reports, Support); every one shows 'Access Denied'. The landing page (Dashboard) is also Access Denied. Retest 22/10/2026 (v2.0.112): unchanged. betatest_low still sees all 17 module links and each gives Access Denied, including the Dashboard landing page. Still needs a product decision (NAV-019 expects visible links).
 
 ## Evidence
-- Screenshot: `screenshots/BUG-PERM-001-1.png`, `screenshots/BUG-PERM-001-2.png`
+- Screenshot: `screenshots/BUG-PERM-001-1.png`, `screenshots/BUG-PERM-001-2.png`, `screenshots/BUG-PERM-001-3.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

@@ -19,10 +19,10 @@
 Guide: Login Message is shown after login (once per login).
 
 ## Actual
-The Login Message opens again after every reload. Guide or app?
+The Login Message opens again after every reload. Guide or app? Retest 22/10/2026 (v2.0.112): fixed. The Login Message shows after login, and doesn't come back after two reloads.
 
 ## Evidence
-- Screenshot: `screenshots/BUG-LOG-001-1.png`
+- Screenshot: `screenshots/BUG-LOG-001-1.png`, `screenshots/BUG-LOG-001-2.png`
 - Console / network errors: none
 
 ## Suspected cause (optional)

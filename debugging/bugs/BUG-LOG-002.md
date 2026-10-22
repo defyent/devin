@@ -20,7 +20,7 @@
 Esc closes the confirm (CON-015); no console errors.
 
 ## Actual
-Esc ignored (see POP-02). On Log Out the console logs `Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.` Logout itself works.
+Esc ignored (see POP-02). On Log Out the console logs `Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.` Logout itself works. Retest 22/10/2026 (v2.0.112): fixed. Esc closes the Log Out confirm, and Log Out completes with no console errors.
 
 ## Evidence
 - Screenshot: n/a

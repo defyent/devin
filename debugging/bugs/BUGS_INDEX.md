@@ -2,10 +2,10 @@
 
 | Bug ID | Checklist row | Module | Title | Severity | Status | Handover file |
 |---|---|---|---|---|---|---|
-| [BUG-NAV-001](BUG-NAV-001.md) | `NAV-015` | Shell (main) / Personnel Details | Leaving a page with unsaved changes gives no warning; edits are lost | Medium | New | |
+| [BUG-NAV-001](BUG-NAV-001.md) | `NAV-015` | Shell (main) / Personnel Details | Leaving a page with unsaved changes gives no warning; edits are lost | Medium | Open (retested 22/10/2026, still failing) | |
 | [BUG-PD-001](BUG-PD-001.md) | `PD-S01` | Personnel Details / My Account | personneldetails/index.js is truncated: ReferenceError getPickerMod on every load | Medium | New | |
-| [BUG-LOG-001](BUG-LOG-001.md) | `LOG-013` | Shell (main) | Login Message popup reappears on every browser reload | Low | New | |
-| [BUG-LOG-002](BUG-LOG-002.md) | `LOG-016` | Shell (main) | Logout throws JS error removeChild; Esc doesn't close the Log Out confirm | Low | New | |
+| [BUG-LOG-001](BUG-LOG-001.md) | `LOG-013` | Shell (main) | Login Message popup reappears on every browser reload | Low | Fixed (verified 22/10/2026) | |
+| [BUG-LOG-002](BUG-LOG-002.md) | `LOG-016` | Shell (main) | Logout throws JS error removeChild; Esc doesn't close the Log Out confirm | Low | Fixed (verified 22/10/2026) | |
 | [BUG-AM-001](BUG-AM-001.md) | `AM-010` | Access Manager | New User accepts a 6-character password (placeholder and Change Credentials require 10) | Medium | New | |
 | [BUG-AM-002](BUG-AM-002.md) | `AM-007` | Access Manager | Last Activity hover date ignores Settings > Time Zone format | Low | New | |
 | [BUG-AM-003](BUG-AM-003.md) | `AM-005` | Access Manager | Last Activity column sort does not change order | Low | New | |
@@ -18,7 +18,7 @@
 | [BUG-PD-002](BUG-PD-002.md) | `PD-027` | Personnel Details > Security | Personnel Details modals (Enable 2FA, Setup Error alert): title right-aligned, away from its icon | Low | New | |
 | [BUG-PD-003](BUG-PD-003.md) | `PD-027` | Personnel Details > Security | 2FA setup: one wrong verification code closes the setup dialog and issues a new secret | Medium | New | |
 | [BUG-PD-004](BUG-PD-004.md) | `PD-S04` | Personnel Details > Security | Security tab 'Enabled on' date ignores Settings > Time Zone format | Low | New | |
-| [BUG-LOG-003](BUG-LOG-003.md) | `LOG-010` | Login / 2FA (main) | 'Trust this device for 30 days' is lost on Logout (logout deletes the trusted-device cookie) | Medium | New | |
+| [BUG-LOG-003](BUG-LOG-003.md) | `LOG-010` | Login / 2FA (main) | 'Trust this device for 30 days' is lost on Logout (logout deletes the trusted-device cookie) | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-POP-003](BUG-POP-003.md) | `AM-019` | Access Manager | Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the unsaved ticks as if saved | Medium | New | |
 | [BUG-DSH-001](BUG-DSH-001.md) | `DSH-012` | Dashboard | Dashboard side tabs are icon-only with no tooltip or label | Low | Fixed (verified 22/10/2026) | |
 | [BUG-DSH-003](BUG-DSH-003.md) | `DSH-006` | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) | Medium | Fixed (verified 22/10/2026) | |
