@@ -8,7 +8,7 @@
 | DataHangar version | v2.0.111 |
 | Account / permission level | Service Account (datahangar), admin |
 | Browser / width | Chrome 137 desktop, 1600 px |
-| Status | Open (retested 23/10/2026 v2.0.122, not fixed) |
+| Status | Fixed (verified 24/10/2026 v2.0.123) |
 | Found / session | 21/10/2026 / https://app.devin.ai/sessions/15f654c4481f4789abb726226cefac9c |
 
 ## Steps to reproduce
@@ -38,3 +38,4 @@ none
 | Date | Version | Result | Notes |
 |---|---|---|---|
 | 23/10/2026 | v2.0.122 | Not fixed | UTC browser: 6 future flights with no or later SAR still listed as FUTURE (#8878, #8874, #8873, #8879, #8865, #8876); cards Active 0 + Past 1375 + Overdue 7 = 1382 of Total 1388. In an NZ browser the same flights are counted (2 Active, 1379 Past), so this overlaps BUG-AF-004. |
+| 24/10/2026 | v2.0.123 | Fixed | No FUTURE rows in UTC, NZ or Honolulu browsers; cards Active 1 + Past 1384 + Overdue 8 = Total 1393 in all three. #42911 (start 04/04/2027, SAR 24/10 07:10) shows OVERDUE with Active Time 00h 00m, matching the server status. Screenshot `screenshots/BUG-AF-002-rt123-1.png`. |

@@ -8,7 +8,7 @@
 | DataHangar version | v2.0.111 |
 | Account / permission level | Service Account (datahangar), admin |
 | Browser / width | Chrome 137 desktop, 1600 px |
-| Status | Open (retested 23/10/2026 v2.0.122, not fixed) |
+| Status | Fixed (verified 24/10/2026 v2.0.123) |
 | Found / session | 21/10/2026 / https://app.devin.ai/sessions/15f654c4481f4789abb726226cefac9c |
 
 ## Steps to reproduce
@@ -39,3 +39,4 @@ none
 | Date | Version | Result | Notes |
 |---|---|---|---|
 | 23/10/2026 | v2.0.122 | Not fixed | activeflights/index.js?v=2.0.122 is byte-for-byte the v2.0.121 file and activeflights_json config still has no siteTimeZone/serverNow. UTC browser: #42898 (SAR 16/10 21:20, server timetosar -9858 min = 164h 18m) shows "OVERDUE by 151h 22m" and Active Time 151h 27m; NZ browser shows 164h 22m / 164h 27m. #8876 shows FUTURE "14h 48m remaining" in UTC but ACTIVE "01h 48m remaining" in NZ; Active card 0 (UTC) vs 2 (NZ). Still 13 h out. Screenshot `screenshots/BUG-AF-004-rt122-1.png`. Screenshot `screenshots/BUG-AF-004-rt122-2.png`. |
+| 24/10/2026 | v2.0.123 | Fixed | activeflights/index.js?v=2.0.123 now converts stored local times with siteWallClockToUtc() and the org zone; activeflights_json sends siteTimeZone Pacific/Auckland and serverNow. UTC, Pacific/Auckland and Pacific/Honolulu browsers show the same values: #42898 (SAR 16/10 21:20) "OVERDUE by 182h 23m", matching the server timetosar -10943 min; #42899 "OVERDUE by 144h 48m"; cards Active 1 / Past 1384 / Overdue 8 in all three zones. No NaN or Invalid Date. Screenshot `screenshots/BUG-AF-004-rt123-1.png`. |

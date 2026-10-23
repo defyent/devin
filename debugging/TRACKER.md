@@ -16,7 +16,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [05-dashboard](checklists/05-dashboard.md) | `DSH` | Dashboard | 19 | 19 | 0 | 0 | 0 | DONE |
 | [06-flight-schedule](checklists/06-flight-schedule.md) | `FS` | Flight Schedule (incl. embedded Location Planner) | 40 | 37 | 1 | 0 | 1 | DONE |
 | [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 44 | 0 | 0 | 8 | DONE |
-| [08-active-flights](checklists/08-active-flights.md) | `AF` | Active Flights and Live Tracking | 19 | 15 | 4 | 0 | 3 | DONE |
+| [08-active-flights](checklists/08-active-flights.md) | `AF` | Active Flights and Live Tracking | 19 | 19 | 0 | 0 | 3 | DONE |
 | [09-daily-flight-record](checklists/09-daily-flight-record.md) | `DFR` | Daily Flight Record | 16 | 14 | 2 | 0 | 1 | DONE |
 | [10-location-planner](checklists/10-location-planner.md) | `LP` | Location Planner (stand-alone) | 9 | 0 | 0 | 9 | 0 | DONE |
 | [11-personnel-list](checklists/11-personnel-list.md) | `PL` | All Personnel (Personnel List) | 11 | 10 | 1 | 0 | 2 | DONE |

@@ -17,9 +17,9 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
 | AF-S01 | Open the module by clicking through the menu (never ?action= URLs) | Page loads, no console errors | PASS |  | Sidebar > Flight Operations > Active Flights loads (action=activeflights), no console errors (shot af_open) |
-| AF-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | FAIL | BUG-AF-003 | No page Help (?) button on Active Flights. 'About Live Tracking' popup: Got it closes, clicking outside closes, no x button, Escape does nothing (BUG-AF-003) |
+| AF-S02 | Help (?) opens and closes (Got it / × / outside / Esc) | Works | PASS | BUG-AF-003 | No page Help (?) button on Active Flights. 'About Live Tracking' popup: Got it closes, clicking outside closes, no x button, Escape does nothing (BUG-AF-003) Retest 24/10/2026 v2.0.123: PASS. Page Help (?) added; every popup closes with its button, x, outside click and Escape; Add Note asks before discarding typed text (BUG-AF-003 fixed). |
 | AF-S03 | Every popup on this page: drag-out test (mousedown inside, release outside) | Popup stays open | PASS |  | Mouse down inside Contact Details, Adjust SAR and Add Note popups, release outside: all stay open. (Escape does not close them - BUG-AF-003) |
-| AF-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | PASS | BUG-AF-004 | Dates shown DD/MM/YYYY HH:MM as set in Settings > Time Zone; note timestamps local ([22:34]). The overdue / remaining countdown uses the wrong zone - see BUG-AF-004 |
+| AF-S04 | Dates/times on this page follow Settings > Time Zone | Correct format | PASS | BUG-AF-004 | Dates shown DD/MM/YYYY HH:MM as set in Settings > Time Zone; note timestamps local ([22:34]). The overdue / remaining countdown uses the wrong zone - see BUG-AF-004 Retest 24/10/2026 v2.0.123: countdowns now follow Settings > Time Zone (BUG-AF-004 fixed). |
 | AF-S05 | Narrow (< 768 px) layout | Usable; cards/dropdown pills | PASS |  | 390 px: no horizontal scroll (375 <= 390), list shows cards only (table and table/card toggle hidden), map full width (shot af_mobile). Note: the 'Performance' timing panel (Active Flights API 295 ms) floats over the cards and hides Add Note until closed with x |
 | AF-S06 | Low-permission account | Access Denied or read-only as per permission | PASS |  | betatest_low (no Active Flights right): menu link shown, opening it gives 'Access Denied: You do not have permission to access the Active Flights feature. Please contact your administrator.' No data, no Adjust SAR, no map (shot af_low) |
 
@@ -27,14 +27,14 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| AF-001 | List content | Only open flights whose start or SAR time has passed | FAIL | BUG-AF-002 | 1,377 rows: 1,364 PAST, 7 OVERDUE and 6 FUTURE. The FUTURE flights (#8853-#8860) have not started and have no SAR time ('01/01/1970 00:00 NO SAR TIME SET') but are still listed (BUG-AF-002) (shot af_future) |
-| AF-002 | Stats cards: Total, Active, Past, Overdue | Match list | FAIL | BUG-AF-002 | Cards: Total 1377, Active 0, Past 1364, Overdue 7. Past and Overdue match the list, but the 6 FUTURE rows are counted in Total and in no other card (BUG-AF-002) |
+| AF-001 | List content | Only open flights whose start or SAR time has passed | PASS | BUG-AF-002 | 1,377 rows: 1,364 PAST, 7 OVERDUE and 6 FUTURE. The FUTURE flights (#8853-#8860) have not started and have no SAR time ('01/01/1970 00:00 NO SAR TIME SET') but are still listed (BUG-AF-002) (shot af_future) Retest 24/10/2026 v2.0.123: PASS. No FUTURE rows in UTC, NZ or Honolulu browsers (BUG-AF-002 fixed). |
+| AF-002 | Stats cards: Total, Active, Past, Overdue | Match list | PASS | BUG-AF-002 | Cards: Total 1377, Active 0, Past 1364, Overdue 7. Past and Overdue match the list, but the 6 FUTURE rows are counted in Total and in no other card (BUG-AF-002) Retest 24/10/2026 v2.0.123: PASS. Total 1393 = Active 1 + Past 1384 + Overdue 8 in UTC, NZ and Honolulu browsers (BUG-AF-002 fixed). |
 | AF-003 | Table / card view; sort by SAR / Start Time | Works; mobile shows cards only | PASS |  | Table / card view toggle (table_rows / grid_view) works; Sort by SAR Time / Start Time re-orders the list. Mobile check in AF-S05 |
-| AF-004 | SAR countdown / overdue timer | Counts correctly; status colours from Settings > Flight Schedule | FAIL | BUG-AF-001, BUG-AF-004 | #42903 (SAR 09:30 local per Flight Details) shows 'OVERDUE by 3m' and Active Time 01h 03m at 22:33 local / 09:33 UTC - 13 h out (BUG-AF-004, shot af_overdue_tz). Also 1,365 rows with SAR watch disabled show SAR Time '01/01/1970 00:00' (BUG-AF-001) |
+| AF-004 | SAR countdown / overdue timer | Counts correctly; status colours from Settings > Flight Schedule | PASS | BUG-AF-001, BUG-AF-004 | #42903 (SAR 09:30 local per Flight Details) shows 'OVERDUE by 3m' and Active Time 01h 03m at 22:33 local / 09:33 UTC - 13 h out (BUG-AF-004, shot af_overdue_tz). Also 1,365 rows with SAR watch disabled show SAR Time '01/01/1970 00:00' (BUG-AF-001) Retest 24/10/2026 v2.0.123: PASS. Countdowns match the server in UTC, NZ and Honolulu browsers (#42898 OVERDUE by 182h 23m = timetosar -10943); no 01/01/1970 (BUG-AF-001, BUG-AF-004 fixed). |
 | AF-005 | Click row/card | Opens Flight Details | PASS |  | Click row #42903 > opens Flight Details flight_id=42903; Back returns to Active Flights |
 | AF-006 | Click PIC | Contact details popup | PASS |  | Click PIC 'Graham Clarke' > popup 'Graham Clarke - Contact Details' with Mobile 021-555-0096, Email graham.clarke96@datahangar.net, Close (shot af_pic) |
 | AF-007 | Notes | Readable | PASS |  | Notes column readable (e.g. 'Maintenance test flight post 100hr', 'No notes' when empty) |
-| AF-008 | Adjust SAR (A/WG) | Picker + Disable/Enable SAR Watch + Save; hidden for RA/RG | PASS | BUG-AF-004 | Adjust SAR on #42903: picker prefilled 21/10/2026 09:30, changed to 23:30 > Save > row turns ACTIVE with SAR '21/10/2026 23:30'. Remaining time wrong ('13h 55m remaining' at 22:34 local) - BUG-AF-004. Hidden for RA/RG not checked (no RA user) |
+| AF-008 | Adjust SAR (A/WG) | Picker + Disable/Enable SAR Watch + Save; hidden for RA/RG | PASS | BUG-AF-004 | Adjust SAR on #42903: picker prefilled 21/10/2026 09:30, changed to 23:30 > Save > row turns ACTIVE with SAR '21/10/2026 23:30'. Remaining time wrong ('13h 55m remaining' at 22:34 local) - BUG-AF-004. Hidden for RA/RG not checked (no RA user) Retest 24/10/2026 v2.0.123: remaining time now correct in a UTC browser (BUG-AF-004 fixed); not saved during retest. |
 | AF-009 | Add Note (A/WG) | Appended to flight | PASS |  | Add Note on #42903 > 'BETA TEST ONLY AF note' > Save > Notes column shows '[22:34] BETA TEST ONLY AF note' before the existing notes (timestamp in local time) |
 | AF-010 | Auto-refresh | Refreshes; pauses while editing | PASS |  | activeflights_json re-requested every 20 s (live-tracking JSON separately). While Add Note was open with typed text the refresh kept running, but the popup and text were kept; no data lost |
 | AF-011 | Complete a flight | Disappears from Active Flights | PASS |  | #42903 set to Complete in Flight Details > Save > Back > no longer listed; cards back to Total 1377 / Active 0 / Past 1364 / Overdue 7 |
@@ -67,3 +67,12 @@ All 5 Active Flights bugs still fail; the Active Flights script is unchanged fro
 - BUG-AF-003: no page Help; Escape doesn't close About Live Tracking, Adjust SAR or Add Note; no x.
 - BUG-AF-005: RG user still gets all 1388 flights.
 No data changed (Adjust SAR and Add Note were cancelled).
+
+### Retest v2.0.123 (24/10/2026 NZ, Service Account in UTC, Pacific/Auckland and Pacific/Honolulu browsers; betatest_grp)
+New Active Flights script deployed (`?v=2.0.123`, `siteWallClockToUtc()`, shared Escape handler); `activeflights_json` now sends `siteTimeZone` and `serverNow`.
+- BUG-AF-004: fixed. All three zones show the same values and match the server (#42898 OVERDUE by 182h 23m = timetosar -10943 min).
+- BUG-AF-001: fixed. No 01/01/1970 in table or card view; no SAR time shows "—".
+- BUG-AF-002: fixed. No FUTURE rows; cards add up to Total (1 + 1384 + 8 = 1393) in all three zones.
+- BUG-AF-003: fixed. Page Help added; Escape and x close page Help, About Live Tracking and Adjust SAR; Add Note asks before discarding typed text.
+- BUG-AF-005: not fixed. RG user still gets all 1393 flights (incl. #42893, not in his group).
+No data changed (Adjust SAR closed, typed note discarded).

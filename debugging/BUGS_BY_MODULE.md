@@ -1,6 +1,6 @@
 # DataHangar audit: bugs by module
 
-Module = internal action name (`?action=`). Totals: 594 pass, 149 fail, 26 blocked, 190 bugs (10 High, 71 Medium, 109 Low).
+Module = internal action name (`?action=`). Totals: 598 pass, 145 fail, 26 blocked, 190 bugs (10 High, 71 Medium, 109 Low).
 
 ## Summary
 
@@ -14,7 +14,7 @@ Module = internal action name (`?action=`). Totals: 594 pass, 149 fail, 26 block
 | dashboard | 19 | 0 | 0 | 4 |
 | flightschedule | 37 | 1 | 0 | 9 |
 | flightdetails | 44 | 0 | 0 | 10 |
-| activeflights | 15 | 4 | 0 | 5 |
+| activeflights | 19 | 0 | 0 | 5 |
 | dailyflightrecord | 14 | 2 | 0 | 3 |
 | locationplanner (no menu path) | 0 | 0 | 9 | 0 |
 | personnellist | 10 | 1 | 0 | 2 |
