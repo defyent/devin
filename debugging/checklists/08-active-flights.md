@@ -74,5 +74,5 @@ New Active Flights script deployed (`?v=2.0.123`, `siteWallClockToUtc()`, shared
 - BUG-AF-001: fixed. No 01/01/1970 in table or card view; no SAR time shows "—".
 - BUG-AF-002: fixed. No FUTURE rows; cards add up to Total (1 + 1384 + 8 = 1393) in all three zones.
 - BUG-AF-003: fixed. Page Help added; Escape and x close page Help, About Live Tracking and Adjust SAR; Add Note asks before discarding typed text.
-- BUG-AF-005: not fixed. RG user still gets all 1393 flights (incl. #42893, not in his group).
+- BUG-AF-005: RG user still gets all 1393 flights (incl. #42893, not in his group). Closed as by design (Jon, 24/10/2026): anyone with Active Flights access sees all flights so a flight follower never has flights hidden.
 No data changed (Adjust SAR closed, typed note discarded).

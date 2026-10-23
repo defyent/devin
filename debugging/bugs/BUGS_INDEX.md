@@ -172,7 +172,7 @@
 | [BUG-DSH-004](BUG-DSH-004.md) | `DSH-005` | Dashboard | Dashboard: My Flights and On Duty open on the UTC date, not today's local date | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-TS-008](BUG-TS-008.md) | `TS-008` | Timesheets / Leave Requests | Approving a leave request doesn't change the rostered shifts, and rejecting with no reason gives no message | Medium | New | |
 | [BUG-FS-008](BUG-FS-008.md) | `FS-027` | Flight Schedule | Flight Schedule: a group-level user (G / WG) sees no flights, even on aircraft in their own group | High | Fixed (verified 22/10/2026) | |
-| [BUG-AF-005](BUG-AF-005.md) | `FS-027` | Active Flights | Active Flights: a Read Only Group (RG) user sees every company flight, not only their group's | Medium | Open (retested 24/10/2026 v2.0.123, not fixed) | |
+| [BUG-AF-005](BUG-AF-005.md) | `FS-027` | Active Flights | Active Flights: a Read Only Group (RG) user sees every company flight, not only their group's | Medium | Closed - by design (confirmed by Jon 24/10/2026) | |
 | [BUG-NOT-004](BUG-NOT-004.md) | `NOT-004` | Notices | Notices: a Write Group (WG) user gets 'An error occurred' when clicking New Notice | Medium | New | |
 | [BUG-SMS-005](BUG-SMS-005.md) | `SMS-015` | Safety Reports | Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted | High | New | |
 | [BUG-AM-006](BUG-AM-006.md) | `CHAT-005` | Access Manager / Chat | Access Manager has no Chat permission, so you can't give Chat to a non-admin user | Medium | Open (retested 22/10/2026, part fixed) | |

@@ -51,6 +51,3 @@
 - BETA TEST ONLY Lowperm: new attempt of "BETA TEST ONLY Exam", Graded 18% Fail. Graded attempts can't be removed (BUG-EXM-008).
 - BETA TEST ONLY Grpuser: new attempt (instance 6167), Graded 18% Fail. Can't be removed (BUG-EXM-008).
 - No unstarted BETA TEST ONLY Exam attempts remain; assign a new one for the next retest.
-
-## Active Flights retest v2.0.123 (24/10/2026)
-- No data changed: Adjust SAR was closed without saving; the typed Add Note text ("BETA TEST ONLY not saved") was discarded and #42898 still has no notes.

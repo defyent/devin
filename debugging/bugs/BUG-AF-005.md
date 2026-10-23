@@ -8,7 +8,7 @@
 | DataHangar version | v2.0.111 |
 | Account / permission level | Service Account (datahangar), admin |
 | Browser / width | Chrome 137 desktop, 1600 px |
-| Status | Open (retested 24/10/2026 v2.0.123, not fixed) |
+| Status | Closed - by design (confirmed by Jon 24/10/2026) |
 | Found / session | 21/10/2026 / https://app.devin.ai/sessions/15f654c4481f4789abb726226cefac9c |
 
 ## Steps to reproduce
@@ -39,3 +39,4 @@ none
 |---|---|---|---|
 | 23/10/2026 | v2.0.122 | Not fixed | betatest_grp (Active Flights RG): activeflights_json still returns all 1388 flights, including #42893 (ZK-HEL, Aaron Fisher, not in the group) and #42892. Screenshot `screenshots/BUG-AF-005-rt122-1.png`. |
 | 24/10/2026 | v2.0.123 | Not fixed | betatest_grp (Active Flights RG): activeflights_json still returns all 1393 flights, including #42893 (ZK-HEL, Aaron Fisher, not in the group) and #42892. The v2.0.123 changes were client-side only. Screenshot `screenshots/BUG-AF-005-rt123-1.png`. |
+| 24/10/2026 | v2.0.123 | Closed (by design) | By design: any user with access to Active Flights sees all flights, so a flight follower never has flights hidden from them. Not a bug. |

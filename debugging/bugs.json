@@ -3355,12 +3355,12 @@
    "Log in as betatest_grp > Active Flights."
   ],
   "expected": "Only flights on the group's aircraft or crew are listed (the same as Daily Flight Record RG, which shows 2 flights).",
-  "actual": "All 1,381 flights are counted and listed, including #42892 (Unknown aircraft) and #42893 (R44-01, Aaron Fisher, not in the group), with their SAR times and notes. Retest 23/10/2026 (v2.0.122): not fixed. betatest_grp (Active Flights RG): activeflights_json still returns all 1388 flights, including #42893 (ZK-HEL, Aaron Fisher, not in the group) and #42892. Retest 24/10/2026 (v2.0.123): not fixed. betatest_grp (Active Flights RG): activeflights_json still returns all 1393 flights, including #42893 (ZK-HEL, Aaron Fisher, not in the group) and #42892. The v2.0.123 changes were client-side only.",
+  "actual": "All 1,381 flights are counted and listed, including #42892 (Unknown aircraft) and #42893 (R44-01, Aaron Fisher, not in the group), with their SAR times and notes. Retest 23/10/2026 (v2.0.122): not fixed. betatest_grp (Active Flights RG): activeflights_json still returns all 1388 flights, including #42893 (ZK-HEL, Aaron Fisher, not in the group) and #42892. Retest 24/10/2026 (v2.0.123): not fixed. betatest_grp (Active Flights RG): activeflights_json still returns all 1393 flights, including #42893 (ZK-HEL, Aaron Fisher, not in the group) and #42892. The v2.0.123 changes were client-side only. By design: any user with access to Active Flights sees all flights, so a flight follower never has flights hidden from them. Not a bug.",
   "shots": [
    "af_grp"
   ],
   "cause": "",
-  "status": "Open (retested 24/10/2026 v2.0.123, not fixed)"
+  "status": "Closed - by design (confirmed by Jon 24/10/2026)"
  },
  {
   "id": "BUG-NOT-004",
