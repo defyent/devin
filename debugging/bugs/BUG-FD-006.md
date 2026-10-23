@@ -8,7 +8,7 @@
 | DataHangar version | v2.0.111 |
 | Account / permission level | Service Account (datahangar), admin |
 | Browser / width | Chrome 137 desktop, 1600 px |
-| Status | New |
+| Status | Fixed (verified 23/10/2026 v2.0.121) |
 | Found / session | 21/10/2026 / https://app.devin.ai/sessions/15f654c4481f4789abb726226cefac9c |
 
 ## Steps to reproduce
@@ -40,3 +40,4 @@ none
 ## Retest log
 | Date | Version | Result | Notes |
 |---|---|---|---|
+| 23/10/2026 | v2.0.121 | Fixed | Complete with missing leg data/meters shows Required Information listing every missing item and does not save; v2.0.121 also checks unlock saves by the new status. Server check by direct request not tested. |

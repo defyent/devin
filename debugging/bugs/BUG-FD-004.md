@@ -8,7 +8,7 @@
 | DataHangar version | v2.0.111 |
 | Account / permission level | Service Account (datahangar), admin |
 | Browser / width | Chrome 137 desktop, 1600 px |
-| Status | New |
+| Status | Fixed (verified 23/10/2026 v2.0.120; old-leg "(not crew)" and W&B front-seat group not tested) |
 | Found / session | 21/10/2026 / https://app.devin.ai/sessions/15f654c4481f4789abb726226cefac9c |
 
 ## Steps to reproduce
@@ -42,3 +42,4 @@ none
 ## Retest log
 | Date | Version | Result | Notes |
 |---|---|---|---|
+| 23/10/2026 | v2.0.120 | Fixed | Leg PIC lists only crew (no passengers). Not tested: server refusal by direct request, legacy leg with a passenger PIC, W&B front-seat group. |

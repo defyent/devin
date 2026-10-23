@@ -1,19 +1,20 @@
 # DataHangar test run report (stresstest, v2.0.111)
 
-Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (585 pass, 158 fail, 26 blocked, 20 N/A).
+Generated from the checklist results and bug files on this branch. Testing is finished; see [TRACKER.md](TRACKER.md) for coverage (594 pass, 149 fail, 26 blocked, 20 N/A).
 
 ## Summary
 
 | Severity | Count |
 |---|---|
-| High | 9 |
-| Medium | 68 |
-| Low | 107 |
+| High | 10 |
+| Medium | 71 |
+| Low | 109 |
 
 | Bug | Severity | Module | Title |
 |---|---|---|---|
 | [BUG-AF-004](bugs/BUG-AF-004.md) | High | Active Flights | Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC 'now' |
 | [BUG-EXM-006](bugs/BUG-EXM-006.md) | High | Exams | Taking an exam: Multi-Response checkboxes toggle twice, so clicking the box does nothing and the saved answer can differ from what is ticked |
+| [BUG-FD-008](bugs/BUG-FD-008.md) | High | Flight Details | Unlocking a Complete & Locked flight wipes its leg route, leg PIC, leg passengers and manifest |
 | [BUG-FS-008](bugs/BUG-FS-008.md) | High | Flight Schedule | Flight Schedule: a group-level user (G / WG) sees no flights, even on aircraft in their own group |
 | [BUG-PD-006](bugs/BUG-PD-006.md) | High | Personnel Details | Personnel Details > Recency and Renewals: action buttons are hidden (Add Item, Table/Card view, renewal Save / Complete Renewal / Cancel) and Group by / Order by are disabled |
 | [BUG-PD-011](bugs/BUG-PD-011.md) | High | Personnel Details | Personnel Details > Security: Change Password always fails with 'Invalid Action: change_password' |
@@ -34,6 +35,7 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | [BUG-DSH-005](bugs/BUG-DSH-005.md) | Medium | Dashboard | Dashboard Project Tasks: clicking a task opens an empty project list instead of the project |
 | [BUG-EXM-004](bugs/BUG-EXM-004.md) | Medium | Exams | Exam Builder has no way to link or unlink user groups on an exam group |
 | [BUG-EXM-008](bugs/BUG-EXM-008.md) | Medium | Exams | Exam Builder: deleting an exam or exam group that has instances fails silently (error only in the console), and graded instances can't be removed |
+| [BUG-EXM-010](bugs/BUG-EXM-010.md) | Medium | Personnel Details > Exams (personneldetails) | Taking an exam as a read-only (group-level) user: saves and submit return Access Denied, and Previous/Close/Submit are hidden |
 | [BUG-FB-003](bugs/BUG-FB-003.md) | Medium | File Browser | File Browser: clicking a .txt file shows 'File Access Error' with the file's own text |
 | [BUG-FB-005](bugs/BUG-FB-005.md) | Medium | File Browser | File Browser: Read/Write Access groups are not kept after Update Document |
 | [BUG-FB-006](bugs/BUG-FB-006.md) | Medium | File Browser | File Browser: deleting a folder fails with 'Invalid Action: filebrowser_deletefolder' |
@@ -44,6 +46,8 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | [BUG-FD-004](bugs/BUG-FD-004.md) | Medium | Flight Details | Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC) |
 | [BUG-FD-005](bugs/BUG-FD-005.md) | Medium | Flight Details | Leg with two unknown waypoints: only the first is offered for adding, the second is silently dropped on save |
 | [BUG-FD-006](bugs/BUG-FD-006.md) | Medium | Flight Details | Flight can be set to Complete with no times or destination on a leg; no 'Required Information' prompt |
+| [BUG-FD-009](bugs/BUG-FD-009.md) | Medium | Flight Details | A user without lock rights (not WL) can lock a flight; the server accepted status complete_locked |
+| [BUG-FD-010](bugs/BUG-FD-010.md) | Medium | Flight Details | Required Information check skipped on unlock saves: a flight was saved Complete with no departure, destination or PIC |
 | [BUG-FS-002](bugs/BUG-FS-002.md) | Medium | Flight Schedule | Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight |
 | [BUG-FS-003](bugs/BUG-FS-003.md) | Medium | Flight Schedule | Flight Schedule header overlaps when Live Edit is on - title covered, location pill cut off and its 'Show All' button cannot be clicked |
 | [BUG-FS-004](bugs/BUG-FS-004.md) | Medium | Flight Schedule > Location Planner | Planner Add Location replaces the New Booking popup - typed booking and location input is lost |
@@ -106,6 +110,7 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | [BUG-EXM-005](bugs/BUG-EXM-005.md) | Low | Exams | Exam Builder on a phone: exam table columns and action icons overlap |
 | [BUG-EXM-007](bugs/BUG-EXM-007.md) | Low | Exams | Exam Instances batch: deleting a person's instance shows success but the row stays until the page is reloaded |
 | [BUG-EXM-009](bugs/BUG-EXM-009.md) | Low | Exams | Exams: a hotspot question with no image shows a developer debug message to the person taking the exam |
+| [BUG-EXM-011](bugs/BUG-EXM-011.md) | Low | Personnel Details > Exams (personneldetails) | Taking an exam: "N of 10 questions answered" and the navigator tick only update after moving to another question |
 | [BUG-FAD-001](bugs/BUG-FAD-001.md) | Low | Flight and Duty | Flight and Duty has no page Help (?) |
 | [BUG-FAD-002](bugs/BUG-FAD-002.md) | Low | Flight and Duty | Flight and Duty popups (Flight Details, Duty Time Details, Roster Violations, Resolutions Required) ignore Escape |
 | [BUG-FAD-003](bugs/BUG-FAD-003.md) | Low | Flight and Duty | Flight and Duty popups show dates as '16 Oct 2026' instead of the configured DD/MM/YYYY |
@@ -122,6 +127,7 @@ Generated from the checklist results and bug files on this branch. Testing is fi
 | [BUG-FBR-003](bugs/BUG-FBR-003.md) | Low | Form Browser | Form Browser on a phone: table is cut off, Created and Created By are off-screen |
 | [BUG-FD-003](bugs/BUG-FD-003.md) | Low | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings |
 | [BUG-FD-007](bugs/BUG-FD-007.md) | Low | Flight Details | New flight defaults its leg date/time to UTC instead of local time |
+| [BUG-FD-011](bugs/BUG-FD-011.md) | Low | Flight Details | History labels lock and unlock differently ("Locked: No > Yes" vs "Status: Locked > Unlocked") |
 | [BUG-FS-001](bugs/BUG-FS-001.md) | Low | Flight Schedule > Flight Details (new) | New flight defaults (and Planner 'today') follow the browser time zone instead of Settings > Time Zone |
 | [BUG-FS-005](bugs/BUG-FS-005.md) | Low | Flight Schedule | JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop') |
 | [BUG-HAZ-003](bugs/BUG-HAZ-003.md) | Low | Hazard Register | Hazard Register has no way to create a hazard entry |
@@ -228,10 +234,29 @@ Steps:
 
 Expected: Each click ticks or unticks the option once, and the answer saved is what is ticked on screen.
 
-Actual: Clicking the checkbox square leaves it unchanged. renderMultiResponse() in personneldetails/index.js adds a click handler on the option row that flips checkbox.checked and the answers list, so a click on the box (native toggle + row handler) cancels out, and a click on the label fires the row handler twice. In my run the review showed 'Your Answer: BETA 1' while BETA 0 was the one I had just ticked, and the question was marked Incorrect.
+Actual: Clicking the checkbox square leaves it unchanged. renderMultiResponse() in personneldetails/index.js adds a click handler on the option row that flips checkbox.checked and the answers list, so a click on the box (native toggle + row handler) cancels out, and a click on the label fires the row handler twice. In my run the review showed 'Your Answer: BETA 1' while BETA 0 was the one I had just ticked, and the question was marked Incorrect. Retest 23/10/2026 (v2.0.121): fixed. New attempt as Lowperm: box, text, empty row and Space each toggle once with one save; kept after Next/Previous and close/reopen; Review "Your Answer: BETA 0", Correct 2/2. Rechecked as Grpuser on v2.0.122.
 
 ![BUG-EXM-006-1](bugs/screenshots/BUG-EXM-006-1.png)
 ![BUG-EXM-006-2](bugs/screenshots/BUG-EXM-006-2.png)
+
+### BUG-FD-008: Unlocking a Complete & Locked flight wipes its leg route, leg PIC, leg passengers and manifest
+
+Severity: High | Module: Flight Details | Check: FD-030 ([07-flight-details](checklists/07-flight-details.md))
+
+Steps:
+1. Give a user Flight Details = WL (Access Manager, permission 214)
+2. Open a Complete & Locked flight with full leg data (#42909: Wellington Airport > Wellington Airport, PIC + pax BETA TEST ONLY Grpuser, manifest Grpuser)
+3. Flight Status > Complete > Save Changes
+4. Reload and check the legs, manifest and History
+
+Expected: Only the status changes (Locked > Unlocked); all leg, manifest and meter data is kept.
+
+Actual: Found 23/10/2026 on v2.0.120: saved with no popup; leg depart, dest and pic_id became null, pax_ids [] and the manifest empty; only times/totals kept. History #748 logged "Leg 1 Departure Wellington Airport > (empty)", Destination and PIC likewise. Retest 23/10/2026 (v2.0.121): fixed. Lock then unlock as WL kept every leg, PIC, passenger, manifest and meter value; History #754 shows only "Status Locked > Unlocked".
+
+Suspected cause: Locked mode disables the leg inputs (enableReadOnlyMode(..., "locked_wl")), disabled fields are not submitted, and the server rebuilt legs/manifest from the request. v2.0.121 re-enables the fields just for the submit (fd L8248-8254).
+
+![BUG-FD-008-1](bugs/screenshots/BUG-FD-008-1.png)
+![BUG-FD-008-2](bugs/screenshots/BUG-FD-008-2.png)
 
 ### BUG-FS-008: Flight Schedule: a group-level user (G / WG) sees no flights, even on aircraft in their own group
 
@@ -470,7 +495,7 @@ Expected: Leg and flight total = 5.0 h, because 01:00 NZDT is 12:00 UTC and 05:0
 
 Actual: Leg total and Total Flight Time both show 4.0. The flight saves and shows as 01:00-05:00 in the Daily Flight Record and the schedule (day view block is 4 hours tall), so the time is worked out from the clock times and the DST shift is ignored. This affects recorded hours, FRMS and timesheets for any flight that night (and the spring-forward night the other way round).
 
-Retest v2.0.119: #42911 Add Leg, engine and flight 2027-04-04 01:00 > 05:00: leg 4.0/4.0, flight total 4.0/4.0 (should be 5.0). Not saved. Still fails.
+Retest v2.0.119: #42911 Add Leg, engine and flight 2027-04-04 01:00 > 05:00: leg 4.0/4.0, flight total 4.0/4.0 (should be 5.0). Not saved. Still fails. Retest 23/10/2026 (v2.0.121): fixed. 04/04/2027 01:00-05:00 = 5.0; 26/09/2027 01:00-05:00 = 3.0; 04/04 23:00 > 05/04 01:00 = 2.0. SAR before start asks Save Anyway / Go Back.
 
 Suspected cause: calculateTimeDifference(start,end) (index.js ~L2310) only gets HH:MM and uses new Date(0,0,0,h,m), so the date and DST are ignored.
 
@@ -602,6 +627,24 @@ Actual: The confirm closes, no toast or message, and the exam/group stay. Consol
 
 ![BUG-EXM-008-1](bugs/screenshots/BUG-EXM-008-1.png)
 
+### BUG-EXM-010: Taking an exam as a read-only (group-level) user: saves and submit return Access Denied, and Previous/Close/Submit are hidden
+
+Severity: Medium | Module: Personnel Details > Exams (personneldetails) | Check: EXM-010 ([29-exams](checklists/29-exams.md))
+
+Steps:
+1. Settings > Exam Instances > Assign Exam: BETA TEST ONLY Exam, All Questions, Individual, BETA TEST ONLY Grpuser
+2. Log in as betatest_grp; Dashboard > Exams > click the exam, then click its row on Personnel Details > Exams
+3. Tick an answer, click Next, try Previous / Close / Submit
+
+Expected: A user can answer, go back, close, reopen and submit an exam assigned to themselves whatever their Personnel Details level; another user's exam is refused.
+
+Actual: Found 23/10/2026 on v2.0.121: every personneldetails_saveexamprogress returned "Access Denied" and nothing was kept on reopen; Previous, Close (X) and Submit were hidden (page in read-only-mode); Submit on Q10 gave "Failed to Submit Exam: Access Denied" and the attempt stayed Assigned. Retest 23/10/2026 (v2.0.122): fixed. Previous/Next/Close show, saves return Ok, close + reopen resumed with 2 of 10 answered, Submit returned Ok and the Review matches (Q1 BETA 0 correct, Q2 BETA A). Submitting another user's instance (6164) is refused: "Access Denied: You can only submit your own exams". Not tested: progress save on another user's unstarted attempt (none available). Open question: Grpuser can read answers and score of instances 6166/6164 (not his) via personneldetails_getexaminstance; fine if group-level read covers group members' results.
+
+Suspected cause: applyReadOnlyMode() hid every button not on its skip list, including the exam modal buttons, and the save/submit endpoints checked Personnel Details write access instead of exam ownership. v2.0.122 skips anything inside #exam-modal.
+
+![BUG-EXM-010-1](bugs/screenshots/BUG-EXM-010-1.png)
+![BUG-EXM-010-2](bugs/screenshots/BUG-EXM-010-2.png)
+
 ### BUG-FB-003: File Browser: clicking a .txt file shows 'File Access Error' with the file's own text
 
 Severity: Medium | Module: File Browser | Check: FB-006 ([22-file-browser](checklists/22-file-browser.md))
@@ -702,7 +745,7 @@ Expected: Flight is saved and you return to where you came from (the Flight Sche
 
 Actual: The page reloads in place (URL now has return_url=/index.pl?action=flightschedule) and stays on Flight Details. No toast or message says it was saved; only the greyed-out Save Changes button hints at it. The user has to click Back.
 
-Retest v2.0.119: Save on #42903 opened with return_url=/?action=flightschedule reloads action=flightdetails&flight_id=42903&return_url=... ; no success message. Still fails.
+Retest v2.0.119: Save on #42903 opened with return_url=/?action=flightschedule reloads action=flightdetails&flight_id=42903&return_url=... ; no success message. Still fails. Retest 23/10/2026 (v2.0.121): fixed. Save returns to the schedule and "Flight #42909 saved" shows within 0.7 s; the schedule script reads and removes dh_flash_message (v2.0.120: return worked, message not shown).
 
 Suspected cause: Save handler reloads the details page with return_url instead of navigating to return_url after a successful save.
 
@@ -723,7 +766,7 @@ Expected: History shows every change including the Flight Details save (passenge
 
 Actual: The Flight Details save at 10:17 pm is not listed; newest entry is the 09:31 pm schedule move. Each schedule move/resize entry lists 'Aircraft: ZK-SIM > Unassigned' (the aircraft stayed ZK-SIM) and 'Source: (blank) > Flight Schedule'. Values are shown as raw '2026-10-21 09:30:00' instead of DD/MM/YYYY HH:MM.
 
-Retest v2.0.119: a schedule resize of #42903 (flightschedule_updateflight without resource_id) logs 'Aircraft: ZK-SIM > Unassigned' (aircraft really still ZK-SIM) and 'Source: > Flight Schedule', and also overwrote SAR Time 21/10 23:30 > 09:45 (real change). A Flight Details save of leg 1 depart/dest/PIC added no history entry (main fields like Status/Notes are logged). Modal shows dates as '23 Oct 2026', not DD/MM/YYYY. Still fails.
+Retest v2.0.119: a schedule resize of #42903 (flightschedule_updateflight without resource_id) logs 'Aircraft: ZK-SIM > Unassigned' (aircraft really still ZK-SIM) and 'Source: > Flight Schedule', and also overwrote SAR Time 21/10 23:30 > 09:45 (real change). A Flight Details save of leg 1 depart/dest/PIC added no history entry (main fields like Status/Notes are logged). Modal shows dates as '23 Oct 2026', not DD/MM/YYYY. Still fails. Retest 23/10/2026 (v2.0.121): fixed. Flight Details saves log leg changes; a no-change save adds nothing; History dates DD/MM/YYYY. Schedule resize +15 min logs only End Time and SAR Time (SAR moved +15), aircraft stays ZK-BTO, no Source line; eventResize now sends resource_id.
 
 Suspected cause: Schedule drag/resize audit compares against a payload without aircraft (null > 'Unassigned'); Flight Details save path either does not write to the audit log or only logs main-table fields (passengers/comments not tracked).
 
@@ -744,7 +787,7 @@ Expected: Only Crew or Student role people (like the flight-level PIC list).
 
 Actual: Leg PIC and Secondary Flight Crew list 'BETA TEST ONLY Lowperm' and 'BETA TEST ONLY Pax' - the custom passenger can be picked as the leg's pilot, which would put a passenger's hours into crew/FRMS records.
 
-Retest v2.0.119: #42903 leg 1 PIC options are 'Select...', 'BETA TEST ONLY Lowperm', 'BETA TEST ONLY Pax' - the passenger is still offered. Still fails.
+Retest v2.0.119: #42903 leg 1 PIC options are 'Select...', 'BETA TEST ONLY Lowperm', 'BETA TEST ONLY Pax' - the passenger is still offered. Still fails. Retest 23/10/2026 (v2.0.120): fixed. Leg PIC lists only crew (no passengers). Not tested: server refusal by direct request, legacy leg with a passenger PIC, W&B front-seat group.
 
 Suspected cause: Leg crew dropdowns are filled from the whole manifest (crew + passengers) instead of crew only.
 
@@ -766,7 +809,7 @@ Expected: You are asked about each unknown waypoint (ZZZQ, then NZWN) before the
 
 Actual: Only ZZZQ is prompted ('Waypoint "ZZZQ" added successfully'), then the flight saves straight away and the leg Destination is stored empty - NZWN is lost without a warning. Typing NZWN again and saving does prompt for it.
 
-Retest v2.0.119 (23/10/2026, #42903): leg 1 Departure BTQA + Destination BTQB (both unknown) > Save > only 'Add New Waypoint "BTQA"' is asked (cancel button still says 'Stay on Page') > Add Waypoint > saves immediately; after reload Destination is empty, BTQB lost. Still fails.
+Retest v2.0.119 (23/10/2026, #42903): leg 1 Departure BTQA + Destination BTQB (both unknown) > Save > only 'Add New Waypoint "BTQA"' is asked (cancel button still says 'Stay on Page') > Add Waypoint > saves immediately; after reload Destination is empty, BTQB lost. Still fails. Retest 23/10/2026 (v2.0.120): fixed. Leg BTQC > BTQD: one popup per unknown waypoint; Cancel on the second clears only that field and nothing is saved. Server refusal by direct request not tested.
 
 Suspected cause: After 'Add Waypoint' the save continues without re-validating the remaining unknown waypoints, and unknown codes are blanked instead of blocking the save.
 
@@ -790,11 +833,44 @@ Expected: A 'Required Information' popup lists the missing Start/End/destination
 
 Actual: The flight saves as Complete with no prompt. The header badge shows 'Complete' and Delete is hidden. The attached QA Post-Flight Report also has empty required fields.
 
-Retest v2.0.119: #42903 (Complete) saved with leg 1 Destination empty, all leg times 00:00 and totals 0.0. Only a flight PIC and a PIC on every leg are now checked. Still fails.
+Retest v2.0.119: #42903 (Complete) saved with leg 1 Destination empty, all leg times 00:00 and totals 0.0. Only a flight PIC and a PIC on every leg are now checked. Still fails. Retest 23/10/2026 (v2.0.121): fixed. Complete with missing leg data/meters shows Required Information listing every missing item and does not save; v2.0.121 also checks unlock saves by the new status. Server check by direct request not tested.
 
 Suspected cause: index.js isCompleting block (~L7882-7893) checks PICs only; no check of leg waypoints, leg times/totals or Required-to-Complete meters, and no server-side check.
 
 ![BUG-FD-006-1](bugs/screenshots/BUG-FD-006-1.png)
+
+### BUG-FD-009: A user without lock rights (not WL) can lock a flight; the server accepted status complete_locked
+
+Severity: Medium | Module: Flight Details | Check: FD-029 ([07-flight-details](checklists/07-flight-details.md))
+
+Steps:
+1. Log in as a Flight Details A/W user without WL (allFlightData.user_permission.can_unlock false)
+2. Open a Complete flight; the Complete & Locked card is hidden
+3. In the console click .status-card[data-status=complete_locked] (or post status=complete_locked) and Save Changes
+
+Expected: The server refuses: only WL users can lock or unlock.
+
+Actual: Found 23/10/2026 on v2.0.120: the server saved complete_locked, and the same user then could not undo it ("You do not have permission to modify locked flights"). Retest 23/10/2026 (v2.0.121): fixed. Refused with "Only users with lock permission can lock a flight. Please choose Complete instead of Complete & Locked."; status stayed complete.
+
+Suspected cause: Lock rights were only enforced by hiding the status card; the save did not check can_unlock.
+
+![BUG-FD-009-1](bugs/screenshots/BUG-FD-009-1.png)
+
+### BUG-FD-010: Required Information check skipped on unlock saves: a flight was saved Complete with no departure, destination or PIC
+
+Severity: Medium | Module: Flight Details | Check: FD-030 ([07-flight-details](checklists/07-flight-details.md))
+
+Steps:
+1. Unlock a Complete & Locked flight as in BUG-FD-008 (v2.0.120)
+2. The save leaves the flight Complete with an empty leg route and PIC
+
+Expected: The Complete check runs on the new status and refuses the save, listing what is missing.
+
+Actual: Found 23/10/2026 on v2.0.120: saved as Complete with empty departure, destination and PIC, no popup and no server refusal. Retest 23/10/2026 (v2.0.121): fixed in the page. #42909 (Complete, empty leg) was blocked with "Leg 1: PIC, Departure, Destination, Flight total", with the hint "A locked flight can't be edited: unlock it to Open first". The server check was not tested by direct request.
+
+Suspected cause: The check skipped flights whose stored status was locked instead of using the new status.
+
+![BUG-FD-010-1](bugs/screenshots/BUG-FD-010-1.png)
 
 ### BUG-FS-002: Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight
 
@@ -1844,6 +1920,22 @@ Actual: Question 10 shows 'No image available for this hotspot question Debug: B
 
 ![BUG-EXM-009-1](bugs/screenshots/BUG-EXM-009-1.png)
 
+### BUG-EXM-011: Taking an exam: "N of 10 questions answered" and the navigator tick only update after moving to another question
+
+Severity: Low | Module: Personnel Details > Exams (personneldetails) | Check: EXM-010 ([29-exams](checklists/29-exams.md))
+
+Steps:
+1. Open an assigned exam
+2. Tick an answer on question 1 and look at the counter under the navigator
+
+Expected: "1 of 10 questions answered" and the Q1 tick appear straight away; unticking decrements straight away.
+
+Actual: Found 23/10/2026 on v2.0.121: stayed "0 of 10" until Next/Previous redrew the navigator. Retest 23/10/2026 (v2.0.122): fixed. Ticking BETA 0 shows "1 of 10" at once, unticking "0 of 10", ticking by text "1 of 10", and the Multiple Choice pick on Q2 "2 of 10". True/False, sequence, matching, hotspot etc. not tested live (code calls the update for them too).
+
+Suspected cause: Answer change handlers saved progress but did not call updateQuestionNavigator(); v2.0.122 calls it after every answer change.
+
+![BUG-EXM-011-1](bugs/screenshots/BUG-EXM-011-1.png)
+
 ### BUG-FAD-001: Flight and Duty has no page Help (?)
 
 Severity: Low | Module: Flight and Duty | Check: FAD-S02 ([16-flight-and-duty](checklists/16-flight-and-duty.md))
@@ -2071,7 +2163,7 @@ Expected: Each meter shows the previous reading and a link to the flight it came
 
 Actual: 'Previous: 2450.3 (+0.0)' is shown but there is no link; the only link in the panel is an info icon (href '#'). The user cannot check which flight set the previous reading.
 
-Retest v2.0.119: #42903 shows 'Previous: 0 / 2450.3 / 2450.3' and #42909 'Previous: 100' as plain text, no link. Still fails.
+Retest v2.0.119: #42903 shows 'Previous: 0 / 2450.3 / 2450.3' and #42909 'Previous: 100' as plain text, no link. Still fails. Retest 23/10/2026 (v2.0.120): fixed. #42911 shows "Previous: 100" linking to #42909; the first flight shows "Start value".
 
 Suspected cause: JS renders the link only when meter.previousFlightId is set (L4415-4425, ~L2701); resourceMeters for these aircraft has no previousFlightId (falls back to startValue).
 
@@ -2090,7 +2182,7 @@ Expected: Start defaults to the local date/time: 22/10/2026 09:40.
 
 Actual: Start defaults to 21/10/2026 20:40 and end to 21/10/2026 21:40, which is UTC. A user who doesn't notice saves the flight on the previous day, 13 hours early. The SAR Watch time has the same problem: on flight #42910 (planned 22/10 13:00-14:00) SAR defaulted to 21/10/2026 21:55, which is the UTC time and is before the flight starts. Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing: new flight Start/End/SAR default to the UTC time (05:10 at local 18:09), see BUG-FS-001. Second retest 22/10/2026 (v2.0.114): unchanged; at local 20:43 the new flight defaults to 07:45 (UTC). Third retest 22/10/2026 (v2.0.115): unchanged; at local 20:49 the new flight defaults to 07:50 (UTC). Fourth retest 22/10/2026 (v2.0.117): unchanged; at local 21:00 the new flight defaults to 08:00 (UTC). Retest 22/10/2026 (v2.0.118): unchanged; at local 21:20 the new flight defaults to 08:20 (UTC). Retest 23/10/2026 (v2.0.119): still failing in a UTC browser (local 09:20 23/10 -> Start 22/10/2026 20:20). Correct when the browser time zone is Pacific/Auckland (09:25 23/10), so the default uses the browser time zone. See BUG-FS-001.
 
-Retest v2.0.119: allFlightData (new and existing flights) has no siteTimeZone or serverNow key, and config has no time zone, so siteNow() falls back to the browser clock. Still fails in a UTC browser.
+Retest v2.0.119: allFlightData (new and existing flights) has no siteTimeZone or serverNow key, and config has no time zone, so siteNow() falls back to the browser clock. Still fails in a UTC browser. Retest 23/10/2026 (v2.0.120): fixed. UTC browser: new flight Start 23/10/2026 11:45 NZ (not UTC); siteTimeZone and serverNow are now sent; Planner today = NZ date.
 
 Suspected cause: Uses the browser time zone, not Settings > Time Zone (see BUG-FS-001).
 
@@ -2104,6 +2196,21 @@ Front end siteNow() (index.js L1546-1561) is ready but the flightdetails JSON do
 ![BUG-FD-007-6](bugs/screenshots/BUG-FD-007-6.png)
 ![BUG-FD-007-7](bugs/screenshots/BUG-FD-007-7.png)
 
+### BUG-FD-011: History labels lock and unlock differently ("Locked: No > Yes" vs "Status: Locked > Unlocked")
+
+Severity: Low | Module: Flight Details | Check: FD-037 ([07-flight-details](checklists/07-flight-details.md))
+
+Steps:
+1. As a WL user lock a Complete flight, then unlock it
+2. Open History
+
+Expected: Both changes use the same label, e.g. "Status: Complete > Complete & Locked" and "Status: Complete & Locked > Complete".
+
+Actual: 23/10/2026 v2.0.121, #42909: locking logs "Locked: No > Yes" (#753), unlocking logs "Status: Locked > Unlocked" (#754). Cosmetic. Not retested since.
+
+Suspected cause: Lock and unlock are logged by different code paths with different field names.
+
+
 ### BUG-FS-001: New flight defaults (and Planner 'today') follow the browser time zone instead of Settings > Time Zone
 
 Severity: Low | Module: Flight Schedule > Flight Details (new) | Check: FS-011 ([06-flight-schedule](checklists/06-flight-schedule.md))
@@ -2115,7 +2222,7 @@ Steps:
 
 Expected: Start defaults to local now (21:25), end +1h (22:25), SAR time in local time.
 
-Actual: Start 21/10/2026 08:25, End 09:25, SAR TIME (LOCAL) 09:25 - all UTC values. Near midnight the date would also be wrong. Also Cancel with no changes does nothing (only the back arrow leaves). Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. At local 18:09 (UTC 05:09) on 22/10/2026, Flight Schedule > Live Edit > Add Flight opens New Flight Details with Start 22/10/2026 05:10, End 06:10 and SAR TIME (LOCAL) 06:10, i.e. UTC, 13 h behind local. Header 'Time: 05:10' also UTC. Cancel with no changes still does nothing (URL stays action=flightdetails). Second retest 22/10/2026 (still v2.0.114, no new version deployed): at local 20:43 (UTC 07:43) Add Flight shows Start 07:45, End 08:45, SAR 08:45 and header Time 07:45, still UTC. Cancel with no changes still stays on action=flightdetails. Third retest 22/10/2026 (v2.0.115, flightdetails/index.js?v=2.0.115): unchanged. At local 20:49 (UTC 07:49) Add Flight shows Start 07:50, End 08:50, SAR 08:50, header Time 07:50 (UTC). Cancel with no changes still stays on action=flightdetails. Fourth retest 22/10/2026 (v2.0.117, flightdetails/index.js?v=2.0.117): unchanged. At local 21:00 (UTC 08:00) Add Flight shows Start 08:00, End 09:00, SAR 09:00, header Time 08:00 (UTC). Cancel with no changes still stays on action=flightdetails. Retest 22/10/2026 (v2.0.118): unchanged. At local 21:20 (UTC 08:20) Add Flight shows Start 08:20, End 09:20, SAR 09:20, header Time 08:20 (UTC). Cancel with no changes still stays on action=flightdetails. Retest 23/10/2026 (v2.0.119): Cancel is fixed: with no changes it returns to action=flightschedule, and after editing Notes it shows the Unsaved Changes popup (Stay on Page / Leave Page). Default times still wrong in a UTC browser: at local 09:20 on 23/10/2026 (UTC 20:20 on 22/10) Add Flight shows Start 22/10/2026 20:20, End 21:20, SAR 21:20 and header Date 22/10/2026 Time 20:20 (UTC, previous day). Cause narrowed: the same test with the browser time zone set to Pacific/Auckland shows Start 23/10/2026 09:25, End 10:25, SAR 10:25, so the defaults use the browser's own clock/time zone, not the server and not Settings > Time Zone. The Planner 'today' column has the same cause: in a UTC browser it highlights 22/10 while the org date is 23/10 (FullCalendar's today is correct, 23/10).
+Actual: Start 21/10/2026 08:25, End 09:25, SAR TIME (LOCAL) 09:25 - all UTC values. Near midnight the date would also be wrong. Also Cancel with no changes does nothing (only the back arrow leaves). Retest 22/10/2026 (v2.0.114, assets ?v=2.0.114): still failing. At local 18:09 (UTC 05:09) on 22/10/2026, Flight Schedule > Live Edit > Add Flight opens New Flight Details with Start 22/10/2026 05:10, End 06:10 and SAR TIME (LOCAL) 06:10, i.e. UTC, 13 h behind local. Header 'Time: 05:10' also UTC. Cancel with no changes still does nothing (URL stays action=flightdetails). Second retest 22/10/2026 (still v2.0.114, no new version deployed): at local 20:43 (UTC 07:43) Add Flight shows Start 07:45, End 08:45, SAR 08:45 and header Time 07:45, still UTC. Cancel with no changes still stays on action=flightdetails. Third retest 22/10/2026 (v2.0.115, flightdetails/index.js?v=2.0.115): unchanged. At local 20:49 (UTC 07:49) Add Flight shows Start 07:50, End 08:50, SAR 08:50, header Time 07:50 (UTC). Cancel with no changes still stays on action=flightdetails. Fourth retest 22/10/2026 (v2.0.117, flightdetails/index.js?v=2.0.117): unchanged. At local 21:00 (UTC 08:00) Add Flight shows Start 08:00, End 09:00, SAR 09:00, header Time 08:00 (UTC). Cancel with no changes still stays on action=flightdetails. Retest 22/10/2026 (v2.0.118): unchanged. At local 21:20 (UTC 08:20) Add Flight shows Start 08:20, End 09:20, SAR 09:20, header Time 08:20 (UTC). Cancel with no changes still stays on action=flightdetails. Retest 23/10/2026 (v2.0.119): Cancel is fixed: with no changes it returns to action=flightschedule, and after editing Notes it shows the Unsaved Changes popup (Stay on Page / Leave Page). Default times still wrong in a UTC browser: at local 09:20 on 23/10/2026 (UTC 20:20 on 22/10) Add Flight shows Start 22/10/2026 20:20, End 21:20, SAR 21:20 and header Date 22/10/2026 Time 20:20 (UTC, previous day). Cause narrowed: the same test with the browser time zone set to Pacific/Auckland shows Start 23/10/2026 09:25, End 10:25, SAR 10:25, so the defaults use the browser's own clock/time zone, not the server and not Settings > Time Zone. The Planner 'today' column has the same cause: in a UTC browser it highlights 22/10 while the org date is 23/10 (FullCalendar's today is correct, 23/10). Retest 23/10/2026 (v2.0.120): fixed. UTC browser: Add Flight defaults to NZ time and the Planner today is the NZ date (fixed with BUG-FD-007).
 
 Suspected cause: Defaults are built with the browser's new Date() / local time zone. Correct for users whose computer is set to the org time zone (Pacific/Auckland); wrong for any other browser time zone (travelling users, UTC machines). Build 'now' in the org time zone instead. Planner today-column highlight uses the same browser date.
 
@@ -3446,3 +3553,12 @@ Actual: The feature card is indented about 90px and runs off the right edge; the
 - #42903: two test resizes (end 09:45, then back to 09:30) overwrote SAR Time 21/10 23:30 > 21/10 09:30 (BUG-FD-002). Left as is (BETA TEST ONLY flight).
 - Waypoint `BTQA` created by the BUG-FD-005 test. Retained: no delete path found.
 - #42911: a leg was added but not saved. No change. No settings changed.
+## Flight Details retest v2.0.120 / v2.0.121 (23/10/2026)
+- #42909: unlock test on v2.0.120 wiped its leg data; restored on v2.0.121 (leg Wellington Airport > Wellington Airport, PIC + pax BETA TEST ONLY Grpuser, manifest Grpuser). Still different from the original: SAR 22/10/2026 11:30 (was 21/10 21:40), Flight Hours 101 (was 100). Several schedule resizes, put back to 10:00-11:00.
+- #42911: unchanged (no legs; the DST checks were not saved).
+- Waypoint BTQC probably created by the waypoint test (not checked); BTQA still there. No delete path found.
+- Service Account temporary Flight Details WL row (214) removed again (back to A).
+## Exam retest v2.0.121 / v2.0.122 (23/10/2026)
+- BETA TEST ONLY Lowperm: new attempt of "BETA TEST ONLY Exam", Graded 18% Fail. Graded attempts can't be removed (BUG-EXM-008).
+- BETA TEST ONLY Grpuser: new attempt (instance 6167), Graded 18% Fail. Can't be removed (BUG-EXM-008).
+- No unstarted BETA TEST ONLY Exam attempts remain; assign a new one for the next retest.

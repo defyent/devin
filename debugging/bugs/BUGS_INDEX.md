@@ -23,18 +23,18 @@
 | [BUG-DSH-001](BUG-DSH-001.md) | `DSH-012` | Dashboard | Dashboard side tabs are icon-only with no tooltip or label | Low | Fixed (verified 22/10/2026) | |
 | [BUG-DSH-003](BUG-DSH-003.md) | `DSH-006` | Dashboard / Personnel Details | Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of Recency and Renewals) | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-POP-004](BUG-POP-004.md) | `FS-013` | Flight Schedule | Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc | Low | Fixed (verified 22/10/2026) | |
-| [BUG-FS-001](BUG-FS-001.md) | `FS-011` | Flight Schedule > Flight Details (new) | New flight defaults (and Planner 'today') follow the browser time zone instead of Settings > Time Zone | Low | Open (retested 23/10/2026 v2.0.119: Cancel fixed; default times still follow the browser time zone) | |
+| [BUG-FS-001](BUG-FS-001.md) | `FS-011` | Flight Schedule > Flight Details (new) | New flight defaults (and Planner 'today') follow the browser time zone instead of Settings > Time Zone | Low | Fixed (verified 23/10/2026 v2.0.120) | |
 | [BUG-FS-002](BUG-FS-002.md) | `FS-021` | Flight Schedule | Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another flight | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-FS-003](BUG-FS-003.md) | `FS-008` | Flight Schedule | Flight Schedule header overlaps when Live Edit is on - title covered, location pill cut off and its 'Show All' button cannot be clicked | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-FS-004](BUG-FS-004.md) | `FS-029` | Flight Schedule > Location Planner | Planner Add Location replaces the New Booking popup - typed booking and location input is lost | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-FS-005](BUG-FS-005.md) | `FS-008` | Flight Schedule | JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop') | Low | Fixed (verified 22/10/2026) | |
 | [BUG-FS-006](BUG-FS-006.md) | `FS-034` | Flight Schedule | Flight Schedule month view is slow: flightschedule_json takes ~1.6 s and rendering 2,500 events ~4.5 s | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-FS-007](BUG-FS-007.md) | `FS-025` | Flight Schedule | Edit-mode idle timeout switches Live Edit off silently, throws 'calendarEl is not defined' and leaves the schedule blank | Medium | Fixed (verified 22/10/2026) | |
-| [BUG-FD-001](BUG-FD-001.md) | `FD-034` | Flight Details | Flight Details Save Changes does not return to the Flight Schedule and gives no success message | Medium | New | |
-| [BUG-FD-002](BUG-FD-002.md) | `FD-037` | Flight Details | Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM > Unassigned' on schedule moves | Medium | New | |
-| [BUG-FD-003](BUG-FD-003.md) | `FD-019` | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings | Low | New | |
-| [BUG-FD-004](BUG-FD-004.md) | `FD-005` | Flight Details | Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC) | Medium | New | |
-| [BUG-FD-005](BUG-FD-005.md) | `FD-022` | Flight Details | Leg with two unknown waypoints: only the first is offered for adding, the second is silently dropped on save | Medium | New | |
+| [BUG-FD-001](BUG-FD-001.md) | `FD-034` | Flight Details | Flight Details Save Changes does not return to the Flight Schedule and gives no success message | Medium | Fixed (verified 23/10/2026 v2.0.121) | |
+| [BUG-FD-002](BUG-FD-002.md) | `FD-037` | Flight Details | Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM > Unassigned' on schedule moves | Medium | Fixed (verified 23/10/2026 v2.0.121) | |
+| [BUG-FD-003](BUG-FD-003.md) | `FD-019` | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings | Low | Fixed (verified 23/10/2026 v2.0.120) | |
+| [BUG-FD-004](BUG-FD-004.md) | `FD-005` | Flight Details | Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC) | Medium | Fixed (verified 23/10/2026 v2.0.120; old-leg "(not crew)" and W&B front-seat group not tested) | |
+| [BUG-FD-005](BUG-FD-005.md) | `FD-022` | Flight Details | Leg with two unknown waypoints: only the first is offered for adding, the second is silently dropped on save | Medium | Fixed (verified 23/10/2026 v2.0.120) | |
 | [BUG-AF-001](BUG-AF-001.md) | `AF-004` | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled | Low | New | |
 | [BUG-AF-002](BUG-AF-002.md) | `AF-001` | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them | Medium | New | |
 | [BUG-AF-003](BUG-AF-003.md) | `AF-S02` | Active Flights | Active Flights has no page Help (?), and its popups (About Live Tracking, Adjust SAR, Add Note) don't close with Escape | Low | New | |
@@ -119,7 +119,7 @@
 | [BUG-EXM-003](BUG-EXM-003.md) | `EXM-004` | Exams | Exam viewer 'Read Only' still shows Add Question, Add Group and Save Question | Low | New | |
 | [BUG-EXM-004](BUG-EXM-004.md) | `EXM-003` | Exams | Exam Builder has no way to link or unlink user groups on an exam group | Medium | New | |
 | [BUG-EXM-005](BUG-EXM-005.md) | `EXM-S05` | Exams | Exam Builder on a phone: exam table columns and action icons overlap | Low | New | |
-| [BUG-EXM-006](BUG-EXM-006.md) | `EXM-010` | Exams | Taking an exam: Multi-Response checkboxes toggle twice, so clicking the box does nothing and the saved answer can differ from what is ticked | High | New | |
+| [BUG-EXM-006](BUG-EXM-006.md) | `EXM-010` | Exams | Taking an exam: Multi-Response checkboxes toggle twice, so clicking the box does nothing and the saved answer can differ from what is ticked | High | Fixed (verified 23/10/2026 v2.0.121; regression OK v2.0.122) | |
 | [BUG-EXM-007](BUG-EXM-007.md) | `EXM-009` | Exams | Exam Instances batch: deleting a person's instance shows success but the row stays until the page is reloaded | Low | New | |
 | [BUG-EXM-008](BUG-EXM-008.md) | `EXM-001` | Exams | Exam Builder: deleting an exam or exam group that has instances fails silently (error only in the console), and graded instances can't be removed | Medium | New | |
 | [BUG-SFS-001](BUG-SFS-001.md) | `SFS-003` | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted | Low | Fixed (verified 22/10/2026) | |
@@ -163,8 +163,8 @@
 | [BUG-SINT-002](BUG-SINT-002.md) | `SINT-S04` | Settings: Google Calendar Sync | Google Calendar Sync Status: flight dates show as 2024-01-01 07:55 instead of DD/MM/YYYY | Low | New | |
 | [BUG-SLOG-001](BUG-SLOG-001.md) | `SLOG-S04` | Settings: Activity Log | Activity Log: no page Help (?), and dates show as "22 Oct 2026, 02:51 am" | Low | New | |
 | [BUG-AM-005](BUG-AM-005.md) | `PERM-001` | Access Manager | Access Manager: 16 permission types appear twice with the same name (e.g. two "Flight Schedule" cards with different levels) | Medium | Fixed (verified 22/10/2026) | |
-| [BUG-FD-006](BUG-FD-006.md) | `FD-031` | Flight Details | Flight can be set to Complete with no times or destination on a leg; no 'Required Information' prompt | Medium | New | |
-| [BUG-FD-007](BUG-FD-007.md) | `DATE-005` | Flight Details | New flight defaults its leg date/time to UTC instead of local time | Low | Open (retested 23/10/2026 v2.0.119, browser time zone dependent) | |
+| [BUG-FD-006](BUG-FD-006.md) | `FD-031` | Flight Details | Flight can be set to Complete with no times or destination on a leg; no 'Required Information' prompt | Medium | Fixed (verified 23/10/2026 v2.0.121) | |
+| [BUG-FD-007](BUG-FD-007.md) | `DATE-005` | Flight Details | New flight defaults its leg date/time to UTC instead of local time | Low | Fixed (verified 23/10/2026 v2.0.120) | |
 | [BUG-PD-017](BUG-PD-017.md) | `PD-018` | Personnel Details | Personnel Details > Lesson Plans: an assigned plan is saved but never listed; the dialog's dates default to the UTC date | Medium | New | |
 | [BUG-SWAB-005](BUG-SWAB-005.md) | `SWAB-003` | Settings: Weight and Balance | W&B Configs: two revisions show the same number ("Rev 5") until another import renumbers them | Low | New | |
 | [BUG-PD-018](BUG-PD-018.md) | `PD-015` | Personnel Details | Request Leave: Start and End Date default to the UTC date, not today's local date | Low | New | |
@@ -181,11 +181,17 @@
 | [BUG-SUP-004](BUG-SUP-004.md) | `SUP-008` | Support / Access Manager | Support: the only permission level is All Access, so regular staff can't raise or see their own tickets | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-TT-004](BUG-TT-004.md) | `TT-006` | Task Tracker | Task Tracker: a Write Group (WG) user is treated as read-only and can't add a project | Medium | New | |
 | [BUG-AM-007](BUG-AM-007.md) | `AM-015` | Access Manager | Access Manager: a customer created from Flight Details is Active with no login credentials | Low | Fixed (verified 22/10/2026) | |
-| [BUG-DATE-001](BUG-DATE-001.md) | `DATE-006` | Flight Details | Flight time across a DST change is out by an hour (01:00-05:00 on 04/04/2027 gives 4.0 instead of 5.0) | Medium | New | |
+| [BUG-DATE-001](BUG-DATE-001.md) | `DATE-006` | Flight Details | Flight time across a DST change is out by an hour (01:00-05:00 on 04/04/2027 gives 4.0 instead of 5.0) | Medium | Fixed (verified 23/10/2026 v2.0.121) | |
 | [BUG-DSH-005](BUG-DSH-005.md) | `DSH-011` | Dashboard | Dashboard Project Tasks: clicking a task opens an empty project list instead of the project | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-EXM-009](BUG-EXM-009.md) | `PD-017` | Exams | Exams: a hotspot question with no image shows a developer debug message to the person taking the exam | Low | New | |
 | [BUG-RPT-004](BUG-RPT-004.md) | `RPT-006` | Reports | Reports: the Flight Hours meter column shows the aircraft's current meter on every flight, and Total adds them up | Low | New | |
 | [BUG-DSH-006](BUG-DSH-006.md) | `DSH-005` | Dashboard | Dashboard My Flights shows a canceled flight's status as 'Unknown' | Low | Fixed (verified 22/10/2026) | |
+| [BUG-FD-008](BUG-FD-008.md) | `FD-030` | Flight Details | Unlocking a Complete & Locked flight wipes its leg route, leg PIC, leg passengers and manifest | High | Fixed (verified 23/10/2026 v2.0.121) | |
+| [BUG-FD-009](BUG-FD-009.md) | `FD-029` | Flight Details | A user without lock rights (not WL) can lock a flight; the server accepted status complete_locked | Medium | Fixed (verified 23/10/2026 v2.0.121) | |
+| [BUG-FD-010](BUG-FD-010.md) | `FD-030` | Flight Details | Required Information check skipped on unlock saves: a flight was saved Complete with no departure, destination or PIC | Medium | Fixed (verified 23/10/2026 v2.0.121; server side not tested directly) | |
+| [BUG-FD-011](BUG-FD-011.md) | `FD-037` | Flight Details | History labels lock and unlock differently ("Locked: No > Yes" vs "Status: Locked > Unlocked") | Low | New | |
+| [BUG-EXM-010](BUG-EXM-010.md) | `EXM-010` | Personnel Details > Exams (personneldetails) | Taking an exam as a read-only (group-level) user: saves and submit return Access Denied, and Previous/Close/Submit are hidden | Medium | Fixed (verified 23/10/2026 v2.0.122) | |
+| [BUG-EXM-011](BUG-EXM-011.md) | `EXM-010` | Personnel Details > Exams (personneldetails) | Taking an exam: "N of 10 questions answered" and the navigator tick only update after moving to another question | Low | Fixed (verified 23/10/2026 v2.0.122) | |
 
 Status: `New` → `Handed over` → `Fixed (deployed)` → `Verified` / `Reopened` · also `Won't fix`, `Not a bug`
 

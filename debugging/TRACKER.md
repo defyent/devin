@@ -14,8 +14,8 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [03-common-conventions](checklists/03-common-conventions.md) | `CON` | Common screen conventions (apply on every page) | 22 | 17 | 5 | 0 | 0 | DONE |
 | [04-access-manager](checklists/04-access-manager.md) | `AM` | Access Manager (users, roles, groups, permissions, templates) | 38 | 36 | 1 | 0 | 0 | DONE |
 | [05-dashboard](checklists/05-dashboard.md) | `DSH` | Dashboard | 19 | 19 | 0 | 0 | 0 | DONE |
-| [06-flight-schedule](checklists/06-flight-schedule.md) | `FS` | Flight Schedule (incl. embedded Location Planner) | 40 | 36 | 2 | 0 | 1 | DONE |
-| [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 37 | 7 | 0 | 8 | DONE |
+| [06-flight-schedule](checklists/06-flight-schedule.md) | `FS` | Flight Schedule (incl. embedded Location Planner) | 40 | 37 | 1 | 0 | 1 | DONE |
+| [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 44 | 0 | 0 | 8 | DONE |
 | [08-active-flights](checklists/08-active-flights.md) | `AF` | Active Flights and Live Tracking | 19 | 15 | 4 | 0 | 3 | DONE |
 | [09-daily-flight-record](checklists/09-daily-flight-record.md) | `DFR` | Daily Flight Record | 16 | 14 | 2 | 0 | 1 | DONE |
 | [10-location-planner](checklists/10-location-planner.md) | `LP` | Location Planner (stand-alone) | 9 | 0 | 0 | 9 | 0 | DONE |
@@ -58,7 +58,7 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED`
 | [47-settings-activitylog](checklists/47-settings-activitylog.md) | `SLOG` | Settings – Activity Log | 9 | 6 | 2 | 0 | 1 | DONE |
 | [90-xc-permissions](checklists/90-xc-permissions.md) | `PERM` | Cross-cutting: permission levels | 10 | 10 | 0 | 0 | 0 | DONE |
 | [91-xc-popups](checklists/91-xc-popups.md) | `POP` | Cross-cutting: popups/modals | 8 | 4 | 4 | 0 | 7 | DONE |
-| [92-xc-dates-timezones](checklists/92-xc-dates-timezones.md) | `DATE` | Cross-cutting: date/time formats and pickers | 7 | 2 | 5 | 0 | 5 | DONE |
+| [92-xc-dates-timezones](checklists/92-xc-dates-timezones.md) | `DATE` | Cross-cutting: date/time formats and pickers | 7 | 3 | 4 | 0 | 5 | DONE |
 | [93-xc-mobile](checklists/93-xc-mobile.md) | `MOB` | Cross-cutting: mobile / narrow layout | 4 | 2 | 2 | 0 | 0 | DONE |
 | [94-xc-ui-icons](checklists/94-xc-ui-icons.md) | `UI` | Cross-cutting: UI consistency and icon inventory | 7 | 3 | 4 | 0 | 41 | DONE |
 | [95-xc-performance-errors](checklists/95-xc-performance-errors.md) | `PERF` | Cross-cutting: performance, console and network | 4 | 1 | 3 | 0 | 0 | DONE |

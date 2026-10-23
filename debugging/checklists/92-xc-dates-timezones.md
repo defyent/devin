@@ -21,7 +21,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | DATE-003 | For each picker type | Every date/time input uses it and saves the right value | PASS |  | Each picker type (Type-In, Native, Scroll Wheel) is used everywhere once saved (checklist 33 STZ rows). The known Scroll Wheel issues (DATE-03, POP-07) are tracked. |
 | DATE-004 | UTC vs Local | Local = org timezone; times saved and reloaded unchanged (no drift) | FAIL | BUG-STZ-001 | Header UTC and Local clocks are right. Several defaults and previews use UTC instead of local: Time Zone preview (BUG-STZ-001), Shift Type duty times (BUG-SST-002), Form Builder Date/Time widgets (BUG-FBLD-002), Safety Report event time (BUG-SMS-002), and 11 bugs in total. |
 | DATE-005 | Day boundary: local date differs from UTC (staging NZ is UTC+13) | Flights/rosters on the right day | FAIL | BUG-FAD-005 | Staging is UTC+13, so local 22/10 is UTC 21/10 until 13:00. F&D View as Date (BUG-FAD-005), the Inspection date picker (BUG-SINS-003) and Safety Report Event Date (BUG-SMS-002) start on the UTC date, one day behind. |
-| DATE-006 | DST transition dates | No off-by-one-hour | FAIL | date006_tw2 | BUG-DATE-001: flight #42911 set to 04/04/2027 01:00-05:00, across the NZ DST end at 03:00. The planned times save and show correctly (DFR, schedule month/day). A leg 01:00-05:00 gives 4.0 h, but the real time is 5.0 h. The leg was not saved. |
+| DATE-006 | DST transition dates | No off-by-one-hour | PASS | date006_tw2 | BUG-DATE-001: flight #42911 set to 04/04/2027 01:00-05:00, across the NZ DST end at 03:00. The planned times save and show correctly (DFR, schedule month/day). A leg 01:00-05:00 gives 4.0 h, but the real time is 5.0 h. The leg was not saved. Retest 23/10/2026 v2.0.121: PASS. 04/04/2027 01:00-05:00 = 5.0, 26/09/2027 01:00-05:00 = 3.0, 23:00-01:00 = 2.0 (BUG-DATE-001 fixed). |
 | DATE-007 | Restore original settings | Done | PASS |  | Time Zone settings were changed during checklist 33 and put back to Pacific/Auckland, DD/MM/YYYY, 24-hour (HH:mm), Type-In Fields. Checked again after a reload. |
 
 ## Known issues from external audits
@@ -45,3 +45,7 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 ### Retest v2.0.119 (23/10/2026)
 - DATE-005 still FAIL (BUG-FD-007): siteNow() is in the JS, but the server sends no siteTimeZone/serverNow, so the defaults fall back to the browser clock.
 - DATE-006 still FAIL (BUG-DATE-001): 04/04/2027 01:00-05:00 gives 4.0 h (should be 5.0).
+
+### Retest v2.0.120 / v2.0.121 (23/10/2026)
+- DATE-005 still FAIL, but only for its other bugs (BUG-FAD-005, BUG-SINS-003, BUG-SMS-002, not retested). The Flight Details part (BUG-FD-007) is fixed on v2.0.120: new-flight defaults use NZ time in a UTC browser.
+- DATE-006 PASS (BUG-DATE-001 fixed on v2.0.121).

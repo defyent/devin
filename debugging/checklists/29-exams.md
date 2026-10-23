@@ -36,7 +36,7 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 | EXM-007 | Exam Configuration: Pass Rate, selection mode, Save | Saved | PASS |  | Configure Exam: Pass Rate 70->80, selection modes All / Random from entire exam / Random from each group, per-question enable list. 'Exam configuration saved'; 80 kept on reopen |
 | EXM-008 | Assign Exam: All / Random (entire / per group), Unique / Same, Individual / Usergroup | Confirmation; instances created | PASS |  | All questions, Individual to BETA TEST ONLY Lowperm: confirm text 'Assign "BETA TEST ONLY Exam" to BETA TEST ONLY Lowperm using all question selection?', success, instance and batch created. Random modes and Usergroup assign not run (would assign to real users). |
 | EXM-009 | Browse Instances / Batches; remove/delete; add person to batch | Works | FAIL | BUG-EXM-007 | Browse Instances shows per-person counts (Lowperm: 1 exam, 1 Failed after grading). Batch view shows totals, progress, per-person rows. Add person (Service Account): 'Person added to batch successfully'. Delete unstarted instance: confirm 'Only unstarted instances can be deleted' > OK > success toast, but the row stays until reload. Batch dates show '10/22/2026 01:46 AM' (BUG-EXM-002). |
-| EXM-010 | Assigned exam on Personnel > Exams and Dashboard > Exams | Appears; take and score | PASS |  | betatest_low: My Account > Exams lists 'BETA TEST ONLY Exam' as Assigned 22/10/2026. Clicking the row opens the exam (10 questions, Previous/Next, navigator, Review shows answered/remaining). Submitted with 7 of 10 answered: 'Exam Submitted', row now Graded 18.00% Fail. Dashboard > Exams not checked: betatest_low has no Dashboard access. |
+| EXM-010 | Assigned exam on Personnel > Exams and Dashboard > Exams | Appears; take and score | PASS | BUG-EXM-006, BUG-EXM-010, BUG-EXM-011 | betatest_low: My Account > Exams lists 'BETA TEST ONLY Exam' as Assigned 22/10/2026. Clicking the row opens the exam (10 questions, Previous/Next, navigator, Review shows answered/remaining). Submitted with 7 of 10 answered: 'Exam Submitted', row now Graded 18.00% Fail. Dashboard > Exams not checked: betatest_low has no Dashboard access. Retest 23/10/2026: BUG-EXM-006 fixed on v2.0.121 (Lowperm, new attempt, Review matches ticks). Found BUG-EXM-010 (group-level user got Access Denied on save/submit, buttons hidden) and BUG-EXM-011 (answered counter stale); both fixed on v2.0.122 (Grpuser took and submitted his exam). |
 
 ## Known issues from external audits
 
@@ -54,3 +54,10 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 | Record | Where | Cleanup done? |
 |---|---|---|
 | Exam group 'BETA TEST ONLY Exams', exam 'BETA TEST ONLY Exam' (10 questions, Rev 2), its instance/batch for BETA TEST ONLY Lowperm | Exam Builder / Exam Instances | No - delete fails once taken (BUG-EXM-008) |
+
+### Retest v2.0.121 / v2.0.122 (23/10/2026)
+- BUG-EXM-006 fixed (v2.0.121): box, text, empty row and Space each toggle once, one save each; kept across Next/Previous and close/reopen; Review matches.
+- BUG-EXM-010 fixed (v2.0.122): Grpuser (read-only Personnel Details) can answer, go back, close, reopen and submit his own exam; submitting another user's instance is refused. Not tested: progress save on another user's unstarted attempt.
+- BUG-EXM-011 fixed (v2.0.122): the answered counter updates as soon as an answer changes (Multi-Response, Multiple Choice).
+- To confirm with Jon: personneldetails_getexaminstance lets Grpuser read the answers and score of attempts that aren't his (6164, 6166).
+- Still open, not retested: BUG-EXM-001, -002, -003, -004, -005, -007, -008, -009.

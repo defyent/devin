@@ -8,7 +8,7 @@
 | DataHangar version | v2.0.111 |
 | Account / permission level | Service Account (datahangar), admin |
 | Browser / width | Chrome 137 desktop, 1600 px |
-| Status | New |
+| Status | Fixed (verified 23/10/2026 v2.0.121) |
 | Found / session | 21/10/2026 / https://app.devin.ai/sessions/15f654c4481f4789abb726226cefac9c |
 
 ## Steps to reproduce
@@ -43,3 +43,4 @@ none
 ## Retest log
 | Date | Version | Result | Notes |
 |---|---|---|---|
+| 23/10/2026 | v2.0.121 | Fixed | Save returns to the schedule and "Flight #42909 saved" shows within 0.7 s; the schedule script reads and removes dh_flash_message (v2.0.120: return worked, message not shown). |

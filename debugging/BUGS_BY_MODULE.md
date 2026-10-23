@@ -1,19 +1,19 @@
 # DataHangar audit: bugs by module
 
-Module = internal action name (`?action=`). Totals: 557 pass, 186 fail, 27 blocked, 183 bugs (9 High, 70 Medium, 104 Low).
+Module = internal action name (`?action=`). Totals: 594 pass, 149 fail, 26 blocked, 190 bugs (10 High, 71 Medium, 109 Low).
 
 ## Summary
 
 | Module | Pass | Fail | Blocked | Bugs |
 |---|---|---|---|---|
 | (setup) | 9 | 0 | 0 | 0 |
-| login | 16 | 3 | 1 | 3 |
-| main | 23 | 2 | 1 | 1 |
+| login | 19 | 0 | 1 | 3 |
+| main | 24 | 1 | 1 | 1 |
 | (all modules) | 17 | 5 | 0 | 0 |
-| settings_accessmanager | 28 | 9 | 0 | 7 |
-| dashboard | 13 | 6 | 0 | 4 |
-| flightschedule | 30 | 8 | 1 | 9 |
-| flightdetails | 37 | 7 | 0 | 6 |
+| settings_accessmanager | 36 | 1 | 0 | 7 |
+| dashboard | 19 | 0 | 0 | 4 |
+| flightschedule | 37 | 1 | 0 | 9 |
+| flightdetails | 44 | 0 | 0 | 10 |
 | activeflights | 15 | 4 | 0 | 5 |
 | dailyflightrecord | 14 | 2 | 0 | 3 |
 | locationplanner (no menu path) | 0 | 0 | 9 | 0 |
@@ -33,11 +33,11 @@ Module = internal action name (`?action=`). Totals: 557 pass, 186 fail, 27 block
 | formbrowser | 7 | 3 | 0 | 3 |
 | tasktracker | 8 | 4 | 0 | 4 |
 | reports | 13 | 3 | 0 | 4 |
-| support | 10 | 4 | 0 | 4 |
+| support | 11 | 3 | 0 | 4 |
 | chat | 8 | 2 | 1 | 3 |
-| settings_exambuilder / settings_examinstances | 10 | 6 | 0 | 8 |
+| settings_exambuilder / settings_examinstances | 10 | 6 | 0 | 10 |
 | maintenance (no menu path) | 0 | 0 | 11 | 0 |
-| settings_flightschedule | 10 | 2 | 0 | 2 |
+| settings_flightschedule | 12 | 0 | 0 | 2 |
 | settings_dfr | 5 | 1 | 0 | 1 |
 | settings_timezone | 7 | 4 | 0 | 3 |
 | settings_resources | 16 | 2 | 0 | 1 |
@@ -54,13 +54,13 @@ Module = internal action name (`?action=`). Totals: 557 pass, 186 fail, 27 block
 | settings_inspections | 6 | 3 | 0 | 3 |
 | settings_googlecalendar / WhatsApp | 6 | 2 | 2 | 2 |
 | settings_activitylog | 6 | 2 | 0 | 1 |
-| (cross-cutting: permissions) | 9 | 1 | 0 | 4 |
+| (cross-cutting: permissions) | 10 | 0 | 0 | 4 |
 | (cross-cutting: popups) | 4 | 4 | 0 | 0 |
-| (cross-cutting: dates) | 2 | 5 | 0 | 2 |
+| (cross-cutting: dates) | 3 | 4 | 0 | 2 |
 | (cross-cutting: mobile) | 2 | 2 | 0 | 0 |
 | (cross-cutting: UI/icons) | 3 | 4 | 0 | 0 |
 | (cross-cutting: performance) | 1 | 3 | 0 | 1 |
-| (end-to-end) | 6 | 2 | 0 | 0 |
+| (end-to-end) | 0 | 0 | 0 | 0 |
 
 ## Bugs
 
@@ -249,3 +249,9 @@ Module = internal action name (`?action=`). Totals: 557 pass, 186 fail, 27 block
 | (cross-cutting: dates) | BUG-DATE-001 | Medium | Flight time across a DST change is out by an hour (01:00-05:00 on 04/04/2027 gives 4.0 instead of 5.0) |
 | (cross-cutting: dates) | BUG-FD-007 | Medium | New flight defaults its leg date/time to UTC instead of local time |
 | (cross-cutting: performance) | BUG-PERF-001 | Low | 'Performance' debug timing panel shown on every page, including to non-admin users |
+| flightdetails | BUG-FD-008 | High | Unlocking a Complete & Locked flight wipes its leg route, leg PIC, leg passengers and manifest |
+| flightdetails | BUG-FD-009 | Medium | A user without lock rights (not WL) can lock a flight; the server accepted status complete_locked |
+| flightdetails | BUG-FD-010 | Medium | Required Information check skipped on unlock saves: a flight was saved Complete with no departure, destination or PIC |
+| flightdetails | BUG-FD-011 | Low | History labels lock and unlock differently ("Locked: No > Yes" vs "Status: Locked > Unlocked") |
+| settings_exambuilder / settings_examinstances | BUG-EXM-010 | Medium | Taking an exam as a read-only (group-level) user: saves and submit return Access Denied, and Previous/Close/Submit are hidden |
+| settings_exambuilder / settings_examinstances | BUG-EXM-011 | Low | Taking an exam: "N of 10 questions answered" and the navigator tick only update after moving to another question |

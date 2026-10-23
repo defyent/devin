@@ -8,7 +8,7 @@
 | DataHangar version | v2.0.111 |
 | Account / permission level | Service Account (datahangar), admin |
 | Browser / width | Chrome 137 desktop, 1600 px |
-| Status | New |
+| Status | Fixed (verified 23/10/2026 v2.0.121) |
 | Found / session | 21/10/2026 / https://app.devin.ai/sessions/15f654c4481f4789abb726226cefac9c |
 
 ## Steps to reproduce
@@ -42,3 +42,4 @@ none
 ## Retest log
 | Date | Version | Result | Notes |
 |---|---|---|---|
+| 23/10/2026 | v2.0.121 | Fixed | Flight Details saves log leg changes; a no-change save adds nothing; History dates DD/MM/YYYY. Schedule resize +15 min logs only End Time and SAR Time (SAR moved +15), aircraft stays ZK-BTO, no Source line; eventResize now sends resource_id. |

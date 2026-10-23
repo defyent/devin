@@ -40,3 +40,14 @@
 - #42903: two test resizes (end 09:45, then back to 09:30) overwrote SAR Time 21/10 23:30 > 21/10 09:30 (BUG-FD-002). Left as is (BETA TEST ONLY flight).
 - Waypoint `BTQA` created by the BUG-FD-005 test. Retained: no delete path found.
 - #42911: a leg was added but not saved. No change. No settings changed.
+
+## Flight Details retest v2.0.120 / v2.0.121 (23/10/2026)
+- #42909: unlock test on v2.0.120 wiped its leg data; restored on v2.0.121 (leg Wellington Airport > Wellington Airport, PIC + pax BETA TEST ONLY Grpuser, manifest Grpuser). Still different from the original: SAR 22/10/2026 11:30 (was 21/10 21:40), Flight Hours 101 (was 100). Several schedule resizes, put back to 10:00-11:00.
+- #42911: unchanged (no legs; the DST checks were not saved).
+- Waypoint BTQC probably created by the waypoint test (not checked); BTQA still there. No delete path found.
+- Service Account temporary Flight Details WL row (214) removed again (back to A).
+
+## Exam retest v2.0.121 / v2.0.122 (23/10/2026)
+- BETA TEST ONLY Lowperm: new attempt of "BETA TEST ONLY Exam", Graded 18% Fail. Graded attempts can't be removed (BUG-EXM-008).
+- BETA TEST ONLY Grpuser: new attempt (instance 6167), Graded 18% Fail. Can't be removed (BUG-EXM-008).
+- No unstarted BETA TEST ONLY Exam attempts remain; assign a new one for the next retest.
