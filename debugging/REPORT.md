@@ -216,7 +216,7 @@ Steps:
 
 Expected: SAR 09:30 local passed 13 hours ago: 'OVERDUE by 13h 03m', Active Time 14h 03m.
 
-Actual: Row shows SAR '21/10/2026 09:30 OVERDUE by 3m' and Active Time '01h 03m' - the countdown uses UTC now (09:33) against the local time, so an overdue flight looks only just overdue for 13 hours. For a search-and-rescue watch this delays the alarm. Confirmed with Adjust SAR: setting SAR to 21/10/2026 23:30 at 22:34 local shows '13h 55m remaining' instead of about 56m.
+Actual: Row shows SAR '21/10/2026 09:30 OVERDUE by 3m' and Active Time '01h 03m' - the countdown uses UTC now (09:33) against the local time, so an overdue flight looks only just overdue for 13 hours. For a search-and-rescue watch this delays the alarm. Confirmed with Adjust SAR: setting SAR to 21/10/2026 23:30 at 22:34 local shows '13h 55m remaining' instead of about 56m. Retest 23/10/2026 (v2.0.122): not fixed. activeflights/index.js?v=2.0.122 is byte-for-byte the v2.0.121 file and activeflights_json config still has no siteTimeZone/serverNow. UTC browser: #42898 (SAR 16/10 21:20, server timetosar -9858 min = 164h 18m) shows "OVERDUE by 151h 22m" and Active Time 151h 27m; NZ browser shows 164h 22m / 164h 27m. #8876 shows FUTURE "14h 48m remaining" in UTC but ACTIVE "01h 48m remaining" in NZ; Active card 0 (UTC) vs 2 (NZ). Still 13 h out.
 
 Suspected cause: Active Flights compares the stored local SAR/start time with the UTC clock (or Flight Details labels UTC times as local). Related to BUG-FS-001 (Add Flight defaults to UTC).
 
@@ -404,7 +404,7 @@ Steps:
 
 Expected: Only open flights whose start or SAR time has passed are listed, and Total = Active + Past + Overdue.
 
-Actual: 6 FUTURE flights (#8853, #8854, #8855, #8857, #8858, #8860) are listed with Active Time 00h 00m and SAR Time '01/01/1970 00:00 NO SAR TIME SET'. Cards show Total 1377, Active 0, Past 1364, Overdue 7, so the 6 future flights are in Total but in no other card.
+Actual: 6 FUTURE flights (#8853, #8854, #8855, #8857, #8858, #8860) are listed with Active Time 00h 00m and SAR Time '01/01/1970 00:00 NO SAR TIME SET'. Cards show Total 1377, Active 0, Past 1364, Overdue 7, so the 6 future flights are in Total but in no other card. Retest 23/10/2026 (v2.0.122): not fixed. UTC browser: 6 future flights with no or later SAR still listed as FUTURE (#8878, #8874, #8873, #8879, #8865, #8876); cards Active 0 + Past 1375 + Overdue 7 = 1382 of Total 1388. In an NZ browser the same flights are counted (2 Active, 1379 Past), so this overlaps BUG-AF-004.
 
 Suspected cause: An empty SAR time is stored/treated as 0 (1970), which counts as 'passed', so future flights pass the list filter.
 
@@ -421,7 +421,7 @@ Steps:
 
 Expected: Only flights on the group's aircraft or crew are listed (the same as Daily Flight Record RG, which shows 2 flights).
 
-Actual: All 1,381 flights are counted and listed, including #42892 (Unknown aircraft) and #42893 (R44-01, Aaron Fisher, not in the group), with their SAR times and notes.
+Actual: All 1,381 flights are counted and listed, including #42892 (Unknown aircraft) and #42893 (R44-01, Aaron Fisher, not in the group), with their SAR times and notes. Retest 23/10/2026 (v2.0.122): not fixed. betatest_grp (Active Flights RG): activeflights_json still returns all 1388 flights, including #42893 (ZK-HEL, Aaron Fisher, not in the group) and #42892.
 
 ![BUG-AF-005-1](bugs/screenshots/BUG-AF-005-1.png)
 
@@ -1651,7 +1651,7 @@ Steps:
 
 Expected: Flights without SAR watch show a dash or just 'SAR Watch Disabled' in the SAR Time column.
 
-Actual: SAR Time shows '01/01/1970 00:00' above 'SAR Watch Disabled' (Unix epoch shown for an empty SAR time).
+Actual: SAR Time shows '01/01/1970 00:00' above 'SAR Watch Disabled' (Unix epoch shown for an empty SAR time). Retest 23/10/2026 (v2.0.122): not fixed. UTC browser: 1374 rows still show "01/01/1970 00:00" for no SAR time (NZ browser "01/01/1970 12:00"), e.g. #8878.
 
 Suspected cause: Empty/0 SAR timestamp formatted as a date instead of being treated as no value.
 
@@ -1670,7 +1670,7 @@ Steps:
 
 Expected: Like other modules, a page Help (?) button that opens help; every help popup closes with Got it, x, clicking outside and Escape.
 
-Actual: No page-level Help (?) button exists (the only help is 'About Live Tracking'). That popup has only 'Got it', no x, and Escape does not close it. Adjust SAR and Add Note popups also stay open on Escape (Add Note with typed text and no prompt). Got it / Cancel and clicking outside do close them.
+Actual: No page-level Help (?) button exists (the only help is 'About Live Tracking'). That popup has only 'Got it', no x, and Escape does not close it. Adjust SAR and Add Note popups also stay open on Escape (Add Note with typed text and no prompt). Got it / Cancel and clicking outside do close them. Retest 23/10/2026 (v2.0.122): not fixed. Still no page Help (?); About Live Tracking has no x and stays open on Escape; Adjust SAR and Add Note popups also stay open on Escape.
 
 ![BUG-AF-003-1](bugs/screenshots/BUG-AF-003-1.png)
 ![BUG-AF-003-2](bugs/screenshots/BUG-AF-003-2.png)

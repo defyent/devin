@@ -35,10 +35,10 @@
 | [BUG-FD-003](BUG-FD-003.md) | `FD-019` | Flight Details | Times and Meters: no link to the previous flight next to 'Previous' meter readings | Low | Fixed (verified 23/10/2026 v2.0.120) | |
 | [BUG-FD-004](BUG-FD-004.md) | `FD-005` | Flight Details | Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen as leg PIC) | Medium | Fixed (verified 23/10/2026 v2.0.120; old-leg "(not crew)" and W&B front-seat group not tested) | |
 | [BUG-FD-005](BUG-FD-005.md) | `FD-022` | Flight Details | Leg with two unknown waypoints: only the first is offered for adding, the second is silently dropped on save | Medium | Fixed (verified 23/10/2026 v2.0.120) | |
-| [BUG-AF-001](BUG-AF-001.md) | `AF-004` | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled | Low | New | |
-| [BUG-AF-002](BUG-AF-002.md) | `AF-001` | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them | Medium | New | |
-| [BUG-AF-003](BUG-AF-003.md) | `AF-S02` | Active Flights | Active Flights has no page Help (?), and its popups (About Live Tracking, Adjust SAR, Add Note) don't close with Escape | Low | New | |
-| [BUG-AF-004](BUG-AF-004.md) | `AF-004` | Active Flights | Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC 'now' | High | New | |
+| [BUG-AF-001](BUG-AF-001.md) | `AF-004` | Active Flights | Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled | Low | Open (retested 23/10/2026 v2.0.122, not fixed) | |
+| [BUG-AF-002](BUG-AF-002.md) | `AF-001` | Active Flights | Active Flights lists future flights that have no SAR time, and the stats cards don't count them | Medium | Open (retested 23/10/2026 v2.0.122, not fixed) | |
+| [BUG-AF-003](BUG-AF-003.md) | `AF-S02` | Active Flights | Active Flights has no page Help (?), and its popups (About Live Tracking, Adjust SAR, Add Note) don't close with Escape | Low | Open (retested 23/10/2026 v2.0.122, not fixed) | |
+| [BUG-AF-004](BUG-AF-004.md) | `AF-004` | Active Flights | Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC 'now' | High | Open (retested 23/10/2026 v2.0.122, not fixed) | |
 | [BUG-DFR-001](BUG-DFR-001.md) | `DFR-S02` | Daily Flight Record | Daily Flight Record has no page Help (?), and its popups (Manage Columns, Notes full text) don't close with Escape | Low | New | |
 | [BUG-DFR-002](BUG-DFR-002.md) | `DFR-008` | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied | Medium | New | |
 | [BUG-DFR-003](BUG-DFR-003.md) | `DFR-008` | Daily Flight Record | Daily Flight Record: changing filters quickly appends results instead of replacing them, showing duplicate and wrong-status rows | Medium | New | |
@@ -172,7 +172,7 @@
 | [BUG-DSH-004](BUG-DSH-004.md) | `DSH-005` | Dashboard | Dashboard: My Flights and On Duty open on the UTC date, not today's local date | Medium | Fixed (verified 22/10/2026) | |
 | [BUG-TS-008](BUG-TS-008.md) | `TS-008` | Timesheets / Leave Requests | Approving a leave request doesn't change the rostered shifts, and rejecting with no reason gives no message | Medium | New | |
 | [BUG-FS-008](BUG-FS-008.md) | `FS-027` | Flight Schedule | Flight Schedule: a group-level user (G / WG) sees no flights, even on aircraft in their own group | High | Fixed (verified 22/10/2026) | |
-| [BUG-AF-005](BUG-AF-005.md) | `FS-027` | Active Flights | Active Flights: a Read Only Group (RG) user sees every company flight, not only their group's | Medium | New | |
+| [BUG-AF-005](BUG-AF-005.md) | `FS-027` | Active Flights | Active Flights: a Read Only Group (RG) user sees every company flight, not only their group's | Medium | Open (retested 23/10/2026 v2.0.122, not fixed) | |
 | [BUG-NOT-004](BUG-NOT-004.md) | `NOT-004` | Notices | Notices: a Write Group (WG) user gets 'An error occurred' when clicking New Notice | Medium | New | |
 | [BUG-SMS-005](BUG-SMS-005.md) | `SMS-015` | Safety Reports | Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted | High | New | |
 | [BUG-AM-006](BUG-AM-006.md) | `CHAT-005` | Access Manager / Chat | Access Manager has no Chat permission, so you can't give Chat to a non-admin user | Medium | Open (retested 22/10/2026, part fixed) | |

@@ -58,3 +58,12 @@ From [`external-audits/`](../external-audits/) (see [`BUGS_INDEX.md`](../bugs/BU
 |---|---|---|
 | Flight #42903 set to Open, SAR moved to 23:30, then Complete again (AF-011) | Flight #42903 | No (delete with the flight) |
 | Note 'BETA TEST ONLY AF note' | Flight #42903 notes | No |
+
+### Retest v2.0.122 (23/10/2026, Service Account in UTC and Pacific/Auckland browsers; betatest_grp)
+All 5 Active Flights bugs still fail; the Active Flights script is unchanged from v2.0.121 and `activeflights_json` still sends no `siteTimeZone`/`serverNow`, so the fix does not appear to be deployed.
+- BUG-AF-004: UTC browser 13 h short (#42898 OVERDUE by 151h 22m vs 164h 22m in NZ / server); Active card 0 vs 2.
+- BUG-AF-001: "01/01/1970 00:00" still shown when there is no SAR time.
+- BUG-AF-002: 6 future flights listed and not in any card (UTC browser).
+- BUG-AF-003: no page Help; Escape doesn't close About Live Tracking, Adjust SAR or Add Note; no x.
+- BUG-AF-005: RG user still gets all 1388 flights.
+No data changed (Adjust SAR and Add Note were cancelled).
