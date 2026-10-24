@@ -23,5 +23,5 @@ All four show the current device time (02:13 AM in 12h mode / 02:14 in 24h mode)
 Accept `HH:MM:SS` in `parseHHMM` (use first two parts), and/or normalise to `HH:MM` in `FlightSyncService` when mapping legs. Treat `00:00:00` from the server as blank where the website does.
 
 ## Evidence
-- evidence/IPCFG-004_12h_leg_times_now.png
-- evidence/IPFL-010_leg_times_show_now_24h.png
+- screenshots/IPCFG-004_12h_leg_times_now.png
+- screenshots/IPFL-010_leg_times_show_now_24h.png

@@ -9,6 +9,6 @@
 - Live VoiceOver could not be exercised (simulator AX tree not reachable in this harness).
 
 ## Evidence
-- evidence/IPUI-014_dyntype_axxxl_config.png
-- evidence/IPUI-015_dyntype_flight_list.png
-- evidence/IPUI-016_dyntype_flight_detail.png
+- screenshots/IPUI-014_dyntype_axxxl_config.png
+- screenshots/IPUI-015_dyntype_flight_list.png
+- screenshots/IPUI-016_dyntype_flight_detail.png

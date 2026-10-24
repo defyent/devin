@@ -27,7 +27,7 @@ The app pushes `BETA TEST ONLY Form`, but the website shows `QA Post-Flight Repo
 - `IPJSON-001_export.json`
 
 ## Suspected cause (optional)
-TBD. The results note that the template IDs synced to the app do not match the server's `form_template_id` semantics; this is a suspected explanation, not a verified root cause.
+Suspected (not fully traced): the template IDs the app syncs and sends don't match the server's form_template_id values, so the server attaches a different template (the app's 'BETA TEST ONLY Form' became 'QA Post-Flight Report' on the website) and the widget data doesn't fit it.
 
 ## Code pointer
 `FlightUploadService`, `forms_json`.

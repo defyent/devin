@@ -22,7 +22,7 @@ Buttons unavailable because required fields are empty are visibly disabled.
 `Test Authentication` and `Sync All` look enabled even though the fields are empty. Tapping them does nothing and provides no feedback.
 
 ## Evidence
-- TBD — no matching evidence file is present in `evidence/`.
+- TBD — no matching evidence file is present in `screenshots/`.
 
 ## Suspected cause (optional)
 The disabled and enabled states use the same visual style.

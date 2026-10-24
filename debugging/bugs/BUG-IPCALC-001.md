@@ -25,7 +25,7 @@ Base unit is NM; the factors are swapped. Fix: `toBase: { $0 * 1.60934 / 1.852 }
 Scientific notation comes from the result formatter (likely `%g`); use a grouped decimal format for large values.
 
 ## Evidence
-- evidence/IPCALC-010_unit_nm_to_mi_wrong.png
+- screenshots/IPCALC-010_unit_nm_to_mi_wrong.png
 
 ## Notes
 Other converter factors (speed mph/km/h/m/s/fpm, altitude m/FL, weight, volume, temp, pressure) checked in source: correct. No website counterpart.

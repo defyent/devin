@@ -22,7 +22,7 @@ The unit-test target compiles.
 Compilation fails due to duplicate `FlightTimeEngineTests` declarations (`WeightBalanceEngineTests.swift:196` and `FlightTimeEngineTests.swift`) and stale call signatures, including missing `pic`, `copilot`, `crew`, `passengers`, `takeoffFuel`, and `decimalPlaces` arguments. Renaming the duplicate still leaves about 12 compile errors.
 
 ## Evidence
-- TBD — test output is recorded outside `evidence/`; no matching evidence file is present.
+- TBD — test output is recorded outside `screenshots/`; no matching evidence file is present.
 
 ## Suspected cause (optional)
 Duplicate test-class declaration and test calls that have not been updated to current signatures.

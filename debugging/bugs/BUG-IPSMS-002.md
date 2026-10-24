@@ -23,4 +23,4 @@ The local model gets the new value (SQLite closedDescription = "edited on websit
 Reload state on `.onChange(of: report.lastSyncedAt)` (or report identity/version) when nothing has been edited locally.
 
 ## Evidence
-evidence/IPSMS-016_app_final_pulled.png, screenshots/IPSMS-016_web_final_after_reload.png, screenshots/IPSMS-016_app_final_after_tabswitch.png
+screenshots/IPSMS-016_app_final_pulled.png, screenshots/IPSMS-016_web_final_after_reload.png, screenshots/IPSMS-016_app_final_after_tabswitch.png

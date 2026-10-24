@@ -25,7 +25,7 @@ Pull (or Sync All) re-links the flight to ZK-HEL (`dh-<resourceId>`), and push w
 - `FlightUploadService.swift:41` and `FlightPayloadBuilder.swift:132` show the Swift `nil` text in the user-facing message.
 
 ## Evidence
-- `evidence/IPPERM-050_readonly_flight_details_missing_ref.png`
-- `evidence/IPPERM-052_readonly_push_nil_config.png`
-- `evidence/IPPERM-057_5perm_sync_3_denied.png`
-- `evidence/IPPERM-066_push_nil_config_after_aircraft_sync.png`
+- `screenshots/IPPERM-050_readonly_flight_details_missing_ref.png`
+- `screenshots/IPPERM-052_readonly_push_nil_config.png`
+- `screenshots/IPPERM-057_5perm_sync_3_denied.png`
+- `screenshots/IPPERM-066_push_nil_config_after_aircraft_sync.png`

@@ -23,7 +23,7 @@ The app reports a Keychain save failure, or credentials are saved successfully b
 The Keychain write failure is not surfaced. The fields remain filled, but authentication reports `Error: notConfigured`. An ad-hoc-signed rebuild avoided the unsigned-build condition.
 
 ## Evidence
-- TBD — no matching evidence file is present in `evidence/`.
+- TBD — no matching evidence file is present in `screenshots/`.
 
 ## Suspected cause (optional)
 The app ignores the `SecItemAdd` status returned from the Keychain save operation.

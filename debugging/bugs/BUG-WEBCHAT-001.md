@@ -25,9 +25,9 @@ Full read and write access to chat through the API.
 - Also observed: non-admins cannot delete their own messages in the app (`CommsView.swift` context menu only `if isAdmin`) — parity with website TBD.
 
 ## Evidence
-- evidence/IPPERM-016_lowperm_comms_channel_visible.png
-- evidence/IPPERM-017_lowperm_comms_read.png
-- evidence/IPPERM-018_lowperm_send_ok.png
-- evidence/IPPERM-024_web_lowperm_chat_denied.png
-- evidence/IPPERM-025_web_shows_lowperm_message.png (server stored the unauthorised post)
-- evidence/IPPERM-011_lowperm_sync_denied.png (contrast: other areas denied)
+- screenshots/IPPERM-016_lowperm_comms_channel_visible.png
+- screenshots/IPPERM-017_lowperm_comms_read.png
+- screenshots/IPPERM-018_lowperm_send_ok.png
+- screenshots/IPPERM-024_web_lowperm_chat_denied.png
+- screenshots/IPPERM-025_web_shows_lowperm_message.png (server stored the unauthorised post)
+- screenshots/IPPERM-011_lowperm_sync_denied.png (contrast: other areas denied)

@@ -17,5 +17,5 @@ Sync All replaces Empty Weight with the server value (0); "BEW 600 kg" disappear
 `SyncService` re-sync keeps the local W&B config (seats, arms, equipment, profiles, graphs) but overwrites emptyWeight, MTOW, type, registration, meters and time settings - so a single aircraft ends up as a mix of server and local values, and the iPad's W&B for that aircraft can differ from the website's with no indication.
 
 ## Evidence
-- evidence/IPAC-005_zkfly_bew600_saved.png
-- evidence/IPAC-006_zkfly_ew_reverted_after_sync.png
+- screenshots/IPAC-005_zkfly_bew600_saved.png
+- screenshots/IPAC-006_zkfly_ew_reverted_after_sync.png

@@ -356,12 +356,12 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 
 ### iPad weight and balance (2 open)
 
-- [ ] [BUG-IPWB-001](bugs/BUG-IPWB-001.md) · **Open, still failing** · Low · Weight and balance summary rounds equipment weight to whole kilograms
-- [ ] [BUG-IPWB-002](bugs/BUG-IPWB-002.md) · **Open, still failing** · Low · Cabin occupancy count includes hidden seats
+- [ ] [BUG-IPWB-001](bugs/BUG-IPWB-001.md) · **Open, still failing** · Low · Leg summary card rounds equipment to whole kg and disagrees with the W&B sheet
+- [ ] [BUG-IPWB-002](bugs/BUG-IPWB-002.md) · **Open, still failing** · Low · Cabin header counts hidden seats ('0/4 occupied' with only 2 seats shown)
 
 ### iPad flight times and meters (1 open)
 
-- [ ] [BUG-IPREF-001](bugs/BUG-IPREF-001.md) · **Open, still failing** · Low · Sync All reports zero Flight Custom Fields when a custom EFI field is present
+- [ ] [BUG-IPREF-001](bugs/BUG-IPREF-001.md) · **Open, still failing** · Low · Sync All reports 'Flight Custom Fields: 0' although a custom field is synced and used
 
 ### iPad flight forms (2 open)
 
@@ -373,8 +373,8 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 - [ ] [BUG-IPFORM-003](bugs/BUG-IPFORM-003.md) · **Open, still failing** · High · Form Date/Time widgets ignore website values and show (and can save) the current date/time
 - [ ] [BUG-IPSMS-001](bugs/BUG-IPSMS-001.md) · **Open, still failing** · High · Safety Report form attached in iPad app is silently lost on push
 - [ ] [BUG-IPSMS-002](bugs/BUG-IPSMS-002.md) · **Open, still failing** · Medium · Final Report tab shows stale values after Pull (overwrite risk)
-- [ ] [BUG-IPSMS-004](bugs/BUG-IPSMS-004.md) · **Open, still failing** · Medium · Safety Report push can report success after form or status updates fail
-- [ ] [BUG-IPSMS-003](bugs/BUG-IPSMS-003.md) · **Open, still failing** · Low · Safety Report action assignee picker includes a blank Unassigned row
+- [ ] [BUG-IPSMS-004](bugs/BUG-IPSMS-004.md) · **Open, still failing** · Medium · Safety Report push says 'Successfully pushed' even if saving forms, deleting files or changing…
+- [ ] [BUG-IPSMS-003](bugs/BUG-IPSMS-003.md) · **Open, still failing** · Low · Safety Report action 'Assign To' picker shows a blank person row
 
 ### iPad communications and chat (1 open)
 
@@ -402,7 +402,7 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 - [ ] [BUG-WEBCHAT-001](bugs/BUG-WEBCHAT-001.md) · **Open, still failing** · High · Chat API used by the iPad app ignores the Chat permission (permission bypass)
 - [ ] [BUG-IPFL-004](bugs/BUG-IPFL-004.md) · **Open, still failing** · Medium · Flight downloaded before aircraft sync keeps aircraft "None" forever; Pull never re-links; push…
 - [ ] [BUG-IPPERM-001](bugs/BUG-IPPERM-001.md) · **Open, still failing** · Medium · App lets read-only users edit and push flights and only fails at the server, showing a raw "Error…
-- [ ] [BUG-IPSYNC-002](bugs/BUG-IPSYNC-002.md) · **Open, still failing** · Medium · Pull from Server does not reliably update website-edited Notes
+- [ ] [BUG-IPSYNC-002](bugs/BUG-IPSYNC-002.md) · **Open, still failing** · Medium · Pull from Server doesn't apply website Notes and can mark an unpushed local edit as synced
 
 ### Cross-cutting: permission levels (2 open, 2 fixed)
 
@@ -632,14 +632,14 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | [BUG-IPAC-001](bugs/BUG-IPAC-001.md) | Medium | `IPAC-006` | iPad app — Configuration > Aircraft > editor; SyncService.syncAircraft | Aircraft editor edits to server aircraft are local-only and silently reverted by Sync All | Open | - |
 | [BUG-IPWPT-001](bugs/BUG-IPWPT-001.md) | Medium | `IPWPT-004` | iPad app — Configuration > Waypoints | Code-less server waypoints show blank titles; editing them stores 0,0 coordinates; edits are local-only | Open | - |
 | [BUG-IPSMS-002](bugs/BUG-IPSMS-002.md) | Medium | `IPSMS-016` | iPad app — Safety Reports > Final Report | Final Report tab shows stale values after Pull (overwrite risk) | Open | - |
-| [BUG-IPSMS-004](bugs/BUG-IPSMS-004.md) | Medium | `IPSMS-009` | iPad app — Safety Reports > push/sync | Safety Report push can report success after form or status updates fail | Open | - |
+| [BUG-IPSMS-004](bugs/BUG-IPSMS-004.md) | Medium | `IPSMS-009` | iPad app — Safety Reports > Push (SMSReportUploadService) | Safety Report push says 'Successfully pushed' even if saving forms, deleting files or changing status fails | Open | - |
 | [BUG-IPCHAT-001](bugs/BUG-IPCHAT-001.md) | Medium | `IPCHAT-010` |  | Chat message typed while offline is discarded on send | Open | - |
 | [BUG-IPTRK-002](bugs/BUG-IPTRK-002.md) | Medium | `IPTRK-006` | iPad app — Live Tracking | Live Tracking queue stores duplicate/stale pings; rejected pings are dropped | Open | - |
 | [BUG-IPSYNC-001](bugs/BUG-IPSYNC-001.md) | Medium | `IPOFF-005` | Flight sync / conflict handling | Push silently overwrites website-side Notes edits | Open | - |
 | [BUG-IPUI-001](bugs/BUG-IPUI-001.md) | Medium | `IPXC-002` | iPad UI / keyboard focus | Hardware-keyboard focus leaks through sheets and keypads | Open | - |
 | [BUG-IPFL-004](bugs/BUG-IPFL-004.md) | Medium | `IPPERM-067` | iPad app, Flights (download/pull/push) | Flight downloaded before aircraft sync keeps aircraft "None" forever; Pull never re-links; push fails with "(nil)" | Open | - |
 | [BUG-IPPERM-001](bugs/BUG-IPPERM-001.md) | Medium | `IPPERM-049` | iPad app, Flights, permissions | App lets read-only users edit and push flights and only fails at the server, showing a raw "Error block Error" message | Open | - |
-| [BUG-IPSYNC-002](bugs/BUG-IPSYNC-002.md) | Medium | `IPPERM-063` | Flight sync / pull | Pull from Server does not reliably update website-edited Notes | Open | - |
+| [BUG-IPSYNC-002](bugs/BUG-IPSYNC-002.md) | Medium | `IPPERM-063` | Flight sync / pull | Pull from Server doesn't apply website Notes and can mark an unpushed local edit as synced | Open | - |
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | `PERM-007` | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) | Open (not retested) | - |
 | [BUG-ATT-002](bugs/BUG-ATT-002.md) | Medium | `ATT-034` | Attachments (all modules) | No file-type check on any upload: .exe, .html and anything else is accepted; Notices "Supported formats" isn't enforced | Open (not retested) | - |
 | [BUG-FD-011](bugs/BUG-FD-011.md) | Low | `FD-037` | Flight Details | History labels lock and unlock differently ("Locked: No > Yes" vs "Status: Locked > Unlocked") | Open (not retested) | - |
@@ -740,10 +740,10 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | [BUG-IPDH-001](bugs/BUG-IPDH-001.md) | Low | `IPDH-007` | DataHangar configuration / credentials | Keychain save failure is silent | Open | - |
 | [BUG-IPDH-002](bugs/BUG-IPDH-002.md) | Low | `IPDH-001` | DataHangar configuration / button states | Empty-field authentication and sync buttons look enabled | Open | - |
 | [BUG-IPFL-001](bugs/BUG-IPFL-001.md) | Low | `IPFL-003` | Flights / flight ID display | Flight ID badges and labels add thousands separators | Open | - |
-| [BUG-IPWB-001](bugs/BUG-IPWB-001.md) | Low | `IPWB-002` | iPad app — Weight and balance summary | Weight and balance summary rounds equipment weight to whole kilograms | Open | - |
-| [BUG-IPWB-002](bugs/BUG-IPWB-002.md) | Low | `IPWB-003` | iPad app — Weight and balance cabin seating | Cabin occupancy count includes hidden seats | Open | - |
-| [BUG-IPREF-001](bugs/BUG-IPREF-001.md) | Low | `IPFT-006` | iPad app — Sync All / Flight Custom Fields | Sync All reports zero Flight Custom Fields when a custom EFI field is present | Open | - |
-| [BUG-IPSMS-003](bugs/BUG-IPSMS-003.md) | Low | `IPSMS-007` | iPad app — Safety Reports > Actions | Safety Report action assignee picker includes a blank Unassigned row | Open | - |
+| [BUG-IPWB-001](bugs/BUG-IPWB-001.md) | Low | `IPWB-002` | iPad app — Flights > Leg > summary card / W&B | Leg summary card rounds equipment to whole kg and disagrees with the W&B sheet | Open | - |
+| [BUG-IPWB-002](bugs/BUG-IPWB-002.md) | Low | `IPWB-003` | iPad app — Flights > Leg > W&B cabin | Cabin header counts hidden seats ('0/4 occupied' with only 2 seats shown) | Open | - |
+| [BUG-IPREF-001](bugs/BUG-IPREF-001.md) | Low | `IPFT-006` | iPad app — Configuration > DataHangar > Sync All (Flight Custom Fields) | Sync All reports 'Flight Custom Fields: 0' although a custom field is synced and used | Open | - |
+| [BUG-IPSMS-003](bugs/BUG-IPSMS-003.md) | Low | `IPSMS-007` | iPad app — Safety Reports > Actions > New Action | Safety Report action 'Assign To' picker shows a blank person row | Open | - |
 | [BUG-IPTRK-001](bugs/BUG-IPTRK-001.md) | Low | `IPTRK-003` | iPad app — Live Tracking | Live Tracking UI/state issues (raw HTML error, stale/global menu, no offline indicator) | Open | - |
 | [BUG-IPOFF-001](bugs/BUG-IPOFF-001.md) | Low | `IPOFF-003` | Offline handling | Offline launch and push block for about a minute before timing out | Open | - |
 | [BUG-IPUI-003](bugs/BUG-IPUI-003.md) | Low | `IPUI-013` | iPad app — cross-cutting accessibility | Sparse VoiceOver labels and partial Dynamic Type support | Open | - |

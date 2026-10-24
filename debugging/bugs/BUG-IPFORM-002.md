@@ -27,7 +27,7 @@ After pulling, the app shows three local instances (IDs 198, 199, and 200): two 
 - `screenshots/IPFORM-dup_web_forms_tab.png`
 
 ## Suspected cause (optional)
-TBD.
+The app never stores the server instance ID returned for a pushed form, so each push re-sends the form as new, and each Pull adds server instances alongside the local copies (the app ended up with 3 instances 198/199/200 while the website showed 1).
 
 ## Test data involved
 Flight `#42914`; local form instance IDs 198, 199, and 200.

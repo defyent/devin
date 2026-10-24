@@ -23,6 +23,6 @@ The app should see that the user can't edit flights (the server already exposes 
 It correctly rejects the write (PASS). Website #42914 is unchanged.
 
 ## Evidence
-- `evidence/IPPERM-049_readonly_flight_editable.png`
-- `evidence/IPPERM-068_readonly_push_confirm_zkhel.png`
-- `evidence/IPPERM-069_readonly_push_server_denied.png`
+- `screenshots/IPPERM-049_readonly_flight_editable.png`
+- `screenshots/IPPERM-068_readonly_push_confirm_zkhel.png`
+- `screenshots/IPPERM-069_readonly_push_server_denied.png`

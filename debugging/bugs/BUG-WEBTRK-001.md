@@ -24,4 +24,4 @@ The map shows nothing. The error page shows SQL text, parameters and a server pa
 - App side: non-"Ok" responses are dropped, not queued (LiveTrackingService.sendPing), and the raw HTML is shown in the error modal.
 
 ## Evidence
-evidence/IPTRK-003_app_tracking_error.png, screenshots/IPTRK-003_web_active_flights.png; full error text from app URLCache (Cache.db-wal)
+screenshots/IPTRK-003_app_tracking_error.png, screenshots/IPTRK-003_web_active_flights.png; full error text from app URLCache (Cache.db-wal)

@@ -13,4 +13,4 @@
 5. No confirmation or toast after Start Tracking from the flight menu.
 
 ## Evidence
-evidence/IPTRK-002_menu_still_start.png, screenshots/IPTRK-003_app_tracking_error.png, screenshots/IPTRK-006_other_flight_shows_stop.png, screenshots/IPTRK-006_offline_icon_green.png
+screenshots/IPTRK-002_menu_still_start.png, screenshots/IPTRK-003_app_tracking_error.png, screenshots/IPTRK-006_other_flight_shows_stop.png, screenshots/IPTRK-006_offline_icon_green.png

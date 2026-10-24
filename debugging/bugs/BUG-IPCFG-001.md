@@ -22,5 +22,5 @@ PIN must be exactly 4 digits (reject/confirm before saving), or the gate accepts
 - No confirm-PIN step.
 
 ## Evidence
-- evidence/IPCFG-009_pin_2digit_saved.png
-- evidence/IPCFG-007_pin_gate.png, screenshots/IPCFG-008_pin_correct_opens.png (4-digit PIN works)
+- screenshots/IPCFG-009_pin_2digit_saved.png
+- screenshots/IPCFG-007_pin_gate.png, screenshots/IPCFG-008_pin_correct_opens.png (4-digit PIN works)

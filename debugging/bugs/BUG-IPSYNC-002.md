@@ -23,7 +23,7 @@ The app replaces its stale Notes value with the website value `WEBEDIT`.
 Pull from Server leaves the app's Notes unchanged even though the action says it overwrites local changes. The results also record a landing-time representation change from `00:07` to `00:07:00`; whether that change is part of the same defect is TBD.
 
 ## Evidence
-- TBD — no direct screenshot of the failed pull is present in `evidence/`.
+- TBD — no direct screenshot of the failed pull is present in `screenshots/`.
 
 ## Suspected cause (optional)
 TBD.
@@ -41,5 +41,11 @@ Flight `#42914`; website Notes `WEBEDIT`.
 4. Website Flight #42914 Notes = "BETA TEST ONLY OFFLINE EDIT".
 
 Result: Pull keeps unpushed local Notes and clears the needs-push flag, so the edit is never sent and the app silently disagrees with the server.
-Evidence: `evidence/IPPERM-063_web_42914_notes_server.png`, `evidence/IPPERM-064_app_42914_notes_RO_synced.png`.
+Evidence: `screenshots/IPPERM-063_web_42914_notes_server.png`, `screenshots/IPPERM-064_app_42914_notes_RO_synced.png`.
 Severity raised to Medium-High (silent divergence, confirmed with screenshots).
+
+## Retest 24/10/2026 (IPPERM-061/063) — worse than first recorded
+- Website #42914 Notes = 'BETA TEST ONLY OFFLINE EDIT'. App had an unpushed local edit 'BETA TEST ONLY OFFLINE EDIT RO' (push had failed).
+- After Pull from Server the app kept the local text **and** changed the badge to '#42,914 synced', clearing needs-push. The edit is now never sent and the divergence is hidden.
+- `screenshots/IPPERM-063_web_42914_notes_server.png`
+- `screenshots/IPPERM-064_app_42914_notes_RO_synced.png`

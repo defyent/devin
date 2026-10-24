@@ -15,8 +15,8 @@ Values and controls legible (WCAG AA contrast), as in Dark/Midtone.
 Device Identifier value `iPad-F6EC` is white text on a white card (unreadable). The OFF state of the Automatic Time Offsets toggle is a near-white track on white, barely visible.
 
 ## Evidence
-- evidence/IPCFG-001_config_general.png (Midtone, readable)
-- evidence/IPCFG-002_light_theme.png, evidence/IPCFG-003_light_contrast.png (Light)
+- screenshots/IPCFG-001_config_general.png (Midtone, readable)
+- screenshots/IPCFG-002_light_theme.png, screenshots/IPCFG-003_light_contrast.png (Light)
 
 ## Notes
 Likely a hard-coded light text colour / toggle tint not using theme tokens. Check other screens in Light during row 78.

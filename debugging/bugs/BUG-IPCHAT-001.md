@@ -23,4 +23,4 @@ Input clears immediately; no pending bubble or offline indicator. About 60-70 s 
 Restore content/image on failure (or keep a pending bubble with Retry); check reachability before sending.
 
 ## Evidence
-evidence/IPCHAT-010_app_offline_after_send.png, screenshots/IPCHAT-010_app_offline_65s.png, screenshots/IPCHAT-010_app_offline_timeout_error.png, screenshots/IPCHAT-010_app_resend_online.png
+screenshots/IPCHAT-010_app_offline_after_send.png, screenshots/IPCHAT-010_app_offline_65s.png, screenshots/IPCHAT-010_app_offline_timeout_error.png, screenshots/IPCHAT-010_app_resend_online.png

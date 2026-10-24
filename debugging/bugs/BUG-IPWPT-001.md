@@ -20,6 +20,6 @@ Fall back to name when code is empty; keep blank coordinates blank; tell the use
 The website (Settings and Tools > Waypoint Locations) holds these same name-only waypoints (BTQA 1 flight, BTQC 0, NZAA 3, NZCH 2, NZWR 1) and lists them by Name, so they are readable there. The app syncs them correctly; the defect is the app's Code-as-title display and the 0,0 save. The duplicates themselves are server data quality (website offers Scan Duplicates).
 
 ## Evidence
-- evidence/IPWPT-005_website_waypoints.png
-- evidence/IPWPT-002_waypoints_list.png
-- evidence/IPWPT-003_blank_code_nzaa.png
+- screenshots/IPWPT-005_website_waypoints.png
+- screenshots/IPWPT-002_waypoints_list.png
+- screenshots/IPWPT-003_blank_code_nzaa.png

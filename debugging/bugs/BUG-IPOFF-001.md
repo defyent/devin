@@ -29,7 +29,7 @@ Launch displays a blocking `Syncing Data` screen for about 60 seconds before `Au
 - `screenshots/IPOFF-003_launch_auth_error.png`
 
 ## Suspected cause (optional)
-No prompt reachability check; the request waits for its timeout. Root cause is TBD.
+No up-front reachability/offline check; launch auto-sync and push wait for the default ~60 s URLSession timeout before failing with 'The request timed out'.
 
 ## Test data involved
 Offline test against `stresstest.datahangar.net`; local edits remained intact.
