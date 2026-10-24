@@ -266,6 +266,36 @@ def last_retest(bid):
     return '%s %s: %s' % (c[0], c[1], c[2]) if len(c) >= 3 else ''
 
 
+def plain_status(st):
+    if not st:
+        return 'Open, not retested'
+    d = re.search(r'\d\d/\d\d/\d{4}', st)
+    v = re.search(r'v\d+\.\d+\.\d+', st)
+    when = ', '.join(x.group(0) for x in (d, v) if x)
+    s = st.lower()
+    if s.startswith('fixed'):
+        return 'Fixed' + (' (%s)' % when if when else '')
+    if s.startswith('closed'):
+        return 'Closed, by design' + (' (%s)' % d.group(0) if d else '')
+    if 'part fixed' in s:
+        return 'Open, part fixed' + (' (%s)' % when if when else '')
+    return 'Open, still failing' + (' (%s)' % when if when else '')
+
+
+def short_title(b, limit=100):
+    if b.get('short'):
+        return b['short']
+    t = b['title'].strip()
+    mod = re.sub(r'\s*\(.*?\)', '', b.get('module', '')).strip()
+    names = {mod, mod.replace('Settings: ', ''), mod.replace('Settings: ', '') + ' Settings'}
+    head, sep, rest = t.partition(': ')
+    if sep and head in names and len(rest) > 15:
+        t = rest[0].upper() + rest[1:]
+    if len(t) > limit:
+        t = t[:limit].rsplit(' ', 1)[0].rstrip(',;:(-') + '…'
+    return t.replace('|', '/')
+
+
 def sync_bug_files(bugs):
     n = 0
     for b in bugs:
@@ -329,18 +359,28 @@ def main():
     link = lambda b: '[%s](bugs/%s.md)' % (b['id'], b['id'])
     sevrank = {s: i for i, s in enumerate(SEVS)}
 
-    L = ['# DataHangar audit: current status', '',
-         'This is the only audit status document. It replaces REPORT.md, TRACKER.md, BUGS_BY_MODULE.md, '
-         'ACCESSMANAGER_BUGS.md, BLOCKED_RETEST_CLEANUP.md and bugs/BUGS_INDEX.md.', '',
-         '- **Last regenerated:** %s' % today,
-         '- **Site:** https://stresstest.datahangar.net (demo data). Org settings: Pacific/Auckland, DD/MM/YYYY, 24-hour HH:mm, Type-In Fields.',
-         '- **Test accounts:** Service Account (admin); betatest_low (BETA TEST ONLY Lowperm, own level); '
-         'betatest_grp (BETA TEST ONLY Grpuser, group level); betatest_two (BETA TEST ONLY Second, own level + some admin).',
-         '- **Source data:** `bugs.json` (status of every bug), `bugs/BUG-<ID>.md` (full details and retest log), '
-         '`checklists/` (result of every check). Regenerate this file with `python3 debugging/tools/mkstatus.py` '
-         'after changing any of them; edit the hand-written sections directly.', '',
-         '## 1. Summary', '',
-         '| Bugs | High | Medium | Low | Total |', '|---|---|---|---|---|']
+    L = ['# DataHangar bug status', '',
+         'Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixed or closed. '
+         'Click a bug ID for the full write-up (steps, expected vs actual, cause, fix, screenshots, retest history).', '',
+         '**%d bugs: %d open, %d fixed, %d closed.** Last updated %s.'
+         % (len(bugs), sum(cnt['Open'].values()), sum(cnt['Fixed'].values()), sum(cnt['Closed'].values()), today), '',
+         '## Bug checklist', '']
+    order = list(AREAS)
+    groups = {}
+    for b in bugs:
+        groups.setdefault(b.get('cl') or '~', []).append(b)
+    krank = {'Open': 0, 'Fixed': 1, 'Closed': 2}
+    for cl in sorted(groups, key=lambda c: order.index(c) if c in order else 999):
+        bb = sorted(groups[cl], key=lambda b: (krank[b['_k']], sevrank.get(b['sev'], 9), b['id']))
+        k = lambda x: sum(1 for b in bb if b['_k'] == x)
+        parts = ['%d open' % k('Open')] + (['%d fixed' % k('Fixed')] if k('Fixed') else []) + (['%d closed' % k('Closed')] if k('Closed') else [])
+        L += ['### %s (%s)' % (AREAS.get(cl, ['', 'Other'])[1], ', '.join(parts)), '']
+        for b in bb:
+            L.append('- [%s] %s · **%s** · %s · %s' % (' ' if b['_k'] == 'Open' else 'x', link(b), plain_status(b.get('status')), b['sev'], short_title(b)))
+        L.append('')
+
+    L += ['## Summary', '',
+          '| Bugs | High | Medium | Low | Total |', '|---|---|---|---|---|']
     for k, lab in [('Open', 'Open'), ('Fixed', 'Fixed (verified by retest)'), ('Closed', 'Closed (by design)')]:
         L.append('| %s | %s | %s | %s | **%d** |' % (lab, *[cnt[k][s] for s in SEVS], sum(cnt[k].values())))
     L.append('| **All** | %s | %s | %s | **%d** |' % (*[sum(cnt[k][s] for k in cnt) for s in SEVS], len(bugs)))
@@ -348,18 +388,18 @@ def main():
           % (len(never), sum(cnt['Open'].values())),
           '- Checklists: %d of %d done. %d checks: %d pass, %d fail, %d blocked, %d N/A.'
           % (done, len(cls), T['n'], T['p'], T['f'], T['b'], T['na']),
-          '- External audit issues are tracked separately in section 7.', '']
+          '- Issues from the two earlier external audits are listed separately under "External audit issues".', '']
 
-    L += ['## 2. Decisions needed and not yet tested', '',
+    L += ['## Decisions needed and not yet tested', '',
           keep(old, 'todo', open('/home/ubuntu/dh/todo_section.md').read() if not old else ''), '']
 
-    L += ['## 3. Open High bugs', '', '| Bug | Checklist row | Module | Title | Status | Last retest |', '|---|---|---|---|---|---|']
+    L += ['## Open High bugs', '', '| Bug | Module | Title | Status | Last retest |', '|---|---|---|---|---|']
     for b in bugs:
         if b['_k'] == 'Open' and b['sev'] == 'High':
-            L.append('| %s | `%s` | %s | %s | %s | %s |' % (link(b), b['row'], b['module'], b['title'], b.get('status') or 'Open (not retested)', b['_last'] or '-'))
+            L.append('| %s | %s | %s | %s | %s |' % (link(b), b['module'], b['title'], plain_status(b.get('status')), b['_last'] or '-'))
     L.append('')
 
-    L += ['## 4. Progress by checklist', '',
+    L += ['## Progress by checklist', '',
           '| Checklist | Prefix | Area | Checks | Pass | Fail | Blocked | N/A | Bugs | Fixed | Closed | Open | State |',
           '|---|---|---|---|---|---|---|---|---|---|---|---|---|']
     for c in cls:
@@ -368,27 +408,22 @@ def main():
         L.append('| [%s](checklists/%s.md) | `%s` | %s | %d | %d | %d | %d | %d | %d | %d | %d | %d | %s |'
                  % (c['name'], c['name'], c['pre'], c['area'], c['n'], c['p'], c['f'], c['b'], c['na'],
                     len(bb), k('Fixed'), k('Closed'), k('Open'), c['state']))
-    other = [b for b in bugs if b.get('cl') not in {c['name'] for c in cls}]
-    if other:
-        L.append('| (no checklist) | | | | | | | | %d | | | | |' % len(other))
     L.append('')
 
-    L += ['## 5. All bugs', '',
-          'Open bugs first (High to Low), then fixed, then closed. Full steps, expected/actual, cause, fix and screenshots are in each bug file.', '']
-    for k, title in [('Open', '### Open'), ('Fixed', '### Fixed'), ('Closed', '### Closed')]:
-        sel = sorted([b for b in bugs if b['_k'] == k], key=lambda b: (sevrank.get(b['sev'], 9), b.get('cl') or '', b['id']))
-        L += [title + ' (%d)' % len(sel), '', '| Bug | Severity | Checklist row | Module | Title | Status | Last retest |', '|---|---|---|---|---|---|---|']
-        for b in sel:
-            L.append('| %s | %s | `%s` | %s | %s | %s | %s |' % (link(b), b['sev'], b['row'], b['module'], b['title'].replace('|', '/'),
-                                                             b.get('status') or 'Open (not retested)', b['_last'] or '-'))
-        L.append('')
+    L += ['## Bug details', '',
+          'Full title, checklist row and latest retest for every bug, open first. The bug files have the complete write-up.', '',
+          '| Bug | Severity | Checklist row | Module | Title | Status | Last retest |', '|---|---|---|---|---|---|---|']
+    for b in sorted(bugs, key=lambda b: (krank[b['_k']], sevrank.get(b['sev'], 9), order.index(b['cl']) if b.get('cl') in order else 999, b['id'])):
+        L.append('| %s | %s | `%s` | %s | %s | %s | %s |' % (link(b), b['sev'], b['row'], b['module'], b['title'].replace('|', '/'),
+                                                         b.get('status') or 'Open (not retested)', b['_last'] or '-'))
+    L.append('')
 
-    L += ['## 6. Test data left on stresstest', '', '### From the checklist runs', '',
+    L += ['## Test data left on stresstest', '', '### From the checklist runs', '',
           '| Checklist | Record | Where | Cleanup done? |', '|---|---|---|---|'] + test_data_rows()
     L += ['', '### From retests', '', keep(old, 'testdata', open('/home/ubuntu/dh/testdata_section.md').read() if not old else ''), '']
 
-    L += ['## 7. External audit issues', '', keep(old, 'external', open('/home/ubuntu/dh/ext_section.md').read() if not old else ''), '']
-    L += ['## 8. Background notes', '', keep(old, 'background', open('/home/ubuntu/dh/bg_section.md').read() if not old else ''), '']
+    L += ['## External audit issues', '', keep(old, 'external', open('/home/ubuntu/dh/ext_section.md').read() if not old else ''), '']
+    L += ['## Background notes', '', keep(old, 'background', open('/home/ubuntu/dh/bg_section.md').read() if not old else ''), '']
     open(D + 'STATUS.md', 'w').write('\n'.join(L) + '\n')
     print('STATUS.md: %d bugs, %d checklists, %d bug files status-synced' % (len(bugs), len(cls), synced))
 

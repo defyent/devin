@@ -8,7 +8,7 @@ Systematic, guide-driven bug hunt for DataHangar, based on `DataHangar_Frontend_
 debugging/
 ├── README.md               ← this file: structure + workflow
 ├── DEBUGGING_GUIDE.md      ← rules, method, IDs, severity, evidence standards
-├── STATUS.md               ← THE status document: bug totals, open/fixed/closed list, checklist progress, test data
+├── STATUS.md               ← the one status document: checklist of every bug (module, status, title), then totals, progress, test data
 ├── bugs.json               ← master bug data (one entry per bug, incl. status); STATUS.md is built from it
 ├── tools/mkstatus.py       ← regenerates STATUS.md and syncs bug-file Status lines from bugs.json
 ├── checklists/             ← one file per module / settings page / cross-cutting area

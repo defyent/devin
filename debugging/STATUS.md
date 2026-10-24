@@ -1,13 +1,340 @@
-# DataHangar audit: current status
+# DataHangar bug status
 
-This is the only audit status document. It replaces REPORT.md, TRACKER.md, BUGS_BY_MODULE.md, ACCESSMANAGER_BUGS.md, BLOCKED_RETEST_CLEANUP.md and bugs/BUGS_INDEX.md.
+Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixed or closed. Click a bug ID for the full write-up (steps, expected vs actual, cause, fix, screenshots, retest history).
 
-- **Last regenerated:** 24/10/2026
-- **Site:** https://stresstest.datahangar.net (demo data). Org settings: Pacific/Auckland, DD/MM/YYYY, 24-hour HH:mm, Type-In Fields.
-- **Test accounts:** Service Account (admin); betatest_low (BETA TEST ONLY Lowperm, own level); betatest_grp (BETA TEST ONLY Grpuser, group level); betatest_two (BETA TEST ONLY Second, own level + some admin).
-- **Source data:** `bugs.json` (status of every bug), `bugs/BUG-<ID>.md` (full details and retest log), `checklists/` (result of every check). Regenerate this file with `python3 debugging/tools/mkstatus.py` after changing any of them; edit the hand-written sections directly.
+**190 bugs: 141 open, 48 fixed, 1 closed.** Last updated 24/10/2026.
 
-## 1. Summary
+## Bug checklist
+
+### Login, 2FA, sessions, landing page (0 open, 3 fixed)
+
+- [x] [BUG-LOG-003](bugs/BUG-LOG-003.md) · **Fixed (22/10/2026)** · Medium · 'Trust this device for 30 days' is lost on Logout (logout deletes the trusted-device cookie)
+- [x] [BUG-LOG-001](bugs/BUG-LOG-001.md) · **Fixed (22/10/2026)** · Low · Login Message popup reappears on every browser reload
+- [x] [BUG-LOG-002](bugs/BUG-LOG-002.md) · **Fixed (22/10/2026)** · Low · Logout throws JS error removeChild; Esc doesn't close the Log Out confirm
+
+### Application shell, sidebar, header, mobile (0 open, 1 fixed)
+
+- [x] [BUG-NAV-001](bugs/BUG-NAV-001.md) · **Fixed (22/10/2026)** · Medium · Leaving a page with unsaved changes gives no warning; edits are lost
+
+### Access Manager (users, roles, groups, permissions, templates) (0 open, 7 fixed)
+
+- [x] [BUG-AM-001](bugs/BUG-AM-001.md) · **Fixed (22/10/2026)** · Medium · New User accepts a 6-character password (placeholder and Change Credentials require 10)
+- [x] [BUG-POP-003](bugs/BUG-POP-003.md) · **Fixed (22/10/2026)** · Medium · Access Manager Groups popup: Esc closes with unsaved changes and no warning; reopening shows the…
+- [x] [BUG-AM-002](bugs/BUG-AM-002.md) · **Fixed (22/10/2026)** · Low · Last Activity hover date ignores Settings > Time Zone format
+- [x] [BUG-AM-003](bugs/BUG-AM-003.md) · **Fixed (22/10/2026)** · Low · Last Activity column sort does not change order
+- [x] [BUG-AM-004](bugs/BUG-AM-004.md) · **Fixed (22/10/2026)** · Low · Permission level dropdown shows bare codes 'WA' and 'G' next to full labels
+- [x] [BUG-POP-001](bugs/BUG-POP-001.md) · **Fixed (22/10/2026)** · Low · Error modal ('Failed to Create User') does not close with Esc
+- [x] [BUG-POP-002](bugs/BUG-POP-002.md) · **Fixed (22/10/2026)** · Low · Manage User Permissions uses a native browser confirm() for unsaved changes
+
+### Dashboard (0 open, 5 fixed)
+
+- [x] [BUG-DSH-003](bugs/BUG-DSH-003.md) · **Fixed (22/10/2026)** · Medium · Dashboard recency item opens Personnel Details on the wrong tab (Personal Details instead of…
+- [x] [BUG-DSH-004](bugs/BUG-DSH-004.md) · **Fixed (22/10/2026)** · Medium · My Flights and On Duty open on the UTC date, not today's local date
+- [x] [BUG-DSH-005](bugs/BUG-DSH-005.md) · **Fixed (22/10/2026)** · Medium · Dashboard Project Tasks: clicking a task opens an empty project list instead of the project
+- [x] [BUG-DSH-001](bugs/BUG-DSH-001.md) · **Fixed (22/10/2026)** · Low · Dashboard side tabs are icon-only with no tooltip or label
+- [x] [BUG-DSH-006](bugs/BUG-DSH-006.md) · **Fixed (22/10/2026)** · Low · Dashboard My Flights shows a canceled flight's status as 'Unknown'
+
+### Flight Schedule (incl. embedded Location Planner) (0 open, 9 fixed)
+
+- [x] [BUG-FS-008](bugs/BUG-FS-008.md) · **Fixed (22/10/2026)** · High · A group-level user (G / WG) sees no flights, even on aircraft in their own group
+- [x] [BUG-FS-002](bugs/BUG-FS-002.md) · **Fixed (22/10/2026)** · Medium · Esc does not end copy/paste mode on the Flight Schedule - the next click + Ctrl+V creates another…
+- [x] [BUG-FS-003](bugs/BUG-FS-003.md) · **Fixed (22/10/2026)** · Medium · Flight Schedule header overlaps when Live Edit is on - title covered, location pill cut off and its…
+- [x] [BUG-FS-004](bugs/BUG-FS-004.md) · **Fixed (22/10/2026)** · Medium · Planner Add Location replaces the New Booking popup - typed booking and location input is lost
+- [x] [BUG-FS-006](bugs/BUG-FS-006.md) · **Fixed (22/10/2026)** · Medium · Flight Schedule month view is slow: flightschedule_json takes ~1.6 s and rendering 2,500 events…
+- [x] [BUG-FS-007](bugs/BUG-FS-007.md) · **Fixed (22/10/2026)** · Medium · Edit-mode idle timeout switches Live Edit off silently, throws 'calendarEl is not defined' and…
+- [x] [BUG-FS-001](bugs/BUG-FS-001.md) · **Fixed (23/10/2026, v2.0.120)** · Low · New flight defaults (and Planner 'today') follow the browser time zone instead of Settings > Time…
+- [x] [BUG-FS-005](bugs/BUG-FS-005.md) · **Fixed (22/10/2026)** · Low · JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop')
+- [x] [BUG-POP-004](bugs/BUG-POP-004.md) · **Fixed (22/10/2026)** · Low · Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc
+
+### Flight Details (1 open, 9 fixed)
+
+- [ ] [BUG-FD-011](bugs/BUG-FD-011.md) · **Open, not retested** · Low · History labels lock and unlock differently ("Locked: No > Yes" vs "Status: Locked > Unlocked")
+- [x] [BUG-FD-008](bugs/BUG-FD-008.md) · **Fixed (23/10/2026, v2.0.121)** · High · Unlocking a Complete & Locked flight wipes its leg route, leg PIC, leg passengers and manifest
+- [x] [BUG-FD-001](bugs/BUG-FD-001.md) · **Fixed (23/10/2026, v2.0.121)** · Medium · Flight Details Save Changes does not return to the Flight Schedule and gives no success message
+- [x] [BUG-FD-002](bugs/BUG-FD-002.md) · **Fixed (23/10/2026, v2.0.121)** · Medium · Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM >…
+- [x] [BUG-FD-004](bugs/BUG-FD-004.md) · **Fixed (23/10/2026, v2.0.120)** · Medium · Leg PIC / Secondary Flight Crew dropdowns offer passengers (e.g. a custom passenger can be chosen…
+- [x] [BUG-FD-005](bugs/BUG-FD-005.md) · **Fixed (23/10/2026, v2.0.120)** · Medium · Leg with two unknown waypoints: only the first is offered for adding, the second is silently…
+- [x] [BUG-FD-006](bugs/BUG-FD-006.md) · **Fixed (23/10/2026, v2.0.121)** · Medium · Flight can be set to Complete with no times or destination on a leg; no 'Required Information'…
+- [x] [BUG-FD-009](bugs/BUG-FD-009.md) · **Fixed (23/10/2026, v2.0.121)** · Medium · A user without lock rights (not WL) can lock a flight; the server accepted status complete_locked
+- [x] [BUG-FD-010](bugs/BUG-FD-010.md) · **Fixed (23/10/2026, v2.0.121)** · Medium · Required Information check skipped on unlock saves: a flight was saved Complete with no departure…
+- [x] [BUG-FD-003](bugs/BUG-FD-003.md) · **Fixed (23/10/2026, v2.0.120)** · Low · Times and Meters: no link to the previous flight next to 'Previous' meter readings
+
+### Active Flights and Live Tracking (0 open, 4 fixed, 1 closed)
+
+- [x] [BUG-AF-004](bugs/BUG-AF-004.md) · **Fixed (24/10/2026, v2.0.123)** · High · Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC…
+- [x] [BUG-AF-002](bugs/BUG-AF-002.md) · **Fixed (24/10/2026, v2.0.123)** · Medium · Active Flights lists future flights that have no SAR time, and the stats cards don't count them
+- [x] [BUG-AF-001](bugs/BUG-AF-001.md) · **Fixed (24/10/2026, v2.0.123)** · Low · Active Flights shows SAR Time '01/01/1970 00:00' for flights with SAR watch disabled
+- [x] [BUG-AF-003](bugs/BUG-AF-003.md) · **Fixed (24/10/2026, v2.0.123)** · Low · Active Flights has no page Help (?), and its popups (About Live Tracking, Adjust SAR, Add Note)…
+- [x] [BUG-AF-005](bugs/BUG-AF-005.md) · **Closed, by design (24/10/2026)** · Medium · A Read Only Group (RG) user sees every company flight, not only their group's
+
+### Daily Flight Record (3 open)
+
+- [ ] [BUG-DFR-002](bugs/BUG-DFR-002.md) · **Open, not retested** · Medium · Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields…
+- [ ] [BUG-DFR-003](bugs/BUG-DFR-003.md) · **Open, not retested** · Medium · Changing filters quickly appends results instead of replacing them, showing duplicate and…
+- [ ] [BUG-DFR-001](bugs/BUG-DFR-001.md) · **Open, not retested** · Low · Daily Flight Record has no page Help (?), and its popups (Manage Columns, Notes full text) don't…
+
+### All Personnel (Personnel List) (2 open)
+
+- [ ] [BUG-PL-001](bugs/BUG-PL-001.md) · **Open, not retested** · Low · All Personnel has no page Help (?)
+- [ ] [BUG-PL-002](bugs/BUG-PL-002.md) · **Open, not retested** · Low · A person with no name exists and is listed as '?' at the top of All Personnel (person #274…
+
+### Personnel Details / My Account (20 open)
+
+- [ ] [BUG-PD-006](bugs/BUG-PD-006.md) · **Open, not retested** · High · Personnel Details > Recency and Renewals: action buttons are hidden (Add Item, Table/Card view…
+- [ ] [BUG-PD-011](bugs/BUG-PD-011.md) · **Open, not retested** · High · Personnel Details > Security: Change Password always fails with 'Invalid Action: change_password'
+- [ ] [BUG-PD-001](bugs/BUG-PD-001.md) · **Open, not retested** · Medium · personneldetails/index.js is truncated: ReferenceError getPickerMod on every load
+- [ ] [BUG-PD-003](bugs/BUG-PD-003.md) · **Open, not retested** · Medium · 2FA setup: one wrong verification code closes the setup dialog and issues a new secret
+- [ ] [BUG-PD-007](bugs/BUG-PD-007.md) · **Open, not retested** · Medium · Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date
+- [ ] [BUG-PD-008](bugs/BUG-PD-008.md) · **Open, not retested** · Medium · Personnel Details > Recency: the recency summary popup has no Add Manual Entry, no x, and doesn't…
+- [ ] [BUG-PD-009](bugs/BUG-PD-009.md) · **Open, not retested** · Medium · Personnel Details > Renewal edit: the Today and Calculate links can't be clicked because the date…
+- [ ] [BUG-PD-012](bugs/BUG-PD-012.md) · **Open, not retested** · Medium · Personnel Details > Files: opening a file shows 'File Access Error' with the file's contents as the…
+- [ ] [BUG-PD-016](bugs/BUG-PD-016.md) · **Open, not retested** · Medium · Personnel Details > Timesheets: Add Claim button does nothing
+- [ ] [BUG-PD-017](bugs/BUG-PD-017.md) · **Open, not retested** · Medium · Personnel Details > Lesson Plans: an assigned plan is saved but never listed; the dialog's dates…
+- [ ] [BUG-PL-003](bugs/BUG-PL-003.md) · **Open, not retested** · Medium · All Personnel: a Read Only Group (RG) user can't open the details of anyone in their group
+- [ ] [BUG-EXM-009](bugs/BUG-EXM-009.md) · **Open, not retested** · Low · A hotspot question with no image shows a developer debug message to the person taking the exam
+- [ ] [BUG-PD-002](bugs/BUG-PD-002.md) · **Open, not retested** · Low · Personnel Details modals (Enable 2FA, Setup Error alert): title right-aligned, away from its icon
+- [ ] [BUG-PD-004](bugs/BUG-PD-004.md) · **Open, not retested** · Low · Security tab 'Enabled on' date ignores Settings > Time Zone format
+- [ ] [BUG-PD-005](bugs/BUG-PD-005.md) · **Open, not retested** · Low · History, PDF Options and Legacy Duty Browser popups don't close with Escape, and PDF Options has no…
+- [ ] [BUG-PD-010](bugs/BUG-PD-010.md) · **Open, not retested** · Low · The 'Performance' timing panel is shown to users and covers buttons
+- [ ] [BUG-PD-013](bugs/BUG-PD-013.md) · **Open, not retested** · Low · An empty Birth Date shows today's date
+- [ ] [BUG-PD-014](bugs/BUG-PD-014.md) · **Open, not retested** · Low · Digital Signature: wrong password closes the popup and throws away the drawing; empty Save gives no…
+- [ ] [BUG-PD-015](bugs/BUG-PD-015.md) · **Open, not retested** · Low · Flight & Duty Analysis popup: title date is YYYY-MM-DD and Escape doesn't close it
+- [ ] [BUG-PD-018](bugs/BUG-PD-018.md) · **Open, not retested** · Low · Request Leave: Start and End Date default to the UTC date, not today's local date
+
+### Roster Viewer (3 open)
+
+- [ ] [BUG-RV-002](bugs/BUG-RV-002.md) · **Open, not retested** · Medium · Clicking a shift does not open Shift Details
+- [ ] [BUG-RV-001](bugs/BUG-RV-001.md) · **Open, not retested** · Low · No page Help (?) and Group Visibility popup ignores Escape
+- [ ] [BUG-RV-003](bugs/BUG-RV-003.md) · **Open, not retested** · Low · Roster Viewer shift note popup shows the date as 'October 5, 2026', not the configured DD/MM/YYYY
+
+### Roster Builder (8 open)
+
+- [ ] [BUG-RB-007](bugs/BUG-RB-007.md) · **Open, not retested** · High · Clear then Publish of a draft month with no shifts does not clear the live roster and shows no…
+- [ ] [BUG-RB-002](bugs/BUG-RB-002.md) · **Open, not retested** · Medium · Copy Live to Draft copies one shift at a time and takes about 6 minutes for one month
+- [ ] [BUG-RB-003](bugs/BUG-RB-003.md) · **Open, not retested** · Medium · Copy/paste still works with violation checking ON
+- [ ] [BUG-RB-005](bugs/BUG-RB-005.md) · **Open, not retested** · Medium · Every validation error throws a JS error instead of showing a message (e.g. Apply Shift Pattern…
+- [ ] [BUG-RB-008](bugs/BUG-RB-008.md) · **Open, not retested** · Medium · Roster Builder can only be opened from Settings and Tools, so a Roster Builder user without System…
+- [ ] [BUG-RB-001](bugs/BUG-RB-001.md) · **Open, not retested** · Low · No page Help (?); Copy/Paste Instructions popup ignores Escape and outside click
+- [ ] [BUG-RB-004](bugs/BUG-RB-004.md) · **Open, not retested** · Low · Rule Violations popup shows 'Monday, October 5' instead of the configured DD/MM/YYYY date
+- [ ] [BUG-RB-006](bugs/BUG-RB-006.md) · **Open, not retested** · Low · At phone width the shift palette takes half the screen and the Draft Edit Mode banner covers the…
+
+### Timesheets, Timesheet Details, Leave Requests (8 open)
+
+- [ ] [BUG-TS-002](bugs/BUG-TS-002.md) · **Open, not retested** · Medium · Timesheet Approval: status filter 'Unsigned' shows 'No personnel found' although everyone has…
+- [ ] [BUG-TS-003](bugs/BUG-TS-003.md) · **Open, not retested** · Medium · Timesheet Approval list totals don't match Timesheet Details (Rostered Days and Duty Hours)
+- [ ] [BUG-TS-008](bugs/BUG-TS-008.md) · **Open, not retested** · Medium · Approving a leave request doesn't change the rostered shifts, and rejecting with no reason gives no…
+- [ ] [BUG-TS-001](bugs/BUG-TS-001.md) · **Open, not retested** · Low · No page Help on Timesheet Approval, and the Help (?) on Timesheet Details does nothing
+- [ ] [BUG-TS-004](bugs/BUG-TS-004.md) · **Open, not retested** · Low · Timesheet Details shows dates as 'Oct 5' and times with seconds (14:00:00)
+- [ ] [BUG-TS-005](bugs/BUG-TS-005.md) · **Open, not retested** · Low · Timesheet Details: F&D and Roster Violation popups ignore Escape and show ISO dates in the title
+- [ ] [BUG-TS-006](bugs/BUG-TS-006.md) · **Open, not retested** · Low · Leave Types: a validation error closes the Add Leave Type popup and throws away what you typed; the…
+- [ ] [BUG-TS-007](bugs/BUG-TS-007.md) · **Open, not retested** · Low · Reject Claim: leaving the reason empty closes the reject popup and throws a script error
+
+### Flight and Duty (5 open)
+
+- [ ] [BUG-FAD-001](bugs/BUG-FAD-001.md) · **Open, not retested** · Low · Flight and Duty has no page Help (?)
+- [ ] [BUG-FAD-002](bugs/BUG-FAD-002.md) · **Open, not retested** · Low · Flight and Duty popups (Flight Details, Duty Time Details, Roster Violations, Resolutions Required)…
+- [ ] [BUG-FAD-003](bugs/BUG-FAD-003.md) · **Open, not retested** · Low · Flight and Duty popups show dates as '16 Oct 2026' instead of the configured DD/MM/YYYY
+- [ ] [BUG-FAD-004](bugs/BUG-FAD-004.md) · **Open, not retested** · Low · Flight and Duty column headers are ambiguous: two '1 Days' and two '24 Hours' columns, and '1 Days'…
+- [ ] [BUG-FAD-005](bugs/BUG-FAD-005.md) · **Open, not retested** · Low · Flight and Duty 'View as Date' defaults to the UTC date instead of the local date
+
+### Notices (4 open)
+
+- [ ] [BUG-NOT-002](bugs/BUG-NOT-002.md) · **Open, not retested** · Medium · Notice Details: clicking a .txt attachment does nothing (no preview, no download)
+- [ ] [BUG-NOT-004](bugs/BUG-NOT-004.md) · **Open, not retested** · Medium · A Write Group (WG) user gets 'An error occurred' when clicking New Notice
+- [ ] [BUG-NOT-001](bugs/BUG-NOT-001.md) · **Open, not retested** · Low · Notices has no page Help (?), and the Create New Notice popup ignores Escape
+- [ ] [BUG-NOT-003](bugs/BUG-NOT-003.md) · **Open, not retested** · Low · Settings and Tools hub: 'Notices' card has no links
+
+### Recency and Renewals (overview page) (2 open)
+
+- [ ] [BUG-REC-001](bugs/BUG-REC-001.md) · **Open, not retested** · Low · Recency and Renewals overview has no page Help (?)
+- [ ] [BUG-REC-002](bugs/BUG-REC-002.md) · **Open, not retested** · Low · Recency and Renewals at phone width: the table is cut off, so Total Items and Actions are hidden
+
+### Safety Reports (SMS) (5 open)
+
+- [ ] [BUG-SMS-005](bugs/BUG-SMS-005.md) · **Open, not retested** · High · Group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted
+- [ ] [BUG-SMS-001](bugs/BUG-SMS-001.md) · **Open, not retested** · Medium · New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and…
+- [ ] [BUG-SMS-002](bugs/BUG-SMS-002.md) · **Open, not retested** · Medium · New Safety Report: Event Date/Time defaults to the UTC date and time, not local
+- [ ] [BUG-SMS-003](bugs/BUG-SMS-003.md) · **Open, not retested** · Low · Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice
+- [ ] [BUG-SMS-004](bugs/BUG-SMS-004.md) · **Open, not retested** · Low · Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register
+
+### Hazard Register (3 open)
+
+- [ ] [BUG-HAZ-001](bugs/BUG-HAZ-001.md) · **Open, not retested** · Medium · Hazard Register details: Hazard Type always shows '--'
+- [ ] [BUG-HAZ-002](bugs/BUG-HAZ-002.md) · **Open, not retested** · Medium · Hazard Register details: Final Risk Assessment never shows the saved final risk
+- [ ] [BUG-HAZ-003](bugs/BUG-HAZ-003.md) · **Open, not retested** · Low · Hazard Register has no way to create a hazard entry
+
+### File Browser (7 open)
+
+- [ ] [BUG-FB-003](bugs/BUG-FB-003.md) · **Open, not retested** · Medium · Clicking a .txt file shows 'File Access Error' with the file's own text
+- [ ] [BUG-FB-005](bugs/BUG-FB-005.md) · **Open, not retested** · Medium · Read/Write Access groups are not kept after Update Document
+- [ ] [BUG-FB-006](bugs/BUG-FB-006.md) · **Open, not retested** · Medium · Deleting a folder fails with 'Invalid Action: filebrowser_deletefolder'
+- [ ] [BUG-FB-001](bugs/BUG-FB-001.md) · **Open, not retested** · Low · File Browser has no page Help (?)
+- [ ] [BUG-FB-002](bugs/BUG-FB-002.md) · **Open, not retested** · Low · File Browser shows Date Uploaded as 'Oct 22, 2026' instead of DD/MM/YYYY
+- [ ] [BUG-FB-004](bugs/BUG-FB-004.md) · **Open, not retested** · Low · Escape doesn't close the Create New Folder or Configure File popups
+- [ ] [BUG-FB-007](bugs/BUG-FB-007.md) · **Open, not retested** · Low · File Browser on a phone: table is cut off, edit buttons are off-screen
+
+### Form Builder (4 open)
+
+- [ ] [BUG-FBLD-002](bugs/BUG-FBLD-002.md) · **Open, not retested** · Medium · Form Builder View Form: Date and Time widgets default to UTC, not local time
+- [ ] [BUG-FBLD-003](bugs/BUG-FBLD-003.md) · **Open, not retested** · Medium · Table conditions do nothing in View Form
+- [ ] [BUG-FBLD-001](bugs/BUG-FBLD-001.md) · **Open, not retested** · Low · Popups ignore Escape and outside clicks (Help, Create New Form Template, Edit Options)
+- [ ] [BUG-FBLD-004](bugs/BUG-FBLD-004.md) · **Open, not retested** · Low · Form Builder on a phone: page is wider than the screen and the Toolbox covers the form
+
+### Form Browser / Form Viewer (3 open)
+
+- [ ] [BUG-FBR-001](bugs/BUG-FBR-001.md) · **Open, not retested** · Low · Form Browser has no page Help (?)
+- [ ] [BUG-FBR-002](bugs/BUG-FBR-002.md) · **Open, not retested** · Low · Form Browser and Form Viewer dates ignore the date setting ('Oct 21, 2026', '10:24 PM')
+- [ ] [BUG-FBR-003](bugs/BUG-FBR-003.md) · **Open, not retested** · Low · Form Browser on a phone: table is cut off, Created and Created By are off-screen
+
+### Task Tracker (4 open)
+
+- [ ] [BUG-TT-004](bugs/BUG-TT-004.md) · **Open, not retested** · Medium · A Write Group (WG) user is treated as read-only and can't add a project
+- [ ] [BUG-TT-001](bugs/BUG-TT-001.md) · **Open, not retested** · Low · Escape doesn't close Help or Add Project
+- [ ] [BUG-TT-002](bugs/BUG-TT-002.md) · **Open, not retested** · Low · Task Tracker dates ignore the date setting ('Dec 31', '2026-10-21')
+- [ ] [BUG-TT-003](bugs/BUG-TT-003.md) · **Open, not retested** · Low · Task Tracker on a phone: feature cards are pushed right and cut off
+
+### Reports (4 open)
+
+- [ ] [BUG-RPT-003](bugs/BUG-RPT-003.md) · **Open, not retested** · Medium · Reports tables overlap on a phone: column text is drawn on top of other columns
+- [ ] [BUG-RPT-001](bugs/BUG-RPT-001.md) · **Open, not retested** · Low · Reports has no page Help (?), and Escape doesn't close New Report Template
+- [ ] [BUG-RPT-002](bugs/BUG-RPT-002.md) · **Open, not retested** · Low · Reports Export CSV writes dates as '2026-10-16 06:00:00' instead of the org date format
+- [ ] [BUG-RPT-004](bugs/BUG-RPT-004.md) · **Open, not retested** · Low · The Flight Hours meter column shows the aircraft's current meter on every flight, and Total adds…
+
+### Support tickets (3 open, 1 fixed)
+
+- [ ] [BUG-SUP-001](bugs/BUG-SUP-001.md) · **Open, not retested** · Medium · Support has no page Help (?); Escape doesn't close New Ticket, but a click outside closes it and…
+- [ ] [BUG-SUP-002](bugs/BUG-SUP-002.md) · **Open, not retested** · Low · Support New Ticket: Ctrl+V doesn't paste a screenshot, though the error message tells you to use…
+- [ ] [BUG-SUP-003](bugs/BUG-SUP-003.md) · **Open, not retested** · Low · Support ticket: clicking a .txt attachment shows an 'Error' popup containing the file's text
+- [x] [BUG-SUP-004](bugs/BUG-SUP-004.md) · **Fixed (22/10/2026)** · Medium · Support: the only permission level is All Access, so regular staff can't raise or see their own…
+
+### Chat (3 open)
+
+- [ ] [BUG-AM-006](bugs/BUG-AM-006.md) · **Open, part fixed (22/10/2026)** · Medium · Access Manager has no Chat permission, so you can't give Chat to a non-admin user
+- [ ] [BUG-CHAT-001](bugs/BUG-CHAT-001.md) · **Open, not retested** · Low · Chat has no page Help (?); Escape doesn't close Create Channel; empty name does nothing with no…
+- [ ] [BUG-CHAT-002](bugs/BUG-CHAT-002.md) · **Open, not retested** · Low · Chat times show 12-hour '01:32 AM' and date separators 'Thursday, October 22, 2026' instead of the…
+
+### Exam Builder, Exam Editor, Exam Instances (7 open, 3 fixed)
+
+- [ ] [BUG-EXM-004](bugs/BUG-EXM-004.md) · **Open, not retested** · Medium · Exam Builder has no way to link or unlink user groups on an exam group
+- [ ] [BUG-EXM-008](bugs/BUG-EXM-008.md) · **Open, not retested** · Medium · Exam Builder: deleting an exam or exam group that has instances fails silently (error only in the…
+- [ ] [BUG-EXM-001](bugs/BUG-EXM-001.md) · **Open, not retested** · Low · Exam Builder/Editor have no page Help (?); Escape doesn't close Add Group, Add Exam or Choose…
+- [ ] [BUG-EXM-002](bugs/BUG-EXM-002.md) · **Open, not retested** · Low · Exam dates ignore the org format: 'Oct 22, 2026' in Exam Builder and '10/22/2026 01:46 AM' in Exam…
+- [ ] [BUG-EXM-003](bugs/BUG-EXM-003.md) · **Open, not retested** · Low · Exam viewer 'Read Only' still shows Add Question, Add Group and Save Question
+- [ ] [BUG-EXM-005](bugs/BUG-EXM-005.md) · **Open, not retested** · Low · Exam Builder on a phone: exam table columns and action icons overlap
+- [ ] [BUG-EXM-007](bugs/BUG-EXM-007.md) · **Open, not retested** · Low · Exam Instances batch: deleting a person's instance shows success but the row stays until the page…
+- [x] [BUG-EXM-006](bugs/BUG-EXM-006.md) · **Fixed (23/10/2026, v2.0.121)** · High · Taking an exam: Multi-Response checkboxes toggle twice, so clicking the box does nothing and the…
+- [x] [BUG-EXM-010](bugs/BUG-EXM-010.md) · **Fixed (23/10/2026, v2.0.122)** · Medium · Taking an exam as a read-only (group-level) user: saves and submit return Access Denied, and…
+- [x] [BUG-EXM-011](bugs/BUG-EXM-011.md) · **Fixed (23/10/2026, v2.0.122)** · Low · Taking an exam: "N of 10 questions answered" and the navigator tick only update after moving to…
+
+### Settings – Flight Schedule (0 open, 2 fixed)
+
+- [x] [BUG-SFS-002](bugs/BUG-SFS-002.md) · **Fixed (22/10/2026)** · High · Changing Schedule Start Time saves a full date-time, and the setting then shows NaN:NaN
+- [x] [BUG-SFS-001](bugs/BUG-SFS-001.md) · **Fixed (22/10/2026)** · Low · Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted
+
+### Settings – Daily Flight Record (1 open)
+
+- [ ] [BUG-SDFR-001](bugs/BUG-SDFR-001.md) · **Open, not retested** · Low · Daily Flight Record Settings loads a colorpicker.js that does not exist (404 in the console)
+
+### Settings – Time Zone (date/time matrix) (3 open)
+
+- [ ] [BUG-STZ-001](bugs/BUG-STZ-001.md) · **Open, not retested** · Medium · Time Zone settings: the Example preview shows UTC, not the selected time zone
+- [ ] [BUG-STZ-003](bugs/BUG-STZ-003.md) · **Open, not retested** · Medium · Time Zone settings: the Example preview shows MM/DD/YYYY for every date format except DD/MM/YYYY
+- [ ] [BUG-STZ-002](bugs/BUG-STZ-002.md) · **Open, not retested** · Low · Time Zone settings page has no Help (?)
+
+### Settings – Resources (Aircraft) (1 open)
+
+- [ ] [BUG-SRES-001](bugs/BUG-SRES-001.md) · **Open, not retested** · Low · The meter "Last:" dates show as YYYY-MM-DD instead of the Time Zone date format
+
+### Settings – Weight and Balance Configs (5 open)
+
+- [ ] [BUG-SWAB-001](bugs/BUG-SWAB-001.md) · **Open, not retested** · Low · Weight & Balance Configs: no Help (?), and Escape does not close popups
+- [ ] [BUG-SWAB-002](bugs/BUG-SWAB-002.md) · **Open, not retested** · Low · Weight & Balance Configs: dates show as "14 Oct 2026" / "29 Sept 2026" instead of DD/MM/YYYY
+- [ ] [BUG-SWAB-003](bugs/BUG-SWAB-003.md) · **Open, not retested** · Low · Weight & Balance Configs shows a debug "Performance" timing panel to users
+- [ ] [BUG-SWAB-004](bugs/BUG-SWAB-004.md) · **Open, not retested** · Low · Weight & Balance Configs: on a phone the page is wider than the screen
+- [ ] [BUG-SWAB-005](bugs/BUG-SWAB-005.md) · **Open, not retested** · Low · W&B Configs: two revisions show the same number ("Rev 5") until another import renumbers them
+
+### Settings – Extra Flight Info (1 open)
+
+- [ ] [BUG-SEFI-001](bugs/BUG-SEFI-001.md) · **Open, not retested** · Low · No Help (?), and Escape does not close Add Field
+
+### Settings – Flight Types (2 open)
+
+- [ ] [BUG-SFT-002](bugs/BUG-SFT-002.md) · **Open, not retested** · Medium · A duplicate Flight Category name ("PIC") is accepted
+- [ ] [BUG-SFT-001](bugs/BUG-SFT-001.md) · **Open, not retested** · Low · No Help (?), and Escape does not close popups
+
+### Settings – Waypoint Locations (4 open)
+
+- [ ] [BUG-SWP-002](bugs/BUG-SWP-002.md) · **Open, not retested** · Medium · Moving a waypoint about 250 nm saves with no "Significant Location Change" warning
+- [ ] [BUG-SWP-004](bugs/BUG-SWP-004.md) · **Open, not retested** · Medium · Waypoints on a phone: table columns overlap and Add Waypoint is off-screen
+- [ ] [BUG-SWP-001](bugs/BUG-SWP-001.md) · **Open, not retested** · Low · No Help (?), and Escape does not close popups
+- [ ] [BUG-SWP-003](bugs/BUG-SWP-003.md) · **Open, not retested** · Low · The list is not refreshed after you save or delete on the detail page
+
+### Settings – Roster Shifts (4 open)
+
+- [ ] [BUG-SST-004](bugs/BUG-SST-004.md) · **Open, not retested** · Medium · Roster Shifts on a phone: the table scrolls the page sideways and the group tabs are hidden
+- [ ] [BUG-SST-001](bugs/BUG-SST-001.md) · **Open, not retested** · Low · Roster Shifts (Shift Type Editor): no Help (?), and Escape does not close popups
+- [ ] [BUG-SST-002](bugs/BUG-SST-002.md) · **Open, not retested** · Low · New Shift Type: Duty Start/End Time default to the current UTC time
+- [ ] [BUG-SST-003](bugs/BUG-SST-003.md) · **Open, not retested** · Low · Roster Shifts: after Edit Group the selected group jumps back to Duty, so the next New Shift Type…
+
+### Settings – Fatigue Risk Management (2 open)
+
+- [ ] [BUG-SFRMS-001](bugs/BUG-SFRMS-001.md) · **Open, not retested** · Low · No Help (?), and Escape does not close popups
+- [ ] [BUG-SFRMS-002](bugs/BUG-SFRMS-002.md) · **Open, not retested** · Low · FRMS Settings on a phone: the page scrolls sideways, "+ Add ... Rule" is off-screen and rule text…
+
+### Settings – Recency and Renewals (4 open)
+
+- [ ] [BUG-SREN-002](bugs/BUG-SREN-002.md) · **Open, not retested** · Medium · Add Recency accepts negative Days, and a Caution value higher than Warning
+- [ ] [BUG-SREN-003](bugs/BUG-SREN-003.md) · **Open, not retested** · Medium · Add Renewal Type accepts negative Days to Notify and a Frequency of 0 days
+- [ ] [BUG-SREN-001](bugs/BUG-SREN-001.md) · **Open, not retested** · Low · Recency & Renewals Settings: no Help (?), and Escape does not close popups
+- [ ] [BUG-SREN-004](bugs/BUG-SREN-004.md) · **Open, not retested** · Low · Recency & Renewals Settings on a phone: table columns overlap each other
+
+### Settings – Lesson Plans (3 open)
+
+- [ ] [BUG-SLP-002](bugs/BUG-SLP-002.md) · **Open, not retested** · High · Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost…
+- [ ] [BUG-SLP-001](bugs/BUG-SLP-001.md) · **Open, not retested** · Low · Lesson Plan Settings: no Help (?), and Escape does not close popups
+- [ ] [BUG-SLP-003](bugs/BUG-SLP-003.md) · **Open, not retested** · Low · Add Lesson accepts negative hours (Solo Hours -1 is saved and shown as "Solo: -1h")
+
+### Settings – Risk Matrix (2 open)
+
+- [ ] [BUG-SRM-001](bugs/BUG-SRM-001.md) · **Open, not retested** · Low · No Help (?), and Escape does not close popups
+- [ ] [BUG-SRM-002](bugs/BUG-SRM-002.md) · **Open, not retested** · Low · Risk Matrix Settings on a phone: the page scrolls sideways and "+ Add Level" is cut off
+
+### Settings – Safety Reports (1 open)
+
+- [ ] [BUG-SSMS-001](bugs/BUG-SSMS-001.md) · **Open, not retested** · Low · No Help (?), and Escape does not close popups
+
+### Settings – Inspection Notifications (3 open)
+
+- [ ] [BUG-SINS-002](bugs/BUG-SINS-002.md) · **Open, not retested** · Medium · A meter inspection on an aircraft at 0.0 hours is never Overdue, and negative meter values are…
+- [ ] [BUG-SINS-001](bugs/BUG-SINS-001.md) · **Open, not retested** · Low · No Help (?), and Escape does not close popups
+- [ ] [BUG-SINS-003](bugs/BUG-SINS-003.md) · **Open, not retested** · Low · Trigger date shows as 2026-10-01, Add Inspection defaults to the UTC date, and the overdue day…
+
+### Settings – Google Calendar, WhatsApp (2 open)
+
+- [ ] [BUG-SINT-001](bugs/BUG-SINT-001.md) · **Open, not retested** · Low · Google Calendar Settings: Help and Add Calendar don't close with Escape or an outside click
+- [ ] [BUG-SINT-002](bugs/BUG-SINT-002.md) · **Open, not retested** · Low · Google Calendar Sync Status: flight dates show as 2024-01-01 07:55 instead of DD/MM/YYYY
+
+### Settings – Activity Log (1 open)
+
+- [ ] [BUG-SLOG-001](bugs/BUG-SLOG-001.md) · **Open, not retested** · Low · No page Help (?), and dates show as "22 Oct 2026, 02:51 am"
+
+### Cross-cutting: permission levels (2 open, 2 fixed)
+
+- [ ] [BUG-PERM-002](bugs/BUG-PERM-002.md) · **Open, not retested** · Medium · User with no permissions cannot open their own My Account (no self-service password / 2FA)
+- [ ] [BUG-PERM-001](bugs/BUG-PERM-001.md) · **Open, still failing (22/10/2026)** · Low · Sidebar lists modules the user has no permission for (all lead to Access Denied)
+- [x] [BUG-AM-005](bugs/BUG-AM-005.md) · **Fixed (22/10/2026)** · Medium · 16 permission types appear twice with the same name (e.g. two "Flight Schedule" cards with…
+- [x] [BUG-AM-007](bugs/BUG-AM-007.md) · **Fixed (22/10/2026)** · Low · A customer created from Flight Details is Active with no login credentials
+
+### Cross-cutting: date/time formats and pickers (0 open, 2 fixed)
+
+- [x] [BUG-DATE-001](bugs/BUG-DATE-001.md) · **Fixed (23/10/2026, v2.0.121)** · Medium · Flight time across a DST change is out by an hour (01:00-05:00 on 04/04/2027 gives 4.0 instead of…
+- [x] [BUG-FD-007](bugs/BUG-FD-007.md) · **Fixed (23/10/2026, v2.0.120)** · Low · New flight defaults its leg date/time to UTC instead of local time
+
+### Cross-cutting: performance, console and network (1 open)
+
+- [ ] [BUG-PERF-001](bugs/BUG-PERF-001.md) · **Open, not retested** · Low · 'Performance' debug timing panel shown on every page, including to non-admin users
+
+## Summary
 
 | Bugs | High | Medium | Low | Total |
 |---|---|---|---|---|
@@ -18,9 +345,9 @@ This is the only audit status document. It replaces REPORT.md, TRACKER.md, BUGS_
 
 - 139 of the 141 open bugs have never been retested since they were found, so some may already be fixed.
 - Checklists: 55 of 55 done. 791 checks: 598 pass, 145 fail, 26 blocked, 20 N/A.
-- External audit issues are tracked separately in section 7.
+- Issues from the two earlier external audits are listed separately under "External audit issues".
 
-## 2. Decisions needed and not yet tested
+## Decisions needed and not yet tested
 
 <!-- keep:todo -->
 **Needs Jon's decision**
@@ -39,17 +366,17 @@ This is the only audit status document. It replaces REPORT.md, TRACKER.md, BUGS_
 - Most open bugs have never been retested (see section 1); they need a retest pass once fixes are deployed.
 <!-- /keep:todo -->
 
-## 3. Open High bugs
+## Open High bugs
 
-| Bug | Checklist row | Module | Title | Status | Last retest |
-|---|---|---|---|---|---|
-| [BUG-PD-006](bugs/BUG-PD-006.md) | `PD-019` | Personnel Details | Personnel Details > Recency and Renewals: action buttons are hidden (Add Item, Table/Card view, renewal Save / Complete Renewal / Cancel) and Group by / Order by are disabled | Open (not retested) | - |
-| [BUG-PD-011](bugs/BUG-PD-011.md) | `PD-026` | Personnel Details | Personnel Details > Security: Change Password always fails with 'Invalid Action: change_password' | Open (not retested) | - |
-| [BUG-RB-007](bugs/BUG-RB-007.md) | `RB-013` | Roster Builder | Roster Builder: Clear then Publish of a draft month with no shifts does not clear the live roster and shows no message | Open (not retested) | - |
-| [BUG-SLP-002](bugs/BUG-SLP-002.md) | `SLP-001` | Settings: Lesson Plans | Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave | Open (not retested) | - |
-| [BUG-SMS-005](bugs/BUG-SMS-005.md) | `SMS-015` | Safety Reports | Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted | Open (not retested) | - |
+| Bug | Module | Title | Status | Last retest |
+|---|---|---|---|---|
+| [BUG-PD-006](bugs/BUG-PD-006.md) | Personnel Details | Personnel Details > Recency and Renewals: action buttons are hidden (Add Item, Table/Card view, renewal Save / Complete Renewal / Cancel) and Group by / Order by are disabled | Open, not retested | - |
+| [BUG-PD-011](bugs/BUG-PD-011.md) | Personnel Details | Personnel Details > Security: Change Password always fails with 'Invalid Action: change_password' | Open, not retested | - |
+| [BUG-RB-007](bugs/BUG-RB-007.md) | Roster Builder | Roster Builder: Clear then Publish of a draft month with no shifts does not clear the live roster and shows no message | Open, not retested | - |
+| [BUG-SLP-002](bugs/BUG-SLP-002.md) | Settings: Lesson Plans | Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave | Open, not retested | - |
+| [BUG-SMS-005](bugs/BUG-SMS-005.md) | Safety Reports | Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted | Open, not retested | - |
 
-## 4. Progress by checklist
+## Progress by checklist
 
 | Checklist | Prefix | Area | Checks | Pass | Fail | Blocked | N/A | Bugs | Fixed | Closed | Open | State |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -109,11 +436,9 @@ This is the only audit status document. It replaces REPORT.md, TRACKER.md, BUGS_
 | [95-xc-performance-errors](checklists/95-xc-performance-errors.md) | `PERF` | Cross-cutting: performance, console and network | 4 | 1 | 3 | 0 | 0 | 1 | 0 | 0 | 1 | DONE |
 | [99-e2e-workflows](checklists/99-e2e-workflows.md) | `E2E` | End-to-end workflows | 8 | 6 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | DONE |
 
-## 5. All bugs
+## Bug details
 
-Open bugs first (High to Low), then fixed, then closed. Full steps, expected/actual, cause, fix and screenshots are in each bug file.
-
-### Open (141)
+Full title, checklist row and latest retest for every bug, open first. The bug files have the complete write-up.
 
 | Bug | Severity | Checklist row | Module | Title | Status | Last retest |
 |---|---|---|---|---|---|---|
@@ -258,11 +583,6 @@ Open bugs first (High to Low), then fixed, then closed. Full steps, expected/act
 | [BUG-SLOG-001](bugs/BUG-SLOG-001.md) | Low | `SLOG-S04` | Settings: Activity Log | Activity Log: no page Help (?), and dates show as "22 Oct 2026, 02:51 am" | Open (not retested) | - |
 | [BUG-PERM-001](bugs/BUG-PERM-001.md) | Low | `PERM-007` | Shell (main) sidebar | Sidebar lists modules the user has no permission for (all lead to Access Denied) | Open (confirmed 22/10/2026) | - |
 | [BUG-PERF-001](bugs/BUG-PERF-001.md) | Low | `PERF-001` | All modules (debug panel) | 'Performance' debug timing panel shown on every page, including to non-admin users | Open (not retested) | - |
-
-### Fixed (48)
-
-| Bug | Severity | Checklist row | Module | Title | Status | Last retest |
-|---|---|---|---|---|---|---|
 | [BUG-FS-008](bugs/BUG-FS-008.md) | High | `FS-027` | Flight Schedule | Flight Schedule: a group-level user (G / WG) sees no flights, even on aircraft in their own group | Fixed (verified 22/10/2026) | - |
 | [BUG-FD-008](bugs/BUG-FD-008.md) | High | `FD-030` | Flight Details | Unlocking a Complete & Locked flight wipes its leg route, leg PIC, leg passengers and manifest | Fixed (verified 23/10/2026 v2.0.121) | 23/10/2026 v2.0.121: Fixed |
 | [BUG-AF-004](bugs/BUG-AF-004.md) | High | `AF-004` | Active Flights | Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC 'now' | Fixed (verified 24/10/2026 v2.0.123) | 24/10/2026 v2.0.123: Fixed |
@@ -311,14 +631,9 @@ Open bugs first (High to Low), then fixed, then closed. Full steps, expected/act
 | [BUG-SFS-001](bugs/BUG-SFS-001.md) | Low | `SFS-003` | Settings: Flight Schedule | Flight Schedule settings: Slot Duration + goes past 120 and typed values over 120 are accepted | Fixed (verified 22/10/2026) | - |
 | [BUG-AM-007](bugs/BUG-AM-007.md) | Low | `AM-015` | Access Manager | Access Manager: a customer created from Flight Details is Active with no login credentials | Fixed (verified 22/10/2026) | - |
 | [BUG-FD-007](bugs/BUG-FD-007.md) | Low | `DATE-005` | Flight Details | New flight defaults its leg date/time to UTC instead of local time | Fixed (verified 23/10/2026 v2.0.120) | 23/10/2026 v2.0.120: Fixed |
-
-### Closed (1)
-
-| Bug | Severity | Checklist row | Module | Title | Status | Last retest |
-|---|---|---|---|---|---|---|
 | [BUG-AF-005](bugs/BUG-AF-005.md) | Medium | `FS-027` | Active Flights | Active Flights: a Read Only Group (RG) user sees every company flight, not only their group's | Closed - by design (confirmed by Jon 24/10/2026) | 24/10/2026 v2.0.123: Closed (by design) |
 
-## 6. Test data left on stresstest
+## Test data left on stresstest
 
 ### From the checklist runs
 
@@ -432,7 +747,7 @@ Open bugs first (High to Low), then fixed, then closed. Full steps, expected/act
 - No data changed: Adjust SAR and Add Note were opened and cancelled without saving.
 <!-- /keep:testdata -->
 
-## 7. External audit issues
+## External audit issues
 
 <!-- keep:external -->
 137 issues imported from [`external-audits/`](external-audits/). They keep their original IDs (`FORM-NN`, `POP-NN`, `DATE-NN`, …; two-digit, unlike checklist rows `POP-001`). Full details, evidence and coverage matrices are in the source audit. When an issue is reproduced in our run, create `BUG-<PREFIX>-<NNN>.md` and put the external ID under *Related*.
@@ -578,12 +893,12 @@ Open bugs first (High to Low), then fixed, then closed. Full steps, expected/act
 | CHAT-08 | [28-chat](checklists/28-chat.md) | Low | Open (external) | Channel list is on the right (lists are on the left elsewhere); delete buttons only appear on hover, so they're hard to find and don't work on touch screens | [DataHangar_UI_UX_Audit_v2.md](external-audits/DataHangar_UI_UX_Audit_v2.md) |
 <!-- /keep:external -->
 
-## 8. Background notes
+## Background notes
 
 <!-- keep:background -->
 ### External audits merged (17/10/2026)
 
-- [Forms audit](external-audits/DataHangar_Forms_Audit.md) and [UI/UX audit v2](external-audits/DataHangar_UI_UX_Audit_v2.md) imported: 137 issues, 130 open, 2 fixed (POP-01 drag-out, FUNC-01 Chat load), rest Info. Listed in section 7 of this file and under *Known issues* in each checklist. "Ext. open" column above counts them.
+- [Forms audit](external-audits/DataHangar_Forms_Audit.md) and [UI/UX audit v2](external-audits/DataHangar_UI_UX_Audit_v2.md) imported: 137 issues, 130 open, 2 fixed (POP-01 drag-out, FUNC-01 Chat load), rest Info. Listed in the External audit issues section and under *Known issues* in each checklist. "Ext. open" column above counts them.
 - Already covered by the audits (retest only, don't re-audit from scratch): popup drag-out (18 popups fixed), date settings cycled through 4 configs, icon inventory (ICON-01..18, recommendation: self-hosted Material Symbols Sharp), forms widgets.
 - Audit settings restored: DD/MM/YYYY, HH:mm, Type-In Fields, Pacific/Auckland.
 - Not reachable for Service Account: Maintenance Portal, Leave Requests, WhatsApp, Location Planner.
