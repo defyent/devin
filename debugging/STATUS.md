@@ -2,7 +2,7 @@
 
 Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixed or closed. Click a bug ID for the full write-up (steps, expected vs actual, cause, fix, screenshots, retest history).
 
-**190 bugs: 141 open, 48 fixed, 1 closed.** Last updated 24/10/2026.
+**201 bugs: 152 open, 48 fixed, 1 closed.** Last updated 24/10/2026.
 
 ## Bug checklist
 
@@ -46,9 +46,11 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 - [x] [BUG-FS-005](bugs/BUG-FS-005.md) · **Fixed (22/10/2026)** · Low · JS error on every Live Edit toggle: Cannot read properties of null (reading 'scrollTop')
 - [x] [BUG-POP-004](bugs/BUG-POP-004.md) · **Fixed (22/10/2026)** · Low · Flight Schedule popups (View Details, Double Booking alert, note modals) do not close with Esc
 
-### Flight Details (1 open, 9 fixed)
+### Flight Details (3 open, 9 fixed)
 
+- [ ] [BUG-FD-012](bugs/BUG-FD-012.md) · **Open, not retested** · Medium · Flight Details Files: .txt shows its text in a "Required Information" alert; empty .txt and .html…
 - [ ] [BUG-FD-011](bugs/BUG-FD-011.md) · **Open, not retested** · Low · History labels lock and unlock differently ("Locked: No > Yes" vs "Status: Locked > Unlocked")
+- [ ] [BUG-FD-013](bugs/BUG-FD-013.md) · **Open, not retested** · Low · Flight Details Files: clicking a PDF opens it in two new tabs
 - [x] [BUG-FD-008](bugs/BUG-FD-008.md) · **Fixed (23/10/2026, v2.0.121)** · High · Unlocking a Complete & Locked flight wipes its leg route, leg PIC, leg passengers and manifest
 - [x] [BUG-FD-001](bugs/BUG-FD-001.md) · **Fixed (23/10/2026, v2.0.121)** · Medium · Flight Details Save Changes does not return to the Flight Schedule and gives no success message
 - [x] [BUG-FD-002](bugs/BUG-FD-002.md) · **Fixed (23/10/2026, v2.0.121)** · Medium · Flight Details History misses edits saved in Flight Details and shows a false 'Aircraft: ZK-SIM >…
@@ -87,7 +89,7 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 - [ ] [BUG-PD-007](bugs/BUG-PD-007.md) · **Open, not retested** · Medium · Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date
 - [ ] [BUG-PD-008](bugs/BUG-PD-008.md) · **Open, not retested** · Medium · Personnel Details > Recency: the recency summary popup has no Add Manual Entry, no x, and doesn't…
 - [ ] [BUG-PD-009](bugs/BUG-PD-009.md) · **Open, not retested** · Medium · Personnel Details > Renewal edit: the Today and Calculate links can't be clicked because the date…
-- [ ] [BUG-PD-012](bugs/BUG-PD-012.md) · **Open, not retested** · Medium · Personnel Details > Files: opening a file shows 'File Access Error' with the file's contents as the…
+- [ ] [BUG-PD-012](bugs/BUG-PD-012.md) · **Open, still failing (24/10/2026, v2.0.123)** · Medium · Personnel Details > Files: opening a file shows 'File Access Error' with the file's contents as the…
 - [ ] [BUG-PD-016](bugs/BUG-PD-016.md) · **Open, not retested** · Medium · Personnel Details > Timesheets: Add Claim button does nothing
 - [ ] [BUG-PD-017](bugs/BUG-PD-017.md) · **Open, not retested** · Medium · Personnel Details > Lesson Plans: an assigned plan is saved but never listed; the dialog's dates…
 - [ ] [BUG-PL-003](bugs/BUG-PL-003.md) · **Open, not retested** · Medium · All Personnel: a Read Only Group (RG) user can't open the details of anyone in their group
@@ -137,25 +139,27 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 - [ ] [BUG-FAD-004](bugs/BUG-FAD-004.md) · **Open, not retested** · Low · Flight and Duty column headers are ambiguous: two '1 Days' and two '24 Hours' columns, and '1 Days'…
 - [ ] [BUG-FAD-005](bugs/BUG-FAD-005.md) · **Open, not retested** · Low · Flight and Duty 'View as Date' defaults to the UTC date instead of the local date
 
-### Notices (4 open)
+### Notices (5 open)
 
-- [ ] [BUG-NOT-002](bugs/BUG-NOT-002.md) · **Open, not retested** · Medium · Notice Details: clicking a .txt attachment does nothing (no preview, no download)
+- [ ] [BUG-NOT-002](bugs/BUG-NOT-002.md) · **Open, still failing (24/10/2026, v2.0.123)** · Medium · Notice Details: clicking a .txt attachment does nothing (no preview, no download)
 - [ ] [BUG-NOT-004](bugs/BUG-NOT-004.md) · **Open, not retested** · Medium · A Write Group (WG) user gets 'An error occurred' when clicking New Notice
 - [ ] [BUG-NOT-001](bugs/BUG-NOT-001.md) · **Open, not retested** · Low · Notices has no page Help (?), and the Create New Notice popup ignores Escape
 - [ ] [BUG-NOT-003](bugs/BUG-NOT-003.md) · **Open, not retested** · Low · Settings and Tools hub: 'Notices' card has no links
+- [ ] [BUG-NOT-005](bugs/BUG-NOT-005.md) · **Open, not retested** · Low · Only one attachment can be added per save
 
 ### Recency and Renewals (overview page) (2 open)
 
 - [ ] [BUG-REC-001](bugs/BUG-REC-001.md) · **Open, not retested** · Low · Recency and Renewals overview has no page Help (?)
 - [ ] [BUG-REC-002](bugs/BUG-REC-002.md) · **Open, not retested** · Low · Recency and Renewals at phone width: the table is cut off, so Total Items and Actions are hidden
 
-### Safety Reports (SMS) (5 open)
+### Safety Reports (SMS) (6 open)
 
 - [ ] [BUG-SMS-005](bugs/BUG-SMS-005.md) · **Open, not retested** · High · Group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted
 - [ ] [BUG-SMS-001](bugs/BUG-SMS-001.md) · **Open, not retested** · Medium · New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and…
 - [ ] [BUG-SMS-002](bugs/BUG-SMS-002.md) · **Open, not retested** · Medium · New Safety Report: Event Date/Time defaults to the UTC date and time, not local
 - [ ] [BUG-SMS-003](bugs/BUG-SMS-003.md) · **Open, not retested** · Low · Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice
 - [ ] [BUG-SMS-004](bugs/BUG-SMS-004.md) · **Open, not retested** · Low · Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register
+- [ ] [BUG-SMS-006](bugs/BUG-SMS-006.md) · **Open, not retested** · Low · Safety Report document link for a deleted file shows the server's file path
 
 ### Hazard Register (3 open)
 
@@ -163,15 +167,17 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 - [ ] [BUG-HAZ-002](bugs/BUG-HAZ-002.md) · **Open, not retested** · Medium · Hazard Register details: Final Risk Assessment never shows the saved final risk
 - [ ] [BUG-HAZ-003](bugs/BUG-HAZ-003.md) · **Open, not retested** · Low · Hazard Register has no way to create a hazard entry
 
-### File Browser (7 open)
+### File Browser (9 open)
 
-- [ ] [BUG-FB-003](bugs/BUG-FB-003.md) · **Open, not retested** · Medium · Clicking a .txt file shows 'File Access Error' with the file's own text
+- [ ] [BUG-FB-003](bugs/BUG-FB-003.md) · **Open, still failing (24/10/2026, v2.0.123)** · Medium · Clicking a .txt file shows 'File Access Error' with the file's own text
 - [ ] [BUG-FB-005](bugs/BUG-FB-005.md) · **Open, not retested** · Medium · Read/Write Access groups are not kept after Update Document
 - [ ] [BUG-FB-006](bugs/BUG-FB-006.md) · **Open, not retested** · Medium · Deleting a folder fails with 'Invalid Action: filebrowser_deletefolder'
+- [ ] [BUG-FB-008](bugs/BUG-FB-008.md) · **Open, not retested** · Medium · Files attached to a waypoint also appear in the File Browser Home folder
 - [ ] [BUG-FB-001](bugs/BUG-FB-001.md) · **Open, not retested** · Low · File Browser has no page Help (?)
 - [ ] [BUG-FB-002](bugs/BUG-FB-002.md) · **Open, not retested** · Low · File Browser shows Date Uploaded as 'Oct 22, 2026' instead of DD/MM/YYYY
 - [ ] [BUG-FB-004](bugs/BUG-FB-004.md) · **Open, not retested** · Low · Escape doesn't close the Create New Folder or Configure File popups
 - [ ] [BUG-FB-007](bugs/BUG-FB-007.md) · **Open, not retested** · Low · File Browser on a phone: table is cut off, edit buttons are off-screen
+- [ ] [BUG-FB-009](bugs/BUG-FB-009.md) · **Open, not retested** · Low · Clicking an .svg shows an error popup with the raw SVG code
 
 ### Form Builder (4 open)
 
@@ -204,14 +210,15 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 
 - [ ] [BUG-SUP-001](bugs/BUG-SUP-001.md) · **Open, not retested** · Medium · Support has no page Help (?); Escape doesn't close New Ticket, but a click outside closes it and…
 - [ ] [BUG-SUP-002](bugs/BUG-SUP-002.md) · **Open, not retested** · Low · Support New Ticket: Ctrl+V doesn't paste a screenshot, though the error message tells you to use…
-- [ ] [BUG-SUP-003](bugs/BUG-SUP-003.md) · **Open, not retested** · Low · Support ticket: clicking a .txt attachment shows an 'Error' popup containing the file's text
+- [ ] [BUG-SUP-003](bugs/BUG-SUP-003.md) · **Open, still failing (24/10/2026, v2.0.123)** · Low · Support ticket: clicking a .txt attachment shows an 'Error' popup containing the file's text
 - [x] [BUG-SUP-004](bugs/BUG-SUP-004.md) · **Fixed (22/10/2026)** · Medium · Support: the only permission level is All Access, so regular staff can't raise or see their own…
 
-### Chat (3 open)
+### Chat (4 open)
 
 - [ ] [BUG-AM-006](bugs/BUG-AM-006.md) · **Open, part fixed (22/10/2026)** · Medium · Access Manager has no Chat permission, so you can't give Chat to a non-admin user
 - [ ] [BUG-CHAT-001](bugs/BUG-CHAT-001.md) · **Open, not retested** · Low · Chat has no page Help (?); Escape doesn't close Create Channel; empty name does nothing with no…
 - [ ] [BUG-CHAT-002](bugs/BUG-CHAT-002.md) · **Open, not retested** · Low · Chat times show 12-hour '01:32 AM' and date separators 'Thursday, October 22, 2026' instead of the…
+- [ ] [BUG-CHAT-003](bugs/BUG-CHAT-003.md) · **Open, not retested** · Low · Chat image button: non-images are ignored with no message; SVG/TIFF/HEIC preview then fail on Send
 
 ### Exam Builder, Exam Editor, Exam Instances (7 open, 3 fixed)
 
@@ -262,12 +269,13 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 - [ ] [BUG-SFT-002](bugs/BUG-SFT-002.md) · **Open, not retested** · Medium · A duplicate Flight Category name ("PIC") is accepted
 - [ ] [BUG-SFT-001](bugs/BUG-SFT-001.md) · **Open, not retested** · Low · No Help (?), and Escape does not close popups
 
-### Settings – Waypoint Locations (4 open)
+### Settings – Waypoint Locations (5 open)
 
 - [ ] [BUG-SWP-002](bugs/BUG-SWP-002.md) · **Open, not retested** · Medium · Moving a waypoint about 250 nm saves with no "Significant Location Change" warning
 - [ ] [BUG-SWP-004](bugs/BUG-SWP-004.md) · **Open, not retested** · Medium · Waypoints on a phone: table columns overlap and Add Waypoint is off-screen
 - [ ] [BUG-SWP-001](bugs/BUG-SWP-001.md) · **Open, not retested** · Low · No Help (?), and Escape does not close popups
 - [ ] [BUG-SWP-003](bugs/BUG-SWP-003.md) · **Open, not retested** · Low · The list is not refreshed after you save or delete on the detail page
+- [ ] [BUG-SWP-005](bugs/BUG-SWP-005.md) · **Open, not retested** · Low · Waypoint Files list shows the Uploaded date as MM/DD/YYYY and Size N/A for every file
 
 ### Settings – Roster Shifts (4 open)
 
@@ -334,17 +342,23 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 
 - [ ] [BUG-PERF-001](bugs/BUG-PERF-001.md) · **Open, not retested** · Low · 'Performance' debug timing panel shown on every page, including to non-admin users
 
+### Cross-cutting: attachments and file types (3 open)
+
+- [ ] [BUG-ATT-001](bugs/BUG-ATT-001.md) · **Open, not retested** · High · Uploaded .html and .svg files are served inline from the DataHangar site (stored XSS risk)
+- [ ] [BUG-ATT-002](bugs/BUG-ATT-002.md) · **Open, not retested** · Medium · No file-type check on any upload: .exe, .html and anything else is accepted; Notices "Supported…
+- [ ] [BUG-ATT-003](bugs/BUG-ATT-003.md) · **Open, not retested** · Low · File names are changed differently in each module; accents and symbols are stripped ("résumé"…
+
 ## Summary
 
 | Bugs | High | Medium | Low | Total |
 |---|---|---|---|---|
-| Open | 5 | 46 | 90 | **141** |
+| Open | 6 | 49 | 97 | **152** |
 | Fixed (verified by retest) | 5 | 24 | 19 | **48** |
 | Closed (by design) | 0 | 1 | 0 | **1** |
-| **All** | 10 | 71 | 109 | **190** |
+| **All** | 11 | 74 | 116 | **201** |
 
-- 139 of the 141 open bugs have never been retested since they were found, so some may already be fixed.
-- Checklists: 55 of 55 done. 791 checks: 598 pass, 145 fail, 26 blocked, 20 N/A.
+- 146 of the 152 open bugs have never been retested since they were found, so some may already be fixed.
+- Checklists: 56 of 56 done. 824 checks: 617 pass, 158 fail, 26 blocked, 21 N/A.
 - Issues from the two earlier external audits are listed separately under "External audit issues".
 
 ## Decisions needed and not yet tested
@@ -375,6 +389,7 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 | [BUG-RB-007](bugs/BUG-RB-007.md) | Roster Builder | Roster Builder: Clear then Publish of a draft month with no shifts does not clear the live roster and shows no message | Open, not retested | - |
 | [BUG-SLP-002](bugs/BUG-SLP-002.md) | Settings: Lesson Plans | Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave | Open, not retested | - |
 | [BUG-SMS-005](bugs/BUG-SMS-005.md) | Safety Reports | Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted | Open, not retested | - |
+| [BUG-ATT-001](bugs/BUG-ATT-001.md) | Attachments (all modules) | Uploaded .html and .svg files are served inline from the DataHangar site (stored XSS risk) | Open, not retested | - |
 
 ## Progress by checklist
 
@@ -387,7 +402,7 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 | [04-access-manager](checklists/04-access-manager.md) | `AM` | Access Manager (users, roles, groups, permissions, templates) | 38 | 36 | 1 | 0 | 0 | 7 | 7 | 0 | 0 | DONE |
 | [05-dashboard](checklists/05-dashboard.md) | `DSH` | Dashboard | 19 | 19 | 0 | 0 | 0 | 5 | 5 | 0 | 0 | DONE |
 | [06-flight-schedule](checklists/06-flight-schedule.md) | `FS` | Flight Schedule (incl. embedded Location Planner) | 40 | 37 | 1 | 0 | 1 | 9 | 9 | 0 | 0 | DONE |
-| [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 44 | 0 | 0 | 0 | 10 | 9 | 0 | 1 | DONE |
+| [07-flight-details](checklists/07-flight-details.md) | `FD` | Flight Details | 44 | 44 | 0 | 0 | 0 | 12 | 9 | 0 | 3 | DONE |
 | [08-active-flights](checklists/08-active-flights.md) | `AF` | Active Flights and Live Tracking | 19 | 19 | 0 | 0 | 0 | 5 | 4 | 1 | 0 | DONE |
 | [09-daily-flight-record](checklists/09-daily-flight-record.md) | `DFR` | Daily Flight Record | 16 | 14 | 2 | 0 | 0 | 3 | 0 | 0 | 3 | DONE |
 | [10-location-planner](checklists/10-location-planner.md) | `LP` | Location Planner (stand-alone) | 9 | 0 | 0 | 9 | 0 | 0 | 0 | 0 | 0 | DONE |
@@ -397,18 +412,18 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 | [14-roster-builder](checklists/14-roster-builder.md) | `RB` | Roster Builder | 21 | 13 | 8 | 0 | 0 | 8 | 0 | 0 | 8 | DONE |
 | [15-timesheets-leave](checklists/15-timesheets-leave.md) | `TS` | Timesheets, Timesheet Details, Leave Requests | 17 | 11 | 6 | 0 | 0 | 8 | 0 | 0 | 8 | DONE |
 | [16-flight-and-duty](checklists/16-flight-and-duty.md) | `FAD` | Flight and Duty | 14 | 12 | 2 | 0 | 0 | 5 | 0 | 0 | 5 | DONE |
-| [17-notices](checklists/17-notices.md) | `NOT` | Notices | 16 | 12 | 4 | 0 | 0 | 4 | 0 | 0 | 4 | DONE |
+| [17-notices](checklists/17-notices.md) | `NOT` | Notices | 16 | 12 | 4 | 0 | 0 | 5 | 0 | 0 | 5 | DONE |
 | [18-recency-renewals](checklists/18-recency-renewals.md) | `REC` | Recency and Renewals (overview page) | 11 | 7 | 2 | 0 | 2 | 2 | 0 | 0 | 2 | DONE |
-| [19-safety-reports](checklists/19-safety-reports.md) | `SMS` | Safety Reports (SMS) | 21 | 18 | 2 | 1 | 0 | 5 | 0 | 0 | 5 | DONE |
+| [19-safety-reports](checklists/19-safety-reports.md) | `SMS` | Safety Reports (SMS) | 21 | 18 | 2 | 1 | 0 | 6 | 0 | 0 | 6 | DONE |
 | [20-hazard-register](checklists/20-hazard-register.md) | `HAZ` | Hazard Register | 10 | 8 | 2 | 0 | 0 | 3 | 0 | 0 | 3 | DONE |
 | [21-settings-hub](checklists/21-settings-hub.md) | `HUB` | Settings and Tools hub | 11 | 10 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | DONE |
-| [22-file-browser](checklists/22-file-browser.md) | `FB` | File Browser | 14 | 8 | 6 | 0 | 0 | 7 | 0 | 0 | 7 | DONE |
+| [22-file-browser](checklists/22-file-browser.md) | `FB` | File Browser | 14 | 8 | 6 | 0 | 0 | 9 | 0 | 0 | 9 | DONE |
 | [23-form-builder](checklists/23-form-builder.md) | `FBLD` | Form Builder | 14 | 10 | 4 | 0 | 0 | 4 | 0 | 0 | 4 | DONE |
 | [24-form-browser](checklists/24-form-browser.md) | `FBR` | Form Browser / Form Viewer | 10 | 7 | 3 | 0 | 0 | 3 | 0 | 0 | 3 | DONE |
 | [25-task-tracker](checklists/25-task-tracker.md) | `TT` | Task Tracker | 12 | 8 | 4 | 0 | 0 | 4 | 0 | 0 | 4 | DONE |
 | [26-reports](checklists/26-reports.md) | `RPT` | Reports | 16 | 13 | 3 | 0 | 0 | 4 | 0 | 0 | 4 | DONE |
 | [27-support](checklists/27-support.md) | `SUP` | Support tickets | 14 | 11 | 3 | 0 | 0 | 4 | 1 | 0 | 3 | DONE |
-| [28-chat](checklists/28-chat.md) | `CHAT` | Chat | 11 | 8 | 2 | 1 | 0 | 3 | 0 | 0 | 3 | DONE |
+| [28-chat](checklists/28-chat.md) | `CHAT` | Chat | 11 | 8 | 2 | 1 | 0 | 4 | 0 | 0 | 4 | DONE |
 | [29-exams](checklists/29-exams.md) | `EXM` | Exam Builder, Exam Editor, Exam Instances | 16 | 10 | 6 | 0 | 0 | 10 | 3 | 0 | 7 | DONE |
 | [30-maintenance](checklists/30-maintenance.md) | `MX` | Maintenance Portal | 11 | 0 | 0 | 11 | 0 | 0 | 0 | 0 | 0 | DONE |
 | [31-settings-flightschedule](checklists/31-settings-flightschedule.md) | `SFS` | Settings – Flight Schedule | 13 | 12 | 0 | 0 | 1 | 2 | 2 | 0 | 0 | DONE |
@@ -418,7 +433,7 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 | [35-settings-wab](checklists/35-settings-wab.md) | `SWAB` | Settings – Weight and Balance Configs | 13 | 9 | 4 | 0 | 0 | 5 | 0 | 0 | 5 | DONE |
 | [36-settings-extraflightinfo](checklists/36-settings-extraflightinfo.md) | `SEFI` | Settings – Extra Flight Info | 9 | 7 | 1 | 0 | 1 | 1 | 0 | 0 | 1 | DONE |
 | [37-settings-flighttypes](checklists/37-settings-flighttypes.md) | `SFT` | Settings – Flight Types | 8 | 5 | 2 | 0 | 1 | 2 | 0 | 0 | 2 | DONE |
-| [38-settings-waypoints](checklists/38-settings-waypoints.md) | `SWP` | Settings – Waypoint Locations | 12 | 8 | 3 | 0 | 1 | 4 | 0 | 0 | 4 | DONE |
+| [38-settings-waypoints](checklists/38-settings-waypoints.md) | `SWP` | Settings – Waypoint Locations | 12 | 8 | 3 | 0 | 1 | 5 | 0 | 0 | 5 | DONE |
 | [39-settings-shifttypes](checklists/39-settings-shifttypes.md) | `SST` | Settings – Roster Shifts | 10 | 7 | 3 | 0 | 0 | 4 | 0 | 0 | 4 | DONE |
 | [40-settings-frms](checklists/40-settings-frms.md) | `SFRMS` | Settings – Fatigue Risk Management | 11 | 8 | 2 | 0 | 1 | 2 | 0 | 0 | 2 | DONE |
 | [41-settings-renewals](checklists/41-settings-renewals.md) | `SREN` | Settings – Recency and Renewals | 10 | 5 | 4 | 0 | 1 | 4 | 0 | 0 | 4 | DONE |
@@ -434,6 +449,7 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 | [93-xc-mobile](checklists/93-xc-mobile.md) | `MOB` | Cross-cutting: mobile / narrow layout | 4 | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | DONE |
 | [94-xc-ui-icons](checklists/94-xc-ui-icons.md) | `UI` | Cross-cutting: UI consistency and icon inventory | 7 | 3 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | DONE |
 | [95-xc-performance-errors](checklists/95-xc-performance-errors.md) | `PERF` | Cross-cutting: performance, console and network | 4 | 1 | 3 | 0 | 0 | 1 | 0 | 0 | 1 | DONE |
+| [96-xc-attachments](checklists/96-xc-attachments.md) | `ATT` | Cross-cutting: attachments and file types | 33 | 19 | 13 | 0 | 1 | 3 | 0 | 0 | 3 | DONE |
 | [99-e2e-workflows](checklists/99-e2e-workflows.md) | `E2E` | End-to-end workflows | 8 | 6 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | DONE |
 
 ## Bug details
@@ -447,6 +463,8 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | [BUG-RB-007](bugs/BUG-RB-007.md) | High | `RB-013` | Roster Builder | Roster Builder: Clear then Publish of a draft month with no shifts does not clear the live roster and shows no message | Open (not retested) | - |
 | [BUG-SMS-005](bugs/BUG-SMS-005.md) | High | `SMS-015` | Safety Reports | Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted | Open (not retested) | - |
 | [BUG-SLP-002](bugs/BUG-SLP-002.md) | High | `SLP-001` | Settings: Lesson Plans | Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave | Open (not retested) | - |
+| [BUG-ATT-001](bugs/BUG-ATT-001.md) | High | `ATT-033` | Attachments (all modules) | Uploaded .html and .svg files are served inline from the DataHangar site (stored XSS risk) | Open (not retested) | - |
+| [BUG-FD-012](bugs/BUG-FD-012.md) | Medium | `ATT-002` | Flight Details | Flight Details Files: .txt shows its text in a "Required Information" alert; empty .txt and .html show error messages | Open (not retested) | - |
 | [BUG-DFR-002](bugs/BUG-DFR-002.md) | Medium | `DFR-008` | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied | Open (not retested) | - |
 | [BUG-DFR-003](bugs/BUG-DFR-003.md) | Medium | `DFR-008` | Daily Flight Record | Daily Flight Record: changing filters quickly appends results instead of replacing them, showing duplicate and wrong-status rows | Open (not retested) | - |
 | [BUG-PD-001](bugs/BUG-PD-001.md) | Medium | `PD-S01` | Personnel Details / My Account | personneldetails/index.js is truncated: ReferenceError getPickerMod on every load | Open (not retested) | - |
@@ -454,7 +472,7 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | [BUG-PD-007](bugs/BUG-PD-007.md) | Medium | `PD-021` | Personnel Details | Personnel Details > Recency: 'Days Until Expiry' and status don't match the Last Conducted date | Open (not retested) | - |
 | [BUG-PD-008](bugs/BUG-PD-008.md) | Medium | `PD-021` | Personnel Details | Personnel Details > Recency: the recency summary popup has no Add Manual Entry, no x, and doesn't close with Escape | Open (not retested) | - |
 | [BUG-PD-009](bugs/BUG-PD-009.md) | Medium | `PD-022` | Personnel Details | Personnel Details > Renewal edit: the Today and Calculate links can't be clicked because the date fields cover them | Open (not retested) | - |
-| [BUG-PD-012](bugs/BUG-PD-012.md) | Medium | `PD-025` | Personnel Details | Personnel Details > Files: opening a file shows 'File Access Error' with the file's contents as the message | Open (not retested) | - |
+| [BUG-PD-012](bugs/BUG-PD-012.md) | Medium | `PD-025` | Personnel Details | Personnel Details > Files: opening a file shows 'File Access Error' with the file's contents as the message | Not fixed (retested 24/10/2026 v2.0.123) | 24/10/2026 v2.0.123: Not fixed |
 | [BUG-PD-016](bugs/BUG-PD-016.md) | Medium | `PD-010` | Personnel Details | Personnel Details > Timesheets: Add Claim button does nothing | Open (not retested) | - |
 | [BUG-PD-017](bugs/BUG-PD-017.md) | Medium | `PD-018` | Personnel Details | Personnel Details > Lesson Plans: an assigned plan is saved but never listed; the dialog's dates default to the UTC date | Open (not retested) | - |
 | [BUG-PL-003](bugs/BUG-PL-003.md) | Medium | `PD-029` | Personnel List / Personnel Details | All Personnel: a Read Only Group (RG) user can't open the details of anyone in their group | Open (not retested) | - |
@@ -466,15 +484,16 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | [BUG-TS-002](bugs/BUG-TS-002.md) | Medium | `TS-001` | Timesheets | Timesheet Approval: status filter 'Unsigned' shows 'No personnel found' although everyone has unsigned days | Open (not retested) | - |
 | [BUG-TS-003](bugs/BUG-TS-003.md) | Medium | `TS-002` | Timesheets | Timesheet Approval list totals don't match Timesheet Details (Rostered Days and Duty Hours) | Open (not retested) | - |
 | [BUG-TS-008](bugs/BUG-TS-008.md) | Medium | `TS-008` | Timesheets / Leave Requests | Approving a leave request doesn't change the rostered shifts, and rejecting with no reason gives no message | Open (not retested) | - |
-| [BUG-NOT-002](bugs/BUG-NOT-002.md) | Medium | `NOT-006` | Notices | Notice Details: clicking a .txt attachment does nothing (no preview, no download) | Open (not retested) | - |
+| [BUG-NOT-002](bugs/BUG-NOT-002.md) | Medium | `NOT-006` | Notices | Notice Details: clicking a .txt attachment does nothing (no preview, no download) | Not fixed (retested 24/10/2026 v2.0.123) | 24/10/2026 v2.0.123: Not fixed |
 | [BUG-NOT-004](bugs/BUG-NOT-004.md) | Medium | `NOT-004` | Notices | Notices: a Write Group (WG) user gets 'An error occurred' when clicking New Notice | Open (not retested) | - |
 | [BUG-SMS-001](bugs/BUG-SMS-001.md) | Medium | `SMS-004` | Safety Reports | New Safety Report: Escape on the Confidential/Anonymous help closes the report form behind it and loses what you typed | Open (not retested) | - |
 | [BUG-SMS-002](bugs/BUG-SMS-002.md) | Medium | `SMS-S04` | Safety Reports | New Safety Report: Event Date/Time defaults to the UTC date and time, not local | Open (not retested) | - |
 | [BUG-HAZ-001](bugs/BUG-HAZ-001.md) | Medium | `HAZ-003` | Hazard Register | Hazard Register details: Hazard Type always shows '--' | Open (not retested) | - |
 | [BUG-HAZ-002](bugs/BUG-HAZ-002.md) | Medium | `HAZ-003` | Hazard Register | Hazard Register details: Final Risk Assessment never shows the saved final risk | Open (not retested) | - |
-| [BUG-FB-003](bugs/BUG-FB-003.md) | Medium | `FB-006` | File Browser | File Browser: clicking a .txt file shows 'File Access Error' with the file's own text | Open (not retested) | - |
+| [BUG-FB-003](bugs/BUG-FB-003.md) | Medium | `FB-006` | File Browser | File Browser: clicking a .txt file shows 'File Access Error' with the file's own text | Not fixed (retested 24/10/2026 v2.0.123) | 24/10/2026 v2.0.123: Not fixed |
 | [BUG-FB-005](bugs/BUG-FB-005.md) | Medium | `FB-007` | File Browser | File Browser: Read/Write Access groups are not kept after Update Document | Open (not retested) | - |
 | [BUG-FB-006](bugs/BUG-FB-006.md) | Medium | `FB-008` | File Browser | File Browser: deleting a folder fails with 'Invalid Action: filebrowser_deletefolder' | Open (not retested) | - |
+| [BUG-FB-008](bugs/BUG-FB-008.md) | Medium | `ATT-030` | File Browser | Files attached to a waypoint also appear in the File Browser Home folder | Open (not retested) | - |
 | [BUG-FBLD-002](bugs/BUG-FBLD-002.md) | Medium | `FBLD-S04` | Form Builder | Form Builder View Form: Date and Time widgets default to UTC, not local time | Open (not retested) | - |
 | [BUG-FBLD-003](bugs/BUG-FBLD-003.md) | Medium | `FBLD-005` | Form Builder | Form Builder: table conditions do nothing in View Form | Open (not retested) | - |
 | [BUG-TT-004](bugs/BUG-TT-004.md) | Medium | `TT-006` | Task Tracker | Task Tracker: a Write Group (WG) user is treated as read-only and can't add a project | Open (not retested) | - |
@@ -493,7 +512,9 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | [BUG-SREN-003](bugs/BUG-SREN-003.md) | Medium | `SREN-002` | Settings: Recency and Renewals | Add Renewal Type accepts negative Days to Notify and a Frequency of 0 days | Open (not retested) | - |
 | [BUG-SINS-002](bugs/BUG-SINS-002.md) | Medium | `SINS-002` | Settings: Inspection Notifications | Inspection Notifications: a meter inspection on an aircraft at 0.0 hours is never Overdue, and negative meter values are accepted | Open (not retested) | - |
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | `PERM-007` | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) | Open (not retested) | - |
+| [BUG-ATT-002](bugs/BUG-ATT-002.md) | Medium | `ATT-034` | Attachments (all modules) | No file-type check on any upload: .exe, .html and anything else is accepted; Notices "Supported formats" isn't enforced | Open (not retested) | - |
 | [BUG-FD-011](bugs/BUG-FD-011.md) | Low | `FD-037` | Flight Details | History labels lock and unlock differently ("Locked: No > Yes" vs "Status: Locked > Unlocked") | Open (not retested) | - |
+| [BUG-FD-013](bugs/BUG-FD-013.md) | Low | `ATT-002` | Flight Details | Flight Details Files: clicking a PDF opens it in two new tabs | Open (not retested) | - |
 | [BUG-DFR-001](bugs/BUG-DFR-001.md) | Low | `DFR-S02` | Daily Flight Record | Daily Flight Record has no page Help (?), and its popups (Manage Columns, Notes full text) don't close with Escape | Open (not retested) | - |
 | [BUG-PL-001](bugs/BUG-PL-001.md) | Low | `PL-S02` | All Personnel | All Personnel has no page Help (?) | Open (not retested) | - |
 | [BUG-PL-002](bugs/BUG-PL-002.md) | Low | `PL-001` | All Personnel | A person with no name exists and is listed as '?' at the top of All Personnel (person #274, Customer) | Open (not retested) | - |
@@ -523,15 +544,18 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | [BUG-FAD-005](bugs/BUG-FAD-005.md) | Low | `FAD-003` | Flight and Duty | Flight and Duty 'View as Date' defaults to the UTC date instead of the local date | Open (not retested) | - |
 | [BUG-NOT-001](bugs/BUG-NOT-001.md) | Low | `NOT-S02` | Notices | Notices has no page Help (?), and the Create New Notice popup ignores Escape | Open (not retested) | - |
 | [BUG-NOT-003](bugs/BUG-NOT-003.md) | Low | `NOT-010` | Notices | Settings and Tools hub: 'Notices' card has no links | Open (not retested) | - |
+| [BUG-NOT-005](bugs/BUG-NOT-005.md) | Low | `ATT-012` | Notices | Notices: only one attachment can be added per save | Open (not retested) | - |
 | [BUG-REC-001](bugs/BUG-REC-001.md) | Low | `REC-S02` | Recency and Renewals | Recency and Renewals overview has no page Help (?) | Open (not retested) | - |
 | [BUG-REC-002](bugs/BUG-REC-002.md) | Low | `REC-S05` | Recency and Renewals | Recency and Renewals at phone width: the table is cut off, so Total Items and Actions are hidden | Open (not retested) | - |
 | [BUG-SMS-003](bugs/BUG-SMS-003.md) | Low | `SMS-012` | Safety Reports | Safety Report Final Report: Likelihood and Consequence dropdowns list every option twice | Open (not retested) | - |
 | [BUG-SMS-004](bugs/BUG-SMS-004.md) | Low | `SMS-013` | Safety Reports / Hazard Register | Add to Hazard Register: Goal 'Mitigate' shows as 'Minimize' in the Hazard Register | Open (not retested) | - |
+| [BUG-SMS-006](bugs/BUG-SMS-006.md) | Low | `ATT-016` | Safety Reports | Safety Report document link for a deleted file shows the server's file path | Open (not retested) | - |
 | [BUG-HAZ-003](bugs/BUG-HAZ-003.md) | Low | `HAZ-002` | Hazard Register | Hazard Register has no way to create a hazard entry | Open (not retested) | - |
 | [BUG-FB-001](bugs/BUG-FB-001.md) | Low | `FB-S02` | File Browser | File Browser has no page Help (?) | Open (not retested) | - |
 | [BUG-FB-002](bugs/BUG-FB-002.md) | Low | `FB-S04` | File Browser | File Browser shows Date Uploaded as 'Oct 22, 2026' instead of DD/MM/YYYY | Open (not retested) | - |
 | [BUG-FB-004](bugs/BUG-FB-004.md) | Low | `FB-S03` | File Browser | File Browser: Escape doesn't close the Create New Folder or Configure File popups | Open (not retested) | - |
 | [BUG-FB-007](bugs/BUG-FB-007.md) | Low | `FB-S05` | File Browser | File Browser on a phone: table is cut off, edit buttons are off-screen | Open (not retested) | - |
+| [BUG-FB-009](bugs/BUG-FB-009.md) | Low | `ATT-029` | File Browser | File Browser: clicking an .svg shows an error popup with the raw SVG code | Open (not retested) | - |
 | [BUG-FBLD-001](bugs/BUG-FBLD-001.md) | Low | `FBLD-S02` | Form Builder | Form Builder: popups ignore Escape and outside clicks (Help, Create New Form Template, Edit Options) | Open (not retested) | - |
 | [BUG-FBLD-004](bugs/BUG-FBLD-004.md) | Low | `FBLD-S05` | Form Builder | Form Builder on a phone: page is wider than the screen and the Toolbox covers the form | Open (not retested) | - |
 | [BUG-FBR-001](bugs/BUG-FBR-001.md) | Low | `FBR-S02` | Form Browser | Form Browser has no page Help (?) | Open (not retested) | - |
@@ -544,9 +568,10 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | [BUG-RPT-002](bugs/BUG-RPT-002.md) | Low | `RPT-009` | Reports | Reports Export CSV writes dates as '2026-10-16 06:00:00' instead of the org date format | Open (not retested) | - |
 | [BUG-RPT-004](bugs/BUG-RPT-004.md) | Low | `RPT-006` | Reports | Reports: the Flight Hours meter column shows the aircraft's current meter on every flight, and Total adds them up | Open (not retested) | - |
 | [BUG-SUP-002](bugs/BUG-SUP-002.md) | Low | `SUP-003` | Support | Support New Ticket: Ctrl+V doesn't paste a screenshot, though the error message tells you to use Ctrl+V | Open (not retested) | - |
-| [BUG-SUP-003](bugs/BUG-SUP-003.md) | Low | `SUP-005` | Support | Support ticket: clicking a .txt attachment shows an 'Error' popup containing the file's text | Open (not retested) | - |
+| [BUG-SUP-003](bugs/BUG-SUP-003.md) | Low | `SUP-005` | Support | Support ticket: clicking a .txt attachment shows an 'Error' popup containing the file's text | Not fixed (retested 24/10/2026 v2.0.123) | 24/10/2026 v2.0.123: Not fixed |
 | [BUG-CHAT-001](bugs/BUG-CHAT-001.md) | Low | `CHAT-S02` | Chat | Chat has no page Help (?); Escape doesn't close Create Channel; empty name does nothing with no message | Open (not retested) | - |
 | [BUG-CHAT-002](bugs/BUG-CHAT-002.md) | Low | `CHAT-S04` | Chat | Chat times show 12-hour '01:32 AM' and date separators 'Thursday, October 22, 2026' instead of the org format | Open (not retested) | - |
+| [BUG-CHAT-003](bugs/BUG-CHAT-003.md) | Low | `ATT-032` | Chat | Chat image button: non-images are ignored with no message; SVG/TIFF/HEIC preview then fail on Send | Open (not retested) | - |
 | [BUG-EXM-001](bugs/BUG-EXM-001.md) | Low | `EXM-S02` | Exams | Exam Builder/Editor have no page Help (?); Escape doesn't close Add Group, Add Exam or Choose Question Type | Open (not retested) | - |
 | [BUG-EXM-002](bugs/BUG-EXM-002.md) | Low | `EXM-S04` | Exams | Exam dates ignore the org format: 'Oct 22, 2026' in Exam Builder and '10/22/2026 01:46 AM' in Exam Instances batches | Open (not retested) | - |
 | [BUG-EXM-003](bugs/BUG-EXM-003.md) | Low | `EXM-004` | Exams | Exam viewer 'Read Only' still shows Add Question, Add Group and Save Question | Open (not retested) | - |
@@ -564,6 +589,7 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | [BUG-SFT-001](bugs/BUG-SFT-001.md) | Low | `SFT-S02` | Settings: Flight Types | Flight Types Settings: no Help (?), and Escape does not close popups | Open (not retested) | - |
 | [BUG-SWP-001](bugs/BUG-SWP-001.md) | Low | `SWP-S02` | Settings: Waypoints | Waypoints Settings: no Help (?), and Escape does not close popups | Open (not retested) | - |
 | [BUG-SWP-003](bugs/BUG-SWP-003.md) | Low | `SWP-005` | Settings: Waypoints | Waypoints: the list is not refreshed after you save or delete on the detail page | Open (not retested) | - |
+| [BUG-SWP-005](bugs/BUG-SWP-005.md) | Low | `ATT-027` | Settings: Waypoints | Waypoint Files list shows the Uploaded date as MM/DD/YYYY and Size N/A for every file | Open (not retested) | - |
 | [BUG-SST-001](bugs/BUG-SST-001.md) | Low | `SST-S02` | Settings: Shift Types | Roster Shifts (Shift Type Editor): no Help (?), and Escape does not close popups | Open (not retested) | - |
 | [BUG-SST-002](bugs/BUG-SST-002.md) | Low | `SST-002` | Settings: Shift Types | New Shift Type: Duty Start/End Time default to the current UTC time | Open (not retested) | - |
 | [BUG-SST-003](bugs/BUG-SST-003.md) | Low | `SST-001` | Settings: Shift Types | Roster Shifts: after Edit Group the selected group jumps back to Duty, so the next New Shift Type goes into the wrong group | Open (not retested) | - |
@@ -583,6 +609,7 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | [BUG-SLOG-001](bugs/BUG-SLOG-001.md) | Low | `SLOG-S04` | Settings: Activity Log | Activity Log: no page Help (?), and dates show as "22 Oct 2026, 02:51 am" | Open (not retested) | - |
 | [BUG-PERM-001](bugs/BUG-PERM-001.md) | Low | `PERM-007` | Shell (main) sidebar | Sidebar lists modules the user has no permission for (all lead to Access Denied) | Open (confirmed 22/10/2026) | - |
 | [BUG-PERF-001](bugs/BUG-PERF-001.md) | Low | `PERF-001` | All modules (debug panel) | 'Performance' debug timing panel shown on every page, including to non-admin users | Open (not retested) | - |
+| [BUG-ATT-003](bugs/BUG-ATT-003.md) | Low | `ATT-035` | Attachments (all modules) | File names are changed differently in each module; accents and symbols are stripped ("résumé" becomes "rsum") | Open (not retested) | - |
 | [BUG-FS-008](bugs/BUG-FS-008.md) | High | `FS-027` | Flight Schedule | Flight Schedule: a group-level user (G / WG) sees no flights, even on aircraft in their own group | Fixed (verified 22/10/2026) | - |
 | [BUG-FD-008](bugs/BUG-FD-008.md) | High | `FD-030` | Flight Details | Unlocking a Complete & Locked flight wipes its leg route, leg PIC, leg passengers and manifest | Fixed (verified 23/10/2026 v2.0.121) | 23/10/2026 v2.0.121: Fixed |
 | [BUG-AF-004](bugs/BUG-AF-004.md) | High | `AF-004` | Active Flights | Active Flights overdue and active times are 13 h out: local SAR/start times are compared with UTC 'now' | Fixed (verified 24/10/2026 v2.0.123) | 24/10/2026 v2.0.123: Fixed |
@@ -685,6 +712,14 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | 44-settings-smsreports | Safety report #2061 "BETA TEST ONLY report 2 (permanent investigator)" | Flight Safety > Safety Reports | No - the app has no delete for safety reports |
 | 44-settings-smsreports | Extra Info Field "BETA TEST ONLY EIF" (id 8) | Settings > Safety Reports > Extra Info Fields | Partly - set Inactive; can't delete because report #2060 has a value in it |
 | 45-settings-inspections | Two BETA TEST ONLY inspections (date trigger and meter trigger) | Settings > Inspections, aircraft ZK-BTO | No - kept with test aircraft ZK-BTO; delete with it |
+| 96-xc-attachments | 18 files on flight #42903 (ids 459-476) | Flight Details > Files | Yes - deleted |
+| 96-xc-attachments | 18 files on BETA TEST ONLY Grpuser (person 277, ids 477-494) | Personnel Details > Files | Yes - deleted |
+| 96-xc-attachments | 18 files on Safety Report #2060 (ids 495-512) | Safety Reports > Files | Yes - deleted |
+| 96-xc-attachments | 18 files on waypoint ZZZQ (ids 513-530) | Settings > Waypoints > Files | Yes - deleted |
+| 96-xc-attachments | 19 files in BETA TEST ONLY Folder (ids 531-549) | File Browser | Yes - deleted |
+| 96-xc-attachments | 18 files on notice #1189 (ids 550-567) | Notices | Yes - deleted (2 older test files kept) |
+| 96-xc-attachments | Ticket #11 'BETA TEST ONLY file types' with 18 files | Administration > Support | Yes - deleted |
+| 96-xc-attachments | Channel beta-test-only-files (id 4) with 4 images | Chat | Yes - deleted |
 
 ### From retests
 

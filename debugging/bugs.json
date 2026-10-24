@@ -1016,12 +1016,13 @@
    "Click the file name in the list"
   ],
   "expected": "The file opens in a preview (or a new tab).",
-  "actual": "An error popup 'File Access Error' appears whose message is the text inside the file ('BETA TEST ONLY personnel file'). No preview opens. After pressing OK on that error, the Delete file button does nothing: the confirm popup is set active but stays hidden (display:none), so nothing appears until the page is reloaded. The page also has two buttons with id confirm-modal-ok-btn (#alert-modal and #confirm-modal).",
+  "actual": "An error popup 'File Access Error' appears whose message is the text inside the file ('BETA TEST ONLY personnel file'). No preview opens. After pressing OK on that error, the Delete file button does nothing: the confirm popup is set active but stays hidden (display:none), so nothing appears until the page is reloaded. The page also has two buttons with id confirm-modal-ok-btn (#alert-modal and #confirm-modal). Retest 24/10/2026 v2.0.123: BETA_TEST_ONLY_notes.txt (person 277) still shows \"File Access Error\" with the file's text. Images preview, PDF opens one tab, empty .txt/.html/others show \"cannot be previewed\". Downloads byte-identical. See checklist 96-xc-attachments.",
   "shots": [
    "pd_file_preview",
    "pd_file_delete_click"
   ],
-  "cause": "The preview call probably expects JSON and treats the raw file response as an error message."
+  "cause": "The preview call probably expects JSON and treats the raw file response as an error message.",
+  "status": "Not fixed (retested 24/10/2026 v2.0.123)"
  },
  {
   "id": "BUG-PD-013",
@@ -1536,11 +1537,12 @@
    "Click the attached file BETA_TEST_ONLY_notice.txt"
   ],
   "expected": "Preview popup (or download) for the attachment.",
-  "actual": "Nothing appears. The browser sends HEAD and GET to noticedetails_servefile&doc_id=453, but no preview, error or download is shown.",
+  "actual": "Nothing appears. The browser sends HEAD and GET to noticedetails_servefile&doc_id=453, but no preview, error or download is shown. Retest 24/10/2026 v2.0.123: Clicking BETA_TEST_ONLY_notes.txt on notice #1189 still does nothing (no popup, tab or download). Other types now tested: images (png/jpg/gif/webp/svg) preview, PDFs open in a new tab, empty .txt/.html/office/zip/exe/mp4 show \"cannot be previewed\" + Download. All 18 types serve byte-identical. See checklist 96-xc-attachments.",
   "shots": [
    "not_attach"
   ],
-  "cause": "handleFilePreview() in notices/noticedetails.js treats any text/plain response that isn't 'Ok' as an error message (showErrorModal('File Access Error', text)), so a real .txt file's content is taken as an error and the preview never opens. Same pattern as BUG-PD-012."
+  "cause": "handleFilePreview() in notices/noticedetails.js treats any text/plain response that isn't 'Ok' as an error message (showErrorModal('File Access Error', text)), so a real .txt file's content is taken as an error and the preview never opens. Same pattern as BUG-PD-012.",
+  "status": "Not fixed (retested 24/10/2026 v2.0.123)"
  },
  {
   "id": "BUG-NOT-003",
@@ -1780,11 +1782,12 @@
    "Click BETA_TEST_ONLY_notice-GCKLCWJK.txt"
   ],
   "expected": "The file opens in the preview (or downloads).",
-  "actual": "An error popup titled 'File Access Error' shows the file content ('BETA TEST ONLY notice attachment - please ignore'). No preview opens. Same cause as BUG-NOT-002 and BUG-PD-012.",
+  "actual": "An error popup titled 'File Access Error' shows the file content ('BETA TEST ONLY notice attachment - please ignore'). No preview opens. Same cause as BUG-NOT-002 and BUG-PD-012. Retest 24/10/2026 v2.0.123: BETA_TEST_ONLY_notes.txt still shows \"File Access Error\" with its text; .svg now also shows its markup as an error (BUG-FB-009). Images preview, PDFs open a tab, others show \"cannot be previewed\". See checklist 96-xc-attachments.",
   "shots": [
    "fb_preview_txt"
   ],
-  "cause": "filebrowser/index.js handleFilePreview(): any text/plain response that is not 'Ok' is treated as an error message, so every real .txt file is shown as an error."
+  "cause": "filebrowser/index.js handleFilePreview(): any text/plain response that is not 'Ok' is treated as an error message, so every real .txt file is shown as an error.",
+  "status": "Not fixed (retested 24/10/2026 v2.0.123)"
  },
  {
   "id": "BUG-FB-004",
@@ -2159,11 +2162,12 @@
    "Click the attachment BETA_TEST_ONLY_sup.txt"
   ],
   "expected": "File preview shows the text, or the file downloads.",
-  "actual": "An 'Error' popup opens whose message is the file content ('BETA TEST ONLY attachment'); the File Preview popup behind it is blocked until OK is clicked. Same pattern as BUG-FB-003.",
+  "actual": "An 'Error' popup opens whose message is the file content ('BETA TEST ONLY attachment'); the File Preview popup behind it is blocked until OK is clicked. Same pattern as BUG-FB-003. Retest 24/10/2026 v2.0.123: On new ticket #11, BETA_TEST_ONLY_notes.txt still shows an \"Error\" popup with the file text. Images show inline and preview, PDFs open a tab, empty .txt/.html/others show \"cannot be previewed\" + Download. Ticket deleted afterwards. See checklist 96-xc-attachments.",
   "shots": [
    "sup_file_error"
   ],
-  "cause": "Text preview response is passed to showErrorModal."
+  "cause": "Text preview response is passed to showErrorModal.",
+  "status": "Not fixed (retested 24/10/2026 v2.0.123)"
  },
  {
   "id": "BUG-CHAT-001",
@@ -3749,5 +3753,194 @@
    "exm_rt2_1_tick_counter"
   ],
   "status": "Fixed (verified 23/10/2026 v2.0.122)"
+ },
+ {
+  "id": "BUG-ATT-001",
+  "title": "Uploaded .html and .svg files are served inline from the DataHangar site (stored XSS risk)",
+  "row": "ATT-033",
+  "cl": "96-xc-attachments",
+  "module": "Attachments (all modules)",
+  "sev": "High",
+  "steps": [
+   "Flight Details #42903 > Files: upload BETA_TEST_ONLY_page.html and BETA_TEST_ONLY_drawing.svg",
+   "Open /index.pl?action=flightdetails_servefile&file_id=<id> for each one"
+  ],
+  "expected": "Uploaded HTML/SVG is never rendered as a page on the DataHangar site: send it as a download (Content-Disposition: attachment, X-Content-Type-Options: nosniff), or block these types, or sanitise SVG.",
+  "actual": "flightdetails_servefile, personneldetails_servefile, settings_waypoints_servefile and noticedetails_servefile return .html as text/html and .svg as image/svg+xml with Content-Disposition: inline, on the same site as the app. filebrowser_servefile returns .html as text/html inline. smsreportdetails_downloaddocument shows .svg inline in a new tab. Any user who can upload a file could put script in an HTML/SVG file that runs with the viewer's DataHangar login. Not exploited: the test files had no script in them. Support (support_serve_file) serves .html as application/octet-stream, which is safe. (found 24/10/2026, v2.0.123)",
+  "shots": [],
+  "cause": "The serve endpoints set Content-Type from the file extension and always use inline. No type allow-list on upload (see BUG-ATT-002). Fix: Serve user uploads with Content-Disposition: attachment unless the type is on a safe inline list (png, jpg, gif, webp, pdf); add X-Content-Type-Options: nosniff and Content-Security-Policy: sandbox on file responses; never serve text/html or image/svg+xml inline."
+ },
+ {
+  "id": "BUG-ATT-002",
+  "title": "No file-type check on any upload: .exe, .html and anything else is accepted; Notices \"Supported formats\" isn't enforced",
+  "row": "ATT-034",
+  "cl": "96-xc-attachments",
+  "module": "Attachments (all modules)",
+  "sev": "Medium",
+  "steps": [
+   "Upload BETA_TEST_ONLY_program.exe (fake, MZ header) and BETA_TEST_ONLY_page.html in Flight Details, Personnel Details, Notices, Safety Reports, Support, File Browser and Waypoints",
+   "In Notices > Edit, read the note under Attachment"
+  ],
+  "expected": "Either a clear allow-list (with a message when a file is refused) or a documented \"any type\" policy. Notices should only accept the formats it lists.",
+  "actual": "All 7 systems accept every one of the 18 test types, including .exe, .html, .heic, .mp4 and a zero-byte .txt. Notices says \"Supported formats: PDF, DOC, DOCX, TXT, JPG, JPEG, PNG\" but accepted and saved .exe, .zip, .html, .svg, .mp4, .heic, .xlsx etc. without a message. (found 24/10/2026, v2.0.123)",
+  "shots": [
+   "BUG-ATT-002-1"
+  ],
+  "cause": "No server-side extension/MIME check; the Notices file input has no accept list and the label is text only. Fix: Decide the policy. If restricted: check extension and content on the server, refuse with a clear message, and set accept= on the inputs. If not: remove the misleading Notices label. Either way see BUG-ATT-001 for safe serving."
+ },
+ {
+  "id": "BUG-ATT-003",
+  "title": "File names are changed differently in each module; accents and symbols are stripped (\"résumé\" becomes \"rsum\")",
+  "row": "ATT-035",
+  "cl": "96-xc-attachments",
+  "module": "Attachments (all modules)",
+  "sev": "Low",
+  "steps": [
+   "Upload \"BETA TEST ONLY résumé #1 (copy).pdf\" in each attachment area",
+   "Look at the name in the file list and in the downloaded file"
+  ],
+  "expected": "The original name is kept (or at least shown) everywhere, and the same rule is used in every module.",
+  "actual": "Flight Details: BETA_TEST_ONLY_rsum_1_copy.pdf (spaces to _, é, #, ( ) removed). Personnel Details, Safety Reports, File Browser and Waypoints: same stripping plus a random suffix, e.g. BETA_TEST_ONLY_rsum_1_copy-WSFEKWRS.pdf, BETA_TEST_ONLY_image-POHUNQIA.png. Notices and Support keep the original name exactly. Names with accents (common in NZ Māori place and person names) lose letters. (found 24/10/2026, v2.0.123)",
+  "shots": [
+   "BUG-ATT-003-1"
+  ],
+  "cause": "Each upload handler has its own filename sanitiser that drops non-ASCII characters. Fix: Store a safe internal name but keep and display the original (UTF-8) name, and use it in Content-Disposition (filename*=UTF-8''...) on download. Use one shared helper."
+ },
+ {
+  "id": "BUG-FD-012",
+  "title": "Flight Details Files: .txt shows its text in a \"Required Information\" alert; empty .txt and .html show error messages",
+  "row": "ATT-002",
+  "cl": "07-flight-details",
+  "module": "Flight Details",
+  "sev": "Medium",
+  "steps": [
+   "Flight Details #42903 > Files: upload BETA_TEST_ONLY_notes.txt, BETA_TEST_ONLY_empty.txt and BETA_TEST_ONLY_page.html",
+   "Click each file"
+  ],
+  "expected": "A preview of the text or the \"cannot be previewed, use Download\" box with a working Download button.",
+  "actual": "notes.txt: a \"Required Information\" alert whose message is the file's own text (\"BETA TEST ONLY text file - please ignore Line 2\"). empty.txt: \"File not accessible\". page.html: \"An unexpected server error occurred while accessing the file.\" No preview or Download is offered for any of them, although the files download fine with flightdetails_downloadfile. (found 24/10/2026, v2.0.123)",
+  "shots": [
+   "BUG-FD-012-1",
+   "BUG-FD-012-2"
+  ],
+  "cause": "handleFilePreview() fetches the file and treats any text/plain or text/html response as an error message. Same pattern as BUG-PD-012, BUG-NOT-002, BUG-FB-003 and BUG-SUP-003. Fix: Have the servefile endpoint return errors with a non-2xx status (or a JSON error), and decide preview from the status code, not the content type. Show text files in a <pre> or offer Download."
+ },
+ {
+  "id": "BUG-FD-013",
+  "title": "Flight Details Files: clicking a PDF opens it in two new tabs",
+  "row": "ATT-002",
+  "cl": "07-flight-details",
+  "module": "Flight Details",
+  "sev": "Low",
+  "steps": [
+   "Flight Details #42903 > Files",
+   "Click BETA_TEST_ONLY_scan.pdf once"
+  ],
+  "expected": "One new tab (or an in-page preview).",
+  "actual": "Two new tabs open with flightdetails_servefile for the same PDF, every click. Seen for both test PDFs. Personnel Details, Notices, Support and File Browser open one tab. (found 24/10/2026, v2.0.123)",
+  "shots": [],
+  "cause": "Probably both the row click handler and handleFilePreview() call window.top.open() (not confirmed in the code). Fix: Open the PDF once, from one handler, or preview it in an iframe like Waypoints."
+ },
+ {
+  "id": "BUG-SWP-005",
+  "title": "Waypoint Files list shows the Uploaded date as MM/DD/YYYY and Size N/A for every file",
+  "row": "ATT-027",
+  "cl": "38-settings-waypoints",
+  "module": "Settings: Waypoints",
+  "sev": "Low",
+  "steps": [
+   "Settings > Waypoints > ZZZQ > Files",
+   "Upload any file and look at the Uploaded and Size columns"
+  ],
+  "expected": "Uploaded in the org date format (24/10/2026) and the real file size.",
+  "actual": "Uploaded shows 10/24/2026 for every file and Size shows N/A for all 18 files, including a 40 KB PDF. (found 24/10/2026, v2.0.123)",
+  "shots": [
+   "BUG-SWP-005-1"
+  ],
+  "cause": "The list uses a fixed US date format and the list_files rows don't give a usable size. Fix: Format the date with the org date setting and return/display the file size (KB/MB)."
+ },
+ {
+  "id": "BUG-FB-008",
+  "title": "Files attached to a waypoint also appear in the File Browser Home folder",
+  "row": "ATT-030",
+  "cl": "22-file-browser",
+  "module": "File Browser",
+  "sev": "Medium",
+  "steps": [
+   "Settings > Waypoints > ZZZQ > Files: upload some files",
+   "Open File Browser > Home"
+  ],
+  "expected": "Waypoint attachments only appear on the waypoint (or in a clearly named Waypoints folder, with the waypoint's access rules).",
+  "actual": "All 18 files uploaded to waypoint ZZZQ were listed in File Browser Home (file_513 to file_530, group Internal, no folder). Deleting them from the waypoint removed them from File Browser as well. Anyone with File Browser access can see, download or edit waypoint files. (found 24/10/2026, v2.0.123)",
+  "shots": [
+   "BUG-FB-008-1"
+  ],
+  "cause": "Waypoint uploads are stored in the File Browser table with no folder and aren't filtered out of filebrowser_json. Fix: Filter waypoint (and any other module) attachments out of File Browser, or put them in a dedicated folder with the right permissions."
+ },
+ {
+  "id": "BUG-FB-009",
+  "title": "File Browser: clicking an .svg shows an error popup with the raw SVG code",
+  "row": "ATT-029",
+  "cl": "22-file-browser",
+  "module": "File Browser",
+  "sev": "Low",
+  "steps": [
+   "File Browser > BETA TEST ONLY Folder: upload BETA_TEST_ONLY_drawing.svg",
+   "Click it"
+  ],
+  "expected": "An image preview (like .png) or the \"cannot be previewed\" box with Download.",
+  "actual": "An error popup whose message is the file's SVG markup (<svg xmlns=... <rect ...>). The preview image also fails to load (naturalWidth 0). (found 24/10/2026, v2.0.123)",
+  "shots": [],
+  "cause": "filebrowser_servefile sends .svg as application/octet-stream and the preview code shows text replies as errors (same pattern as BUG-FB-003). Fix: Fix together with BUG-FB-003; if SVG preview is wanted, serve it safely (see BUG-ATT-001)."
+ },
+ {
+  "id": "BUG-SMS-006",
+  "title": "Safety Report document link for a deleted file shows the server's file path",
+  "row": "ATT-016",
+  "cl": "19-safety-reports",
+  "module": "Safety Reports",
+  "sev": "Low",
+  "steps": [
+   "Safety Report #2060 > Files: upload a file and note its id",
+   "Delete it, then open /index.pl?action=smsreportdetails_downloaddocument&doc_id=<id>"
+  ],
+  "expected": "A plain \"Document not found\" message.",
+  "actual": "\"Error: Document not found at /var/www/datahangar/D...\" - the reply includes the server's install path. Other modules say \"File not found\" or \"Invalid file ID\". (found 24/10/2026, v2.0.123)",
+  "shots": [],
+  "cause": "A Perl die message (with \"at <file> line N\") is returned to the browser. Fix: Catch the error and return a plain message with a 404 status."
+ },
+ {
+  "id": "BUG-CHAT-003",
+  "title": "Chat image button: non-images are ignored with no message; SVG/TIFF/HEIC preview then fail on Send",
+  "row": "ATT-032",
+  "cl": "28-chat",
+  "module": "Chat",
+  "sev": "Low",
+  "steps": [
+   "Chat > channel beta-test-only-files > image button",
+   "Pick a .pdf, .txt or .zip; then pick .svg, .tiff or .heic and press Send"
+  ],
+  "expected": "The picker only offers supported images, and anything else gets a clear message straight away.",
+  "actual": "PDF, ZIP, CSV, DOCX, XLSX, TXT, HTML, EXE and MP4: nothing happens, no message. SVG, TIFF and HEIC: a preview strip appears, but Send gives \"Error Sending Message: Invalid image format\" (SVG) or posts nothing (TIFF, HEIC). PNG, JPG, GIF and WebP send and display correctly and download byte-identical. (found 24/10/2026, v2.0.123)",
+  "shots": [],
+  "cause": "handleImageFile() silently returns when file.type isn't image/*; the server only accepts some image types, and the client doesn't know which. Fix: Set accept=\"image/png,image/jpeg,image/gif,image/webp\" on #chat-file-input and show a message for other files before the preview."
+ },
+ {
+  "id": "BUG-NOT-005",
+  "title": "Notices: only one attachment can be added per save",
+  "row": "ATT-012",
+  "cl": "17-notices",
+  "module": "Notices",
+  "sev": "Low",
+  "steps": [
+   "Notices > BETA TEST ONLY Notice (#1189) > Edit",
+   "Try to select several files in Attachment"
+  ],
+  "expected": "Several files can be selected at once (as in Flight Details, Personnel Details and Support).",
+  "actual": "The file picker only accepts one file. Adding 18 files took 18 separate Edit > Save rounds. Create New Notice has the same single-file input. (found 24/10/2026, v2.0.123)",
+  "shots": [
+   "BUG-NOT-005-1"
+  ],
+  "cause": "#editNoticeFile (and the new-notice input) has no multiple attribute. Fix: Add multiple to both inputs and send each file as files[]."
  }
 ]

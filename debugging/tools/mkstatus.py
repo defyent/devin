@@ -226,6 +226,10 @@ AREAS = {
   "PERF",
   "Cross-cutting: performance, console and network"
  ],
+ "96-xc-attachments": [
+  "ATT",
+  "Cross-cutting: attachments and file types"
+ ],
  "99-e2e-workflows": [
   "E2E",
   "End-to-end workflows"

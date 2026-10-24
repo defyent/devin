@@ -8,7 +8,7 @@
 | DataHangar version | v2.0.111 |
 | Account / permission level | Service Account (datahangar), admin |
 | Browser / width | Chrome 137 desktop, 1600 px |
-| Status | New |
+| Status | Not fixed (retested 24/10/2026 v2.0.123) |
 | Found / session | 21/10/2026 / https://app.devin.ai/sessions/15f654c4481f4789abb726226cefac9c |
 
 ## Steps to reproduce
@@ -38,3 +38,4 @@ none
 ## Retest log
 | Date | Version | Result | Notes |
 |---|---|---|---|
+| 24/10/2026 | v2.0.123 | Not fixed | BETA_TEST_ONLY_notes.txt (person 277) still shows "File Access Error" with the file's text. Images preview, PDF opens one tab, empty .txt/.html/others show "cannot be previewed". Downloads byte-identical. See checklist 96-xc-attachments. Screenshot `screenshots/BUG-PD-012-rt123-files.png`. |
