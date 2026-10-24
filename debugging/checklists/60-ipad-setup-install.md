@@ -14,9 +14,9 @@ Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must h
 
 | ID | Check | Expected | Result | Bug ID | Notes |
 |---|---|---|---|---|---|
-| IPSET-001 | Unit tests: FAIL BUG-IPSET-001 test target doesn't compile (dup class FlightTimeEngineTests in WeightBalanceEngineTests.swift:196 + FlightTimeEngineTests.swift; stale signatures: missing… | TBD (not recorded) | FAIL | BUG-IPSET-001 | L3: Unit tests: FAIL BUG-IPSET-001 test target doesn't compile (dup class FlightTimeEngineTests in WeightBalanceEngineTests.swift:196 + FlightTimeEngineTests.swift; stale signatures: missing pic/copilot/crew/passengers/takeoffFuel, decimalPlaces). Renaming dup still leaves ~12 compile errors. |
-| IPSET-002 | First launch welcome modal Go to Configuration / Maybe Later: PASS | TBD (not recorded) | PASS |  | L4: First launch welcome modal Go to Configuration / Maybe Later: PASS |
-| IPSET-003 | Version shown in Config footer: "Version 1.0.13 (Build 46)" PASS | TBD (not recorded) | PASS |  | L5: Version shown in Config footer: "Version 1.0.13 (Build 46)" PASS |
+| IPSET-001 | Unit tests: FAIL BUG-IPSET-001 test target doesn't compile (dup class FlightTimeEngineTests in WeightBalanceEngineTests.swift:196 + FlightTimeEngineTests.swift; stale signatures: missing… | No defect (see Bug ID) | FAIL | BUG-IPSET-001 | L3: Unit tests: FAIL BUG-IPSET-001 test target doesn't compile (dup class FlightTimeEngineTests in WeightBalanceEngineTests.swift:196 + FlightTimeEngineTests.swift; stale signatures: missing pic/copilot/crew/passengers/takeoffFuel, decimalPlaces). Renaming dup still leaves ~12 compile errors. |
+| IPSET-002 | First launch welcome modal Go to Configuration / Maybe Later: PASS | Behaves correctly / matches website | PASS |  | L4: First launch welcome modal Go to Configuration / Maybe Later: PASS |
+| IPSET-003 | Version shown in Config footer: "Version 1.0.13 (Build 46)" PASS | Behaves correctly / matches website | PASS |  | L5: Version shown in Config footer: "Version 1.0.13 (Build 46)" PASS |
 
 ## Test data created
 

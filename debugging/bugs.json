@@ -4526,5 +4526,101 @@
   ],
   "cause": "",
   "status": "Open"
+ },
+ {
+  "id": "BUG-IPREF-001",
+  "title": "Sync All reports zero Flight Custom Fields when a custom EFI field is present",
+  "row": "IPFT-006",
+  "cl": "69-ipad-flight-times-meters",
+  "module": "iPad app — Sync All / Flight Custom Fields",
+  "sev": "Low",
+  "steps": [
+   "See checklist row IPFT-006 for the recorded finding."
+  ],
+  "expected": "TBD (not specified in the checklist finding).",
+  "actual": "| IPFT-006 | Details filled: Category Solo, Activity Charter, meters Flight 2451.7 / Engine 2452.7 / Cycles 1.0 (all cumulative >= previous 2450.7/0), Time Totals auto: Flight 1.0 hrs, Engine 2.0 hrs… | No defect (see Bug ID) | FAIL | BUG-IPREF-001 | L91: Details filled: Category Solo, Activity Charter, meters Flight 2451.7 / Engine 2452.7 / Cycles 1.0 (all cumulative >= previous 2450.7/0), Time Totals auto: Flight 1.0 hrs, Engine 2.0 hrs (from leg times). Additional Info 'BETA TEST ONLY EFI audit value' — custom EFI field IS present on Details tab despite Sync All 'Flight Custom Fields: 0' -> BUG-IPREF-001 (Low): sync count label wrong/misleading. |",
+  "shots": [],
+  "cause": "TBD (not specified in the checklist finding).",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPSMS-003",
+  "title": "Safety Report action assignee picker includes a blank Unassigned row",
+  "row": "IPSMS-007",
+  "cl": "74-ipad-safety-reports",
+  "module": "iPad app — Safety Reports > Actions",
+  "sev": "Low",
+  "steps": [
+   "See checklist row IPSMS-007 for the recorded finding."
+  ],
+  "expected": "TBD (not specified in the checklist finding).",
+  "actual": "| IPSMS-007 | App New Action: Assign To picker = full people list (incl. student Aaron Fisher) with a BLANK row under Unassigned (people[0] {id 274, name ''}) - candidate cosmetic BUG-IPSMS-003. create… | No defect (see Bug ID) | FAIL | BUG-IPSMS-003 | L157: App New Action: Assign To picker = full people list (incl. student Aaron Fisher) with a BLANK row under Unassigned (people[0] {id 274, name ''}) - candidate cosmetic BUG-IPSMS-003. createAction posts smsreportdetails_createaction directly (online-only? check offline). Creating action 'BETA TEST ONLY action from iPad' assigned Aaron Higgins.<br>L158: - action saved locally (Local badge, 'Created by Me · 24 Oct 2026, 08:13', Open, Complete Action button), '#2064 needs push'. Local timestamps: comment showed 09:09 (real NZ 21:09/UTC 08:09), action 08:13 (UTC 08:13) -> local-stamp display inconsistent; resolves after push.<br>L159: - action push -> 'Successfully pushed to DataHangar Report #2064.'<br>L160: - web #2064 Actions: Created by Service Account 24/10/2026 21:13, Assigned to Aaron Higgins, OPEN, request 'BETA TEST ONLY action from iPad'. PASS IPSMS-007 (app->web action). |",
+  "shots": [],
+  "cause": "TBD (not specified in the checklist finding).",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPSMS-004",
+  "title": "Safety Report push can report success after form or status updates fail",
+  "row": "IPSMS-009",
+  "cl": "74-ipad-safety-reports",
+  "module": "iPad app — Safety Reports > push/sync",
+  "sev": "Medium",
+  "steps": [
+   "See checklist row IPSMS-009 for the recorded finding."
+  ],
+  "expected": "TBD (not specified in the checklist finding).",
+  "actual": "| IPSMS-009 | web->app status: web 'Open Investigation' -> Under Investigation (button now 'Close Investigation'). Pull in app next. | No defect (see Bug ID) | FAIL | BUG-IPSMS-004 | L163: web->app status: web 'Open Investigation' -> Under Investigation (button now 'Close Investigation'). Pull in app next.<br>L164: - CODE: SMSReportUploadService steps 9/10 use `try?` for saveForms and changeStatus -> server rejection of forms/status is swallowed, push still reports \"Successfully pushed\" (candidate BUG-IPSMS-004 Medium: silent partial push). Step 11 comment 'Refresh from server' has no call in that function.<br>L165: - app pull -> stepper Opened(done) -> Investigation (current); status button 'To Review' shown. PASS IPSMS-009 (web->app status). |",
+  "shots": [],
+  "cause": "TBD (not specified in the checklist finding).",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPWB-001",
+  "title": "Weight and balance summary rounds equipment weight to whole kilograms",
+  "row": "IPWB-002",
+  "cl": "68-ipad-weight-balance",
+  "module": "iPad app — Weight and balance summary",
+  "sev": "Low",
+  "steps": [
+   "See checklist row IPWB-002 for the recorded finding."
+  ],
+  "expected": "TBD (not specified in the checklist finding).",
+  "actual": "| IPWB-002 | (UI) Summary card \"Equipment 2 kg\" (net incl. removed -1.2) vs W&B section \"Equipment 3 kg\" -> inconsistent labels. Candidate BUG-IPWB-001 UI. | No defect (see Bug ID) | FAIL | BUG-IPWB-001 | L60: (UI) Summary card \"Equipment 2 kg\" (net incl. removed -1.2) vs W&B section \"Equipment 3 kg\" -> inconsistent labels. Candidate BUG-IPWB-001 UI. |\n\n| IPWB-006 | Website leg W&B totals: Equipment 1.80 (3.00 onboard, -1.20 removed from BEW), Fuel 100.00, Pers&Bag 52.00, ZFW 733.80 @ 258.62/2.70, TOW 833.80 @ 259.70/-0.56, BEW 680.00@269.2 mom 183.1… | No defect (see Bug ID) | FAIL | BUG-IPWB-001 | L72: Website leg W&B totals: Equipment 1.80 (3.00 onboard, -1.20 removed from BEW), Fuel 100.00, Pers&Bag 52.00, ZFW 733.80 @ 258.62/2.70, TOW 833.80 @ 259.70/-0.56, BEW 680.00@269.2 mom 183.1. EXACT match with app W&B sheet and hand calc. PASS<br>L73: -> BUG-IPWB-001 downgraded: app card \"Equipment 2 kg\" = rounded net 1.8; website shows 1.80 with breakdown. UI-only (rounding to integer kg hides 0.2 kg). |",
+  "shots": [],
+  "cause": "TBD (not specified in the checklist finding).",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPWB-002",
+  "title": "Cabin occupancy count includes hidden seats",
+  "row": "IPWB-003",
+  "cl": "68-ipad-weight-balance",
+  "module": "iPad app — Weight and balance cabin seating",
+  "sev": "Low",
+  "steps": [
+   "See checklist row IPWB-003 for the recorded finding."
+  ],
+  "expected": "TBD (not specified in the checklist finding).",
+  "actual": "| IPWB-003 | Cabin header '0/4 occupied' but grid shows only Rear Left/Rear Right; aircraft config has seats R2C1/R2C2 (row 2, arm 330) while seatRows=1 -> hidden seats counted. Candidate BUG-IPWB-002… | No defect (see Bug ID) | FAIL | BUG-IPWB-002 | L61: Cabin header '0/4 occupied' but grid shows only Rear Left/Rear Right; aircraft config has seats R2C1/R2C2 (row 2, arm 330) while seatRows=1 -> hidden seats counted. Candidate BUG-IPWB-002 (Low) - compare website W&B config. |",
+  "shots": [],
+  "cause": "TBD (not specified in the checklist finding).",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPXC-002",
+  "title": "Hardware-keyboard focus leaks through sheets and keypads",
+  "row": "IPXC-002",
+  "cl": "78-ipad-cross-cutting",
+  "module": "iPad app — cross-cutting keyboard focus",
+  "sev": "Medium",
+  "steps": [
+   "See checklist row IPXC-002 for the recorded finding."
+  ],
+  "expected": "TBD (not specified in the checklist finding).",
+  "actual": "| IPFORM-002 | (BUG-IPXC-002 evidence #3): Key-Value Pair fields did NOT receive input; 'KV1 BETA'/'KV2 BETA' typed while textarea was first responder got appended to textarea value: widget-...-6d6a5z4… | No defect (see Bug ID) | FAIL | BUG-IPXC-002 | L96: (BUG-IPXC-002 evidence #3): Key-Value Pair fields did NOT receive input; 'KV1 BETA'/'KV2 BETA' typed while textarea was first responder got appended to textarea value: widget-...-6d6a5z4 = 'BETA TEST ONLY textareaKV1 BETAKV2 BETA'. Focus leak corrupts saved form data, not just display. |\n\n| IPXC-002 | upgraded BUG-IPXC-002 (Medium): focus leak confirmed in 2nd place - tapping meter ✓/field then typing '2451.7' went into Notes ('...flight 12451.7'). Custom keypads never resign first res… | No defect (see Bug ID) | FAIL | BUG-IPXC-002 | L90: FAIL upgraded BUG-IPXC-002 (Medium): focus leak confirmed in 2nd place - tapping meter ✓/field then typing '2451.7' went into Notes ('...flight 12451.7'). Custom keypads never resign first responder. Any hardware-keyboard user corrupts fields. Restore Notes. evidence/IPXC-002_* |",
+  "shots": [],
+  "cause": "TBD (not specified in the checklist finding).",
+  "status": "Open"
  }
 ]
