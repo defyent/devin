@@ -3942,5 +3942,589 @@
    "BUG-NOT-005-1"
   ],
   "cause": "#editNoticeFile (and the new-notice input) has no multiple attribute. Fix: Add multiple to both inputs and send each file as files[]."
+ },
+ {
+  "id": "BUG-IPAC-001",
+  "title": "Aircraft editor edits to server aircraft are local-only and silently reverted by Sync All",
+  "row": "IPAC-006",
+  "cl": "64-ipad-aircraft-editor",
+  "module": "iPad app — Configuration > Aircraft > editor; SyncService.syncAircraft",
+  "sev": "Medium",
+  "steps": [
+   "Configuration > Aircraft > ZK-FLY (tagged \"Server\"). Set Empty Weight 600, Save. List shows \"BEW 600 kg\".",
+   "Configuration > DataHangar > Sync All Data.",
+   "Re-open Aircraft list."
+  ],
+  "expected": "Either the edit is pushed to DataHangar, or the editor marks server-owned fields read-only / warns that changes are device-only and will be overwritten on sync.",
+  "actual": "Sync All replaces Empty Weight with the server value (0); \"BEW 600 kg\" disappears with no message. Nothing is sent to the website (`AircraftEditorView.save()` -> `aircraftStore.upsert` only).\n`SyncService` re-sync keeps the local W&B config (seats, arms, equipment, profiles, graphs) but overwrites emptyWeight, MTOW, type, registration, meters and time settings - so a single aircraft ends up as a mix of server and local values, and the iPad's W&B for that aircraft can differ from the website's with no indication.",
+  "shots": [
+   "IPAC-005_zkfly_bew600_saved.png",
+   "IPAC-006_zkfly_ew_reverted_after_sync.png"
+  ],
+  "cause": "",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPCALC-001",
+  "title": "Unit Converter: NM <-> Statute Miles conversion inverted; large values shown in scientific notation",
+  "row": "IPCALC-010",
+  "cl": "76-ipad-calculator",
+  "module": "iPad app — Calculator > Unit Converter (Distance)",
+  "sev": "High",
+  "steps": [
+   "Calculator > Unit Converter > Distance, Convert From = Nautical Miles (NM).",
+   "Enter 100."
+  ],
+  "expected": "Statute Miles = 115.08 mi (1 NM = 1.15078 mi). Meters 185,200 m; Feet 607,612 ft shown as plain numbers.",
+  "actual": "Statute Miles = **86.8974 mi** (that is the mi->NM figure). Meters shows `1.852e+05 m`, Feet `6.076e+05 ft`.\nReverse direction (100 mi -> NM) is also inverted per source (gives 115.08 NM instead of 86.90 NM).",
+  "shots": [
+   "IPCALC-010_unit_nm_to_mi_wrong.png"
+  ],
+  "cause": "`Views/Calculator/UnitConverterView.swift`, distance units:\n```swift\nConvUnit(name: \"Statute Miles\", abbrev: \"mi\", toBase: { $0 * 1.852 / 1.60934 }, fromBase: { $0 * 1.60934 / 1.852 }),\n```\nBase unit is NM; the factors are swapped. Fix: `toBase: { $0 * 1.60934 / 1.852 }, fromBase: { $0 * 1.852 / 1.60934 }`.\nScientific notation comes from the result formatter (likely `%g`); use a grouped decimal format for large values.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPCFG-001",
+  "title": "Configuration PIN saves non-4-digit values, permanently locking Configuration",
+  "row": "IPCFG-009",
+  "cl": "61-ipad-config-general",
+  "module": "iPad app — Configuration > Configuration PIN / PinPadView",
+  "sev": "Medium",
+  "steps": [
+   "Configuration > Configuration PIN, enter `12`, tap Done. Field shows `12` (saved).",
+   "Close Configuration, tap the gear again."
+  ],
+  "expected": "PIN must be exactly 4 digits (reject/confirm before saving), or the gate accepts PINs of the saved length.",
+  "actual": "`12` is saved to the Keychain immediately. The PIN gate (`PinPadView`) has 4 dots and only compares once 4 digits are entered, so `12` can never match -> Configuration unreachable. Wipe Data lives inside Configuration, so the only recovery is reinstalling the app.",
+  "shots": [
+   "IPCFG-007_pin_gate.png",
+   "IPCFG-008_pin_correct_opens.png",
+   "IPCFG-009_pin_2digit_saved.png"
+  ],
+  "cause": "`ConfigView` binds `NumberPadField` directly to `KeychainStore.shared.configPin` (every keystroke persisted, no length/digit validation). The field's keypad also offers `.` and `+/-`. `PinPadView` `guard enteredPin.count < 4` / `if enteredPin.count == 4` compare.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPCHAT-001",
+  "title": "Chat message typed while offline is discarded on send",
+  "row": "IPCHAT-010",
+  "cl": "75-ipad-comms-chat",
+  "module": "",
+  "sev": "Medium",
+  "steps": [
+   "Comms > select a channel.",
+   "Make stresstest unreachable (host blackhole route; device otherwise online).",
+   "Type \"BETA TEST ONLY offline message\" and tap Send."
+  ],
+  "expected": "Message kept (pending bubble / outbox with retry), or input left intact with a quick \"offline\" error.",
+  "actual": "Input clears immediately; no pending bubble or offline indicator. About 60-70 s later: \"Error Sending Message - The request timed out.\" The text is gone and must be retyped. The message never reached the server.",
+  "shots": [
+   "IPCHAT-010_app_offline_65s.png",
+   "IPCHAT-010_app_offline_after_send.png",
+   "IPCHAT-010_app_offline_timeout_error.png",
+   "IPCHAT-010_app_resend_online.png"
+  ],
+  "cause": "`CommsView.handleSend()` clears `messageText` and the pending image before `chatService.sendMessage`; the catch block only shows a popup. `DataHangarAPI` uses a 60 s request timeout.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPDH-001",
+  "title": "Keychain save failure is silent",
+  "row": "IPDH-007",
+  "cl": "62-ipad-datahangar-login",
+  "module": "DataHangar configuration / credentials",
+  "sev": "Low",
+  "steps": [
+   "Run an unsigned Simulator build with CODE_SIGNING_ALLOWED=NO.",
+   "Enter the DataHangar URL, username, and password, then save/use the credentials.",
+   "Attempt authentication."
+  ],
+  "expected": "The app reports a Keychain save failure, or credentials are saved successfully before authentication is attempted.",
+  "actual": "The Keychain write failure is not surfaced. The fields remain filled, but authentication reports Error: notConfigured. An ad-hoc-signed rebuild avoided the unsigned-build condition.",
+  "shots": [],
+  "cause": "The app ignores the SecItemAdd status returned from the Keychain save operation.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPDH-002",
+  "title": "Empty-field authentication and sync buttons look enabled",
+  "row": "IPDH-001",
+  "cl": "62-ipad-datahangar-login",
+  "module": "DataHangar configuration / button states",
+  "sev": "Low",
+  "steps": [
+   "Open DataHangar configuration with the URL, username, and password fields empty.",
+   "Observe and tap Test Authentication and Sync All."
+  ],
+  "expected": "Buttons unavailable because required fields are empty are visibly disabled.",
+  "actual": "Test Authentication and Sync All look enabled although the fields are empty. Tapping them does nothing and provides no feedback.",
+  "shots": [],
+  "cause": "The disabled and enabled states use the same visual style.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPFL-001",
+  "title": "Flight ID badges and labels add thousands separators",
+  "row": "IPFL-003",
+  "cl": "66-ipad-flights-list",
+  "module": "Flights / flight ID display",
+  "sev": "Low",
+  "steps": [
+   "Open Download Flights and inspect the flight ID badges.",
+   "Inspect flight ID labels in the flight list, flight details, and communications views."
+  ],
+  "expected": "Flight IDs display as ungrouped identifiers, without locale-dependent numeric formatting.",
+  "actual": "Some badges and labels apply thousands separators (for example, #8,893 and #43,913), while adjacent text shows the same IDs without separators.",
+  "shots": [
+   "IPDL-download_list_week.png"
+  ],
+  "cause": "SwiftUI interpolation of an Int in a localized Text/Label string applies numeric grouping.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPFL-002",
+  "title": "Flights with a Student PIC cannot be pushed from the app",
+  "row": "IPFL-002f",
+  "cl": "66-ipad-flights-list",
+  "module": "Flight sync / personnel",
+  "sev": "High",
+  "steps": [
+   "Create web flight #42915 with Aaron Fisher as PIC; Aaron Fisher is a Student accepted as a PIC on the website.",
+   "Add a leg on the website with Aaron Fisher as PIC and a valid weight, then pull the flight into the app.",
+   "Push the flight from the app."
+  ],
+  "expected": "The app pushes the leg successfully and preserves Aaron Fisher as the PIC.",
+  "actual": "The push fails with 'Leg 1: the PIC must be a crew member or student. Please choose a crew member, then save again.' The app represents Aaron Fisher as MANUAL_ENTRY, so the server rejects the PIC.",
+  "shots": [
+   "IPFL-002_42915_details.png",
+   "IPFL-002_42915_push_rejected_pic.png",
+   "IPFL-002_web_aaron_fisher_student.png"
+  ],
+  "cause": "SyncService.syncPersonnel filters personnel to crew == 'Y', excluding Student personnel. When the PIC is absent from synced personnel, FlightSyncService.resolveCockpit falls back to a manual-entry representation.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPFL-003",
+  "title": "Leg times pulled from DataHangar (\"HH:MM:SS\") display as the current time; editing overwrites them",
+  "row": "IPFL-010",
+  "cl": "66-ipad-flights-list",
+  "module": "iPad app — Flights > Leg Detail > Route & Times (also time engine)",
+  "sev": "High",
+  "steps": [
+   "Push a flight with leg times from the app (or create one on the website), then Pull / download it so the app stores the server copy.",
+   "Open the flight > Leg 1."
+  ],
+  "expected": "Start/Takeoff/Landing/Stop show the server times (#42914: 23:07, 23:08, 00:07, 01:07).",
+  "actual": "All four show the current device time (02:13 AM in 12h mode / 02:14 in 24h mode). The local store still holds \"23:07:00\" etc.",
+  "shots": [
+   "IPCFG-004_12h_leg_times_now.png",
+   "IPFL-010_leg_times_show_now_24h.png"
+  ],
+  "cause": "`FlightSyncService` maps `engineStart`/`flightStart`/`flightStop`/`engineStop` verbatim; the server returns `HH:MM:SS`.\n`TimeUtils.parseHHMM` accepts only `HH:MM` (2 parts) or `HHMM`; 3 parts -> nil. `TimeUtils.dateFromHHMM` then returns `Date()`, which the leg DatePicker binds to, so the picker shows \"now\" and any interaction commits \"now\" via `phase.onCommit(hhmmFromDate(...))`.\n`TimeUtils.durationMinutes` (used by FlightTimeEngine / upload clockHours) relies on the same parser.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPFL-004",
+  "title": "Flight downloaded before aircraft sync keeps aircraft \"None\" forever; Pull never re-links; push fails with \"(nil)\"",
+  "row": "IPPERM-067",
+  "cl": "79-ipad-permissions-e2e",
+  "module": "iPad app, Flights (download/pull/push)",
+  "sev": "Medium",
+  "steps": [
+   "Log the app in as a user who cannot sync aircraft yet (no Resources permission), or download a flight before running Sync All.",
+   "Download BETA flight #42914 (ZK-HEL on the website).",
+   "Grant the user aircraft access (Resources + W&B Config Download) and run Sync All. Aircraft now sync.",
+   "Open #42914 and run Pull from Server.",
+   "Push the flight."
+  ],
+  "expected": "Pull (or Sync All) re-links the flight to ZK-HEL (`dh-<resourceId>`), and push works. If it can't, the message should say the aircraft isn't available on this iPad and how to fix it.",
+  "actual": "- The Aircraft field stays \"None\" and Category/Activity stay blank after Sync All and after Pull.\n- Every push fails with \"Push Failed: Could not push flight data to DataHangar. Aircraft configuration (nil) not found for this flight.\"\n- The website still has ZK-HEL. Nothing was sent, so no server data was lost.",
+  "shots": [
+   "IPPERM-050_readonly_flight_details_missing_ref.png",
+   "IPPERM-052_readonly_push_nil_config.png",
+   "IPPERM-057_5perm_sync_3_denied.png",
+   "IPPERM-066_push_nil_config_after_aircraft_sync.png"
+  ],
+  "cause": "- `FlightSyncService.swift:129/142` sets `flight.aircraftId` from `aircraftStore.aircraft(id: \"dh-\\(serverFlight.resourceId)\")` only on the first download.\n- Pull (`~line 195`) reuses `localFlight.aircraftId` and never re-resolves it.\n- `FlightUploadService.swift:41` and `FlightPayloadBuilder.swift:132` show the Swift `nil` text in the user-facing message.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPFORM-001",
+  "title": "Pushed form uses the wrong template and loses widget data",
+  "row": "IPFORM-003",
+  "cl": "70-ipad-flight-forms",
+  "module": "Flight forms / upload",
+  "sev": "High",
+  "steps": [
+   "In the app, attach BETA TEST ONLY Form to flight #42914.",
+   "Fill 8 of the form's 12 fields and save the form.",
+   "Push the flight and inspect the attached form on the website."
+  ],
+  "expected": "The website shows BETA TEST ONLY Form with the values entered in the app.",
+  "actual": "The app pushes BETA TEST ONLY Form, but the website shows QA Post-Flight Report with only 1 of 11 fields populated (the automatically populated Flight Date). The app-entered widget values are absent.",
+  "shots": [
+   "IPFORM-003_web_wrong_form.png",
+   "IPJSON-001_export.json"
+  ],
+  "cause": "TBD; results note a suspected mismatch between synced template IDs and server form_template_id semantics.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPFORM-002",
+  "title": "Pull creates phantom form instances and pushed updates are ignored",
+  "row": "IPFORM-004",
+  "cl": "70-ipad-flight-forms",
+  "module": "Flight forms / sync",
+  "sev": "High",
+  "steps": [
+   "On flight #42914, pull the server's attached form data into the app.",
+   "Compare the app's Forms tab with the website's Forms tab.",
+   "Push the flight again and compare the website form's update state."
+  ],
+  "expected": "The app shows the single form instance present on the website, and a pushed update to that instance is reflected on the website.",
+  "actual": "The app shows three local instances (IDs 198, 199, and 200), while the website has one QA Post-Flight Report. The app's later 'updated' entries are silently ignored by the website.",
+  "shots": [
+   "IPFORM-004_app_3_phantom_forms.png",
+   "IPFORM-dup_web_forms_tab.png"
+  ],
+  "cause": "TBD",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPFORM-003",
+  "title": "Form Date/Time widgets ignore website values and show (and can save) the current date/time",
+  "row": "IPSMS-014",
+  "cl": "74-ipad-safety-reports",
+  "module": "iPad app — Forms engine (Safety Report forms and Flight forms), checklist 70/74",
+  "sev": "High",
+  "steps": [
+   "Website: Safety Report #2064 > Forms > Add Form > QA Hazard Observation; Observed Time 01:25, fill others, Save Changes.",
+   "App: open #2064, Pull, Forms > QA Hazard Observation.",
+   "Close, wait one minute, reopen."
+  ],
+  "expected": "Observed Time shows 01:25 (the saved value).",
+  "actual": "Shows 01:26, then 01:27 after reopening — always the current time. Local stored value is still `\"2026-10-24 01:25:00\"`. Observed Date shows today (coincidentally correct here; a value from any other day would display as today).",
+  "shots": [
+   "IPSMS-014_app_form_time_now.png",
+   "IPSMS-014_app_form_values.png",
+   "IPSMS-014_web_form_saved.png"
+  ],
+  "cause": "`Views/Forms/FormWidgetViews.swift`: `FormDateField` parses `yyyy-MM-dd`, `FormTimeField` uses `TimeUtils.dateFromHHMM` (`HH:mm`). The website stores date and time widgets as `yyyy-MM-dd HH:mm:ss`. Both getters fall back to `Date()` on parse failure, so the picker shows now; any edit/Save writes the wrong value back.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPOFF-001",
+  "title": "Offline launch and push block for about a minute before timing out",
+  "row": "IPOFF-003",
+  "cl": "78-ipad-cross-cutting",
+  "module": "Offline handling",
+  "sev": "Low",
+  "steps": [
+   "Make the DataHangar host unreachable while leaving the Simulator online.",
+   "Launch the app and wait for the sync attempt to finish.",
+   "While still offline, attempt to push a flight."
+  ],
+  "expected": "The app detects that it is offline and promptly explains that launch sync or push cannot proceed.",
+  "actual": "Launch displays a blocking Syncing Data screen for about 60 seconds before Authentication Error / The request timed out. A push displays Authenticating… for about 60 seconds before Push Failed / The request timed out.",
+  "shots": [
+   "IPOFF-001_authenticating_spinner.png",
+   "IPOFF-001_push_timeout.png",
+   "IPOFF-003_launch_sync_blocking.png",
+   "IPOFF-003_launch_auth_error.png"
+  ],
+  "cause": "No prompt reachability check; the request waits for its timeout. Root cause is TBD.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPPERM-001",
+  "title": "App lets read-only users edit and push flights and only fails at the server, showing a raw \"Error block Error\" message",
+  "row": "IPPERM-049",
+  "cl": "79-ipad-permissions-e2e",
+  "module": "iPad app, Flights, permissions",
+  "sev": "Medium",
+  "steps": [
+   "Log in to the app as the read-only user and download flight #42914.",
+   "Edit Notes (Add Leg and all the fields are enabled too).",
+   "Set the aircraft if needed (see BUG-IPFL-004), then choose ... > Push to Server > Push."
+  ],
+  "expected": "The app should see that the user can't edit flights (the server already exposes per-user permissions, as Safety Reports do). It should then show the flight read-only, hide Add Leg and Push, or warn before any edits are made.",
+  "actual": "- Every edit control and Push stays enabled.\n- The confirmation dialog appears, then the push fails with: \"Push Failed - Could not push flight data to DataHangar. Error block Error Access Denied: You do not have permission to create or modify flights.\"\n- The message includes raw markup text (\"Error block Error\").\n- The local edit stays \"needs push\" forever. After a Pull it is silently kept and marked synced (BUG-IPSYNC-002).",
+  "shots": [
+   "IPPERM-049_readonly_flight_editable.png",
+   "IPPERM-068_readonly_push_confirm_zkhel.png",
+   "IPPERM-069_readonly_push_server_denied.png"
+  ],
+  "cause": "",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPSET-001",
+  "title": "Unit-test target does not compile",
+  "row": "IPSET-001",
+  "cl": "60-ipad-setup-install",
+  "module": "Unit tests",
+  "sev": "Medium",
+  "steps": [
+   "Attempt to compile the app's unit-test target.",
+   "Exact build command and target invocation: TBD."
+  ],
+  "expected": "The unit-test target compiles.",
+  "actual": "Compilation fails due to duplicate FlightTimeEngineTests declarations and stale call signatures, including missing pic, copilot, crew, passengers, takeoffFuel, and decimalPlaces arguments. Renaming the duplicate still leaves about 12 compile errors.",
+  "shots": [],
+  "cause": "Duplicate test-class declaration and test calls that have not been updated to current signatures.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPSMS-001",
+  "title": "Safety Report form attached in iPad app is silently lost on push",
+  "row": "IPSMS-013",
+  "cl": "74-ipad-safety-reports",
+  "module": "iPad app — Safety Reports > Forms (checklist 74)",
+  "sev": "High",
+  "steps": [
+   "In the app open Safety Report #2064 (BETA TEST ONLY iPad SMS report) > Forms > Attach Form > QA Hazard Observation.",
+   "Fill Risk Level=Medium, Location, Description, Hazard Category=Maintenance, Reported to Supervisor=on; Save (shows 5/8 fields, \"#2064 needs push\").",
+   "Tap Push > confirm."
+  ],
+  "expected": "Form instance is created on the server with the entered values and appears in the website Forms tab and stays in the app.",
+  "actual": "- App shows \"Report Synced — Successfully pushed to DataHangar Report #2064.\"\n- Website #2064 Forms tab: \"No forms have been attached.\"\n- App Forms tab after the post-push refresh: \"No forms attached\" (local `attachedForms` = []). The user's entered form data is gone on both sides.",
+  "shots": [
+   "IPSMS-013_app_attach_form_list.png",
+   "IPSMS-013_app_form_blank.png",
+   "IPSMS-013_app_form_push_ok_but_empty.png",
+   "IPSMS-013_app_form_saved_local.png",
+   "IPSMS-013_web_no_forms.png"
+  ],
+  "cause": "- `SMSReportSyncService.addForm` (`smsreportdetails_addform`) has no callers anywhere in the project.\n- `SMSReportUploadService` step 9 calls `saveForms`, which sends `instance_id = form.localId` for forms without a server instance; the server does not create an instance from it.\n- The call is `try? await smsSync.saveForms(...)` — any error is swallowed and the push still reports success; step 11 then refreshes from server and overwrites the local form list.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPSMS-002",
+  "title": "Final Report tab shows stale values after Pull (overwrite risk)",
+  "row": "IPSMS-016",
+  "cl": "74-ipad-safety-reports",
+  "module": "iPad app — Safety Reports > Final Report",
+  "sev": "Medium",
+  "steps": [
+   "Report #2064 open in the app on the Final tab (summary \"BETA TEST ONLY final summary from iPad\").",
+   "On the website, change the Final Report summary to \"...edited on website\" and Save.",
+   "In the app, Pull while staying on the Final tab."
+  ],
+  "expected": "Final tab shows the website summary.",
+  "actual": "The local model gets the new value (SQLite closedDescription = \"edited on website\"), but the text box still shows the old \"from iPad\" text until you switch tabs and come back. Editing the stale box autosaves the old text over the website value.",
+  "shots": [
+   "IPSMS-016_app_final_after_tabswitch.png",
+   "IPSMS-016_app_final_pulled.png",
+   "IPSMS-016_web_final_after_reload.png"
+  ],
+  "cause": "`SafetyFinalReportSection.loadState()` runs on `.onAppear` and is guarded by `isLoaded`, so later report changes from Pull never reach the `@State` fields (closedDescription, final likelihood/consequence, hazard fields).",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPSYNC-001",
+  "title": "Push silently overwrites website-side Notes edits",
+  "row": "IPOFF-005",
+  "cl": "78-ipad-cross-cutting",
+  "module": "Flight sync / conflict handling",
+  "sev": "Medium",
+  "steps": [
+   "On flight #42914, edit Notes on the website to WEBEDIT.",
+   "Make an offline Notes edit in the app.",
+   "Reconnect and push the app's flight changes."
+  ],
+  "expected": "The app detects the website edit and presents a conflict or otherwise prevents silently replacing the website value.",
+  "actual": "The push succeeds and replaces WEBEDIT with the app's offline Notes edit. No conflict is detected; the result is last-write-wins behavior.",
+  "shots": [
+   "IPOFF-005_push_after_reconnect.png",
+   "IPOFF-005_web_details_after_push.png"
+  ],
+  "cause": "No conflict detection during push; the stale local copy is sent as the latest value.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPSYNC-002",
+  "title": "Pull from Server does not reliably update website-edited Notes",
+  "row": "IPPERM-063",
+  "cl": "79-ipad-permissions-e2e",
+  "module": "Flight sync / pull",
+  "sev": "Medium",
+  "steps": [
+   "Edit the Notes on website flight #42914 to WEBEDIT.",
+   "In the app, use Already Downloaded > Pull from Server (overwrites local changes).",
+   "Check the flight's Notes in the app."
+  ],
+  "expected": "The app replaces its stale Notes value with the website value WEBEDIT.",
+  "actual": "Pull from Server leaves the app's Notes unchanged. Results also record a landing-time representation change from 00:07 to 00:07:00; whether it is part of this defect is TBD.",
+  "shots": [],
+  "cause": "TBD",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPTRK-001",
+  "title": "Live Tracking UI/state issues (raw HTML error, stale/global menu, no offline indicator)",
+  "row": "IPTRK-003",
+  "cl": "77-ipad-live-tracking",
+  "module": "iPad app — Live Tracking",
+  "sev": "Low",
+  "steps": [],
+  "expected": "TBD",
+  "actual": "1. Error modal shows the server's raw HTML (\"Server returned: <!DOCTYPE html>...\"). (LiveTrackingService.sendPing sets lastError to the first 200 chars of the response.)\n2. After Start Tracking, the flight detail menu still says \"Start Tracking\" (FlightDetailView reads LiveTrackingService.shared.isActive without observing it). Tapping it again starts a new session ID.\n3. The menu shows the global session state: flight #8884, which was not being tracked, showed \"Stop Tracking\" while #42914 was tracked. Tapping it would stop the other flight's session.\n4. While offline, the toolbar icon stays green/active; network errors only set lastError.\n5. No confirmation or toast after Start Tracking from the flight menu.",
+  "shots": [
+   "IPTRK-002_menu_still_start.png",
+   "IPTRK-003_app_tracking_error.png",
+   "IPTRK-006_offline_icon_green.png",
+   "IPTRK-006_other_flight_shows_stop.png"
+  ],
+  "cause": "",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPTRK-002",
+  "title": "Live Tracking queue stores duplicate/stale pings; rejected pings are dropped",
+  "row": "IPTRK-006",
+  "cl": "77-ipad-live-tracking",
+  "module": "iPad app — Live Tracking",
+  "sev": "Medium",
+  "steps": [
+   "Start tracking on #42914 (30 s interval) with the device stationary.",
+   "Make stresstest unreachable (host blackhole route) for about 75 s.",
+   "Inspect UserDefaults lt_pendingPings."
+  ],
+  "expected": "One point per new fix, no stale fixes carried from an earlier session, and server-rejected pings either retried or reported.",
+  "actual": "- The queue holds 6–7 entries. Most are identical (same recorded_at 08:56:37.677Z, same lat/lng), because each timer tick re-sends lastKnownLocation even when there is no new fix.\n- One queued entry is a fix from 08:52:55, taken in the previous session (before Stop and relaunch), and it now carries the new session_id.\n- The queue drains only after a successful \"Ok\" ping. A non-\"Ok\" server response is never queued, so that position is lost.\n- Stop Tracking does not clear lt_pendingPings (7 remained after Stop); they would be sent later under the stopped session id.",
+  "shots": [],
+  "cause": "",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPUI-001",
+  "title": "Hardware-keyboard focus leaks through sheets and keypads",
+  "row": "IPXC-002",
+  "cl": "78-ipad-cross-cutting",
+  "module": "iPad UI / keyboard focus",
+  "sev": "Medium",
+  "steps": [
+   "In a flight leg, enter NZAA in Departure and open the seat-assignment sheet.",
+   "Open Override Weight's custom numeric keypad and type 85 using a hardware keyboard.",
+   "Open the meter keypad and type while Notes had previously been active.",
+   "In a form, focus the textarea, tap a key-value field, and type using the hardware keyboard."
+  ],
+  "expected": "Hardware-keyboard input is directed only to the field or control in the active sheet, keypad, or form widget.",
+  "actual": "Typing goes into a field behind the sheet/keypad: Departure became NZAA8585, meter input was appended to Notes, and key-value field input was appended to the form textarea.",
+  "shots": [
+   "IPLEG-005_focus_leak_departure.png",
+   "IPXC-002_focus_leak_notes.png",
+   "IPJSON-001_export.json"
+  ],
+  "cause": "Results note that custom keypads do not resign the previous first responder.",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPUI-002",
+  "title": "Light theme: Configuration values/toggles unreadable (white on white)",
+  "row": "IPCFG-003",
+  "cl": "61-ipad-config-general",
+  "module": "iPad app — Configuration > General",
+  "sev": "Low",
+  "steps": [
+   "Configuration > Theme = Light.",
+   "Look at Device Identifier and Automatic Time Offsets."
+  ],
+  "expected": "Values and controls legible (WCAG AA contrast), as in Dark/Midtone.",
+  "actual": "Device Identifier value `iPad-F6EC` is white text on a white card (unreadable). The OFF state of the Automatic Time Offsets toggle is a near-white track on white, barely visible.",
+  "shots": [
+   "IPCFG-001_config_general.png",
+   "IPCFG-002_light_theme.png",
+   "IPCFG-003_light_contrast.png"
+  ],
+  "cause": "",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPUI-003",
+  "title": "Sparse VoiceOver labels and partial Dynamic Type support",
+  "row": "IPUI-013",
+  "cl": "78-ipad-cross-cutting",
+  "module": "iPad app — cross-cutting accessibility",
+  "sev": "Low",
+  "steps": [],
+  "expected": "TBD",
+  "actual": "- Source: 23 `accessibilityLabel` uses vs 151 `Image(systemName:)`; no `accessibilityHint/Value/Hidden`. Icon-only toolbar buttons (settings gear, download, tracking, +, ⋯) will mostly be read by SF Symbol name or not at all.\n- 87 fixed `.font(.system(size:))` uses. At Accessibility XXL text size, row titles/descriptions scale, but segmented controls (Theme, Time Format, Legs/Forms/Files/Details), section headers, nav titles, Done and Add Leg stay tiny; leg cards keep a fixed ~300pt width so text wraps heavily on a 13\" screen.\n- Live VoiceOver could not be exercised (simulator AX tree not reachable in this harness).",
+  "shots": [
+   "IPUI-014_dyntype_axxxl_config.png",
+   "IPUI-015_dyntype_flight_list.png",
+   "IPUI-016_dyntype_flight_detail.png"
+  ],
+  "cause": "",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-IPWPT-001",
+  "title": "Code-less server waypoints show blank titles; editing them stores 0,0 coordinates; edits are local-only",
+  "row": "IPWPT-004",
+  "cl": "65-ipad-personnel-waypoints",
+  "module": "iPad app — Configuration > Waypoints",
+  "sev": "Medium",
+  "steps": [
+   "Sync All. Configuration > Waypoints.",
+   "Tap the first entry whose title is blank (subtitle `NZAA`)."
+  ],
+  "expected": "Fall back to name when code is empty; keep blank coordinates blank; tell the user edits are device-only (or push them).",
+  "actual": "- 6 synced entries (BTQA, BTQC, NZAA, NZCH, NZWR, ZZZQ) have empty `code` and no lat/lon; the list uses code as the title, so rows are blank and sort first. NZAA/NZCH therefore appear twice.\n- Edit sheet shows Code empty, Name `NZAA`, coordinates `0 0.0000 N / 0 0.0000 E`. Saving in DDM/DMS writes `0.000000, 0.000000` (Gulf of Guinea) instead of leaving blank.\n- `save()` only updates the local `WaypointStore`; nothing is sent to DataHangar, and the next Sync All may replace it (no warning that edits are local).",
+  "shots": [
+   "IPWPT-002_waypoints_list.png",
+   "IPWPT-003_blank_code_nzaa.png",
+   "IPWPT-005_website_waypoints.png"
+  ],
+  "cause": "",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-WEBCHAT-001",
+  "title": "Chat API used by the iPad app ignores the Chat permission (permission bypass)",
+  "row": "IPPERM-024",
+  "cl": "79-ipad-permissions-e2e",
+  "module": "Website / Chat API",
+  "sev": "High",
+  "steps": [
+   "Website, Settings and Tools > Access Manager > New User: \"BETA TEST ONLY LowPerm\" (username betalowperm), no permissions/roles/groups. Activate Login Access.",
+   "Website (incognito) log in as betalowperm > header Chat icon -> Access Denied (correct).",
+   "iPad app (fresh install) > Configuration > DataHangar: log in as betalowperm. Test Authentication succeeds; Sync All -> 6x \"Access denied\" (correct).",
+   "Comms tab -> channel `#beta-test-only-ipad-chat` listed with 17 unread; open it -> Service Account messages and image visible.",
+   "Send \"BETA TEST ONLY lowperm message\" -> delivered, attributed to BETA TEST ONLY LowPerm."
+  ],
+  "expected": "Chat API endpoints (channels list, messages, send, poll, image fetch, read tracking) return Access Denied for users without Chat permission, matching the website; app shows the same \"Access denied\" state it shows for Flights/Safety Reports.",
+  "actual": "Full read and write access to chat through the API.",
+  "shots": [
+   "IPPERM-011_lowperm_sync_denied.png",
+   "IPPERM-016_lowperm_comms_channel_visible.png",
+   "IPPERM-017_lowperm_comms_read.png",
+   "IPPERM-018_lowperm_send_ok.png",
+   "IPPERM-024_web_lowperm_chat_denied.png",
+   "IPPERM-025_web_shows_lowperm_message.png"
+  ],
+  "cause": "",
+  "status": "Open"
+ },
+ {
+  "id": "BUG-WEBTRK-001",
+  "title": "Live tracking pings fail on stresstest - live_tracking table missing",
+  "row": "IPTRK-003",
+  "cl": "77-ipad-live-tracking",
+  "module": "Website / Live Tracking API",
+  "sev": "High",
+  "steps": [
+   "iPad app: Config > DataHangar > Live Tracking ON, interval 30s.",
+   "Open pushed flight #42914 > menu > Start Tracking (Simulator location Auckland, moving).",
+   "Leg toolbar tracking icon turns red; tap it."
+  ],
+  "expected": "Ping saved; aircraft appears on Active Flights > Live Tracking map.",
+  "actual": "Every ping gets an HTML \"Error\" page:\n`exec_sql: Can't execute (INSERT INTO live_tracking (session_id, flight_id, person_id, lat, lng, altitude_m, speed_ms, heading_deg, accuracy_m, device_id, recorded_at) ...): DBD::mysql::st execute failed: Table 'stresstest.live_tracking' doesn't exist at /var/www/datahangar/DHLib/DHMysql.pm line 363.`\nThe map shows nothing. The error page shows SQL text, parameters and a server path to the client.",
+  "shots": [
+   "IPTRK-003_app_tracking_error.png",
+   "IPTRK-003_web_active_flights.png"
+  ],
+  "cause": "",
+  "status": "Open"
  }
 ]

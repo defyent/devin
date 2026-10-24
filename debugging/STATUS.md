@@ -2,7 +2,7 @@
 
 Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixed or closed. Click a bug ID for the full write-up (steps, expected vs actual, cause, fix, screenshots, retest history).
 
-**201 bugs: 152 open, 48 fixed, 1 closed.** Last updated 24/10/2026.
+**229 bugs: 180 open, 48 fixed, 1 closed.** Last updated 24/10/2026.
 
 ## Bug checklist
 
@@ -326,6 +326,73 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 
 - [ ] [BUG-SLOG-001](bugs/BUG-SLOG-001.md) · **Open, not retested** · Low · No page Help (?), and dates show as "22 Oct 2026, 02:51 am"
 
+### iPad setup and install (1 open)
+
+- [ ] [BUG-IPSET-001](bugs/BUG-IPSET-001.md) · **Open, still failing** · Medium · Unit-test target does not compile
+
+### iPad configuration – general (2 open)
+
+- [ ] [BUG-IPCFG-001](bugs/BUG-IPCFG-001.md) · **Open, still failing** · Medium · Configuration PIN saves non-4-digit values, permanently locking Configuration
+- [ ] [BUG-IPUI-002](bugs/BUG-IPUI-002.md) · **Open, still failing** · Low · Light theme: Configuration values/toggles unreadable (white on white)
+
+### iPad DataHangar login and sync (2 open)
+
+- [ ] [BUG-IPDH-001](bugs/BUG-IPDH-001.md) · **Open, still failing** · Low · Keychain save failure is silent
+- [ ] [BUG-IPDH-002](bugs/BUG-IPDH-002.md) · **Open, still failing** · Low · Empty-field authentication and sync buttons look enabled
+
+### iPad aircraft editor (1 open)
+
+- [ ] [BUG-IPAC-001](bugs/BUG-IPAC-001.md) · **Open, still failing** · Medium · Aircraft editor edits to server aircraft are local-only and silently reverted by Sync All
+
+### iPad personnel and waypoints (1 open)
+
+- [ ] [BUG-IPWPT-001](bugs/BUG-IPWPT-001.md) · **Open, still failing** · Medium · Code-less server waypoints show blank titles; editing them stores 0,0 coordinates; edits are…
+
+### iPad flights list (3 open)
+
+- [ ] [BUG-IPFL-002](bugs/BUG-IPFL-002.md) · **Open, still failing** · High · Flights with a Student PIC cannot be pushed from the app
+- [ ] [BUG-IPFL-003](bugs/BUG-IPFL-003.md) · **Open, still failing** · High · Leg times pulled from DataHangar ("HH:MM:SS") display as the current time; editing overwrites them
+- [ ] [BUG-IPFL-001](bugs/BUG-IPFL-001.md) · **Open, still failing** · Low · Flight ID badges and labels add thousands separators
+
+### iPad flight forms (2 open)
+
+- [ ] [BUG-IPFORM-001](bugs/BUG-IPFORM-001.md) · **Open, still failing** · High · Pushed form uses the wrong template and loses widget data
+- [ ] [BUG-IPFORM-002](bugs/BUG-IPFORM-002.md) · **Open, still failing** · High · Pull creates phantom form instances and pushed updates are ignored
+
+### iPad safety reports (3 open)
+
+- [ ] [BUG-IPFORM-003](bugs/BUG-IPFORM-003.md) · **Open, still failing** · High · Form Date/Time widgets ignore website values and show (and can save) the current date/time
+- [ ] [BUG-IPSMS-001](bugs/BUG-IPSMS-001.md) · **Open, still failing** · High · Safety Report form attached in iPad app is silently lost on push
+- [ ] [BUG-IPSMS-002](bugs/BUG-IPSMS-002.md) · **Open, still failing** · Medium · Final Report tab shows stale values after Pull (overwrite risk)
+
+### iPad communications and chat (1 open)
+
+- [ ] [BUG-IPCHAT-001](bugs/BUG-IPCHAT-001.md) · **Open, still failing** · Medium · Chat message typed while offline is discarded on send
+
+### iPad calculator (1 open)
+
+- [ ] [BUG-IPCALC-001](bugs/BUG-IPCALC-001.md) · **Open, still failing** · High · Unit Converter: NM <-> Statute Miles conversion inverted; large values shown in scientific notation
+
+### iPad live tracking (3 open)
+
+- [ ] [BUG-WEBTRK-001](bugs/BUG-WEBTRK-001.md) · **Open, still failing** · High · Live tracking pings fail on stresstest - live_tracking table missing
+- [ ] [BUG-IPTRK-002](bugs/BUG-IPTRK-002.md) · **Open, still failing** · Medium · Live Tracking queue stores duplicate/stale pings; rejected pings are dropped
+- [ ] [BUG-IPTRK-001](bugs/BUG-IPTRK-001.md) · **Open, still failing** · Low · Live Tracking UI/state issues (raw HTML error, stale/global menu, no offline indicator)
+
+### iPad cross-cutting checks (4 open)
+
+- [ ] [BUG-IPSYNC-001](bugs/BUG-IPSYNC-001.md) · **Open, still failing** · Medium · Push silently overwrites website-side Notes edits
+- [ ] [BUG-IPUI-001](bugs/BUG-IPUI-001.md) · **Open, still failing** · Medium · Hardware-keyboard focus leaks through sheets and keypads
+- [ ] [BUG-IPOFF-001](bugs/BUG-IPOFF-001.md) · **Open, still failing** · Low · Offline launch and push block for about a minute before timing out
+- [ ] [BUG-IPUI-003](bugs/BUG-IPUI-003.md) · **Open, still failing** · Low · Sparse VoiceOver labels and partial Dynamic Type support
+
+### iPad permissions and end-to-end (4 open)
+
+- [ ] [BUG-WEBCHAT-001](bugs/BUG-WEBCHAT-001.md) · **Open, still failing** · High · Chat API used by the iPad app ignores the Chat permission (permission bypass)
+- [ ] [BUG-IPFL-004](bugs/BUG-IPFL-004.md) · **Open, still failing** · Medium · Flight downloaded before aircraft sync keeps aircraft "None" forever; Pull never re-links; push…
+- [ ] [BUG-IPPERM-001](bugs/BUG-IPPERM-001.md) · **Open, still failing** · Medium · App lets read-only users edit and push flights and only fails at the server, showing a raw "Error…
+- [ ] [BUG-IPSYNC-002](bugs/BUG-IPSYNC-002.md) · **Open, still failing** · Medium · Pull from Server does not reliably update website-edited Notes
+
 ### Cross-cutting: permission levels (2 open, 2 fixed)
 
 - [ ] [BUG-PERM-002](bugs/BUG-PERM-002.md) · **Open, not retested** · Medium · User with no permissions cannot open their own My Account (no self-service password / 2FA)
@@ -352,13 +419,13 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 
 | Bugs | High | Medium | Low | Total |
 |---|---|---|---|---|
-| Open | 6 | 49 | 97 | **152** |
+| Open | 15 | 61 | 104 | **180** |
 | Fixed (verified by retest) | 5 | 24 | 19 | **48** |
 | Closed (by design) | 0 | 1 | 0 | **1** |
-| **All** | 11 | 74 | 116 | **201** |
+| **All** | 20 | 86 | 123 | **229** |
 
-- 146 of the 152 open bugs have never been retested since they were found, so some may already be fixed.
-- Checklists: 56 of 56 done. 824 checks: 617 pass, 158 fail, 26 blocked, 21 N/A.
+- 146 of the 180 open bugs have never been retested since they were found, so some may already be fixed.
+- Checklists: 61 of 76 done. 1082 checks: 738 pass, 204 fail, 29 blocked, 32 N/A.
 - Issues from the two earlier external audits are listed separately under "External audit issues".
 
 ## Decisions needed and not yet tested
@@ -390,6 +457,15 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 | [BUG-SLP-002](bugs/BUG-SLP-002.md) | Settings: Lesson Plans | Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave | Open, not retested | - |
 | [BUG-SMS-005](bugs/BUG-SMS-005.md) | Safety Reports | Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted | Open, not retested | - |
 | [BUG-ATT-001](bugs/BUG-ATT-001.md) | Attachments (all modules) | Uploaded .html and .svg files are served inline from the DataHangar site (stored XSS risk) | Open, not retested | - |
+| [BUG-IPCALC-001](bugs/BUG-IPCALC-001.md) | iPad app — Calculator > Unit Converter (Distance) | Unit Converter: NM <-> Statute Miles conversion inverted; large values shown in scientific notation | Open, still failing | - |
+| [BUG-IPFL-002](bugs/BUG-IPFL-002.md) | Flight sync / personnel | Flights with a Student PIC cannot be pushed from the app | Open, still failing | - |
+| [BUG-IPFL-003](bugs/BUG-IPFL-003.md) | iPad app — Flights > Leg Detail > Route & Times (also time engine) | Leg times pulled from DataHangar ("HH:MM:SS") display as the current time; editing overwrites them | Open, still failing | - |
+| [BUG-IPFORM-001](bugs/BUG-IPFORM-001.md) | Flight forms / upload | Pushed form uses the wrong template and loses widget data | Open, still failing | - |
+| [BUG-IPFORM-002](bugs/BUG-IPFORM-002.md) | Flight forms / sync | Pull creates phantom form instances and pushed updates are ignored | Open, still failing | - |
+| [BUG-IPFORM-003](bugs/BUG-IPFORM-003.md) | iPad app — Forms engine (Safety Report forms and Flight forms), checklist 70/74 | Form Date/Time widgets ignore website values and show (and can save) the current date/time | Open, still failing | - |
+| [BUG-IPSMS-001](bugs/BUG-IPSMS-001.md) | iPad app — Safety Reports > Forms (checklist 74) | Safety Report form attached in iPad app is silently lost on push | Open, still failing | - |
+| [BUG-WEBCHAT-001](bugs/BUG-WEBCHAT-001.md) | Website / Chat API | Chat API used by the iPad app ignores the Chat permission (permission bypass) | Open, still failing | - |
+| [BUG-WEBTRK-001](bugs/BUG-WEBTRK-001.md) | Website / Live Tracking API | Live tracking pings fail on stresstest - live_tracking table missing | Open, still failing | - |
 
 ## Progress by checklist
 
@@ -443,6 +519,26 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 | [45-settings-inspections](checklists/45-settings-inspections.md) | `SINS` | Settings – Inspection Notifications | 9 | 6 | 3 | 0 | 0 | 3 | 0 | 0 | 3 | DONE |
 | [46-settings-integrations](checklists/46-settings-integrations.md) | `SINT` | Settings – Google Calendar, WhatsApp | 10 | 6 | 2 | 2 | 0 | 2 | 0 | 0 | 2 | DONE |
 | [47-settings-activitylog](checklists/47-settings-activitylog.md) | `SLOG` | Settings – Activity Log | 9 | 6 | 2 | 0 | 1 | 1 | 0 | 0 | 1 | DONE |
+| [60-ipad-setup-install](checklists/60-ipad-setup-install.md) | `IPSET` | iPad setup and install | 3 | 2 | 1 | 0 | 0 | 1 | 0 | 0 | 1 | DONE |
+| [61-ipad-config-general](checklists/61-ipad-config-general.md) | `IPCFG` | iPad configuration – general | 8 | 2 | 3 | 0 | 0 | 2 | 0 | 0 | 2 | IN PROGRESS |
+| [62-ipad-datahangar-login](checklists/62-ipad-datahangar-login.md) | `IPDH` | iPad DataHangar login and sync | 8 | 5 | 2 | 0 | 0 | 2 | 0 | 0 | 2 | IN PROGRESS |
+| [63-ipad-sync-reference-data](checklists/63-ipad-sync-reference-data.md) | `IPREF` | iPad sync reference data | 10 | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | IN PROGRESS |
+| [64-ipad-aircraft-editor](checklists/64-ipad-aircraft-editor.md) | `IPAC` | iPad aircraft editor | 10 | 5 | 1 | 0 | 0 | 1 | 0 | 0 | 1 | IN PROGRESS |
+| [65-ipad-personnel-waypoints](checklists/65-ipad-personnel-waypoints.md) | `IPPW` | iPad personnel and waypoints | 11 | 4 | 2 | 0 | 1 | 1 | 0 | 0 | 1 | IN PROGRESS |
+| [66-ipad-flights-list](checklists/66-ipad-flights-list.md) | `IPFL` | iPad flights list | 14 | 6 | 4 | 1 | 0 | 3 | 0 | 0 | 3 | IN PROGRESS |
+| [67-ipad-flight-legs](checklists/67-ipad-flight-legs.md) | `IPLEG` | iPad flight legs | 8 | 6 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | IN PROGRESS |
+| [68-ipad-weight-balance](checklists/68-ipad-weight-balance.md) | `IPWB` | iPad weight and balance | 6 | 3 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | DONE |
+| [69-ipad-flight-times-meters](checklists/69-ipad-flight-times-meters.md) | `IPFT` | iPad flight times and meters | 9 | 6 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | IN PROGRESS |
+| [70-ipad-flight-forms](checklists/70-ipad-flight-forms.md) | `IPFORM` | iPad flight forms | 7 | 4 | 3 | 0 | 0 | 2 | 0 | 0 | 2 | DONE |
+| [71-ipad-flight-files](checklists/71-ipad-flight-files.md) | `IPFILE` | iPad flight files | 8 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | IN PROGRESS |
+| [72-ipad-push-pull-sync](checklists/72-ipad-push-pull-sync.md) | `IPSYNC` | iPad push/pull sync | 7 | 3 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | IN PROGRESS |
+| [73-ipad-pdf-json-export](checklists/73-ipad-pdf-json-export.md) | `IPPDF` | iPad PDF/JSON export | 3 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | DONE |
+| [74-ipad-safety-reports](checklists/74-ipad-safety-reports.md) | `IPSMS` | iPad safety reports | 18 | 10 | 7 | 0 | 1 | 3 | 0 | 0 | 3 | DONE |
+| [75-ipad-comms-chat](checklists/75-ipad-comms-chat.md) | `IPCHAT` | iPad communications and chat | 12 | 8 | 1 | 0 | 2 | 1 | 0 | 0 | 1 | IN PROGRESS |
+| [76-ipad-calculator](checklists/76-ipad-calculator.md) | `IPCALC` | iPad calculator | 12 | 10 | 1 | 0 | 0 | 1 | 0 | 0 | 1 | IN PROGRESS |
+| [77-ipad-live-tracking](checklists/77-ipad-live-tracking.md) | `IPTRK` | iPad live tracking | 5 | 2 | 2 | 0 | 0 | 3 | 0 | 0 | 3 | IN PROGRESS |
+| [78-ipad-cross-cutting](checklists/78-ipad-cross-cutting.md) | `IPXC` | iPad cross-cutting checks | 23 | 12 | 5 | 0 | 1 | 4 | 0 | 0 | 4 | IN PROGRESS |
+| [79-ipad-permissions-e2e](checklists/79-ipad-permissions-e2e.md) | `IPE2E` | iPad permissions and end-to-end | 76 | 18 | 7 | 2 | 5 | 4 | 0 | 0 | 4 | IN PROGRESS |
 | [90-xc-permissions](checklists/90-xc-permissions.md) | `PERM` | Cross-cutting: permission levels | 10 | 10 | 0 | 0 | 0 | 4 | 2 | 0 | 2 | DONE |
 | [91-xc-popups](checklists/91-xc-popups.md) | `POP` | Cross-cutting: popups/modals | 8 | 4 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | DONE |
 | [92-xc-dates-timezones](checklists/92-xc-dates-timezones.md) | `DATE` | Cross-cutting: date/time formats and pickers | 7 | 3 | 4 | 0 | 0 | 2 | 2 | 0 | 0 | DONE |
@@ -463,6 +559,15 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | [BUG-RB-007](bugs/BUG-RB-007.md) | High | `RB-013` | Roster Builder | Roster Builder: Clear then Publish of a draft month with no shifts does not clear the live roster and shows no message | Open (not retested) | - |
 | [BUG-SMS-005](bugs/BUG-SMS-005.md) | High | `SMS-015` | Safety Reports | Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted | Open (not retested) | - |
 | [BUG-SLP-002](bugs/BUG-SLP-002.md) | High | `SLP-001` | Settings: Lesson Plans | Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave | Open (not retested) | - |
+| [BUG-IPFL-002](bugs/BUG-IPFL-002.md) | High | `IPFL-002f` | Flight sync / personnel | Flights with a Student PIC cannot be pushed from the app | Open | - |
+| [BUG-IPFL-003](bugs/BUG-IPFL-003.md) | High | `IPFL-010` | iPad app — Flights > Leg Detail > Route & Times (also time engine) | Leg times pulled from DataHangar ("HH:MM:SS") display as the current time; editing overwrites them | Open | - |
+| [BUG-IPFORM-001](bugs/BUG-IPFORM-001.md) | High | `IPFORM-003` | Flight forms / upload | Pushed form uses the wrong template and loses widget data | Open | - |
+| [BUG-IPFORM-002](bugs/BUG-IPFORM-002.md) | High | `IPFORM-004` | Flight forms / sync | Pull creates phantom form instances and pushed updates are ignored | Open | - |
+| [BUG-IPFORM-003](bugs/BUG-IPFORM-003.md) | High | `IPSMS-014` | iPad app — Forms engine (Safety Report forms and Flight forms), checklist 70/74 | Form Date/Time widgets ignore website values and show (and can save) the current date/time | Open | - |
+| [BUG-IPSMS-001](bugs/BUG-IPSMS-001.md) | High | `IPSMS-013` | iPad app — Safety Reports > Forms (checklist 74) | Safety Report form attached in iPad app is silently lost on push | Open | - |
+| [BUG-IPCALC-001](bugs/BUG-IPCALC-001.md) | High | `IPCALC-010` | iPad app — Calculator > Unit Converter (Distance) | Unit Converter: NM <-> Statute Miles conversion inverted; large values shown in scientific notation | Open | - |
+| [BUG-WEBTRK-001](bugs/BUG-WEBTRK-001.md) | High | `IPTRK-003` | Website / Live Tracking API | Live tracking pings fail on stresstest - live_tracking table missing | Open | - |
+| [BUG-WEBCHAT-001](bugs/BUG-WEBCHAT-001.md) | High | `IPPERM-024` | Website / Chat API | Chat API used by the iPad app ignores the Chat permission (permission bypass) | Open | - |
 | [BUG-ATT-001](bugs/BUG-ATT-001.md) | High | `ATT-033` | Attachments (all modules) | Uploaded .html and .svg files are served inline from the DataHangar site (stored XSS risk) | Open (not retested) | - |
 | [BUG-FD-012](bugs/BUG-FD-012.md) | Medium | `ATT-002` | Flight Details | Flight Details Files: .txt shows its text in a "Required Information" alert; empty .txt and .html show error messages | Open (not retested) | - |
 | [BUG-DFR-002](bugs/BUG-DFR-002.md) | Medium | `DFR-008` | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied | Open (not retested) | - |
@@ -511,6 +616,18 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | [BUG-SREN-002](bugs/BUG-SREN-002.md) | Medium | `SREN-001` | Settings: Recency and Renewals | Add Recency accepts negative Days, and a Caution value higher than Warning | Open (not retested) | - |
 | [BUG-SREN-003](bugs/BUG-SREN-003.md) | Medium | `SREN-002` | Settings: Recency and Renewals | Add Renewal Type accepts negative Days to Notify and a Frequency of 0 days | Open (not retested) | - |
 | [BUG-SINS-002](bugs/BUG-SINS-002.md) | Medium | `SINS-002` | Settings: Inspection Notifications | Inspection Notifications: a meter inspection on an aircraft at 0.0 hours is never Overdue, and negative meter values are accepted | Open (not retested) | - |
+| [BUG-IPSET-001](bugs/BUG-IPSET-001.md) | Medium | `IPSET-001` | Unit tests | Unit-test target does not compile | Open | - |
+| [BUG-IPCFG-001](bugs/BUG-IPCFG-001.md) | Medium | `IPCFG-009` | iPad app — Configuration > Configuration PIN / PinPadView | Configuration PIN saves non-4-digit values, permanently locking Configuration | Open | - |
+| [BUG-IPAC-001](bugs/BUG-IPAC-001.md) | Medium | `IPAC-006` | iPad app — Configuration > Aircraft > editor; SyncService.syncAircraft | Aircraft editor edits to server aircraft are local-only and silently reverted by Sync All | Open | - |
+| [BUG-IPWPT-001](bugs/BUG-IPWPT-001.md) | Medium | `IPWPT-004` | iPad app — Configuration > Waypoints | Code-less server waypoints show blank titles; editing them stores 0,0 coordinates; edits are local-only | Open | - |
+| [BUG-IPSMS-002](bugs/BUG-IPSMS-002.md) | Medium | `IPSMS-016` | iPad app — Safety Reports > Final Report | Final Report tab shows stale values after Pull (overwrite risk) | Open | - |
+| [BUG-IPCHAT-001](bugs/BUG-IPCHAT-001.md) | Medium | `IPCHAT-010` |  | Chat message typed while offline is discarded on send | Open | - |
+| [BUG-IPTRK-002](bugs/BUG-IPTRK-002.md) | Medium | `IPTRK-006` | iPad app — Live Tracking | Live Tracking queue stores duplicate/stale pings; rejected pings are dropped | Open | - |
+| [BUG-IPSYNC-001](bugs/BUG-IPSYNC-001.md) | Medium | `IPOFF-005` | Flight sync / conflict handling | Push silently overwrites website-side Notes edits | Open | - |
+| [BUG-IPUI-001](bugs/BUG-IPUI-001.md) | Medium | `IPXC-002` | iPad UI / keyboard focus | Hardware-keyboard focus leaks through sheets and keypads | Open | - |
+| [BUG-IPFL-004](bugs/BUG-IPFL-004.md) | Medium | `IPPERM-067` | iPad app, Flights (download/pull/push) | Flight downloaded before aircraft sync keeps aircraft "None" forever; Pull never re-links; push fails with "(nil)" | Open | - |
+| [BUG-IPPERM-001](bugs/BUG-IPPERM-001.md) | Medium | `IPPERM-049` | iPad app, Flights, permissions | App lets read-only users edit and push flights and only fails at the server, showing a raw "Error block Error" message | Open | - |
+| [BUG-IPSYNC-002](bugs/BUG-IPSYNC-002.md) | Medium | `IPPERM-063` | Flight sync / pull | Pull from Server does not reliably update website-edited Notes | Open | - |
 | [BUG-PERM-002](bugs/BUG-PERM-002.md) | Medium | `PERM-007` | Personnel Details / My Account | User with no permissions cannot open their own My Account (no self-service password / 2FA) | Open (not retested) | - |
 | [BUG-ATT-002](bugs/BUG-ATT-002.md) | Medium | `ATT-034` | Attachments (all modules) | No file-type check on any upload: .exe, .html and anything else is accepted; Notices "Supported formats" isn't enforced | Open (not retested) | - |
 | [BUG-FD-011](bugs/BUG-FD-011.md) | Low | `FD-037` | Flight Details | History labels lock and unlock differently ("Locked: No > Yes" vs "Status: Locked > Unlocked") | Open (not retested) | - |
@@ -607,6 +724,13 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | [BUG-SINT-001](bugs/BUG-SINT-001.md) | Low | `SINT-S02` | Settings: Google Calendar Sync | Google Calendar Settings: Help and Add Calendar don't close with Escape or an outside click | Open (not retested) | - |
 | [BUG-SINT-002](bugs/BUG-SINT-002.md) | Low | `SINT-S04` | Settings: Google Calendar Sync | Google Calendar Sync Status: flight dates show as 2024-01-01 07:55 instead of DD/MM/YYYY | Open (not retested) | - |
 | [BUG-SLOG-001](bugs/BUG-SLOG-001.md) | Low | `SLOG-S04` | Settings: Activity Log | Activity Log: no page Help (?), and dates show as "22 Oct 2026, 02:51 am" | Open (not retested) | - |
+| [BUG-IPUI-002](bugs/BUG-IPUI-002.md) | Low | `IPCFG-003` | iPad app — Configuration > General | Light theme: Configuration values/toggles unreadable (white on white) | Open | - |
+| [BUG-IPDH-001](bugs/BUG-IPDH-001.md) | Low | `IPDH-007` | DataHangar configuration / credentials | Keychain save failure is silent | Open | - |
+| [BUG-IPDH-002](bugs/BUG-IPDH-002.md) | Low | `IPDH-001` | DataHangar configuration / button states | Empty-field authentication and sync buttons look enabled | Open | - |
+| [BUG-IPFL-001](bugs/BUG-IPFL-001.md) | Low | `IPFL-003` | Flights / flight ID display | Flight ID badges and labels add thousands separators | Open | - |
+| [BUG-IPTRK-001](bugs/BUG-IPTRK-001.md) | Low | `IPTRK-003` | iPad app — Live Tracking | Live Tracking UI/state issues (raw HTML error, stale/global menu, no offline indicator) | Open | - |
+| [BUG-IPOFF-001](bugs/BUG-IPOFF-001.md) | Low | `IPOFF-003` | Offline handling | Offline launch and push block for about a minute before timing out | Open | - |
+| [BUG-IPUI-003](bugs/BUG-IPUI-003.md) | Low | `IPUI-013` | iPad app — cross-cutting accessibility | Sparse VoiceOver labels and partial Dynamic Type support | Open | - |
 | [BUG-PERM-001](bugs/BUG-PERM-001.md) | Low | `PERM-007` | Shell (main) sidebar | Sidebar lists modules the user has no permission for (all lead to Access Denied) | Open (confirmed 22/10/2026) | - |
 | [BUG-PERF-001](bugs/BUG-PERF-001.md) | Low | `PERF-001` | All modules (debug panel) | 'Performance' debug timing panel shown on every page, including to non-admin users | Open (not retested) | - |
 | [BUG-ATT-003](bugs/BUG-ATT-003.md) | Low | `ATT-035` | Attachments (all modules) | File names are changed differently in each module; accents and symbols are stripped ("résumé" becomes "rsum") | Open (not retested) | - |
@@ -712,6 +836,22 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | 44-settings-smsreports | Safety report #2061 "BETA TEST ONLY report 2 (permanent investigator)" | Flight Safety > Safety Reports | No - the app has no delete for safety reports |
 | 44-settings-smsreports | Extra Info Field "BETA TEST ONLY EIF" (id 8) | Settings > Safety Reports > Extra Info Fields | Partly - set Inactive; can't delete because report #2060 has a value in it |
 | 45-settings-inspections | Two BETA TEST ONLY inspections (date trigger and meter trigger) | Settings > Inspections, aircraft ZK-BTO | No - kept with test aircraft ZK-BTO; delete with it |
+| 66-ipad-flights-list | Flights #42914 and #42915 | DataHangar flights used for the app flight-list and PIC-sync checks | No |
+| 67-ipad-flight-legs | Flights #42914 and #42915 | DataHangar flights used for leg/crew checks | No |
+| 68-ipad-weight-balance | Flight #42914 | BETA test flight used for W&B checks | No |
+| 69-ipad-flight-times-meters | Flights #42914 and #42915 | BETA test flights used for time and meter checks | No |
+| 70-ipad-flight-forms | Flight #42914 | BETA test flight used for flight-form checks | No |
+| 71-ipad-flight-files | Safety Report #2064 | BETA test report used for file upload/delete checks | No |
+| 72-ipad-push-pull-sync | Flights #42914 and #42915 | BETA test flights used for push/pull checks | No |
+| 73-ipad-pdf-json-export | Flights #42914 and #42915 | BETA test flights used for PDF/JSON export checks | No |
+| 74-ipad-safety-reports | Safety Reports #2064 and #2065 | BETA test reports used for forms, files and permissions checks | No |
+| 75-ipad-comms-chat | BETA chat channels | `#beta-test-only-ipad-chat` and `beta-test-only-web-chat` | No |
+| 77-ipad-live-tracking | Flight #42914 | BETA test flight used for live-tracking checks | No |
+| 78-ipad-cross-cutting | Flight #42914 | BETA test flight referenced in UI/offline checks | No |
+| 79-ipad-permissions-e2e | Flights #42914 and #42915 | BETA test flights used in permission and sync scenarios | No |
+| 79-ipad-permissions-e2e | Safety Reports #2064 and #2065 | BETA test reports used in permission scenarios | No |
+| 79-ipad-permissions-e2e | BETA chat channel | `#beta-test-only-ipad-chat` | No |
+| 79-ipad-permissions-e2e | User `betalowperm` | Login Access set Inactive; 4 permissions remain (Flight Schedule RO, Flight Details RO, Resources, W&B Config Download) | Yes |
 | 96-xc-attachments | 18 files on flight #42903 (ids 459-476) | Flight Details > Files | Yes - deleted |
 | 96-xc-attachments | 18 files on BETA TEST ONLY Grpuser (person 277, ids 477-494) | Personnel Details > Files | Yes - deleted |
 | 96-xc-attachments | 18 files on Safety Report #2060 (ids 495-512) | Safety Reports > Files | Yes - deleted |

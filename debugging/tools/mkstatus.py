@@ -202,6 +202,86 @@ AREAS = {
   "SLOG",
   "Settings – Activity Log"
  ],
+ "60-ipad-setup-install": [
+  "IPSET",
+  "iPad setup and install"
+ ],
+ "61-ipad-config-general": [
+  "IPCFG",
+  "iPad configuration – general"
+ ],
+ "62-ipad-datahangar-login": [
+  "IPDH",
+  "iPad DataHangar login and sync"
+ ],
+ "63-ipad-sync-reference-data": [
+  "IPREF",
+  "iPad sync reference data"
+ ],
+ "64-ipad-aircraft-editor": [
+  "IPAC",
+  "iPad aircraft editor"
+ ],
+ "65-ipad-personnel-waypoints": [
+  "IPPW",
+  "iPad personnel and waypoints"
+ ],
+ "66-ipad-flights-list": [
+  "IPFL",
+  "iPad flights list"
+ ],
+ "67-ipad-flight-legs": [
+  "IPLEG",
+  "iPad flight legs"
+ ],
+ "68-ipad-weight-balance": [
+  "IPWB",
+  "iPad weight and balance"
+ ],
+ "69-ipad-flight-times-meters": [
+  "IPFT",
+  "iPad flight times and meters"
+ ],
+ "70-ipad-flight-forms": [
+  "IPFORM",
+  "iPad flight forms"
+ ],
+ "71-ipad-flight-files": [
+  "IPFILE",
+  "iPad flight files"
+ ],
+ "72-ipad-push-pull-sync": [
+  "IPSYNC",
+  "iPad push/pull sync"
+ ],
+ "73-ipad-pdf-json-export": [
+  "IPPDF",
+  "iPad PDF/JSON export"
+ ],
+ "74-ipad-safety-reports": [
+  "IPSMS",
+  "iPad safety reports"
+ ],
+ "75-ipad-comms-chat": [
+  "IPCHAT",
+  "iPad communications and chat"
+ ],
+ "76-ipad-calculator": [
+  "IPCALC",
+  "iPad calculator"
+ ],
+ "77-ipad-live-tracking": [
+  "IPTRK",
+  "iPad live tracking"
+ ],
+ "78-ipad-cross-cutting": [
+  "IPXC",
+  "iPad cross-cutting checks"
+ ],
+ "79-ipad-permissions-e2e": [
+  "IPE2E",
+  "iPad permissions and end-to-end"
+ ],
  "90-xc-permissions": [
   "PERM",
   "Cross-cutting: permission levels"
@@ -320,7 +400,7 @@ def checklist_counts():
         name = os.path.basename(p)[:-3]
         s = open(p).read()
         res = [r.split('|')[4].strip() for r in s.split('\n')
-               if re.match(r'\| [A-Z][A-Z0-9]*-S?\d{2,3} \|', r) and len(r.split('|')) > 6]
+               if re.match(r'\| [A-Z][A-Z0-9]*-S?\d{2,3}[a-z]? \|', r) and len(r.split('|')) > 6]
         pre, area = AREAS.get(name, ['', name])
         todo = res.count('TODO')
         state = 'TODO' if res and todo == len(res) else ('DONE' if todo == 0 else 'IN PROGRESS')

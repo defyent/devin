@@ -1,0 +1,32 @@
+# iPad aircraft editor
+
+- **Checklist ID prefix:** `IPAC`
+- **Guide section:** `debugging/IPAD_SWIFT_AUDIT_PLAN.md` §3
+- **Where:** iPad app — Aircraft editor tabs, meters, validation, save/discard, server vs local aircraft behavior
+- **Permission:** Admin / Service Account unless a different permission level is identified in the row notes
+- **Tester:** Devin
+- **Date / DataHangar version:** 24/10/2026 / iPad DataHangar Flight 1.0.13 (46) on iOS 26.5 Simulator; stresstest v2.0.123
+- **Account / level used:** Service Account unless a different account is identified in the row notes
+
+Result values: `TODO` · `PASS` · `FAIL` · `BLOCKED` · `N/A`. A `FAIL` must have a Bug ID (see `../DEBUGGING_GUIDE.md`).
+
+## Module checks
+
+| ID | Check | Expected | Result | Bug ID | Notes |
+|---|---|---|---|---|---|
+| IPAC-001 | Aircraft list grouped by type, all 21 tagged 'Server'. Editor tabs General/Equipment/Profiles/Graphs/Meters. Only ZK-HEL has W&B data locally (EW 680, MTOW 1134); other 20 aircraft EW 0 /… | TBD (not recorded) | TODO |  | L305: Aircraft list grouped by type, all 21 tagged 'Server'. Editor tabs General/Equipment/Profiles/Graphs/Meters. Only ZK-HEL has W&B data locally (EW 680, MTOW 1134); other 20 aircraft EW 0 / arms 0 (consistent with server W&B configs only for ZK-HEL - verify). Evidence [IPAC-001_zkfly_general.png](../bugs/screenshots/IPAC-001_zkfly_general.png) |
+| IPAC-002 | Meters tab read-only, 'synced from DataHangar, refreshed on each sync': ZK-FLY Flight Hours last 4,521.3, Engine Hours 4,521.3, Cycles 0 (matches row-63 website comparison) -> PASS. Note:… | TBD (not recorded) | PASS |  | L306: Meters tab read-only, 'synced from DataHangar, refreshed on each sync': ZK-FLY Flight Hours last 4,521.3, Engine Hours 4,521.3, Cycles 0 (matches row-63 website comparison) -> PASS. Note: thousands separator in meter values. |
+| IPAC-003 | Source: SyncService re-sync of dh- aircraft keeps local W&B config but overwrites emptyWeight/MTOW/type/rego/meters/time settings from server; AircraftEditor Save is local-only (aircraftS… | TBD (not recorded) | TODO |  | L316: Source: SyncService re-sync of dh- aircraft keeps local W&B config but overwrites emptyWeight/MTOW/type/rego/meters/time settings from server; AircraftEditor Save is local-only (aircraftStore.upsert, no API). Live test: edit ZK-FLY EW + arm, Sync All. |
+| IPAC-004 | ZK-FLY General tab: type Cessna 172, rego, Show in Flight Dropdowns, time-recording toggles (takeoff/landing, engine start/stop, flight time source Takeoff/Landing, engine time source Eng… | TBD (not recorded) | TODO |  | L318: ZK-FLY General tab: type Cessna 172, rego, Show in Flight Dropdowns, time-recording toggles (takeoff/landing, engine start/stop, flight time source Takeoff/Landing, engine time source Engine start/stop), Unit System Metric (kg,cm), EW 0, MTOW/Max Fuel/Default Fuel blank. Starting local-edit vs Sync All test (EW -> 600). |
+| IPAC-005 | ZK-FLY EW set to 600 locally, Save -> toast/list shows 'BEW 600 kg' -> local save PASS. Next: Sync All to see if server EW (0) overwrites it silently. | TBD (not recorded) | PASS |  | L319: ZK-FLY EW set to 600 locally, Save -> toast/list shows 'BEW 600 kg' -> local save PASS. Next: Sync All to see if server EW (0) overwrites it silently. |
+| IPAC-006 | BUG-IPAC-001: after Sync All (2:24 AM) ZK-FLY EW reverted 600 -> 0 (store emptyWeight 0; list subtitle 'BEW 600 kg' gone). No warning that editor changes are device-only or will be overwr… | TBD (not recorded) | FAIL | BUG-IPAC-001 | L321: FAIL (Medium) -> BUG-IPAC-001: after Sync All (2:24 AM) ZK-FLY EW reverted 600 -> 0 (store emptyWeight 0; list subtitle 'BEW 600 kg' gone). No warning that editor changes are device-only or will be overwritten; edit never reaches website. Evidence [IPAC-005_zkfly_bew600_saved.png](../bugs/screenshots/IPAC-005_zkfly_bew600_saved.png), [IPAC-006_zkfly_ew_reverted_after_sync.png](../bugs/screenshots/IPAC-006_zkfly_ew_reverted_after_sync.png) |
+| IPAC-007 | New Aircraft (+) Save with empty Type/Registration -> 'Validation: Aircraft Type and Registration are required.' -> PASS. Evidence IPAC-007_new_aircraft_validation.png | TBD (not recorded) | PASS |  | L322: New Aircraft (+) Save with empty Type/Registration -> 'Validation: Aircraft Type and Registration are required.' -> PASS. Evidence [IPAC-007_new_aircraft_validation.png](../bugs/screenshots/IPAC-007_new_aircraft_validation.png) |
+| IPAC-008 | New Aircraft opened, nothing typed (only Save tapped -> validation), Cancel -> 'Discard Changes: You have unsaved changes' prompt even though form untouched -> minor UX note (false-positi… | TBD (not recorded) | TODO |  | L323: New Aircraft opened, nothing typed (only Save tapped -> validation), Cancel -> 'Discard Changes: You have unsaved changes' prompt even though form untouched -> minor UX note (false-positive dirty state; draft likely differs from initial). Discard confirms. Evidence [IPAC-008_discard_prompt_no_edits.png](../bugs/screenshots/IPAC-008_discard_prompt_no_edits.png) |
+| IPAC-009 | Discard on New Aircraft -> list unchanged (21 aircraft, no draft added) -> PASS. Evidence IPAC-009_discard_no_aircraft_added.png. Next: compare website W&B Configs (iPad App) with app zer… | TBD (not recorded) | PASS |  | L324: Discard on New Aircraft -> list unchanged (21 aircraft, no draft added) -> PASS. Evidence [IPAC-009_discard_no_aircraft_added.png](../bugs/screenshots/IPAC-009_discard_no_aircraft_added.png). Next: compare website W&B Configs (iPad App) with app zero-W&B aircraft. |
+| IPAC-010 | Website Weight & Balance Configs: Active Master = Revision 3, '1 aircraft' (Revs 4-6 approved but not master). App synced W&B Config Revision 3 and only ZK-HEL has W&B data; other 20 airc… | TBD (not recorded) | PASS |  | L325: Website Weight & Balance Configs: Active Master = Revision 3, '1 aircraft' (Revs 4-6 approved but not master). App synced W&B Config Revision 3 and only ZK-HEL has W&B data; other 20 aircraft EW/arms 0 because server has none -> PASS (app mirrors master). Evidence [IPAC-010_website_wb_master_rev3.png](../bugs/screenshots/IPAC-010_website_wb_master_rev3.png) |
+
+## Test data created
+
+| Record | Where | Cleanup done? |
+|---|---|---|
+| | | |
