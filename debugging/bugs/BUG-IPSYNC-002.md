@@ -20,13 +20,14 @@
 The app replaces its stale Notes value with the website value `WEBEDIT`.
 
 ## Actual
-Pull from Server leaves the app's Notes unchanged even though the action says it overwrites local changes. The results also record a landing-time representation change from `00:07` to `00:07:00`; whether that change is part of the same defect is TBD.
+Pull from Server leaves the app's Notes unchanged even though the action says it overwrites local changes. The pulled leg times also changed from `00:07` to `00:07:00`; that format problem is tracked separately as BUG-IPFL-003.
 
 ## Evidence
-- TBD — no direct screenshot of the failed pull is present in `screenshots/`.
+- `screenshots/IPPERM-063_web_42914_notes_server.png` (website Notes)
+- `screenshots/IPPERM-064_app_42914_notes_RO_synced.png` (app after Pull: local text kept, marked synced)
 
 ## Suspected cause (optional)
-TBD.
+Not fully traced: the Pull path in `FlightSyncService.swift` refreshes sync timestamps and leg data but does not replace local flight-level fields such as Notes, and it clears the needs-push flag.
 
 ## Test data involved
 Flight `#42914`; website Notes `WEBEDIT`.

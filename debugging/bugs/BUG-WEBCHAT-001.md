@@ -22,7 +22,7 @@ Full read and write access to chat through the API.
 
 ## Notes
 - App side: `ChatService.swift` has no permission check beyond `isAdmin` (delete gating). App should also handle a denied response gracefully once the server enforces it.
-- Also observed: non-admins cannot delete their own messages in the app (`CommsView.swift` context menu only `if isAdmin`) — parity with website TBD.
+- Also observed: non-admins cannot delete their own messages in the app (`CommsView.swift` context menu only `if isAdmin`) — not compared with the website, because the test user has no Chat permission there. Listed as a decision in IPAD_AUDIT_REPORT.md section 9.
 
 ## Evidence
 - screenshots/IPPERM-016_lowperm_comms_channel_visible.png
