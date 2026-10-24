@@ -425,7 +425,7 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 | **All** | 20 | 86 | 123 | **229** |
 
 - 146 of the 180 open bugs have never been retested since they were found, so some may already be fixed.
-- Checklists: 61 of 76 done. 1082 checks: 738 pass, 204 fail, 29 blocked, 32 N/A.
+- Checklists: 61 of 76 done. 1082 checks: 739 pass, 204 fail, 29 blocked, 32 N/A.
 - Issues from the two earlier external audits are listed separately under "External audit issues".
 
 ## Decisions needed and not yet tested
@@ -538,7 +538,7 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 | [76-ipad-calculator](checklists/76-ipad-calculator.md) | `IPCALC` | iPad calculator | 12 | 10 | 1 | 0 | 0 | 1 | 0 | 0 | 1 | IN PROGRESS |
 | [77-ipad-live-tracking](checklists/77-ipad-live-tracking.md) | `IPTRK` | iPad live tracking | 5 | 2 | 2 | 0 | 0 | 3 | 0 | 0 | 3 | IN PROGRESS |
 | [78-ipad-cross-cutting](checklists/78-ipad-cross-cutting.md) | `IPXC` | iPad cross-cutting checks | 23 | 12 | 5 | 0 | 1 | 4 | 0 | 0 | 4 | IN PROGRESS |
-| [79-ipad-permissions-e2e](checklists/79-ipad-permissions-e2e.md) | `IPE2E` | iPad permissions and end-to-end | 76 | 18 | 7 | 2 | 5 | 4 | 0 | 0 | 4 | IN PROGRESS |
+| [79-ipad-permissions-e2e](checklists/79-ipad-permissions-e2e.md) | `IPE2E` | iPad permissions and end-to-end | 76 | 19 | 7 | 2 | 5 | 4 | 0 | 0 | 4 | IN PROGRESS |
 | [90-xc-permissions](checklists/90-xc-permissions.md) | `PERM` | Cross-cutting: permission levels | 10 | 10 | 0 | 0 | 0 | 4 | 2 | 0 | 2 | DONE |
 | [91-xc-popups](checklists/91-xc-popups.md) | `POP` | Cross-cutting: popups/modals | 8 | 4 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | DONE |
 | [92-xc-dates-timezones](checklists/92-xc-dates-timezones.md) | `DATE` | Cross-cutting: date/time formats and pickers | 7 | 3 | 4 | 0 | 0 | 2 | 2 | 0 | 0 | DONE |
