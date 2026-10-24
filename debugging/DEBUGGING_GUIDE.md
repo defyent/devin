@@ -37,10 +37,10 @@ Within a checklist: work top to bottom, fill `Result` immediately, don't batch.
    - dates in the org format.
 
 ## 4. IDs
-- **Checklist rows:** `<PREFIX>-<NNN>` (module checks) and `<PREFIX>-S<NN>` (standard checks). Prefixes are listed in `TRACKER.md`.
+- **Checklist rows:** `<PREFIX>-<NNN>` (module checks) and `<PREFIX>-S<NN>` (standard checks). Prefixes are listed in `STATUS.md` (section 4).
 - **Bugs:** `BUG-<PREFIX>-<NNN>`, numbered per prefix in the order found (e.g. `BUG-FS-001`). Jon can reply per ID.
 - **Screenshots:** `bugs/screenshots/BUG-<PREFIX>-<NNN>-<n>.png`.
-- **External audit IDs** (`FORM-NN`, `POP-NN`, `DATE-NN`, `VIS-NN`, `UX-NN`, `ICON-NN`, `CHAT-NN`, …) from `external-audits/` are kept as-is and listed in `bugs/BUGS_INDEX.md`; Jon can reply with either kind of ID.
+- **External audit IDs** (`FORM-NN`, `POP-NN`, `DATE-NN`, `VIS-NN`, `UX-NN`, `ICON-NN`, `CHAT-NN`, …) from `external-audits/` are kept as-is and listed in `STATUS.md` (section 7); Jon can reply with either kind of ID.
 
 ## 5. Severity
 | Severity | Meaning | Examples |
@@ -55,7 +55,7 @@ Within a checklist: work top to bottom, fill `Result` immediately, don't batch.
 Steps from the menu, expected (with guide §), actual (exact on-screen text), account + level, version, width, screenshot, console/network errors, test data involved. One bug per file; link duplicates instead of merging.
 
 ## 7. Reporting cadence
-- Update `TRACKER.md` after each checklist.
+- After each checklist, update `bugs.json` and run `tools/mkstatus.py` to regenerate `STATUS.md`.
 - At the end of each session: attach a consolidated report (all bugs found, severity, screenshots) and a test-data cleanup list, and say clearly that the run is finished.
 
 ## 8. For the bug-fixing session

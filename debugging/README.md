@@ -8,7 +8,9 @@ Systematic, guide-driven bug hunt for DataHangar, based on `DataHangar_Frontend_
 debugging/
 ├── README.md               ← this file: structure + workflow
 ├── DEBUGGING_GUIDE.md      ← rules, method, IDs, severity, evidence standards
-├── TRACKER.md              ← one row per checklist: progress + bug counts (update as you go)
+├── STATUS.md               ← THE status document: bug totals, open/fixed/closed list, checklist progress, test data
+├── bugs.json               ← master bug data (one entry per bug, incl. status); STATUS.md is built from it
+├── tools/mkstatus.py       ← regenerates STATUS.md and syncs bug-file Status lines from bugs.json
 ├── checklists/             ← one file per module / settings page / cross-cutting area
 │   ├── 00-setup-and-accounts.md      (run first)
 │   ├── 01-…03-                        login, shell, common conventions
@@ -19,7 +21,6 @@ debugging/
 ├── external-audits/        (Forms + UI/UX audits, 17/10/2026)
 ├── bugs/
 │   ├── BUG_TEMPLATE.md     ← copy for each bug
-│   ├── BUGS_INDEX.md       ← list of all bugs (ID, module, severity, status)
 │   ├── BUG-<PREFIX>-<NNN>.md
 │   └── screenshots/        ← BUG-<PREFIX>-<NNN>-<n>.png
 └── handover/
@@ -29,8 +30,8 @@ debugging/
 ## Workflow
 
 1. **Tester session** works through `checklists/` in numeric order (00 first, 99 last), filling the `Result`, `Bug ID` and `Notes` columns.
-2. Each `FAIL` → new `bugs/BUG-<PREFIX>-<NNN>.md` from the template + screenshot + row in `bugs/BUGS_INDEX.md`.
-3. After each checklist, update its row in `TRACKER.md`.
+2. Each `FAIL` → new `bugs/BUG-<PREFIX>-<NNN>.md` from the template + screenshot + entry in `bugs.json`.
+3. After each checklist or retest, update `bugs.json` (status) and the bug file's Retest log, then run `python3 debugging/tools/mkstatus.py` to regenerate `STATUS.md`.
 4. When a module (or a batch) is done, create `../fixit-handovers/FIXIT_HANDOVER_<module>_v<version>.md` from `handover/FIXIT_HANDOVER_TEMPLATE.md` and pass it (plus the bug files) to the **bug-fixing session** working in `defyent/code`.
 5. After Jon deploys a fix: clear cache, re-run the linked checklist rows, set bug status to `Verified` or `Reopened`.
 
