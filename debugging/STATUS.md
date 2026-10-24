@@ -2,7 +2,7 @@
 
 Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixed or closed. Click a bug ID for the full write-up (steps, expected vs actual, cause, fix, screenshots, retest history).
 
-**201 bugs: 152 open, 48 fixed, 1 closed.** Last updated 24/10/2026.
+**202 bugs: 153 open, 48 fixed, 1 closed.** Last updated 24/10/2026.
 
 ## Bug checklist
 
@@ -348,17 +348,21 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 - [ ] [BUG-ATT-002](bugs/BUG-ATT-002.md) · **Open, not retested** · Medium · No file-type check on any upload: .exe, .html and anything else is accepted; Notices "Supported…
 - [ ] [BUG-ATT-003](bugs/BUG-ATT-003.md) · **Open, not retested** · Low · File names are changed differently in each module; accents and symbols are stripped ("résumé"…
 
+### iPad: Security and data handling (1 open)
+
+- [ ] [BUG-IPSEC-001](bugs/BUG-IPSEC-001.md) · **Open, not retested** · High · iPad app: DataHangar password stored in plain text in localStorage (plus a _backup copy) on the…
+
 ## Summary
 
 | Bugs | High | Medium | Low | Total |
 |---|---|---|---|---|
-| Open | 6 | 49 | 97 | **152** |
+| Open | 7 | 49 | 97 | **153** |
 | Fixed (verified by retest) | 5 | 24 | 19 | **48** |
 | Closed (by design) | 0 | 1 | 0 | **1** |
-| **All** | 11 | 74 | 116 | **201** |
+| **All** | 12 | 74 | 116 | **202** |
 
-- 146 of the 152 open bugs have never been retested since they were found, so some may already be fixed.
-- Checklists: 56 of 56 done. 824 checks: 617 pass, 158 fail, 26 blocked, 21 N/A.
+- 147 of the 153 open bugs have never been retested since they were found, so some may already be fixed.
+- Checklists: 56 of 75 done. 1035 checks: 627 pass, 159 fail, 26 blocked, 21 N/A.
 - Issues from the two earlier external audits are listed separately under "External audit issues".
 
 ## Decisions needed and not yet tested
@@ -390,6 +394,7 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 | [BUG-SLP-002](bugs/BUG-SLP-002.md) | Settings: Lesson Plans | Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave | Open, not retested | - |
 | [BUG-SMS-005](bugs/BUG-SMS-005.md) | Safety Reports | Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted | Open, not retested | - |
 | [BUG-ATT-001](bugs/BUG-ATT-001.md) | Attachments (all modules) | Uploaded .html and .svg files are served inline from the DataHangar site (stored XSS risk) | Open, not retested | - |
+| [BUG-IPSEC-001](bugs/BUG-IPSEC-001.md) | iPad: Security | iPad app: DataHangar password stored in plain text in localStorage (plus a _backup copy) on the frontend's origin | Open, not retested | - |
 
 ## Progress by checklist
 
@@ -443,6 +448,25 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 | [45-settings-inspections](checklists/45-settings-inspections.md) | `SINS` | Settings – Inspection Notifications | 9 | 6 | 3 | 0 | 0 | 3 | 0 | 0 | 3 | DONE |
 | [46-settings-integrations](checklists/46-settings-integrations.md) | `SINT` | Settings – Google Calendar, WhatsApp | 10 | 6 | 2 | 2 | 0 | 2 | 0 | 0 | 2 | DONE |
 | [47-settings-activitylog](checklists/47-settings-activitylog.md) | `SLOG` | Settings – Activity Log | 9 | 6 | 2 | 0 | 1 | 1 | 0 | 0 | 1 | DONE |
+| [60-ipad-setup](checklists/60-ipad-setup.md) | `IPSET` | iPad: Setup and baseline | 8 | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | IN PROGRESS |
+| [61-ipad-configuration](checklists/61-ipad-configuration.md) | `IPCFG` | iPad: Configuration: General Info | 16 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | TODO |
+| [62-ipad-aircraft-wab](checklists/62-ipad-aircraft-wab.md) | `IPAC` | iPad: Configuration: Aircraft and W&B | 13 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | TODO |
+| [63-ipad-personnel-waypoints](checklists/63-ipad-personnel-waypoints.md) | `IPPER` | iPad: Configuration: Personnel and Waypoints | 7 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | TODO |
+| [64-ipad-datahangar-sync](checklists/64-ipad-datahangar-sync.md) | `IPSYN` | iPad: DataHangar connection and Sync All Data | 13 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | IN PROGRESS |
+| [65-ipad-flights-list](checklists/65-ipad-flights-list.md) | `IPFL` | iPad: Flights list and Download | 11 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | IN PROGRESS |
+| [66-ipad-flight-legs](checklists/66-ipad-flight-legs.md) | `IPLEG` | iPad: Flight: legs, times, meters, fuel | 12 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | TODO |
+| [67-ipad-flight-crew-wab](checklists/67-ipad-flight-crew-wab.md) | `IPWB` | iPad: Flight: crew, passengers and W&B | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | TODO |
+| [68-ipad-flight-forms-files](checklists/68-ipad-flight-forms-files.md) | `IPFF` | iPad: Flight: forms and files | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | TODO |
+| [69-ipad-push-pull-conflicts](checklists/69-ipad-push-pull-conflicts.md) | `IPPP` | iPad: Push, pull and conflicts | 13 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | TODO |
+| [70-ipad-safety-reports](checklists/70-ipad-safety-reports.md) | `IPSMS` | iPad: Safety reports | 14 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | TODO |
+| [71-ipad-calculator](checklists/71-ipad-calculator.md) | `IPCAL` | iPad: Calculator | 10 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | TODO |
+| [72-ipad-comms](checklists/72-ipad-comms.md) | `IPCOM` | iPad: Comms (chat) | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | TODO |
+| [73-ipad-live-tracking-native](checklists/73-ipad-live-tracking-native.md) | `IPLT` | iPad: Live tracking and native bridge | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | TODO |
+| [74-ipad-offline-lifecycle](checklists/74-ipad-offline-lifecycle.md) | `IPOFF` | iPad: Offline, persistence and lifecycle | 9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | TODO |
+| [75-ipad-security](checklists/75-ipad-security.md) | `IPSEC` | iPad: Security and data handling | 8 | 0 | 1 | 0 | 0 | 1 | 0 | 0 | 1 | IN PROGRESS |
+| [76-ipad-ux-layout](checklists/76-ipad-ux-layout.md) | `IPUX` | iPad: UX/UI: layout and orientation | 23 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | TODO |
+| [77-ipad-ux-consistency](checklists/77-ipad-ux-consistency.md) | `IPUXC` | iPad: UX/UI: touch, visual, wording, accessibility | 13 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | TODO |
+| [79-ipad-e2e](checklists/79-ipad-e2e.md) | `IPE2E` | iPad: End-to-end field day | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | TODO |
 | [90-xc-permissions](checklists/90-xc-permissions.md) | `PERM` | Cross-cutting: permission levels | 10 | 10 | 0 | 0 | 0 | 4 | 2 | 0 | 2 | DONE |
 | [91-xc-popups](checklists/91-xc-popups.md) | `POP` | Cross-cutting: popups/modals | 8 | 4 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | DONE |
 | [92-xc-dates-timezones](checklists/92-xc-dates-timezones.md) | `DATE` | Cross-cutting: date/time formats and pickers | 7 | 3 | 4 | 0 | 0 | 2 | 2 | 0 | 0 | DONE |
@@ -464,6 +488,7 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | [BUG-SMS-005](bugs/BUG-SMS-005.md) | High | `SMS-015` | Safety Reports | Safety Reports: group-level (WG) and own-level (WO) users see no reports at all, not even ones they submitted | Open (not retested) | - |
 | [BUG-SLP-002](bugs/BUG-SLP-002.md) | High | `SLP-001` | Settings: Lesson Plans | Lesson Plan Settings: Exercises are never saved; add/edit/delete only change the page and are lost when you leave | Open (not retested) | - |
 | [BUG-ATT-001](bugs/BUG-ATT-001.md) | High | `ATT-033` | Attachments (all modules) | Uploaded .html and .svg files are served inline from the DataHangar site (stored XSS risk) | Open (not retested) | - |
+| [BUG-IPSEC-001](bugs/BUG-IPSEC-001.md) | High | `IPSEC-001` | iPad: Security | iPad app: DataHangar password stored in plain text in localStorage (plus a _backup copy) on the frontend's origin | Open (not retested) | - |
 | [BUG-FD-012](bugs/BUG-FD-012.md) | Medium | `ATT-002` | Flight Details | Flight Details Files: .txt shows its text in a "Required Information" alert; empty .txt and .html show error messages | Open (not retested) | - |
 | [BUG-DFR-002](bugs/BUG-DFR-002.md) | Medium | `DFR-008` | Daily Flight Record | Daily Flight Record: Clear Filters unticks every status (lists Open, Cancelled and Deleted flights), and the date fields show today's date when no date filter is applied | Open (not retested) | - |
 | [BUG-DFR-003](bugs/BUG-DFR-003.md) | Medium | `DFR-008` | Daily Flight Record | Daily Flight Record: changing filters quickly appends results instead of replacing them, showing duplicate and wrong-status rows | Open (not retested) | - |

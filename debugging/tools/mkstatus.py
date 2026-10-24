@@ -233,6 +233,82 @@ AREAS = {
  "99-e2e-workflows": [
   "E2E",
   "End-to-end workflows"
+ ],
+ "60-ipad-setup": [
+  "IPSET",
+  "iPad: Setup and baseline"
+ ],
+ "61-ipad-configuration": [
+  "IPCFG",
+  "iPad: Configuration: General Info"
+ ],
+ "62-ipad-aircraft-wab": [
+  "IPAC",
+  "iPad: Configuration: Aircraft and W&B"
+ ],
+ "63-ipad-personnel-waypoints": [
+  "IPPER",
+  "iPad: Configuration: Personnel and Waypoints"
+ ],
+ "64-ipad-datahangar-sync": [
+  "IPSYN",
+  "iPad: DataHangar connection and Sync All Data"
+ ],
+ "65-ipad-flights-list": [
+  "IPFL",
+  "iPad: Flights list and Download"
+ ],
+ "66-ipad-flight-legs": [
+  "IPLEG",
+  "iPad: Flight: legs, times, meters, fuel"
+ ],
+ "67-ipad-flight-crew-wab": [
+  "IPWB",
+  "iPad: Flight: crew, passengers and W&B"
+ ],
+ "68-ipad-flight-forms-files": [
+  "IPFF",
+  "iPad: Flight: forms and files"
+ ],
+ "69-ipad-push-pull-conflicts": [
+  "IPPP",
+  "iPad: Push, pull and conflicts"
+ ],
+ "70-ipad-safety-reports": [
+  "IPSMS",
+  "iPad: Safety reports"
+ ],
+ "71-ipad-calculator": [
+  "IPCAL",
+  "iPad: Calculator"
+ ],
+ "72-ipad-comms": [
+  "IPCOM",
+  "iPad: Comms (chat)"
+ ],
+ "73-ipad-live-tracking-native": [
+  "IPLT",
+  "iPad: Live tracking and native bridge"
+ ],
+ "74-ipad-offline-lifecycle": [
+  "IPOFF",
+  "iPad: Offline, persistence and lifecycle"
+ ],
+ "75-ipad-security": [
+  "IPSEC",
+  "iPad: Security and data handling"
+ ],
+ "76-ipad-ux-layout": [
+  "IPUX",
+  "iPad: UX/UI: layout and orientation"
+ ],
+ "77-ipad-ux-consistency": [
+  "IPUXC",
+  "iPad: UX/UI: touch, visual, wording, accessibility"
+ ],
+ "79-ipad-e2e": [
+  "IPE2E",
+  "iPad: End-to-end field day"
  ]
 }
 SEVS = ['High', 'Medium', 'Low']

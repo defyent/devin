@@ -40,3 +40,7 @@ debugging/
 Give it: this `debugging/` folder, the handover file, and the user guide. It should read `DEBUGGING_GUIDE.md` §"For the bug-fixing session" first.
 
 **Icon rule:** all modules must use icons from `/templates2/main/icons/` only. Missing icons are added to that folder. See `DEBUGGING_GUIDE.md` under "Icons".
+
+## iPad app (DataHangar Flight)
+
+The iPad app audit plan is in `ipad/IPAD_AUDIT_PLAN.md`. Its checklists are `checklists/60-ipad-*` to `79-ipad-*` (prefixes `IP…`). Bugs use the same workflow, with IDs `BUG-IP<area>-NNN`.
