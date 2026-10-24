@@ -2,7 +2,7 @@
 
 Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixed or closed. Click a bug ID for the full write-up (steps, expected vs actual, cause, fix, screenshots, retest history).
 
-**235 bugs: 186 open, 48 fixed, 1 closed.** Last updated 24/10/2026.
+**234 bugs: 185 open, 48 fixed, 1 closed.** Last updated 24/10/2026.
 
 ## Bug checklist
 
@@ -390,11 +390,10 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 - [ ] [BUG-IPTRK-002](bugs/BUG-IPTRK-002.md) · **Open, still failing** · Medium · Live Tracking queue stores duplicate/stale pings; rejected pings are dropped
 - [ ] [BUG-IPTRK-001](bugs/BUG-IPTRK-001.md) · **Open, still failing** · Low · Live Tracking UI/state issues (raw HTML error, stale/global menu, no offline indicator)
 
-### iPad cross-cutting checks (5 open)
+### iPad cross-cutting checks (4 open)
 
 - [ ] [BUG-IPSYNC-001](bugs/BUG-IPSYNC-001.md) · **Open, still failing** · Medium · Push silently overwrites website-side Notes edits
 - [ ] [BUG-IPUI-001](bugs/BUG-IPUI-001.md) · **Open, still failing** · Medium · Hardware-keyboard focus leaks through sheets and keypads
-- [ ] [BUG-IPXC-002](bugs/BUG-IPXC-002.md) · **Open, still failing** · Medium · Hardware-keyboard focus leaks through sheets and keypads
 - [ ] [BUG-IPOFF-001](bugs/BUG-IPOFF-001.md) · **Open, still failing** · Low · Offline launch and push block for about a minute before timing out
 - [ ] [BUG-IPUI-003](bugs/BUG-IPUI-003.md) · **Open, still failing** · Low · Sparse VoiceOver labels and partial Dynamic Type support
 
@@ -431,12 +430,12 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 
 | Bugs | High | Medium | Low | Total |
 |---|---|---|---|---|
-| Open | 15 | 63 | 108 | **186** |
+| Open | 15 | 62 | 108 | **185** |
 | Fixed (verified by retest) | 5 | 24 | 19 | **48** |
 | Closed (by design) | 0 | 1 | 0 | **1** |
-| **All** | 20 | 88 | 127 | **235** |
+| **All** | 20 | 87 | 127 | **234** |
 
-- 146 of the 186 open bugs have never been retested since they were found, so some may already be fixed.
+- 146 of the 185 open bugs have never been retested since they were found, so some may already be fixed.
 - Checklists: 76 of 76 done. 1082 checks: 782 pass, 224 fail, 26 blocked, 48 N/A.
 - Issues from the two earlier external audits are listed separately under "External audit issues".
 
@@ -549,7 +548,7 @@ Every bug found in the DataHangar beta audit, and where it stands. Ticked = fixe
 | [75-ipad-comms-chat](checklists/75-ipad-comms-chat.md) | `IPCHAT` | iPad communications and chat | 12 | 9 | 1 | 0 | 2 | 1 | 0 | 0 | 1 | DONE |
 | [76-ipad-calculator](checklists/76-ipad-calculator.md) | `IPCALC` | iPad calculator | 12 | 11 | 1 | 0 | 0 | 1 | 0 | 0 | 1 | DONE |
 | [77-ipad-live-tracking](checklists/77-ipad-live-tracking.md) | `IPTRK` | iPad live tracking | 5 | 3 | 2 | 0 | 0 | 3 | 0 | 0 | 3 | DONE |
-| [78-ipad-cross-cutting](checklists/78-ipad-cross-cutting.md) | `IPXC` | iPad cross-cutting checks | 23 | 14 | 8 | 0 | 1 | 5 | 0 | 0 | 5 | DONE |
+| [78-ipad-cross-cutting](checklists/78-ipad-cross-cutting.md) | `IPXC` | iPad cross-cutting checks | 23 | 14 | 8 | 0 | 1 | 4 | 0 | 0 | 4 | DONE |
 | [79-ipad-permissions-e2e](checklists/79-ipad-permissions-e2e.md) | `IPE2E` | iPad permissions and end-to-end | 76 | 43 | 17 | 0 | 16 | 4 | 0 | 0 | 4 | DONE |
 | [90-xc-permissions](checklists/90-xc-permissions.md) | `PERM` | Cross-cutting: permission levels | 10 | 10 | 0 | 0 | 0 | 4 | 2 | 0 | 2 | DONE |
 | [91-xc-popups](checklists/91-xc-popups.md) | `POP` | Cross-cutting: popups/modals | 8 | 4 | 4 | 0 | 0 | 0 | 0 | 0 | 0 | DONE |
@@ -638,7 +637,6 @@ Full title, checklist row and latest retest for every bug, open first. The bug f
 | [BUG-IPTRK-002](bugs/BUG-IPTRK-002.md) | Medium | `IPTRK-006` | iPad app — Live Tracking | Live Tracking queue stores duplicate/stale pings; rejected pings are dropped | Open | - |
 | [BUG-IPSYNC-001](bugs/BUG-IPSYNC-001.md) | Medium | `IPOFF-005` | Flight sync / conflict handling | Push silently overwrites website-side Notes edits | Open | - |
 | [BUG-IPUI-001](bugs/BUG-IPUI-001.md) | Medium | `IPXC-002` | iPad UI / keyboard focus | Hardware-keyboard focus leaks through sheets and keypads | Open | - |
-| [BUG-IPXC-002](bugs/BUG-IPXC-002.md) | Medium | `IPXC-002` | iPad app — cross-cutting keyboard focus | Hardware-keyboard focus leaks through sheets and keypads | Open | - |
 | [BUG-IPFL-004](bugs/BUG-IPFL-004.md) | Medium | `IPPERM-067` | iPad app, Flights (download/pull/push) | Flight downloaded before aircraft sync keeps aircraft "None" forever; Pull never re-links; push fails with "(nil)" | Open | - |
 | [BUG-IPPERM-001](bugs/BUG-IPPERM-001.md) | Medium | `IPPERM-049` | iPad app, Flights, permissions | App lets read-only users edit and push flights and only fails at the server, showing a raw "Error block Error" message | Open | - |
 | [BUG-IPSYNC-002](bugs/BUG-IPSYNC-002.md) | Medium | `IPPERM-063` | Flight sync / pull | Pull from Server does not reliably update website-edited Notes | Open | - |

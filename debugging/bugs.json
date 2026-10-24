@@ -4606,21 +4606,5 @@
   "shots": [],
   "cause": "TBD (not specified in the checklist finding).",
   "status": "Open"
- },
- {
-  "id": "BUG-IPXC-002",
-  "title": "Hardware-keyboard focus leaks through sheets and keypads",
-  "row": "IPXC-002",
-  "cl": "78-ipad-cross-cutting",
-  "module": "iPad app — cross-cutting keyboard focus",
-  "sev": "Medium",
-  "steps": [
-   "See checklist row IPXC-002 for the recorded finding."
-  ],
-  "expected": "TBD (not specified in the checklist finding).",
-  "actual": "| IPFORM-002 | (BUG-IPXC-002 evidence #3): Key-Value Pair fields did NOT receive input; 'KV1 BETA'/'KV2 BETA' typed while textarea was first responder got appended to textarea value: widget-...-6d6a5z4… | No defect (see Bug ID) | FAIL | BUG-IPXC-002 | L96: (BUG-IPXC-002 evidence #3): Key-Value Pair fields did NOT receive input; 'KV1 BETA'/'KV2 BETA' typed while textarea was first responder got appended to textarea value: widget-...-6d6a5z4 = 'BETA TEST ONLY textareaKV1 BETAKV2 BETA'. Focus leak corrupts saved form data, not just display. |\n\n| IPXC-002 | upgraded BUG-IPXC-002 (Medium): focus leak confirmed in 2nd place - tapping meter ✓/field then typing '2451.7' went into Notes ('...flight 12451.7'). Custom keypads never resign first res… | No defect (see Bug ID) | FAIL | BUG-IPXC-002 | L90: FAIL upgraded BUG-IPXC-002 (Medium): focus leak confirmed in 2nd place - tapping meter ✓/field then typing '2451.7' went into Notes ('...flight 12451.7'). Custom keypads never resign first responder. Any hardware-keyboard user corrupts fields. Restore Notes. evidence/IPXC-002_* |",
-  "shots": [],
-  "cause": "TBD (not specified in the checklist finding).",
-  "status": "Open"
  }
 ]
