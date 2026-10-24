@@ -35,4 +35,4 @@ No up-front reachability/offline check; launch auto-sync and push wait for the d
 Offline test against `stresstest.datahangar.net`; local edits remained intact.
 
 ## Related
-TBD
+BUG-IPCHAT-001 (offline chat send lost after the same timeout).

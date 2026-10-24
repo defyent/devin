@@ -34,4 +34,4 @@ SwiftUI interpolation of an `Int` in a localized `Text`/`Label` string applies n
 Flight IDs including 8893, 43913, and 42914.
 
 ## Related
-TBD
+None (chat channel names use the same number formatting).

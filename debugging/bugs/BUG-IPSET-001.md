@@ -13,7 +13,7 @@
 
 ## Steps to reproduce
 1. Attempt to compile the app's unit-test target.
-2. TBD: exact build command and target invocation.
+2. On the macOS VM: `xcodebuild test -project 'DataHangar WAB Swift/DataHangarWAB.xcodeproj' -scheme DataHangarWAB -destination 'platform=iOS Simulator,name=iPad Pro 13-inch (M5)'` (or Product > Test in Xcode).
 
 ## Expected
 The unit-test target compiles.
@@ -22,13 +22,13 @@ The unit-test target compiles.
 Compilation fails due to duplicate `FlightTimeEngineTests` declarations (`WeightBalanceEngineTests.swift:196` and `FlightTimeEngineTests.swift`) and stale call signatures, including missing `pic`, `copilot`, `crew`, `passengers`, `takeoffFuel`, and `decimalPlaces` arguments. Renaming the duplicate still leaves about 12 compile errors.
 
 ## Evidence
-- TBD — test output is recorded outside `screenshots/`; no matching evidence file is present.
+- xcodebuild compile output on the audit VM (not committed).
 
 ## Suspected cause (optional)
 Duplicate test-class declaration and test calls that have not been updated to current signatures.
 
 ## Test data involved
-Unit-test target; exact build command TBD.
+Unit-test target of scheme DataHangarWAB.
 
 ## Related
-TBD
+None.

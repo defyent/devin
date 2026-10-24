@@ -36,4 +36,4 @@ Suspected (not fully traced): the template IDs the app syncs and sends don't mat
 Flight `#42914`; `BETA TEST ONLY Form`; 8 fields filled.
 
 ## Related
-TBD
+BUG-IPFORM-002 (duplicate/phantom forms), BUG-IPSMS-001 (Safety Report forms lost).
